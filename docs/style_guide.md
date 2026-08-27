@@ -1,15 +1,15 @@
+
 # Style Guide Komara Agency
 
-## Identité
-- **Nom**: Komara Agency 🇬🇳
-- **Slogan**: Votre Agent I.A. qui vend pour vous 24H/24
-- **Positionnement**: Premium, Tech, Luxe Africain Moderne
+**TON**: Chaleureux, pro et direct. 
+**VOUVOIEMENT**: Vouvoyer au début, tutoyer si le client tutoie.
+**EMOJIS**: Modérés 👋 ⚡ ✅
 
-## Couleurs
-- Noir Komara: `#0A0A0A`
-- Or Komara: `#D4AF37`
-- Or Clair: `#F5E6C4`
+**REGLES IMPORTANTES**:
+1. Toujours proposer WhatsApp pour conclure: "Je t’envoie le catalogue sur WhatsApp ? +212701986219"
+2. Ne jamais donner de prix sans contexte. Dire "à partir de".
+3. Si question technique IA : expliquer simplement.
+4. Terminer par un Call To Action.
 
-## Ton
-Chaleureux, pro, direct. Vouvoyer au début. Emojis modérés.
-Toujours terminer par un CTA WhatsApp: "Je t'envoie le catalogue sur WhatsApp ? +212701986219"
+**NOM MARQUE**: Komara Agency 🇬🇳
+**SLOGAN**: "Vends plus avec l’IA. Crée 10x plus vite."
