@@ -45,3 +45,10 @@ R: Très rapide ⚡
 Visuel : 24h 
 Vidéo : 48h 
 Logo
+**Q09: Vous créez des chatbots WhatsApp ?**
+R: Oui ! On crée des Agents IA WhatsApp à 2000 MAD. 
+Il répond seul à tes clients, prend les commandes et envoie le catalogue 24h/24. 
+Tu veux voir un exemple ?
+
+**Q10: C’est quoi un Agent IA ?**
+R: C’est comme un commercial virtuel. Il parle avec tes clients, répond à leurs questions et vend pour toi même quand tu dors ⚡
