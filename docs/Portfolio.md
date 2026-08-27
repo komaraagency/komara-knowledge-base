@@ -35,3 +35,12 @@ On devient ton service marketing IA. 15 contenus + 4 pubs + coaching.
 **Pack Business 3500 MAD** : 15 visuels + 10 vidéos + 1 mois pub
 
 **Contact commande** : WhatsApp +212701986219
+## **D. AGENTS IA ET CHATBOTS**
+**10. Création d'Agent IA WhatsApp : 2000 MAD**
+Un chatbot IA qui répond à tes clients 24h/24. Prend commandes, répond FAQ, envoie catalogue.
+
+**11. Création de Chatbot Site Web : 1500 MAD**
+Chatbot pour ton site qui capture les leads et répond automatiquement.
+
+**12. Formation Création d'Agent IA : 3500 MAD**
+On t’apprend à créer ton propre agent IA avec vos données.
