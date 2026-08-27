@@ -1,0 +1,104 @@
+{
+  "version": "2.0.0",
+  "brand": "Komara Agency",
+  "slogan": "Votre Agent I.A. qui vend pour vous 24H/24",
+  "lang": "fr",
+  "contact": {
+    "whatsapp": "+212 701 986 219",
+    "adresse": "Safi, Région Doukkala-Abda, Maroc",
+    "tiktok": "https://www.tiktok.com/@ndine.komara",
+    "facebook": "https://www.facebook.com/ndine.komar"
+  },
+  "tone": "Chaleureux, pro et direct. Style Premium Tech Luxe Africain Moderne. Vouvoyer au début, tutoyer si client tutoie. Emojis modérés.",
+  "colors": {
+    "noir": "#0A0A0A",
+    "or": "#D4AF37",
+    "or_clair": "#F5E6C4"
+  },
+  "services": [
+    {
+      "id": "agent_commercial",
+      "nom": "Agent I.A. Commercial WhatsApp",
+      "prix": "à partir de 1200 MAD",
+      "description": "Vend et répond aux clients 24H/24. Cible: E-commerce, Boutiques."
+    },
+    {
+      "id": "agent_rdv",
+      "nom": "Agent I.A. Prise de RDV",
+      "prix": "sur devis",
+      "description": "Automatise RDV, rappels, confirmations. Cible: Cliniques, Coiffeurs, Agences."
+    },
+    {
+      "id": "agent_support",
+      "nom": "Agent I.A. Support Client",
+      "prix": "sur devis",
+      "description": "Gère FAQ, réclamations, qualification de leads. Cible: Services, Ecoles."
+    },
+    {
+      "id": "site_web",
+      "nom": "Création de Site Web + Formulaire Lead",
+      "prix": "à partir de 1200 MAD",
+      "description": "Landing page HTML Creator avec formulaire intégré vers Telegram."
+    },
+    {
+      "id": "video_ugc",
+      "nom": "Vidéo UGC avec Avatar IA",
+      "prix": "900 MAD / 1 vidéo 30s",
+      "description": "Un avatar parle de ton produit à ta place. Pas besoin de te filmer."
+    },
+    {
+      "id": "formation",
+      "nom": "Formation IA Business",
+      "prix": "2500 MAD",
+      "description": "Automatiser sa prospection, créer 30 contenus/mois, vendre avec l’IA."
+    }
+  ],
+  "packs": [
+    {"nom": "Pack Starter", "prix": "1200 MAD", "contenu": "5 visuels + 3 vidéos + Logo"},
+    {"nom": "Pack Business", "prix": "3500 MAD", "contenu": "15 visuels + 10 vidéos + 1 mois pub"}
+  ],
+  "knowledge": [
+    {
+      "id": "accueil_01",
+      "questions": ["bonjour", "salut", "cc", "hey"],
+      "answer": "Bonjour 👋 Je suis l'Assistant I.A. de Komara Agency 🇬🇳.\nVotre Agent I.A. qui vend pour vous 24H/24.\n\nOn aide les entrepreneurs à vendre plus avec l’IA. Tu veux vendre quoi ?",
+      "tags": ["accueil"]
+    },
+    {
+      "id": "services_01",
+      "questions": ["service", "que faites vous", "offre"],
+      "answer": "Chez Komara Agency on fait 5 choses :\n1. Agent I.A. Commercial WhatsApp\n2. Agent I.A. Prise de RDV\n3. Agent I.A. Support Client\n4. Site Web + Formulaire Lead\n5. Vidéo UGC avec Avatar IA\nTu veux des infos sur lequel ?",
+      "tags": ["service"]
+    },
+    {
+      "id": "tarif_01",
+      "questions": ["prix", "tarif", "combien"],
+      "answer": "Voici nos packs populaires :\nPack Starter : 1200 MAD - 5 visuels + 3 vidéos + Logo\nPack Business : 3500 MAD - 15 visuels + 10 vidéos + 1 mois pub\n\nFormation IA : 999 MAD à 2500 MAD\nJe t’envoie le catalogue complet sur WhatsApp ? +212701986219",
+      "tags": ["tarif"]
+    },
+    {
+      "id": "objection_cher",
+      "questions": ["c'est cher", "trop cher"],
+      "answer": "Je comprends 👌 Un seul client ramené par la pub rembourse déjà l’investissement.\nTu veux qu’on commence petit avec le pack à 1200 MAD ?",
+      "tags": ["objection"]
+    },
+    {
+      "id": "objection_reflechir",
+      "questions": ["je vais réfléchir"],
+      "answer": "Pas de souci. Je t’envoie 3 exemples de ce qu’on fait pour ton domaine sur WhatsApp et tu me dis ce que tu en penses ? +212701986219",
+      "tags": ["objection"]
+    },
+    {
+      "id": "process_01",
+      "questions": ["comment commander", "process"],
+      "answer": "Process simple en 5 étapes :\n1. Tu m’envoies ton besoin ici\n2. Devis gratuit sous 2h\n3. Paiement 50% Orange Money, MoMo, Paypal\n4. Livraison 24h à 72h\n5. 2 modifications incluses\nOn démarre avec quel service pour toi ?",
+      "tags": ["process"]
+    },
+    {
+      "id": "paiement_01",
+      "questions": ["payer", "paiement"],
+      "answer": "Tu peux payer par Orange Money, MoMo, Virement bancaire, Paypal.\n50% avant, 50% après.",
+      "tags": ["faq"]
+    }
+  ]
+    }
