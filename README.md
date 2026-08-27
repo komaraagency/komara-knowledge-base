@@ -17,3 +17,18 @@ Ce bot vend automatiquement nos services sur WhatsApp et Telegram 24h/24.
 | **Logo + Branding** | 800 MAD | `10_logo.md` |
 
 ## 📁 Structure des fichiers
+## 🚀 Utilisation
+
+Cette base est conçue pour être utilisée avec :
+- Bot WhatsApp API
+- Bot Telegram
+- Chatbase, CustomGPT, n8n
+
+## 📞 Contact
+
+**Komara Agency**
+WhatsApp : +212701986219
+Paiement : Orange Money, MoMo, Virement
+
+---
+*Dernière mise à jour : 27 Août 2026*
