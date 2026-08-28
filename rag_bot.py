@@ -1,73 +1,313 @@
-import os, time, json, telebot
+"""Worker Telegram Komara avec polling robuste pour Railway.
+
+Important : Telegram n'autorise qu'un seul processus en getUpdates par token.
+Un conflit 409 est donc traité comme une erreur fatale et non comme une erreur
+à relancer immédiatement en boucle.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import os
+import signal
+import sys
+import time
+from pathlib import Path
+from typing import Any
+
+import telebot
 from dotenv import load_dotenv
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton
-load_dotenv()
+from telebot.apihelper import ApiTelegramException
+from telebot.types import ReplyKeyboardMarkup
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+# ---------------------------------------------------------------------------
+# Configuration générale
+# ---------------------------------------------------------------------------
+
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
+TOKEN = (os.getenv("TELEGRAM_TOKEN") or "").strip()
+POLL_TIMEOUT = int(os.getenv("TELEGRAM_POLL_TIMEOUT", "30"))
+LONG_POLLING_TIMEOUT = int(os.getenv("TELEGRAM_LONG_POLLING_TIMEOUT", "30"))
+MAX_RETRIES = int(os.getenv("TELEGRAM_MAX_RETRIES", "8"))
+DROP_PENDING_UPDATES = os.getenv("TELEGRAM_DROP_PENDING_UPDATES", "true").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    stream=sys.stdout,
+)
+logger = logging.getLogger("komara.telegram")
+
+
+if not TOKEN:
+    raise RuntimeError(
+        "La variable d'environnement TELEGRAM_TOKEN est absente. "
+        "Ajoutez-la dans Railway avant de démarrer le worker."
+    )
+
+
+# ---------------------------------------------------------------------------
+# Chargement de la base de connaissances
+# ---------------------------------------------------------------------------
+
+KB_PATH = BASE_DIR / "kb.json"
+with KB_PATH.open("r", encoding="utf-8") as kb_file:
+    BRAIN: dict[str, Any] = json.load(kb_file)
+
+
+WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "notre WhatsApp")
+BRAND = BRAIN.get("brand", "Komara Agency")
+KNOWLEDGE = BRAIN.get("knowledge", [])
+PACKS = BRAIN.get("packs", [])
+
+
+if not KNOWLEDGE:
+    raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
+
+
 bot = telebot.TeleBot(TOKEN, parse_mode="Markdown")
+_shutdown_requested = False
 
-with open("kb.json", "r", encoding="utf-8") as f:
-    BRAIN = json.load(f)
 
-WHATSAPP = BRAIN["contact"]["whatsapp"]
+# ---------------------------------------------------------------------------
+# Arrêt propre
+# ---------------------------------------------------------------------------
 
-def menu():
-    m = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    m.add("💎 Voir les Tarifs", "📂 Portfolio")
-    m.add("🚀 Commander", "🤖 Chatbot IA")
-    m.add("👑 Parler à un humain")
-    return m
 
-def chercher(msg):
-    msg = msg.lower()
-    for k in BRAIN["knowledge"]:
-        if any(q in msg for q in k["questions"]):
-            return k["answer"]
+def request_shutdown(signum: int, _frame: Any) -> None:
+    """Demande au polling de s'arrêter quand Railway envoie SIGTERM/SIGINT."""
+
+    global _shutdown_requested
+    _shutdown_requested = True
+    logger.info("Signal %s reçu : arrêt propre demandé.", signum)
+
+
+signal.signal(signal.SIGTERM, request_shutdown)
+signal.signal(signal.SIGINT, request_shutdown)
+
+
+# ---------------------------------------------------------------------------
+# Réponses et interface Telegram
+# ---------------------------------------------------------------------------
+
+
+def menu() -> ReplyKeyboardMarkup:
+    keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    keyboard.add("💎 Voir les Tarifs", "📂 Portfolio")
+    keyboard.add("🚀 Commander", "🤖 Chatbot IA")
+    keyboard.add("👑 Parler à un humain")
+    return keyboard
+
+
+def chercher(message: str | None) -> str | None:
+    """Retourne la première réponse dont une question correspond au message."""
+
+    normalized = (message or "").casefold()
+    for item in KNOWLEDGE:
+        questions = item.get("questions", [])
+        if any(str(question).casefold() in normalized for question in questions):
+            return item.get("answer")
     return None
 
-@bot.message_handler(commands=['start'])
-def start(m):
-    bot.send_chat_action(m.chat.id, 'typing') # FIX 3
+
+def safe_typing(chat_id: int) -> None:
+    """L'indicateur de saisie est facultatif : son échec ne doit pas tuer le bot."""
+
+    try:
+        bot.send_chat_action(chat_id, "typing")
+    except Exception:
+        logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
+
+
+def send_portfolio(chat_id: int) -> None:
+    """Envoie les deux fichiers portfolio s'ils existent, puis le texte associé."""
+
+    sent = 0
+    for filename in ("portfolio_01", "portfolio_02"):
+        image_path = BASE_DIR / filename
+        if not image_path.is_file():
+            logger.warning("Fichier portfolio absent : %s", image_path)
+            continue
+
+        try:
+            with image_path.open("rb") as image_file:
+                bot.send_photo(chat_id, image_file)
+            sent += 1
+            time.sleep(0.5)
+        except Exception:
+            logger.exception("Échec d'envoi du portfolio %s", image_path.name)
+
+    prefix = "" if sent else "⚠️ Les photos sont temporairement indisponibles. "
+    text = (
+        f"{prefix}Portfolio KOMARA 💎 {BRAIN.get('slogan', '')}\n"
+        "Tu veux des exemples pour quel domaine ?"
+    )
+    bot.send_message(chat_id, text, reply_markup=menu())
+
+
+@bot.message_handler(commands=["start"])
+def start(message: telebot.types.Message) -> None:
+    safe_typing(message.chat.id)
     time.sleep(1)
-    bot.send_message(m.chat.id, BRAIN["knowledge"][0]["answer"], reply_markup=menu())
+    welcome = KNOWLEDGE[0].get("answer", f"Bienvenue chez {BRAND}.")
+    bot.send_message(message.chat.id, welcome, reply_markup=menu())
 
-@bot.message_handler(func=lambda m: True)
-def handle(m):
-    bot.send_chat_action(m.chat.id, 'typing') # FIX 3
-    txt = m.text
-    
-    if txt in ["📂 Portfolio", "Portfolio"]:
-        sent = 0
-        for img in ["portfolio_01", "portfolio_02"]:
-            try:
-                if os.path.exists(img):
-                    bot.send_photo(m.chat.id, open(img, "rb"))
-                    sent += 1
-                    time.sleep(0.5) # FIX 1
-            except: pass
-        txt_out = f"Portfolio KOMARA 💎 {BRAIN['slogan']}\nTu veux des exemples pour quel domaine?"
-        if sent == 0: txt_out = "⚠️ Photos en upload. " + txt_out
-        bot.send_message(m.chat.id, txt_out, reply_markup=menu())
-    
-    elif txt == "💎 Voir les Tarifs":
-        packs = "\n".join([f"*{p['nom']}*: {p['prix']} - {p['contenu']}" for p in BRAIN["packs"]])
-        rep = chercher('prix') + "\n\n" + packs
-        bot.send_message(m.chat.id, rep, reply_markup=menu())
-    
-    elif txt == "👑 Parler à un humain":
-        bot.send_message(m.chat.id, f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5min 🙏", reply_markup=menu())
-    
-    else:
-        rep = chercher(txt)
-        if not rep: # FIX 2
-            rep = "Parmi nos services : Agent IA, Site Web, Vidéo UGC... lequel t'intéresse?"
-        time.sleep(min(2, len(rep) / 200)) # Délai naturel
-        bot.send_message(m.chat.id, rep, reply_markup=menu())
 
-def run():
-    bot.remove_webhook()
-    time.sleep(2)
-    print(f"KOMARA V10.3 {BRAIN['brand']} LANCÉ")
-    bot.infinity_polling()
+@bot.message_handler(func=lambda message: True)
+def handle(message: telebot.types.Message) -> None:
+    """Traite un message sans laisser une erreur utilisateur arrêter le worker."""
 
-if __name__ == "__main__": run()
+    chat_id = message.chat.id
+    text = (message.text or "").strip()
+    safe_typing(chat_id)
+
+    try:
+        if text in {"📂 Portfolio", "Portfolio"}:
+            send_portfolio(chat_id)
+            return
+
+        if text == "💎 Voir les Tarifs":
+            base_answer = chercher("prix") or "Voici nos offres :"
+            packs_text = "\n".join(
+                f"*{pack.get('nom', 'Pack')}*: {pack.get('prix', '')} - "
+                f"{pack.get('contenu', '')}"
+                for pack in PACKS
+            )
+            response = f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
+            bot.send_message(chat_id, response, reply_markup=menu())
+            return
+
+        if text == "👑 Parler à un humain":
+            bot.send_message(
+                chat_id,
+                f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes.",
+                reply_markup=menu(),
+            )
+            return
+
+        response = chercher(text) or (
+            "Parmi nos services : Agent IA, Site Web, Vidéo UGC... "
+            "lequel t'intéresse ?"
+        )
+        time.sleep(min(2, len(response) / 200))
+        bot.send_message(chat_id, response, reply_markup=menu())
+
+    except ApiTelegramException:
+        # Cette exception est relancée pour permettre au niveau supérieur de
+        # distinguer un conflit 409 d'une erreur applicative de message.
+        raise
+    except Exception:
+        logger.exception("Erreur lors du traitement du message du chat %s", chat_id)
+        try:
+            bot.send_message(
+                chat_id,
+                "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
+                reply_markup=menu(),
+            )
+        except Exception:
+            logger.exception("Impossible d'envoyer le message de secours.")
+
+
+# ---------------------------------------------------------------------------
+# Polling et stratégie de reprise
+# ---------------------------------------------------------------------------
+
+
+def prepare_polling() -> None:
+    """Supprime un éventuel webhook avant de passer en long polling."""
+
+    logger.info("Suppression du webhook Telegram avant le polling.")
+    bot.delete_webhook(drop_pending_updates=DROP_PENDING_UPDATES)
+
+
+def is_conflict(error: ApiTelegramException) -> bool:
+    """Détecte le conflit Telegram 409, quelle que soit sa formulation."""
+
+    description = str(getattr(error, "description", error)).casefold()
+    return getattr(error, "error_code", None) == 409 or "terminated by other" in description
+
+
+def run() -> None:
+    """Démarre le worker et ne relance pas agressivement un conflit 409."""
+
+    global _shutdown_requested
+    retry_count = 0
+
+    logger.info(
+        "%s démarrage ; polling_timeout=%ss, long_polling_timeout=%ss, "
+        "drop_pending_updates=%s",
+        BRAND,
+        POLL_TIMEOUT,
+        LONG_POLLING_TIMEOUT,
+        DROP_PENDING_UPDATES,
+    )
+
+    while not _shutdown_requested:
+        try:
+            prepare_polling()
+            logger.info("Worker Telegram actif avec une seule instance attendue.")
+            bot.infinity_polling(
+                timeout=POLL_TIMEOUT,
+                long_polling_timeout=LONG_POLLING_TIMEOUT,
+                skip_pending=DROP_PENDING_UPDATES,
+                allowed_updates=["message"],
+            )
+            retry_count = 0
+
+            if not _shutdown_requested:
+                logger.warning("Le polling s'est arrêté sans exception ; nouvelle tentative différée.")
+                time.sleep(5)
+
+        except ApiTelegramException as error:
+            if is_conflict(error):
+                logger.critical(
+                    "Conflit Telegram 409 : une autre instance utilise déjà ce token. "
+                    "Arrêt sans boucle de redémarrage. Vérifiez Railway, les replicas et "
+                    "les autres hébergeurs avant de relancer. Détail : %s",
+                    error,
+                )
+                raise SystemExit(2) from error
+
+            retry_count += 1
+            if retry_count > MAX_RETRIES:
+                logger.critical("Trop d'erreurs Telegram consécutives ; arrêt du worker.")
+                raise
+
+            delay = min(60, 2 ** min(retry_count, 6))
+            logger.exception(
+                "Erreur Telegram transitoire (tentative %s/%s) ; reprise dans %ss.",
+                retry_count,
+                MAX_RETRIES,
+                delay,
+            )
+            time.sleep(delay)
+
+        except Exception:
+            retry_count += 1
+            if retry_count > MAX_RETRIES:
+                logger.critical("Trop d'erreurs consécutives ; arrêt du worker.")
+                raise
+
+            delay = min(60, 2 ** min(retry_count, 6))
+            logger.exception(
+                "Erreur inattendue du polling (tentative %s/%s) ; reprise dans %ss.",
+                retry_count,
+                MAX_RETRIES,
+                delay,
+            )
+            time.sleep(delay)
+
+    logger.info("Worker Telegram arrêté proprement.")
+
+
+if __name__ == "__main__":
+    run()
