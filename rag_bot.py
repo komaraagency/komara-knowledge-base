@@ -10,8 +10,8 @@ bot = telebot.TeleBot(TOKEN, parse_mode="Markdown")
 user_memory = {}
 
 WHATSAPP = "+212701986219"
-IMG1 = "wa_image_7917004363912705776"
-IMG2 = "wa_image_427715489939713356"
+IMG1 = "portfolio_01" # CORRIGÉ
+IMG2 = "portfolio_02" # CORRIGÉ
 
 def menu_principal():
     markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -126,7 +126,7 @@ def handle_message(message):
 def run_bot():
     while True:
         try:
-            print("BOT KOMARA V9.0 LUXURY CONÇU ET LANCÉ")
+            print("BOT KOMARA V9.3.1 LUXURY CONÇU ET LANCÉ")
             bot.delete_webhook(drop_pending_updates=True)
             time.sleep(2)
             bot.infinity_polling(timeout=20)
