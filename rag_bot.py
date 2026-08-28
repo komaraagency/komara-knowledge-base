@@ -12,12 +12,19 @@ import logging
 import os
 import signal
 import sys
+import threading
 import time
+from collections import deque
 from pathlib import Path
 from typing import Any
 
 import telebot
 from dotenv import load_dotenv
+
+try:
+    from openai import OpenAI
+except ImportError:  # Le mode local reste disponible sans LLM.
+    OpenAI = None
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
@@ -69,8 +76,17 @@ BRAND = BRAIN.get("brand", "Komara Agency")
 KNOWLEDGE = BRAIN.get("knowledge", [])
 PACKS = BRAIN.get("packs", [])
 
+# La mémoire est stockée dans un fichier JSON. Sur Railway, montez un Volume
+# et définissez MEMORY_FILE=/data/komara_memory.json pour la rendre durable.
+MEMORY_FILE = Path(os.getenv("MEMORY_FILE", str(BASE_DIR / "data" / "memory.json")))
+MEMORY_LIMIT = max(2, int(os.getenv("MEMORY_LIMIT", "12")))
+MEMORY_LOCK = threading.Lock()
+LLM_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini")
+LLM_ENABLED = bool(os.getenv("OPENAI_API_KEY")) and OpenAI is not None
+LLM_CLIENT = OpenAI() if LLM_ENABLED else None
 
 if not KNOWLEDGE:
+
     raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
 
 
@@ -119,6 +135,96 @@ def chercher(message: str | None) -> str | None:
     return None
 
 
+def _load_memory() -> dict[str, list[dict[str, str]]]:
+    """Charge la mémoire; une mémoire absente ou invalide est réinitialisée."""
+
+    try:
+        with MEMORY_LOCK:
+            if not MEMORY_FILE.exists():
+                return {}
+            with MEMORY_FILE.open("r", encoding="utf-8") as memory_file:
+                data = json.load(memory_file)
+        return data if isinstance(data, dict) else {}
+    except (OSError, json.JSONDecodeError):
+        logger.warning("Mémoire illisible; démarrage avec une mémoire vide.", exc_info=True)
+        return {}
+
+
+def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
+    """Sauvegarde atomiquement la mémoire pour éviter un fichier JSON partiel."""
+
+    MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    temporary_file = MEMORY_FILE.with_suffix(".tmp")
+    with MEMORY_LOCK:
+        with temporary_file.open("w", encoding="utf-8") as memory_file:
+            json.dump(memory, memory_file, ensure_ascii=False, indent=2)
+        temporary_file.replace(MEMORY_FILE)
+
+
+def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
+    """Ajoute un échange et conserve seulement les derniers messages du chat."""
+
+    memory = _load_memory()
+    key = str(chat_id)
+    history = deque(memory.get(key, []), maxlen=MEMORY_LIMIT)
+    history.append({"role": role, "content": content[:4000]})
+    memory[key] = list(history)
+    _save_memory(memory)
+    return memory[key]
+
+
+def forget(chat_id: int) -> None:
+    """Efface volontairement la mémoire d'un utilisateur."""
+
+    memory = _load_memory()
+    memory.pop(str(chat_id), None)
+    _save_memory(memory)
+
+
+def context_for(chat_id: int) -> list[dict[str, str]]:
+    return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
+
+
+def build_context(chat_id: int, user_text: str) -> list[dict[str, str]]:
+    """Construit le contexte LLM avec les faits métier et l'historique du chat."""
+
+    knowledge = "\n".join(
+        f"- {item.get('id', 'info')}: {item.get('answer', '')}"
+        for item in KNOWLEDGE
+    )
+    services = "\n".join(
+        f"- {service.get('nom', '')}: {service.get('prix', '')} — {service.get('description', '')}"
+        for service in BRAIN.get("services", [])
+    )
+    system = (
+        f"Tu es l'assistant commercial de {BRAND}. Réponds en français, de façon naturelle, "
+        "chaleureuse et concise. Comprends les pronoms et les références au message précédent. "
+        "N'invente jamais de prix, de délai ou de service; utilise uniquement les informations "
+        "ci-dessous. Si l'information manque, pose une question de clarification. "
+        "Ne prétends pas être humain.\n\nSERVICES:\n"
+        f"{services}\n\nBASE DE CONNAISSANCES:\n{knowledge}"
+    )
+    return [{"role": "system", "content": system}, *context_for(chat_id), {"role": "user", "content": user_text}]
+
+
+def generate_contextual_response(chat_id: int, user_text: str) -> str | None:
+    """Utilise le LLM si configuré; sinon renvoie None pour activer le repli local."""
+
+    if not LLM_CLIENT:
+        return None
+    try:
+        result = LLM_CLIENT.chat.completions.create(
+            model=LLM_MODEL,
+            messages=build_context(chat_id, user_text),
+            max_completion_tokens=500,
+        )
+        answer = (result.choices[0].message.content or "").strip()
+        return answer or None
+    except Exception:
+        logger.exception("Échec du LLM; utilisation du repli local.")
+        return None
+
+
 def safe_typing(chat_id: int) -> None:
     """L'indicateur de saisie est facultatif : son échec ne doit pas tuer le bot."""
 
@@ -156,10 +262,14 @@ def send_portfolio(chat_id: int) -> None:
 
 @bot.message_handler(commands=["start"])
 def start(message: telebot.types.Message) -> None:
-    safe_typing(message.chat.id)
+    chat_id = message.chat.id
+    if (message.text or "").strip().casefold() == "/start":
+        forget(chat_id)
+    safe_typing(chat_id)
     time.sleep(1)
     welcome = KNOWLEDGE[0].get("answer", f"Bienvenue chez {BRAND}.")
-    bot.send_message(message.chat.id, welcome, reply_markup=menu())
+    remember(chat_id, "assistant", welcome)
+    bot.send_message(chat_id, welcome, reply_markup=menu())
 
 
 @bot.message_handler(func=lambda message: True)
@@ -169,6 +279,16 @@ def handle(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
     text = (message.text or "").strip()
     safe_typing(chat_id)
+
+    if text.casefold() in {"/reset", "/forget", "oublie", "oublie-moi"}:
+        forget(chat_id)
+        response = "D'accord, j'ai effacé le contexte de cette conversation. Que souhaitez-vous faire ?"
+        remember(chat_id, "user", text)
+        remember(chat_id, "assistant", response)
+        bot.send_message(chat_id, response, reply_markup=menu())
+        return
+
+    remember(chat_id, "user", text)
 
     try:
         if text in {"📂 Portfolio", "Portfolio"}:
@@ -187,17 +307,18 @@ def handle(message: telebot.types.Message) -> None:
             return
 
         if text == "👑 Parler à un humain":
-            bot.send_message(
-                chat_id,
-                f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes.",
-                reply_markup=menu(),
-            )
+            response = f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes."
+            remember(chat_id, "assistant", response)
+            bot.send_message(chat_id, response, reply_markup=menu())
             return
 
-        response = chercher(text) or (
-            "Parmi nos services : Agent IA, Site Web, Vidéo UGC... "
-            "lequel t'intéresse ?"
+        # Le LLM comprend le contexte; la base locale garantit un fonctionnement
+        # même si OPENAI_API_KEY n'est pas configurée ou si l'API est indisponible.
+        response = generate_contextual_response(chat_id, text) or chercher(text) or (
+            "Pour mieux vous orienter, pouvez-vous me préciser votre activité et "
+            "ce que vous souhaitez vendre ou automatiser ?"
         )
+        remember(chat_id, "assistant", response)
         time.sleep(min(2, len(response) / 200))
         bot.send_message(chat_id, response, reply_markup=menu())
 
