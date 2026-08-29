@@ -128,6 +128,14 @@ curl -X POST https://votre-domaine.up.railway.app/chat \
 
 Le service Web n’a pas besoin de `TELEGRAM_TOKEN`. Il ne doit pas être utilisé pour démarrer `rag_bot.py`.
 
+Pour protéger la route `/chat`, définissez une clé uniquement dans le service Web :
+
+```text
+KOMARA_API_KEY=une_clé_secrète
+```
+
+Les requêtes vers `/chat` devront alors inclure l’en-tête `X-API-Key`. Les routes `/` et `/health` restent disponibles pour le contrôle du service. La limite de taille des requêtes est fixée à 32 Ko.
+
 ## Dépendances
 
 Les dépendances sont figées afin de rendre les déploiements reproductibles :

@@ -1,24 +1,23 @@
-"""API HTTP de Komara.
+"""API HTTP locale de Komara Agency.
 
-Cette API est volontairement séparée du worker Telegram : elle ne crée pas de
-TeleBot et n'appelle jamais infinity_polling(). Elle peut donc être déployée
-comme service Web sans provoquer de conflit Telegram 409.
+Ce module est indépendant du Worker Telegram : il ne crée aucun TeleBot et ne
+lance jamais de polling. Il lit uniquement les ressources locales du dépôt.
 """
-
 from __future__ import annotations
 
 import json
 import logging
 import os
+import re
 from pathlib import Path
 from typing import Any
 
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
-
 BASE_DIR = Path(__file__).resolve().parent
 KB_PATH = BASE_DIR / "kb.json"
+FAQ_PATH = BASE_DIR / "docs" / "faq.md"
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -26,50 +25,115 @@ logging.basicConfig(
 )
 logger = logging.getLogger("komara.api")
 
-
 with KB_PATH.open("r", encoding="utf-8") as kb_file:
     KB: dict[str, Any] = json.load(kb_file)
 
 BRAND = KB.get("brand", "Komara Agency")
 KNOWLEDGE = KB.get("knowledge", [])
 PACKS = KB.get("packs", [])
+CONVERSATIONS = KB.get("conversations", [])
+API_KEY = os.getenv("KOMARA_API_KEY", "").strip()
 
 if not KNOWLEDGE:
     raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
 
 
+def load_local_faq() -> list[dict[str, str]]:
+    """Charge les questions/réponses Markdown depuis le dépôt local."""
+    if not FAQ_PATH.is_file():
+        logger.warning("FAQ locale absente : %s", FAQ_PATH)
+        return []
+    content = FAQ_PATH.read_text(encoding="utf-8")
+    items: list[dict[str, str]] = []
+    for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
+        lines = section.splitlines()
+        if not lines:
+            continue
+        question = lines[0].strip()
+        answer = "\n".join(lines[1:]).strip()
+        answer = re.sub(r"^\*\*Réponse\s*:\*\*\s*", "", answer, flags=re.IGNORECASE)
+        if question and answer:
+            items.append({"question": question, "answer": answer})
+    logger.info("FAQ locale chargée : %s questions", len(items))
+    return items
+
+
+LOCAL_FAQ = load_local_faq()
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
+app.config["MAX_CONTENT_LENGTH"] = 32 * 1024
+
+
+def _tokens(value: str) -> set[str]:
+    return set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", value.casefold()))
 
 
 def chercher(message: str | None) -> str | None:
-    """Retourne la première réponse correspondant aux questions connues."""
-
-    normalized = (message or "").casefold()
+    """Retourne la réponse locale la plus spécifique."""
+    normalized = (message or "").casefold().strip()
+    if not normalized:
+        return None
+    tokens = _tokens(normalized)
+    candidates: list[tuple[int, str]] = []
     for item in KNOWLEDGE:
-        questions = item.get("questions", [])
-        if any(str(question).casefold() in normalized for question in questions):
-            return item.get("answer")
+        for question in item.get("questions", []):
+            candidate = str(question).casefold().strip()
+            if len(candidate) <= 3 and " " not in candidate:
+                matched = candidate in tokens
+            else:
+                matched = candidate in normalized
+            if matched:
+                candidates.append((len(candidate), str(item.get("answer", ""))))
+    if candidates:
+        return max(candidates, key=lambda result: result[0])[1]
+
+    faq_candidates: list[tuple[int, str]] = []
+    for item in LOCAL_FAQ:
+        question = item["question"].casefold()
+        question_words = _tokens(question)
+        useful_words = {word for word in question_words if len(word) > 3}
+        overlap = len(tokens & useful_words)
+        if question in normalized or normalized in question:
+            faq_candidates.append((len(question) + 100, item["answer"]))
+        elif useful_words and overlap >= min(2, len(useful_words)):
+            faq_candidates.append((overlap * 10, item["answer"]))
+    if faq_candidates:
+        return max(faq_candidates, key=lambda result: result[0])[1]
+
+    conversation_candidates: list[tuple[int, str]] = []
+    for example in CONVERSATIONS:
+        overlap = len(tokens & _tokens(str(example.get("user", ""))))
+        if overlap >= 2:
+            conversation_candidates.append((overlap, str(example.get("assistant", ""))))
+    if conversation_candidates:
+        return max(conversation_candidates, key=lambda result: result[0])[1]
     return None
 
 
 def repondre(message: str) -> str:
-    """Construit une réponse HTTP à partir du message reçu."""
-
+    """Construit une réponse exclusivement à partir des ressources locales."""
     text = message.strip()
     if text.casefold() in {"prix", "tarif", "tarifs", "price"}:
-        base_answer = chercher("prix") or "Voici nos offres :"
+        base_answer = chercher("prix") or "Nos tarifs dépendent du périmètre du projet."
         packs_text = "\n".join(
-            f"*{pack.get('nom', 'Pack')}*: {pack.get('prix', '')} - "
-            f"{pack.get('contenu', '')}"
+            f"*{pack.get('nom', 'Pack')}*: {pack.get('prix', '')} - {pack.get('contenu', '')}"
             for pack in PACKS
         )
         return f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
-
     return chercher(text) or (
-        "Parmi nos services : Agent IA, Site Web, Vidéo UGC... "
-        "lequel t'intéresse ?"
+        "Je peux vous orienter vers un bot, un site ou une application, "
+        "une automatisation, ou une création digitale. Quel est votre besoin ?"
     )
+
+
+@app.before_request
+def protect_chat_endpoint():
+    """Active une protection uniquement lorsque KOMARA_API_KEY est configurée."""
+    if request.path == "/chat" and API_KEY:
+        supplied_key = request.headers.get("X-API-Key", "")
+        if supplied_key != API_KEY:
+            return jsonify({"error": "Clé API manquante ou invalide."}), 401
+    return None
 
 
 @app.get("/")
@@ -80,13 +144,14 @@ def home():
             "version": KB.get("version"),
             "brand": BRAND,
             "telegram_polling": False,
+            "local_sources": {"kb": True, "faq": bool(LOCAL_FAQ)},
         }
     )
 
 
 @app.get("/health")
 def health():
-    return jsonify({"status": "ok"})
+    return jsonify({"status": "ok", "knowledge_entries": len(KNOWLEDGE), "faq_entries": len(LOCAL_FAQ)})
 
 
 @app.post("/chat")
@@ -95,17 +160,13 @@ def chat():
         data = request.get_json(silent=True)
     except BadRequest:
         return jsonify({"error": "Le corps de la requête doit être un JSON valide."}), 400
-
     if not isinstance(data, dict):
         return jsonify({"error": "Le corps de la requête doit être un objet JSON."}), 400
-
     user_message = data.get("message")
     if not isinstance(user_message, str) or not user_message.strip():
         return jsonify({"error": "Le champ 'message' doit être une chaîne non vide."}), 400
-
     try:
-        response = repondre(user_message)
-        return jsonify({"response": response})
+        return jsonify({"response": repondre(user_message)})
     except Exception:
         logger.exception("Erreur lors du traitement d'une requête /chat.")
         return jsonify({"error": "Une erreur interne est survenue."}), 500
@@ -119,6 +180,11 @@ def not_found(_error):
 @app.errorhandler(405)
 def method_not_allowed(_error):
     return jsonify({"error": "Méthode HTTP non autorisée."}), 405
+
+
+@app.errorhandler(413)
+def request_too_large(_error):
+    return jsonify({"error": "Requête trop volumineuse."}), 413
 
 
 if __name__ == "__main__":
