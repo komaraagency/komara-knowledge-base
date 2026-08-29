@@ -341,6 +341,198 @@
         "faq",
         "contact"
       ]
+    },
+    {
+      "id": "objection_budget",
+      "questions": [
+        "je n'ai pas le budget",
+        "pas assez de budget",
+        "budget limité",
+        "mon budget est petit",
+        "c'est hors budget"
+      ],
+      "answer": "Je comprends. Nous pouvons commencer par le besoin le plus important avec un périmètre plus simple, puis faire évoluer la solution progressivement. Quel résultat souhaitez-vous obtenir en priorité ?",
+      "tags": [
+        "objection",
+        "tarif",
+        "budget"
+      ]
+    },
+    {
+      "id": "objection_comparaison",
+      "questions": [
+        "c'est moins cher ailleurs",
+        "moins cher ailleurs",
+        "votre concurrent est moins cher",
+        "j'ai trouvé moins cher",
+        "pourquoi vous êtes plus cher"
+      ],
+      "answer": "C’est une comparaison légitime. Le prix dépend du périmètre, de la personnalisation, de l’accompagnement et des livrables. Envoyez-nous ce que vous comparez afin que nous vérifiions que les prestations sont réellement équivalentes.",
+      "tags": [
+        "objection",
+        "tarif",
+        "concurrence"
+      ]
+    },
+    {
+      "id": "objection_roi",
+      "questions": [
+        "quel est le retour",
+        "ça va me rapporter combien",
+        "je ne suis pas sûr que ça marche",
+        "comment être sûr",
+        "est-ce rentable"
+      ],
+      "answer": "Le résultat dépend de votre offre, de votre audience et de votre utilisation de la solution. Nous ne promettons pas un chiffre irréaliste : nous définissons plutôt un objectif mesurable et les fonctionnalités nécessaires pour l’atteindre.",
+      "tags": [
+        "objection",
+        "tarif",
+        "rentabilite"
+      ]
+    },
+    {
+      "id": "objection_petit_projet",
+      "questions": [
+        "je veux commencer petit",
+        "petite commande",
+        "une version simple",
+        "version minimale",
+        "commencer doucement"
+      ],
+      "answer": "C’est une bonne approche. Nous pouvons définir une première version centrée sur votre priorité, avec uniquement les fonctionnalités ou livrables indispensables, puis prévoir les évolutions après validation.",
+      "tags": [
+        "objection",
+        "tarif",
+        "demarrage"
+      ]
+    },
+    {
+      "id": "objection_prix_sur_mesure",
+      "questions": [
+        "pourquoi pas un prix fixe",
+        "prix exact",
+        "combien pour mon projet",
+        "donnez-moi le prix maintenant",
+        "devis immédiat"
+      ],
+      "answer": "Pour un projet sur mesure, un prix sérieux nécessite quelques informations : votre activité, l’objectif, les fonctionnalités, les supports et le délai. Donnez-moi ces éléments et nous pourrons préparer une estimation cohérente.",
+      "tags": [
+        "objection",
+        "tarif",
+        "devis"
+      ]
+    },
+    {
+      "id": "objection_frais_caches",
+      "questions": [
+        "frais cachés",
+        "autres frais",
+        "coût supplémentaire",
+        "il y a des frais en plus",
+        "prix final"
+      ],
+      "answer": "Le périmètre, les livrables, les délais et les éventuels coûts supplémentaires doivent être indiqués dans le devis avant le démarrage. Nous vous invitons à demander une confirmation écrite du périmètre total.",
+      "tags": [
+        "objection",
+        "tarif",
+        "devis"
+      ]
+    },
+    {
+      "id": "objection_remise",
+      "questions": [
+        "vous faites une remise",
+        "réduction",
+        "prix promotionnel",
+        "dernier prix",
+        "geste commercial"
+      ],
+      "answer": "Nous pouvons d’abord ajuster le périmètre pour respecter votre budget. Une éventuelle remise dépend du projet et ne doit pas réduire la qualité ni créer une promesse impossible à tenir.",
+      "tags": [
+        "objection",
+        "tarif",
+        "negociation"
+      ]
+    },
+    {
+      "id": "objection_paiement_echelonne",
+      "questions": [
+        "payer en plusieurs fois",
+        "paiement en plusieurs fois",
+        "échelonnement",
+        "je peux payer par étape",
+        "paiement échelonné"
+      ],
+      "answer": "Un paiement par étapes peut être étudié selon la taille et la durée du projet. Les échéances doivent être précisées dans le devis avant le début de la réalisation.",
+      "tags": [
+        "objection",
+        "tarif",
+        "paiement"
+      ]
+    },
+    {
+      "id": "objection_delai_paiement",
+      "questions": [
+        "je dois attendre le mois prochain",
+        "je paie plus tard",
+        "pas maintenant",
+        "attendre mon salaire",
+        "je n'ai pas encore l'argent"
+      ],
+      "answer": "Pas de problème. Nous pouvons clarifier votre besoin maintenant et préparer le périmètre du projet. Le démarrage et les échéances seront confirmés lorsque votre budget sera disponible.",
+      "tags": [
+        "objection",
+        "tarif",
+        "paiement"
+      ]
+    },
+    {
+      "id": "objection_qualite_prix",
+      "questions": [
+        "est-ce que la qualité justifie le prix",
+        "pourquoi payer autant",
+        "qu'est-ce qui est inclus",
+        "que comprend le prix",
+        "valeur du service"
+      ],
+      "answer": "Le prix correspond au périmètre validé, au temps de réalisation, à la personnalisation et aux livrables prévus. Nous pouvons vous détailler ce qui est inclus afin que vous décidiez en toute transparence.",
+      "tags": [
+        "objection",
+        "tarif",
+        "valeur"
+      ]
+    },
+    {
+      "id": "objection_decision",
+      "questions": [
+        "je dois demander à mon associé",
+        "je dois consulter mon patron",
+        "je dois en parler",
+        "je vais demander à mon partenaire",
+        "la décision ne dépend pas de moi"
+      ],
+      "answer": "Bien sûr. Je peux vous préparer un résumé clair avec le besoin, la solution proposée, le périmètre et l’estimation afin de faciliter votre décision avec votre associé ou votre équipe.",
+      "tags": [
+        "objection",
+        "tarif",
+        "decision"
+      ]
+    },
+    {
+      "id": "objection_refus_budget",
+      "questions": [
+        "je ne peux pas acheter",
+        "je ne peux pas payer",
+        "trop cher pour moi",
+        "je ne peux pas me permettre",
+        "je renonce"
+      ],
+      "answer": "Je comprends. Nous pouvons soit réduire le périmètre à une première priorité, soit reprendre la discussion plus tard lorsque le budget sera disponible. L’essentiel est de choisir une solution réaliste pour votre activité.",
+      "tags": [
+        "objection",
+        "tarif",
+        "budget"
+      ]
     }
   ]
 }
