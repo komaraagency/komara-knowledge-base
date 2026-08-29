@@ -123,683 +123,2906 @@
   "knowledge": [
     {
       "id": "accueil_01",
+      "category": "accueil",
       "questions": [
-        "bonjour",
-        "salut",
-        "cc",
-        "hey"
+        "bonjour"
       ],
-      "answer": "Bonjour 👋 Je suis l'Assistant I.A. de Komara Agency 🇬🇳.\nVotre Agent I.A. qui vend pour vous 24H/24.\n\nOn aide les entrepreneurs à vendre plus avec l’IA. Tu veux vendre quoi ?",
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
       "tags": [
-        "accueil"
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_02",
+      "category": "accueil",
+      "questions": [
+        "salut"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_03",
+      "category": "accueil",
+      "questions": [
+        "coucou"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_04",
+      "category": "accueil",
+      "questions": [
+        "hello"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_05",
+      "category": "accueil",
+      "questions": [
+        "hi"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_06",
+      "category": "accueil",
+      "questions": [
+        "bonsoir"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_07",
+      "category": "accueil",
+      "questions": [
+        "salam"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_08",
+      "category": "accueil",
+      "questions": [
+        "salam waaleykum"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_09",
+      "category": "accueil",
+      "questions": [
+        "yo"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "accueil_10",
+      "category": "accueil",
+      "questions": [
+        "ça roule"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_01",
+      "category": "presentation",
+      "questions": [
+        "qui es-tu"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_02",
+      "category": "presentation",
+      "questions": [
+        "présente-toi"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_03",
+      "category": "presentation",
+      "questions": [
+        "à propos de komara"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_04",
+      "category": "presentation",
+      "questions": [
+        "qui est ndine"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_05",
+      "category": "presentation",
+      "questions": [
+        "tu es qui"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_06",
+      "category": "presentation",
+      "questions": [
+        "parle-moi de komara"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_07",
+      "category": "presentation",
+      "questions": [
+        "quel est ton rôle"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_08",
+      "category": "presentation",
+      "questions": [
+        "que représente komara"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_09",
+      "category": "presentation",
+      "questions": [
+        "vous êtes une agence"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
+      ]
+    },
+    {
+      "id": "presentation_10",
+      "category": "presentation",
+      "questions": [
+        "pourquoi komara"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "tags": [
+        "presentation",
+        "local"
       ]
     },
     {
       "id": "services_01",
+      "category": "services",
       "questions": [
-        "service",
-        "que faites vous",
-        "offre",
-        "quels services proposez-vous",
-        "mes créations"
+        "quels services proposez-vous"
       ],
-      "answer": "Chez Komara Agency, nous proposons trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML, CSS et JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle complète, cartes de visite, flyers et contenus pour les réseaux sociaux.\n\nQuel pôle souhaitez-vous développer ?",
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
-        "service",
-        "catalogue"
+        "services",
+        "local"
       ]
     },
     {
-      "id": "tarif_01",
+      "id": "services_02",
+      "category": "services",
       "questions": [
-        "prix",
-        "tarif",
-        "combien"
+        "que faites-vous"
       ],
-      "answer": "Voici nos packs populaires :\nPack Starter : 1200 MAD - 5 visuels + 3 vidéos + Logo\nPack Business : 3500 MAD - 15 visuels + 10 vidéos + 1 mois pub\n\nFormation IA : 999 MAD à 2500 MAD\nJe t’envoie le catalogue complet sur WhatsApp ? +212701986219",
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
-        "tarif"
+        "services",
+        "local"
       ]
     },
     {
-      "id": "objection_cher",
+      "id": "services_03",
+      "category": "services",
       "questions": [
-        "c'est cher",
-        "trop cher"
+        "que fais-tu"
       ],
-      "answer": "Je comprends 👌 Un seul client ramené par la pub rembourse déjà l’investissement.\nTu veux qu’on commence petit avec le pack à 1200 MAD ?",
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
-        "objection"
+        "services",
+        "local"
       ]
     },
     {
-      "id": "objection_reflechir",
+      "id": "services_04",
+      "category": "services",
       "questions": [
-        "je vais réfléchir"
+        "que fait tu"
       ],
-      "answer": "Pas de souci. Je t’envoie 3 exemples de ce qu’on fait pour ton domaine sur WhatsApp et tu me dis ce que tu en penses ? +212701986219",
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
-        "objection"
+        "services",
+        "local"
       ]
     },
     {
-      "id": "process_01",
+      "id": "services_05",
+      "category": "services",
       "questions": [
-        "comment commander",
-        "process"
+        "quelles sont vos compétences"
       ],
-      "answer": "Process simple en 5 étapes :\n1. Tu m’envoies ton besoin ici\n2. Devis gratuit sous 2h\n3. Paiement 50% Orange Money, MoMo, Paypal\n4. Livraison 24h à 72h\n5. 2 modifications incluses\nOn démarre avec quel service pour toi ?",
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
-        "process"
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "services_06",
+      "category": "services",
+      "questions": [
+        "quelle est votre spécialité"
+      ],
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
+      "tags": [
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "services_07",
+      "category": "services",
+      "questions": [
+        "en quoi pouvez-vous m’aider"
+      ],
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
+      "tags": [
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "services_08",
+      "category": "services",
+      "questions": [
+        "que savez-vous faire"
+      ],
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
+      "tags": [
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "services_09",
+      "category": "services",
+      "questions": [
+        "quel est votre travail"
+      ],
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
+      "tags": [
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "services_10",
+      "category": "services",
+      "questions": [
+        "quelles offres avez-vous"
+      ],
+      "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
+      "tags": [
+        "services",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_01",
+      "category": "whatsapp",
+      "questions": [
+        "bot whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_02",
+      "category": "whatsapp",
+      "questions": [
+        "automatiser whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_03",
+      "category": "whatsapp",
+      "questions": [
+        "vendre sur whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_04",
+      "category": "whatsapp",
+      "questions": [
+        "répondre aux clients whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_05",
+      "category": "whatsapp",
+      "questions": [
+        "catalogue whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_06",
+      "category": "whatsapp",
+      "questions": [
+        "commande whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_07",
+      "category": "whatsapp",
+      "questions": [
+        "support whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_08",
+      "category": "whatsapp",
+      "questions": [
+        "message automatique whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_09",
+      "category": "whatsapp",
+      "questions": [
+        "whatsapp business"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "whatsapp_10",
+      "category": "whatsapp",
+      "questions": [
+        "assistant whatsapp"
+      ],
+      "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
+      "tags": [
+        "whatsapp",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_01",
+      "category": "telegram_tiktok",
+      "questions": [
+        "bot telegram"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_02",
+      "category": "telegram_tiktok",
+      "questions": [
+        "automatiser telegram"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_03",
+      "category": "telegram_tiktok",
+      "questions": [
+        "bot tiktok"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_04",
+      "category": "telegram_tiktok",
+      "questions": [
+        "assistant tiktok"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_05",
+      "category": "telegram_tiktok",
+      "questions": [
+        "vendre sur tiktok"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_06",
+      "category": "telegram_tiktok",
+      "questions": [
+        "répondre sur tiktok"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_07",
+      "category": "telegram_tiktok",
+      "questions": [
+        "telegram commercial"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_08",
+      "category": "telegram_tiktok",
+      "questions": [
+        "tiktok commercial"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_09",
+      "category": "telegram_tiktok",
+      "questions": [
+        "bot pour réseaux sociaux"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "telegram_tiktok_10",
+      "category": "telegram_tiktok",
+      "questions": [
+        "bot multicanal"
+      ],
+      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "tags": [
+        "telegram_tiktok",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_01",
+      "category": "service_client",
+      "questions": [
+        "automatiser le service client"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_02",
+      "category": "service_client",
+      "questions": [
+        "répondre 24h sur 24"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_03",
+      "category": "service_client",
+      "questions": [
+        "gérer les questions clients"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_04",
+      "category": "service_client",
+      "questions": [
+        "réduire les demandes répétitives"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_05",
+      "category": "service_client",
+      "questions": [
+        "support client automatique"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_06",
+      "category": "service_client",
+      "questions": [
+        "faq automatique"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_07",
+      "category": "service_client",
+      "questions": [
+        "réclamation client"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_08",
+      "category": "service_client",
+      "questions": [
+        "qualifier un client"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_09",
+      "category": "service_client",
+      "questions": [
+        "transférer à un humain"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "service_client_10",
+      "category": "service_client",
+      "questions": [
+        "permanence client"
+      ],
+      "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
+      "tags": [
+        "service_client",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_01",
+      "category": "automatisation",
+      "questions": [
+        "automatiser mon activité"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_02",
+      "category": "automatisation",
+      "questions": [
+        "automatiser les tâches"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_03",
+      "category": "automatisation",
+      "questions": [
+        "workflow automatique"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_04",
+      "category": "automatisation",
+      "questions": [
+        "gagner du temps"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_05",
+      "category": "automatisation",
+      "questions": [
+        "notifications automatiques"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_06",
+      "category": "automatisation",
+      "questions": [
+        "relance automatique"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_07",
+      "category": "automatisation",
+      "questions": [
+        "formulaire automatique"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_08",
+      "category": "automatisation",
+      "questions": [
+        "collecter des prospects"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_09",
+      "category": "automatisation",
+      "questions": [
+        "automatiser mes ventes"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "automatisation_10",
+      "category": "automatisation",
+      "questions": [
+        "processus automatique"
+      ],
+      "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
+      "tags": [
+        "automatisation",
+        "local"
+      ]
+    },
+    {
+      "id": "web_01",
+      "category": "web",
+      "questions": [
+        "site web"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_02",
+      "category": "web",
+      "questions": [
+        "site internet"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_03",
+      "category": "web",
+      "questions": [
+        "site vitrine"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_04",
+      "category": "web",
+      "questions": [
+        "landing page"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_05",
+      "category": "web",
+      "questions": [
+        "site html css javascript"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_06",
+      "category": "web",
+      "questions": [
+        "page de vente"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_07",
+      "category": "web",
+      "questions": [
+        "formulaire de contact"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_08",
+      "category": "web",
+      "questions": [
+        "site pour mon entreprise"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_09",
+      "category": "web",
+      "questions": [
+        "refaire mon site"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "web_10",
+      "category": "web",
+      "questions": [
+        "présence en ligne"
+      ],
+      "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
+      "tags": [
+        "web",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_01",
+      "category": "mobile",
+      "questions": [
+        "application mobile"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_02",
+      "category": "mobile",
+      "questions": [
+        "app mobile"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_03",
+      "category": "mobile",
+      "questions": [
+        "application android"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_04",
+      "category": "mobile",
+      "questions": [
+        "application ios"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_05",
+      "category": "mobile",
+      "questions": [
+        "créer une application"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_06",
+      "category": "mobile",
+      "questions": [
+        "app pour mon activité"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_07",
+      "category": "mobile",
+      "questions": [
+        "application de réservation"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_08",
+      "category": "mobile",
+      "questions": [
+        "application catalogue"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_09",
+      "category": "mobile",
+      "questions": [
+        "application client"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "mobile_10",
+      "category": "mobile",
+      "questions": [
+        "application sur mesure"
+      ],
+      "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
+      "tags": [
+        "mobile",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_01",
+      "category": "programmation",
+      "questions": [
+        "développement web"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_02",
+      "category": "programmation",
+      "questions": [
+        "programmation sur mesure"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_03",
+      "category": "programmation",
+      "questions": [
+        "code javascript"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_04",
+      "category": "programmation",
+      "questions": [
+        "développeur web"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_05",
+      "category": "programmation",
+      "questions": [
+        "fonctionnalité web"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_06",
+      "category": "programmation",
+      "questions": [
+        "base de données"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_07",
+      "category": "programmation",
+      "questions": [
+        "interface web"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_08",
+      "category": "programmation",
+      "questions": [
+        "projet technique"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_09",
+      "category": "programmation",
+      "questions": [
+        "intégration web"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "programmation_10",
+      "category": "programmation",
+      "questions": [
+        "solution numérique"
+      ],
+      "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
+      "tags": [
+        "programmation",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_01",
+      "category": "scripts",
+      "questions": [
+        "script"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_02",
+      "category": "scripts",
+      "questions": [
+        "petit programme"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_03",
+      "category": "scripts",
+      "questions": [
+        "automatiser un fichier"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_04",
+      "category": "scripts",
+      "questions": [
+        "traiter des données"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_05",
+      "category": "scripts",
+      "questions": [
+        "outil interne"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_06",
+      "category": "scripts",
+      "questions": [
+        "générer un rapport"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_07",
+      "category": "scripts",
+      "questions": [
+        "renommer des fichiers"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_08",
+      "category": "scripts",
+      "questions": [
+        "extraire des informations"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_09",
+      "category": "scripts",
+      "questions": [
+        "tâche répétitive informatique"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "scripts_10",
+      "category": "scripts",
+      "questions": [
+        "outil pour mon équipe"
+      ],
+      "answer": "Nous créons des scripts et outils internes pour automatiser des tâches répétitives, traiter des informations ou simplifier le travail d’une équipe.",
+      "tags": [
+        "scripts",
+        "local"
+      ]
+    },
+    {
+      "id": "design_01",
+      "category": "design",
+      "questions": [
+        "logo"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_02",
+      "category": "design",
+      "questions": [
+        "affiche"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_03",
+      "category": "design",
+      "questions": [
+        "flyer"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_04",
+      "category": "design",
+      "questions": [
+        "carte de visite"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_05",
+      "category": "design",
+      "questions": [
+        "design graphique"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_06",
+      "category": "design",
+      "questions": [
+        "visuel professionnel"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_07",
+      "category": "design",
+      "questions": [
+        "maquette graphique"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_08",
+      "category": "design",
+      "questions": [
+        "bannière réseaux sociaux"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_09",
+      "category": "design",
+      "questions": [
+        "création visuelle"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "design_10",
+      "category": "design",
+      "questions": [
+        "refaire mon logo"
+      ],
+      "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_01",
+      "category": "identite",
+      "questions": [
+        "identité visuelle"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_02",
+      "category": "identite",
+      "questions": [
+        "charte graphique"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_03",
+      "category": "identite",
+      "questions": [
+        "couleurs de marque"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_04",
+      "category": "identite",
+      "questions": [
+        "typographie de marque"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_05",
+      "category": "identite",
+      "questions": [
+        "image de marque"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_06",
+      "category": "identite",
+      "questions": [
+        "branding"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_07",
+      "category": "identite",
+      "questions": [
+        "marque professionnelle"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_08",
+      "category": "identite",
+      "questions": [
+        "univers graphique"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_09",
+      "category": "identite",
+      "questions": [
+        "logo et charte"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "identite_10",
+      "category": "identite",
+      "questions": [
+        "identité complète"
+      ],
+      "answer": "Nous pouvons construire une identité visuelle cohérente avec logo, couleurs, typographies, style graphique et règles d’utilisation pour vos supports.",
+      "tags": [
+        "identite",
+        "local"
+      ]
+    },
+    {
+      "id": "social_01",
+      "category": "social",
+      "questions": [
+        "contenu réseaux sociaux"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_02",
+      "category": "social",
+      "questions": [
+        "publications instagram"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_03",
+      "category": "social",
+      "questions": [
+        "contenu facebook"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_04",
+      "category": "social",
+      "questions": [
+        "visuels tiktok"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_05",
+      "category": "social",
+      "questions": [
+        "calendrier éditorial"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_06",
+      "category": "social",
+      "questions": [
+        "posts professionnels"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_07",
+      "category": "social",
+      "questions": [
+        "création de contenu"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_08",
+      "category": "social",
+      "questions": [
+        "communication digitale"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_09",
+      "category": "social",
+      "questions": [
+        "visuels pour ma page"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "social_10",
+      "category": "social",
+      "questions": [
+        "contenu pour vendre"
+      ],
+      "answer": "Nous créons des contenus cohérents pour les réseaux sociaux : visuels, textes d’accompagnement et formats adaptés à votre activité et à votre audience.",
+      "tags": [
+        "social",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_01",
+      "category": "portfolio",
+      "questions": [
+        "portfolio"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_02",
+      "category": "portfolio",
+      "questions": [
+        "réalisations"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_03",
+      "category": "portfolio",
+      "questions": [
+        "vos exemples"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_04",
+      "category": "portfolio",
+      "questions": [
+        "montre-moi vos travaux"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_05",
+      "category": "portfolio",
+      "questions": [
+        "démo"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_06",
+      "category": "portfolio",
+      "questions": [
+        "projets réalisés"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_07",
+      "category": "portfolio",
+      "questions": [
+        "travaux précédents"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_08",
+      "category": "portfolio",
+      "questions": [
+        "voir votre travail"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_09",
+      "category": "portfolio",
+      "questions": [
+        "avez-vous des exemples"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "portfolio_10",
+      "category": "portfolio",
+      "questions": [
+        "qu’avez-vous déjà créé"
+      ],
+      "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_01",
+      "category": "tarifs",
+      "questions": [
+        "prix"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_02",
+      "category": "tarifs",
+      "questions": [
+        "tarifs"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_03",
+      "category": "tarifs",
+      "questions": [
+        "coût"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_04",
+      "category": "tarifs",
+      "questions": [
+        "combien ça coûte"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_05",
+      "category": "tarifs",
+      "questions": [
+        "quel est le budget"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_06",
+      "category": "tarifs",
+      "questions": [
+        "prix d’un bot"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_07",
+      "category": "tarifs",
+      "questions": [
+        "prix d’un site"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_08",
+      "category": "tarifs",
+      "questions": [
+        "prix d’un logo"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_09",
+      "category": "tarifs",
+      "questions": [
+        "prix d’une application"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "tarifs_10",
+      "category": "tarifs",
+      "questions": [
+        "devis"
+      ],
+      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "tags": [
+        "tarifs",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_01",
+      "category": "commande",
+      "questions": [
+        "comment commander"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_02",
+      "category": "commande",
+      "questions": [
+        "comment commencer"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_03",
+      "category": "commande",
+      "questions": [
+        "première étape"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_04",
+      "category": "commande",
+      "questions": [
+        "lancer mon projet"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_05",
+      "category": "commande",
+      "questions": [
+        "passer commande"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_06",
+      "category": "commande",
+      "questions": [
+        "travailler avec vous"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_07",
+      "category": "commande",
+      "questions": [
+        "préparer mon projet"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_08",
+      "category": "commande",
+      "questions": [
+        "que dois-je envoyer"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_09",
+      "category": "commande",
+      "questions": [
+        "demander une estimation"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
+      ]
+    },
+    {
+      "id": "commande_10",
+      "category": "commande",
+      "questions": [
+        "organiser un projet"
+      ],
+      "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
+      "tags": [
+        "commande",
+        "local"
       ]
     },
     {
       "id": "paiement_01",
+      "category": "paiement",
       "questions": [
-        "payer",
+        "comment payer"
+      ],
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
+      "tags": [
+        "paiement",
+        "local"
+      ]
+    },
+    {
+      "id": "paiement_02",
+      "category": "paiement",
+      "questions": [
+        "moyens de paiement"
+      ],
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
+      "tags": [
+        "paiement",
+        "local"
+      ]
+    },
+    {
+      "id": "paiement_03",
+      "category": "paiement",
+      "questions": [
         "paiement"
       ],
-      "answer": "Tu peux payer par Orange Money, MoMo, Virement bancaire, Paypal.\n50% avant, 50% après.",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "faq"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "catalogue_services",
+      "id": "paiement_04",
+      "category": "paiement",
       "questions": [
-        "créations",
-        "vos créations",
-        "catalogue",
-        "catalogue services",
-        "que proposez vous",
-        "quels services",
-        "vos services"
+        "acompte"
       ],
-      "answer": "Nous proposons trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML/CSS/JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle, cartes de visite, flyers et contenus pour réseaux sociaux.\n\nQuel pôle souhaitez-vous développer ?",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "services",
-        "catalogue"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "bots_services",
+      "id": "paiement_05",
+      "category": "paiement",
       "questions": [
-        "bot whatsapp",
-        "bot telegram",
-        "bot tiktok",
-        "chatbot",
-        "service client",
-        "automatiser mon service client"
+        "payer en plusieurs fois"
       ],
-      "answer": "Nous créons des bots WhatsApp, Telegram et TikTok pour répondre aux clients 24h/24, présenter vos offres, qualifier les prospects et automatiser les tâches répétitives. Pour vous conseiller, dites-moi votre activité et le canal que vous utilisez le plus.",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "bots",
-        "services"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "dev_services",
+      "id": "paiement_06",
+      "category": "paiement",
       "questions": [
-        "site web",
-        "application web",
-        "application mobile",
-        "programmation",
-        "script",
-        "solution sur mesure"
+        "paiement par étape"
       ],
-      "answer": "Nous développons des sites en HTML, CSS et JavaScript, des applications web et mobiles, ainsi que des scripts et automatisations sur mesure. Quel outil voulez-vous créer et quel problème doit-il résoudre ?",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "developpement",
-        "programmation"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "creation_digitale_services",
+      "id": "paiement_07",
+      "category": "paiement",
       "questions": [
-        "logo",
-        "affiche",
-        "identité visuelle",
-        "carte de visite",
-        "flyer",
-        "réseaux sociaux",
-        "design graphique"
+        "orange money"
       ],
-      "answer": "Nous réalisons des logos, affiches, identités visuelles complètes, cartes de visite, flyers et contenus pour les réseaux sociaux. Avez-vous déjà un logo ou souhaitez-vous créer une image de marque complète ?",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "design",
-        "création"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "qualification_prospect",
+      "id": "paiement_08",
+      "category": "paiement",
       "questions": [
-        "devis",
-        "besoin",
-        "projet",
-        "je veux créer",
-        "je veux automatiser"
+        "momo"
       ],
-      "answer": "Très bien. Pour vous proposer la bonne solution, indiquez votre activité, votre objectif, le canal concerné (WhatsApp, Telegram, TikTok, site ou réseaux sociaux) et votre délai souhaité. Nous vous orienterons vers l’offre la plus adaptée.",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "vente",
-        "qualification"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "faq_delai",
+      "id": "paiement_09",
+      "category": "paiement",
       "questions": [
-        "délai",
-        "combien de temps",
-        "livraison",
-        "quand ce sera prêt"
+        "paypal"
       ],
-      "answer": "Le délai dépend du projet. Les demandes simples peuvent être livrées rapidement, tandis qu’un bot, une application ou une identité complète nécessite une estimation après étude du besoin. Envoyez-nous les détails pour recevoir un délai précis.",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "faq",
-        "process"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "faq_modifications",
+      "id": "paiement_10",
+      "category": "paiement",
       "questions": [
-        "modification",
-        "retouche",
-        "corriger",
-        "changer le design"
+        "virement bancaire"
       ],
-      "answer": "Oui, les modifications sont possibles. Le nombre de retouches dépend de l’offre et du périmètre validé au départ. Nous validons d’abord le besoin et les livrables avant de commencer.",
+      "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
-        "faq",
-        "process"
+        "paiement",
+        "local"
       ]
     },
     {
-      "id": "faq_paiement",
+      "id": "objections_01",
+      "category": "objections",
       "questions": [
-        "moyen de paiement",
-        "comment payer",
-        "acompte",
-        "avance"
+        "c’est trop cher"
       ],
-      "answer": "Le paiement peut être organisé selon le projet, généralement avec un acompte au démarrage puis le solde à la livraison. Les moyens acceptés sont Orange Money, MoMo, PayPal et virement, selon votre pays.",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "faq",
-        "paiement"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "faq_humain",
+      "id": "objections_02",
+      "category": "objections",
       "questions": [
-        "parler à quelqu'un",
-        "contact humain",
-        "conseiller",
-        "responsable",
-        "whatsapp"
+        "je n’ai pas le budget"
       ],
-      "answer": "Bien sûr. Décrivez votre projet ici et un expert Komara pourra vous orienter. Vous pouvez aussi demander un contact direct sur WhatsApp au +212701986219.",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "faq",
-        "contact"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "objection_budget",
+      "id": "objections_03",
+      "category": "objections",
       "questions": [
-        "je n'ai pas le budget",
-        "pas assez de budget",
-        "budget limité",
-        "mon budget est petit",
-        "c'est hors budget"
+        "moins cher ailleurs"
       ],
-      "answer": "Je comprends. Nous pouvons commencer par le besoin le plus important avec un périmètre plus simple, puis faire évoluer la solution progressivement. Quel résultat souhaitez-vous obtenir en priorité ?",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "objection",
-        "tarif",
-        "budget"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "objection_comparaison",
+      "id": "objections_04",
+      "category": "objections",
       "questions": [
-        "c'est moins cher ailleurs",
-        "moins cher ailleurs",
-        "votre concurrent est moins cher",
-        "j'ai trouvé moins cher",
-        "pourquoi vous êtes plus cher"
+        "je dois réfléchir"
       ],
-      "answer": "C’est une comparaison légitime. Le prix dépend du périmètre, de la personnalisation, de l’accompagnement et des livrables. Envoyez-nous ce que vous comparez afin que nous vérifiions que les prestations sont réellement équivalentes.",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "objection",
-        "tarif",
-        "concurrence"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "objection_roi",
+      "id": "objections_05",
+      "category": "objections",
       "questions": [
-        "quel est le retour",
-        "ça va me rapporter combien",
-        "je ne suis pas sûr que ça marche",
-        "comment être sûr",
+        "je dois en parler"
+      ],
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
+      "tags": [
+        "objections",
+        "local"
+      ]
+    },
+    {
+      "id": "objections_06",
+      "category": "objections",
+      "questions": [
+        "je veux commencer petit"
+      ],
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
+      "tags": [
+        "objections",
+        "local"
+      ]
+    },
+    {
+      "id": "objections_07",
+      "category": "objections",
+      "questions": [
+        "frais cachés"
+      ],
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
+      "tags": [
+        "objections",
+        "local"
+      ]
+    },
+    {
+      "id": "objections_08",
+      "category": "objections",
+      "questions": [
+        "faites-vous une remise"
+      ],
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
+      "tags": [
+        "objections",
+        "local"
+      ]
+    },
+    {
+      "id": "objections_09",
+      "category": "objections",
+      "questions": [
         "est-ce rentable"
       ],
-      "answer": "Le résultat dépend de votre offre, de votre audience et de votre utilisation de la solution. Nous ne promettons pas un chiffre irréaliste : nous définissons plutôt un objectif mesurable et les fonctionnalités nécessaires pour l’atteindre.",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "objection",
-        "tarif",
-        "rentabilite"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "objection_petit_projet",
+      "id": "objections_10",
+      "category": "objections",
       "questions": [
-        "je veux commencer petit",
-        "petite commande",
-        "une version simple",
-        "version minimale",
-        "commencer doucement"
+        "je ne peux pas payer"
       ],
-      "answer": "C’est une bonne approche. Nous pouvons définir une première version centrée sur votre priorité, avec uniquement les fonctionnalités ou livrables indispensables, puis prévoir les évolutions après validation.",
+      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
-        "objection",
-        "tarif",
-        "demarrage"
+        "objections",
+        "local"
       ]
     },
     {
-      "id": "objection_prix_sur_mesure",
+      "id": "contact_01",
+      "category": "contact",
       "questions": [
-        "pourquoi pas un prix fixe",
-        "prix exact",
-        "combien pour mon projet",
-        "donnez-moi le prix maintenant",
-        "devis immédiat"
+        "contact"
       ],
-      "answer": "Pour un projet sur mesure, un prix sérieux nécessite quelques informations : votre activité, l’objectif, les fonctionnalités, les supports et le délai. Donnez-moi ces éléments et nous pourrons préparer une estimation cohérente.",
-      "tags": [
-        "objection",
-        "tarif",
-        "devis"
-      ]
-    },
-    {
-      "id": "objection_frais_caches",
-      "questions": [
-        "frais cachés",
-        "autres frais",
-        "coût supplémentaire",
-        "il y a des frais en plus",
-        "prix final"
-      ],
-      "answer": "Le périmètre, les livrables, les délais et les éventuels coûts supplémentaires doivent être indiqués dans le devis avant le démarrage. Nous vous invitons à demander une confirmation écrite du périmètre total.",
-      "tags": [
-        "objection",
-        "tarif",
-        "devis"
-      ]
-    },
-    {
-      "id": "objection_remise",
-      "questions": [
-        "vous faites une remise",
-        "réduction",
-        "prix promotionnel",
-        "dernier prix",
-        "geste commercial"
-      ],
-      "answer": "Nous pouvons d’abord ajuster le périmètre pour respecter votre budget. Une éventuelle remise dépend du projet et ne doit pas réduire la qualité ni créer une promesse impossible à tenir.",
-      "tags": [
-        "objection",
-        "tarif",
-        "negociation"
-      ]
-    },
-    {
-      "id": "objection_paiement_echelonne",
-      "questions": [
-        "payer en plusieurs fois",
-        "paiement en plusieurs fois",
-        "échelonnement",
-        "je peux payer par étape",
-        "paiement échelonné"
-      ],
-      "answer": "Un paiement par étapes peut être étudié selon la taille et la durée du projet. Les échéances doivent être précisées dans le devis avant le début de la réalisation.",
-      "tags": [
-        "objection",
-        "tarif",
-        "paiement"
-      ]
-    },
-    {
-      "id": "objection_delai_paiement",
-      "questions": [
-        "je dois attendre le mois prochain",
-        "je paie plus tard",
-        "pas maintenant",
-        "attendre mon salaire",
-        "je n'ai pas encore l'argent"
-      ],
-      "answer": "Pas de problème. Nous pouvons clarifier votre besoin maintenant et préparer le périmètre du projet. Le démarrage et les échéances seront confirmés lorsque votre budget sera disponible.",
-      "tags": [
-        "objection",
-        "tarif",
-        "paiement"
-      ]
-    },
-    {
-      "id": "objection_qualite_prix",
-      "questions": [
-        "est-ce que la qualité justifie le prix",
-        "pourquoi payer autant",
-        "qu'est-ce qui est inclus",
-        "que comprend le prix",
-        "valeur du service"
-      ],
-      "answer": "Le prix correspond au périmètre validé, au temps de réalisation, à la personnalisation et aux livrables prévus. Nous pouvons vous détailler ce qui est inclus afin que vous décidiez en toute transparence.",
-      "tags": [
-        "objection",
-        "tarif",
-        "valeur"
-      ]
-    },
-    {
-      "id": "objection_decision",
-      "questions": [
-        "je dois demander à mon associé",
-        "je dois consulter mon patron",
-        "je dois en parler",
-        "je vais demander à mon partenaire",
-        "la décision ne dépend pas de moi"
-      ],
-      "answer": "Bien sûr. Je peux vous préparer un résumé clair avec le besoin, la solution proposée, le périmètre et l’estimation afin de faciliter votre décision avec votre associé ou votre équipe.",
-      "tags": [
-        "objection",
-        "tarif",
-        "decision"
-      ]
-    },
-    {
-      "id": "objection_refus_budget",
-      "questions": [
-        "je ne peux pas acheter",
-        "je ne peux pas payer",
-        "trop cher pour moi",
-        "je ne peux pas me permettre",
-        "je renonce"
-      ],
-      "answer": "Je comprends. Nous pouvons soit réduire le périmètre à une première priorité, soit reprendre la discussion plus tard lorsque le budget sera disponible. L’essentiel est de choisir une solution réaliste pour votre activité.",
-      "tags": [
-        "objection",
-        "tarif",
-        "budget"
-      ]
-    },
-    {
-      "id": "accueil_complet",
-      "questions": [
-        "bonjour",
-        "salut",
-        "coucou",
-        "hello",
-        "hi",
-        "bonsoir",
-        "salam",
-        "salam waaleykum",
-        "salam aleikoum",
-        "yo",
-        "good morning",
-        "good evening",
-        "koi de 9",
-        "quoi de neuf",
-        "ça gaze",
-        "ca gaze",
-        "ça roule",
-        "ca roule",
-        "ça bouge",
-        "ca bouge",
-        "je suis là",
-        "je suis la",
-        "me voilà",
-        "me voila",
-        "ndine",
-        "komara",
-        "salut bro",
-        "bonjour bro",
-        "bonsoir bro",
-        "bonsoir frère",
-        "bonsoir frere"
-      ],
-      "answer": "Bonjour et bienvenue chez Komara Agency. Nous aidons les entrepreneurs à mieux vendre, communiquer et automatiser leur activité grâce aux bots, au développement web et mobile et à la création digitale. Que souhaitez-vous développer aujourd’hui ?",
-      "tags": [
-        "accueil",
-        "commercial"
-      ]
-    },
-    {
-      "id": "portfolio_realisations",
-      "questions": [
-        "portfolio",
-        "réalisations",
-        "realisations",
-        "quoi as tu fait",
-        "qu'as tu fait",
-        "qu est ce que tu as fait",
-        "vos exemples",
-        "tes exemples",
-        "démo",
-        "demo",
-        "montre-moi",
-        "montre moi",
-        "voir vos travaux",
-        "travaux réalisés",
-        "travaux realises"
-      ],
-      "answer": "Nous réalisons des bots conversationnels, des sites web, des applications, des automatisations, des logos, des identités visuelles et des contenus pour les réseaux sociaux. Je peux vous présenter le portfolio disponible et vous demander ensuite votre domaine pour vous montrer les exemples les plus pertinents.",
-      "tags": [
-        "portfolio",
-        "realisations",
-        "commercial"
-      ]
-    },
-    {
-      "id": "services_complets",
-      "questions": [
-        "services",
-        "que fais-tu",
-        "que fais tu",
-        "que proposez",
-        "offres",
-        "compétences",
-        "competences",
-        "ton travail",
-        "spécialisé",
-        "specialise",
-        "expert",
-        "ce que tu sais faire",
-        "aide",
-        "qu'est ce que tu fais",
-        "qu est ce que tu fais",
-        "tu fais quoi",
-        "tes services",
-        "automatisation",
-        "automatisations",
-        "bots",
-        "bot",
-        "web design",
-        "graphisme",
-        "logo",
-        "que fait tu",
-        "que fait tu ?",
-        "que fais tu ?",
-        "que fais-tu ?"
-      ],
-      "answer": "Komara Agency propose trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML, CSS et JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle complète, cartes de visite, flyers et contenus pour les réseaux sociaux.\n\nDites-moi ce que vous voulez améliorer et je vous orienterai vers le bon service.",
-      "tags": [
-        "service",
-        "catalogue",
-        "commercial"
-      ]
-    },
-    {
-      "id": "contact_humain_complet",
-      "questions": [
-        "contact",
-        "whatsapp",
-        "whats",
-        "numero",
-        "numéro",
-        "tel",
-        "téléphone",
-        "telephone",
-        "joindre",
-        "te parler",
-        "parler à ndine",
-        "parler a ndine",
-        "te dm",
-        "message privé",
-        "message prive",
-        "comment te contacter",
-        "ton contact",
-        "prise de contact",
-        "contacter komara",
-        "parler à un humain",
-        "parler a un humain",
-        "conseiller humain"
-      ],
-      "answer": "Vous pouvez décrire votre projet ici ou demander à parler à un conseiller. Pour un contact direct, écrivez à Komara Agency sur WhatsApp au +212 701 986 219. Pensez à préciser votre activité, votre besoin et le service qui vous intéresse.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
         "contact",
-        "humain",
-        "commercial"
+        "local"
       ]
     },
     {
-      "id": "tarifs_complets",
+      "id": "contact_02",
+      "category": "contact",
       "questions": [
-        "tarifs",
-        "prix",
-        "coût",
-        "cout",
-        "combien",
-        "pas cher",
-        "ça coûte quoi",
-        "ca coute quoi",
-        "combien ça coûte",
-        "combien ca coute",
-        "quel est le prix",
-        "quel est le tarif",
-        "budget",
-        "prix bot",
-        "prix site",
-        "prix logo",
-        "prix application"
+        "whatsapp"
       ],
-      "answer": "Nos tarifs dépendent du service et du niveau de personnalisation. Certains packs et services commencent à 1200 MAD, le Pack Business est à 3500 MAD, la vidéo UGC est à 900 MAD pour 30 secondes et certaines prestations sont sur devis. Pour un prix adapté, indiquez votre activité, votre besoin et les livrables souhaités.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "tarif",
-        "prix",
-        "commercial"
+        "contact",
+        "local"
       ]
     },
     {
-      "id": "a_propos_komara",
+      "id": "contact_03",
+      "category": "contact",
       "questions": [
-        "qui es-tu",
-        "qui es tu",
-        "présentation",
-        "presentation",
-        "présente-toi",
-        "presente toi",
-        "à propos",
-        "a propos",
-        "about",
-        "qui est ndine",
-        "ndine komara",
-        "toi",
-        "tu es qui",
-        "tell me about you",
-        "parle-moi de komara",
-        "parle moi de komara"
+        "numéro"
       ],
-      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, des solutions web et mobiles, des scripts et automatisations, ainsi que des services de design et de création digitale. Mon rôle est de répondre à vos questions, de présenter les offres et de recueillir les informations utiles pour votre projet.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "about",
-        "presentation",
-        "commercial"
+        "contact",
+        "local"
       ]
     },
     {
-      "id": "merci_confirmation",
+      "id": "contact_04",
+      "category": "contact",
       "questions": [
-        "merci",
-        "merci beaucoup",
-        "c'est noté",
-        "c est note",
-        "parfait",
-        "super",
-        "d'accord",
-        "d accord"
+        "téléphone"
       ],
-      "answer": "Avec plaisir. Si vous le souhaitez, je peux vous présenter nos services, les tarifs, le portfolio ou vous aider à préparer votre demande de devis.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "suivi",
-        "commercial"
+        "contact",
+        "local"
       ]
     },
     {
-      "id": "aide_orientation",
+      "id": "contact_05",
+      "category": "contact",
       "questions": [
-        "je ne sais pas",
-        "aide-moi",
-        "aide moi",
-        "je suis perdu",
-        "quel service choisir",
-        "que me conseillez-vous",
-        "que me conseillez vous"
+        "joindre komara"
       ],
-      "answer": "Je peux vous orienter. Dites-moi simplement votre activité, ce que vous voulez améliorer et votre priorité : vendre, répondre aux clients, automatiser une tâche, créer un site ou améliorer votre image. Je vous proposerai le pôle le plus adapté.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "orientation",
-        "commercial"
+        "contact",
+        "local"
       ]
     },
     {
-      "id": "prise_besoin",
+      "id": "contact_06",
+      "category": "contact",
       "questions": [
-        "je veux un devis",
-        "je veux commander",
-        "je veux travailler avec vous",
-        "comment commencer",
-        "lancer mon projet",
-        "démarrer mon projet",
-        "demarrer mon projet"
+        "parler à un humain"
       ],
-      "answer": "Très bien. Pour préparer votre demande, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, votre délai et votre budget indicatif. Nous pourrons ensuite définir un périmètre clair et vous orienter vers la bonne offre.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "commande",
-        "devis",
-        "commercial"
+        "contact",
+        "local"
       ]
     },
     {
-      "id": "incomprehension_locale",
+      "id": "contact_07",
+      "category": "contact",
       "questions": [
-        "je n'ai pas compris",
-        "je comprends pas",
-        "répète",
-        "repete",
-        "explique",
-        "plus simple",
-        "autrement",
-        "je n’ai pas compris",
-        "je n’ai rien compris",
-        "j’ai pas compris"
+        "parler à ndine"
       ],
-      "answer": "Bien sûr. En résumé, Komara propose des bots, des sites et applications, des automatisations, ainsi que du design et du contenu digital. Dites-moi lequel de ces domaines vous intéresse et je vous donnerai les détails.",
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [
-        "clarification",
-        "suivi"
+        "contact",
+        "local"
+      ]
+    },
+    {
+      "id": "contact_08",
+      "category": "contact",
+      "questions": [
+        "message privé"
+      ],
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "tags": [
+        "contact",
+        "local"
+      ]
+    },
+    {
+      "id": "contact_09",
+      "category": "contact",
+      "questions": [
+        "contacter un conseiller"
+      ],
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "tags": [
+        "contact",
+        "local"
+      ]
+    },
+    {
+      "id": "contact_10",
+      "category": "contact",
+      "questions": [
+        "prise de contact"
+      ],
+      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "tags": [
+        "contact",
+        "local"
       ]
     }
-  ]
+  ],
+  "conversations": [
+    {
+      "user": "Bonjour, je découvre Komara",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Salut, vous êtes disponibles ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Bonsoir, je voudrais un renseignement",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Salam, j’ai une question",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Hello, que faites-vous ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Coucou, je peux vous parler d’un projet ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Yo, vous travaillez avec les entreprises ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Bonjour bro, tu peux m’aider ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Ça roule chez Komara ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Je suis là, on peut commencer ?",
+      "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
+      "theme": "accueil"
+    },
+    {
+      "user": "Je cherche un service pour mon entreprise",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je ne sais pas quelle offre choisir",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "J’ai besoin d’une solution numérique",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je veux moderniser mon activité",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je voudrais automatiser une partie de mon travail",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je cherche quelqu’un pour mon projet digital",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Pouvez-vous m’aider à choisir ?",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Mon entreprise a besoin de visibilité",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je veux mieux gérer mes clients",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je veux développer ma présence en ligne",
+      "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
+      "theme": "services"
+    },
+    {
+      "user": "Je voudrais un bot pour mes clients",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Mon équipe reçoit trop de questions",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Je veux répondre même la nuit",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Puis-je vendre avec un chatbot ?",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Je veux un assistant pour WhatsApp",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "J’ai besoin d’un bot Telegram",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Je veux qualifier mes prospects automatiquement",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Mon bot doit parler comme mon entreprise",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Je veux transférer les cas importants à un humain",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Un bot peut-il présenter mes services ?",
+      "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
+      "theme": "bots"
+    },
+    {
+      "user": "Je veux créer un site simple",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "J’ai besoin d’une landing page",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je veux un site pour présenter mes services",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Mon ancien site doit être amélioré",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je veux un formulaire de prospects",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Pouvez-vous créer une page de vente ?",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je veux être visible en ligne",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je cherche un site pour une boutique",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je veux une interface web pour mon équipe",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "J’ai une idée de plateforme",
+      "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
+      "theme": "web"
+    },
+    {
+      "user": "Je veux un logo moderne",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "J’ai besoin d’un flyer",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Je voudrais une identité visuelle",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Mes réseaux sociaux manquent de cohérence",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Je veux une affiche pour mon offre",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Pouvez-vous créer mes cartes de visite ?",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Je cherche des visuels professionnels",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Je veux refaire mon branding",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "J’ai besoin de contenus pour publier",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Je veux une image de marque plus sérieuse",
+      "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
+      "theme": "creation"
+    },
+    {
+      "user": "Quel budget prévoir pour un bot ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Combien coûte un site vitrine ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Votre prix comprend quoi ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Je trouve le tarif élevé",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Je dois respecter un petit budget",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Pouvez-vous faire une estimation ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Y a-t-il un paiement par étapes ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Je compare plusieurs prestataires",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Comment éviter les frais imprévus ?",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Je veux commencer avec une petite offre",
+      "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
+      "theme": "tarif"
+    },
+    {
+      "user": "Je veux lancer mon projet",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Quelles informations vous envoyer ?",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je peux vous expliquer mon idée ?",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Comment se passe la première discussion ?",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je veux demander un devis",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je suis prêt à commencer",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je dois préparer un cahier des charges ?",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Pouvez-vous m’aider à cadrer mon besoin ?",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je ne sais pas par où commencer",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Je veux parler à quelqu’un",
+      "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
+      "theme": "commande"
+    },
+    {
+      "user": "Merci pour les informations",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "D’accord, je vais réfléchir",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Je dois en parler à mon associé",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Je veux plus de détails",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Pouvez-vous expliquer simplement ?",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Je n’ai pas compris la différence",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Je veux voir des exemples",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Je reviendrai plus tard",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Parfait, continuons",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Cela m’intéresse",
+      "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
+      "theme": "suivi"
+    },
+    {
+      "user": "Quels paiements acceptez-vous ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Puis-je payer par Orange Money ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Le paiement se fait quand ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Je préfère payer par PayPal",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Est-ce possible par virement ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Faut-il payer tout de suite ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Puis-je payer par tranche ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Quelles sont les conditions ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Comment sécuriser le paiement ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Le solde se paie quand ?",
+      "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
+      "theme": "paiement"
+    },
+    {
+      "user": "Donnez-moi votre WhatsApp",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Je veux parler à Ndine",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Comment vous joindre ?",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Puis-je envoyer un message privé ?",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Je préfère un conseiller humain",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Quel est votre numéro ?",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Je veux prendre rendez-vous",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Je peux vous appeler ?",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Où envoyer mon besoin ?",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    },
+    {
+      "user": "Je veux un contact direct",
+      "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
+      "theme": "contact"
+    }
+  ],
+  "brain_version": "3.0-local-200qa-100conversations"
 }

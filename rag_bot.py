@@ -98,6 +98,7 @@ WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "notre WhatsApp")
 BRAND = BRAIN.get("brand", "Komara Agency")
 KNOWLEDGE = BRAIN.get("knowledge", [])
 PACKS = BRAIN.get("packs", [])
+CONVERSATIONS = BRAIN.get("conversations", [])
 
 # La mémoire est stockée dans un fichier JSON. Sur Railway, montez un Volume
 # et définissez MEMORY_FILE=/data/komara_memory.json pour la rendre durable.
@@ -235,6 +236,23 @@ def context_for(chat_id: int) -> list[dict[str, str]]:
     return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
 
 
+def conversation_example_response(user_text: str) -> str | None:
+    """Retourne un modèle de réponse local basé sur les conversations prévues."""
+
+    normalized = user_text.casefold()
+    tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", normalized))
+    candidates: list[tuple[int, str]] = []
+    for example in CONVERSATIONS:
+        prompt = str(example.get("user", "")).casefold()
+        prompt_tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", prompt))
+        overlap = len(tokens & prompt_tokens)
+        if overlap >= 2:
+            candidates.append((overlap * 10 + len(prompt_tokens), str(example.get("assistant", ""))))
+    if not candidates:
+        return None
+    return max(candidates, key=lambda candidate: candidate[0])[1]
+
+
 def local_contextual_response(chat_id: int, user_text: str) -> str | None:
     """Comprend les suivis localement à partir des derniers échanges du chat.
 
@@ -265,6 +283,12 @@ def local_contextual_response(chat_id: int, user_text: str) -> str | None:
         return direct_answer
     if contextual_answer:
         return contextual_answer
+
+    # Les exemples de conversations servent de modèles locaux lorsque la
+    # formulation du prospect ne correspond pas exactement à une question.
+    example_answer = conversation_example_response(combined_text)
+    if example_answer:
+        return example_answer
 
     # Suivis affirmatifs : on reprend l'intention de l'assistant précédent.
     confirmations = {"oui", "yes", "ok", "d'accord", "dac", "ça m'intéresse", "je suis intéressé"}
