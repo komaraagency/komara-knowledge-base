@@ -21,10 +21,6 @@ from typing import Any
 import telebot
 from dotenv import load_dotenv
 
-try:
-    from openai import OpenAI
-except ImportError:  # Le mode local reste disponible sans LLM.
-    OpenAI = None
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
@@ -81,9 +77,6 @@ PACKS = BRAIN.get("packs", [])
 MEMORY_FILE = Path(os.getenv("MEMORY_FILE", str(BASE_DIR / "data" / "memory.json")))
 MEMORY_LIMIT = max(2, int(os.getenv("MEMORY_LIMIT", "12")))
 MEMORY_LOCK = threading.Lock()
-LLM_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini")
-LLM_ENABLED = bool(os.getenv("OPENAI_API_KEY")) and OpenAI is not None
-LLM_CLIENT = OpenAI() if LLM_ENABLED else None
 
 if not KNOWLEDGE:
 
@@ -185,44 +178,56 @@ def context_for(chat_id: int) -> list[dict[str, str]]:
     return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
 
 
-def build_context(chat_id: int, user_text: str) -> list[dict[str, str]]:
-    """Construit le contexte LLM avec les faits métier et l'historique du chat."""
+def local_contextual_response(chat_id: int, user_text: str) -> str | None:
+    """Comprend les suivis localement à partir des derniers échanges du chat.
 
-    knowledge = "\n".join(
-        f"- {item.get('id', 'info')}: {item.get('answer', '')}"
-        for item in KNOWLEDGE
-    )
-    services = "\n".join(
-        f"- {service.get('nom', '')}: {service.get('prix', '')} — {service.get('description', '')}"
-        for service in BRAIN.get("services", [])
-    )
-    system = (
-        f"Tu es l'assistant commercial de {BRAND}. Réponds en français, de façon naturelle, "
-        "chaleureuse et concise. Comprends les pronoms et les références au message précédent. "
-        "N'invente jamais de prix, de délai ou de service; utilise uniquement les informations "
-        "ci-dessous. Si l'information manque, pose une question de clarification. "
-        "Ne prétends pas être humain.\n\nSERVICES:\n"
-        f"{services}\n\nBASE DE CONNAISSANCES:\n{knowledge}"
-    )
-    return [{"role": "system", "content": system}, *context_for(chat_id), {"role": "user", "content": user_text}]
+    Cette fonction ne fait aucun appel réseau. Elle combine le message courant
+    avec les derniers messages utilisateur et exploite la base de connaissances.
+    """
 
+    text = user_text.casefold().strip()
+    history = context_for(chat_id)
+    previous_user_messages = [
+        item["content"] for item in history
+        if item.get("role") == "user" and item.get("content")
+    ]
+    previous_assistant_messages = [
+        item["content"] for item in history
+        if item.get("role") == "assistant" and item.get("content")
+    ]
 
-def generate_contextual_response(chat_id: int, user_text: str) -> str | None:
-    """Utilise le LLM si configuré; sinon renvoie None pour activer le repli local."""
+    # Une question courte comme « et le prix ? » doit être interprétée avec
+    # le thème précédent, au lieu de repartir sur la réponse par défaut.
+    recent_context = " ".join(previous_user_messages[-3:])
+    combined_text = f"{recent_context} {text}".strip()
 
-    if not LLM_CLIENT:
-        return None
-    try:
-        result = LLM_CLIENT.chat.completions.create(
-            model=LLM_MODEL,
-            messages=build_context(chat_id, user_text),
-            max_completion_tokens=500,
-        )
-        answer = (result.choices[0].message.content or "").strip()
-        return answer or None
-    except Exception:
-        logger.exception("Échec du LLM; utilisation du repli local.")
-        return None
+    direct_answer = chercher(user_text)
+    contextual_answer = chercher(combined_text)
+
+    if direct_answer:
+        return direct_answer
+    if contextual_answer:
+        return contextual_answer
+
+    # Suivis affirmatifs : on reprend l'intention de l'assistant précédent.
+    confirmations = {"oui", "yes", "ok", "d'accord", "dac", "ça m'intéresse", "je suis intéressé"}
+    if text in confirmations and previous_assistant_messages:
+        previous = previous_assistant_messages[-1].casefold()
+        if any(word in previous for word in ("commencer", "service", "intéresse", "domaine")):
+            return (
+                "Parfait. Pour vous orienter précisément, indiquez-moi votre activité, "
+                "le service qui vous intéresse et votre objectif principal."
+            )
+
+    # Références courantes au sujet déjà évoqué.
+    if any(term in text for term in ("ça coûte", "combien ça", "son prix", "le prix", "les tarifs")):
+        return chercher("prix")
+    if any(term in text for term in ("comment faire", "comment on", "je commande", "commander")):
+        return chercher("process")
+    if any(term in text for term in ("payer", "paiement", "régler", "règle")):
+        return chercher("paiement")
+
+    return None
 
 
 def safe_typing(chat_id: int) -> None:
@@ -312,9 +317,8 @@ def handle(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, response, reply_markup=menu())
             return
 
-        # Le LLM comprend le contexte; la base locale garantit un fonctionnement
-        # même si OPENAI_API_KEY n'est pas configurée ou si l'API est indisponible.
-        response = generate_contextual_response(chat_id, text) or chercher(text) or (
+        # Compréhension 100 % locale : mémoire + recherche dans la base + intentions.
+        response = local_contextual_response(chat_id, text) or (
             "Pour mieux vous orienter, pouvez-vous me préciser votre activité et "
             "ce que vous souhaitez vendre ou automatiser ?"
         )
