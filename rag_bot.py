@@ -157,20 +157,31 @@ def chercher(message: str | None) -> str | None:
             return candidate in tokens
         return candidate in normalized
 
+    # On choisit la correspondance la plus spécifique, et non la première
+    # entrée du JSON : « payer en plusieurs fois » doit battre « payer ».
+    candidates: list[tuple[int, str]] = []
     for item in KNOWLEDGE:
-        questions = item.get("questions", [])
-        if any(matches(str(question)) for question in questions):
-            return item.get("answer")
-
+        matched_questions = [str(question) for question in item.get("questions", []) if matches(str(question))]
+        if matched_questions:
+            specificity = max(len(question) for question in matched_questions)
+            candidates.append((specificity, item.get("answer", "")))
+    if candidates:
+        return max(candidates, key=lambda candidate: candidate[0])[1]
 
     # La FAQ Markdown locale complète kb.json et reste la seconde source
     # officielle du bot. Aucun appel réseau n'est effectué ici.
+    faq_candidates: list[tuple[int, str]] = []
     for item in LOCAL_FAQ:
-        if item["question"].casefold() in normalized or normalized in item["question"].casefold():
-            return item["answer"]
-        question_words = [word for word in re.findall(r"[a-zàâçéèêëîïôùûüÿœ]+", item["question"].casefold()) if len(word) > 3]
-        if question_words and sum(word in normalized for word in question_words) >= min(2, len(question_words)):
-            return item["answer"]
+        question = item["question"].casefold()
+        if question in normalized or normalized in question:
+            faq_candidates.append((len(question), item["answer"]))
+            continue
+        question_words = [word for word in re.findall(r"[a-zàâçéèêëîïôùûüÿœ]+", question) if len(word) > 3]
+        matched_words = sum(word in normalized for word in question_words)
+        if question_words and matched_words >= min(2, len(question_words)):
+            faq_candidates.append((matched_words * 10, item["answer"]))
+    if faq_candidates:
+        return max(faq_candidates, key=lambda candidate: candidate[0])[1]
     return None
 
 
