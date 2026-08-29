@@ -17,88 +17,330 @@
   },
   "services": [
     {
+      "id": "bots_intelligents",
+      "categorie": "BOTS INTELLIGENTS",
+      "nom": "Bots WhatsApp, Telegram et TikTok",
+      "prix": "sur devis",
+      "description": "Bots conversationnels, service client automatisé 24h/24 et automatisation des tâches."
+    },
+    {
+      "id": "developpement_programmation",
+      "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
+      "nom": "Sites, applications et solutions sur mesure",
+      "prix": "sur devis",
+      "description": "Sites HTML, CSS et JavaScript, applications web et mobiles, scripts et automatisations."
+    },
+    {
+      "id": "creation_digitale",
+      "categorie": "CRÉATION DIGITALE",
+      "nom": "Design graphique et contenu digital",
+      "prix": "sur devis",
+      "description": "Logos, affiches, identité visuelle, cartes de visite, flyers et contenu pour réseaux sociaux."
+    },
+    {
       "id": "agent_commercial",
+      "categorie": "BOTS INTELLIGENTS",
       "nom": "Agent I.A. Commercial WhatsApp",
       "prix": "à partir de 1200 MAD",
-      "description": "Vend et répond aux clients 24H/24. Cible: E-commerce, Boutiques."
+      "description": "Vend et répond aux clients 24H/24. Cible : e-commerce et boutiques."
     },
     {
       "id": "agent_rdv",
-      "nom": "Agent I.A. Prise de RDV",
+      "categorie": "BOTS INTELLIGENTS",
+      "nom": "Agent I.A. Prise de rendez-vous",
       "prix": "sur devis",
-      "description": "Automatise RDV, rappels, confirmations. Cible: Cliniques, Coiffeurs, Agences."
+      "description": "Automatise les rendez-vous, rappels et confirmations. Cible : cliniques, coiffeurs et agences."
     },
     {
       "id": "agent_support",
-      "nom": "Agent I.A. Support Client",
+      "categorie": "BOTS INTELLIGENTS",
+      "nom": "Agent I.A. Support client",
       "prix": "sur devis",
-      "description": "Gère FAQ, réclamations, qualification de leads. Cible: Services, Ecoles."
+      "description": "Gère les FAQ, réclamations et qualifications de prospects."
     },
     {
       "id": "site_web",
-      "nom": "Création de Site Web + Formulaire Lead",
+      "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
+      "nom": "Création de site web et formulaire de prospects",
       "prix": "à partir de 1200 MAD",
-      "description": "Landing page HTML Creator avec formulaire intégré vers Telegram."
+      "description": "Site vitrine ou landing page en HTML, CSS et JavaScript avec formulaire intégré."
+    },
+    {
+      "id": "applications",
+      "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
+      "nom": "Applications web et mobiles",
+      "prix": "sur devis",
+      "description": "Applications adaptées à votre activité, avec fonctionnalités et interface sur mesure."
+    },
+    {
+      "id": "scripts_automatisation",
+      "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
+      "nom": "Scripts et automatisations",
+      "prix": "sur devis",
+      "description": "Automatisation des tâches répétitives et intégration de workflows adaptés à votre entreprise."
+    },
+    {
+      "id": "design_graphique",
+      "categorie": "CRÉATION DIGITALE",
+      "nom": "Design graphique et identité visuelle",
+      "prix": "sur devis",
+      "description": "Logos, affiches, cartes de visite, flyers et identité visuelle complète."
+    },
+    {
+      "id": "contenu_reseaux",
+      "categorie": "CRÉATION DIGITALE",
+      "nom": "Contenu pour réseaux sociaux",
+      "prix": "sur devis",
+      "description": "Création de visuels et contenus cohérents pour vos réseaux sociaux."
     },
     {
       "id": "video_ugc",
-      "nom": "Vidéo UGC avec Avatar IA",
+      "categorie": "CRÉATION DIGITALE",
+      "nom": "Vidéo UGC avec avatar IA",
       "prix": "900 MAD / 1 vidéo 30s",
-      "description": "Un avatar parle de ton produit à ta place. Pas besoin de te filmer."
+      "description": "Un avatar présente votre produit sans que vous ayez besoin de vous filmer."
     },
     {
       "id": "formation",
-      "nom": "Formation IA Business",
+      "categorie": "BOTS INTELLIGENTS",
+      "nom": "Formation automatisation et IA Business",
       "prix": "2500 MAD",
-      "description": "Automatiser sa prospection, créer 30 contenus/mois, vendre avec l’IA."
+      "description": "Automatiser sa prospection, créer du contenu et vendre avec des outils numériques."
     }
   ],
   "packs": [
-    {"nom": "Pack Starter", "prix": "1200 MAD", "contenu": "5 visuels + 3 vidéos + Logo"},
-    {"nom": "Pack Business", "prix": "3500 MAD", "contenu": "15 visuels + 10 vidéos + 1 mois pub"}
+    {
+      "nom": "Pack Starter",
+      "prix": "1200 MAD",
+      "contenu": "5 visuels + 3 vidéos + Logo"
+    },
+    {
+      "nom": "Pack Business",
+      "prix": "3500 MAD",
+      "contenu": "15 visuels + 10 vidéos + 1 mois pub"
+    }
   ],
   "knowledge": [
     {
       "id": "accueil_01",
-      "questions": ["bonjour", "salut", "cc", "hey"],
+      "questions": [
+        "bonjour",
+        "salut",
+        "cc",
+        "hey"
+      ],
       "answer": "Bonjour 👋 Je suis l'Assistant I.A. de Komara Agency 🇬🇳.\nVotre Agent I.A. qui vend pour vous 24H/24.\n\nOn aide les entrepreneurs à vendre plus avec l’IA. Tu veux vendre quoi ?",
-      "tags": ["accueil"]
+      "tags": [
+        "accueil"
+      ]
     },
     {
       "id": "services_01",
-      "questions": ["service", "que faites vous", "offre"],
-      "answer": "Chez Komara Agency on fait 5 choses :\n1. Agent I.A. Commercial WhatsApp\n2. Agent I.A. Prise de RDV\n3. Agent I.A. Support Client\n4. Site Web + Formulaire Lead\n5. Vidéo UGC avec Avatar IA\nTu veux des infos sur lequel ?",
-      "tags": ["service"]
+      "questions": [
+        "service",
+        "que faites vous",
+        "offre",
+        "quels services proposez-vous",
+        "mes créations"
+      ],
+      "answer": "Chez Komara Agency, nous proposons trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML, CSS et JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle complète, cartes de visite, flyers et contenus pour les réseaux sociaux.\n\nQuel pôle souhaitez-vous développer ?",
+      "tags": [
+        "service",
+        "catalogue"
+      ]
     },
     {
       "id": "tarif_01",
-      "questions": ["prix", "tarif", "combien"],
+      "questions": [
+        "prix",
+        "tarif",
+        "combien"
+      ],
       "answer": "Voici nos packs populaires :\nPack Starter : 1200 MAD - 5 visuels + 3 vidéos + Logo\nPack Business : 3500 MAD - 15 visuels + 10 vidéos + 1 mois pub\n\nFormation IA : 999 MAD à 2500 MAD\nJe t’envoie le catalogue complet sur WhatsApp ? +212701986219",
-      "tags": ["tarif"]
+      "tags": [
+        "tarif"
+      ]
     },
     {
       "id": "objection_cher",
-      "questions": ["c'est cher", "trop cher"],
+      "questions": [
+        "c'est cher",
+        "trop cher"
+      ],
       "answer": "Je comprends 👌 Un seul client ramené par la pub rembourse déjà l’investissement.\nTu veux qu’on commence petit avec le pack à 1200 MAD ?",
-      "tags": ["objection"]
+      "tags": [
+        "objection"
+      ]
     },
     {
       "id": "objection_reflechir",
-      "questions": ["je vais réfléchir"],
+      "questions": [
+        "je vais réfléchir"
+      ],
       "answer": "Pas de souci. Je t’envoie 3 exemples de ce qu’on fait pour ton domaine sur WhatsApp et tu me dis ce que tu en penses ? +212701986219",
-      "tags": ["objection"]
+      "tags": [
+        "objection"
+      ]
     },
     {
       "id": "process_01",
-      "questions": ["comment commander", "process"],
+      "questions": [
+        "comment commander",
+        "process"
+      ],
       "answer": "Process simple en 5 étapes :\n1. Tu m’envoies ton besoin ici\n2. Devis gratuit sous 2h\n3. Paiement 50% Orange Money, MoMo, Paypal\n4. Livraison 24h à 72h\n5. 2 modifications incluses\nOn démarre avec quel service pour toi ?",
-      "tags": ["process"]
+      "tags": [
+        "process"
+      ]
     },
     {
       "id": "paiement_01",
-      "questions": ["payer", "paiement"],
+      "questions": [
+        "payer",
+        "paiement"
+      ],
       "answer": "Tu peux payer par Orange Money, MoMo, Virement bancaire, Paypal.\n50% avant, 50% après.",
-      "tags": ["faq"]
+      "tags": [
+        "faq"
+      ]
+    },
+    {
+      "id": "catalogue_services",
+      "questions": [
+        "créations",
+        "vos créations",
+        "catalogue",
+        "catalogue services",
+        "que proposez vous",
+        "quels services",
+        "vos services"
+      ],
+      "answer": "Nous proposons trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML/CSS/JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle, cartes de visite, flyers et contenus pour réseaux sociaux.\n\nQuel pôle souhaitez-vous développer ?",
+      "tags": [
+        "services",
+        "catalogue"
+      ]
+    },
+    {
+      "id": "bots_services",
+      "questions": [
+        "bot whatsapp",
+        "bot telegram",
+        "bot tiktok",
+        "chatbot",
+        "service client",
+        "automatiser mon service client"
+      ],
+      "answer": "Nous créons des bots WhatsApp, Telegram et TikTok pour répondre aux clients 24h/24, présenter vos offres, qualifier les prospects et automatiser les tâches répétitives. Pour vous conseiller, dites-moi votre activité et le canal que vous utilisez le plus.",
+      "tags": [
+        "bots",
+        "services"
+      ]
+    },
+    {
+      "id": "dev_services",
+      "questions": [
+        "site web",
+        "application web",
+        "application mobile",
+        "programmation",
+        "script",
+        "solution sur mesure"
+      ],
+      "answer": "Nous développons des sites en HTML, CSS et JavaScript, des applications web et mobiles, ainsi que des scripts et automatisations sur mesure. Quel outil voulez-vous créer et quel problème doit-il résoudre ?",
+      "tags": [
+        "developpement",
+        "programmation"
+      ]
+    },
+    {
+      "id": "creation_digitale_services",
+      "questions": [
+        "logo",
+        "affiche",
+        "identité visuelle",
+        "carte de visite",
+        "flyer",
+        "réseaux sociaux",
+        "design graphique"
+      ],
+      "answer": "Nous réalisons des logos, affiches, identités visuelles complètes, cartes de visite, flyers et contenus pour les réseaux sociaux. Avez-vous déjà un logo ou souhaitez-vous créer une image de marque complète ?",
+      "tags": [
+        "design",
+        "création"
+      ]
+    },
+    {
+      "id": "qualification_prospect",
+      "questions": [
+        "devis",
+        "besoin",
+        "projet",
+        "je veux créer",
+        "je veux automatiser"
+      ],
+      "answer": "Très bien. Pour vous proposer la bonne solution, indiquez votre activité, votre objectif, le canal concerné (WhatsApp, Telegram, TikTok, site ou réseaux sociaux) et votre délai souhaité. Nous vous orienterons vers l’offre la plus adaptée.",
+      "tags": [
+        "vente",
+        "qualification"
+      ]
+    },
+    {
+      "id": "faq_delai",
+      "questions": [
+        "délai",
+        "combien de temps",
+        "livraison",
+        "quand ce sera prêt"
+      ],
+      "answer": "Le délai dépend du projet. Les demandes simples peuvent être livrées rapidement, tandis qu’un bot, une application ou une identité complète nécessite une estimation après étude du besoin. Envoyez-nous les détails pour recevoir un délai précis.",
+      "tags": [
+        "faq",
+        "process"
+      ]
+    },
+    {
+      "id": "faq_modifications",
+      "questions": [
+        "modification",
+        "retouche",
+        "corriger",
+        "changer le design"
+      ],
+      "answer": "Oui, les modifications sont possibles. Le nombre de retouches dépend de l’offre et du périmètre validé au départ. Nous validons d’abord le besoin et les livrables avant de commencer.",
+      "tags": [
+        "faq",
+        "process"
+      ]
+    },
+    {
+      "id": "faq_paiement",
+      "questions": [
+        "moyen de paiement",
+        "comment payer",
+        "acompte",
+        "avance"
+      ],
+      "answer": "Le paiement peut être organisé selon le projet, généralement avec un acompte au démarrage puis le solde à la livraison. Les moyens acceptés sont Orange Money, MoMo, PayPal et virement, selon votre pays.",
+      "tags": [
+        "faq",
+        "paiement"
+      ]
+    },
+    {
+      "id": "faq_humain",
+      "questions": [
+        "parler à quelqu'un",
+        "contact humain",
+        "conseiller",
+        "responsable",
+        "whatsapp"
+      ],
+      "answer": "Bien sûr. Décrivez votre projet ici et un expert Komara pourra vous orienter. Vous pouvez aussi demander un contact direct sur WhatsApp au +212701986219.",
+      "tags": [
+        "faq",
+        "contact"
+      ]
     }
   ]
-    }
+}

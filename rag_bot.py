@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import signal
 import sys
 import threading
@@ -63,8 +64,34 @@ if not TOKEN:
 # ---------------------------------------------------------------------------
 
 KB_PATH = BASE_DIR / "kb.json"
+FAQ_PATH = BASE_DIR / "docs" / "faq.md"
 with KB_PATH.open("r", encoding="utf-8") as kb_file:
     BRAIN: dict[str, Any] = json.load(kb_file)
+
+
+def load_local_faq() -> list[dict[str, str]]:
+    """Charge les questions/réponses Markdown depuis le dépôt local."""
+
+    if not FAQ_PATH.is_file():
+        logger.warning("FAQ locale absente : %s", FAQ_PATH)
+        return []
+
+    content = FAQ_PATH.read_text(encoding="utf-8")
+    items: list[dict[str, str]] = []
+    for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
+        lines = section.splitlines()
+        if not lines:
+            continue
+        question = lines[0].strip()
+        answer = "\n".join(lines[1:]).strip()
+        answer = re.sub(r"^\*\*Réponse\s*:\*\*\s*", "", answer, flags=re.IGNORECASE)
+        if question and answer:
+            items.append({"question": question, "answer": answer})
+    logger.info("FAQ locale chargée : %s questions", len(items))
+    return items
+
+
+LOCAL_FAQ = load_local_faq()
 
 
 WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "notre WhatsApp")
@@ -118,13 +145,32 @@ def menu() -> ReplyKeyboardMarkup:
 
 
 def chercher(message: str | None) -> str | None:
-    """Retourne la première réponse dont une question correspond au message."""
+    """Retourne la première réponse dont une question correspond localement."""
+    normalized = (message or "").casefold().strip()
+    tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", normalized))
 
-    normalized = (message or "").casefold()
+    def matches(question: str) -> bool:
+        candidate = question.casefold().strip()
+        # Les petits mots-clés doivent être des mots entiers : « cc » ne doit
+        # pas correspondre aux lettres de « acceptez ».
+        if len(candidate) <= 3 and " " not in candidate:
+            return candidate in tokens
+        return candidate in normalized
+
     for item in KNOWLEDGE:
         questions = item.get("questions", [])
-        if any(str(question).casefold() in normalized for question in questions):
+        if any(matches(str(question)) for question in questions):
             return item.get("answer")
+
+
+    # La FAQ Markdown locale complète kb.json et reste la seconde source
+    # officielle du bot. Aucun appel réseau n'est effectué ici.
+    for item in LOCAL_FAQ:
+        if item["question"].casefold() in normalized or normalized in item["question"].casefold():
+            return item["answer"]
+        question_words = [word for word in re.findall(r"[a-zàâçéèêëîïôùûüÿœ]+", item["question"].casefold()) if len(word) > 3]
+        if question_words and sum(word in normalized for word in question_words) >= min(2, len(question_words)):
+            return item["answer"]
     return None
 
 
