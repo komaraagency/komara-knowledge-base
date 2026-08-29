@@ -220,3 +220,6 @@ __marimo__/
 # Mémoire conversationnelle locale
 /data/
 data/
+
+# Archives locales de la base de connaissances
+backups/

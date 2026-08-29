@@ -189,6 +189,30 @@ Le SDK d’un fournisseur d’IA externe n’est volontairement pas installé.
 └── portfolio_02           # Média portfolio local
 ```
 
+## Sauvegarde de kb.json
+
+Le script `scripts/backup_kb.py` crée une copie horodatée de `kb.json`, vérifie que le JSON est valide avant la copie, écrit de manière atomique et supprime les anciennes archives au-delà de la limite configurée.
+
+Exécution manuelle avec conservation des 30 dernières copies :
+
+```bash
+python3 scripts/backup_kb.py --keep 30
+```
+
+Pour une exécution régulière sur une machine ou un serveur Linux, ajoutez une tâche cron, par exemple chaque jour à 02:00 :
+
+```cron
+0 2 * * * cd /chemin/vers/komara-knowledge-base && /usr/bin/python3 scripts/backup_kb.py --keep 30 >> /var/log/komara-backup.log 2>&1
+```
+
+Les archives sont placées dans `backups/kb/` par défaut. Sur Railway, le système de fichiers est temporaire sans Volume; montez donc un Volume sur `/backups` et utilisez :
+
+```bash
+python3 scripts/backup_kb.py --backup-dir /backups/kb --keep 30
+```
+
+Le script ne remplace jamais `kb.json` et refuse de créer une archive si le fichier source est invalide. Pour une vraie protection contre la perte du projet, copiez aussi les archives vers un stockage externe ou un dépôt privé séparé.
+
 ## Tests de validation
 
 Avant chaque publication ou redéploiement, exécutez :
