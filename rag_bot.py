@@ -28,6 +28,7 @@ from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
 from local_search import score_match
+from local_stats import record_unrecognized
 
 
 # ---------------------------------------------------------------------------
@@ -424,7 +425,10 @@ def handle(message: telebot.types.Message) -> None:
             return
 
         # Compréhension 100 % locale : mémoire + recherche dans la base + intentions.
-        response = local_contextual_response(chat_id, text) or (
+        local_response = local_contextual_response(chat_id, text)
+        if local_response is None:
+            record_unrecognized(text, source="telegram")
+        response = local_response or (
             "Pour mieux vous orienter, pouvez-vous me préciser votre activité et "
             "ce que vous souhaitez vendre ou automatiser ?"
         )
