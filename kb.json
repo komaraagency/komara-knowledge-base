@@ -2165,7 +2165,8 @@
       "id": "commande_09",
       "category": "commande",
       "questions": [
-        "demander une estimation"
+        "demander une estimation",
+        "je voudrais demander un devis"
       ],
       "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
       "tags": [
