@@ -17,6 +17,7 @@ from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
 from local_search import score_match
+from local_stats import get_unrecognized_stats, record_unrecognized
 
 BASE_DIR = Path(__file__).resolve().parent
 KB_PATH = BASE_DIR / "kb.json"
@@ -114,7 +115,11 @@ def repondre(message: str) -> str:
             for pack in PACKS
         )
         return f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
-    return chercher(text) or (
+    local_response = chercher(text)
+    if local_response:
+        return local_response
+    record_unrecognized(text, source="api")
+    return (
         "Je peux vous orienter vers un bot, un site ou une application, "
         "une automatisation, ou une création digitale. Quel est votre besoin ?"
     )
@@ -172,6 +177,18 @@ def worker_heartbeat():
         "timestamp": time.time(),
     })
     return jsonify({"status": "recorded"})
+
+
+@app.get("/stats/unrecognized")
+def unrecognized_stats():
+    """Expose les questions inconnues agrégées, uniquement avec la clé API."""
+    if not API_KEY or request.headers.get("X-API-Key", "") != API_KEY:
+        return jsonify({"error": "Clé API manquante ou invalide."}), 401
+    try:
+        limit = request.args.get("limit", "50")
+        return jsonify(get_unrecognized_stats(int(limit)))
+    except (TypeError, ValueError):
+        return jsonify({"error": "Le paramètre limit doit être un entier."}), 400
 
 
 @app.post("/chat")

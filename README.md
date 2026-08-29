@@ -130,6 +130,21 @@ curl -X POST https://votre-domaine.up.railway.app/chat \
 
 Le service Web n’a pas besoin de `TELEGRAM_TOKEN`. Il ne doit pas être utilisé pour démarrer `rag_bot.py`.
 
+## Statistiques des questions non reconnues
+
+Le Worker et l’API enregistrent localement les questions auxquelles aucune réponse suffisante n’a été trouvée. Elles sont normalisées et agrégées par texte, avec un compteur, les dates de première et dernière occurrence et la source (`telegram` ou `api`). Aucun `chat_id`, token ou historique de conversation n’est enregistré dans ce fichier.
+
+Par défaut, le fichier est `data/unrecognized_questions.json`. Pour le rendre persistant sur Railway, montez un Volume et définissez `UNRECOGNIZED_STATS_FILE=/data/unrecognized_questions.json`. La limite par défaut est de 1000 questions distinctes et peut être ajustée avec `STATS_MAX_ITEMS`.
+
+L’API expose une consultation protégée par `KOMARA_API_KEY` :
+
+```bash
+curl -H 'X-API-Key: votre_clé_secrète' \\
+  'https://votre-domaine.up.railway.app/stats/unrecognized?limit=50'
+```
+
+Cette route ne renvoie rien sans clé valide. Les données restent locales au service qui les écrit ; si le Worker et l’API utilisent deux services Railway distincts, utilisez un Volume ou un mécanisme de collecte séparé selon l’architecture souhaitée.
+
 Pour protéger la route `/chat`, définissez une clé uniquement dans le service Web :
 
 ```text
