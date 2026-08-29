@@ -533,6 +533,273 @@
         "tarif",
         "budget"
       ]
+    },
+    {
+      "id": "accueil_complet",
+      "questions": [
+        "bonjour",
+        "salut",
+        "coucou",
+        "hello",
+        "hi",
+        "bonsoir",
+        "salam",
+        "salam waaleykum",
+        "salam aleikoum",
+        "yo",
+        "good morning",
+        "good evening",
+        "koi de 9",
+        "quoi de neuf",
+        "ça gaze",
+        "ca gaze",
+        "ça roule",
+        "ca roule",
+        "ça bouge",
+        "ca bouge",
+        "je suis là",
+        "je suis la",
+        "me voilà",
+        "me voila",
+        "ndine",
+        "komara",
+        "salut bro",
+        "bonjour bro",
+        "bonsoir bro",
+        "bonsoir frère",
+        "bonsoir frere"
+      ],
+      "answer": "Bonjour et bienvenue chez Komara Agency. Nous aidons les entrepreneurs à mieux vendre, communiquer et automatiser leur activité grâce aux bots, au développement web et mobile et à la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "tags": [
+        "accueil",
+        "commercial"
+      ]
+    },
+    {
+      "id": "portfolio_realisations",
+      "questions": [
+        "portfolio",
+        "réalisations",
+        "realisations",
+        "quoi as tu fait",
+        "qu'as tu fait",
+        "qu est ce que tu as fait",
+        "vos exemples",
+        "tes exemples",
+        "démo",
+        "demo",
+        "montre-moi",
+        "montre moi",
+        "voir vos travaux",
+        "travaux réalisés",
+        "travaux realises"
+      ],
+      "answer": "Nous réalisons des bots conversationnels, des sites web, des applications, des automatisations, des logos, des identités visuelles et des contenus pour les réseaux sociaux. Je peux vous présenter le portfolio disponible et vous demander ensuite votre domaine pour vous montrer les exemples les plus pertinents.",
+      "tags": [
+        "portfolio",
+        "realisations",
+        "commercial"
+      ]
+    },
+    {
+      "id": "services_complets",
+      "questions": [
+        "services",
+        "que fais-tu",
+        "que fais tu",
+        "que proposez",
+        "offres",
+        "compétences",
+        "competences",
+        "ton travail",
+        "spécialisé",
+        "specialise",
+        "expert",
+        "ce que tu sais faire",
+        "aide",
+        "qu'est ce que tu fais",
+        "qu est ce que tu fais",
+        "tu fais quoi",
+        "tes services",
+        "automatisation",
+        "automatisations",
+        "bots",
+        "bot",
+        "web design",
+        "graphisme",
+        "logo",
+        "que fait tu",
+        "que fait tu ?",
+        "que fais tu ?",
+        "que fais-tu ?"
+      ],
+      "answer": "Komara Agency propose trois pôles :\n\n1. BOTS INTELLIGENTS : bots WhatsApp, Telegram et TikTok, service client automatisé 24h/24, bots conversationnels et automatisation des tâches.\n\n2. DÉVELOPPEMENT & PROGRAMMATION : sites HTML, CSS et JavaScript, applications web et mobiles, scripts, automatisations et solutions sur mesure.\n\n3. CRÉATION DIGITALE : logos, affiches, identité visuelle complète, cartes de visite, flyers et contenus pour les réseaux sociaux.\n\nDites-moi ce que vous voulez améliorer et je vous orienterai vers le bon service.",
+      "tags": [
+        "service",
+        "catalogue",
+        "commercial"
+      ]
+    },
+    {
+      "id": "contact_humain_complet",
+      "questions": [
+        "contact",
+        "whatsapp",
+        "whats",
+        "numero",
+        "numéro",
+        "tel",
+        "téléphone",
+        "telephone",
+        "joindre",
+        "te parler",
+        "parler à ndine",
+        "parler a ndine",
+        "te dm",
+        "message privé",
+        "message prive",
+        "comment te contacter",
+        "ton contact",
+        "prise de contact",
+        "contacter komara",
+        "parler à un humain",
+        "parler a un humain",
+        "conseiller humain"
+      ],
+      "answer": "Vous pouvez décrire votre projet ici ou demander à parler à un conseiller. Pour un contact direct, écrivez à Komara Agency sur WhatsApp au +212 701 986 219. Pensez à préciser votre activité, votre besoin et le service qui vous intéresse.",
+      "tags": [
+        "contact",
+        "humain",
+        "commercial"
+      ]
+    },
+    {
+      "id": "tarifs_complets",
+      "questions": [
+        "tarifs",
+        "prix",
+        "coût",
+        "cout",
+        "combien",
+        "pas cher",
+        "ça coûte quoi",
+        "ca coute quoi",
+        "combien ça coûte",
+        "combien ca coute",
+        "quel est le prix",
+        "quel est le tarif",
+        "budget",
+        "prix bot",
+        "prix site",
+        "prix logo",
+        "prix application"
+      ],
+      "answer": "Nos tarifs dépendent du service et du niveau de personnalisation. Certains packs et services commencent à 1200 MAD, le Pack Business est à 3500 MAD, la vidéo UGC est à 900 MAD pour 30 secondes et certaines prestations sont sur devis. Pour un prix adapté, indiquez votre activité, votre besoin et les livrables souhaités.",
+      "tags": [
+        "tarif",
+        "prix",
+        "commercial"
+      ]
+    },
+    {
+      "id": "a_propos_komara",
+      "questions": [
+        "qui es-tu",
+        "qui es tu",
+        "présentation",
+        "presentation",
+        "présente-toi",
+        "presente toi",
+        "à propos",
+        "a propos",
+        "about",
+        "qui est ndine",
+        "ndine komara",
+        "toi",
+        "tu es qui",
+        "tell me about you",
+        "parle-moi de komara",
+        "parle moi de komara"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, des solutions web et mobiles, des scripts et automatisations, ainsi que des services de design et de création digitale. Mon rôle est de répondre à vos questions, de présenter les offres et de recueillir les informations utiles pour votre projet.",
+      "tags": [
+        "about",
+        "presentation",
+        "commercial"
+      ]
+    },
+    {
+      "id": "merci_confirmation",
+      "questions": [
+        "merci",
+        "merci beaucoup",
+        "c'est noté",
+        "c est note",
+        "parfait",
+        "super",
+        "d'accord",
+        "d accord"
+      ],
+      "answer": "Avec plaisir. Si vous le souhaitez, je peux vous présenter nos services, les tarifs, le portfolio ou vous aider à préparer votre demande de devis.",
+      "tags": [
+        "suivi",
+        "commercial"
+      ]
+    },
+    {
+      "id": "aide_orientation",
+      "questions": [
+        "je ne sais pas",
+        "aide-moi",
+        "aide moi",
+        "je suis perdu",
+        "quel service choisir",
+        "que me conseillez-vous",
+        "que me conseillez vous"
+      ],
+      "answer": "Je peux vous orienter. Dites-moi simplement votre activité, ce que vous voulez améliorer et votre priorité : vendre, répondre aux clients, automatiser une tâche, créer un site ou améliorer votre image. Je vous proposerai le pôle le plus adapté.",
+      "tags": [
+        "orientation",
+        "commercial"
+      ]
+    },
+    {
+      "id": "prise_besoin",
+      "questions": [
+        "je veux un devis",
+        "je veux commander",
+        "je veux travailler avec vous",
+        "comment commencer",
+        "lancer mon projet",
+        "démarrer mon projet",
+        "demarrer mon projet"
+      ],
+      "answer": "Très bien. Pour préparer votre demande, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, votre délai et votre budget indicatif. Nous pourrons ensuite définir un périmètre clair et vous orienter vers la bonne offre.",
+      "tags": [
+        "commande",
+        "devis",
+        "commercial"
+      ]
+    },
+    {
+      "id": "incomprehension_locale",
+      "questions": [
+        "je n'ai pas compris",
+        "je comprends pas",
+        "répète",
+        "repete",
+        "explique",
+        "plus simple",
+        "autrement",
+        "je n’ai pas compris",
+        "je n’ai rien compris",
+        "j’ai pas compris"
+      ],
+      "answer": "Bien sûr. En résumé, Komara propose des bots, des sites et applications, des automatisations, ainsi que du design et du contenu digital. Dites-moi lequel de ces domaines vous intéresse et je vous donnerai les détails.",
+      "tags": [
+        "clarification",
+        "suivi"
+      ]
     }
   ]
 }
