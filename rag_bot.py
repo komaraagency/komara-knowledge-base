@@ -27,6 +27,8 @@ from dotenv import load_dotenv
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
+from local_search import score_match
+
 
 # ---------------------------------------------------------------------------
 # Configuration générale
@@ -187,41 +189,23 @@ def menu() -> ReplyKeyboardMarkup:
 
 
 def chercher(message: str | None) -> str | None:
-    """Retourne la première réponse dont une question correspond localement."""
-    normalized = (message or "").casefold().strip()
-    tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", normalized))
-
-    def matches(question: str) -> bool:
-        candidate = question.casefold().strip()
-        # Les petits mots-clés doivent être des mots entiers : « cc » ne doit
-        # pas correspondre aux lettres de « acceptez ».
-        if len(candidate) <= 3 and " " not in candidate:
-            return candidate in tokens
-        return candidate in normalized
-
-    # On choisit la correspondance la plus spécifique, et non la première
-    # entrée du JSON : « payer en plusieurs fois » doit battre « payer ».
+    """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
     candidates: list[tuple[int, str]] = []
     for item in KNOWLEDGE:
-        matched_questions = [str(question) for question in item.get("questions", []) if matches(str(question))]
-        if matched_questions:
-            specificity = max(len(question) for question in matched_questions)
-            candidates.append((specificity, item.get("answer", "")))
+        best = max(
+            (score_match(message, str(question)) for question in item.get("questions", [])),
+            default=0,
+        )
+        if best:
+            candidates.append((best, str(item.get("answer", ""))))
     if candidates:
         return max(candidates, key=lambda candidate: candidate[0])[1]
 
-    # La FAQ Markdown locale complète kb.json et reste la seconde source
-    # officielle du bot. Aucun appel réseau n'est effectué ici.
-    faq_candidates: list[tuple[int, str]] = []
-    for item in LOCAL_FAQ:
-        question = item["question"].casefold()
-        if question in normalized or normalized in question:
-            faq_candidates.append((len(question), item["answer"]))
-            continue
-        question_words = [word for word in re.findall(r"[a-zàâçéèêëîïôùûüÿœ]+", question) if len(word) > 3]
-        matched_words = sum(word in normalized for word in question_words)
-        if question_words and matched_words >= min(2, len(question_words)):
-            faq_candidates.append((matched_words * 10, item["answer"]))
+    faq_candidates = [
+        (score_match(message, item["question"]), item["answer"])
+        for item in LOCAL_FAQ
+    ]
+    faq_candidates = [candidate for candidate in faq_candidates if candidate[0]]
     if faq_candidates:
         return max(faq_candidates, key=lambda candidate: candidate[0])[1]
     return None

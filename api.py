@@ -16,6 +16,8 @@ from typing import Any
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
+from local_search import score_match
+
 BASE_DIR = Path(__file__).resolve().parent
 KB_PATH = BASE_DIR / "kb.json"
 FAQ_PATH = BASE_DIR / "docs" / "faq.md"
@@ -72,42 +74,31 @@ def _tokens(value: str) -> set[str]:
 
 
 def chercher(message: str | None) -> str | None:
-    """Retourne la réponse locale la plus spécifique."""
-    normalized = (message or "").casefold().strip()
-    if not normalized:
-        return None
-    tokens = _tokens(normalized)
+    """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
     candidates: list[tuple[int, str]] = []
     for item in KNOWLEDGE:
-        for question in item.get("questions", []):
-            candidate = str(question).casefold().strip()
-            if len(candidate) <= 3 and " " not in candidate:
-                matched = candidate in tokens
-            else:
-                matched = candidate in normalized
-            if matched:
-                candidates.append((len(candidate), str(item.get("answer", ""))))
+        best = max(
+            (score_match(message, str(question)) for question in item.get("questions", [])),
+            default=0,
+        )
+        if best:
+            candidates.append((best, str(item.get("answer", ""))))
     if candidates:
         return max(candidates, key=lambda result: result[0])[1]
 
-    faq_candidates: list[tuple[int, str]] = []
-    for item in LOCAL_FAQ:
-        question = item["question"].casefold()
-        question_words = _tokens(question)
-        useful_words = {word for word in question_words if len(word) > 3}
-        overlap = len(tokens & useful_words)
-        if question in normalized or normalized in question:
-            faq_candidates.append((len(question) + 100, item["answer"]))
-        elif useful_words and overlap >= min(2, len(useful_words)):
-            faq_candidates.append((overlap * 10, item["answer"]))
+    faq_candidates = [
+        (score_match(message, item["question"]), item["answer"])
+        for item in LOCAL_FAQ
+    ]
+    faq_candidates = [candidate for candidate in faq_candidates if candidate[0]]
     if faq_candidates:
         return max(faq_candidates, key=lambda result: result[0])[1]
 
-    conversation_candidates: list[tuple[int, str]] = []
-    for example in CONVERSATIONS:
-        overlap = len(tokens & _tokens(str(example.get("user", ""))))
-        if overlap >= 2:
-            conversation_candidates.append((overlap, str(example.get("assistant", ""))))
+    conversation_candidates = [
+        (score_match(message, str(example.get("user", ""))), str(example.get("assistant", "")))
+        for example in CONVERSATIONS
+    ]
+    conversation_candidates = [candidate for candidate in conversation_candidates if candidate[0]]
     if conversation_candidates:
         return max(conversation_candidates, key=lambda result: result[0])[1]
     return None

@@ -125,7 +125,9 @@
       "id": "accueil_01",
       "category": "accueil",
       "questions": [
-        "bonjour"
+        "bonjour",
+        "bonjour bonsoir",
+        "je voudrais des informations"
       ],
       "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
       "tags": [
@@ -365,7 +367,9 @@
       "id": "services_01",
       "category": "services",
       "questions": [
-        "quels services proposez-vous"
+        "quels services proposez-vous",
+        "quels sont vos services",
+        "vous proposez quoi exactement"
       ],
       "answer": "Komara propose trois pôles : BOTS INTELLIGENTS, DÉVELOPPEMENT & PROGRAMMATION et CRÉATION DIGITALE. Nous créons des solutions adaptées à l’activité, au budget et à l’objectif du client.",
       "tags": [
@@ -485,7 +489,9 @@
       "id": "whatsapp_01",
       "category": "whatsapp",
       "questions": [
-        "bot whatsapp"
+        "bot whatsapp",
+        "je veux un robot sur WhatsApp",
+        "comment automatiser mes messages WhatsApp"
       ],
       "answer": "Un bot WhatsApp peut accueillir vos clients, présenter vos produits, répondre 24h/24, recueillir une commande et transmettre les demandes complexes à un conseiller.",
       "tags": [
@@ -725,7 +731,9 @@
       "id": "service_client_01",
       "category": "service_client",
       "questions": [
-        "automatiser le service client"
+        "automatiser le service client",
+        "je veux automatiser mes réponses clients",
+        "comment gérer les questions de mes clients"
       ],
       "answer": "Le bot peut répondre aux questions fréquentes, qualifier la demande, enregistrer les informations utiles et orienter vers un humain lorsque la situation le nécessite.",
       "tags": [
@@ -845,7 +853,9 @@
       "id": "automatisation_01",
       "category": "automatisation",
       "questions": [
-        "automatiser mon activité"
+        "automatiser mon activité",
+        "je veux automatiser mon entreprise",
+        "comment gagner du temps avec l’automatisation"
       ],
       "answer": "Nous identifions les tâches répétitives, puis nous concevons un workflow local ou connecté aux outils nécessaires pour gagner du temps et limiter les erreurs manuelles.",
       "tags": [
@@ -965,7 +975,9 @@
       "id": "web_01",
       "category": "web",
       "questions": [
-        "site web"
+        "site web",
+        "je veux un site pour mon commerce",
+        "pouvez-vous créer mon site"
       ],
       "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
       "tags": [
@@ -1085,7 +1097,9 @@
       "id": "mobile_01",
       "category": "mobile",
       "questions": [
-        "application mobile"
+        "application mobile",
+        "je veux une app",
+        "pouvez-vous créer une application pour mon entreprise"
       ],
       "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
       "tags": [
@@ -1205,7 +1219,9 @@
       "id": "programmation_01",
       "category": "programmation",
       "questions": [
-        "développement web"
+        "développement web",
+        "j’ai besoin d’un développement personnalisé",
+        "pouvez-vous coder une solution pour moi"
       ],
       "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
       "tags": [
@@ -1445,7 +1461,9 @@
       "id": "design_01",
       "category": "design",
       "questions": [
-        "logo"
+        "logo",
+        "je cherche un logo",
+        "pouvez-vous créer une affiche"
       ],
       "answer": "Nous réalisons des supports graphiques professionnels : logos, affiches, flyers, cartes de visite, bannières et visuels adaptés à votre image.",
       "tags": [
@@ -1805,7 +1823,9 @@
       "id": "portfolio_01",
       "category": "portfolio",
       "questions": [
-        "portfolio"
+        "portfolio",
+        "puis-je voir vos réalisations",
+        "avez-vous un portfolio à montrer"
       ],
       "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
       "tags": [
@@ -1925,7 +1945,9 @@
       "id": "tarifs_01",
       "category": "tarifs",
       "questions": [
-        "prix"
+        "prix",
+        "quel est le coût",
+        "combien faut-il prévoir"
       ],
       "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
       "tags": [
@@ -2045,7 +2067,9 @@
       "id": "commande_01",
       "category": "commande",
       "questions": [
-        "comment commander"
+        "comment commander",
+        "comment faire pour commander",
+        "je veux demander un devis"
       ],
       "answer": "Pour commencer, indiquez votre activité, votre objectif, le service souhaité, le canal concerné, les fonctionnalités ou livrables attendus, votre délai et votre budget indicatif.",
       "tags": [
@@ -2165,7 +2189,9 @@
       "id": "paiement_01",
       "category": "paiement",
       "questions": [
-        "comment payer"
+        "comment payer",
+        "quels moyens pour régler",
+        "comment effectuer le paiement"
       ],
       "answer": "Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement selon votre pays. Les échéances et l’acompte sont précisés dans le devis avant le démarrage.",
       "tags": [
@@ -2285,7 +2311,9 @@
       "id": "objections_01",
       "category": "objections",
       "questions": [
-        "c’est trop cher"
+        "c’est trop cher",
+        "je trouve le tarif élevé",
+        "c’est au-dessus de mon budget"
       ],
       "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
       "tags": [
@@ -2405,7 +2433,9 @@
       "id": "contact_01",
       "category": "contact",
       "questions": [
-        "contact"
+        "contact",
+        "comment vous contacter",
+        "je veux parler à un conseiller"
       ],
       "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
       "tags": [

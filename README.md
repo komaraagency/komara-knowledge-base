@@ -18,7 +18,7 @@ Le bot répond également sur le portfolio, les étapes de commande, les tarifs,
 
 ## Cerveau local
 
-Le fichier `kb.json` contient exactement **200 questions/réponses uniques** organisées par intention. Il contient également **100 exemples de conversations naturelles** utilisés comme modèles locaux lorsque la formulation d’un prospect ne correspond pas exactement à une question enregistrée.
+Le fichier `kb.json` contient exactement **200 fiches de connaissances**, auxquelles correspondent désormais **230 questions et variantes uniques** organisées par intention. Il contient également **100 exemples de conversations naturelles** utilisés comme modèles locaux lorsque la formulation d’un prospect ne correspond pas exactement à une question enregistrée.
 
 La FAQ éditoriale `docs/faq.md` complète le catalogue avec **28 questions/réponses commerciales**. Au démarrage, `rag_bot.py` charge ces ressources depuis le répertoire du projet, et non depuis un chemin absolu propre à une machine particulière.
 
@@ -39,6 +39,8 @@ Réponse locale de clarification
 ```
 
 Le moteur donne priorité aux expressions les plus précises. Une demande comme « payer en plusieurs fois » ne doit donc pas être capturée par une réponse générale sur le paiement.
+
+La recherche applique également une normalisation locale des accents, de la casse, des apostrophes, des traits d’union et des espaces. Elle rapproche certains synonymes métier contrôlés, par exemple « coût » et « tarif », « site internet » et « site web », ou « automatiser » et « tâche répétitive ». Ces rapprochements ne créent aucune information nouvelle : ils sélectionnent uniquement une réponse déjà validée dans les sources locales. Une question sans correspondance suffisante reçoit une demande de précision plutôt qu’une réponse inventée.
 
 ## Mémoire conversationnelle
 
@@ -175,7 +177,7 @@ Le SDK d’un fournisseur d’IA externe n’est volontairement pas installé.
 ```text
 .
 ├── api.py                 # API Flask locale facultative
-├── kb.json                # 200 Q/R et 100 conversations naturelles
+├── kb.json                # 200 fiches, 230 questions et 100 conversations naturelles
 ├── rag_bot.py             # Worker Telegram, mémoire et recherche locale
 ├── Procfile               # worker: python rag_bot.py
 ├── requirements.txt       # Dépendances figées
