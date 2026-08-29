@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 
@@ -33,6 +34,8 @@ KNOWLEDGE = KB.get("knowledge", [])
 PACKS = KB.get("packs", [])
 CONVERSATIONS = KB.get("conversations", [])
 API_KEY = os.getenv("KOMARA_API_KEY", "").strip()
+HEARTBEAT_TIMEOUT = max(30, int(os.getenv("WORKER_HEARTBEAT_TIMEOUT", "180")))
+WORKER_LAST_HEARTBEAT: dict[str, Any] = {}
 
 if not KNOWLEDGE:
     raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
@@ -152,6 +155,32 @@ def home():
 @app.get("/health")
 def health():
     return jsonify({"status": "ok", "knowledge_entries": len(KNOWLEDGE), "faq_entries": len(LOCAL_FAQ)})
+
+
+@app.get("/worker-health")
+def worker_health():
+    """Indique si le Worker a envoyé un heartbeat récemment."""
+    if not WORKER_LAST_HEARTBEAT:
+        return jsonify({"status": "unknown", "message": "Aucun heartbeat reçu."}), 503
+    age = time.time() - float(WORKER_LAST_HEARTBEAT["timestamp"])
+    payload = {**WORKER_LAST_HEARTBEAT, "age_seconds": round(age, 1), "timeout_seconds": HEARTBEAT_TIMEOUT}
+    return jsonify(payload), (200 if age <= HEARTBEAT_TIMEOUT else 503)
+
+
+@app.post("/internal/heartbeat")
+def worker_heartbeat():
+    """Reçoit le signal de vie du Worker; cet endpoint ne contacte pas Telegram."""
+    if API_KEY and request.headers.get("X-API-Key", "") != API_KEY:
+        return jsonify({"error": "Clé API manquante ou invalide."}), 401
+    data = request.get_json(silent=True) or {}
+    worker = str(data.get("worker", "telegram"))[:80]
+    WORKER_LAST_HEARTBEAT.clear()
+    WORKER_LAST_HEARTBEAT.update({
+        "status": "healthy",
+        "worker": worker,
+        "timestamp": time.time(),
+    })
+    return jsonify({"status": "recorded"})
 
 
 @app.post("/chat")

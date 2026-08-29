@@ -15,6 +15,8 @@ import signal
 import sys
 import threading
 import time
+import urllib.error
+import urllib.request
 from collections import deque
 from pathlib import Path
 from typing import Any
@@ -43,6 +45,11 @@ DROP_PENDING_UPDATES = os.getenv("TELEGRAM_DROP_PENDING_UPDATES", "true").lower(
     "yes",
     "on",
 }
+
+MONITOR_API_URL = (os.getenv("MONITOR_API_URL") or "").strip().rstrip("/")
+MONITOR_API_KEY = (os.getenv("MONITOR_API_KEY") or os.getenv("KOMARA_API_KEY") or "").strip()
+HEARTBEAT_INTERVAL = max(30, int(os.getenv("WORKER_HEARTBEAT_INTERVAL", "60")))
+HEARTBEAT_STOP = threading.Event()
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
@@ -125,11 +132,45 @@ def request_shutdown(signum: int, _frame: Any) -> None:
 
     global _shutdown_requested
     _shutdown_requested = True
+    HEARTBEAT_STOP.set()
     logger.info("Signal %s reçu : arrêt propre demandé.", signum)
 
 
 signal.signal(signal.SIGTERM, request_shutdown)
 signal.signal(signal.SIGINT, request_shutdown)
+
+
+def send_heartbeat() -> None:
+    """Envoie un signal de vie au service Web sans appeler l’API Telegram."""
+    if not MONITOR_API_URL:
+        return
+    payload = json.dumps({"worker": "telegram"}).encode("utf-8")
+    headers = {"Content-Type": "application/json"}
+    if MONITOR_API_KEY:
+        headers["X-API-Key"] = MONITOR_API_KEY
+    request = urllib.request.Request(
+        f"{MONITOR_API_URL}/internal/heartbeat",
+        data=payload,
+        headers=headers,
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=5) as response:
+            if response.status >= 300:
+                logger.warning("Heartbeat refusé par le monitoring : HTTP %s", response.status)
+    except (urllib.error.URLError, TimeoutError, OSError) as error:
+        logger.warning("Heartbeat monitoring indisponible : %s", error)
+
+
+def heartbeat_loop() -> None:
+    """Publie périodiquement l’état du Worker dans un thread daemon."""
+    if not MONITOR_API_URL:
+        logger.info("Monitoring désactivé : MONITOR_API_URL non configurée.")
+        return
+    logger.info("Monitoring activé : heartbeat toutes les %ss.", HEARTBEAT_INTERVAL)
+    while not HEARTBEAT_STOP.is_set() and not _shutdown_requested:
+        send_heartbeat()
+        HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
 
 
 # ---------------------------------------------------------------------------
@@ -447,8 +488,9 @@ def run() -> None:
 
     global _shutdown_requested
     retry_count = 0
-
+    threading.Thread(target=heartbeat_loop, name="worker-heartbeat", daemon=True).start()
     logger.info(
+
         "%s démarrage ; polling_timeout=%ss, long_polling_timeout=%ss, "
         "drop_pending_updates=%s",
         BRAND,

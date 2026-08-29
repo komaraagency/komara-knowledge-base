@@ -136,6 +136,27 @@ KOMARA_API_KEY=une_clé_secrète
 
 Les requêtes vers `/chat` devront alors inclure l’en-tête `X-API-Key`. Les routes `/` et `/health` restent disponibles pour le contrôle du service. La limite de taille des requêtes est fixée à 32 Ko.
 
+## Monitoring du Worker et de l’API
+
+Le dépôt inclut un monitoring léger et optionnel. L’API expose `/worker-health` et `/internal/heartbeat`. Le Worker envoie un heartbeat périodique vers l’API, mais uniquement si `MONITOR_API_URL` est configurée. Cette requête HTTP ne contacte pas Telegram et ne lance jamais `getUpdates`; elle ne crée donc pas de seconde instance de polling.
+
+Dans le service Web, définissez une clé partagée :
+
+```text
+KOMARA_API_KEY=une_clé_secrète
+WORKER_HEARTBEAT_TIMEOUT=180
+```
+
+Dans le service Worker, définissez :
+
+```text
+MONITOR_API_URL=https://votre-api.up.railway.app
+MONITOR_API_KEY=la_même_clé_secrète
+WORKER_HEARTBEAT_INTERVAL=60
+```
+
+Le endpoint `/worker-health` retourne `200` si le dernier heartbeat date de moins de 180 secondes et `503` si aucun heartbeat n’a été reçu ou si le Worker est silencieux. Un service de surveillance HTTP externe peut vérifier cette route toutes les quelques minutes. La valeur par défaut de l’intervalle heartbeat est de 60 secondes.
+
 ## Dépendances
 
 Les dépendances sont figées afin de rendre les déploiements reproductibles :
