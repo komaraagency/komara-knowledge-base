@@ -977,7 +977,9 @@
       "questions": [
         "site web",
         "je veux un site pour mon commerce",
-        "pouvez-vous créer mon site"
+        "pouvez-vous créer mon site",
+        "quel est le processus de création d’un site web",
+        "comment créer un site internet"
       ],
       "answer": "Nous créons des sites web clairs et adaptés à votre objectif : présentation, prise de contact, collecte de prospects, catalogue ou vente. Le périmètre est défini avant le développement.",
       "tags": [
@@ -1173,7 +1175,9 @@
       "id": "mobile_07",
       "category": "mobile",
       "questions": [
-        "application de réservation"
+        "application de réservation",
+        "pouvez-vous créer une application de réservation",
+        "application pour prendre des rendez-vous"
       ],
       "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
       "tags": [
@@ -1285,7 +1289,9 @@
       "id": "programmation_06",
       "category": "programmation",
       "questions": [
-        "base de données"
+        "base de données",
+        "pouvez-vous créer une base de données",
+        "base de données pour mon application"
       ],
       "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
       "tags": [
@@ -3851,6 +3857,89 @@
       "answer": "Il faut commencer par définir l’objectif, le public, l’offre, les canaux à utiliser et les contenus nécessaires. Komara Agency peut ensuite aider à préciser le périmètre et les livrables avant de préparer un devis.",
       "tags": [
         "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_01",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Quels services de développement web propose Komara Agency ?",
+        "services de développement web",
+        "création de site web par komara"
+      ],
+      "answer": "Komara Agency peut concevoir des sites web, des pages de présentation, des pages de vente, des formulaires et des solutions numériques adaptées à l’objectif du projet. Le périmètre, les livrables et les conditions sont précisés avant le démarrage.",
+      "tags": [
+        "developpement_web_applications",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_02",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Un site web sera-t-il adapté aux téléphones et aux tablettes ?",
+        "site responsive",
+        "site adapté au mobile"
+      ],
+      "answer": "Un site peut être conçu en responsive design afin de s’adapter aux écrans d’ordinateur, de tablette et de téléphone. Le niveau d’adaptation et les tests sont définis selon le périmètre du projet.",
+      "tags": [
+        "developpement_web_applications",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_03",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Quelle est la différence entre un site vitrine et une application web ?",
+        "site vitrine ou application web"
+      ],
+      "answer": "Un site vitrine présente principalement une activité, une offre ou des informations. Une application web propose généralement des fonctionnalités interactives, comme un espace membre, un formulaire avancé ou une gestion de données. Le choix dépend de l’objectif et des utilisateurs visés.",
+      "tags": [
+        "developpement_web_applications",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_04",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Quels types d’applications mobiles pouvez-vous créer ?",
+        "types d applications mobiles",
+        "application mobile pour mon entreprise"
+      ],
+      "answer": "Komara Agency peut étudier des applications mobiles pour la réservation, les catalogues, la gestion client, les formulaires ou les espaces membres. Les fonctionnalités, les plateformes et le niveau de personnalisation sont définis avant le développement.",
+      "tags": [
+        "developpement_web_applications",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_05",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Comment préparer un projet de site web ou d’application ?",
+        "informations pour créer une application",
+        "besoin pour un projet web"
+      ],
+      "answer": "Pour préparer un projet, indiquez votre activité, votre objectif, les utilisateurs concernés, les fonctionnalités souhaitées, les contenus disponibles, le délai souhaité et le budget indicatif. Ces informations permettent de préciser le périmètre avant le devis.",
+      "tags": [
+        "developpement_web_applications",
+        "local"
+      ]
+    },
+    {
+      "id": "devapp_06",
+      "category": "developpement_web_applications",
+      "questions": [
+        "Pouvez-vous faire évoluer un site ou une application existante ?",
+        "modifier mon application",
+        "améliorer mon site"
+      ],
+      "answer": "Une évolution peut être étudiée pour ajouter une fonctionnalité, améliorer une interface, corriger un problème ou adapter une solution. La faisabilité dépend de la technologie utilisée, de l’accès au projet et du périmètre demandé.",
+      "tags": [
+        "developpement_web_applications",
         "local"
       ]
     }
