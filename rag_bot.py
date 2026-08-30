@@ -193,8 +193,8 @@ def heartbeat_loop() -> None:
 def menu() -> ReplyKeyboardMarkup:
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     keyboard.add("💎 Voir les Tarifs", "📂 Portfolio")
-    keyboard.add("🚀 Commander", " Chatbot IA")
-    keyboard.add(" Parler à un humain")
+    keyboard.add("🚀 Commander", "🤖 Chatbot IA")
+    keyboard.add("👑 Parler à un humain")
     return keyboard
 
 def chercher(message: str | None) -> str | None:
