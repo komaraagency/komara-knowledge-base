@@ -166,25 +166,29 @@ def menu() -> ReplyKeyboardMarkup:
 def chercher(message: str | None) -> str | None:
     """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
     candidates: list[tuple[int, str]] = []
+
+    # Recherche dans la base de connaissances
     for item in KNOWLEDGE:
-        best = max(
-            (score_match(message, str(question)) for question in item.get("questions", [])),
-            default=0,
-        )
-        if best:
-            candidates.append((best, str(item.get("answer", ""))))
+        for question in item.get("questions", []):
+            score = score_match(message, str(question))
+            if score > 0:
+                candidates.append((score, str(item.get("answer", ""))))
+
     if candidates:
         return max(candidates, key=lambda candidate: candidate[0])[1]
 
+    # Recherche dans la FAQ locale
     faq_candidates = [
         (score_match(message, item["question"]), item["answer"])
         for item in LOCAL_FAQ
     ]
-    faq_candidates = [candidate for candidate in faq_candidates if candidate[0]]
+    faq_candidates = [candidate for candidate in faq_candidates if candidate[0] > 0]
+    
     if faq_candidates:
         return max(faq_candidates, key=lambda candidate: candidate[0])[1]
+    
     return None
-
+                
 def _load_memory() -> dict[str, list[dict[str, str]]]:
     """Charge la mémoire; une mémoire absente ou invalide est réinitialisée."""
     try:
