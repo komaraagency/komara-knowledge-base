@@ -3770,6 +3770,89 @@
         "technologie",
         "local"
       ]
+    },
+    {
+      "id": "marketing_01",
+      "category": "marketing_digital",
+      "questions": [
+        "Qu'est-ce que le marketing digital ?",
+        "marketing en ligne"
+      ],
+      "answer": "Le marketing digital regroupe les actions réalisées sur les canaux numériques pour présenter une activité, atteindre un public, générer des prospects et développer la relation avec les clients. La stratégie dépend de l’objectif, du public et des moyens disponibles.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "marketing_02",
+      "category": "marketing_digital",
+      "questions": [
+        "Quels services de marketing digital propose Komara Agency ?",
+        "que faites-vous en marketing digital",
+        "services marketing komara"
+      ],
+      "answer": "Komara Agency peut accompagner un projet avec des contenus pour les réseaux sociaux, du design graphique, une identité visuelle, des sites web, des automatisations et des solutions adaptées à l’activité. Le périmètre exact est défini avant le démarrage.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "marketing_03",
+      "category": "marketing_digital",
+      "questions": [
+        "Pouvez-vous gérer les réseaux sociaux d'une entreprise ?",
+        "gestion des réseaux sociaux",
+        "animation des réseaux sociaux"
+      ],
+      "answer": "Komara Agency peut aider à structurer la présence d’une entreprise sur les réseaux sociaux avec une identité cohérente, des contenus adaptés et un calendrier éditorial selon les besoins du projet.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "marketing_04",
+      "category": "marketing_digital",
+      "questions": [
+        "Pourquoi créer du contenu pour les réseaux sociaux ?",
+        "contenu social media",
+        "contenus pour publier"
+      ],
+      "answer": "Le contenu aide une entreprise à présenter son activité, informer son public, renforcer sa crédibilité et maintenir une présence régulière. Les formats et la fréquence doivent être adaptés à l’objectif et aux ressources disponibles.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "marketing_05",
+      "category": "marketing_digital",
+      "questions": [
+        "Qu'est-ce que l'identité visuelle d'une entreprise ?",
+        "identite de marque",
+        "branding entreprise"
+      ],
+      "answer": "L’identité visuelle regroupe les éléments qui rendent une marque reconnaissable, comme le logo, les couleurs, les typographies et les règles graphiques. Elle contribue à rendre les supports plus cohérents.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
+    },
+    {
+      "id": "marketing_06",
+      "category": "marketing_digital",
+      "questions": [
+        "Comment préparer une stratégie de marketing digital ?",
+        "plan marketing digital",
+        "strategie digitale"
+      ],
+      "answer": "Il faut commencer par définir l’objectif, le public, l’offre, les canaux à utiliser et les contenus nécessaires. Komara Agency peut ensuite aider à préciser le périmètre et les livrables avant de préparer un devis.",
+      "tags": [
+        "marketing_digital",
+        "local"
+      ]
     }
   ],
   "conversations": [
