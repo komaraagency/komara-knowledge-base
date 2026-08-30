@@ -2,6 +2,7 @@
 
 from typing import Any, List, Tuple
 import re
+from normalize_text import normalize_text  # Assurez-vous que ce module est accessible
 
 def score_match(user_message: str, keyword: str) -> int:
     """Calcule le score de correspondance entre le message de l'utilisateur et un mot-clé."""
@@ -12,10 +13,13 @@ def trouver_meilleure_reponse(message: str, knowledge_base: List[dict[str, Any]]
     """Retourne la meilleure réponse possible à partir de la base de connaissances et de la FAQ locale."""
     candidates: List[Tuple[int, str]] = []
 
+    # Normaliser le message avant utilisation
+    normalized_message = normalize_text(message)
+
     # Recherche dans la base de connaissances
     for item in knowledge_base:
         for question in item.get("questions", []):
-            score = score_match(message, question)
+            score = score_match(normalized_message, question)
             if score > 0:
                 candidates.append((score, item.get("answer", "")))
 
@@ -24,7 +28,7 @@ def trouver_meilleure_reponse(message: str, knowledge_base: List[dict[str, Any]]
 
     # Recherche dans la FAQ locale
     for item in local_faq:
-        score = score_match(message, item["question"])
+        score = score_match(normalized_message, item["question"])
         if score > 0:
             candidates.append((score, item["answer"]))
 
@@ -32,4 +36,4 @@ def trouver_meilleure_reponse(message: str, knowledge_base: List[dict[str, Any]]
         return max(candidates, key=lambda x: x[0])[1]
 
     return None
-    
+                              
