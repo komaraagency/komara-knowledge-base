@@ -23,13 +23,11 @@ from typing import Any
 
 import telebot
 from dotenv import load_dotenv
-
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
 from local_search import score_match
 from local_stats import record_unrecognized
-
 
 # ---------------------------------------------------------------------------
 # Configuration générale
@@ -42,12 +40,7 @@ TOKEN = (os.getenv("TELEGRAM_TOKEN") or "").strip()
 POLL_TIMEOUT = int(os.getenv("TELEGRAM_POLL_TIMEOUT", "30"))
 LONG_POLLING_TIMEOUT = int(os.getenv("TELEGRAM_LONG_POLLING_TIMEOUT", "30"))
 MAX_RETRIES = int(os.getenv("TELEGRAM_MAX_RETRIES", "8"))
-DROP_PENDING_UPDATES = os.getenv("TELEGRAM_DROP_PENDING_UPDATES", "true").lower() in {
-    "1",
-    "true",
-    "yes",
-    "on",
-}
+DROP_PENDING_UPDATES = os.getenv("TELEGRAM_DROP_PENDING_UPDATES", "true").lower() in {"1", "true", "yes", "on"}
 
 MONITOR_API_URL = (os.getenv("MONITOR_API_URL") or "").strip().rstrip("/")
 MONITOR_API_KEY = (os.getenv("MONITOR_API_KEY") or os.getenv("KOMARA_API_KEY") or "").strip()
@@ -61,13 +54,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger("komara.telegram")
 
-
 if not TOKEN:
-    raise RuntimeError(
-        "La variable d'environnement TELEGRAM_TOKEN est absente. "
-        "Ajoutez-la dans Railway avant de démarrer le worker."
-    )
-
+    raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente. Ajoutez-la dans Railway avant de démarrer le worker.")
 
 # ---------------------------------------------------------------------------
 # Chargement de la base de connaissances
@@ -75,73 +63,63 @@ if not TOKEN:
 
 KB_PATH = BASE_DIR / "kb.json"
 FAQ_PATH = BASE_DIR / "docs" / "faq.md"
-with KB_PATH.open("r", encoding="utf-8") as kb_file:
-    BRAIN: dict[str, Any] = json.load(kb_file)
 
+def load_knowledge_base() -> dict[str, Any]:
+    """Charge la base de connaissances depuis un fichier JSON."""
+    with KB_PATH.open("r", encoding="utf-8") as kb_file:
+        return json.load(kb_file)
 
 def load_local_faq() -> list[dict[str, str]]:
     """Charge les questions/réponses Markdown depuis le dépôt local."""
-
     if not FAQ_PATH.is_file():
         logger.warning("FAQ locale absente : %s", FAQ_PATH)
         return []
-
     content = FAQ_PATH.read_text(encoding="utf-8")
     items: list[dict[str, str]] = []
     for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
         lines = section.splitlines()
-        if not lines:
+        if len(lines) < 2:
             continue
         question = lines[0].strip()
         answer = "\n".join(lines[1:]).strip()
-        answer = re.sub(r"^\*\*Réponse\s*:\*\*\s*", "", answer, flags=re.IGNORECASE)
         if question and answer:
             items.append({"question": question, "answer": answer})
     logger.info("FAQ locale chargée : %s questions", len(items))
     return items
 
-
+BRAIN = load_knowledge_base()
 LOCAL_FAQ = load_local_faq()
 
-
+# Variables globales
 WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "notre WhatsApp")
 BRAND = BRAIN.get("brand", "Komara Agency")
 KNOWLEDGE = BRAIN.get("knowledge", [])
 PACKS = BRAIN.get("packs", [])
 CONVERSATIONS = BRAIN.get("conversations", [])
 
-# La mémoire est stockée dans un fichier JSON. Sur Railway, montez un Volume
-# et définissez MEMORY_FILE=/data/komara_memory.json pour la rendre durable.
 MEMORY_FILE = Path(os.getenv("MEMORY_FILE", str(BASE_DIR / "data" / "memory.json")))
 MEMORY_LIMIT = max(2, int(os.getenv("MEMORY_LIMIT", "12")))
 MEMORY_LOCK = threading.Lock()
 
 if not KNOWLEDGE:
-
     raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
-
 
 bot = telebot.TeleBot(TOKEN, parse_mode="Markdown")
 _shutdown_requested = False
-
 
 # ---------------------------------------------------------------------------
 # Arrêt propre
 # ---------------------------------------------------------------------------
 
-
 def request_shutdown(signum: int, _frame: Any) -> None:
     """Demande au polling de s'arrêter quand Railway envoie SIGTERM/SIGINT."""
-
     global _shutdown_requested
     _shutdown_requested = True
     HEARTBEAT_STOP.set()
     logger.info("Signal %s reçu : arrêt propre demandé.", signum)
 
-
 signal.signal(signal.SIGTERM, request_shutdown)
 signal.signal(signal.SIGINT, request_shutdown)
-
 
 def send_heartbeat() -> None:
     """Envoie un signal de vie au service Web sans appeler l’API Telegram."""
@@ -164,7 +142,6 @@ def send_heartbeat() -> None:
     except (urllib.error.URLError, TimeoutError, OSError) as error:
         logger.warning("Heartbeat monitoring indisponible : %s", error)
 
-
 def heartbeat_loop() -> None:
     """Publie périodiquement l’état du Worker dans un thread daemon."""
     if not MONITOR_API_URL:
@@ -175,11 +152,9 @@ def heartbeat_loop() -> None:
         send_heartbeat()
         HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
 
-
 # ---------------------------------------------------------------------------
 # Réponses et interface Telegram
 # ---------------------------------------------------------------------------
-
 
 def menu() -> ReplyKeyboardMarkup:
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -187,7 +162,6 @@ def menu() -> ReplyKeyboardMarkup:
     keyboard.add("🚀 Commander", "🤖 Chatbot IA")
     keyboard.add("👑 Parler à un humain")
     return keyboard
-
 
 def chercher(message: str | None) -> str | None:
     """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
@@ -211,10 +185,8 @@ def chercher(message: str | None) -> str | None:
         return max(faq_candidates, key=lambda candidate: candidate[0])[1]
     return None
 
-
 def _load_memory() -> dict[str, list[dict[str, str]]]:
     """Charge la mémoire; une mémoire absente ou invalide est réinitialisée."""
-
     try:
         with MEMORY_LOCK:
             if not MEMORY_FILE.exists():
@@ -226,10 +198,8 @@ def _load_memory() -> dict[str, list[dict[str, str]]]:
         logger.warning("Mémoire illisible; démarrage avec une mémoire vide.", exc_info=True)
         return {}
 
-
 def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
     """Sauvegarde atomiquement la mémoire pour éviter un fichier JSON partiel."""
-
     MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     temporary_file = MEMORY_FILE.with_suffix(".tmp")
     with MEMORY_LOCK:
@@ -237,10 +207,8 @@ def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
             json.dump(memory, memory_file, ensure_ascii=False, indent=2)
         temporary_file.replace(MEMORY_FILE)
 
-
 def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
     """Ajoute un échange et conserve seulement les derniers messages du chat."""
-
     memory = _load_memory()
     key = str(chat_id)
     history = deque(memory.get(key, []), maxlen=MEMORY_LIMIT)
@@ -249,56 +217,24 @@ def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
     _save_memory(memory)
     return memory[key]
 
-
 def forget(chat_id: int) -> None:
     """Efface volontairement la mémoire d'un utilisateur."""
-
     memory = _load_memory()
     memory.pop(str(chat_id), None)
     _save_memory(memory)
 
-
 def context_for(chat_id: int) -> list[dict[str, str]]:
     return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
 
-
-def conversation_example_response(user_text: str) -> str | None:
-    """Retourne un modèle de réponse local basé sur les conversations prévues."""
-
-    normalized = user_text.casefold()
-    tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", normalized))
-    candidates: list[tuple[int, str]] = []
-    for example in CONVERSATIONS:
-        prompt = str(example.get("user", "")).casefold()
-        prompt_tokens = set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", prompt))
-        overlap = len(tokens & prompt_tokens)
-        if overlap >= 2:
-            candidates.append((overlap * 10 + len(prompt_tokens), str(example.get("assistant", ""))))
-    if not candidates:
-        return None
-    return max(candidates, key=lambda candidate: candidate[0])[1]
-
-
 def local_contextual_response(chat_id: int, user_text: str) -> str | None:
-    """Comprend les suivis localement à partir des derniers échanges du chat.
-
-    Cette fonction ne fait aucun appel réseau. Elle combine le message courant
-    avec les derniers messages utilisateur et exploite la base de connaissances.
-    """
-
+    """Comprend les suivis localement à partir des derniers échanges du chat."""
     text = user_text.casefold().strip()
     history = context_for(chat_id)
     previous_user_messages = [
         item["content"] for item in history
         if item.get("role") == "user" and item.get("content")
     ]
-    previous_assistant_messages = [
-        item["content"] for item in history
-        if item.get("role") == "assistant" and item.get("content")
-    ]
 
-    # Une question courte comme « et le prix ? » doit être interprétée avec
-    # le thème précédent, au lieu de repartir sur la réponse par défaut.
     recent_context = " ".join(previous_user_messages[-3:])
     combined_text = f"{recent_context} {text}".strip()
 
@@ -310,45 +246,17 @@ def local_contextual_response(chat_id: int, user_text: str) -> str | None:
     if contextual_answer:
         return contextual_answer
 
-    # Les exemples de conversations servent de modèles locaux lorsque la
-    # formulation du prospect ne correspond pas exactement à une question.
-    example_answer = conversation_example_response(combined_text)
-    if example_answer:
-        return example_answer
-
-    # Suivis affirmatifs : on reprend l'intention de l'assistant précédent.
-    confirmations = {"oui", "yes", "ok", "d'accord", "dac", "ça m'intéresse", "je suis intéressé"}
-    if text in confirmations and previous_assistant_messages:
-        previous = previous_assistant_messages[-1].casefold()
-        if any(word in previous for word in ("commencer", "service", "intéresse", "domaine")):
-            return (
-                "Parfait. Pour vous orienter précisément, indiquez-moi votre activité, "
-                "le service qui vous intéresse et votre objectif principal."
-            )
-
-    # Références courantes au sujet déjà évoqué.
-    if any(term in text for term in ("ça coûte", "combien ça", "son prix", "le prix", "les tarifs")):
-        return chercher("prix")
-    if any(term in text for term in ("comment faire", "comment on", "je commande", "commander")):
-        return chercher("process")
-    if any(term in text for term in ("payer", "paiement", "régler", "règle")):
-        return chercher("paiement")
-
     return None
-
 
 def safe_typing(chat_id: int) -> None:
     """L'indicateur de saisie est facultatif : son échec ne doit pas tuer le bot."""
-
     try:
         bot.send_chat_action(chat_id, "typing")
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-
 def send_portfolio(chat_id: int) -> None:
     """Envoie les deux fichiers portfolio s'ils existent, puis le texte associé."""
-
     sent = 0
     for filename in ("portfolio_01", "portfolio_02"):
         image_path = BASE_DIR / filename
@@ -371,7 +279,6 @@ def send_portfolio(chat_id: int) -> None:
     )
     bot.send_message(chat_id, text, reply_markup=menu())
 
-
 @bot.message_handler(commands=["start"])
 def start(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
@@ -383,11 +290,9 @@ def start(message: telebot.types.Message) -> None:
     remember(chat_id, "assistant", welcome)
     bot.send_message(chat_id, welcome, reply_markup=menu())
 
-
 @bot.message_handler(func=lambda message: True)
 def handle(message: telebot.types.Message) -> None:
     """Traite un message sans laisser une erreur utilisateur arrêter le worker."""
-
     chat_id = message.chat.id
     text = (message.text or "").strip()
     safe_typing(chat_id)
@@ -424,7 +329,6 @@ def handle(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, response, reply_markup=menu())
             return
 
-        # Compréhension 100 % locale : mémoire + recherche dans la base + intentions.
         local_response = local_contextual_response(chat_id, text)
         if local_response is None:
             record_unrecognized(text, source="telegram")
@@ -437,8 +341,6 @@ def handle(message: telebot.types.Message) -> None:
         bot.send_message(chat_id, response, reply_markup=menu())
 
     except ApiTelegramException:
-        # Cette exception est relancée pour permettre au niveau supérieur de
-        # distinguer un conflit 409 d'une erreur applicative de message.
         raise
     except Exception:
         logger.exception("Erreur lors du traitement du message du chat %s", chat_id)
@@ -451,34 +353,26 @@ def handle(message: telebot.types.Message) -> None:
         except Exception:
             logger.exception("Impossible d'envoyer le message de secours.")
 
-
 # ---------------------------------------------------------------------------
 # Polling et stratégie de reprise
 # ---------------------------------------------------------------------------
 
-
 def prepare_polling() -> None:
     """Supprime un éventuel webhook avant de passer en long polling."""
-
     logger.info("Suppression du webhook Telegram avant le polling.")
     bot.delete_webhook(drop_pending_updates=DROP_PENDING_UPDATES)
 
-
 def is_conflict(error: ApiTelegramException) -> bool:
     """Détecte le conflit Telegram 409, quelle que soit sa formulation."""
-
     description = str(getattr(error, "description", error)).casefold()
     return getattr(error, "error_code", None) == 409 or "terminated by other" in description
 
-
 def run() -> None:
     """Démarre le worker et ne relance pas agressivement un conflit 409."""
-
     global _shutdown_requested
     retry_count = 0
     threading.Thread(target=heartbeat_loop, name="worker-heartbeat", daemon=True).start()
     logger.info(
-
         "%s démarrage ; polling_timeout=%ss, long_polling_timeout=%ss, "
         "drop_pending_updates=%s",
         BRAND,
@@ -543,7 +437,6 @@ def run() -> None:
             time.sleep(delay)
 
     logger.info("Worker Telegram arrêté proprement.")
-
 
 if __name__ == "__main__":
     run()
