@@ -1,9 +1,4 @@
-"""Worker Telegram Komara avec polling robuste pour Railway.
-
-Important : Telegram n'autorise qu'un seul processus en getUpdates par token.
-Un conflit 409 est donc traité comme une erreur fatale et non comme une erreur
-à relancer immédiatement en boucle.
-"""
+"""Worker Telegram Komara avec polling robuste pour Railway."""
 
 from __future__ import annotations
 
@@ -26,7 +21,7 @@ from dotenv import load_dotenv
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
-from local_search import score_match
+from local_search import trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
 # ---------------------------------------------------------------------------
@@ -55,7 +50,7 @@ logging.basicConfig(
 logger = logging.getLogger("komara.telegram")
 
 if not TOKEN:
-    raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente. Ajoutez-la dans Railway avant de démarrer le worker.")
+    raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
 
 # ---------------------------------------------------------------------------
 # Chargement de la base de connaissances
@@ -74,8 +69,10 @@ def load_local_faq() -> list[dict[str, str]]:
     if not FAQ_PATH.is_file():
         logger.warning("FAQ locale absente : %s", FAQ_PATH)
         return []
+    
     content = FAQ_PATH.read_text(encoding="utf-8")
     items: list[dict[str, str]] = []
+    
     for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
         lines = section.splitlines()
         if len(lines) < 2:
@@ -165,30 +162,8 @@ def menu() -> ReplyKeyboardMarkup:
 
 def chercher(message: str | None) -> str | None:
     """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
-    candidates: list[tuple[int, str]] = []
+    return trouver_meilleure_reponse(message, KNOWLEDGE, LOCAL_FAQ)
 
-    # Recherche dans la base de connaissances
-    for item in KNOWLEDGE:
-        for question in item.get("questions", []):
-            score = score_match(message, str(question))
-            if score > 0:
-                candidates.append((score, str(item.get("answer", ""))))
-
-    if candidates:
-        return max(candidates, key=lambda candidate: candidate[0])[1]
-
-    # Recherche dans la FAQ locale
-    faq_candidates = [
-        (score_match(message, item["question"]), item["answer"])
-        for item in LOCAL_FAQ
-    ]
-    faq_candidates = [candidate for candidate in faq_candidates if candidate[0] > 0]
-    
-    if faq_candidates:
-        return max(faq_candidates, key=lambda candidate: candidate[0])[1]
-    
-    return None
-                
 def _load_memory() -> dict[str, list[dict[str, str]]]:
     """Charge la mémoire; une mémoire absente ou invalide est réinitialisée."""
     try:
@@ -260,7 +235,7 @@ def safe_typing(chat_id: int) -> None:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
 def send_portfolio(chat_id: int) -> None:
-    """Envoie les deux fichiers portfolio s'ils existent, puis le texte associé."""
+    """Envoie les fichiers portfolio s'ils existent, puis le texte associé."""
     sent = 0
     for filename in ("portfolio_01", "portfolio_02"):
         image_path = BASE_DIR / filename
