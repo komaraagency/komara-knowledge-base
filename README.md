@@ -18,7 +18,7 @@ Le bot répond également sur le portfolio, les étapes de commande, les tarifs,
 
 ## Cerveau local
 
-Le fichier `kb.json` contient exactement **200 fiches de connaissances**, auxquelles correspondent désormais **230 questions et variantes uniques** organisées par intention. Il contient également **100 exemples de conversations naturelles** utilisés comme modèles locaux lorsque la formulation d’un prospect ne correspond pas exactement à une question enregistrée.
+Le fichier `kb.json` contient actuellement **201 fiches de connaissances**, auxquelles correspondent **234 questions et variantes uniques** organisées par intention. Il contient également **100 exemples de conversations naturelles** utilisés comme modèles locaux lorsque la formulation d’un prospect ne correspond pas exactement à une question enregistrée.
 
 La FAQ éditoriale `docs/faq.md` complète le catalogue avec **28 questions/réponses commerciales**. Au démarrage, `rag_bot.py` charge ces ressources depuis le répertoire du projet, et non depuis un chemin absolu propre à une machine particulière.
 
@@ -192,7 +192,7 @@ Le SDK d’un fournisseur d’IA externe n’est volontairement pas installé.
 ```text
 .
 ├── api.py                 # API Flask locale facultative
-├── kb.json                # 200 fiches, 230 questions et 100 conversations naturelles
+├── kb.json                # 201 fiches, 234 questions et 100 conversations naturelles
 ├── rag_bot.py             # Worker Telegram, mémoire et recherche locale
 ├── Procfile               # worker: python rag_bot.py
 ├── requirements.txt       # Dépendances figées
