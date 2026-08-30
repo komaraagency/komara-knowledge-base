@@ -1099,7 +1099,9 @@
       "questions": [
         "application mobile",
         "je veux une app",
-        "pouvez-vous créer une application pour mon entreprise"
+        "pouvez-vous créer une application pour mon entreprise",
+        "qu'est-ce qu'une application mobile",
+        "app pour smartphone"
       ],
       "answer": "Nous pouvons concevoir une application mobile ou une première version fonctionnelle selon votre besoin : réservation, catalogue, gestion client, formulaire ou espace membre.",
       "tags": [
@@ -1257,7 +1259,9 @@
       "id": "programmation_04",
       "category": "programmation",
       "questions": [
-        "développeur web"
+        "développeur web",
+        "qu'est-ce qu'un développeur web",
+        "développeur de site internet"
       ],
       "answer": "Nous développons des solutions numériques sur mesure avec une attention portée à la clarté du besoin, à la stabilité, à l’expérience utilisateur et à la possibilité d’évolution.",
       "tags": [
@@ -1825,7 +1829,9 @@
       "questions": [
         "portfolio",
         "puis-je voir vos réalisations",
-        "avez-vous un portfolio à montrer"
+        "avez-vous un portfolio à montrer",
+        "qu'est-ce qu'un portfolio",
+        "notre portfolio"
       ],
       "answer": "Nous réalisons des bots, sites, applications, automatisations, logos, identités visuelles et contenus sociaux. Le portfolio disponible peut être présenté selon votre domaine.",
       "tags": [
@@ -2563,6 +2569,1205 @@
       "answer": "La capitale du Japon est Tokyo.",
       "tags": [
         "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_01",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que l'Islam ?",
+        "islam",
+        "religion musulmane"
+      ],
+      "answer": "L’Islam est une religion monothéiste fondée sur la foi en Allah et les enseignements du prophète Muhammad.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_02",
+      "category": "religion",
+      "questions": [
+        "Qui est le prophète Muhammad ?",
+        "prophète Muhammad"
+      ],
+      "answer": "Le prophète Muhammad (paix et bénédictions sur lui) est considéré par les musulmans comme le dernier messager d’Allah.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_03",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que le Coran ?",
+        "livre sacré de l Islam"
+      ],
+      "answer": "Le Coran est le livre sacré de l’Islam, considéré par les musulmans comme la révélation faite au prophète Muhammad.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_04",
+      "category": "religion",
+      "questions": [
+        "Quels sont les cinq piliers de l'Islam ?",
+        "cinq piliers musulmans"
+      ],
+      "answer": "Les cinq piliers de l’Islam sont la profession de foi (Shahada), la prière (Salah), la charité obligatoire (Zakat), le jeûne du Ramadan (Sawm) et le pèlerinage à La Mecque (Hajj).",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_05",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que la prière en Islam ?",
+        "salah en islam"
+      ],
+      "answer": "La prière, ou Salah, est un acte de culte que les musulmans accomplissent traditionnellement cinq fois par jour.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_06",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que le jeûne du Ramadan ?",
+        "ramadan"
+      ],
+      "answer": "Le jeûne du Ramadan est une pratique durant laquelle les musulmans s’abstiennent notamment de manger et de boire de l’aube au coucher du soleil, selon les règles de leur tradition.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_07",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que le Hajj ?",
+        "pèlerinage à la mecque"
+      ],
+      "answer": "Le Hajj est le pèlerinage à La Mecque, une obligation religieuse pour tout musulman qui en a la capacité, au moins une fois dans sa vie.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_08",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que la Zakat en Islam ?",
+        "charité zakat"
+      ],
+      "answer": "La Zakat est une obligation de solidarité qui consiste à donner une part déterminée de ses biens aux personnes qui peuvent y avoir droit, selon les règles de l’Islam.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_09",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que la Sunnah ?",
+        "sunna"
+      ],
+      "answer": "La Sunnah désigne l’ensemble des paroles, actions et approbations attribuées au prophète Muhammad, qui servent de référence aux musulmans.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "religion_10",
+      "category": "religion",
+      "questions": [
+        "Qu'est-ce que l'Ummah ?",
+        "communauté musulmane"
+      ],
+      "answer": "L’Ummah désigne la communauté des musulmans, unie par une foi et des pratiques religieuses communes.",
+      "tags": [
+        "religion",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_01",
+      "category": "culture_generale",
+      "questions": [
+        "Qu'est-ce que la vie ?"
+      ],
+      "answer": "La vie désigne l’état et les fonctions caractéristiques des organismes capables notamment de se développer, de se reproduire et de réagir à leur environnement.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_02",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que la Terre ?"
+      ],
+      "answer": "La Terre est la troisième planète du Système solaire et la planète connue pour abriter la vie.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_01",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que le Wi-Fi ?",
+        "c est quoi le wifi"
+      ],
+      "answer": "Le Wi-Fi est une technologie de communication sans fil qui permet notamment de connecter des appareils à un réseau local et à Internet au moyen d’ondes radio.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "science_01",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce qu'une cellule ?"
+      ],
+      "answer": "La cellule est l’unité structurale et fonctionnelle de base des êtres vivants.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_02",
+      "category": "technologie",
+      "questions": [
+        "Comment fonctionne un moteur à combustion ?"
+      ],
+      "answer": "Un moteur à combustion convertit l’énergie libérée par la combustion d’un carburant en énergie mécanique grâce à des cycles de pression et de mouvement.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "science_02",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que la photosynthèse ?"
+      ],
+      "answer": "La photosynthèse est un processus par lequel les plantes, les algues et certaines bactéries utilisent la lumière pour produire de la matière organique à partir notamment de dioxyde de carbone et d’eau.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_03",
+      "category": "philosophie",
+      "questions": [
+        "Qu'est-ce que la mort ?"
+      ],
+      "answer": "La mort désigne l’arrêt irréversible des fonctions biologiques qui maintiennent un organisme en vie.",
+      "tags": [
+        "philosophie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_03",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce qu'un téléphone ?"
+      ],
+      "answer": "Un téléphone est un appareil permettant de communiquer à distance, notamment par la transmission de la voix et de données.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_04",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce qu'un ordinateur ?"
+      ],
+      "answer": "Un ordinateur est une machine électronique capable de traiter des données, d’exécuter des programmes et de stocker des informations.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "science_03",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que l'énergie renouvelable ?"
+      ],
+      "answer": "Une énergie renouvelable provient d’une source naturelle qui se reconstitue à l’échelle humaine, comme le soleil, le vent, l’eau ou la biomasse.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_05",
+      "category": "informatique",
+      "questions": [
+        "Qu'est-ce qu'un algorithme ?"
+      ],
+      "answer": "Un algorithme est une suite finie d’instructions permettant de résoudre un problème ou d’accomplir une tâche.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "science_04",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que la gravité ?"
+      ],
+      "answer": "La gravité est l’interaction qui attire les objets les uns vers les autres et qui contribue notamment au poids et aux orbites.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "science_05",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce qu'un satellite ?"
+      ],
+      "answer": "Un satellite est un objet qui orbite autour d’un autre objet. Il peut être naturel, comme la Lune, ou artificiel, notamment pour la communication et l’observation.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "science_06",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que le changement climatique ?"
+      ],
+      "answer": "Le changement climatique désigne les variations durables du climat, notamment des températures et des régimes météorologiques, auxquelles les activités humaines contribuent fortement aujourd’hui.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "science_07",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que la biologie ?"
+      ],
+      "answer": "La biologie est la science qui étudie les êtres vivants, leur fonctionnement, leur évolution et leurs interactions avec l’environnement.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "science_08",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce qu'un atome ?"
+      ],
+      "answer": "Un atome est la plus petite unité d’un élément chimique qui en conserve les propriétés chimiques.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_01",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce qu'un écosystème ?"
+      ],
+      "answer": "Un écosystème est un ensemble formé par des êtres vivants et leur environnement, ainsi que par les interactions entre ces éléments.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_02",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce que la tectonique des plaques ?"
+      ],
+      "answer": "La tectonique des plaques est le modèle scientifique selon lequel la lithosphère terrestre est divisée en plaques qui se déplacent les unes par rapport aux autres.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_03",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce que le cycle de l'eau ?"
+      ],
+      "answer": "Le cycle de l’eau décrit la circulation continue de l’eau entre l’atmosphère, les continents, les océans et les sols, notamment par évaporation, condensation et précipitation.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_04",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce qu'une rivière ?"
+      ],
+      "answer": "Une rivière est un cours d’eau naturel qui s’écoule généralement vers un autre cours d’eau, un lac ou la mer.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_05",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce que le climat ?"
+      ],
+      "answer": "Le climat décrit les conditions météorologiques moyennes et leur variabilité dans une région sur une longue période.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_06",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce qu'une ressource naturelle ?"
+      ],
+      "answer": "Une ressource naturelle est une matière, une énergie ou une substance provenant de l’environnement et pouvant être utilisée par les sociétés humaines.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_07",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce que le développement durable ?"
+      ],
+      "answer": "Le développement durable vise à répondre aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_08",
+      "category": "geographie",
+      "questions": [
+        "Qu'est-ce qu'un volcan ?"
+      ],
+      "answer": "Un volcan est une ouverture de la croûte terrestre par laquelle peuvent s’échapper de la lave, des cendres et des gaz.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_09",
+      "category": "geographie",
+      "questions": [
+        "Quel est le plus grand océan du monde ?"
+      ],
+      "answer": "L’océan Pacifique est le plus vaste océan de la Terre.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_10",
+      "category": "geographie",
+      "questions": [
+        "Quel est le désert le plus vaste du monde ?"
+      ],
+      "answer": "Le désert de l’Antarctique est le plus vaste désert du monde ; le Sahara est le plus vaste désert chaud.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_11",
+      "category": "geographie",
+      "questions": [
+        "Quel est le plus haut sommet de la planète ?"
+      ],
+      "answer": "L’Everest est le plus haut sommet au-dessus du niveau de la mer, avec une altitude généralement indiquée à environ 8 849 mètres.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_12",
+      "category": "geographie",
+      "questions": [
+        "Quelle est la capitale de la Guinée ?"
+      ],
+      "answer": "La capitale de la Guinée est Conakry.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_13",
+      "category": "geographie",
+      "questions": [
+        "Quel est le climat de la Guinée ?"
+      ],
+      "answer": "La Guinée présente plusieurs zones climatiques ; son climat est généralement tropical, avec des variations selon les régions et les saisons.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_01",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que l'intelligence artificielle ?",
+        "qu est ce que l ia"
+      ],
+      "answer": "L’intelligence artificielle désigne des méthodes et systèmes informatiques capables d’effectuer des tâches qui nécessitent habituellement certaines capacités humaines, comme l’analyse, la reconnaissance de formes ou le traitement du langage.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_02",
+      "category": "technologie",
+      "questions": [
+        "L'IA peut-elle remplacer les humains ?"
+      ],
+      "answer": "L’IA peut automatiser certaines tâches et transformer des métiers, mais elle ne remplace pas entièrement les humains, notamment lorsque le jugement, la responsabilité, l’empathie ou la créativité sont essentiels.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_03",
+      "category": "technologie",
+      "questions": [
+        "Quelles sont les applications de l'IA ?"
+      ],
+      "answer": "L’IA est utilisée dans de nombreux domaines, notamment l’analyse de données, la santé, la finance, les transports, la recherche, la traduction et le service client.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_04",
+      "category": "technologie",
+      "questions": [
+        "L'IA est-elle sûre ?"
+      ],
+      "answer": "La sécurité d’un système d’IA dépend de sa conception, de ses données, de ses tests, de sa supervision et de son contexte d’utilisation. Une utilisation responsable doit tenir compte des risques et des limites.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_05",
+      "category": "informatique",
+      "questions": [
+        "Comment fonctionne l'apprentissage automatique ?",
+        "qu est ce que le machine learning",
+        "machine learning"
+      ],
+      "answer": "L’apprentissage automatique utilise des données et des algorithmes pour apprendre des régularités et produire des résultats, sans qu’une règle manuelle soit écrite pour chaque cas.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_06",
+      "category": "technologie",
+      "questions": [
+        "Quels sont les défis éthiques liés à l'IA ?"
+      ],
+      "answer": "Les défis éthiques de l’IA comprennent la protection de la vie privée, les biais, la transparence, la sécurité, la responsabilité et l’impact sur le travail.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_07",
+      "category": "informatique",
+      "questions": [
+        "Qu'est-ce que le traitement du langage naturel (NLP) ?",
+        "nlp"
+      ],
+      "answer": "Le traitement du langage naturel, ou NLP, permet aux machines d’analyser, de comprendre et de produire du langage humain. Il est utilisé notamment pour les assistants conversationnels, la traduction et l’analyse de textes.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_08",
+      "category": "technologie",
+      "questions": [
+        "Quelles sont les différences entre l'IA faible et l'IA forte ?"
+      ],
+      "answer": "L’IA faible désigne des systèmes conçus pour des tâches précises. L’IA forte désigne une intelligence générale comparable à l’intelligence humaine ; cette forme reste hypothétique.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_09",
+      "category": "technologie",
+      "questions": [
+        "Comment les données sont-elles utilisées pour développer des modèles d'IA ?"
+      ],
+      "answer": "Les modèles d’IA sont entraînés à partir de données, comme du texte, des images, des sons ou des valeurs numériques. Ils y repèrent des régularités ; la qualité et la représentativité des données sont essentielles.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_10",
+      "category": "technologie",
+      "questions": [
+        "L'IA peut-elle avoir des biais ?"
+      ],
+      "answer": "Oui. Un système d’IA peut reproduire ou amplifier des biais présents dans les données, la conception du système ou son utilisation. Les données et les résultats doivent donc être évalués.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_11",
+      "category": "informatique",
+      "questions": [
+        "Quelles compétences sont nécessaires pour travailler dans le domaine de l'IA ?"
+      ],
+      "answer": "Les compétences utiles comprennent la programmation, les mathématiques, les statistiques, l’analyse de données et la compréhension des algorithmes d’apprentissage automatique. La communication et l’éthique sont également importantes.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "ia_12",
+      "category": "economie",
+      "questions": [
+        "Comment l'IA influence-t-elle l'économie ?",
+        "impact de l ia sur economie"
+      ],
+      "answer": "L’intelligence artificielle peut transformer l’économie en améliorant l’efficacité et la productivité. Elle peut aussi modifier les métiers, automatiser certaines tâches et créer de nouvelles activités, ce qui soulève des questions sur l’emploi et la formation.",
+      "tags": [
+        "economie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_06",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que la technologie ?"
+      ],
+      "answer": "La technologie désigne l’ensemble des outils, techniques et méthodes utilisés pour répondre à des besoins, créer des produits ou fournir des services.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_07",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que le cloud computing ?",
+        "informatique en nuage"
+      ],
+      "answer": "Le cloud computing permet d’accéder à des ressources informatiques, comme du stockage ou des serveurs, à distance via Internet.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_08",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que la réalité virtuelle (RV) ?"
+      ],
+      "answer": "La réalité virtuelle crée un environnement numérique immersif dans lequel l’utilisateur peut interagir, généralement au moyen d’un casque spécialisé.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_09",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que l'IoT (Internet des objets) ?",
+        "internet des objets"
+      ],
+      "answer": "L’Internet des objets, ou IoT, désigne un ensemble d’objets connectés capables de collecter, transmettre ou recevoir des données.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_10",
+      "category": "technologie",
+      "questions": [
+        "Quels sont les risques liés à la technologie ?"
+      ],
+      "answer": "Les risques peuvent inclure les atteintes à la vie privée, les cybermenaces, la dépendance, les erreurs de système et les inégalités d’accès. Ils dépendent du contexte d’utilisation.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_11",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que l'IA générative ?"
+      ],
+      "answer": "L’IA générative désigne des systèmes capables de produire du texte, des images, du son ou d’autres contenus à partir de modèles appris sur des données.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_12",
+      "category": "technologie",
+      "questions": [
+        "Quel est le rôle de la blockchain ?"
+      ],
+      "answer": "La blockchain est un registre distribué qui permet d’enregistrer des opérations de manière vérifiable entre plusieurs participants. Ses propriétés et son niveau de sécurité dépendent de sa conception et de son usage.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_13",
+      "category": "informatique",
+      "questions": [
+        "Qu'est-ce que l'open source ?"
+      ],
+      "answer": "Un logiciel open source est distribué avec un code source accessible selon les conditions de sa licence, qui peut autoriser l’utilisation, la modification et la redistribution.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_14",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que le big data ?"
+      ],
+      "answer": "Le big data désigne des ensembles de données caractérisés notamment par leur volume, leur variété ou leur vitesse, qui nécessitent des méthodes et outils adaptés pour être traités.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_15",
+      "category": "technologie",
+      "questions": [
+        "Quels sont les avantages des technologies durables ?"
+      ],
+      "answer": "Les technologies durables cherchent à réduire l’utilisation de ressources et l’impact environnemental tout en répondant à un besoin. Leur bénéfice réel dépend de leur cycle de vie et de leur usage.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_16",
+      "category": "technologie",
+      "questions": [
+        "Comment la 5G change-t-elle la connectivité ?"
+      ],
+      "answer": "La 5G peut offrir une capacité accrue, une latence réduite et des débits améliorés selon la couverture, le réseau et l’appareil utilisés.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_17",
+      "category": "technologie",
+      "questions": [
+        "Comment la technologie influence-t-elle le secteur de la santé ?"
+      ],
+      "answer": "La technologie contribue notamment à la télémédecine, aux dispositifs connectés, à l’analyse de données et à la recherche. Elle doit être utilisée avec des garanties de sécurité et de confidentialité.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_18",
+      "category": "informatique",
+      "questions": [
+        "Qu'est-ce que l'analyse prédictive ?"
+      ],
+      "answer": "L’analyse prédictive utilise des données historiques, des méthodes statistiques et parfois l’apprentissage automatique pour estimer la probabilité d’événements futurs. Elle ne constitue pas une garantie.",
+      "tags": [
+        "informatique",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_19",
+      "category": "technologie",
+      "questions": [
+        "Quel rôle joue la cybersécurité dans la protection des données ?"
+      ],
+      "answer": "La cybersécurité regroupe les mesures destinées à protéger les systèmes, réseaux et données contre les accès non autorisés, les logiciels malveillants et les fuites d’informations.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_20",
+      "category": "technologie",
+      "questions": [
+        "Comment fonctionne la reconnaissance faciale ?"
+      ],
+      "answer": "La reconnaissance faciale analyse des caractéristiques d’un visage dans une image ou une vidéo afin de le comparer à une référence. Son usage exige des garanties de sécurité et de respect de la vie privée.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_21",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que le télétravail ?"
+      ],
+      "answer": "Le télétravail consiste à exercer une activité professionnelle à distance au moyen d’outils numériques de communication et de collaboration.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_22",
+      "category": "technologie",
+      "questions": [
+        "Quels sont les défis de l'accessibilité numérique ?"
+      ],
+      "answer": "L’accessibilité numérique vise à rendre les sites, applications et contenus utilisables par le plus grand nombre, notamment grâce à une navigation claire, un contraste suffisant, des textes alternatifs et une utilisation au clavier.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_23",
+      "category": "technologie",
+      "questions": [
+        "Pourquoi est-il important de garder le logiciel à jour ?"
+      ],
+      "answer": "Les mises à jour peuvent corriger des erreurs, renforcer la sécurité, améliorer la compatibilité et ajouter des fonctionnalités. Il est préférable de les installer depuis des sources fiables.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_24",
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce que l'Internet des véhicules (IoV) ?",
+        "vehicules connectes"
+      ],
+      "answer": "L’Internet des véhicules, ou IoV, désigne l’interconnexion de véhicules avec Internet, d’autres véhicules et parfois des infrastructures afin d’échanger des données.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_25",
+      "category": "design",
+      "questions": [
+        "Qu'est-ce que l'UX/UI design ?"
+      ],
+      "answer": "L’UX design concerne l’expérience globale de l’utilisateur, comme la facilité d’utilisation et la clarté du parcours. L’UI design concerne davantage l’apparence et les éléments visuels de l’interface.",
+      "tags": [
+        "design",
+        "local"
+      ]
+    },
+    {
+      "id": "komara_01",
+      "category": "recrutement",
+      "questions": [
+        "Est-il possible de rejoindre l'équipe de Komara Agency ?",
+        "rejoindre komara agency",
+        "recrutement"
+      ],
+      "answer": "Komara Agency peut étudier les candidatures de personnes ayant des compétences en développement, design ou marketing digital. Envoyez votre CV et votre portfolio à l’adresse officielle de recrutement de l’agence.",
+      "tags": [
+        "recrutement",
+        "local"
+      ]
+    },
+    {
+      "id": "assistant_01",
+      "category": "assistant_general",
+      "questions": [
+        "Komara Agency, vous faites quoi exactement ?",
+        "que fait komara agency"
+      ],
+      "answer": "Je suis l’assistant local de Komara Agency. Je peux répondre aux questions sur nos services, expliquer des notions et vous aider à préciser votre besoin.",
+      "tags": [
+        "assistant_general",
+        "local"
+      ]
+    },
+    {
+      "id": "assistant_02",
+      "category": "assistant_general",
+      "questions": [
+        "Komara Agency, pouvez-vous m'expliquer quelque chose ?"
+      ],
+      "answer": "Bien sûr. Dites-moi ce que vous souhaitez comprendre et je vous donnerai une explication simple à partir des informations disponibles.",
+      "tags": [
+        "assistant_general",
+        "local"
+      ]
+    },
+    {
+      "id": "assistant_03",
+      "category": "support",
+      "questions": [
+        "Komara Agency, j'ai un problème."
+      ],
+      "answer": "Décrivez votre problème. Je vais recueillir les informations utiles et vous orienter vers une réponse locale ou un conseiller si nécessaire.",
+      "tags": [
+        "support",
+        "local"
+      ]
+    },
+    {
+      "id": "assistant_04",
+      "category": "assistant_general",
+      "questions": [
+        "Komara Agency, donnez-moi une idée."
+      ],
+      "answer": "Avec plaisir. Cherchez-vous une idée pour un contenu, un projet, une automatisation, un service ou une activité commerciale ?",
+      "tags": [
+        "assistant_general",
+        "local"
+      ]
+    },
+    {
+      "id": "assistant_05",
+      "category": "assistant_general",
+      "questions": [
+        "Komara Agency, que me conseillez-vous ?"
+      ],
+      "answer": "Cela dépend de votre objectif et de votre situation. Expliquez-moi ce que vous souhaitez accomplir afin que je puisse vous orienter avec les informations disponibles.",
+      "tags": [
+        "assistant_general",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_04",
+      "category": "culture_generale",
+      "questions": [
+        "Qu'est-ce que la culture générale ?"
+      ],
+      "answer": "La culture générale désigne un ensemble de connaissances variées dans de nombreux domaines, notamment l’histoire, les sciences, les arts et la littérature.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "science_09",
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que la biodiversité ?"
+      ],
+      "answer": "La biodiversité désigne la variété des êtres vivants, de leurs gènes et des écosystèmes dans lesquels ils vivent.",
+      "tags": [
+        "sciences",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_14",
+      "category": "geographie",
+      "questions": [
+        "Quelle est la plus grande forêt tropicale du monde ?"
+      ],
+      "answer": "La forêt amazonienne est généralement considérée comme la plus grande forêt tropicale du monde.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_15",
+      "category": "geographie",
+      "questions": [
+        "Quel est le pays le plus peuplé du monde ?"
+      ],
+      "answer": "Selon les estimations démographiques récentes, l’Inde est le pays le plus peuplé du monde. Ce classement peut évoluer et dépend de la date et de la source utilisées.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "geographie_16",
+      "category": "geographie",
+      "questions": [
+        "Quelle est la monnaie utilisée en Europe ?"
+      ],
+      "answer": "L’euro est la monnaie officielle de nombreux pays européens, mais tous les pays d’Europe ne l’utilisent pas.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_05",
+      "category": "culture_generale",
+      "questions": [
+        "Quelles sont les langues les plus parlées dans le monde ?"
+      ],
+      "answer": "Le classement dépend de la méthode utilisée : langue maternelle ou nombre total de locuteurs. Le mandarin, l’anglais et l’espagnol figurent parmi les langues les plus parlées selon les classements courants.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "droits_01",
+      "category": "droits_homme",
+      "questions": [
+        "Qu'est-ce que la Déclaration des droits de l'Homme ?"
+      ],
+      "answer": "La Déclaration des droits de l’Homme et du citoyen de 1789 est un texte fondamental qui énonce des principes de liberté, d’égalité et de droits considérés comme inhérents à la personne humaine.",
+      "tags": [
+        "droits_homme",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_06",
+      "category": "culture_generale",
+      "questions": [
+        "Quel pays est connu comme le pays des kangourous ?"
+      ],
+      "answer": "L’Australie est souvent associée aux kangourous, qui font partie de sa faune emblématique.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "culture_07",
+      "category": "culture_generale",
+      "questions": [
+        "Quelles sont les sept merveilles du monde moderne ?"
+      ],
+      "answer": "Les sept nouvelles merveilles du monde sont la Grande Muraille de Chine, Pétra, le Colisée de Rome, Chichén Itzá, le Machu Picchu, le Taj Mahal et le Christ Rédempteur de Rio de Janeiro.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_01",
+      "category": "geographie",
+      "questions": [
+        "Quelle est la langue officielle de la Guinée ?"
+      ],
+      "answer": "Le français est la langue officielle de la Guinée ; plusieurs langues nationales sont également parlées dans le pays.",
+      "tags": [
+        "geographie",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_02",
+      "category": "politique",
+      "questions": [
+        "Quel est le système politique de la Guinée ?"
+      ],
+      "answer": "La Guinée est une république. La description précise de ses institutions et de ses dirigeants doit être datée, car la situation politique peut évoluer.",
+      "tags": [
+        "politique",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_03",
+      "category": "economie",
+      "questions": [
+        "Quelles sont les principales ressources naturelles de la Guinée ?"
+      ],
+      "answer": "La Guinée possède notamment d’importantes ressources minières, dont la bauxite, l’or et les diamants, ainsi que des ressources agricoles et hydriques.",
+      "tags": [
+        "economie",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_04",
+      "category": "culture_generale",
+      "questions": [
+        "Quelles sont les principales ethnies de Guinée ?"
+      ],
+      "answer": "La Guinée compte notamment des populations peules, malinkées et soussous, parmi d’autres groupes. Les catégories ethniques doivent être présentées avec respect et sans réduire la diversité du pays.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_05",
+      "category": "culture_generale",
+      "questions": [
+        "Quelles sont les spécialités culinaires de la Guinée ?"
+      ],
+      "answer": "La cuisine guinéenne comprend notamment des plats à base de riz, de poisson, de sauces et d’arachide. Les recettes et appellations varient selon les régions et les communautés.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
+    },
+    {
+      "id": "guinee_06",
+      "category": "tourisme",
+      "questions": [
+        "Quels sont les sites touristiques notables en Guinée ?"
+      ],
+      "answer": "Parmi les lieux connus figurent le parc national du Haut Niger, le massif du Ziama, le mont Nimba et les îles de Loos. Les conditions d’accès doivent être vérifiées avant tout déplacement.",
+      "tags": [
+        "tourisme",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_26",
+      "category": "technologie",
+      "questions": [
+        "Comment la technologie influence-t-elle notre quotidien ?"
+      ],
+      "answer": "La technologie influence notamment la communication, le transport, la santé, l’éducation et le travail. Elle peut simplifier certaines tâches, mais son impact dépend de son usage et de son accessibilité.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_27",
+      "category": "technologie",
+      "questions": [
+        "Quels sont les avantages de la cybersécurité ?"
+      ],
+      "answer": "La cybersécurité aide à protéger les systèmes et les données contre les accès non autorisés, les logiciels malveillants et les cyberattaques. Elle contribue à la confidentialité, à l’intégrité et à la disponibilité des informations.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_28",
+      "category": "technologie",
+      "questions": [
+        "Comment l'automatisation impacte-t-elle les emplois ?"
+      ],
+      "answer": "L’automatisation peut améliorer la productivité et transformer certaines tâches ou certains métiers. Elle peut aussi créer de nouvelles activités et accroître le besoin de formation.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_29",
+      "category": "technologie",
+      "questions": [
+        "Pourquoi est-il important d'éduquer sur la technologie ?"
+      ],
+      "answer": "L’éducation technologique aide à comprendre les outils numériques, à les utiliser de manière responsable et à mieux évaluer leurs avantages, leurs limites et leurs risques.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_30",
+      "category": "technologie",
+      "questions": [
+        "Pourquoi est-il important de protéger ses données personnelles en ligne ?"
+      ],
+      "answer": "La protection des données personnelles réduit les risques d’usurpation, de fraude et d’utilisation abusive, tout en contribuant au respect de la vie privée.",
+      "tags": [
+        "technologie",
+        "local"
+      ]
+    },
+    {
+      "id": "tech_31",
+      "category": "technologie",
+      "questions": [
+        "Comment les technologies de l'éducation transforment-elles l'apprentissage ?"
+      ],
+      "answer": "Les plateformes en ligne et les applications éducatives peuvent rendre l’apprentissage plus accessible, interactif et personnalisé, à condition que les contenus soient fiables et que l’accès aux outils soit équitable.",
+      "tags": [
+        "technologie",
         "local"
       ]
     }
