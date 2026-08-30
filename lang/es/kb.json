@@ -1,0 +1,34 @@
+{
+  "brand": "Komara Agency",
+  "slogan": "Tu socio digital en África",
+  "contact": {
+    "whatsapp": "+212701986219"
+  },
+  "knowledge": [
+    {
+      "id": 1,
+      "question": "¿Qué es Komara Agency?",
+      "answer": "Komara Agency es una agencia digital especializada en la creación de bots inteligentes, desarrollo web y móvil, y creación digital para empresas en África e internacionalmente.",
+      "keywords": ["agencia", "komara", "digital", "áfrica"],
+      "category": "general"
+    },
+    {
+      "id": 2,
+      "question": "¿Qué servicios ofrecen?",
+      "answer": "Ofrecemos tres áreas de servicio:\n\n💎 **Bots inteligentes**: Bots de WhatsApp, Telegram, TikTok, chatbots conversacionales\n\n💻 **Desarrollo**: Sitios web, aplicaciones móviles, scripts personalizados\n\n🎨 **Creación digital**: Logos, identidades visuales, flyers, tarjetas de visita",
+      "keywords": ["servicios", "ofertas", "proporcionan", "áreas"],
+      "category": "services"
+    },
+    {
+      "id": 3,
+      "question": "¿Cuánto cuestan sus servicios?",
+      "answer": "Nuestros precios varían según el proyecto. Aquí están nuestros paquetes estándar:\n\n🚀 **Pack Starter**: 150€ - Bot simple o sitio web de exhibición\n💼 **Pack Business**: 450€ - Bot avanzado + sitio web\n🏆 **Pack Premium**: 900€ - Solución completa personalizada\n\nCada proyecto es único, ¡contáctanos para un presupuesto personalizado!",
+      "keywords": ["precio", "costo", "cuánto", "paquete"],
+      "category": "pricing"
+    },
+    {
+      "id": 4,
+      "question": "¿Cómo hago un pedido?",
+      "answer": "¡Es muy simple!\n\n1️⃣ Contáctanos en WhatsApp al +212 701 986 219\n2️⃣ Discutimos tu proyecto y necesidades\n3️⃣ Te enviamos un presupuesto detallado\n4️⃣ Después de la validación y el 50% de anticipo, comenzamos\n5️⃣ Entrega y formación incluidas",
+      "keywords": ["pedido",
+        
