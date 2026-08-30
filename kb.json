@@ -2551,6 +2551,20 @@
         "contact",
         "local"
       ]
+    },
+    {
+      "id": "culture_generale_01",
+      "category": "culture_generale",
+      "questions": [
+        "quelle est la capitale du japon",
+        "capitale du japon",
+        "quel est la capitale du japon"
+      ],
+      "answer": "La capitale du Japon est Tokyo.",
+      "tags": [
+        "culture_generale",
+        "local"
+      ]
     }
   ],
   "conversations": [
