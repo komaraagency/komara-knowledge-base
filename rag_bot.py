@@ -53,19 +53,26 @@ if not TOKEN:
     raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
 
 # ---------------------------------------------------------------------------
-# Chargement de la base de connaissances
+# Chargement de la base de connaissances, FAQ et Dialogues
 # ---------------------------------------------------------------------------
 
 KB_PATH = BASE_DIR / "kb.json"
 FAQ_PATH = BASE_DIR / "docs" / "faq.md"
+DIALOGUES_DIR = BASE_DIR / "docs" / "dialogues"
 
 def load_knowledge_base() -> dict[str, Any]:
     """Charge la base de connaissances depuis un fichier JSON."""
+    if not KB_PATH.is_file():
+        logger.error("Le fichier kb.json est absent : %s", KB_PATH)
+        raise RuntimeError(f"Le fichier de base de connaissances {KB_PATH} est absent.")
+
     with KB_PATH.open("r", encoding="utf-8") as kb_file:
-        return json.load(kb_file)
+        data = json.load(kb_file)
+        logger.info("Base de connaissances (kb.json) chargée avec succès.")
+        return data
 
 def load_local_faq() -> list[dict[str, str]]:
-    """Charge les questions/réponses Markdown depuis le dépôt local."""
+    """Charge les questions/réponses Markdown depuis docs/faq.md."""
     if not FAQ_PATH.is_file():
         logger.warning("FAQ locale absente : %s", FAQ_PATH)
         return []
@@ -81,11 +88,44 @@ def load_local_faq() -> list[dict[str, str]]:
         answer = "\n".join(lines[1:]).strip()
         if question and answer:
             items.append({"question": question, "answer": answer})
-    logger.info("FAQ locale chargée : %s questions", len(items))
+            
+    logger.info("FAQ locale (docs/faq.md) chargée : %s questions", len(items))
     return items
 
-BRAIN = load_knowledge_base()
-LOCAL_FAQ = load_local_faq()
+def load_dialogues() -> list[dict[str, str]]:
+    """Charge les questions/réponses depuis le dossier docs/dialogues."""
+    dialogues: list[dict[str, str]] = []
+    
+    if not DIALOGUES_DIR.is_dir():
+        logger.warning("Dossier dialogues absent : %s", DIALOGUES_DIR)
+        return dialogues
+
+    for file_path in DIALOGUES_DIR.iterdir():
+        if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
+            try:
+                content = file_path.read_text(encoding="utf-8")
+                for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
+                    lines = section.splitlines()
+                    if len(lines) < 2:
+                        continue
+                    question = lines[0].strip()
+                    answer = "\n".join(lines[1:]).strip()
+                    if question and answer:
+                        dialogues.append({"question": question, "answer": answer})
+            except Exception as e:
+                logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
+
+    logger.info("Dialogues (docs/dialogues) chargés : %s questions", len(dialogues))
+    return dialogues
+
+# Initialisation des données au démarrage
+try:
+    BRAIN = load_knowledge_base()
+    LOCAL_FAQ = load_local_faq()
+    LOCAL_DIALOGUES = load_dialogues()
+except RuntimeError as e:
+    logger.critical(e)
+    sys.exit(1)
 
 # Variables globales
 WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "notre WhatsApp")
@@ -109,7 +149,6 @@ _shutdown_requested = False
 # ---------------------------------------------------------------------------
 
 def request_shutdown(signum: int, _frame: Any) -> None:
-    """Demande au polling de s'arrêter quand Railway envoie SIGTERM/SIGINT."""
     global _shutdown_requested
     _shutdown_requested = True
     HEARTBEAT_STOP.set()
@@ -119,7 +158,6 @@ signal.signal(signal.SIGTERM, request_shutdown)
 signal.signal(signal.SIGINT, request_shutdown)
 
 def send_heartbeat() -> None:
-    """Envoie un signal de vie au service Web sans appeler l’API Telegram."""
     if not MONITOR_API_URL:
         return
     payload = json.dumps({"worker": "telegram"}).encode("utf-8")
@@ -140,7 +178,6 @@ def send_heartbeat() -> None:
         logger.warning("Heartbeat monitoring indisponible : %s", error)
 
 def heartbeat_loop() -> None:
-    """Publie périodiquement l’état du Worker dans un thread daemon."""
     if not MONITOR_API_URL:
         logger.info("Monitoring désactivé : MONITOR_API_URL non configurée.")
         return
@@ -156,16 +193,15 @@ def heartbeat_loop() -> None:
 def menu() -> ReplyKeyboardMarkup:
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     keyboard.add("💎 Voir les Tarifs", "📂 Portfolio")
-    keyboard.add("🚀 Commander", "🤖 Chatbot IA")
-    keyboard.add("👑 Parler à un humain")
+    keyboard.add("🚀 Commander", " Chatbot IA")
+    keyboard.add(" Parler à un humain")
     return keyboard
 
 def chercher(message: str | None) -> str | None:
-    """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
-    return trouver_meilleure_reponse(message, KNOWLEDGE, LOCAL_FAQ)
+    """Retourne la réponse locale la plus spécifique (KB + FAQ + Dialogues)."""
+    return trouver_meilleure_reponse(message, KNOWLEDGE, LOCAL_FAQ, LOCAL_DIALOGUES)
 
 def _load_memory() -> dict[str, list[dict[str, str]]]:
-    """Charge la mémoire; une mémoire absente ou invalide est réinitialisée."""
     try:
         with MEMORY_LOCK:
             if not MEMORY_FILE.exists():
@@ -178,7 +214,6 @@ def _load_memory() -> dict[str, list[dict[str, str]]]:
         return {}
 
 def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
-    """Sauvegarde atomiquement la mémoire pour éviter un fichier JSON partiel."""
     MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     temporary_file = MEMORY_FILE.with_suffix(".tmp")
     with MEMORY_LOCK:
@@ -187,7 +222,6 @@ def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
         temporary_file.replace(MEMORY_FILE)
 
 def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
-    """Ajoute un échange et conserve seulement les derniers messages du chat."""
     memory = _load_memory()
     key = str(chat_id)
     history = deque(memory.get(key, []), maxlen=MEMORY_LIMIT)
@@ -197,7 +231,6 @@ def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
     return memory[key]
 
 def forget(chat_id: int) -> None:
-    """Efface volontairement la mémoire d'un utilisateur."""
     memory = _load_memory()
     memory.pop(str(chat_id), None)
     _save_memory(memory)
@@ -206,7 +239,6 @@ def context_for(chat_id: int) -> list[dict[str, str]]:
     return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
 
 def local_contextual_response(chat_id: int, user_text: str) -> str | None:
-    """Comprend les suivis localement à partir des derniers échanges du chat."""
     text = user_text.casefold().strip()
     history = context_for(chat_id)
     previous_user_messages = [
@@ -228,14 +260,12 @@ def local_contextual_response(chat_id: int, user_text: str) -> str | None:
     return None
 
 def safe_typing(chat_id: int) -> None:
-    """L'indicateur de saisie est facultatif : son échec ne doit pas tuer le bot."""
     try:
         bot.send_chat_action(chat_id, "typing")
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
 def send_portfolio(chat_id: int) -> None:
-    """Envoie les fichiers portfolio s'ils existent, puis le texte associé."""
     sent = 0
     for filename in ("portfolio_01", "portfolio_02"):
         image_path = BASE_DIR / filename
@@ -271,7 +301,6 @@ def start(message: telebot.types.Message) -> None:
 
 @bot.message_handler(func=lambda message: True)
 def handle(message: telebot.types.Message) -> None:
-    """Traite un message sans laisser une erreur utilisateur arrêter le worker."""
     chat_id = message.chat.id
     text = (message.text or "").strip()
     safe_typing(chat_id)
@@ -337,17 +366,14 @@ def handle(message: telebot.types.Message) -> None:
 # ---------------------------------------------------------------------------
 
 def prepare_polling() -> None:
-    """Supprime un éventuel webhook avant de passer en long polling."""
     logger.info("Suppression du webhook Telegram avant le polling.")
     bot.delete_webhook(drop_pending_updates=DROP_PENDING_UPDATES)
 
 def is_conflict(error: ApiTelegramException) -> bool:
-    """Détecte le conflit Telegram 409, quelle que soit sa formulation."""
     description = str(getattr(error, "description", error)).casefold()
     return getattr(error, "error_code", None) == 409 or "terminated by other" in description
 
 def run() -> None:
-    """Démarre le worker et ne relance pas agressivement un conflit 409."""
     global _shutdown_requested
     retry_count = 0
     threading.Thread(target=heartbeat_loop, name="worker-heartbeat", daemon=True).start()
