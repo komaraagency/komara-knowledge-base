@@ -1,80 +1,59 @@
-# Komara Agency FAQ
+### What services do you offer exactly
+I create custom digital solutions: chatbots, automations, AI, intelligent moderation and social media strategies.
 
-### What is Komara Agency?
-Komara Agency is a digital agency specializing in creating intelligent bots, web and mobile development, and digital creation for businesses in Africa and internationally.
+### Who are your services for
+Entrepreneurs, creators, SMEs and individuals who want to develop, automate and professionalize their digital presence.
 
-### What services do you offer?
-We offer three service areas:
+### What tools do you use
+I use modern AI, automation and integration solutions adapted for Facebook, Messenger, WhatsApp and Instagram.
 
-💎 **Intelligent Bots**: WhatsApp, Telegram, TikTok bots, conversational chatbots
+### Do you create chatbots
+Yes, I create intelligent, personalized chatbots capable of managing real conversations with clients.
 
-💻 **Development**: Websites, mobile apps, custom scripts
+### Can you automate my work
+Of course 😊 I set up automations that reduce workload and increase efficiency.
 
-🎨 **Digital Creation**: Logos, visual identities, flyers, business cards
+### Can you also manage my Facebook page
+Yes, I offer automatic moderation, message management and communication optimization.
 
-### How much do your services cost?
-Our prices vary by project. Here are our standard packages:
+### Do you only do chatbots
+No 😊 I also do digital strategy, AI systems, automated content and custom tools.
 
-🚀 **Starter Pack**: €150 - Simple bot or showcase website
-💼 **Business Pack**: €450 - Advanced bot + website
-🏆 **Premium Pack**: €900 - Complete custom solution
+### How long does a project take
+It depends on the need, but most simple projects are delivered quickly.
 
-Each project is unique, contact us for a personalized quote!
+### Do you help define a strategy
+Yes, I help you clarify your goals and build an effective and sustainable digital strategy.
 
-### How do I place an order?
-It's very simple!
+### Can you analyze my business
+Yes, I can analyze your online presence and propose a solution adapted to your activity.
 
-1️⃣ Contact us on WhatsApp at +212 701 986 219
-2️⃣ We discuss your project and needs
-3️⃣ We send you a detailed quote
-4️⃣ After validation and 50% deposit, we start
-5️⃣ Delivery and training included
+### Are the solutions difficult to use
+No 😊 I prioritize simple, accessible systems adapted to all levels.
 
-### What are your delivery times?
-Delivery times depend on the project:
+### Can you integrate WhatsApp into my business
+Yes, I create automations and professional chatbots for WhatsApp Business.
 
-⚡ **Simple bot**: 3-5 days
-⚡ **Website**: 7-14 days
-⚡ **Complete solution**: 15-30 days
+### Do you also do conversational scripts
+Yes, I create natural, professional conversations adapted to your clientele.
 
-We always respect our commitments. A precise schedule is provided before the project starts.
+### Do you create automated content
+Yes, I can create systems that generate automated responses, messages or posts.
 
-### What payment methods do you accept?
-We accept several payment methods for your convenience:
+### Can you manage my clients automatically
+Yes, thanks to chatbots and automation, you can manage requests, orders and information effortlessly.
 
-💳 **Orange Money**
-💳 **MoMo (Mobile Money)**
-💳 **PayPal**
-💳 **Bank transfer**
+### Do you offer follow-up after the project
+Yes, support is possible depending on the client's needs.
 
-Payment in 2 installments possible: 50% on order, 50% on delivery.
+### Are the solutions customizable
+Totally. Each solution is adapted to the client's style, goals and activity.
 
-### Can I pay in installments?
-Yes, absolutely! We offer installment payments:
+### What type of business do you work with
+Entrepreneurs, e-commerce, coaches, small businesses, content creators and personal projects.
 
-✅ **50% on order** (project start)
-✅ **50% on delivery** (after validation)
+### Can you improve my online visibility
+Yes, I offer digital strategies to strengthen your image and attract more clients.
 
-For large projects, we can adapt the schedule to your needs.
-
-### Do you offer a guarantee?
-Yes! We offer:
-
-✅ **Satisfaction guarantee**: Free corrections for 30 days after delivery
-✅ **Technical support**: Free assistance for 3 months
-✅ **Maintenance**: Monthly maintenance options available
-
-Your success is our priority!
-
-### Do you work with international clients?
-Absolutely! We work with clients throughout Africa, Europe, the Middle East and beyond. Our team is experienced with international projects and we communicate in French, English, and Arabic.
-
-### How can I contact you?
-Several ways to contact us:
-
-📱 **WhatsApp**: +212 701 986 219 (response within 5 min)
-📧 **Email**: contact@komara.agency
-🌐 **Website**: www.komara.agency
-
-Our team is available Monday to Saturday, 9am to 7pm.
-
+### Why choose Komara Agency 🇬🇳
+Because we offer modern, fast, easy-to-use solutions built to deliver concrete results.

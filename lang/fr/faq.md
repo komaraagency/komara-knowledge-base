@@ -1,80 +1,59 @@
-# FAQ Komara Agency
+### Quels services proposes-tu exactement
+Je crée des solutions digitales personnalisées : chatbots, automatisations, IA, modération intelligente et stratégies pour les réseaux sociaux.
 
-### Qu'est-ce que Komara Agency ?
-Komara Agency est une agence digitale spécialisée dans la création de bots intelligents, le développement web et mobile, et la création digitale pour les entreprises en Afrique et à l'international.
+### À qui s'adressent tes services
+Aux entrepreneurs, créateurs, PME et particuliers qui veulent développer, automatiser et professionnaliser leur présence digitale.
 
-### Quels services proposez-vous ?
-Nous proposons trois pôles de services :
+### Quels outils utilises-tu
+J'utilise des solutions modernes d'IA, d'automatisation et d'intégration adaptées à Facebook, Messenger, WhatsApp et Instagram.
 
-💎 **Bots intelligents** : Bots WhatsApp, Telegram, TikTok, chatbots conversationnels
+### Est-ce que tu crées des chatbots
+Oui, je crée des chatbots intelligents, personnalisés et capables de gérer des conversations réelles avec les clients.
 
-💻 **Développement** : Sites web, applications mobiles, scripts sur mesure
+### Est-ce que tu peux automatiser mon travail
+Bien sûr 😊 Je mets en place des automatisations qui réduisent la charge de travail et augmentent l'efficacité.
 
-🎨 **Création digitale** : Logos, identités visuelles, flyers, cartes de visite
+### Tu peux aussi gérer ma page Facebook
+Oui, je propose la modération automatique, la gestion des messages et l'optimisation de la communication.
 
-### Combien coûtent vos services ?
-Nos tarifs varient selon le projet. Voici nos packs standards :
+### Tu fais seulement des chatbots
+Non 😊 Je fais aussi de la stratégie digitale, des systèmes IA, du contenu automatisé et des outils sur-mesure.
 
-🚀 **Pack Starter** : 150€ - Bot simple ou site vitrine
-💼 **Pack Business** : 450€ - Bot avancé + site web
-🏆 **Pack Premium** : 900€ - Solution complète sur mesure
+### Combien de temps prend un projet
+Cela dépend du besoin, mais la plupart des projets simples sont livrés rapidement.
 
-Chaque projet est unique, contactez-nous pour un devis personnalisé !
+### Est-ce que tu aides à définir une stratégie
+Oui, je t'accompagne pour clarifier tes objectifs et construire une stratégie digitale efficace et durable.
 
-### Comment passer commande ?
-C'est très simple !
+### Peux-tu analyser mon entreprise
+Oui, je peux analyser ta présence en ligne et te proposer une solution adaptée à ton activité.
 
-1️⃣ Contactez-nous sur WhatsApp au +212 701 986 219
-2️⃣ Nous discutons de votre projet et de vos besoins
-3️⃣ Nous vous envoyons un devis détaillé
-4️⃣ Après validation et acompte de 50%, nous commençons
-5️⃣ Livraison et formation incluses
+### Les solutions sont difficiles à utiliser
+Non 😊 Je privilégie des systèmes simples, accessibles et adaptés à tous les niveaux.
 
-### Quels sont vos délais de livraison ?
-Les délais dépendent du projet :
+### Tu peux intégrer WhatsApp à mon business
+Oui, je crée des automatisations et des chatbots professionnels pour WhatsApp Business.
 
-⚡ **Bot simple** : 3-5 jours
-⚡ **Site web** : 7-14 jours
-⚡ **Solution complète** : 15-30 jours
+### Tu fais aussi des scripts conversationnels
+Oui, je crée des conversations naturelles, professionnelles et adaptées à ta clientèle.
 
-Nous respectons toujours nos engagements. Un calendrier précis vous est fourni avant le début du projet.
+### Est-ce que tu fais des contenus automatiques
+Oui, je peux créer des systèmes qui génèrent des réponses, messages ou posts automatisés.
 
-### Quels moyens de paiement acceptez-vous ?
-Nous acceptons plusieurs moyens de paiement pour votre commodité :
+### Tu peux gérer mes clients automatiquement
+Oui, grâce aux chatbots et à l'automatisation, tu peux gérer demandes, commandes et informations sans effort.
 
-💳 **Orange Money**
-💳 **MoMo (Mobile Money)**
-💳 **PayPal**
-💳 **Virement bancaire**
+### Proposes-tu un suivi après le projet
+Oui, un accompagnement est possible selon les besoins du client.
 
-Paiement en 2 fois possible : 50% à la commande, 50% à la livraison.
+### Les solutions sont personnalisables
+Totalement. Chaque solution est adaptée au style, aux objectifs et à l'activité du client.
 
-### Puis-je payer en plusieurs fois ?
-Oui, absolument ! Nous proposons un paiement échelonné :
+### Tu travailles avec quel type de business
+Entrepreneurs, e-commerce, coachs, petites entreprises, créateurs de contenu et projets personnels.
 
-✅ **50% à la commande** (démarrage du projet)
-✅ **50% à la livraison** (après validation)
+### Tu peux améliorer ma visibilité en ligne
+Oui, je propose des stratégies digitales pour renforcer ton image et attirer plus de clients.
 
-Pour les projets importants, nous pouvons adapter l'échéancier selon vos besoins.
-
-### Proposez-vous une garantie ?
-Oui ! Nous offrons :
-
-✅ **Garantie satisfaction** : Corrections gratuites pendant 30 jours après livraison
-✅ **Support technique** : Assistance gratuite pendant 3 mois
-✅ **Maintenance** : Options de maintenance mensuelle disponibles
-
-Votre succès est notre priorité !
-
-### Travaillez-vous avec des clients à l'international ?
-Absolument ! Nous travaillons avec des clients dans toute l'Afrique, en Europe, au Moyen-Orient et ailleurs. Notre équipe est habituée aux projets internationaux et nous communiquons en français, anglais et arabe.
-
-### Comment vous contacter ?
-Plusieurs moyens de nous contacter :
-
-📱 **WhatsApp** : +212 701 986 219 (réponse sous 5 min)
-📧 **Email** : contact@komara.agency
-🌐 **Site web** : www.komara.agency
-
-Notre équipe est disponible du lundi au samedi, de 9h à 19h.
-
+### Pourquoi choisir Komara Agency 🇬🇳
+Parce qu'on offre des solutions modernes, rapides, simples à utiliser et construites pour apporter des résultats concrets.

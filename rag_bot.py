@@ -65,7 +65,7 @@ if not TOKEN:
 # ---------------------------------------------------------------------------
 
 KOMARA_AI_URL = (os.getenv("KOMARA_AI_URL") or "https://komara-local-ai-production.up.railway.app").strip().rstrip("/")
-AI_TIMEOUT = int(os.getenv("AI_TIMEOUT", "120"))
+AI_TIMEOUT = int(os.getenv("AI_TIMEOUT", "45"))
 AI_ENABLED = os.getenv("AI_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
 logger.info("IA locale: %s (timeout=%ss, enabled=%s)", KOMARA_AI_URL, AI_TIMEOUT, AI_ENABLED)
 
