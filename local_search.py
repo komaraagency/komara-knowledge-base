@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Fichier de recherche locale pour le bot Telegram Komara.
 Version 2.0 — Matching par intention + fuzzy + tolérance fautes.
 Le bot comprend l'intention du client, pas juste les mots-clés exacts.
@@ -112,21 +114,21 @@ def trouver_meilleure_reponse(
     for item in knowledge_base:
         questions, tags, cats = _get_searchable_terms(item)
         score = _score_entry(message_norm, message, questions, tags, cats)
-        if score >= 2.0:  # Seuil minimum
+        if score >= 1.5:  # Seuil minimum
             candidates.append((score, item.get("answer", "")))
 
     # 2. FAQ locale
     for item in local_faq:
         q = item.get("question", "")
         score = _score_entry(message_norm, message, [q], [], [])
-        if score >= 2.0:
+        if score >= 1.5:
             candidates.append((score, item.get("answer", "")))
 
     # 3. Dialogues
     for item in local_dialogues:
         q = item.get("question", "")
         score = _score_entry(message_norm, message, [q], [], [])
-        if score >= 2.0:
+        if score >= 1.5:
             candidates.append((score, item.get("answer", "")))
 
     if candidates:

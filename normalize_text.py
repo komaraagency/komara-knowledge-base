@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Normalisation de texte pour matching fuzzy + intention.
 Le bot doit comprendre l'intention, pas juste les mots-clés exacts.
 """
@@ -57,7 +59,7 @@ COMMON_FIXES = {
 # Mapping intention → mots associés (pour la détection d'intention)
 INTENT_MAP = {
     "prix_tarif": ["prix", "cout", "combien", "tarif", "coute", "cher", "paye", "euro", "fg", "mad", "argent", "budget", "commission", "abonnement", "mensuel", "facture", "devis"],
-    "presentation": ["komara", "agence", "presentation", "qui", "faites", "services", "propose", "quipe", "c'est quoi"],
+    "presentation": ["komara", "agence", "presentation", "qui", "faites", "services", "propose", "quipe", "c'est quoi", "salut", "bonjour", "bonsoir", "hello", "hi", "coucou"],
     "agent_vs_chatbot": ["agent", "chatbot", "difference", "vs", "comparaison", "robot", "bot"],
     "automatisation": ["automatiser", "automatisation", "automatique", "automatiser business", "taches"],
     "rdv": ["rdv", "rendez", "rendez-vous", "appointment", "agenda", "booking", "creneau"],
