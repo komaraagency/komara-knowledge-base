@@ -152,7 +152,7 @@ def get_supported_languages() -> list[str]:
 
 KB_PATH = BASE_DIR / "kb.json"
 FAQ_PATH = BASE_DIR / "docs" / "faq.md"
-DIALOGUES_DIR = BASE_DIR / "docs" / "dialogues"
+DIALOGUES_DIR = BASE_DIR / "dialogues"
 LANG_DIR = BASE_DIR / "lang"
 
 
@@ -186,6 +186,37 @@ def load_local_faq() -> list[dict[str, str]]:
     return items
 
 
+def _parse_dialogue_file(content: str) -> list[dict[str, str]]:
+    """Parse un fichier de dialogues. Gère deux formats:
+    1. ### Question / réponse (format FAQ)
+    2. Label: / réponse (format dialogues Komara)
+    """
+    items: list[dict[str, str]] = []
+    
+    # Format 1: ### Question\nréponse
+    sections = re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]
+    for section in sections:
+        lines = section.splitlines()
+        if len(lines) < 2:
+            continue
+        question = lines[0].strip()
+        answer = "\n".join(lines[1:]).strip()
+        if question and answer:
+            items.append({"question": question, "answer": answer})
+    
+    # Format 2: Label:\nréponse (si pas de ### trouvé)
+    if not items:
+        # Séparer sur les lignes "Label:" (mot suivi de deux-points)
+        parts = re.split(r"^(\w[^\n:]{3,}):\s*$", content, flags=re.MULTILINE)
+        for i in range(1, len(parts) - 1, 2):
+            question = parts[i].strip()
+            answer = parts[i + 1].strip()
+            if question and answer:
+                items.append({"question": question, "answer": answer})
+    
+    return items
+
+
 def load_dialogues() -> list[dict[str, str]]:
     """Charge les dialogues français de secours (racine)."""
     dialogues: list[dict[str, str]] = []
@@ -196,17 +227,11 @@ def load_dialogues() -> list[dict[str, str]]:
         if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
             try:
                 content = file_path.read_text(encoding="utf-8")
-                for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-                    lines = section.splitlines()
-                    if len(lines) < 2:
-                        continue
-                    question = lines[0].strip()
-                    answer = "\n".join(lines[1:]).strip()
-                    if question and answer:
-                        dialogues.append({"question": question, "answer": answer})
+                parsed = _parse_dialogue_file(content)
+                dialogues.extend(parsed)
             except Exception as e:
                 logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
-    logger.info("Dialogues (docs/dialogues) chargés : %s questions", len(dialogues))
+    logger.info("Dialogues (%s) chargés : %s questions", DIALOGUES_DIR, len(dialogues))
     return dialogues
 
 
@@ -253,14 +278,8 @@ def load_language_resources(lang_code: str) -> dict[str, Any]:
             if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
                 try:
                     content = file_path.read_text(encoding="utf-8")
-                    for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-                        lines = section.splitlines()
-                        if len(lines) < 2:
-                            continue
-                        question = lines[0].strip()
-                        answer = "\n".join(lines[1:]).strip()
-                        if question and answer:
-                            dialogues.append({"question": question, "answer": answer})
+                    parsed = _parse_dialogue_file(content)
+                    dialogues.extend(parsed)
                 except Exception as e:
                     logger.error("[%s] Erreur dialogue %s : %s", lang_code, file_path.name, e)
         resources["dialogues"] = dialogues
@@ -278,23 +297,37 @@ LANG_RESOURCES: dict[str, dict[str, Any]] = {}
 for _lang in get_supported_languages():
     LANG_RESOURCES[_lang] = load_language_resources(_lang)
 
-# Fallback français : si lang/fr/ est vide, on utilise l'ancienne structure à la racine
-_fr = LANG_RESOURCES.get("fr", {"kb": [], "faq": [], "dialogues": []})
-if not _fr["kb"]:
-    try:
-        BRAIN = load_knowledge_base()
-        LANG_RESOURCES["fr"] = {
-            "kb": BRAIN.get("knowledge", []),
-            "faq": load_local_faq(),
-            "dialogues": load_dialogues(),
-        }
-        logger.info("Base française de secours (racine) chargée en fallback.")
-    except RuntimeError as e:
-        logger.critical(e)
-        sys.exit(1)
+# Chargement du root kb.json (base principale, 311+ entrées)
+try:
+    BRAIN = load_knowledge_base()
+    root_knowledge = BRAIN.get("knowledge", [])
+    root_faq = load_local_faq()
+    root_dialogues = load_dialogues()
+    logger.info("Base racine (kb.json) chargée : %s fiches + %s FAQ + %s dialogues",
+                len(root_knowledge), len(root_faq), len(root_dialogues))
+except RuntimeError as e:
+    logger.critical(e)
+    sys.exit(1)
+    BRAIN = {}
+    root_knowledge = []
+    root_faq = []
+    root_dialogues = []
+
+# Fusion: root kb.json + lang/{code}/kb.json pour chaque langue
+for _lang_code in LANG_RESOURCES:
+    _lang_res = LANG_RESOURCES[_lang_code]
+    # MERGE: root knowledge + lang knowledge (root d'abord, lang ensuite pour priorité)
+    _lang_res["kb"] = root_knowledge + _lang_res["kb"]
+    # Compléter FAQ et dialogues avec la racine si la langue n'en a pas assez
+    if not _lang_res["faq"]:
+        _lang_res["faq"] = root_faq
+    if not _lang_res["dialogues"]:
+        _lang_res["dialogues"] = root_dialogues
+    logger.info("[%s] Base finale : %s fiches + %s FAQ + %s dialogues",
+                _lang_code, len(_lang_res["kb"]), len(_lang_res["faq"]), len(_lang_res["dialogues"]))
 
 # Variables globales (compatibilité avec le français)
-BRAIN = BRAIN if "BRAIN" in globals() else (load_knowledge_base() if KB_PATH.is_file() else {})
+BRAIN = BRAIN if "BRAIN" in globals() else {}
 WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "+212701986219")
 BRAND = BRAIN.get("brand", "Komara Agency")
 PACKS = BRAIN.get("packs", [])
