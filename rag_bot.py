@@ -24,6 +24,14 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
+try:
+    import httpx
+    HAS_HTTPX = True
+except ImportError:
+    HAS_HTTPX = False
+
+import asyncio
+
 # ---------------------------------------------------------------------------
 # Configuration générale
 # ---------------------------------------------------------------------------
@@ -51,6 +59,15 @@ logger = logging.getLogger("komara.telegram")
 
 if not TOKEN:
     raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
+
+# ---------------------------------------------------------------------------
+# Configuration IA locale Komara
+# ---------------------------------------------------------------------------
+
+KOMARA_AI_URL = (os.getenv("KOMARA_AI_URL") or "https://komara-local-ai-production.up.railway.app").strip().rstrip("/")
+AI_TIMEOUT = int(os.getenv("AI_TIMEOUT", "120"))
+AI_ENABLED = os.getenv("AI_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+logger.info("IA locale: %s (timeout=%ss, enabled=%s)", KOMARA_AI_URL, AI_TIMEOUT, AI_ENABLED)
 
 # ---------------------------------------------------------------------------
 # Détecteur de langue local (100% hors-ligne, aucune dépendance externe)
@@ -387,6 +404,34 @@ def heartbeat_loop() -> None:
         send_heartbeat()
         HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
 
+# ---------------------------------------------------------------------------
+# Appel à l'IA locale Komara (compréhension contextuelle)
+# ---------------------------------------------------------------------------
+
+def call_local_ai(message: str, history: list) -> str | None:
+    """Appelle l'IA locale Komara pour une réponse contextuelle."""
+    if not AI_ENABLED or not HAS_HTTPX:
+        return None
+    try:
+        with httpx.Client(timeout=AI_TIMEOUT) as client:
+            resp = client.post(
+                KOMARA_AI_URL + "/api/chat",
+                json={"message": message[:1000], "history": history or []},
+                headers={"Content-Type": "application/json"},
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                reply = data.get("reply", "").strip()
+                if reply and len(reply) > 5:
+                    logger.info("IA locale OK — engine=%s, %s chars", data.get("engine", "?"), len(reply))
+                    return reply
+            logger.warning("IA locale HTTP %s", resp.status_code)
+            return None
+    except Exception as e:
+        logger.warning("IA locale indisponible: %s", e)
+        return None
+
+
 
 # ---------------------------------------------------------------------------
 # Recherche multilingue
@@ -572,6 +617,13 @@ def safe_typing(chat_id: int) -> None:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
 
+def typing_loop(chat_id: int, stop_event: threading.Event) -> None:
+    """Envoie 'typing' toutes les 4s pendant l'attente de l'IA."""
+    while not stop_event.is_set():
+        safe_typing(chat_id)
+        stop_event.wait(4)
+
+
 def send_portfolio(chat_id: int, lang: str) -> None:
     sent = 0
     for filename in ("portfolio_01", "portfolio_02"):
@@ -663,7 +715,21 @@ def handle(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
             return
 
-        # Recherche multilingue
+        # 1. Essayer l'IA locale (comprehension contextuelle)
+        history = context_for(chat_id)
+        typing_stop = threading.Event()
+        typing_thread = threading.Thread(target=typing_loop, args=(chat_id, typing_stop), daemon=True)
+        typing_thread.start()
+        ai_response = call_local_ai(text, history)
+        typing_stop.set()
+
+        if ai_response:
+            response = ai_response
+            remember(chat_id, "assistant", response)
+            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
+            return
+
+        # 2. Fallback: recherche par mots-cles
         local_response = local_contextual_response(chat_id, text, lang)
         if local_response is None:
             record_unrecognized(text, source="telegram")
