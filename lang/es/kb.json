@@ -30,5 +30,68 @@
       "id": 4,
       "question": "¿Cómo hago un pedido?",
       "answer": "¡Es muy simple!\n\n1️⃣ Contáctanos en WhatsApp al +212 701 986 219\n2️⃣ Discutimos tu proyecto y necesidades\n3️⃣ Te enviamos un presupuesto detallado\n4️⃣ Después de la validación y el 50% de anticipo, comenzamos\n5️⃣ Entrega y formación incluidas",
-      "keywords": ["pedido",
-        
+      "keywords": ["pedido", "proceso", "empezar", "pasos"],
+      "category": "process"
+    },
+    {
+      "id": 5,
+      "question": "¿Cuáles son sus plazos de entrega?",
+      "answer": "Los plazos dependen del proyecto:\n\n⚡ **Bot simple**: 3-5 días\n⚡ **Sitio web**: 7-14 días\n⚡ **Solución completa**: 15-30 días\n\nSiempre cumplimos nuestros compromisos. Se te proporciona un calendario preciso antes de comenzar el proyecto.",
+      "keywords": ["plazo", "entrega", "tiempo", "rapidez"],
+      "category": "delivery"
+    },
+    {
+      "id": 6,
+      "question": "¿Qué medios de pago aceptan?",
+      "answer": "Aceptamos varios medios de pago para tu comodidad:\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Transferencia bancaria**\n\nPago en 2 plazos posible: 50% al pedido, 50% a la entrega.",
+      "keywords": ["pago", "pagar", "medio", "orange money", "momo", "paypal"],
+      "category": "payment"
+    },
+    {
+      "id": 7,
+      "question": "¿Puedo pagar en varias veces?",
+      "answer": "¡Sí, por supuesto! Ofrecemos un pago escalonado:\n\n✅ **50% al pedido** (inicio del proyecto)\n✅ **50% a la entrega** (después de la validación)\n\nPara proyectos grandes, podemos adaptar el calendario según tus necesidades.",
+      "keywords": ["varias veces", "escalonado", "anticipo", "calendario"],
+      "category": "payment"
+    },
+    {
+      "id": 8,
+      "question": "¿Ofrecen garantía?",
+      "answer": "¡Sí! Ofrecemos:\n\n✅ **Garantía de satisfacción**: Correcciones gratuitas durante 30 días después de la entrega\n✅ **Soporte técnico**: Asistencia gratuita durante 3 meses\n✅ **Mantenimiento**: Opciones de mantenimiento mensual disponibles\n\n¡Tu éxito es nuestra prioridad!",
+      "keywords": ["garantía", "satisfacción", "soporte", "asistencia"],
+      "category": "support"
+    },
+    {
+      "id": 9,
+      "question": "¿Trabajan con clientes internacionales?",
+      "answer": "¡Por supuesto! Trabajamos con clientes en toda África, Europa, Oriente Medio y más allá. Nuestro equipo está acostumbrado a proyectos internacionales y nos comunicamos en francés, inglés y árabe.",
+      "keywords": ["internacional", "extranjero", "áfrica", "europa"],
+      "category": "general"
+    },
+    {
+      "id": 10,
+      "question": "¿Cómo puedo contactarlos?",
+      "answer": "Varias formas de contactarnos:\n\n📱 **WhatsApp**: +212 701 986 219 (respuesta en 5 min)\n📧 **Email**: contact@komara.agency\n🌐 **Sitio web**: www.komara.agency\n\nNuestro equipo está disponible de lunes a sábado, de 9h a 19h.",
+      "keywords": ["contacto", "contactar", "whatsapp", "email", "teléfono"],
+      "category": "contact"
+    }
+  ],
+  "packs": [
+    {
+      "nom": "Pack Starter",
+      "prix": "150€",
+      "contenu": "Bot simple o sitio web de exhibición, 1 idioma, soporte 1 mes"
+    },
+    {
+      "nom": "Pack Business",
+      "prix": "450€",
+      "contenu": "Bot avanzado + sitio web, multilingüe, soporte 3 meses"
+    },
+    {
+      "nom": "Pack Premium",
+      "prix": "900€",
+      "contenu": "Solución completa personalizada, soporte 6 meses, formación incluida"
+    }
+  ],
+  "conversations": []
+}
