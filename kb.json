@@ -4057,20 +4057,6 @@
       "answer": "L'IA faible fait référence à des systèmes conçus pour effectuer des tâches spécifiques (comme un chatbot), tandis que l'IA forte est une hypothétique forme d'intelligence artificielle qui pourrait comprendre et raisonner comme un humain."
     },
     {
-      "id": 9,
-      "category": "ia_faq",
-      "questions": [
-        "Comment les données sont-elles utilisées pour développer des modèles d'IA"
-      ],
-      "tags": [
-        "donnees ia",
-        "entrainement modele",
-        "formation ia",
-        "data ia"
-      ],
-      "answer": "Les modèles d'IA sont formés à partir de grandes quantités de données, à partir desquelles ils apprennent des modèles et des relations. Ces données peuvent être des images, du texte ou des données numériques."
-    },
-    {
       "id": 10,
       "category": "ia_faq",
       "questions": [
@@ -4082,20 +4068,6 @@
         "discrimination ia"
       ],
       "answer": "Oui, les modèles d'IA peuvent hériter de biais présents dans les données utilisées pour les former. C'est pourquoi il est important de veiller à la qualité et à la représentativité des données."
-    },
-    {
-      "id": 11,
-      "category": "ia_faq",
-      "questions": [
-        "Quelles compétences sont nécessaires pour travailler dans le domaine de l'IA"
-      ],
-      "tags": [
-        "competences ia",
-        "travailler ia",
-        "carriere ia",
-        "python ia"
-      ],
-      "answer": "Les compétences clés incluent la programmation (Python, R), la compréhension des mathématiques et des statistiques, la connaissance des algorithmes d'apprentissage automatique, ainsi que des compétences en analyse de données."
     },
     {
       "id": 12,
@@ -4275,19 +4247,6 @@
       "answer": "L'open source fait référence à des logiciels dont le code source est accessible au public, permettant à quiconque de l'utiliser, le modifier et le distribuer."
     },
     {
-      "id": 26,
-      "category": "tech_faq",
-      "questions": [
-        "Comment la technologie influence-t-elle le secteur de la santé"
-      ],
-      "tags": [
-        "technologie sante",
-        "telemedecine",
-        "sante numerique"
-      ],
-      "answer": "La technologie transforme la santé avec la télémédecine, les dispositifs médicaux connectés, l'analyse de données pour la recherche médicale et l'amélioration des soins."
-    },
-    {
       "id": 27,
       "category": "tech_faq",
       "questions": [
@@ -4390,19 +4349,6 @@
         "anti malware"
       ],
       "answer": "La cybersécurité est essentielle pour protéger les systèmes informatiques et les données contre les cyberattaques, violations et logiciels malveillants."
-    },
-    {
-      "id": 35,
-      "category": "tech_faq",
-      "questions": [
-        "Qu'est-ce qu'une application mobile"
-      ],
-      "tags": [
-        "application mobile",
-        "app mobile",
-        "smartphone app"
-      ],
-      "answer": "Une application mobile est un logiciel conçu pour fonctionner sur des appareils mobiles, comme les smartphones et tablettes, permettant d'accéder à divers services."
     },
     {
       "id": 36,
@@ -4767,6 +4713,2792 @@
         "pourquoi komara"
       ],
       "answer": "Parce qu'elles te font gagner du temps, améliorent ton image professionnelle et augmentent ton efficacité. Tu as une communication plus rapide, un système intelligent et une présence en ligne plus solide."
+    },
+    {
+      "id": 62,
+      "category": "presentation_agency",
+      "questions": [
+        "C'est quoi Komara Agency"
+      ],
+      "tags": [
+        "komara agency",
+        "presentation",
+        "c'est quoi komara",
+        "agence ia"
+      ],
+      "answer": "Komara Agency c'est ton équipe d'Agents Commerciaux IA 24H/24. On crée des bots et sites qui vendent à ta place, même quand tu dors."
+    },
+    {
+      "id": 63,
+      "category": "presentation_agency",
+      "questions": [
+        "Un Agent IA c'est différent d'un chatbot classique"
+      ],
+      "tags": [
+        "agent ia",
+        "chatbot vs agent",
+        "difference agent chatbot"
+      ],
+      "answer": "Oui. Le chatbot répond. L'Agent IA de Komara vend, relance, prend RDV, et suit tes clients jusqu'à l'achat."
+    },
+    {
+      "id": 64,
+      "category": "presentation_agency",
+      "questions": [
+        "Vous travaillez avec quels secteurs"
+      ],
+      "tags": [
+        "secteurs",
+        "domaines",
+        "secteur activite"
+      ],
+      "answer": "E-commerce, Immobilier, Formation, Santé, Restaurants, Services. Si tu vends, on peut t'automatiser."
+    },
+    {
+      "id": 65,
+      "category": "presentation_agency",
+      "questions": [
+        "L'Agent parle quelles langues"
+      ],
+      "tags": [
+        "langues",
+        "soussou",
+        "malinke",
+        "pular",
+        "multilingue"
+      ],
+      "answer": "Français, Anglais, Soussou, Malinké, Pular. Et il s'adapte au ton de ta marque."
+    },
+    {
+      "id": 66,
+      "category": "presentation_agency",
+      "questions": [
+        "Est-ce que l'IA va remplacer mes commerciaux"
+      ],
+      "tags": [
+        "remplacer commerciaux",
+        "ia vs humain",
+        "remplacement emploi"
+      ],
+      "answer": "Non. Elle les rend 10x plus efficaces. Elle gère 80% des questions pour qu'ils se concentrent sur la vente."
+    },
+    {
+      "id": 67,
+      "category": "presentation_agency",
+      "questions": [
+        "Où sont hébergés les Agents"
+      ],
+      "tags": [
+        "hebergement",
+        "serveurs",
+        "ollama local",
+        "donnees"
+      ],
+      "answer": "Sur nos serveurs privés ou directement sur ta machine avec Ollama. Tes données restent à toi."
+    },
+    {
+      "id": 68,
+      "category": "presentation_agency",
+      "questions": [
+        "L'Agent peut-il faire des appels vocaux"
+      ],
+      "tags": [
+        "appels vocaux",
+        "agent vocal",
+        "voix ia",
+        "appel telephone"
+      ],
+      "answer": "Oui. Option Agent Vocal IA disponible. Il appelle, prend RDV et envoie le récap par WhatsApp."
+    },
+    {
+      "id": 69,
+      "category": "presentation_agency",
+      "questions": [
+        "Combien de temps pour avoir mon Agent"
+      ],
+      "tags": [
+        "delai",
+        "temps installation",
+        "duree projet",
+        "72h"
+      ],
+      "answer": "7 jours. Du brief à la mise en ligne. Version express en 72H disponible."
+    },
+    {
+      "id": 70,
+      "category": "presentation_agency",
+      "questions": [
+        "Vous faites juste des bots ou aussi des sites"
+      ],
+      "tags": [
+        "bots sites",
+        "site web",
+        "machine vente"
+      ],
+      "answer": "Les deux. Site qui vend + Bot qui convertit = Machine de vente complète."
+    },
+    {
+      "id": 71,
+      "category": "presentation_agency",
+      "questions": [
+        "C'est quoi votre garantie"
+      ],
+      "tags": [
+        "garantie",
+        "satisfait",
+        "leads qualifies"
+      ],
+      "answer": "Si en 30 jours ton Agent ne te ramène pas au moins 10 leads qualifiés, on le re-optimise gratuitement."
+    },
+    {
+      "id": 72,
+      "category": "presentation_agency",
+      "questions": [
+        "Qui a créé Komara Agency"
+      ],
+      "tags": [
+        "createur",
+        "fondateur",
+        "equipe komara",
+        "guinee"
+      ],
+      "answer": "Une équipe guinéenne passionnée par l'IA et la vente. Mission: aider les entreprises africaines à vendre plus avec moins d'effort."
+    },
+    {
+      "id": 73,
+      "category": "presentation_agency",
+      "questions": [
+        "L'Agent peut-il se connecter à mon WhatsApp Business"
+      ],
+      "tags": [
+        "whatsapp business",
+        "api whatsapp",
+        "connexion whatsapp",
+        "messenger instagram"
+      ],
+      "answer": "Oui. API WhatsApp, Telegram, Messenger, Instagram DM. Tout est centralisé."
+    },
+    {
+      "id": 74,
+      "category": "presentation_agency",
+      "questions": [
+        "Vous formez mon équipe"
+      ],
+      "tags": [
+        "formation equipe",
+        "training",
+        "piloter agent"
+      ],
+      "answer": "Oui. 1h de formation offerte pour apprendre à piloter et lire les stats de ton Agent."
+    },
+    {
+      "id": 75,
+      "category": "presentation_agency",
+      "questions": [
+        "Que se passe-t-il si l'IA dit une bêtise"
+      ],
+      "tags": [
+        "erreur ia",
+        "betise ia",
+        "fiabilite",
+        "precision"
+      ],
+      "answer": "On entraîne ton Agent avec TON catalogue, TON ton, TES règles. Erreur <1%. Et on corrige 24H/24."
+    },
+    {
+      "id": 76,
+      "category": "presentation_agency",
+      "questions": [
+        "C'est légal d'utiliser un Agent IA"
+      ],
+      "tags": [
+        "legal",
+        "rgpd",
+        "legalite ia",
+        "conformite"
+      ],
+      "answer": "100%. Il se présente comme assistant virtuel et respecte RGPD. Aucune donnée vendue."
+    },
+    {
+      "id": 77,
+      "category": "presentation_agency",
+      "questions": [
+        "Je peux tester avant d'acheter"
+      ],
+      "tags": [
+        "test gratuit",
+        "demo",
+        "essai",
+        "tester avant"
+      ],
+      "answer": "Oui. Démo gratuite de 3 jours sur tes vrais produits."
+    },
+    {
+      "id": 78,
+      "category": "presentation_agency",
+      "questions": [
+        "Vous travaillez avec les PME"
+      ],
+      "tags": [
+        "pme",
+        "petite entreprise",
+        "pack prix"
+      ],
+      "answer": "Surtout. Nos packs commencent à 300€ pour que même les petites structures explosent."
+    },
+    {
+      "id": 79,
+      "category": "presentation_agency",
+      "questions": [
+        "L'Agent gère les plaintes clients"
+      ],
+      "tags": [
+        "plaintes",
+        "reclamation",
+        "sav",
+        "satisfaction"
+      ],
+      "answer": "Oui. Il calme, propose une solution, et monte au manager si besoin. Taux de satisfaction +40%."
+    },
+    {
+      "id": 80,
+      "category": "presentation_agency",
+      "questions": [
+        "Vous êtes basés où"
+      ],
+      "tags": [
+        "bases",
+        "conakry",
+        "guinee",
+        "localisation",
+        "adresse"
+      ],
+      "answer": "Conakry, Guinée 🇬🇳. Mais on travaille avec toute la francophonie."
+    },
+    {
+      "id": 81,
+      "category": "presentation_agency",
+      "questions": [
+        "Comment vous différenciez"
+      ],
+      "tags": [
+        "differenciation",
+        "pourquoi komara",
+        "avantage"
+      ],
+      "answer": "On ne vend pas de bot. On vend des résultats: RDV, ventes, et temps gagné."
+    },
+    {
+      "id": 82,
+      "category": "tarifs",
+      "questions": [
+        "Combien coûte un Agent IA"
+      ],
+      "tags": [
+        "prix agent",
+        "cout ia",
+        "tarif agent",
+        "combien"
+      ],
+      "answer": "À partir de 300€ installation + 90€/mois maintenance. ROI moyen en 45 jours."
+    },
+    {
+      "id": 83,
+      "category": "tarifs",
+      "questions": [
+        "Il y a des frais cachés"
+      ],
+      "tags": [
+        "frais caches",
+        "prix total",
+        "transparence prix"
+      ],
+      "answer": "Zéro. Le prix annoncé = tout compris. API, hébergement, mises à jour."
+    },
+    {
+      "id": 84,
+      "category": "tarifs",
+      "questions": [
+        "Vous faites du paiement en plusieurs fois"
+      ],
+      "tags": [
+        "paiement plusieurs fois",
+        "echelonnement",
+        "3x sans frais"
+      ],
+      "answer": "Oui. 3x sans frais pour l'installation."
+    },
+    {
+      "id": 85,
+      "category": "tarifs",
+      "questions": [
+        "C'est quoi la différence Pack Starter vs Premium"
+      ],
+      "tags": [
+        "pack starter",
+        "pack premium",
+        "difference packs"
+      ],
+      "answer": "Starter = 1 canal + 1 langue. Premium = 4 canaux + voix + CRM + stats avancées."
+    },
+    {
+      "id": 86,
+      "category": "tarifs",
+      "questions": [
+        "Je paie à la commission"
+      ],
+      "tags": [
+        "commission",
+        "paiement commission",
+        "15%"
+      ],
+      "answer": "Option possible. 15% sur les ventes générées par l'Agent pendant 6 mois."
+    },
+    {
+      "id": 87,
+      "category": "tarifs",
+      "questions": [
+        "Le site web est inclus"
+      ],
+      "tags": [
+        "site inclus",
+        "site web prix",
+        "pack vente"
+      ],
+      "answer": "Dans le Pack Machine de Vente oui. Sinon c'est 500€ pour un site vitrine qui convertit."
+    },
+    {
+      "id": 88,
+      "category": "tarifs",
+      "questions": [
+        "Vous faites des promos"
+      ],
+      "tags": [
+        "promo",
+        "promotion",
+        "reduction",
+        "-20%"
+      ],
+      "answer": "Oui. -20% pour les 10 premières entreprises de chaque mois."
+    },
+    {
+      "id": 89,
+      "category": "tarifs",
+      "questions": [
+        "Que contient l'abonnement mensuel"
+      ],
+      "tags": [
+        "abonnement",
+        "mensuel",
+        "contenu abonnement"
+      ],
+      "answer": "Hébergement, mises à jour IA, support, amélioration des réponses, rapports de vente."
+    },
+    {
+      "id": 90,
+      "category": "tarifs",
+      "questions": [
+        "Je peux résilier quand je veux"
+      ],
+      "tags": [
+        "resilier",
+        "engagement",
+        "annuler"
+      ],
+      "answer": "Oui. Sans engagement. Tu gardes l'Agent mais plus de mises à jour."
+    },
+    {
+      "id": 91,
+      "category": "tarifs",
+      "questions": [
+        "Vous faites des devis gratuits"
+      ],
+      "tags": [
+        "devis gratuit",
+        "devis",
+        "analyse gratuite"
+      ],
+      "answer": "Toujours. On analyse ton business et on te dit combien tu peux gagner. Gratuit."
+    },
+    {
+      "id": 92,
+      "category": "technique",
+      "questions": [
+        "L'Agent marche sans internet"
+      ],
+      "tags": [
+        "sans internet",
+        "offline",
+        "ollama locale",
+        "hors ligne"
+      ],
+      "answer": "Version Cloud non. Version Ollama Locale oui, sur ton PC."
+    },
+    {
+      "id": 93,
+      "category": "technique",
+      "questions": [
+        "Il se connecte à mon site Shopify WooCommerce"
+      ],
+      "tags": [
+        "shopify",
+        "woocommerce",
+        "catalogue",
+        "ecommerce"
+      ],
+      "answer": "Oui. Il lit ton catalogue et répond sur les stocks, prix, livraison."
+    },
+    {
+      "id": 94,
+      "category": "technique",
+      "questions": [
+        "Et si j'ai déjà un CRM"
+      ],
+      "tags": [
+        "crm",
+        "hubspot",
+        "notion",
+        "google sheet"
+      ],
+      "answer": "On connecte à Hubspot, GoHighLevel, Notion, Google Sheet. Les leads arrivent direct."
+    },
+    {
+      "id": 95,
+      "category": "technique",
+      "questions": [
+        "L'Agent apprend tout seul"
+      ],
+      "tags": [
+        "apprentissage",
+        "auto apprentissage",
+        "evolution ia"
+      ],
+      "answer": "Oui. Chaque conversation le rend plus intelligent pour TA marque."
+    },
+    {
+      "id": 96,
+      "category": "technique",
+      "questions": [
+        "C'est sécurisé"
+      ],
+      "tags": [
+        "securite",
+        "chiffrage",
+        "rgpd",
+        "protection donnees"
+      ],
+      "answer": "Chiffrage de bout en bout. Hébergé en Europe. Conforme RGPD."
+    },
+    {
+      "id": 97,
+      "category": "technique",
+      "questions": [
+        "Je peux changer les réponses"
+      ],
+      "tags": [
+        "changer reponses",
+        "tableau bord",
+        "modifier",
+        "dashboard"
+      ],
+      "answer": "Oui. Tableau de bord simple. Tu modifies un texte en 10 secondes."
+    },
+    {
+      "id": 98,
+      "category": "technique",
+      "questions": [
+        "L'Agent envoie des emails aussi"
+      ],
+      "tags": [
+        "emails",
+        "newsletter",
+        "relance email",
+        "panier abandonne"
+      ],
+      "answer": "Oui. Relance panier abandonné, suivi après-vente, newsletter. Tout est automatisé."
+    },
+    {
+      "id": 99,
+      "category": "technique",
+      "questions": [
+        "Il gère les pièces jointes et photos"
+      ],
+      "tags": [
+        "pieces jointes",
+        "photos",
+        "images",
+        "panne"
+      ],
+      "answer": "Oui. Le client envoie une photo de panne, l'Agent propose une solution."
+    },
+    {
+      "id": 100,
+      "category": "technique",
+      "questions": [
+        "Vous utilisez ChatGPT"
+      ],
+      "tags": [
+        "chatgpt",
+        "modeles ia",
+        "llama",
+        "qwen",
+        "ollama"
+      ],
+      "answer": "On utilise les meilleurs modèles: Llama 3.1, Qwen 2.5, et des modèles locaux via Ollama pour la confidentialité."
+    },
+    {
+      "id": 101,
+      "category": "technique",
+      "questions": [
+        "Et si j'ai 10000 messages par jour"
+      ],
+      "tags": [
+        "volume messages",
+        "10000 messages",
+        "capacite",
+        "concurrence"
+      ],
+      "answer": "L'Agent ne dort jamais. Il peut gérer 1000 conversations en même temps."
+    },
+    {
+      "id": 102,
+      "category": "resultats",
+      "questions": [
+        "En combien de temps je vois des résultats"
+      ],
+      "tags": [
+        "resultats",
+        "delai resultat",
+        "premieres ventes"
+      ],
+      "answer": "Les premières ventes arrivent dès la semaine 1. Pic à 30 jours."
+    },
+    {
+      "id": 103,
+      "category": "resultats",
+      "questions": [
+        "Vous augmentez vraiment le CA"
+      ],
+      "tags": [
+        "chiffre affaires",
+        "ca",
+        "augmentation ventes",
+        "35%"
+      ],
+      "answer": "Nos clients font en moyenne +35% de CA les 3 premiers mois."
+    },
+    {
+      "id": 104,
+      "category": "resultats",
+      "questions": [
+        "L'Agent peut faire des pubs Facebook"
+      ],
+      "tags": [
+        "pub facebook",
+        "publicite",
+        "ads",
+        "commentaires"
+      ],
+      "answer": "Il écrit les textes de pub, répond aux commentaires, et envoie en MP. Oui."
+    },
+    {
+      "id": 105,
+      "category": "resultats",
+      "questions": [
+        "Il qualifie les leads"
+      ],
+      "tags": [
+        "qualifier leads",
+        "qualification",
+        "prospects chauds"
+      ],
+      "answer": "Oui. Il pose 5 questions et ne t'envoie que les prospects chauds."
+    },
+    {
+      "id": 106,
+      "category": "resultats",
+      "questions": [
+        "Je reçois les stats où"
+      ],
+      "tags": [
+        "stats",
+        "dashboard",
+        "rapport",
+        "statistiques"
+      ],
+      "answer": "Dashboard + Rapport WhatsApp chaque lundi. Ventes, RDV, questions top."
+    },
+    {
+      "id": 107,
+      "category": "resultats",
+      "questions": [
+        "L'Agent vend la nuit"
+      ],
+      "tags": [
+        "vente nuit",
+        "24h",
+        "nuit",
+        "automatique"
+      ],
+      "answer": "C'est son job. 2H du matin, il répond et prend la commande."
+    },
+    {
+      "id": 108,
+      "category": "resultats",
+      "questions": [
+        "Il peut parler comme moi"
+      ],
+      "tags": [
+        "cloner ton",
+        "parler comme moi",
+        "voix marque"
+      ],
+      "answer": "On clone ton ton. Drôle, pro, chaleureux. Les clients ne voient pas la différence."
+    },
+    {
+      "id": 109,
+      "category": "resultats",
+      "questions": [
+        "Il gère les soldes et promos"
+      ],
+      "tags": [
+        "soldes",
+        "promos",
+        "reduction auto"
+      ],
+      "answer": "Tu lui dis soldes -30% et il met à jour tous les messages automatiquement."
+    },
+    {
+      "id": 110,
+      "category": "resultats",
+      "questions": [
+        "Et pour récupérer les paniers abandonnés"
+      ],
+      "tags": [
+        "panier abandonne",
+        "recuperation",
+        "abandon"
+      ],
+      "answer": "Message auto 1h après: Tu as oublié ça 👀. Taux de récup: 28%."
+    },
+    {
+      "id": 111,
+      "category": "resultats",
+      "questions": [
+        "Vous avez des cas clients"
+      ],
+      "tags": [
+        "cas clients",
+        "exemples",
+        "resultats clients",
+        "portfolio"
+      ],
+      "answer": "Oui. Boutique de mode: +120 commandes/mois. Agence immo: 40 RDV/mois. Je t'envoie."
+    },
+    {
+      "id": 112,
+      "category": "resultats",
+      "questions": [
+        "Combien de ventes en plus je peux espérer"
+      ],
+      "tags": [
+        "ventes supplementaires",
+        "combien ventes",
+        "projection"
+      ],
+      "answer": "En moyenne +3 à +8 ventes par jour dès le 2ème mois. Ça dépend de ton trafic."
+    },
+    {
+      "id": 113,
+      "category": "resultats",
+      "questions": [
+        "L'Agent peut-il faire des promotions flash"
+      ],
+      "tags": [
+        "promo flash",
+        "promotion flash",
+        "compte rebours"
+      ],
+      "answer": "Oui. Promo 2H seulement. Il annonce, compte à rebours, et relance ceux qui hésitent."
+    },
+    {
+      "id": 114,
+      "category": "resultats",
+      "questions": [
+        "Il suit les influenceurs qui parlent de moi"
+      ],
+      "tags": [
+        "influenceurs",
+        "mentions",
+        "partenaires"
+      ],
+      "answer": "Oui. Il scanne les mentions et répond + envoie un MP pour transformer en vente."
+    },
+    {
+      "id": 115,
+      "category": "resultats",
+      "questions": [
+        "L'Agent connaît la concurrence"
+      ],
+      "tags": [
+        "concurrence",
+        "concurrents",
+        "positionnement"
+      ],
+      "answer": "Tu lui donnes 3 concurrents. Il prépare des arguments pour te positionner devant."
+    },
+    {
+      "id": 116,
+      "category": "resultats",
+      "questions": [
+        "Il peut créer des codes promo"
+      ],
+      "tags": [
+        "codes promo",
+        "coupon",
+        "reduction code"
+      ],
+      "answer": "Oui. Il génère, envoie, et suit qui l'utilise. Fini les codes qui traînent."
+    },
+    {
+      "id": 117,
+      "category": "resultats",
+      "questions": [
+        "Et pour les avis clients"
+      ],
+      "tags": [
+        "avis clients",
+        "notation",
+        "feedback",
+        "review"
+      ],
+      "answer": "3 jours après achat il demande un avis. S'il est bon il le poste. S'il est mauvais il t'alerte."
+    },
+    {
+      "id": 118,
+      "category": "resultats",
+      "questions": [
+        "L'Agent fait du cross-selling"
+      ],
+      "tags": [
+        "cross selling",
+        "vente additionnelle",
+        "panier moyen"
+      ],
+      "answer": "Tu prends la chaussure ? Veux-tu aussi les chaussettes assorties ? +22% de panier moyen."
+    },
+    {
+      "id": 119,
+      "category": "resultats",
+      "questions": [
+        "Il gère les ruptures de stock"
+      ],
+      "tags": [
+        "rupture stock",
+        "stock",
+        "indisponible"
+      ],
+      "answer": "Oui. Rupture mais je te préviens quand ça revient + il note l'email du client."
+    },
+    {
+      "id": 120,
+      "category": "resultats",
+      "questions": [
+        "Je peux voir d'où viennent les clients"
+      ],
+      "tags": [
+        "source clients",
+        "trafic",
+        "provenance"
+      ],
+      "answer": "Dashboard complet: Facebook, TikTok, Bouche à oreille. Tu sais où investir."
+    },
+    {
+      "id": 121,
+      "category": "resultats",
+      "questions": [
+        "L'Agent parle au nom de la marque"
+      ],
+      "tags": [
+        "marque",
+        "ton marque",
+        "vocabulaire"
+      ],
+      "answer": "100%. On clone ton vocabulaire, tes emojis, ta façon de dire Frère."
+    },
+    {
+      "id": 122,
+      "category": "support_suivi",
+      "questions": [
+        "Qui m'aide si j'ai un problème"
+      ],
+      "tags": [
+        "support",
+        "aide",
+        "probleme",
+        "assistance"
+      ],
+      "answer": "Support WhatsApp 7j/7 (+212701986219). Réponse en moins de 2h."
+    },
+    {
+      "id": 123,
+      "category": "support_suivi",
+      "questions": [
+        "Vous améliorez l'Agent avec le temps"
+      ],
+      "tags": [
+        "amelioration",
+        "mise a jour",
+        "evolution"
+      ],
+      "answer": "Chaque mois on ajoute de nouvelles compétences à ton Agent gratuitement."
+    },
+    {
+      "id": 124,
+      "category": "support_suivi",
+      "questions": [
+        "Je peux avoir plusieurs Agents"
+      ],
+      "tags": [
+        "plusieurs agents",
+        "multi agents"
+      ],
+      "answer": "Oui. 1 pour SAV, 1 pour Vente, 1 pour RDV. Ils travaillent en équipe."
+    },
+    {
+      "id": 125,
+      "category": "support_suivi",
+      "questions": [
+        "L'Agent peut prendre les paiements"
+      ],
+      "tags": [
+        "paiements",
+        "orange money",
+        "wave",
+        "paypal"
+      ],
+      "answer": "Il envoie le lien Orange Money, Wave, Paypal. Il confirme le paiement."
+    },
+    {
+      "id": 126,
+      "category": "support_suivi",
+      "questions": [
+        "Et si je change de produits"
+      ],
+      "tags": [
+        "changer produits",
+        "catalogue",
+        "mise a jour produit"
+      ],
+      "answer": "Tu nous envoies le nouveau catalogue. Mis à jour en 24H."
+    },
+    {
+      "id": 127,
+      "category": "support_suivi",
+      "questions": [
+        "Vous faites la maintenance"
+      ],
+      "tags": [
+        "maintenance",
+        "surveillance",
+        "optimisation"
+      ],
+      "answer": "Oui. On surveille, on corrige, on optimise. Tu ne touches à rien."
+    },
+    {
+      "id": 128,
+      "category": "support_suivi",
+      "questions": [
+        "L'Agent peut booker sur mon Google Agenda"
+      ],
+      "tags": [
+        "google agenda",
+        "calendrier",
+        "rdv agenda",
+        "booking"
+      ],
+      "answer": "Oui. Il propose 3 créneaux et bloque le RDV direct."
+    },
+    {
+      "id": 129,
+      "category": "support_suivi",
+      "questions": [
+        "Il parle aux clients difficiles"
+      ],
+      "tags": [
+        "clients difficiles",
+        "conflit",
+        "desamorcer"
+      ],
+      "answer": "Calme, pro, et ferme si besoin. Il désamorce 90% des conflits."
+    },
+    {
+      "id": 130,
+      "category": "support_suivi",
+      "questions": [
+        "Je peux voir les conversations"
+      ],
+      "tags": [
+        "historique",
+        "conversations",
+        "transparency"
+      ],
+      "answer": "Oui. Accès complet à l'historique pour coacher ton équipe."
+    },
+    {
+      "id": 131,
+      "category": "support_suivi",
+      "questions": [
+        "Comment on démarre"
+      ],
+      "tags": [
+        "demarrer",
+        "commencer",
+        "on commence",
+        "demo",
+        "lancer"
+      ],
+      "answer": "1. Appel 15min 2. Devis 3. On construit 4. On lance. Écris DEMO sur WhatsApp (+212701986219)."
+    },
+    {
+      "id": 132,
+      "category": "marketing",
+      "questions": [
+        "L'Agent envoie des vocaux"
+      ],
+      "tags": [
+        "vocaux",
+        "vocal",
+        "audio"
+      ],
+      "answer": "Oui. Pour paraître humain il envoie 1 vocal sur 5. Taux de réponse x3."
+    },
+    {
+      "id": 133,
+      "category": "marketing",
+      "questions": [
+        "Et les clients qui disent c'est cher"
+      ],
+      "tags": [
+        "objetion prix",
+        "c'est cher",
+        "trop cher",
+        "prix eleve"
+      ],
+      "answer": "Il a 5 scripts pour retourner l'objection prix et montrer la valeur."
+    },
+    {
+      "id": 134,
+      "category": "marketing",
+      "questions": [
+        "L'Agent fait des sondages"
+      ],
+      "tags": [
+        "sondages",
+        "sondage",
+        "enquete"
+      ],
+      "answer": "Quelle couleur tu préfères ? Il récolte les données pour ton prochain produit."
+    },
+    {
+      "id": 135,
+      "category": "marketing",
+      "questions": [
+        "Il peut gérer un lancement de produit"
+      ],
+      "tags": [
+        "lancement produit",
+        "lancement",
+        "nouveau produit"
+      ],
+      "answer": "Liste d'attente, compte à rebours, annonce, FAQ. Tout est automatisé."
+    },
+    {
+      "id": 136,
+      "category": "marketing",
+      "questions": [
+        "Et si j'ai plusieurs boutiques"
+      ],
+      "tags": [
+        "plusieurs boutiques",
+        "multi boutique"
+      ],
+      "answer": "1 Agent par boutique. Ou 1 Agent qui gère les 3 et redirige."
+    },
+    {
+      "id": 137,
+      "category": "marketing",
+      "questions": [
+        "L'Agent peut-il upsell"
+      ],
+      "tags": [
+        "upsell",
+        "upselling",
+        "montee gamme"
+      ],
+      "answer": "Version Pro à 50€ de plus avec garantie 2 ans. Il propose sans forcer."
+    },
+    {
+      "id": 138,
+      "category": "marketing",
+      "questions": [
+        "Il gère les groupes WhatsApp"
+      ],
+      "tags": [
+        "groupes whatsapp",
+        "moderation groupe",
+        "whatsapp group"
+      ],
+      "answer": "Oui. Il modère, répond aux questions, et poste ton contenu."
+    },
+    {
+      "id": 139,
+      "category": "marketing",
+      "questions": [
+        "Comment il attire de nouveaux clients"
+      ],
+      "tags": [
+        "attirer clients",
+        "nouveaux clients",
+        "prospection"
+      ],
+      "answer": "Il répond aux commentaires, DM auto, et relance les anciens clients."
+    },
+    {
+      "id": 140,
+      "category": "marketing",
+      "questions": [
+        "L'Agent fait des rapports de vente"
+      ],
+      "tags": [
+        "rapports vente",
+        "rapport hebdo",
+        "ca genere"
+      ],
+      "answer": "Chaque lundi: CA généré, produits top, heures de pic. Direct sur WhatsApp."
+    },
+    {
+      "id": 141,
+      "category": "marketing",
+      "questions": [
+        "Et pour les fêtes Noël Ramadan"
+      ],
+      "tags": [
+        "fetes",
+        "noel",
+        "ramadan",
+        "saisonnier"
+      ],
+      "answer": "On prépare des scripts spéciaux. L'Agent vend 2x plus en période de fête."
+    },
+    {
+      "id": 142,
+      "category": "support_avance",
+      "questions": [
+        "Qui forme l'Agent au début"
+      ],
+      "tags": [
+        "formation agent",
+        "former ia",
+        "initialisation"
+      ],
+      "answer": "Nous. 1 appel + tes docs + 50 exemples. En 7 jours il est prêt."
+    },
+    {
+      "id": 143,
+      "category": "support_avance",
+      "questions": [
+        "Si je veux changer le ton"
+      ],
+      "tags": [
+        "changer ton",
+        "modifier ton",
+        "style"
+      ],
+      "answer": "1 message WhatsApp: Sois plus drôle. Modifié en 24H."
+    },
+    {
+      "id": 144,
+      "category": "support_avance",
+      "questions": [
+        "Vous surveillez l'Agent"
+      ],
+      "tags": [
+        "surveiller",
+        "monitoring",
+        "controle"
+      ],
+      "answer": "24H/24. Si taux d'erreur >2% on intervient direct sans que tu le voies."
+    },
+    {
+      "id": 145,
+      "category": "support_avance",
+      "questions": [
+        "Je peux mettre l'Agent en pause"
+      ],
+      "tags": [
+        "pause",
+        "mode vacances",
+        "arreter"
+      ],
+      "answer": "Oui. Mode vacances. Il répond On revient le 15 automatiquement."
+    },
+    {
+      "id": 146,
+      "category": "support_avance",
+      "questions": [
+        "L'Agent peut transférer à un humain"
+      ],
+      "tags": [
+        "transfert humain",
+        "passer humain",
+        "escalade"
+      ],
+      "answer": "Dès que le client dit parler à quelqu'un → notification direct à ton équipe."
+    },
+    {
+      "id": 147,
+      "category": "support_avance",
+      "questions": [
+        "Et les mises à jour d'Ollama"
+      ],
+      "tags": [
+        "mise a jour ollama",
+        "update ollama"
+      ],
+      "answer": "On s'en occupe. Ton Agent devient plus intelligent chaque mois."
+    },
+    {
+      "id": 148,
+      "category": "support_avance",
+      "questions": [
+        "Je reçois une alerte pour les gros clients"
+      ],
+      "tags": [
+        "alerte gros client",
+        "notification client",
+        "client important"
+      ],
+      "answer": "Oui. Client 500.000 FG en ligne. Tu peux reprendre la main."
+    },
+    {
+      "id": 149,
+      "category": "support_avance",
+      "questions": [
+        "L'Agent gère les remboursements"
+      ],
+      "tags": [
+        "remboursement",
+        "retour argent",
+        "refund"
+      ],
+      "answer": "Il suit la procédure. Vérifie, lance la demande, envoie la confirmation."
+    },
+    {
+      "id": 150,
+      "category": "support_avance",
+      "questions": [
+        "Vous sauvegardez les conversations"
+      ],
+      "tags": [
+        "sauvegarde",
+        "historique conversations",
+        "archive"
+      ],
+      "answer": "Oui. 2 ans d'historique. Tu peux chercher qui a demandé le prix du sac rouge."
+    },
+    {
+      "id": 151,
+      "category": "support_avance",
+      "questions": [
+        "Et si j'ai une urgence à 3H du matin"
+      ],
+      "tags": [
+        "urgence",
+        "3h matin",
+        "urgence nuit"
+      ],
+      "answer": "Support urgence WhatsApp (+212701986219). On répond en 30min max."
+    },
+    {
+      "id": 152,
+      "category": "support_avance",
+      "questions": [
+        "L'Agent peut signer des contrats"
+      ],
+      "tags": [
+        "contrats",
+        "signature",
+        "signature electronique"
+      ],
+      "answer": "Il envoie le contrat PDF + lien de signature électronique."
+    },
+    {
+      "id": 153,
+      "category": "support_avance",
+      "questions": [
+        "Il parle plusieurs langues en même temps"
+      ],
+      "tags": [
+        "multi langue",
+        "langues simultanees"
+      ],
+      "answer": "Client écrit en français, il répond en français. Client écrit en Pular, il répond en Pular."
+    },
+    {
+      "id": 154,
+      "category": "support_avance",
+      "questions": [
+        "Je peux tester 2 versions de l'Agent"
+      ],
+      "tags": [
+        "a/b testing",
+        "test ab",
+        "version test"
+      ],
+      "answer": "Oui. A/B Testing. On voit quelle version vend le plus."
+    },
+    {
+      "id": 155,
+      "category": "support_avance",
+      "questions": [
+        "L'Agent gère les abonnements"
+      ],
+      "tags": [
+        "abonnements",
+        "recurrent",
+        "subscription"
+      ],
+      "answer": "Oui. Relance avant échéance, encaisse, suspend si non paiement."
+    },
+    {
+      "id": 156,
+      "category": "support_avance",
+      "questions": [
+        "Et pour la facturation"
+      ],
+      "tags": [
+        "facturation",
+        "facture",
+        "impaye"
+      ],
+      "answer": "Il génère la facture, l'envoie, et relance si impayé."
+    },
+    {
+      "id": 157,
+      "category": "support_avance",
+      "questions": [
+        "Vous donnez accès au code"
+      ],
+      "tags": [
+        "code source",
+        "acces code",
+        "premium code"
+      ],
+      "answer": "Pack Premium oui. Sinon on héberge et on maintient."
+    },
+    {
+      "id": 158,
+      "category": "support_avance",
+      "questions": [
+        "L'Agent peut lire des PDF"
+      ],
+      "tags": [
+        "pdf",
+        "lire pdf",
+        "documents"
+      ],
+      "answer": "Catalogue, menu, plaquette. Il répond avec les infos dedans."
+    },
+    {
+      "id": 159,
+      "category": "support_avance",
+      "questions": [
+        "Combien de temps vit un Agent"
+      ],
+      "tags": [
+        "duree vie",
+        "longevite",
+        "perennite"
+      ],
+      "answer": "Tant que tu veux. Certains tournent depuis 18 mois sans pause."
+    },
+    {
+      "id": 160,
+      "category": "support_avance",
+      "questions": [
+        "Et si l'IA évolue"
+      ],
+      "tags": [
+        "evolution ia",
+        "nouveau modele",
+        "upgrade"
+      ],
+      "answer": "On change le moteur gratuitement. Ton Agent passe de Llama 3.1 à Llama 4 sans rien faire."
+    },
+    {
+      "id": 161,
+      "category": "support_avance",
+      "questions": [
+        "Comment signer avec Komara Agency"
+      ],
+      "tags": [
+        "signer",
+        "contrat komara",
+        "devenir client",
+        "acompte"
+      ],
+      "answer": "Étape 1: Appel 15min gratuit. Étape 2: Devis. Étape 3: 50% acompte. Étape 4: Go 🚀 WhatsApp: +212701986219"
+    },
+    {
+      "id": 162,
+      "category": "objections",
+      "questions": [
+        "Et si mes clients n'aiment pas parler à un robot"
+      ],
+      "tags": [
+        "robot",
+        "pas robot",
+        "humain vs robot",
+        "acceptation"
+      ],
+      "answer": "87% ne voient pas la différence. Et ceux qui savent préfèrent une réponse instantanée à 2H du matin."
+    },
+    {
+      "id": 163,
+      "category": "objections",
+      "questions": [
+        "L'IA va voler mes données clients"
+      ],
+      "tags": [
+        "voler donnees",
+        "donnees clients",
+        "securite donnees",
+        "confidentialite"
+      ],
+      "answer": "Jamais. Tes données sont chiffrées et restent TA propriété. Contrat signé."
+    },
+    {
+      "id": 164,
+      "category": "objections",
+      "questions": [
+        "C'est compliqué à installer"
+      ],
+      "tags": [
+        "complique",
+        "installation",
+        "difficile",
+        "technique complexe"
+      ],
+      "answer": "0 effort pour toi. On s'occupe de tout. Toi tu valides juste le ton."
+    },
+    {
+      "id": 165,
+      "category": "objections",
+      "questions": [
+        "Si l'Agent fait une erreur ça me coûte cher"
+      ],
+      "tags": [
+        "erreur coute",
+        "mode securite",
+        "risque erreur"
+      ],
+      "answer": "Il a un mode sécurité. Dès qu'il ne sait pas, il passe à un humain."
+    },
+    {
+      "id": 166,
+      "category": "objections",
+      "questions": [
+        "Mon secteur est trop spécifique ça va marcher"
+      ],
+      "tags": [
+        "secteur specifique",
+        "niche",
+        "metier specifique"
+      ],
+      "answer": "On entraîne l'Agent avec TES produits, TES docs, TES 100 dernières conversations. Il devient expert."
+    },
+    {
+      "id": 167,
+      "category": "objections",
+      "questions": [
+        "Je n'ai pas beaucoup de followers ça sert"
+      ],
+      "tags": [
+        "pas followers",
+        "petite audience",
+        "trafic faible"
+      ],
+      "answer": "Encore plus. L'Agent transforme chaque visiteur en client au lieu de les laisser partir."
+    },
+    {
+      "id": 168,
+      "category": "objections",
+      "questions": [
+        "Et si je veux arrêter dans 6 mois"
+      ],
+      "tags": [
+        "arreter",
+        "quitter",
+        "stopper",
+        "sans engagement"
+      ],
+      "answer": "Tu gardes toutes les conversations et la base de connaissances. Zéro blocage."
+    },
+    {
+      "id": 169,
+      "category": "objections",
+      "questions": [
+        "L'Agent peut-il mentir"
+      ],
+      "tags": [
+        "mentir",
+        "inventer",
+        "fausse info"
+      ],
+      "answer": "Non. On le nourrit uniquement avec TES infos réelles. Pas d'invention."
+    },
+    {
+      "id": 170,
+      "category": "objections",
+      "questions": [
+        "Je n'y connais rien en tech"
+      ],
+      "tags": [
+        "pas tech",
+        "debutant",
+        "pas technique",
+        "simple"
+      ],
+      "answer": "Parfait. C'est fait pour ça. Si tu sais envoyer un vocal WhatsApp, tu sais piloter Komara."
+    },
+    {
+      "id": 171,
+      "category": "objections",
+      "questions": [
+        "Ça marche vraiment en Afrique"
+      ],
+      "tags": [
+        "afrique",
+        "marche afrique",
+        "connexion lente",
+        "orange money"
+      ],
+      "answer": "Oui. Orange Money, Wave, connexion lente, français + langues locales. On est conçus pour ici."
+    },
+    {
+      "id": 172,
+      "category": "objections_prix",
+      "questions": [
+        "300€ c'est beaucoup pour un bot"
+      ],
+      "tags": [
+        "300€",
+        "trop cher bot",
+        "prix bot",
+        "comparaison prix"
+      ],
+      "answer": "Un commercial coûte 400€/mois. L'Agent coûte 90€/mois et travaille 24H/24. Fais le calcul."
+    },
+    {
+      "id": 173,
+      "category": "objections_prix",
+      "questions": [
+        "Je peux rentabiliser en combien de temps"
+      ],
+      "tags": [
+        "rentabiliser",
+        "roi",
+        "delai rentabilite"
+      ],
+      "answer": "Nos clients rentabilisent en 28 jours en moyenne. 1 vente de 500€ suffit."
+    },
+    {
+      "id": 174,
+      "category": "objections_prix",
+      "questions": [
+        "Et si je ne fais pas de ventes"
+      ],
+      "tags": [
+        "pas de ventes",
+        "0 vente",
+        "garantie resultat"
+      ],
+      "answer": "Garantie 30 jours. Si 0 lead, on re-travaille l'Agent gratuitement jusqu'à résultat."
+    },
+    {
+      "id": 175,
+      "category": "objections_prix",
+      "questions": [
+        "Pourquoi pas prendre ChatGPT directement"
+      ],
+      "tags": [
+        "chatgpt direct",
+        "pourquoi pas chatgpt",
+        "alternative"
+      ],
+      "answer": "ChatGPT ne connaît pas ton business. L'Agent Komara est entraîné sur TOI."
+    },
+    {
+      "id": 176,
+      "category": "objections_prix",
+      "questions": [
+        "Vous êtes moins cher que la concurrence"
+      ],
+      "tags": [
+        "concurrence prix",
+        "moins cher",
+        "comparaison"
+      ],
+      "answer": "On est les seuls en Afrique francophone spécialisés Agents Commerciaux IA + support local."
+    },
+    {
+      "id": 177,
+      "category": "objections_prix",
+      "questions": [
+        "Je peux payer en FG"
+      ],
+      "tags": [
+        "payer fg",
+        "franc guineen",
+        "orange money",
+        "wave"
+      ],
+      "answer": "Oui. Orange Money, Wave, Virement. On s'adapte."
+    },
+    {
+      "id": 178,
+      "category": "objections_prix",
+      "questions": [
+        "Il y a une remise si je prends 3 Agents"
+      ],
+      "tags": [
+        "remise 3 agents",
+        "pack agence",
+        "reduction multiple"
+      ],
+      "answer": "Oui. -25% sur le 2ème et 3ème Agent. Pack Agence."
+    },
+    {
+      "id": 179,
+      "category": "objections_prix",
+      "questions": [
+        "L'abonnement augmente chaque année"
+      ],
+      "tags": [
+        "augmentation prix",
+        "prix bloque",
+        "abonnement fixe"
+      ],
+      "answer": "Jamais. Ton prix est bloqué à vie."
+    },
+    {
+      "id": 180,
+      "category": "objections_prix",
+      "questions": [
+        "Et si je veux juste 1 mois pour tester"
+      ],
+      "tags": [
+        "1 mois test",
+        "pack decouverte",
+        "test 1 mois"
+      ],
+      "answer": "Pack Découverte 150€. 1 mois complet, sans engagement."
+    },
+    {
+      "id": 181,
+      "category": "objections_prix",
+      "questions": [
+        "C'est déductible des impôts"
+      ],
+      "tags": [
+        "deductible",
+        "impots",
+        "frais entreprise"
+      ],
+      "answer": "Oui. C'est une charge pour ton entreprise."
+    },
+    {
+      "id": 182,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un restaurant"
+      ],
+      "tags": [
+        "restaurant",
+        "commande restaurant",
+        "reservation resto"
+      ],
+      "answer": "Prend les commandes, gère les réservations, répond c'est ouvert ?, envoie le menu PDF."
+    },
+    {
+      "id": 183,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un agent immobilier"
+      ],
+      "tags": [
+        "immobilier",
+        "agent immo",
+        "vente immobiliere"
+      ],
+      "answer": "Qualifie les acheteurs, envoie les visites vidéo, book les visites, relance 24H/24."
+    },
+    {
+      "id": 184,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un centre de formation"
+      ],
+      "tags": [
+        "formation",
+        "centre formation",
+        "cours"
+      ],
+      "answer": "Vend les formations, répond aux programmes, gère les inscriptions et rappels de cours."
+    },
+    {
+      "id": 185,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une clinique"
+      ],
+      "tags": [
+        "clinique",
+        "sante",
+        "rdv medical",
+        "hopital"
+      ],
+      "answer": "Prise de RDV, réponses FAQ santé, envoi des résultats, rappel de traitement."
+    },
+    {
+      "id": 186,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un e-commerce de vêtements"
+      ],
+      "tags": [
+        "ecommerce vetements",
+        "boutique mode",
+        "vêtements"
+      ],
+      "answer": "Conseil taille, montre les nouveautés, gère les retours, relance panier abandonné."
+    },
+    {
+      "id": 187,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un garage auto"
+      ],
+      "tags": [
+        "garage auto",
+        "mecanique",
+        "voiture",
+        "vidange"
+      ],
+      "answer": "Devis express avec photo, rappel vidange, prise de RDV, explication des pannes."
+    },
+    {
+      "id": 188,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une agence de voyage"
+      ],
+      "tags": [
+        "agence voyage",
+        "voyage",
+        "tourisme",
+        "billet"
+      ],
+      "answer": "Propose 3 voyages selon budget, gère passeport/visa, envoie facture et billet."
+    },
+    {
+      "id": 189,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un coach sportif"
+      ],
+      "tags": [
+        "coach sportif",
+        "sport",
+        "fitness",
+        "abonnement sport"
+      ],
+      "answer": "Vend les abonnements, suit les clients, envoie les programmes, motive par WhatsApp."
+    },
+    {
+      "id": 190,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un photographe"
+      ],
+      "tags": [
+        "photographe",
+        "shooting",
+        "photo"
+      ],
+      "answer": "Envoie portfolio, donne tarifs, book les shootings, envoie les photos via lien."
+    },
+    {
+      "id": 191,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un vendeur de téléphones"
+      ],
+      "tags": [
+        "telephone",
+        "mobile",
+        "smartphone",
+        "vendeur telephone"
+      ],
+      "answer": "Compare les modèles, vérifie stock, propose paiement en 3x, SAV."
+    },
+    {
+      "id": 192,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un avocat"
+      ],
+      "tags": [
+        "avocat",
+        "juridique",
+        "droit",
+        "consultation"
+      ],
+      "answer": "Prise RDV, collecte des pièces, FAQ juridique, envoi des honoraires."
+    },
+    {
+      "id": 193,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une école"
+      ],
+      "tags": [
+        "ecole",
+        "inscription",
+        "education",
+        "etablissement"
+      ],
+      "answer": "Inscriptions, infos frais, planning, relance parents, résultats."
+    },
+    {
+      "id": 194,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une salle de sport"
+      ],
+      "tags": [
+        "salle sport",
+        "gym",
+        "fitness club"
+      ],
+      "answer": "Abonnements, planning cours, rappel séance, vente coaching."
+    },
+    {
+      "id": 195,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un traiteur"
+      ],
+      "tags": [
+        "traiteur",
+        "catering",
+        "evenement"
+      ],
+      "answer": "Devis menu, réservation date, nombre d'invités, acompte."
+    },
+    {
+      "id": 196,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un vendeur de terrain"
+      ],
+      "tags": [
+        "vendeur terrain",
+        "immobilier terrain",
+        "terrain"
+      ],
+      "answer": "Envoi localisation, vidéo, prix, simulation paiement, visite."
+    },
+    {
+      "id": 197,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un salon de coiffure"
+      ],
+      "tags": [
+        "coiffure",
+        "salon",
+        "coupe"
+      ],
+      "answer": "Prise RDV, catalogue coupes, rappel 24H avant, vente produits."
+    },
+    {
+      "id": 198,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une agence de marketing"
+      ],
+      "tags": [
+        "agence marketing",
+        "marketing",
+        "lead agency"
+      ],
+      "answer": "Qualification lead, prise brief, envoi portfolio, proposition."
+    },
+    {
+      "id": 199,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un livreur"
+      ],
+      "tags": [
+        "livreur",
+        "livraison",
+        "suivi colis"
+      ],
+      "answer": "Suivi colis, où est mon livreur, confirmation livraison."
+    },
+    {
+      "id": 200,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un artiste musicien"
+      ],
+      "tags": [
+        "artiste",
+        "musicien",
+        "concert",
+        "musique"
+      ],
+      "answer": "Vente billets, info concert, merch, prise contact pour featuring."
+    },
+    {
+      "id": 201,
+      "category": "cas_metier",
+      "questions": [
+        "Pour une ONG"
+      ],
+      "tags": [
+        "ong",
+        "association",
+        "dons",
+        "humanitaire"
+      ],
+      "answer": "Collecte dons, info projets, bénévolat, rapport d'impact."
+    },
+    {
+      "id": 202,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un vendeur de voitures"
+      ],
+      "tags": [
+        "voiture",
+        "auto",
+        "vehicule",
+        "concession"
+      ],
+      "answer": "Fiche technique, essai, financement, reprise ancien véhicule."
+    },
+    {
+      "id": 203,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un import-export"
+      ],
+      "tags": [
+        "import export",
+        "fret",
+        "douane",
+        "commerce"
+      ],
+      "answer": "Devis fret, suivi conteneur, douane, facture proforma."
+    },
+    {
+      "id": 204,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un cybercafé"
+      ],
+      "tags": [
+        "cybercafe",
+        "internet cafe",
+        "impression"
+      ],
+      "answer": "Impression, scan, vente forfait internet, support PC."
+    },
+    {
+      "id": 205,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un vendeur de cosmétiques"
+      ],
+      "tags": [
+        "cosmetiques",
+        "beaute",
+        "peau",
+        "soins"
+      ],
+      "answer": "Conseil type de peau, routine, avant/après, abonnement."
+    },
+    {
+      "id": 206,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un écrivain auteur"
+      ],
+      "tags": [
+        "auteur",
+        "livre",
+        "ecrivain",
+        "edition"
+      ],
+      "answer": "Vente livre, dédicace, interview, newsletter."
+    },
+    {
+      "id": 207,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un consultant"
+      ],
+      "tags": [
+        "consultant",
+        "conseil",
+        "consulting"
+      ],
+      "answer": "Prise RDV, envoi diagnostic gratuit, proposition d'accompagnement."
+    },
+    {
+      "id": 208,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un organisateur d'événements"
+      ],
+      "tags": [
+        "evenementiel",
+        "evenement",
+        "organisateur",
+        "event"
+      ],
+      "answer": "Devis, check-list, équipe, relance invités, planning jour J."
+    },
+    {
+      "id": 209,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un vendeur de matériaux"
+      ],
+      "tags": [
+        "materiaux",
+        "ciment",
+        "construction",
+        "chantier"
+      ],
+      "answer": "Prix ciment, fer, disponibilité, livraison chantier, devis."
+    },
+    {
+      "id": 210,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un opticien"
+      ],
+      "tags": [
+        "opticien",
+        "lunettes",
+        "vue"
+      ],
+      "answer": "Prise RDV vue, choix monture, rappel renouvellement."
+    },
+    {
+      "id": 211,
+      "category": "cas_metier",
+      "questions": [
+        "Pour un centre d'appel"
+      ],
+      "tags": [
+        "centre appel",
+        "call center",
+        "support telephonique"
+      ],
+      "answer": "L'Agent gère 80% des appels. Tes agents humains gèrent les 20% complexes."
+    },
+    {
+      "id": 212,
+      "category": "futur",
+      "questions": [
+        "Vous allez ajouter quoi ensuite"
+      ],
+      "tags": [
+        "futur",
+        "roadmap",
+        "prochaines features"
+      ],
+      "answer": "Agent Vocal qui appelle, Agent qui fait des vidéos TikTok, Agent qui gère la compta."
+    },
+    {
+      "id": 213,
+      "category": "futur",
+      "questions": [
+        "Je peux revendre vos Agents"
+      ],
+      "tags": [
+        "revendre",
+        "partenaire",
+        "programme partenaire",
+        "commission 30%"
+      ],
+      "answer": "Oui. Programme Partenaire Komara. Tu vends, on installe, tu touches 30%."
+    },
+    {
+      "id": 214,
+      "category": "futur",
+      "questions": [
+        "Dans 1 an mon Agent sera dépassé"
+      ],
+      "tags": [
+        "obsolescence",
+        "depassé",
+        "mise a jour modele"
+      ],
+      "answer": "Non. On met à jour gratuitement avec les nouveaux modèles IA chaque trimestre."
+    },
+    {
+      "id": 215,
+      "category": "futur",
+      "questions": [
+        "L'IA va prendre tout le travail"
+      ],
+      "tags": [
+        "ia travail",
+        "automatisation emploi",
+        "taches"
+      ],
+      "answer": "Elle va prendre les tâches chiantes. Toi tu te concentres sur la stratégie et grandir."
+    },
+    {
+      "id": 216,
+      "category": "futur",
+      "questions": [
+        "C'est le bon moment pour investir"
+      ],
+      "tags": [
+        "bon moment",
+        "investir",
+        "timing"
+      ],
+      "answer": "Il y a 6 mois c'était tôt. Dans 6 mois ce sera tard. Maintenant c'est parfait."
+    },
+    {
+      "id": 217,
+      "category": "futur",
+      "questions": [
+        "Quel est votre plus grand rêve pour Komara"
+      ],
+      "tags": [
+        "reve",
+        "vision",
+        "mission komara"
+      ],
+      "answer": "10.000 entreprises africaines qui vendent 2x plus grâce à nos Agents."
+    },
+    {
+      "id": 218,
+      "category": "futur",
+      "questions": [
+        "Comment vous voyez l'entreprise dans 5 ans"
+      ],
+      "tags": [
+        "5 ans",
+        "vision",
+        "leader francophonie"
+      ],
+      "answer": "Le leader des Agents Commerciaux IA en francophonie. Basés à Conakry."
+    },
+    {
+      "id": 220,
+      "category": "futur",
+      "questions": [
+        "Un dernier conseil"
+      ],
+      "tags": [
+        "conseil",
+        "dernier mot",
+        "motivation"
+      ],
+      "answer": "Ne sois pas le 10ème à avoir un Agent. Sois le 1er de ton secteur."
+    },
+    {
+      "id": 221,
+      "category": "futur",
+      "questions": [
+        "Comment je commence aujourd'hui"
+      ],
+      "tags": [
+        "commencer",
+        "aujourd'hui",
+        "je commence",
+        "lancer"
+      ],
+      "answer": "Écris JE COMMENCE au +212701986219. On cale un appel gratuit de 15min."
+    },
+    {
+      "id": 222,
+      "category": "croissance",
+      "questions": [
+        "Comment passer de 10 à 100 clients avec l'Agent"
+      ],
+      "tags": [
+        "passer 100 clients",
+        "scaling",
+        "grandir"
+      ],
+      "answer": "L'Agent répond à 1000 personnes en même temps. Toi tu te concentres sur la pub."
+    },
+    {
+      "id": 223,
+      "category": "croissance",
+      "questions": [
+        "L'Agent peut-il recruter pour moi"
+      ],
+      "tags": [
+        "recruter",
+        "recrutement",
+        "cv"
+      ],
+      "answer": "Oui. Il tri les CV, pose 5 questions, et book les entretiens."
+    },
+    {
+      "id": 224,
+      "category": "croissance",
+      "questions": [
+        "Il peut gérer mon SAV"
+      ],
+      "tags": [
+        "sav",
+        "service apres vente",
+        "colis"
+      ],
+      "answer": "Mon colis est où ? Retour produit. Il règle 90% sans toi."
+    },
+    {
+      "id": 225,
+      "category": "croissance",
+      "questions": [
+        "L'Agent analyse la concurrence"
+      ],
+      "tags": [
+        "analyser concurrence",
+        "concurrents",
+        "contre offre"
+      ],
+      "answer": "Il scanne leurs prix et te propose des contre-offres auto."
+    },
+    {
+      "id": 226,
+      "category": "croissance",
+      "questions": [
+        "Il peut faire du B2B"
+      ],
+      "tags": [
+        "b2b",
+        "business to business",
+        "prospection b2b"
+      ],
+      "answer": "Oui. Il contacte les entreprises, propose RDV, envoie plaquette."
+    },
+    {
+      "id": 227,
+      "category": "croissance",
+      "questions": [
+        "L'Agent peut-il fidéliser"
+      ],
+      "tags": [
+        "fideliser",
+        "fidelisation",
+        "retention client"
+      ],
+      "answer": "Programme points, anniversaire, ça fait 6 mois. Il garde tes clients."
+    },
+    {
+      "id": 228,
+      "category": "croissance",
+      "questions": [
+        "Et pour l'international"
+      ],
+      "tags": [
+        "international",
+        "export",
+        "langues"
+      ],
+      "answer": "Il parle 15 langues. Tu peux vendre au Sénégal, CI, France."
+    },
+    {
+      "id": 229,
+      "category": "croissance",
+      "questions": [
+        "L'Agent peut-il créer du contenu"
+      ],
+      "tags": [
+        "contenu",
+        "creation contenu",
+        "posts",
+        "tiktok"
+      ],
+      "answer": "Il écrit tes posts Facebook, légendes TikTok, emails."
+    },
+    {
+      "id": 230,
+      "category": "croissance",
+      "questions": [
+        "Il gère les partenariats"
+      ],
+      "tags": [
+        "partenariats",
+        "partenaires",
+        "collaboration"
+      ],
+      "answer": "Bonjour, je suis l'assistant de Komara. On propose..."
+    },
+    {
+      "id": 231,
+      "category": "croissance",
+      "questions": [
+        "Comment scaler avec Komara"
+      ],
+      "tags": [
+        "scaler",
+        "scaling",
+        "grossir"
+      ],
+      "answer": "1 Agent = 1 vendeur. 10 Agents = 10 vendeurs. Sans embaucher."
+    },
+    {
+      "id": 232,
+      "category": "futur_avance",
+      "questions": [
+        "Quelle est la prochaine mise à jour"
+      ],
+      "tags": [
+        "prochaine maj",
+        "mise a jour",
+        "nouvelle feature"
+      ],
+      "answer": "Agent qui fait des vidéos personnalisées pour chaque client."
+    },
+    {
+      "id": 233,
+      "category": "futur_avance",
+      "questions": [
+        "Vous allez faire une appli mobile"
+      ],
+      "tags": [
+        "appli mobile",
+        "app",
+        "application komara"
+      ],
+      "answer": "Oui. App Komara Control pour piloter tous tes Agents."
+    },
+    {
+      "id": 234,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent va-t-il remplacer les humains"
+      ],
+      "tags": [
+        "remplacer humains",
+        "humain vs ia",
+        "remplacement"
+      ],
+      "answer": "Non. Il remplace les tâches répétitives. Les humains vendent mieux."
+    },
+    {
+      "id": 235,
+      "category": "futur_avance",
+      "questions": [
+        "Vous formez des experts Komara"
+      ],
+      "tags": [
+        "formation expert",
+        "certification",
+        "installateur"
+      ],
+      "answer": "Oui. Formation certifiante Installateur Agent IA Komara."
+    },
+    {
+      "id": 236,
+      "category": "futur_avance",
+      "questions": [
+        "Komara va lever des fonds"
+      ],
+      "tags": [
+        "lever fonds",
+        "investissement",
+        "financement"
+      ],
+      "answer": "Objectif 2027. Pour devenir le leader Afrique francophone."
+    },
+    {
+      "id": 237,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer la compta"
+      ],
+      "tags": [
+        "compta",
+        "comptabilite",
+        "bilan",
+        "finance"
+      ],
+      "answer": "Bientôt. Encaissement, dépenses, bilan mensuel auto."
+    },
+    {
+      "id": 238,
+      "category": "futur_avance",
+      "questions": [
+        "Vous travaillez avec le gouvernement"
+      ],
+      "tags": [
+        "gouvernement",
+        "public",
+        "service public"
+      ],
+      "answer": "En discussion. Pour digitaliser le service client public."
+    },
+    {
+      "id": 239,
+      "category": "futur_avance",
+      "questions": [
+        "Quelle est la vision à 5 ans"
+      ],
+      "tags": [
+        "vision 5 ans",
+        "pme africaine",
+        "long terme"
+      ],
+      "answer": "1 Agent IA dans chaque PME africaine."
+    },
+    {
+      "id": 240,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent aura une voix humaine"
+      ],
+      "tags": [
+        "voix humaine",
+        "voix clonee",
+        "vocal ia"
+      ],
+      "answer": "Déjà. Option voix clonée à la tienne."
+    },
+    {
+      "id": 241,
+      "category": "futur_avance",
+      "questions": [
+        "Vous faites de la R&D"
+      ],
+      "tags": [
+        "r&d",
+        "recherche",
+        "labo",
+        "innovation"
+      ],
+      "answer": "Oui. Labo Komara à Conakry. On teste les nouveaux modèles."
+    },
+    {
+      "id": 242,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer des équipes"
+      ],
+      "tags": [
+        "gerer equipe",
+        "notification equipe",
+        "team"
+      ],
+      "answer": "Dis à l'équipe vente qu'il y a 3 leads chauds. Il le fait."
+    },
+    {
+      "id": 243,
+      "category": "futur_avance",
+      "questions": [
+        "Vous êtes éthique"
+      ],
+      "tags": [
+        "ethique",
+        "moral",
+        "responsable"
+      ],
+      "answer": "100%. Pas de mensonge, pas de spam, pas de vol de données."
+    },
+    {
+      "id": 244,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer plusieurs marques"
+      ],
+      "tags": [
+        "plusieurs marques",
+        "multi marque"
+      ],
+      "answer": "Oui. 1 Agent = 1 marque. Tu peux avoir 10 marques."
+    },
+    {
+      "id": 245,
+      "category": "futur_avance",
+      "questions": [
+        "Vous avez des ambassadeurs"
+      ],
+      "tags": [
+        "ambassadeur",
+        "parrainage",
+        "filleul"
+      ],
+      "answer": "Oui. Rejoins le programme et gagne 20% sur chaque filleul."
+    },
+    {
+      "id": 246,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent gère les crises"
+      ],
+      "tags": [
+        "crise",
+        "bad buzz",
+        "gestion crise"
+      ],
+      "answer": "Bad buzz, plainte. Il calme et propose solution avant que ça explose."
+    },
+    {
+      "id": 247,
+      "category": "futur_avance",
+      "questions": [
+        "Vous faites du sur-mesure"
+      ],
+      "tags": [
+        "sur mesure",
+        "custom",
+        "personnalise"
+      ],
+      "answer": "Tout est sur-mesure. Aucun Agent ne ressemble à un autre."
+    },
+    {
+      "id": 248,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il apprendre de mes meilleurs vendeurs"
+      ],
+      "tags": [
+        "apprendre vendeurs",
+        "cloner discours",
+        "top commercial"
+      ],
+      "answer": "Oui. On enregistre et on clone le discours de ton top commercial."
+    },
+    {
+      "id": 249,
+      "category": "futur_avance",
+      "questions": [
+        "Vous avez un blog"
+      ],
+      "tags": [
+        "blog",
+        "articles",
+        "contenu blog"
+      ],
+      "answer": "Oui. 2 articles/semaine sur l'IA et la vente. https://komara-agency.onrender.com/blog"
+    },
+    {
+      "id": 250,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer les litiges"
+      ],
+      "tags": [
+        "litiges",
+        "conflit client",
+        "resolution"
+      ],
+      "answer": "Il propose 3 solutions. Si bloqué, il monte à la direction."
+    },
+    {
+      "id": 251,
+      "category": "futur_avance",
+      "questions": [
+        "Vous êtes dispo le week-end"
+      ],
+      "tags": [
+        "week-end",
+        "dispo",
+        "7j/7",
+        "weekend"
+      ],
+      "answer": "L'Agent oui. Notre équipe support aussi, 7j/7."
+    },
+    {
+      "id": 252,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer les stocks"
+      ],
+      "tags": [
+        "gestion stock",
+        "alerte stock",
+        "inventaire"
+      ],
+      "answer": "Alerte: il reste 5 iPhone. Il te prévient avant rupture."
+    },
+    {
+      "id": 253,
+      "category": "futur_avance",
+      "questions": [
+        "Vous faites des événements"
+      ],
+      "tags": [
+        "evenements",
+        "event",
+        "komara day"
+      ],
+      "answer": "Oui. Komara IA Day chaque trimestre à Conakry."
+    },
+    {
+      "id": 254,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il faire des devis auto"
+      ],
+      "tags": [
+        "devis auto",
+        "devis automatique",
+        "pdf devis"
+      ],
+      "answer": "Client donne infos → Devis PDF envoyé en 30 secondes."
+    },
+    {
+      "id": 255,
+      "category": "futur_avance",
+      "questions": [
+        "Vous avez une communauté"
+      ],
+      "tags": [
+        "communaute",
+        "groupe utilisateurs",
+        "network"
+      ],
+      "answer": "Groupe WhatsApp privé Utilisateurs Komara pour s'entraider."
+    },
+    {
+      "id": 256,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer les retours"
+      ],
+      "tags": [
+        "retours",
+        "retour produit",
+        "etiquette retour"
+      ],
+      "answer": "Oui. Il génère étiquette retour et book le coursier."
+    },
+    {
+      "id": 257,
+      "category": "futur_avance",
+      "questions": [
+        "Vous embauchez"
+      ],
+      "tags": [
+        "embauche",
+        "jobs",
+        "recrutement komara",
+        "emploi"
+      ],
+      "answer": "Oui. Développeurs IA, Sales IA, Support. CV à komaraagency@gmail.com"
+    },
+    {
+      "id": 258,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer la pub"
+      ],
+      "tags": [
+        "gerer pub",
+        "publicite",
+        "ads gestion"
+      ],
+      "answer": "Il analyse et te dit: Mets 50€ sur cette pub, elle convertit."
+    },
+    {
+      "id": 259,
+      "category": "futur_avance",
+      "questions": [
+        "Vous avez un livre blanc"
+      ],
+      "tags": [
+        "livre blanc",
+        "guide",
+        "ebook gratuit"
+      ],
+      "answer": "Comment vendre 2x plus avec l'IA en Afrique. Gratuit sur demande."
+    },
+    {
+      "id": 260,
+      "category": "futur_avance",
+      "questions": [
+        "L'Agent peut-il gérer les abonnements récurrents"
+      ],
+      "tags": [
+        "abonnements recurrents",
+        "subscription recurrente",
+        "paiement recurrent"
+      ],
+      "answer": "Oui. Netflix, salle de sport, box. Tout."
+    },
+    {
+      "id": 261,
+      "category": "futur_avance",
+      "questions": [
+        "Dernier mot pour convaincre"
+      ],
+      "tags": [
+        "convaincre",
+        "dernier mot",
+        "je lance",
+        "final"
+      ],
+      "answer": "Dans 1 an, toutes les entreprises auront un Agent IA. La question c'est: tu veux être le 1er ou le dernier ? Écris JE LANCE au +212701986219"
+    },
+    {
+      "id": 262,
+      "category": "technique_avance",
+      "questions": [
+        "L'Agent peut-il utiliser mes images produits"
+      ],
+      "tags": [
+        "images produits",
+        "photos produits",
+        "visuel produit"
+      ],
+      "answer": "Oui. Il envoie la bonne photo quand le client demande montre moi le sac bleu."
+    },
+    {
+      "id": 263,
+      "category": "technique_avance",
+      "questions": [
+        "Il se connecte à mon Excel de stock"
+      ],
+      "tags": [
+        "excel stock",
+        "google sheet",
+        "notion stock",
+        "airtable"
+      ],
+      "answer": "Oui. Google Sheet, Notion, Airtable. Il répond en temps réel sur le stock."
+    },
+    {
+      "id": 264,
+      "category": "technique_avance",
+      "questions": [
+        "L'Agent peut-il créer des factures"
+      ],
+      "tags": [
+        "factures",
+        "facture auto",
+        "facture.co"
+      ],
+      "answer": "Oui. Intégration avec Facture.co et Excel. Nom, produit, prix → facture envoyée."
+    },
+    {
+      "id": 265,
+      "category": "technique_avance",
+      "questions": [
+        "Et la reconnaissance vocale"
+      ],
+      "tags": [
+        "reconnaissance vocale",
+        "vocal",
+        "audio message"
+      ],
+      "answer": "Le client envoie un vocal, l'Agent comprend et répond par texte ou vocal."
+    },
+    {
+      "id": 266,
+      "category": "technique_avance",
+      "questions": [
+        "L'Agent peut-il passer des commandes à ma place"
+      ],
+      "tags": [
+        "commander fournisseur",
+        "auto commande",
+        "passer commande"
+      ],
+      "answer": "Oui. Commande 10 sacs chez le fournisseur X → Email auto envoyé."
+    },
+    {
+      "id": 267,
+      "category": "technique_avance",
+      "questions": [
+        "Il gère le multi-compte"
+      ],
+      "tags": [
+        "multi compte",
+        "multi plateforme",
+        "plusieurs comptes"
+      ],
+      "answer": "1 Agent peut gérer ton WhatsApp + Insta + Site en même temps."
+    },
+    {
+      "id": 268,
+      "category": "technique_avance",
+      "questions": [
+        "L'Agent peut-il traduire"
+      ],
+      "tags": [
+        "traduire",
+        "traduction",
+        "bilingue"
+      ],
+      "answer": "Client écrit en anglais, il répond en français. Et inversement."
+    },
+    {
+      "id": 269,
+      "category": "technique_avance",
+      "questions": [
+        "Il marche sur connexion lente"
+      ],
+      "tags": [
+        "connexion lente",
+        "3g",
+        "light",
+        "low bandwidth"
+      ],
+      "answer": "Oui. Version Light optimisée pour la 3G en Afrique."
+    },
+    {
+      "id": 270,
+      "category": "technique_avance",
+      "questions": [
+        "L'Agent peut-il détecter les arnaqueurs"
+      ],
+      "tags": [
+        "arnaqueurs",
+        "spam",
+        "securite message",
+        "fraude"
+      ],
+      "answer": "Oui. Il flag les messages suspects et t'alerte."
+    },
+    {
+      "id": 271,
+      "category": "technique_avance",
+      "questions": [
+        "Et pour la sauvegarde"
+      ],
+      "tags": [
+        "sauvegarde",
+        "backup",
+        "restauration"
+      ],
+      "answer": "Sauvegarde auto chaque nuit. Si problème, on restaure en 5min."
     }
   ],
   "conversations": [

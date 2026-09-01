@@ -1,122 +1,137 @@
-"""Fichier de recherche locale pour le bot Telegram Komara."""
+"""Fichier de recherche locale pour le bot Telegram Komara.
+Version 2.0 — Matching par intention + fuzzy + tolérance fautes.
+Le bot comprend l'intention du client, pas juste les mots-clés exacts.
+"""
 
 from typing import Any, List, Tuple
 import re
-from normalize_text import normalize_text  # Assurez-vous que ce module est accessible
+from normalize_text import normalize_text, remove_accents, normalize, detect_intent, fuzzy_match, score_match as fuzzy_score
 
-def score_match(user_message: str, keyword: str) -> float:
-    """
-    Calcule le score de correspondance basé sur l'intersection des mots.
-    Utilise le max des deux ratios pour éviter les faux négatifs quand
-    l'utilisateur fait une phrase courte avec un mot-clé important.
-    Normalise les deux côtés (accents retirés) pour un matching insensible
-    aux accents.
-    """
-    if not user_message or not keyword:
-        return 0.0
-    
-    # Normaliser les deux côtés (retire les accents)
-    norm_msg = normalize_text(user_message)
-    norm_kw = normalize_text(keyword)
-    
-    # Extraction des mots (alphanumériques)
-    words_msg = set(re.findall(r'\w+', norm_msg))
-    words_kw = set(re.findall(r'\w+', norm_kw))
-    
-    if not words_kw or not words_msg:
-        return 0.0
-        
-    intersection = words_msg.intersection(words_kw)
-    
-    if not intersection:
-        return 0.0
-    
-    # Ratio 1: proportion des mots-clés trouvés dans le message
-    ratio_kw = len(intersection) / len(words_kw)
-    # Ratio 2: proportion du message couverte par les mots-clés
-    ratio_msg = len(intersection) / len(words_msg)
-    
-    # Score = le meilleur des deux ratios
-    return max(ratio_kw, ratio_msg)
 
-def _get_searchable_terms(item: dict[str, Any]) -> list[str]:
+def _get_searchable_terms(item: dict[str, Any]) -> tuple[list[str], list[str], list[str]]:
+    """Extrait questions, tags/keywords et catégorie d'un item KB."""
+    questions: list[str] = []
+    tags: list[str] = []
+
+    qs = item.get("questions", [])
+    if isinstance(qs, list):
+        questions.extend(qs)
+    elif isinstance(qs, str) and qs:
+        questions.append(qs)
+
+    q = item.get("question", "")
+    if isinstance(q, str) and q:
+        questions.append(q)
+
+    kws = item.get("keywords", [])
+    if isinstance(kws, list):
+        tags.extend(kws)
+    elif isinstance(kws, str) and kws:
+        tags.append(kws)
+
+    ts = item.get("tags", [])
+    if isinstance(ts, list):
+        tags.extend(ts)
+
+    cat = item.get("category", "")
+    return questions, tags, [cat] if cat else []
+
+
+def _score_entry(message_norm: str, message_raw: str, questions: list, tags: list, categories: list) -> float:
+    """Score une entrée de la KB contre le message.
+    Combine: matching exact + fuzzy + intention + catégorie.
     """
-    Extrait tous les termes de recherche d'un item de la base de connaissances.
-    Gère les deux formats:
-    - Root kb.json: "questions" (pluriel, liste) + "tags"
-    - Lang kb.json: "question" (singulier, string) + "keywords"
-    """
-    terms: list[str] = []
-    
-    # Format root kb.json: questions (pluriel, liste de strings)
-    questions = item.get("questions", [])
-    if isinstance(questions, list):
-        terms.extend(questions)
-    elif isinstance(questions, str) and questions:
-        terms.append(questions)
-    
-    # Format lang kb.json: question (singulier, string)
-    question = item.get("question", "")
-    if isinstance(question, str) and question:
-        terms.append(question)
-    
-    # Keywords (lang kb.json)
-    keywords = item.get("keywords", [])
-    if isinstance(keywords, list):
-        terms.extend(keywords)
-    elif isinstance(keywords, str) and keywords:
-        terms.append(keywords)
-    
-    # Tags (root kb.json)
-    tags = item.get("tags", [])
-    if isinstance(tags, list):
-        terms.extend(tags)
-    
-    return terms
+    if not message_norm:
+        return 0.0
+
+    msg_words = set(message_norm.split())
+    score = 0.0
+
+    # 1. Matching sur tags (poids fort)
+    for tag in tags:
+        tag_norm = remove_accents(tag.lower())
+        tag_words = tag_norm.split()
+        for tw in tag_words:
+            if tw in msg_words:
+                score += 2.0
+            else:
+                # Fuzzy: tolérer les fautes
+                for mw in msg_words:
+                    if len(mw) >= 3 and len(tw) >= 3 and fuzzy_match(tw, mw, 0.75):
+                        score += 1.0
+                        break
+        # Tag complet dans le message
+        if tag_norm in message_norm:
+            score += 3.0
+
+    # 2. Matching sur questions
+    for q in questions:
+        q_norm = remove_accents(q.lower())
+        q_words = set(q_norm.split())
+        overlap = msg_words & q_words
+        if overlap:
+            score += len(overlap) * 1.5
+        # Fuzzy sur mots de la question
+        for qw in q_words:
+            if qw not in msg_words and len(qw) >= 4:
+                for mw in msg_words:
+                    if len(mw) >= 4 and fuzzy_match(qw, mw, 0.75):
+                        score += 0.5
+                        break
+
+    # 3. Bonus si la catégorie correspond à l'intention détectée
+    intent = detect_intent(message_raw)
+    if intent:
+        for cat in categories:
+            if intent in cat or cat in intent:
+                score += 2.0
+
+    return score
+
 
 def trouver_meilleure_reponse(
-    message: str, 
-    knowledge_base: List[dict[str, Any]], 
+    message: str,
+    knowledge_base: List[dict[str, Any]],
     local_faq: List[dict[str, str]],
     local_dialogues: List[dict[str, str]] = None
 ) -> str | None:
-    """
-    Retourne la meilleure réponse possible à partir de la base de connaissances, 
-    de la FAQ locale et des dialogues.
+    """Retourne la meilleure réponse en comprenant l'intention du client.
+    Utilise le fuzzy matching pour tolérer les fautes et mots mal formés.
     """
     if local_dialogues is None:
         local_dialogues = []
-        
+
+    if not message or not message.strip():
+        return None
+
+    # Normaliser le message (corrige les fautes, supprime les accents)
+    message_norm = normalize(message)
     candidates: List[Tuple[float, str]] = []
 
-    # Normaliser le message avant utilisation
-    normalized_message = normalize_text(message) if message else ""
-
-    # 1. Recherche dans la base de connaissances (kb.json)
+    # 1. Base de connaissances (kb.json)
     for item in knowledge_base:
-        terms = _get_searchable_terms(item)
-        best_score = 0.0
-        for term in terms:
-            score = score_match(normalized_message, term)
-            if score > best_score:
-                best_score = score
-        if best_score >= 0.25:
-            candidates.append((best_score, item.get("answer", "")))
+        questions, tags, cats = _get_searchable_terms(item)
+        score = _score_entry(message_norm, message, questions, tags, cats)
+        if score >= 2.0:  # Seuil minimum
+            candidates.append((score, item.get("answer", "")))
 
-    # 2. Recherche dans la FAQ locale
+    # 2. FAQ locale
     for item in local_faq:
-        score = score_match(normalized_message, item["question"])
-        if score >= 0.25:
-            candidates.append((score, item["answer"]))
+        q = item.get("question", "")
+        score = _score_entry(message_norm, message, [q], [], [])
+        if score >= 2.0:
+            candidates.append((score, item.get("answer", "")))
 
-    # 3. Recherche dans les Dialogues
+    # 3. Dialogues
     for item in local_dialogues:
-        score = score_match(normalized_message, item["question"])
-        if score >= 0.25:
-            candidates.append((score, item["answer"]))
+        q = item.get("question", "")
+        score = _score_entry(message_norm, message, [q], [], [])
+        if score >= 2.0:
+            candidates.append((score, item.get("answer", "")))
 
-    # Retourner la réponse avec le score le plus élevé parmi TOUTES les sources
     if candidates:
-        return max(candidates, key=lambda x: x[0])[1]
+        # Trier par score décroissant et retourner la meilleure
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        return candidates[0][1]
 
     return None
