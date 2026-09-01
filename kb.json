@@ -3942,6 +3942,628 @@
         "developpement_web_applications",
         "local"
       ]
+    },
+    {
+      "id": 1,
+      "category": "ia_faq",
+      "questions": [
+        "Qu'est-ce que l'intelligence artificielle"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "ia",
+        "definition ia",
+        "ai definition"
+      ],
+      "answer": "L'intelligence artificielle (IA) est une branche de l'informatique qui vise à créer des systèmes capables d'effectuer des tâches qui nécessiteraient normalement une intelligence humaine, comme la reconnaissance des voix, la prise de décision et le traitement du langage naturel."
+    },
+    {
+      "id": 2,
+      "category": "ia_faq",
+      "questions": [
+        "L'IA peut-elle remplacer les humains"
+      ],
+      "tags": [
+        "remplacer humains",
+        "ia remplace",
+        "automatisation emploi",
+        "humain vs ia"
+      ],
+      "answer": "L'IA peut automatiser certaines tâches et améliorer l'efficacité, mais elle ne peut pas remplacer entièrement les humains, surtout dans des domaines nécessitant des compétences émotionnelles, créatives ou des jugements complexes."
+    },
+    {
+      "id": 3,
+      "category": "ia_faq",
+      "questions": [
+        "Quelles sont les applications de l'IA"
+      ],
+      "tags": [
+        "applications ia",
+        "utilisation ia",
+        "domaine ia",
+        "ia sante",
+        "ia finance"
+      ],
+      "answer": "L'IA est utilisée dans divers domaines, tels que la santé (diagnostic médical), la finance (analyse de risque), les transports (conduite autonome), et le service client (chatbots)."
+    },
+    {
+      "id": 4,
+      "category": "ia_faq",
+      "questions": [
+        "L'IA est-elle sûre"
+      ],
+      "tags": [
+        "ia sure",
+        "securite ia",
+        "risque ia",
+        "ia danger",
+        "ia ethique"
+      ],
+      "answer": "Comme toute technologie, l'utilisation de l'IA comporte des risques. Il est essentiel d'implémenter des mesures de sécurité et des règlements appropriés pour garantir une utilisation éthique et responsable."
+    },
+    {
+      "id": 5,
+      "category": "ia_faq",
+      "questions": [
+        "Comment fonctionne l'apprentissage automatique"
+      ],
+      "tags": [
+        "apprentissage automatique",
+        "machine learning",
+        "algorithme apprentissage"
+      ],
+      "answer": "L'apprentissage automatique, une sous-catégorie de l'IA, utilise des algorithmes pour analyser des données, identifier des modèles et faire des prédictions sans être explicitement programmé pour chaque tâche."
+    },
+    {
+      "id": 6,
+      "category": "ia_faq",
+      "questions": [
+        "Quels sont les défis éthiques liés à l'IA"
+      ],
+      "tags": [
+        "defis ethiques ia",
+        "ethique ia",
+        "biais ia",
+        "vie privee ia"
+      ],
+      "answer": "Les défis incluent la protection de la vie privée, la discrimination algorithmique, la transparence des décisions prises par les systèmes d'IA et la responsabilité en cas de défaillance."
+    },
+    {
+      "id": 7,
+      "category": "ia_faq",
+      "questions": [
+        "Qu'est-ce que le traitement du langage naturel NLP"
+      ],
+      "tags": [
+        "nlp",
+        "traitement langage naturel",
+        "langage humain ia"
+      ],
+      "answer": "Le traitement du langage naturel (NLP) est une branche de l'IA qui permet aux machines de comprendre, interpréter et générer du langage humain, pour que les utilisateurs puissent interagir avec eux naturellement."
+    },
+    {
+      "id": 8,
+      "category": "ia_faq",
+      "questions": [
+        "Quelles sont les différences entre IA faible et IA forte"
+      ],
+      "tags": [
+        "ia faible",
+        "ia forte",
+        "types ia",
+        "weak ai",
+        "strong ai"
+      ],
+      "answer": "L'IA faible fait référence à des systèmes conçus pour effectuer des tâches spécifiques (comme un chatbot), tandis que l'IA forte est une hypothétique forme d'intelligence artificielle qui pourrait comprendre et raisonner comme un humain."
+    },
+    {
+      "id": 9,
+      "category": "ia_faq",
+      "questions": [
+        "Comment les données sont-elles utilisées pour développer des modèles d'IA"
+      ],
+      "tags": [
+        "donnees ia",
+        "entrainement modele",
+        "formation ia",
+        "data ia"
+      ],
+      "answer": "Les modèles d'IA sont formés à partir de grandes quantités de données, à partir desquelles ils apprennent des modèles et des relations. Ces données peuvent être des images, du texte ou des données numériques."
+    },
+    {
+      "id": 10,
+      "category": "ia_faq",
+      "questions": [
+        "L'IA peut-elle avoir des biais"
+      ],
+      "tags": [
+        "biais ia",
+        "biais algorithme",
+        "discrimination ia"
+      ],
+      "answer": "Oui, les modèles d'IA peuvent hériter de biais présents dans les données utilisées pour les former. C'est pourquoi il est important de veiller à la qualité et à la représentativité des données."
+    },
+    {
+      "id": 11,
+      "category": "ia_faq",
+      "questions": [
+        "Quelles compétences sont nécessaires pour travailler dans le domaine de l'IA"
+      ],
+      "tags": [
+        "competences ia",
+        "travailler ia",
+        "carriere ia",
+        "python ia"
+      ],
+      "answer": "Les compétences clés incluent la programmation (Python, R), la compréhension des mathématiques et des statistiques, la connaissance des algorithmes d'apprentissage automatique, ainsi que des compétences en analyse de données."
+    },
+    {
+      "id": 12,
+      "category": "ia_faq",
+      "questions": [
+        "Comment l'IA influence-t-elle l'économie"
+      ],
+      "tags": [
+        "ia economie",
+        "impact economique ia",
+        "automatisation emploi"
+      ],
+      "answer": "L'IA a le potentiel de transformer l'économie en augmentant l'efficacité et la productivité, mais elle soulève également des questions sur l'automatisation des emplois et la redistribution des tâches."
+    },
+    {
+      "id": 13,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que la technologie"
+      ],
+      "tags": [
+        "technologie",
+        "definition technologie"
+      ],
+      "answer": "La technologie désigne l'ensemble des outils, techniques et méthodes utilisés pour créer, développer et améliorer des biens et services."
+    },
+    {
+      "id": 14,
+      "category": "tech_faq",
+      "questions": [
+        "Comment la technologie influence-t-elle notre quotidien"
+      ],
+      "tags": [
+        "technologie quotidien",
+        "impact technologie"
+      ],
+      "answer": "La technologie a un impact énorme sur tous les aspects de notre vie, de la communication et du transport à la santé et l'éducation. Elle simplifie des tâches et améliore notre qualité de vie."
+    },
+    {
+      "id": 15,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que le cloud computing"
+      ],
+      "tags": [
+        "cloud computing",
+        "cloud",
+        "stockage cloud"
+      ],
+      "answer": "Le cloud computing est un modèle qui permet l'accès à des ressources informatiques (stockage, serveurs) via Internet, sans avoir besoin d'infrastructure physique sur site."
+    },
+    {
+      "id": 16,
+      "category": "tech_faq",
+      "questions": [
+        "Quels sont les avantages de la cybersécurité"
+      ],
+      "tags": [
+        "cybersecurite",
+        "securite informatique",
+        "protection donnees"
+      ],
+      "answer": "La cybersécurité protège les systèmes d'information et les données contre les accès non autorisés, les cyberattaques et les violations de données, assurant ainsi la confidentialité et la sécurité des informations."
+    },
+    {
+      "id": 17,
+      "category": "tech_faq",
+      "questions": [
+        "Quelles sont les tendances technologiques actuelles"
+      ],
+      "tags": [
+        "tendances technologiques",
+        "tendances tech"
+      ],
+      "answer": "Les tendances clés incluent l'intelligence artificielle, l'Internet des objets (IoT), la réalité augmentée/virtuelle, la blockchain et la 5G."
+    },
+    {
+      "id": 18,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que la réalité virtuelle RV"
+      ],
+      "tags": [
+        "realite virtuelle",
+        "rv",
+        "vr",
+        "casque vr"
+      ],
+      "answer": "La réalité virtuelle est une technologie qui crée une simulation immersive d'un environnement 3D, permettant aux utilisateurs d'interagir avec des mondes virtuels à l'aide de casques RV."
+    },
+    {
+      "id": 19,
+      "category": "tech_faq",
+      "questions": [
+        "Comment l'automatisation impacte-t-elle les emplois"
+      ],
+      "tags": [
+        "automatisation emploi",
+        "impact automatisation"
+      ],
+      "answer": "L'automatisation peut améliorer l'efficacité, mais elle peut également déplacer certains emplois, nécessitant des travailleurs d'acquérir de nouvelles compétences pour s'adapter."
+    },
+    {
+      "id": 20,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'IoT Internet des objets"
+      ],
+      "tags": [
+        "iot",
+        "internet des objets",
+        "objets connectes"
+      ],
+      "answer": "L'IoT fait référence à un réseau d'objets physiques connectés à Internet et capables de collecter et d'échanger des données, permettant des interactions intelligentes entre appareils."
+    },
+    {
+      "id": 21,
+      "category": "tech_faq",
+      "questions": [
+        "Quels sont les risques liés à la technologie"
+      ],
+      "tags": [
+        "risques technologie",
+        "danger technologie"
+      ],
+      "answer": "Les risques incluent la perte de la vie privée, la dépendance technologique, les cybermenaces et les inégalités d'accès aux technologies."
+    },
+    {
+      "id": 22,
+      "category": "tech_faq",
+      "questions": [
+        "Pourquoi est-il important d'éduquer sur la technologie"
+      ],
+      "tags": [
+        "education technologie",
+        "education tech"
+      ],
+      "answer": "L'éducation technologique aide les individus à comprendre et à utiliser la technologie de manière responsable et efficace."
+    },
+    {
+      "id": 23,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'IA générative"
+      ],
+      "tags": [
+        "ia generative",
+        "generative ai",
+        "creation contenu ia"
+      ],
+      "answer": "L'IA générative est un type d'intelligence artificielle qui utilise des algorithmes pour créer de nouveaux contenus, tels que du texte, des images ou de la musique, basés sur des modèles appris."
+    },
+    {
+      "id": 24,
+      "category": "tech_faq",
+      "questions": [
+        "Quel est le rôle de la blockchain"
+      ],
+      "tags": [
+        "blockchain",
+        "crypto",
+        "chaine de blocs"
+      ],
+      "answer": "La blockchain est une technologie de stockage et de transmission d'informations qui garantit la sécurité, la transparence et l'immutabilité des données, souvent utilisée dans les cryptomonnaies."
+    },
+    {
+      "id": 25,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'open source"
+      ],
+      "tags": [
+        "open source",
+        "logiciel libre",
+        "opensource"
+      ],
+      "answer": "L'open source fait référence à des logiciels dont le code source est accessible au public, permettant à quiconque de l'utiliser, le modifier et le distribuer."
+    },
+    {
+      "id": 26,
+      "category": "tech_faq",
+      "questions": [
+        "Comment la technologie influence-t-elle le secteur de la santé"
+      ],
+      "tags": [
+        "technologie sante",
+        "telemedecine",
+        "sante numerique"
+      ],
+      "answer": "La technologie transforme la santé avec la télémédecine, les dispositifs médicaux connectés, l'analyse de données pour la recherche médicale et l'amélioration des soins."
+    },
+    {
+      "id": 27,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que le big data"
+      ],
+      "tags": [
+        "big data",
+        "donnees massives",
+        "analyse donnees"
+      ],
+      "answer": "Le big data se réfère à des ensembles de données si volumineux et complexes qu'ils nécessitent des technologies avancées pour les traiter, stocker et analyser."
+    },
+    {
+      "id": 28,
+      "category": "tech_faq",
+      "questions": [
+        "Quels sont les avantages des technologies durables"
+      ],
+      "tags": [
+        "technologies durables",
+        "tech verte",
+        "ecologie technologie"
+      ],
+      "answer": "Les technologies durables visent à réduire l'impact environnemental, économiser l'énergie et promouvoir des pratiques respectueuses de l'environnement."
+    },
+    {
+      "id": 29,
+      "category": "tech_faq",
+      "questions": [
+        "Comment la 5G change-t-elle la connectivité"
+      ],
+      "tags": [
+        "5g",
+        "connectivite 5g",
+        "reseau 5g"
+      ],
+      "answer": "La 5G offre des vitesses de connexion beaucoup plus rapides et une latence réduite, permettant des innovations dans les véhicules autonomes, l'IoT et la réalité augmentée."
+    },
+    {
+      "id": 30,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce qu'un chatbot"
+      ],
+      "tags": [
+        "chatbot",
+        "bot conversation",
+        "assistant virtuel"
+      ],
+      "answer": "Un chatbot est un programme informatique conçu pour simuler une conversation humaine, souvent utilisé dans le service client pour répondre aux questions de manière automatisée."
+    },
+    {
+      "id": 31,
+      "category": "tech_faq",
+      "questions": [
+        "Pourquoi protéger ses données personnelles en ligne"
+      ],
+      "tags": [
+        "proteger donnees",
+        "donnees personnelles",
+        "vie privee ligne"
+      ],
+      "answer": "Protéger ses données personnelles est crucial pour éviter le vol d'identité, la fraude et les abus, et pour maintenir la vie privée."
+    },
+    {
+      "id": 32,
+      "category": "tech_faq",
+      "questions": [
+        "Comment les technologies de l'éducation transforment l'apprentissage"
+      ],
+      "tags": [
+        "technologie education",
+        "e-learning",
+        "education numerique"
+      ],
+      "answer": "Les technologies de l'éducation rendent l'apprentissage plus accessible, interactif et personnalisable, améliorant l'engagement des étudiants."
+    },
+    {
+      "id": 33,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'analyse prédictive"
+      ],
+      "tags": [
+        "analyse predictive",
+        "prediction donnees",
+        "forecasting"
+      ],
+      "answer": "L'analyse prédictive utilise des techniques statistiques et des algorithmes de machine learning pour examiner des données historiques et faire des prédictions."
+    },
+    {
+      "id": 34,
+      "category": "tech_faq",
+      "questions": [
+        "Cybersécurité et protection des données"
+      ],
+      "tags": [
+        "cybersecurite donnees",
+        "protection cyber",
+        "anti malware"
+      ],
+      "answer": "La cybersécurité est essentielle pour protéger les systèmes informatiques et les données contre les cyberattaques, violations et logiciels malveillants."
+    },
+    {
+      "id": 35,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce qu'une application mobile"
+      ],
+      "tags": [
+        "application mobile",
+        "app mobile",
+        "smartphone app"
+      ],
+      "answer": "Une application mobile est un logiciel conçu pour fonctionner sur des appareils mobiles, comme les smartphones et tablettes, permettant d'accéder à divers services."
+    },
+    {
+      "id": 36,
+      "category": "tech_faq",
+      "questions": [
+        "Comment fonctionne la reconnaissance faciale"
+      ],
+      "tags": [
+        "reconnaissance faciale",
+        "face id",
+        "biometrie visage"
+      ],
+      "answer": "La reconnaissance faciale utilise des algorithmes d'apprentissage automatique pour identifier une personne en analysant les traits de son visage à partir d'images ou vidéos."
+    },
+    {
+      "id": 37,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que le télétravail"
+      ],
+      "tags": [
+        "teletravail",
+        "travail distance",
+        "remote work"
+      ],
+      "answer": "Le télétravail désigne la pratique de travailler à distance, souvent depuis son domicile, en utilisant des technologies de communication en ligne."
+    },
+    {
+      "id": 38,
+      "category": "tech_faq",
+      "questions": [
+        "Défis de l'accessibilité numérique"
+      ],
+      "tags": [
+        "accessibilite numerique",
+        "accessibilite web",
+        "handicap numerique"
+      ],
+      "answer": "Les défis incluent la conception de sites et applications utilisables par tous, y compris les personnes handicapées, pour assurer l'égalité d'accès."
+    },
+    {
+      "id": 39,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que le machine learning"
+      ],
+      "tags": [
+        "machine learning",
+        "ml",
+        "apprentissage machine"
+      ],
+      "answer": "Le machine learning est une sous-catégorie de l'IA qui permet aux systèmes d'apprendre à partir de données et d'améliorer leurs performances sans être explicitement programmés."
+    },
+    {
+      "id": 40,
+      "category": "tech_faq",
+      "questions": [
+        "Pourquoi garder le logiciel à jour"
+      ],
+      "tags": [
+        "mise a jour logiciel",
+        "update logiciel",
+        "securite mise a jour"
+      ],
+      "answer": "Mettre à jour régulièrement le logiciel est crucial pour corriger des bugs, améliorer la sécurité, ajouter des fonctionnalités et garantir le bon fonctionnement."
+    },
+    {
+      "id": 41,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'Internet des véhicules IoV"
+      ],
+      "tags": [
+        "iov",
+        "internet vehicules",
+        "voiture connectee"
+      ],
+      "answer": "L'Internet des véhicules fait référence à la connexion de véhicules à Internet et à d'autres véhicules, permettant le partage de données en temps réel."
+    },
+    {
+      "id": 42,
+      "category": "tech_faq",
+      "questions": [
+        "Qu'est-ce que l'UX UI design"
+      ],
+      "tags": [
+        "ux ui",
+        "ux design",
+        "ui design",
+        "experience utilisateur"
+      ],
+      "answer": "L'UX (expérience utilisateur) et l'UI (interface utilisateur) design se concentrent sur la création d'interactions agréables et la conception visuelle des interfaces."
+    },
+    {
+      "id": 43,
+      "category": "conversation_komara",
+      "questions": [
+        "Presentation Komara Agency que fais-tu exactement"
+      ],
+      "tags": [
+        "presentation",
+        "que fais-tu",
+        "komara agency",
+        "qui es-tu"
+      ],
+      "answer": "Je suis la pour t'aider : répondre à tes questions, t'expliquer des choses, te guider dans tes projets et t'apporter des idées utiles. Dis-moi ce dont tu as besoin 😊"
+    },
+    {
+      "id": 44,
+      "category": "conversation_komara",
+      "questions": [
+        "Komara Agency tu peux m'expliquer quelque chose"
+      ],
+      "tags": [
+        "expliquer",
+        "comprendre",
+        "information komara"
+      ],
+      "answer": "Bien sûr ! Dis-moi ce que tu veux comprendre et je t'explique ça simplement et rapidement."
+    },
+    {
+      "id": 45,
+      "category": "conversation_komara",
+      "questions": [
+        "Komara Agency j'ai un problème aide support"
+      ],
+      "tags": [
+        "probleme",
+        "aide",
+        "support",
+        "difficulte"
+      ],
+      "answer": "D'accord, raconte-moi. Je te propose tout de suite une solution claire pour avancer."
+    },
+    {
+      "id": 46,
+      "category": "conversation_komara",
+      "questions": [
+        "Komara Agency donne-moi une idée créativité"
+      ],
+      "tags": [
+        "idee",
+        "creativite",
+        "inspiration",
+        "brainstorm"
+      ],
+      "answer": "Avec plaisir ! Tu veux une idée pour du contenu, un projet, un business, ou autre chose ?"
+    },
+    {
+      "id": 47,
+      "category": "conversation_komara",
+      "questions": [
+        "Komara Agency qu'est-ce que tu me conseilles"
+      ],
+      "tags": [
+        "conseil",
+        "recommandation",
+        "guidance",
+        "orientation"
+      ],
+      "answer": "Ça dépend de ce que tu veux réussir. Parle-moi de ta situation et je te propose plusieurs options adaptées."
     }
   ],
   "conversations": [
