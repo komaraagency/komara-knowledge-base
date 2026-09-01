@@ -4564,6 +4564,209 @@
         "orientation"
       ],
       "answer": "Ça dépend de ce que tu veux réussir. Parle-moi de ta situation et je te propose plusieurs options adaptées."
+    },
+    {
+      "id": 48,
+      "category": "sciences",
+      "questions": [
+        "Qu'est-ce que le ciel"
+      ],
+      "tags": [
+        "ciel",
+        "atmosphere",
+        "soleil",
+        "lune",
+        "etoiles"
+      ],
+      "answer": "Le ciel fait référence à la partie de l'atmosphère visible depuis la surface de la terre, où se trouvent le soleil, la lune et les étoiles."
+    },
+    {
+      "id": 49,
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce qu'une imprimante"
+      ],
+      "tags": [
+        "imprimante",
+        "impression",
+        "peripherique",
+        "document papier"
+      ],
+      "answer": "Une imprimante est un périphérique qui produit une version physique d'un document numérique, généralement sur du papier."
+    },
+    {
+      "id": 50,
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce qu'un moteur électrique"
+      ],
+      "tags": [
+        "moteur electrique",
+        "moteur",
+        "energie electrique",
+        "energie mecanique"
+      ],
+      "answer": "Un moteur électrique est un dispositif qui convertit l'énergie électrique en énergie mécanique, utilisé dans de nombreux appareils."
+    },
+    {
+      "id": 51,
+      "category": "technologie",
+      "questions": [
+        "Qu'est-ce qu'un réseau social"
+      ],
+      "tags": [
+        "reseau social",
+        "social media",
+        "plateforme sociale",
+        "facebook",
+        "instagram",
+        "tiktok"
+      ],
+      "answer": "Un réseau social est une plateforme en ligne permettant aux utilisateurs de créer des profils, de partager du contenu et d'interagir avec d'autres utilisateurs."
+    },
+    {
+      "id": 52,
+      "category": "conversation_komara",
+      "questions": [
+        "Demande d'aide j'ai une idée mais je ne sais pas comment la réaliser"
+      ],
+      "tags": [
+        "demande aide",
+        "idee projet",
+        "realiser idee",
+        "comment faire",
+        "projet idee"
+      ],
+      "answer": "Parfait, explique-moi ton idée. Je te propose ensuite la meilleure solution : IA, chatbot, automatisation ou système sur mesure."
+    },
+    {
+      "id": 53,
+      "category": "conversation_komara",
+      "questions": [
+        "Création d'IA pour ma page Facebook"
+      ],
+      "tags": [
+        "creer ia facebook",
+        "ia page facebook",
+        "assistant facebook",
+        "ia reseaux sociaux"
+      ],
+      "answer": "Oui, totalement 😊 Quel type d'IA veux-tu ? Assistant client ? IA éducative ? IA vendeur automatique ? Donne-moi ton objectif."
+    },
+    {
+      "id": 54,
+      "category": "conversation_komara",
+      "questions": [
+        "Je veux automatiser mon business"
+      ],
+      "tags": [
+        "automatiser business",
+        "automatisation",
+        "automatiser ventes",
+        "automatiser messages"
+      ],
+      "answer": "D'accord. Tu veux automatiser quoi exactement ? Messages, ventes, réponses, réservations ou gestion de communauté ?"
+    },
+    {
+      "id": 55,
+      "category": "conversation_komara",
+      "questions": [
+        "Tu fais des chatbots Messenger"
+      ],
+      "tags": [
+        "chatbot messenger",
+        "bot messenger",
+        "chatbot facebook",
+        "bot facebook"
+      ],
+      "answer": "Oui, je crée des chatbots intelligents capables de répondre, vendre, filtrer, qualifier et convertir. Tu veux un bot simple ou avancé ?"
+    },
+    {
+      "id": 56,
+      "category": "conversation_komara",
+      "questions": [
+        "Quels services tu proposes"
+      ],
+      "tags": [
+        "services proposes",
+        "que fais-tu",
+        "liste services",
+        "offres komara"
+      ],
+      "answer": "Je crée :\n> IA Facebook personnalisées\n> Chatbots intelligents\n> Automatisations multi-plateformes\n> Systèmes de contenu automatisé\n> Outils digitaux sur mesure\nQuel service t'intéresse ?"
+    },
+    {
+      "id": 57,
+      "category": "conversation_komara",
+      "questions": [
+        "Mon bot ne répond plus assistance technique"
+      ],
+      "tags": [
+        "bot ne répond pas",
+        "assistance technique",
+        "bot bloque",
+        "erreur bot",
+        "support technique"
+      ],
+      "answer": "Pas de stress 😊 Dis-moi ce qui se passe : erreur, lenteur, ou blocage ? Je te guide étape par étape."
+    },
+    {
+      "id": 58,
+      "category": "conversation_komara",
+      "questions": [
+        "Je veux une IA pour gérer mes clients"
+      ],
+      "tags": [
+        "ia gerer clients",
+        "gestion clients ia",
+        "assistant client ia",
+        "automatisation clients"
+      ],
+      "answer": "Excellent choix 👍 Ton IA pourra répondre, conseiller, envoyer des infos et filtrer les demandes. Quel domaine est ton activité ?"
+    },
+    {
+      "id": 59,
+      "category": "conversation_komara",
+      "questions": [
+        "Tu es vraiment programmeur"
+      ],
+      "tags": [
+        "programmeur",
+        "metier",
+        "qui es-tu",
+        "tu fais quoi",
+        "profession"
+      ],
+      "answer": "Oui 😊 Je suis programmeur spécialisé en automatisation et création d'IA. Je conçois des systèmes intelligents pour Facebook, WhatsApp, Messenger et Instagram."
+    },
+    {
+      "id": 60,
+      "category": "conversation_komara",
+      "questions": [
+        "Merci pour les infos fin de conversation"
+      ],
+      "tags": [
+        "merci",
+        "fin conversation",
+        "au revoir",
+        "merci infos",
+        "bye"
+      ],
+      "answer": "Avec plaisir 😊 Si tu veux créer une IA ou automatiser quelque chose, je suis là. Tu veux que je te propose un modèle adapté ?"
+    },
+    {
+      "id": 61,
+      "category": "conversation_komara",
+      "questions": [
+        "Pourquoi utiliser tes automatisations"
+      ],
+      "tags": [
+        "pourquoi automatiser",
+        "avantage automatisation",
+        "benefice ia",
+        "pourquoi komara"
+      ],
+      "answer": "Parce qu'elles te font gagner du temps, améliorent ton image professionnelle et augmentent ton efficacité. Tu as une communication plus rapide, un système intelligent et une présence en ligne plus solide."
     }
   ],
   "conversations": [
