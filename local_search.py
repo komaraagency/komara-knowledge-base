@@ -7,25 +7,72 @@ from normalize_text import normalize_text  # Assurez-vous que ce module est acce
 def score_match(user_message: str, keyword: str) -> float:
     """
     Calcule le score de correspondance basé sur l'intersection des mots.
-    Beaucoup plus intelligent que le regex strict : comprend les synonymes 
-    et les phrases incomplètes, et règle le bug de contexte bloqué.
+    Utilise le max des deux ratios pour éviter les faux négatifs quand
+    l'utilisateur fait une phrase courte avec un mot-clé important.
+    Normalise les deux côtés (accents retirés) pour un matching insensible
+    aux accents.
     """
     if not user_message or not keyword:
         return 0.0
     
-    # Extraction des mots (alphanumériques), mise en minuscule
-    words_msg = set(re.findall(r'\w+', user_message.lower()))
-    words_kw = set(re.findall(r'\w+', keyword.lower()))
+    # Normaliser les deux côtés (retire les accents)
+    norm_msg = normalize_text(user_message)
+    norm_kw = normalize_text(keyword)
     
-    if not words_kw:
+    # Extraction des mots (alphanumériques)
+    words_msg = set(re.findall(r'\w+', norm_msg))
+    words_kw = set(re.findall(r'\w+', norm_kw))
+    
+    if not words_kw or not words_msg:
         return 0.0
         
-    # Mots en commun entre le message de l'utilisateur et la question de la FAQ
     intersection = words_msg.intersection(words_kw)
     
-    # Score = proportion de mots de la question FAQ trouvés dans le message utilisateur
-    # Cela permet de ne pas être pénalisé si l'utilisateur fait une phrase très longue.
-    return len(intersection) / len(words_kw)
+    if not intersection:
+        return 0.0
+    
+    # Ratio 1: proportion des mots-clés trouvés dans le message
+    ratio_kw = len(intersection) / len(words_kw)
+    # Ratio 2: proportion du message couverte par les mots-clés
+    ratio_msg = len(intersection) / len(words_msg)
+    
+    # Score = le meilleur des deux ratios
+    return max(ratio_kw, ratio_msg)
+
+def _get_searchable_terms(item: dict[str, Any]) -> list[str]:
+    """
+    Extrait tous les termes de recherche d'un item de la base de connaissances.
+    Gère les deux formats:
+    - Root kb.json: "questions" (pluriel, liste) + "tags"
+    - Lang kb.json: "question" (singulier, string) + "keywords"
+    """
+    terms: list[str] = []
+    
+    # Format root kb.json: questions (pluriel, liste de strings)
+    questions = item.get("questions", [])
+    if isinstance(questions, list):
+        terms.extend(questions)
+    elif isinstance(questions, str) and questions:
+        terms.append(questions)
+    
+    # Format lang kb.json: question (singulier, string)
+    question = item.get("question", "")
+    if isinstance(question, str) and question:
+        terms.append(question)
+    
+    # Keywords (lang kb.json)
+    keywords = item.get("keywords", [])
+    if isinstance(keywords, list):
+        terms.extend(keywords)
+    elif isinstance(keywords, str) and keywords:
+        terms.append(keywords)
+    
+    # Tags (root kb.json)
+    tags = item.get("tags", [])
+    if isinstance(tags, list):
+        terms.extend(tags)
+    
+    return terms
 
 def trouver_meilleure_reponse(
     message: str, 
@@ -47,19 +94,22 @@ def trouver_meilleure_reponse(
 
     # 1. Recherche dans la base de connaissances (kb.json)
     for item in knowledge_base:
-        for question in item.get("questions", []):
-            score = score_match(normalized_message, question)
-            # Seuil de 0.25 (au moins 1 mot sur 4 ou 1 mot sur 1) pour éviter les matchs parasites
-            if score >= 0.25: 
-                candidates.append((score, item.get("answer", "")))
+        terms = _get_searchable_terms(item)
+        best_score = 0.0
+        for term in terms:
+            score = score_match(normalized_message, term)
+            if score > best_score:
+                best_score = score
+        if best_score >= 0.25:
+            candidates.append((best_score, item.get("answer", "")))
 
-    # 2. Recherche dans la FAQ locale (docs/faq.md)
+    # 2. Recherche dans la FAQ locale
     for item in local_faq:
         score = score_match(normalized_message, item["question"])
         if score >= 0.25:
             candidates.append((score, item["answer"]))
 
-    # 3. Recherche dans les Dialogues (docs/dialogues)
+    # 3. Recherche dans les Dialogues
     for item in local_dialogues:
         score = score_match(normalized_message, item["question"])
         if score >= 0.25:
@@ -70,4 +120,3 @@ def trouver_meilleure_reponse(
         return max(candidates, key=lambda x: x[0])[1]
 
     return None
-    

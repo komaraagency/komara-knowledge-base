@@ -1,2 +1,2 @@
-Suggested response:
+### pay payment start order confirm ok perfect
 Perfect let's go 🚀 Do you prefer PayPal, Orange Money or Bank Transfer? Once paid we launch your project in 24h.

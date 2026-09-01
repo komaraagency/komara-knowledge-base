@@ -1,2 +1,2 @@
-Mensaje de bienvenida:
+### hola bienvenido buenos dias buenas noches saludo
 Hola 👋 ¡Bienvenido a Komara Agency 🇬🇳! Soy el asistente IA. Ayudamos a los emprendedores a vender 10x más rápido con IA: Visuales, Videos, Chatbots, Formación. ¿Qué necesitas exactamente hoy?
