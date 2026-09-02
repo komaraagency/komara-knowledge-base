@@ -22,8 +22,10 @@ def _stem(word: str) -> str:
 
 
 def _tokenize(text: str) -> set[str]:
-    """Extrait et normalise les mots d'un texte."""
-    raw = set(re.findall(r'[a-zàâçéèêëîïôùûüÿœ0-9]+', text.lower()))
+    """Extrait et normalise les mots d'un texte (accents + pluriels)."""
+    # Normaliser les accents AVANT tokenisation
+    text = normalize_text(text)
+    raw = set(re.findall(r'[a-z0-9]+', text.lower()))
     return {_stem(w) for w in raw if len(w) >= 2}
 
 
@@ -31,6 +33,7 @@ def score_match(user_message: str, keyword: str) -> float:
     """
     Calcule le score de correspondance basé sur l'intersection des mots.
     Le score = proportion de mots de la question KB trouvés dans le message utilisateur.
+    Les deux côtés sont normalisés (accents + pluriels) pour un matching cohérent.
     """
     if not user_message or not keyword:
         return 0.0
@@ -72,14 +75,11 @@ def trouver_meilleure_reponse(
 
     candidates: List[Tuple[float, str]] = []
 
-    # Normaliser le message avant utilisation
-    normalized_message = normalize_text(message) if message else ""
-
     # 1. Recherche dans la base de connaissances (kb.json)
     for item in knowledge_base:
         questions = _get_questions(item)
         best_score = max(
-            (score_match(normalized_message, q) for q in questions),
+            (score_match(message, q) for q in questions),
             default=0.0
         )
         if best_score >= 0.25:
@@ -87,13 +87,13 @@ def trouver_meilleure_reponse(
 
     # 2. Recherche dans la FAQ locale (docs/faq.md)
     for item in local_faq:
-        score = score_match(normalized_message, item["question"])
+        score = score_match(message, item["question"])
         if score >= 0.25:
             candidates.append((score, item["answer"]))
 
     # 3. Recherche dans les Dialogues
     for item in local_dialogues:
-        score = score_match(normalized_message, item["question"])
+        score = score_match(message, item["question"])
         if score >= 0.25:
             candidates.append((score, item["answer"]))
 
