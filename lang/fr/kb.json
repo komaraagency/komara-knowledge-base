@@ -7,73 +7,164 @@
   "knowledge": [
     {
       "id": 1,
-      "question": "Qu'est-ce que Komara Agency ?",
       "answer": "Komara Agency est une agence digitale spécialisée dans la création de bots intelligents, le développement web et mobile, et la création digitale pour les entreprises en Afrique et à l'international.",
-      "keywords": ["agence", "komara", "digital", "afrique"],
-      "category": "general"
+      "keywords": [
+        "agence",
+        "komara",
+        "digital",
+        "afrique"
+      ],
+      "category": "general",
+      "questions": [
+        "Qu'est-ce que Komara Agency ?"
+      ]
     },
     {
       "id": 2,
-      "question": "Quels services proposez-vous ?",
       "answer": "Nous proposons trois pôles de services :\n\n💎 **Bots intelligents** : Bots WhatsApp, Telegram, TikTok, chatbots conversationnels\n\n💻 **Développement** : Sites web, applications mobiles, scripts sur mesure\n\n🎨 **Création digitale** : Logos, identités visuelles, flyers, cartes de visite",
-      "keywords": ["services", "offres", "proposez", "pôles"],
-      "category": "services"
+      "keywords": [
+        "services",
+        "offres",
+        "proposez",
+        "pôles"
+      ],
+      "category": "services",
+      "questions": [
+        "Quels services proposez-vous ?",
+        "chatbot",
+        "chat bot",
+        "télégramme",
+        "telegram"
+      ]
     },
     {
       "id": 3,
-      "question": "Combien coûtent vos services ?",
       "answer": "Nos tarifs varient selon le projet. Voici nos packs standards :\n\n🚀 **Pack Starter** : 150€ - Bot simple ou site vitrine\n💼 **Pack Business** : 450€ - Bot avancé + site web\n🏆 **Pack Premium** : 900€ - Solution complète sur mesure\n\nChaque projet est unique, contactez-nous pour un devis personnalisé !",
-      "keywords": ["prix", "tarif", "coût", "combien", "pack"],
-      "category": "pricing"
+      "keywords": [
+        "prix",
+        "tarif",
+        "coût",
+        "combien",
+        "pack"
+      ],
+      "category": "pricing",
+      "questions": [
+        "Combien coûtent vos services ?"
+      ]
     },
     {
       "id": 4,
-      "question": "Comment passer commande ?",
       "answer": "C'est très simple !\n\n1️⃣ Contactez-nous sur WhatsApp au +212 701 986 219\n2️⃣ Nous discutons de votre projet et de vos besoins\n3️⃣ Nous vous envoyons un devis détaillé\n4️⃣ Après validation et acompte de 50%, nous commençons\n5️⃣ Livraison et formation incluses",
-      "keywords": ["commande", "processus", "commencer", "étapes"],
-      "category": "process"
+      "keywords": [
+        "commande",
+        "processus",
+        "commencer",
+        "étapes"
+      ],
+      "category": "process",
+      "questions": [
+        "Comment passer commande ?"
+      ]
     },
     {
       "id": 5,
-      "question": "Quels sont vos délais de livraison ?",
       "answer": "Les délais dépendent du projet :\n\n⚡ **Bot simple** : 3-5 jours\n⚡ **Site web** : 7-14 jours\n⚡ **Solution complète** : 15-30 jours\n\nNous respectons toujours nos engagements. Un calendrier précis vous est fourni avant le début du projet.",
-      "keywords": ["délai", "livraison", "temps", "rapidité"],
-      "category": "delivery"
+      "keywords": [
+        "délai",
+        "livraison",
+        "temps",
+        "rapidité"
+      ],
+      "category": "delivery",
+      "questions": [
+        "rapidité",
+        "combien de temps",
+        "délais",
+        "Quels sont vos délais de livraison ?",
+        "délai livraison"
+      ]
     },
     {
       "id": 6,
-      "question": "Quels moyens de paiement acceptez-vous ?",
       "answer": "Nous acceptons plusieurs moyens de paiement pour votre commodité :\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Virement bancaire**\n\nPaiement en 2 fois possible : 50% à la commande, 50% à la livraison.",
-      "keywords": ["paiement", "payer", "moyen", "orange money", "momo", "paypal"],
-      "category": "payment"
+      "keywords": [
+        "paiement",
+        "payer",
+        "moyen",
+        "orange money",
+        "momo",
+        "paypal"
+      ],
+      "category": "payment",
+      "questions": [
+        "moyens de paiement",
+        "comment payer",
+        "Quels moyens de paiement acceptez-vous ?",
+        "paiement"
+      ]
     },
     {
       "id": 7,
-      "question": "Puis-je payer en plusieurs fois ?",
       "answer": "Oui, absolument ! Nous proposons un paiement échelonné :\n\n✅ **50% à la commande** (démarrage du projet)\n✅ **50% à la livraison** (après validation)\n\nPour les projets importants, nous pouvons adapter l'échéancier selon vos besoins.",
-      "keywords": ["plusieurs fois", "échelonné", "acompte", "échéancier"],
-      "category": "payment"
+      "keywords": [
+        "plusieurs fois",
+        "échelonné",
+        "acompte",
+        "échéancier"
+      ],
+      "category": "payment",
+      "questions": [
+        "Puis-je payer en plusieurs fois ?"
+      ]
     },
     {
       "id": 8,
-      "question": "Proposez-vous une garantie ?",
       "answer": "Oui ! Nous offrons :\n\n✅ **Garantie satisfaction** : Corrections gratuites pendant 30 jours après livraison\n✅ **Support technique** : Assistance gratuite pendant 3 mois\n✅ **Maintenance** : Options de maintenance mensuelle disponibles\n\nVotre succès est notre priorité !",
-      "keywords": ["garantie", "satisfaction", "support", "assistance"],
-      "category": "support"
+      "keywords": [
+        "garantie",
+        "satisfaction",
+        "support",
+        "assistance"
+      ],
+      "category": "support",
+      "questions": [
+        "Proposez-vous une garantie ?"
+      ]
     },
     {
       "id": 9,
-      "question": "Travaillez-vous avec des clients à l'international ?",
       "answer": "Absolument ! Nous travaillons avec des clients dans toute l'Afrique, en Europe, au Moyen-Orient et ailleurs. Notre équipe est habituée aux projets internationaux et nous communiquons en français, anglais et arabe.",
-      "keywords": ["international", "étranger", "afrique", "europe"],
-      "category": "general"
+      "keywords": [
+        "international",
+        "étranger",
+        "afrique",
+        "europe"
+      ],
+      "category": "general",
+      "questions": [
+        "Travaillez-vous avec des clients à l'international ?"
+      ]
     },
     {
       "id": 10,
-      "question": "Comment vous contacter ?",
       "answer": "Plusieurs moyens de nous contacter :\n\n📱 **WhatsApp** : +212 701 986 219 (réponse sous 5 min)\n📧 **Email** : contact@komara.agency\n🌐 **Site web** : www.komara.agency\n\nNotre équipe est disponible du lundi au samedi, de 9h à 19h.",
-      "keywords": ["contact", "contacter", "whatsapp", "email", "téléphone"],
-      "category": "contact"
+      "keywords": [
+        "contact",
+        "contacter",
+        "whatsapp",
+        "email",
+        "téléphone"
+      ],
+      "category": "contact",
+      "questions": [
+        "email contact",
+        "contact",
+        "contacter",
+        "Comment vous contacter ?",
+        "whatsapp contact",
+        "chatbot ia",
+        "intelligence artificielle"
+      ]
     }
   ],
   "packs": [
@@ -94,5 +185,4 @@
     }
   ],
   "conversations": []
-    }
-        
+}

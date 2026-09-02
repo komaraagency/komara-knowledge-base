@@ -7,73 +7,146 @@
   "knowledge": [
     {
       "id": 1,
-      "question": "What is Komara Agency?",
       "answer": "Komara Agency is a digital agency specializing in creating intelligent bots, web and mobile development, and digital creation for businesses in Africa and internationally.",
-      "keywords": ["agency", "komara", "digital", "africa"],
-      "category": "general"
+      "keywords": [
+        "agency",
+        "komara",
+        "digital",
+        "africa"
+      ],
+      "category": "general",
+      "questions": [
+        "What is Komara Agency?"
+      ]
     },
     {
       "id": 2,
-      "question": "What services do you offer?",
       "answer": "We offer three service areas:\n\n💎 **Intelligent Bots**: WhatsApp, Telegram, TikTok bots, conversational chatbots\n\n💻 **Development**: Websites, mobile apps, custom scripts\n\n🎨 **Digital Creation**: Logos, visual identities, flyers, business cards",
-      "keywords": ["services", "offers", "provide", "areas"],
-      "category": "services"
+      "keywords": [
+        "services",
+        "offers",
+        "provide",
+        "areas"
+      ],
+      "category": "services",
+      "questions": [
+        "What services do you offer?"
+      ]
     },
     {
       "id": 3,
-      "question": "How much do your services cost?",
       "answer": "Our prices vary by project. Here are our standard packages:\n\n🚀 **Starter Pack**: €150 - Simple bot or showcase website\n💼 **Business Pack**: €450 - Advanced bot + website\n🏆 **Premium Pack**: €900 - Complete custom solution\n\nEach project is unique, contact us for a personalized quote!",
-      "keywords": ["price", "cost", "how much", "package"],
-      "category": "pricing"
+      "keywords": [
+        "price",
+        "cost",
+        "how much",
+        "package"
+      ],
+      "category": "pricing",
+      "questions": [
+        "How much do your services cost?"
+      ]
     },
     {
       "id": 4,
-      "question": "How do I place an order?",
       "answer": "It's very simple!\n\n1️⃣ Contact us on WhatsApp at +212 701 986 219\n2️⃣ We discuss your project and needs\n3️⃣ We send you a detailed quote\n4️⃣ After validation and 50% deposit, we start\n5️⃣ Delivery and training included",
-      "keywords": ["order", "process", "start", "steps"],
-      "category": "process"
+      "keywords": [
+        "order",
+        "process",
+        "start",
+        "steps"
+      ],
+      "category": "process",
+      "questions": [
+        "How do I place an order?"
+      ]
     },
     {
       "id": 5,
-      "question": "What are your delivery times?",
       "answer": "Delivery times depend on the project:\n\n⚡ **Simple bot**: 3-5 days\n⚡ **Website**: 7-14 days\n⚡ **Complete solution**: 15-30 days\n\nWe always respect our commitments. A precise schedule is provided before the project starts.",
-      "keywords": ["delivery", "time", "fast", "schedule"],
-      "category": "delivery"
+      "keywords": [
+        "delivery",
+        "time",
+        "fast",
+        "schedule"
+      ],
+      "category": "delivery",
+      "questions": [
+        "What are your delivery times?"
+      ]
     },
     {
       "id": 6,
-      "question": "What payment methods do you accept?",
       "answer": "We accept several payment methods for your convenience:\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Bank transfer**\n\nPayment in 2 installments possible: 50% on order, 50% on delivery.",
-      "keywords": ["payment", "pay", "method", "orange money", "momo", "paypal"],
-      "category": "payment"
+      "keywords": [
+        "payment",
+        "pay",
+        "method",
+        "orange money",
+        "momo",
+        "paypal"
+      ],
+      "category": "payment",
+      "questions": [
+        "What payment methods do you accept?"
+      ]
     },
     {
       "id": 7,
-      "question": "Can I pay in installments?",
       "answer": "Yes, absolutely! We offer installment payments:\n\n✅ **50% on order** (project start)\n✅ **50% on delivery** (after validation)\n\nFor large projects, we can adapt the schedule to your needs.",
-      "keywords": ["installments", "schedule", "deposit", "payment plan"],
-      "category": "payment"
+      "keywords": [
+        "installments",
+        "schedule",
+        "deposit",
+        "payment plan"
+      ],
+      "category": "payment",
+      "questions": [
+        "Can I pay in installments?"
+      ]
     },
     {
       "id": 8,
-      "question": "Do you offer a guarantee?",
       "answer": "Yes! We offer:\n\n✅ **Satisfaction guarantee**: Free corrections for 30 days after delivery\n✅ **Technical support**: Free assistance for 3 months\n✅ **Maintenance**: Monthly maintenance options available\n\nYour success is our priority!",
-      "keywords": ["guarantee", "satisfaction", "support", "assistance"],
-      "category": "support"
+      "keywords": [
+        "guarantee",
+        "satisfaction",
+        "support",
+        "assistance"
+      ],
+      "category": "support",
+      "questions": [
+        "Do you offer a guarantee?"
+      ]
     },
     {
       "id": 9,
-      "question": "Do you work with international clients?",
       "answer": "Absolutely! We work with clients throughout Africa, Europe, the Middle East and beyond. Our team is experienced with international projects and we communicate in French, English, and Arabic.",
-      "keywords": ["international", "foreign", "africa", "europe"],
-      "category": "general"
+      "keywords": [
+        "international",
+        "foreign",
+        "africa",
+        "europe"
+      ],
+      "category": "general",
+      "questions": [
+        "Do you work with international clients?"
+      ]
     },
     {
       "id": 10,
-      "question": "How can I contact you?",
       "answer": "Several ways to contact us:\n\n📱 **WhatsApp**: +212 701 986 219 (response within 5 min)\n📧 **Email**: contact@komara.agency\n🌐 **Website**: www.komara.agency\n\nOur team is available Monday to Saturday, 9am to 7pm.",
-      "keywords": ["contact", "reach", "whatsapp", "email", "phone"],
-      "category": "contact"
+      "keywords": [
+        "contact",
+        "reach",
+        "whatsapp",
+        "email",
+        "phone"
+      ],
+      "category": "contact",
+      "questions": [
+        "How can I contact you?"
+      ]
     }
   ],
   "packs": [
@@ -95,4 +168,3 @@
   ],
   "conversations": []
 }
-
