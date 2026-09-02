@@ -2,95 +2,129 @@
   "brand": "Komara Agency",
   "slogan": "Tu socio digital en África",
   "contact": {
-    "whatsapp": "+212701986219"
+    "whatsapp": "+212701986219",
+    "email": "contact@komara.agency"
   },
   "knowledge": [
     {
       "id": 1,
-      "question": "¿Qué es Komara Agency?",
-      "answer": "Komara Agency es una agencia digital especializada en la creación de bots inteligentes, desarrollo web y móvil, y creación digital para empresas en África e internacionalmente.",
-      "keywords": ["agencia", "komara", "digital", "áfrica"],
-      "category": "general"
+      "questions": [
+        "¿Qué es Komara Agency?",
+        "qué es komara",
+        "quién es komara"
+      ],
+      "answer": "Komara Agency es una agencia digital especializada en la creación de bots inteligentes, desarrollo web y móvil, y creación digital para empresas en África e internacionalmente."
     },
     {
       "id": 2,
-      "question": "¿Qué servicios ofrecen?",
-      "answer": "Ofrecemos tres áreas de servicio:\n\n💎 **Bots inteligentes**: Bots de WhatsApp, Telegram, TikTok, chatbots conversacionales\n\n💻 **Desarrollo**: Sitios web, aplicaciones móviles, scripts personalizados\n\n🎨 **Creación digital**: Logos, identidades visuales, flyers, tarjetas de visita",
-      "keywords": ["servicios", "ofertas", "proporcionan", "áreas"],
-      "category": "services"
+      "questions": [
+        "¿Qué servicios ofrecen?",
+        "servicios",
+        "qué hacen",
+        "ofrecen"
+      ],
+      "answer": "Ofrecemos tres áreas de servicio:\n\n💎 **Bots inteligentes**: Bots de WhatsApp, Telegram, TikTok, chatbots conversacionales\n\n💻 **Desarrollo**: Sitios web, aplicaciones móviles, scripts personalizados\n\n🎨 **Creación digital**: Logos, identidades visuales, flyers, tarjetas de visita"
     },
     {
       "id": 3,
-      "question": "¿Cuánto cuestan sus servicios?",
-      "answer": "Nuestros precios varían según el proyecto. Aquí están nuestros paquetes estándar:\n\n🚀 **Pack Starter**: 150€ - Bot simple o sitio web de exhibición\n💼 **Pack Business**: 450€ - Bot avanzado + sitio web\n🏆 **Pack Premium**: 900€ - Solución completa personalizada\n\nCada proyecto es único, ¡contáctanos para un presupuesto personalizado!",
-      "keywords": ["precio", "costo", "cuánto", "paquete"],
-      "category": "pricing"
+      "questions": [
+        "¿Cuánto cuestan sus servicios?",
+        "precio",
+        "costo",
+        "cuánto",
+        "tarifas",
+        "paquetes"
+      ],
+      "answer": "Nuestros precios varían según el proyecto. Aquí están nuestros paquetes estándar:\n\n🚀 **Pack Starter**: 150€ - Bot simple o sitio web\n💼 **Pack Business**: 450€ - Bot avanzado + sitio web\n🏆 **Pack Premium**: 900€ - Solución completa personalizada\n\nCada proyecto es único, ¡contáctanos para un presupuesto personalizado!"
     },
     {
       "id": 4,
-      "question": "¿Cómo hago un pedido?",
-      "answer": "¡Es muy simple!\n\n1️⃣ Contáctanos en WhatsApp al +212 701 986 219\n2️⃣ Discutimos tu proyecto y necesidades\n3️⃣ Te enviamos un presupuesto detallado\n4️⃣ Después de la validación y el 50% de anticipo, comenzamos\n5️⃣ Entrega y formación incluidas",
-      "keywords": ["pedido", "proceso", "empezar", "pasos"],
-      "category": "process"
+      "questions": [
+        "¿Cómo hago un pedido?",
+        "comprar",
+        "ordenar",
+        "encargar",
+        "pedir"
+      ],
+      "answer": "¡Es muy simple!\n\n1️⃣ Contáctanos en WhatsApp al +212 701 986 219\n2️⃣ Discutimos tu proyecto y necesidades\n3️⃣ Te enviamos un presupuesto detallado\n4️⃣ Después de la validación y el 50% de anticipo, comenzamos\n5️⃣ Entrega y formación incluidas"
     },
     {
       "id": 5,
-      "question": "¿Cuáles son sus plazos de entrega?",
-      "answer": "Los plazos dependen del proyecto:\n\n⚡ **Bot simple**: 3-5 días\n⚡ **Sitio web**: 7-14 días\n⚡ **Solución completa**: 15-30 días\n\nSiempre cumplimos nuestros compromisos. Se te proporciona un calendario preciso antes de comenzar el proyecto.",
-      "keywords": ["plazo", "entrega", "tiempo", "rapidez"],
-      "category": "delivery"
+      "questions": [
+        "¿Cuáles son sus plazos de entrega?",
+        "plazos",
+        "tiempo",
+        "demora",
+        "cuánto tiempo"
+      ],
+      "answer": "Los plazos dependen del proyecto:\n\n⚡ **Bot simple**: 3-5 días\n⚡ **Sitio web**: 7-14 días\n⚡ **Solución completa**: 15-30 días\n\n¡Entrega garantizada o devolución!"
     },
     {
       "id": 6,
-      "question": "¿Qué medios de pago aceptan?",
-      "answer": "Aceptamos varios medios de pago para tu comodidad:\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Transferencia bancaria**\n\nPago en 2 plazos posible: 50% al pedido, 50% a la entrega.",
-      "keywords": ["pago", "pagar", "medio", "orange money", "momo", "paypal"],
-      "category": "payment"
+      "questions": [
+        "¿Qué métodos de pago aceptan?",
+        "pagar",
+        "pago",
+        "métodos de pago"
+      ],
+      "answer": "Aceptamos varios métodos de pago:\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Transferencia bancaria**\n💳 **Cripto (USDT)**"
     },
     {
       "id": 7,
-      "question": "¿Puedo pagar en varias veces?",
-      "answer": "¡Sí, por supuesto! Ofrecemos un pago escalonado:\n\n✅ **50% al pedido** (inicio del proyecto)\n✅ **50% a la entrega** (después de la validación)\n\nPara proyectos grandes, podemos adaptar el calendario según tus necesidades.",
-      "keywords": ["varias veces", "escalonado", "anticipo", "calendario"],
-      "category": "payment"
+      "questions": [
+        "¿Puedo pagar a plazos?",
+        "pago a plazos",
+        "fraccionar pago"
+      ],
+      "answer": "¡Sí, absolutamente! Ofrecemos pago fraccionado:\n\n✅ **50% al pedir** (inicio del proyecto)\n✅ **50% a la entrega** (proyecto terminado)"
     },
     {
       "id": 8,
-      "question": "¿Ofrecen garantía?",
-      "answer": "¡Sí! Ofrecemos:\n\n✅ **Garantía de satisfacción**: Correcciones gratuitas durante 30 días después de la entrega\n✅ **Soporte técnico**: Asistencia gratuita durante 3 meses\n✅ **Mantenimiento**: Opciones de mantenimiento mensual disponibles\n\n¡Tu éxito es nuestra prioridad!",
-      "keywords": ["garantía", "satisfacción", "soporte", "asistencia"],
-      "category": "support"
+      "questions": [
+        "¿Ofrecen garantía?",
+        "garantía",
+        "warranty",
+        "seguro"
+      ],
+      "answer": "¡Sí! Ofrecemos:\n\n✅ **Garantía de satisfacción**: Correcciones gratuitas durante 30 días después de la entrega\n✅ **Soporte técnico**: Disponible por WhatsApp\n✅ **Formación**: Sesión incluida para usar tu bot o sitio"
     },
     {
       "id": 9,
-      "question": "¿Trabajan con clientes internacionales?",
-      "answer": "¡Por supuesto! Trabajamos con clientes en toda África, Europa, Oriente Medio y más allá. Nuestro equipo está acostumbrado a proyectos internacionales y nos comunicamos en francés, inglés y árabe.",
-      "keywords": ["internacional", "extranjero", "áfrica", "europa"],
-      "category": "general"
+      "questions": [
+        "¿Trabajan con clientes internacionales?",
+        "internacional",
+        "otros países",
+        "extranjero"
+      ],
+      "answer": "¡Absolutamente! Trabajamos con clientes en toda África, Europa, Oriente Medio y otras regiones. Nos adaptamos a tu zona horaria e idioma."
     },
     {
       "id": 10,
-      "question": "¿Cómo puedo contactarlos?",
-      "answer": "Varias formas de contactarnos:\n\n📱 **WhatsApp**: +212 701 986 219 (respuesta en 5 min)\n📧 **Email**: contact@komara.agency\n🌐 **Sitio web**: www.komara.agency\n\nNuestro equipo está disponible de lunes a sábado, de 9h a 19h.",
-      "keywords": ["contacto", "contactar", "whatsapp", "email", "teléfono"],
-      "category": "contact"
+      "questions": [
+        "¿Cómo contacto?",
+        "contactar",
+        "whatsapp",
+        "email",
+        "teléfono"
+      ],
+      "answer": "Varias formas de contactarnos:\n\n📱 **WhatsApp**: +212 701 986 219 (respuesta en 5 min)\n📧 **Email**: contact@komara.agency\n🌐 **Sitio web**: komara.agency"
     }
   ],
   "packs": [
     {
       "nom": "Pack Starter",
       "prix": "150€",
-      "contenu": "Bot simple o sitio web de exhibición, 1 idioma, soporte 1 mes"
+      "contenu": "Bot simple ou site vitrine, 1 langue, support 1 mois"
     },
     {
       "nom": "Pack Business",
       "prix": "450€",
-      "contenu": "Bot avanzado + sitio web, multilingüe, soporte 3 meses"
+      "contenu": "Bot avancé + site web, multilingue, support 3 mois"
     },
     {
       "nom": "Pack Premium",
       "prix": "900€",
-      "contenu": "Solución completa personalizada, soporte 6 meses, formación incluida"
+      "contenu": "Solution complète sur mesure, support 6 mois, formation incluse"
     }
   ],
   "conversations": []

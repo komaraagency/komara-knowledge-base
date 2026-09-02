@@ -24,14 +24,6 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
-try:
-    import httpx
-    HAS_HTTPX = True
-except ImportError:
-    HAS_HTTPX = False
-
-import asyncio
-
 # ---------------------------------------------------------------------------
 # Configuration générale
 # ---------------------------------------------------------------------------
@@ -61,15 +53,6 @@ if not TOKEN:
     raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
 
 # ---------------------------------------------------------------------------
-# Configuration IA locale Komara
-# ---------------------------------------------------------------------------
-
-KOMARA_AI_URL = (os.getenv("KOMARA_AI_URL") or "https://komara-local-ai-production.up.railway.app").strip().rstrip("/")
-AI_TIMEOUT = int(os.getenv("AI_TIMEOUT", "45"))
-AI_ENABLED = os.getenv("AI_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
-logger.info("IA locale: %s (timeout=%ss, enabled=%s)", KOMARA_AI_URL, AI_TIMEOUT, AI_ENABLED)
-
-# ---------------------------------------------------------------------------
 # Détecteur de langue local (100% hors-ligne, aucune dépendance externe)
 # ---------------------------------------------------------------------------
 
@@ -84,6 +67,7 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
             "oui", "non", "merci", "bonjour", "bonsoir", "prix", "tarif",
             "combien", "voulez", "pouvez", "faites", "proposez", "agence",
             "bot", "service", "créez", "développement", "site", "application",
+            "salut", "salam", "coucou", "hello", "hi",
         },
         "patterns": ["'", "œ", "à", "é", "è", "ê", "ë", "î", "ï", "ô", "ù", "û", "ü", "ç"],
     },
@@ -97,6 +81,7 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
             "thanks", "hello", "goodbye", "price", "cost", "much",
             "want", "can", "do", "make", "create", "service", "bot", "app",
             "website", "development", "please", "would", "could", "should",
+            "hi", "hey",
         },
         "patterns": [],
     },
@@ -180,7 +165,7 @@ def load_knowledge_base() -> dict[str, Any]:
         raise RuntimeError(f"Le fichier de base de connaissances {KB_PATH} est absent.")
     with KB_PATH.open("r", encoding="utf-8") as kb_file:
         data = json.load(kb_file)
-        logger.info("Base de connaissances (kb.json) chargée avec succès.")
+        logger.info("Base de connaissances (kb.json) chargé avec succès.")
         return data
 
 
@@ -203,37 +188,6 @@ def load_local_faq() -> list[dict[str, str]]:
     return items
 
 
-def _parse_dialogue_file(content: str) -> list[dict[str, str]]:
-    """Parse un fichier de dialogues. Gère deux formats:
-    1. ### Question / réponse (format FAQ)
-    2. Label: / réponse (format dialogues Komara)
-    """
-    items: list[dict[str, str]] = []
-    
-    # Format 1: ### Question\nréponse
-    sections = re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]
-    for section in sections:
-        lines = section.splitlines()
-        if len(lines) < 2:
-            continue
-        question = lines[0].strip()
-        answer = "\n".join(lines[1:]).strip()
-        if question and answer:
-            items.append({"question": question, "answer": answer})
-    
-    # Format 2: Label:\nréponse (si pas de ### trouvé)
-    if not items:
-        # Séparer sur les lignes "Label:" (mot suivi de deux-points)
-        parts = re.split(r"^(\w[^\n:]{3,}):\s*$", content, flags=re.MULTILINE)
-        for i in range(1, len(parts) - 1, 2):
-            question = parts[i].strip()
-            answer = parts[i + 1].strip()
-            if question and answer:
-                items.append({"question": question, "answer": answer})
-    
-    return items
-
-
 def load_dialogues() -> list[dict[str, str]]:
     """Charge les dialogues français de secours (racine)."""
     dialogues: list[dict[str, str]] = []
@@ -244,11 +198,17 @@ def load_dialogues() -> list[dict[str, str]]:
         if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
             try:
                 content = file_path.read_text(encoding="utf-8")
-                parsed = _parse_dialogue_file(content)
-                dialogues.extend(parsed)
+                for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
+                    lines = section.splitlines()
+                    if len(lines) < 2:
+                        continue
+                    question = lines[0].strip()
+                    answer = "\n".join(lines[1:]).strip()
+                    if question and answer:
+                        dialogues.append({"question": question, "answer": answer})
             except Exception as e:
                 logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
-    logger.info("Dialogues (%s) chargés : %s questions", DIALOGUES_DIR, len(dialogues))
+    logger.info("Dialogues (docs/dialogues) chargés : %s questions", len(dialogues))
     return dialogues
 
 
@@ -287,150 +247,77 @@ def load_language_resources(lang_code: str) -> dict[str, Any]:
         except Exception as e:
             logger.error("[%s] Erreur faq.md : %s", lang_code, e)
 
-    # 3. dialogues/ de la langue
-    dialogues_path = lang_path / "dialogues"
-    if dialogues_path.is_dir():
-        dialogues: list[dict[str, str]] = []
-        for file_path in dialogues_path.iterdir():
-            if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
-                try:
-                    content = file_path.read_text(encoding="utf-8")
-                    parsed = _parse_dialogue_file(content)
-                    dialogues.extend(parsed)
-                except Exception as e:
-                    logger.error("[%s] Erreur dialogue %s : %s", lang_code, file_path.name, e)
-        resources["dialogues"] = dialogues
-        logger.info("[%s] Dialogues chargés : %s questions", lang_code, len(dialogues))
+    # 3. dialogues de la langue
+    dialogues_path = lang_path / "dialogues.md"
+    if dialogues_path.is_file():
+        try:
+            content = dialogues_path.read_text(encoding="utf-8")
+            items: list[dict[str, str]] = []
+            for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
+                lines = section.splitlines()
+                if len(lines) < 2:
+                    continue
+                question = lines[0].strip()
+                answer = "\n".join(lines[1:]).strip()
+                if question and answer:
+                    items.append({"question": question, "answer": answer})
+            resources["dialogues"] = items
+            logger.info("[%s](dialogues.md) chargé : %s dialogues", lang_code, len(items))
+        except Exception as e:
+            logger.error("[%s] Erreur dialogues.md : %s", lang_code, e)
 
     return resources
 
 
 # ---------------------------------------------------------------------------
-# Initialisation des ressources au démarrage
+# Chargement initial de toutes les ressources
 # ---------------------------------------------------------------------------
+
+KB_DATA = load_knowledge_base()
+BRAND = KB_DATA.get("brand", "Komara Agency")
+BRAIN = KB_DATA
+KNOWLEDGE = KB_DATA.get("knowledge", [])
+PACKS = KB_DATA.get("packs", [])
+CONVERSATIONS = KB_DATA.get("conversations", [])
+WHATSAPP = KB_DATA.get("contact", {}).get("whatsapp", "")
+LOCAL_FAQ = load_local_faq()
+LOCAL_DIALOGUES = load_dialogues()
 
 LANG_RESOURCES: dict[str, dict[str, Any]] = {}
-
 for _lang in get_supported_languages():
     LANG_RESOURCES[_lang] = load_language_resources(_lang)
+    logger.info("Ressources [%s] chargées", _lang)
 
-# Chargement du root kb.json (base principale, 311+ entrées)
-try:
-    BRAIN = load_knowledge_base()
-    root_knowledge = BRAIN.get("knowledge", [])
-    root_faq = load_local_faq()
-    root_dialogues = load_dialogues()
-    logger.info("Base racine (kb.json) chargée : %s fiches + %s FAQ + %s dialogues",
-                len(root_knowledge), len(root_faq), len(root_dialogues))
-except RuntimeError as e:
-    logger.critical(e)
-    sys.exit(1)
-    BRAIN = {}
-    root_knowledge = []
-    root_faq = []
-    root_dialogues = []
+# FIX BUG #2: Le français doit AUSSI avoir accès aux ressources racine (kb.json, faq, dialogues)
+# en plus des 10 items de lang/fr/kb.json. On fusionne les deux.
+_fr_root_kb = KNOWLEDGE  # 311 items du kb.json racine (déjà au bon format)
+_fr_lang_kb = LANG_RESOURCES.get("fr", {}).get("kb", [])  # 10 items de lang/fr/kb.json
+_fr_root_faq = LOCAL_FAQ
+_fr_lang_faq = LANG_RESOURCES.get("fr", {}).get("faq", [])
+_fr_root_dialogues = LOCAL_DIALOGUES
+_fr_lang_dialogues = LANG_RESOURCES.get("fr", {}).get("dialogues", [])
 
-# Fusion: root kb.json + lang/{code}/kb.json pour chaque langue
-for _lang_code in LANG_RESOURCES:
-    _lang_res = LANG_RESOURCES[_lang_code]
-    # MERGE: root knowledge + lang knowledge (root d'abord, lang ensuite pour priorité)
-    _lang_res["kb"] = root_knowledge + _lang_res["kb"]
-    # Compléter FAQ et dialogues avec la racine si la langue n'en a pas assez
-    if not _lang_res["faq"]:
-        _lang_res["faq"] = root_faq
-    if not _lang_res["dialogues"]:
-        _lang_res["dialogues"] = root_dialogues
-    logger.info("[%s] Base finale : %s fiches + %s FAQ + %s dialogues",
-                _lang_code, len(_lang_res["kb"]), len(_lang_res["faq"]), len(_lang_res["dialogues"]))
+LANG_RESOURCES["fr"] = {
+    "kb": _fr_lang_kb + _fr_root_kb,       # 10 items lang + 311 items racine
+    "faq": _fr_lang_faq + _fr_root_faq,    # faq lang + faq racine
+    "dialogues": _fr_lang_dialogues + _fr_root_dialogues,
+}
+logger.info(
+    "Ressources [fr] fusionnées : %s fiches KB, %s FAQ, %s dialogues",
+    len(LANG_RESOURCES["fr"]["kb"]),
+    len(LANG_RESOURCES["fr"]["faq"]),
+    len(LANG_RESOURCES["fr"]["dialogues"]),
+)
 
-# Variables globales (compatibilité avec le français)
-BRAIN = BRAIN if "BRAIN" in globals() else {}
-WHATSAPP = BRAIN.get("contact", {}).get("whatsapp", "+212701986219")
-BRAND = BRAIN.get("brand", "Komara Agency")
-PACKS = BRAIN.get("packs", [])
 
-MEMORY_FILE = Path(os.getenv("MEMORY_FILE", str(BASE_DIR / "data" / "memory.json")))
-MEMORY_LIMIT = max(2, int(os.getenv("MEMORY_LIMIT", "12")))
+# ---------------------------------------------------------------------------
+# Mémoire conversationnelle locale
+# ---------------------------------------------------------------------------
+
+MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
+MEMORY_FILE = MEMORY_DIR / "memory.json"
+MEMORY_LIMIT = 20
 MEMORY_LOCK = threading.Lock()
-
-# Vérification qu'au moins une langue a du contenu
-if not any(res["kb"] for res in LANG_RESOURCES.values()):
-    raise RuntimeError("Aucune base de connaissances trouvée (ni dans lang/ ni à la racine).")
-
-bot = telebot.TeleBot(TOKEN, parse_mode="Markdown")
-_shutdown_requested = False
-
-# ---------------------------------------------------------------------------
-# Arrêt propre
-# ---------------------------------------------------------------------------
-
-def request_shutdown(signum: int, _frame: Any) -> None:
-    global _shutdown_requested
-    _shutdown_requested = True
-    HEARTBEAT_STOP.set()
-    logger.info("Signal %s reçu : arrêt propre demandé.", signum)
-
-signal.signal(signal.SIGTERM, request_shutdown)
-signal.signal(signal.SIGINT, request_shutdown)
-
-
-def send_heartbeat() -> None:
-    if not MONITOR_API_URL:
-        return
-    payload = json.dumps({"worker": "telegram"}).encode("utf-8")
-    headers = {"Content-Type": "application/json"}
-    if MONITOR_API_KEY:
-        headers["X-API-Key"] = MONITOR_API_KEY
-    request = urllib.request.Request(
-        f"{MONITOR_API_URL}/internal/heartbeat",
-        data=payload,
-        headers=headers,
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=5) as response:
-            if response.status >= 300:
-                logger.warning("Heartbeat refusé par le monitoring : HTTP %s", response.status)
-    except (urllib.error.URLError, TimeoutError, OSError) as error:
-        logger.warning("Heartbeat monitoring indisponible : %s", error)
-
-
-def heartbeat_loop() -> None:
-    if not MONITOR_API_URL:
-        logger.info("Monitoring désactivé : MONITOR_API_URL non configurée.")
-        return
-    logger.info("Monitoring activé : heartbeat toutes les %ss.", HEARTBEAT_INTERVAL)
-    while not HEARTBEAT_STOP.is_set() and not _shutdown_requested:
-        send_heartbeat()
-        HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
-
-# ---------------------------------------------------------------------------
-# Appel à l'IA locale Komara (compréhension contextuelle)
-# ---------------------------------------------------------------------------
-
-def call_local_ai(message: str, history: list) -> str | None:
-    """Appelle l'IA locale Komara pour une réponse contextuelle."""
-    if not AI_ENABLED or not HAS_HTTPX:
-        return None
-    try:
-        with httpx.Client(timeout=AI_TIMEOUT) as client:
-            resp = client.post(
-                KOMARA_AI_URL + "/api/chat",
-                json={"message": message[:1000], "history": history or []},
-                headers={"Content-Type": "application/json"},
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                reply = data.get("reply", "").strip()
-                if reply and len(reply) > 5:
-                    logger.info("IA locale OK — engine=%s, %s chars", data.get("engine", "?"), len(reply))
-                    return reply
-            logger.warning("IA locale HTTP %s", resp.status_code)
-            return None
-    except Exception as e:
-        logger.warning("IA locale indisponible: %s", e)
-        return None
-
 
 
 # ---------------------------------------------------------------------------
@@ -441,6 +328,8 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     """
     Cherche la meilleure réponse dans la base de la langue détectée.
     Fallback sur la langue par défaut (fr) si aucun résultat.
+    FIX BUG #2: Même pour le français, on cherche dans les ressources fusionnées
+    (qui incluent maintenant le kb.json racine).
     """
     resources = LANG_RESOURCES.get(detected_lang, {"kb": [], "faq": [], "dialogues": []})
     result = trouver_meilleure_reponse(
@@ -449,7 +338,7 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    # Fallback français
+    # Fallback français (uniquement si la langue détectée n'est pas le français)
     if detected_lang != DEFAULT_LANGUAGE:
         fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
         result = trouver_meilleure_reponse(
@@ -501,34 +390,42 @@ RESET_COMMANDS: dict[str, set[str]] = {
 MESSAGES: dict[str, dict[str, str]] = {
     "fr": {
         "reset": "D'accord, j'ai effacé le contexte de cette conversation. Que souhaitez-vous faire ?",
-        "fallback": "Pour mieux vous orienter, pouvez-vous me préciser votre activité et ce que vous souhaitez vendre ou automatiser ?",
+        "fallback": "Je n'ai pas bien compris votre demande. 🤔\n\nNous proposons : bots WhatsApp/Telegram, sites web, applications, logos et création digitale.\n\nTapez 'prix' pour les tarifs, 'services' pour nos offres, ou décrivez votre projet.",
         "human": f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes.",
         "portfolio": "Tu veux des exemples pour quel domaine ?",
         "pricing_intro": "Voici nos offres :",
+        "commander": "Super ! 🛒 Pour préparer votre devis, dites-moi :\n\n1️⃣ Quel service ? (bot, site, logo, app...)\n2️⃣ Votre activité\n3️⃣ Votre délai souhaité\n\nJe vous écoute 👇",
+        "chatbot": "🤖 Vous voulez un bot intelligent pour votre business ?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse ?",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
     "en": {
         "reset": "Done, I've cleared the context. What would you like to do?",
-        "fallback": "To better assist you, could you tell me more about your business and what you'd like to sell or automate?",
+        "fallback": "I didn't quite catch that. 🤔\n\nWe offer: WhatsApp/Telegram bots, websites, apps, logos and digital creation.\n\nType 'pricing' for rates, 'services' for our offers, or describe your project.",
         "human": f"A KOMARA expert will contact you on *{WHATSAPP}* within 5 minutes.",
         "portfolio": "What kind of examples are you looking for?",
         "pricing_intro": "Here are our offers:",
+        "commander": "Great! 🛒 To prepare your quote, tell me:\n\n1️⃣ Which service? (bot, website, logo, app...)\n2️⃣ Your business\n3️⃣ Your preferred timeline\n\nI'm listening 👇",
+        "chatbot": "🤖 Want a smart bot for your business?\n\nWe create custom WhatsApp, Telegram and TikTok bots.\n\nWhich channel interests you?",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
     },
     "ar": {
         "reset": "تم مسح السياق. ماذا تريد أن تفعل؟",
-        "fallback": "لمساعدتك بشكل أفضل، هل يمكنك إخباري المزيد عن نشاطك وما تريد بيعه أو أتمتته؟",
+        "fallback": "لم أفهم طلبك تماماً. 🤔\n\nنقدم: بوتات واتساب/تيليجرام، مواقع، تطبيقات، شعارات وإنشاء رقمي.\n\nاكتب 'السعر' للأسعار، 'الخدمات' لعروضنا، أو صف مشروعك.",
         "human": f"سيتواصل معك خبير KOMARA على *{WHATSAPP}* خلال 5 دقائق.",
         "portfolio": "ما نوع الأمثلة التي تبحث عنها؟",
         "pricing_intro": "إليك عروضنا:",
+        "commander": "رائع! 🛒 لإعداد عرض السعر، أخبرني:\n\n1️⃣ أي خدمة؟ (بوت، موقع، شعار، تطبيق...)\n2️⃣ نشاطك\n3️⃣ الموعد النهائي المفضل\n\nأستمع إليك 👇",
+        "chatbot": "🤖 تريد بوت ذكي لعملك؟\n\nننشئ بوتات واتساب وتيليجرام وتيك توك مخصصة.\n\nأي قناة تهمك؟",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
     },
     "es": {
         "reset": "Listo, he borrado el contexto. ¿Qué quieres hacer?",
-        "fallback": "Para orientarte mejor, ¿puedes decirme más sobre tu negocio y qué te gustaría vender o automatizar?",
+        "fallback": "No entendí bien tu solicitud. 🤔\n\nOfrecemos: bots de WhatsApp/Telegram, sitios web, aplicaciones, logos y creación digital.\n\nEscribe 'precio' para tarifas, 'servicios' para nuestras ofertas, o describe tu proyecto.",
         "human": f"Un experto de KOMARA te contactará en *{WHATSAPP}* en menos de 5 minutos.",
         "portfolio": "¿Qué tipo de ejemplos estás buscando?",
         "pricing_intro": "Aquí están nuestras ofertas:",
+        "commander": "¡Genial! 🛒 Para preparar tu presupuesto, dime:\n\n1️⃣ ¿Qué servicio? (bot, sitio, logo, app...)\n2️⃣ Tu negocio\n3️⃣ Tu plazo preferido\n\nTe escucho 👇",
+        "chatbot": "🤖 ¿Quieres un bot inteligente para tu negocio?\n\nCreamos bots de WhatsApp, Telegram y TikTok personalizados.\n\n¿Qué canal te interesa?",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
     },
 }
@@ -617,13 +514,6 @@ def safe_typing(chat_id: int) -> None:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
 
-def typing_loop(chat_id: int, stop_event: threading.Event) -> None:
-    """Envoie 'typing' toutes les 4s pendant l'attente de l'IA."""
-    while not stop_event.is_set():
-        safe_typing(chat_id)
-        stop_event.wait(4)
-
-
 def send_portfolio(chat_id: int, lang: str) -> None:
     sent = 0
     for filename in ("portfolio_01", "portfolio_02"):
@@ -645,6 +535,31 @@ def send_portfolio(chat_id: int, lang: str) -> None:
     bot.send_message(chat_id, text, reply_markup=menu_for_lang(lang))
 
 
+# ---------------------------------------------------------------------------
+# Bot Telegram
+# ---------------------------------------------------------------------------
+
+bot = telebot.TeleBot(TOKEN)
+
+# Variable globale pour le shutdown propre
+_shutdown_requested = False
+
+
+def _handle_signal(signum: int, _frame: Any) -> None:
+    global _shutdown_requested
+    _shutdown_requested = True
+    logger.info("Signal %s reçu, arrêt en cours...", signum)
+    HEARTBEAT_STOP.set()
+    try:
+        bot.stop_polling()
+    except Exception:
+        pass
+
+
+signal.signal(signal.SIGINT, _handle_signal)
+signal.signal(signal.SIGTERM, _handle_signal)
+
+
 @bot.message_handler(commands=["start"])
 def start(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
@@ -658,8 +573,8 @@ def start(message: telebot.types.Message) -> None:
     safe_typing(chat_id)
     time.sleep(1)
 
-    fr_kb = LANG_RESOURCES.get("fr", {}).get("kb", [])
-    welcome = fr_kb[0].get("answer", f"Bienvenue chez {BRAND}.") if fr_kb else f"Bienvenue chez {BRAND}."
+    # Chercher le message de bienvenue dans la KB
+    welcome = trouver_meilleure_reponse_multilingue("bonjour", "fr") or f"Bienvenue chez {BRAND} 🇬🇳"
     remember(chat_id, "assistant", welcome)
     bot.send_message(chat_id, welcome, reply_markup=menu_for_lang(lang))
 
@@ -689,10 +604,12 @@ def handle(message: telebot.types.Message) -> None:
     remember(chat_id, "user", text)
 
     try:
-        # Boutons de menu (reconnaissables dans toutes les langues)
+        # FIX BUG #3: Boutons de menu — inclure Commander et Chatbot IA
         portfolio_labels = {"📂 Portfolio", "📂 المعرض", "📂 Portafolio"}
         pricing_labels = {"💎 Voir les Tarifs", "💎 View Pricing", "💎 الأسعار", "💎 Ver Precios"}
         human_labels = {"👑 Parler à un humain", "👑 Talk to a human", "👑 التحدث مع مستشار", "👑 Hablar con un humano"}
+        commander_labels = {"🚀 Commander", "🚀 Order", "🚀 طلب", "🚀 Ordenar"}
+        chatbot_labels = {"🤖 Chatbot IA", "🤖 AI Chatbot", "🤖 مساعد ذكي", "🤖 Chatbot IA"}
 
         if text in portfolio_labels:
             send_portfolio(chat_id, lang)
@@ -715,21 +632,21 @@ def handle(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
             return
 
-        # 1. Essayer l'IA locale (comprehension contextuelle)
-        history = context_for(chat_id)
-        typing_stop = threading.Event()
-        typing_thread = threading.Thread(target=typing_loop, args=(chat_id, typing_stop), daemon=True)
-        typing_thread.start()
-        ai_response = call_local_ai(text, history)
-        typing_stop.set()
-
-        if ai_response:
-            response = ai_response
+        # FIX BUG #3: Handler pour le bouton Commander
+        if text in commander_labels:
+            response = msg(lang, "commander")
             remember(chat_id, "assistant", response)
             bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
             return
 
-        # 2. Fallback: recherche par mots-cles
+        # FIX: Handler pour le bouton Chatbot IA
+        if text in chatbot_labels:
+            response = msg(lang, "chatbot")
+            remember(chat_id, "assistant", response)
+            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
+            return
+
+        # Recherche multilingue
         local_response = local_contextual_response(chat_id, text, lang)
         if local_response is None:
             record_unrecognized(text, source="telegram")
@@ -751,6 +668,39 @@ def handle(message: telebot.types.Message) -> None:
             )
         except Exception:
             logger.exception("Impossible d'envoyer le message de secours.")
+
+
+# ---------------------------------------------------------------------------
+# Heartbeat (monitoring optionnel)
+# ---------------------------------------------------------------------------
+
+def send_heartbeat() -> None:
+    if not MONITOR_API_URL:
+        return
+    try:
+        headers = {"Content-Type": "application/json"}
+        if MONITOR_API_KEY:
+            headers["X-API-Key"] = MONITOR_API_KEY
+        data = json.dumps({"worker": "telegram", "timestamp": time.time()}).encode()
+        req = urllib.request.Request(
+            f"{MONITOR_API_URL}/internal/heartbeat",
+            data=data,
+            headers=headers,
+            method="POST",
+        )
+        urllib.request.urlopen(req, timeout=10)
+    except Exception:
+        logger.debug("Échec d'envoi du heartbeat.", exc_info=True)
+
+
+def heartbeat_loop() -> None:
+    if not MONITOR_API_URL:
+        logger.info("Monitoring désactivé : MONITOR_API_URL non configuré.")
+        return
+    logger.info("Monitoring activé : heartbeat toutes les %ss.", HEARTBEAT_INTERVAL)
+    while not HEARTBEAT_STOP.is_set() and not _shutdown_requested:
+        send_heartbeat()
+        HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
 
 
 # ---------------------------------------------------------------------------
