@@ -231,7 +231,7 @@ def _score_bidirectional(
         msg_meaningful = msg_tokens  # fallback si tout est stop word
 
     msg_total = sum(idf.get(t, 1.0) for t in msg_meaningful)
-    msg_matched = sum(idf.get(t, 1.0) for t in intersection if t not in STOP_WORDS)
+    msg_matched = sum(idf.get(t, 1.0) for t in intersection if t in msg_meaningful)
     message_coverage = msg_matched / msg_total if msg_total > 0 else 1.0
 
     # 3. Moyenne harmonique des deux couvertures
