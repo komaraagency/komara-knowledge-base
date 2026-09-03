@@ -1,22 +1,22 @@
 """Moteur de recherche locale avec compréhension sémantique (100% local, zéro API externe).
 
-Améliorations vs ancienne version:
+Améliorations:
 1. Score BIDIRECTIONNEL: couverture du keyword ET couverture du message
    → "je souhaite créer un bot" (5 mots) ne matche plus "bot" (1 mot) à 100%
-   → le score baisse car seulement 1/5 du message correspond au keyword
 2. Pondération IDF: "devis" (rare, porteur de sens) > "bot" (fréquent, générique)
-   → "quel est le devis pour un bot whatsapp" matche les entrées "prix/devis"
-     plutôt que l'entrée générique "bot"
 3. Détection d'intention: prix, création, info, objection, setup, comparaison...
-   → booste les entrées de même intention, pénalise les autres
 4. Stop words filtrés: "je", "le", "la", "pour", "que"... ne participent pas au score
+5. FUZZY MATCHING: tolérance aux fautes d'orthographe, abréviations SMS,
+   français approximatif — crucial pour les utilisateurs africains
+   → "bonjor" matche "bonjour", "whatsap" matche "whatsapp"
+   → "je veu un bot" matche "je veux un bot"
 """
 
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Set
 import re
 import math
 from collections import Counter
-from normalize_text import normalize_text
+from normalize_text import normalize_text, fuzzy_match
 
 
 def _stem(word: str) -> str:
@@ -32,10 +32,44 @@ def _stem(word: str) -> str:
 
 
 def _tokenize(text: str) -> set[str]:
-    """Extrait et normalise les mots d'un texte (accents + pluriels)."""
+    """Extrait et normalise les mots d'un texte (accents + pluriels + fautes)."""
     text = normalize_text(text)
     raw = set(re.findall(r'[a-z0-9]+', text.lower()))
     return {_stem(w) for w in raw if len(w) >= 2}
+
+
+def _fuzzy_token_match(token: str, token_set: set[str], threshold: float = 0.75) -> bool:
+    """Vérifie si un token correspond approximativement à un token dans un set.
+
+    D'abord match exact (rapide), puis fuzzy si pas de match (tolérance fautes).
+    """
+    if token in token_set:
+        return True
+    # Fuzzy seulement pour les mots de 4+ lettres (sinon trop de faux positifs)
+    if len(token) < 4:
+        return False
+    for candidate in token_set:
+        if len(candidate) >= 4 and fuzzy_match(token, candidate, threshold):
+            return True
+    return False
+
+
+def _fuzzy_intersection(msg_tokens: set[str], kw_tokens: set[str]) -> set[str]:
+    """Intersection avec tolérance aux fautes (fuzzy matching).
+
+    Retourne les tokens du message qui correspondent (exact ou fuzzy) aux tokens du keyword.
+    """
+    matched = set()
+    for mt in msg_tokens:
+        if mt in kw_tokens:
+            matched.add(mt)
+        elif len(mt) >= 4:
+            # Essayer fuzzy match pour les mots de 4+ lettres
+            for kt in kw_tokens:
+                if len(kt) >= 4 and fuzzy_match(mt, kt, 0.75):
+                    matched.add(mt)
+                    break
+    return matched
 
 
 # Stop words: très fréquents, ne portent pas de sens — exclus du scoring
@@ -48,6 +82,7 @@ STOP_WORDS = {
     'sur', 'sous', 'dans', 'au', 'aux', 'en', 'ne', 'pas', 'plus',
     'ou', 'donc', 'car', 'si', 'comme', 'aussi', 'tres', 'tout',
     'tous', 'toute', 'toutes', 'mes', 'tes', 'ses', 'etre',
+    'c', 'est', 'ca', 'sa', 'va', 'faut',
     # Anglais
     'the', 'a', 'an', 'is', 'are', 'am', 'be', 'been', 'was', 'were',
     'i', 'you', 'he', 'she', 'it', 'we', 'they', 'my', 'your', 'his',
@@ -61,19 +96,18 @@ STOP_WORDS = {
 }
 
 # Patterns d'intention: (nom, mots-clés qui signalent cette intention)
-# Sera stemmé au chargement du module
 _INTENT_PATTERNS_RAW: dict[str, set[str]] = {
     "pricing": {
         "devis", "prix", "tarif", "cout", "combien", "couter", "payer",
         "abonnement", "mensuel", "fcfa", "dollar", "euro", "cher",
         "cost", "price", "pricing", "much", "plan", "month",
-        "precio", "costo", "cuanto",
+        "precio", "costo", "cuanto", "argent", "budget", "fg", "mad",
     },
     "creation": {
         "creer", "creez", "developper", "construire", "souhaite", "voudrais",
         "aimerais", "besoin", "nouveau", "faire", "avoir",
         "create", "build", "make", "want", "need", "new",
-        "crear", "construir", "hacer",
+        "crear", "construir", "hacer", "veu", "veux", "vouloir",
     },
     "info": {
         "presentation", "agence", "agency", "presentation",
@@ -82,7 +116,7 @@ _INTENT_PATTERNS_RAW: dict[str, set[str]] = {
     "objection": {
         "risque", "robot", "remplacer", "securite", "mal", "peur", "erreur",
         "wrong", "replace", "risk", "safe", "error", "problem",
-        "riesgo", "seguro", "error",
+        "riesgo", "seguro", "error", "trop", "cher", "complique",
     },
     "setup": {
         "demarrer", "commencer", "etapes", "installer", "installation",
@@ -116,7 +150,8 @@ def _detect_intent(tokens: set[str]) -> str | None:
     best_intent = None
     best_score = 0
     for intent, keywords in INTENT_PATTERNS.items():
-        matched = tokens & keywords
+        # Intersection avec fuzzy matching
+        matched = _fuzzy_intersection(tokens, keywords)
         score = len(matched)
         if score > best_score:
             best_score = score
@@ -167,26 +202,21 @@ def _score_bidirectional(
     msg_intent: str | None,
     kw_intent: str | None,
 ) -> float:
-    """Score sémantique bidirectionnel avec IDF + boost d'intention.
+    """Score sémantique bidirectionnel avec IDF + boost d'intention + fuzzy matching.
 
-    Ancien score (unidirectionnel): intersection / len(keywords)
-      → "je souhaite créer un bot" vs "bot" = 1/1 = 1.0 ❌ (faux positif)
-
-    Nouveau score (bidirectionnel):
-      1. keyword_coverage = mots du keyword trouvés dans le message (pondéré IDF)
-      2. message_coverage = mots du message trouvés dans le keyword (pondéré IDF, sans stop words)
-      3. score = moyenne harmonique des deux
-      4. boost x1.3 si même intention, pénalité x0.7 si intention différente
-
-      → "je souhaite créer un bot" vs "bot":
-        keyword_coverage = 1.0, message_coverage ≈ 0.2
-        harmonic mean ≈ 0.33, avec pénalité d'intention ≈ 0.23 ❌ (correct!)
+    Améliorations:
+    - Score bidirectionnel (harmonic mean de keyword_coverage et message_coverage)
+    - Pondération IDF (mots rares > mots fréquents)
+    - Boost/pénalité d'intention
+    - FUZZY MATCHING: tolérance aux fautes d'orthographe
+      → "bonjor" matche "bonjour", "whatsap" matche "whatsapp"
     """
     kw_tokens = _tokenize(keyword)
     if not kw_tokens or not msg_tokens:
         return 0.0
 
-    intersection = msg_tokens & kw_tokens
+    # Intersection avec fuzzy matching (tolérance fautes)
+    intersection = _fuzzy_intersection(msg_tokens, kw_tokens)
     if not intersection:
         return 0.0
 
@@ -227,13 +257,9 @@ def trouver_meilleure_reponse(
     local_dialogues: List[dict[str, str]] = None
 ) -> str | None:
     """
-    Retourne la meilleure réponse avec scoring sémantique bidirectionnel.
+    Retourne la meilleure réponse avec scoring sémantique bidirectionnel + fuzzy matching.
 
-    Améliorations vs ancienne version:
-    - Score bidirectionnel (keyword coverage × message coverage)
-    - Pondération IDF (mots rares > mots fréquents)
-    - Détection d'intention (prix, création, info, objection...)
-    - Stop words filtrés du scoring
+    Tolérant aux fautes d'orthographe, abréviations SMS, français approximatif.
     """
     if local_dialogues is None:
         local_dialogues = []
@@ -305,7 +331,7 @@ def trouver_meilleure_reponse(
     return None
 
 
-# Compatibilité: garder score_match pour les imports existants
+# Compatibilité: garder score_match pour les imports existants (ancien format)
 def score_match(user_message: str, keyword: str) -> float:
     """Score de compatibilité (ancien format unidirectionnel, pour tests)."""
     if not user_message or not keyword:
@@ -314,5 +340,5 @@ def score_match(user_message: str, keyword: str) -> float:
     words_kw = _tokenize(keyword)
     if not words_kw or not words_msg:
         return 0.0
-    intersection = words_msg.intersection(words_kw)
+    intersection = _fuzzy_intersection(words_msg, words_kw)
     return len(intersection) / len(words_kw)
