@@ -141,7 +141,7 @@
       "questions": [
         "salut"
       ],
-      "answer": "Bonjour et bienvenue chez Komara Agency. Nous vous accompagnons avec des bots, des solutions web et mobiles, des automatisations et de la création digitale. Que souhaitez-vous développer aujourd’hui ?",
+      "answer": "Salut 👋 Ravi de te parler ! Je suis Ndine Komara de KOMARA AGENCY.\nTu viens pour un bot WhatsApp ou Telegram ?",
       "tags": [
         "accueil",
         "local"
@@ -283,9 +283,12 @@
       "id": "presentation_04",
       "category": "presentation",
       "questions": [
-        "qui est ndine"
+        "qui est ndine",
+        "qui est ndine komara",
+        "qui es tu",
+        "presente toi"
       ],
-      "answer": "Je suis l’assistant local de Komara Agency. Komara accompagne les entrepreneurs avec des bots intelligents, le développement web et mobile, les automatisations et la création digitale. Je peux présenter les services et recueillir votre besoin.",
+      "answer": "Je suis NDINE KOMARA, l'agent vendeur IA de KOMARA AGENCY 🤖\nMa mission : t'aider à avoir un bot qui vend pour toi.\nTu veux voir un exemple ?",
       "tags": [
         "presentation",
         "local"
@@ -611,9 +614,12 @@
       "id": "telegram_tiktok_01",
       "category": "telegram_tiktok",
       "questions": [
-        "bot telegram"
+        "bot telegram",
+        "comment creer des bot telegram",
+        "bot pour telegram",
+        "creer un bot telegram"
       ],
-      "answer": "Nous pouvons étudier un bot Telegram, TikTok ou multicanal selon les fonctionnalités autorisées par la plateforme et votre objectif commercial.",
+      "answer": "Oui on fait aussi pour Telegram 🔥 Les bots Telegram sont parfaits pour gérer des groupes et vendre.\nC'est pour vendre un produit ou pour gérer une communauté ?",
       "tags": [
         "telegram_tiktok",
         "local"
@@ -1961,7 +1967,7 @@
         "quel est le coût",
         "combien faut-il prévoir"
       ],
-      "answer": "Les tarifs dépendent du service, du périmètre et de la personnalisation. Certains packs commencent à 1200 MAD, le Pack Business est à 3500 MAD, et les projets sur mesure sont établis sur devis.",
+      "answer": "Ça dépend de ce que tu veux que le bot fasse 😊\nNos packs commencent à 99$. Le plus vendu : Bot de prise de commande + FAQ à 150$.\nTu veux le détail des 3 packs ?",
       "tags": [
         "tarifs",
         "local"
@@ -2326,9 +2332,13 @@
       "questions": [
         "c’est trop cher",
         "je trouve le tarif élevé",
-        "c’est au-dessus de mon budget"
+        "c’est au-dessus de mon budget",
+        "c est cher",
+        "trop cher",
+        "c’est cher",
+        "c est trop cher"
       ],
-      "answer": "Nous pouvons ajuster le périmètre pour commencer par la priorité. Le devis précise les livrables, le délai et les conditions afin de vous permettre de décider avec transparence.",
+      "answer": "Je comprends 👍 Le but c'est que le bot te rapporte 10x son prix.\nOn a des offres à partir de 99$.\nTu veux que je t'explique comment il va te faire économiser 5h/semaine ?",
       "tags": [
         "objections",
         "local"
@@ -4689,7 +4699,10 @@
       "id": 60,
       "category": "conversation_komara",
       "questions": [
-        "Merci pour les infos fin de conversation"
+        "Merci pour les infos fin de conversation",
+        "merci pour l info",
+        "merci pour les infos",
+        "merci beaucoup"
       ],
       "tags": [
         "merci",
@@ -4698,7 +4711,7 @@
         "merci infos",
         "bye"
       ],
-      "answer": "Avec plaisir 😊 Si tu veux créer une IA ou automatiser quelque chose, je suis là. Tu veux que je te propose un modèle adapté ?"
+      "answer": "Avec plaisir 🙏 C'est normal.\nTu veux que je t'envoie un exemple de devis pour un bot ?"
     },
     {
       "id": 61,
@@ -4964,7 +4977,12 @@
       "id": 80,
       "category": "presentation_agency",
       "questions": [
-        "Vous êtes basés où"
+        "Vous êtes basés où",
+        "ou etes vous base",
+        "vous etes bases ou",
+        "tu es base ou",
+        "ou etes vous situes",
+        "vous etes ou"
       ],
       "tags": [
         "bases",
@@ -4973,7 +4991,7 @@
         "localisation",
         "adresse"
       ],
-      "answer": "Conakry, Guinée 🇬🇳. Mais on travaille avec toute la francophonie."
+      "answer": "KOMARA AGENCY est 100% en ligne 🌍 On travaille avec toute l'Afrique et la France.\nEt toi tu es basé où ?"
     },
     {
       "id": 81,
@@ -6162,7 +6180,10 @@
       "id": 170,
       "category": "objections",
       "questions": [
-        "Je n'y connais rien en tech"
+        "Je n'y connais rien en tech",
+        "je n y connais rien en tech",
+        "je suis nul en tech",
+        "pas technique"
       ],
       "tags": [
         "pas tech",
@@ -6170,7 +6191,7 @@
         "pas technique",
         "simple"
       ],
-      "answer": "Parfait. C'est fait pour ça. Si tu sais envoyer un vocal WhatsApp, tu sais piloter Komara."
+      "answer": "T'inquiète, c'est mon travail 🙏\nToi tu me donnes juste les infos de ton business. Moi je livre le bot clé en main + formation de 10min.\nTu t'occupes de vendre, moi du tech. Deal ?"
     },
     {
       "id": 171,
@@ -7847,6 +7868,502 @@
         "pricing",
         "dollars"
       ]
+    },
+    {
+      "id": "conv_01",
+      "category": "conversation",
+      "tags": [
+        "salutation",
+        "smalltalk"
+      ],
+      "questions": [
+        "comment tu vas",
+        "comment vas tu",
+        "ca va",
+        "sa va",
+        "comment ça va",
+        "tu vas bien"
+      ],
+      "answer": "Ça va super bien merci 🙏 Et toi ?\nRavi de te parler. Comment je peux t'aider avec ton projet aujourd'hui ?"
+    },
+    {
+      "id": "conv_02",
+      "category": "conversation",
+      "tags": [
+        "creation",
+        "whatsapp",
+        "chatbot"
+      ],
+      "questions": [
+        "comment creer un chatbot whatsapp",
+        "comment faire un chatbot whatsapp",
+        "creer un chatbot whatsapp",
+        "comment faire un bot whatsapp"
+      ],
+      "answer": "Très simple 👌 Chez KOMARA AGENCY on crée des chatbots WhatsApp qui répondent à ta place 24H/24.\nTu veux un bot qui prend les commandes, répond aux FAQs, ou qui vend ?"
+    },
+    {
+      "id": "conv_03",
+      "category": "conversation",
+      "tags": [
+        "localisation",
+        "guinee",
+        "afrique"
+      ],
+      "questions": [
+        "je suis en guinee",
+        "je viens de guinee",
+        "je vis en guinee",
+        "je suis en afrique"
+      ],
+      "answer": "Waouh la Guinée 🇬🇳 On a des clients partout en Afrique !\nPas de souci pour la livraison et le suivi. Ton business c'est dans quoi en Guinée ?"
+    },
+    {
+      "id": "conv_04",
+      "category": "conversation",
+      "tags": [
+        "creation",
+        "bot",
+        "projet"
+      ],
+      "questions": [
+        "je souhaite creer un bot",
+        "je veux creer un bot",
+        "je veut creer un bot",
+        "creer un bot"
+      ],
+      "answer": "Excellent choix ! 🚀 Un bot va te faire gagner du temps et des ventes.\nC'est pour WhatsApp, Telegram, ou site web ? Dis-moi ton objectif."
+    },
+    {
+      "id": "conv_05",
+      "category": "conversation",
+      "tags": [
+        "creation",
+        "chatbot"
+      ],
+      "questions": [
+        "je souhaite creer un chatbot",
+        "je veux creer un chatbot",
+        "je veut un chatbot",
+        "creer un chatbot"
+      ],
+      "answer": "Top ! Un chatbot c'est le meilleur commercial qui ne dort jamais 😄\nTu veux qu'il réponde aux questions, prenne des RDV ou vende directement ?"
+    },
+    {
+      "id": "conv_06",
+      "category": "conversation",
+      "tags": [
+        "smalltalk",
+        "politesse"
+      ],
+      "questions": [
+        "bonne journee",
+        "bonne journee a toi",
+        "passe une bonne journee",
+        "bonne soiree"
+      ],
+      "answer": "Merci à toi aussi ! Passe une excellente journée ☀️\nN'hésite pas si tu as une question sur les bots."
+    },
+    {
+      "id": "conv_07",
+      "category": "conversation",
+      "tags": [
+        "smalltalk",
+        "politesse",
+        "nuit"
+      ],
+      "questions": [
+        "bonne nuit",
+        "bonne nuit a toi",
+        "je vais dormir",
+        "dodo"
+      ],
+      "answer": "Bonne nuit à toi 🌙 Repose-toi bien.\nOn reprend demain pour lancer ton bot si tu veux."
+    },
+    {
+      "id": "conv_08",
+      "category": "conversation",
+      "tags": [
+        "smalltalk",
+        "depart"
+      ],
+      "questions": [
+        "a demain",
+        "a demain chef",
+        "demain",
+        "on se voit demain"
+      ],
+      "answer": "À demain ! Hâte de continuer avec toi 💪\nBonne soirée."
+    },
+    {
+      "id": "conv_09",
+      "category": "conversation",
+      "tags": [
+        "smalltalk",
+        "depart"
+      ],
+      "questions": [
+        "a plus",
+        "a plus tard",
+        "a plus tard chef",
+        "a bientot",
+        "bye",
+        "au revoir",
+        "goodbye"
+      ],
+      "answer": "À plus tard ! 👋 On se parle bientôt pour ton projet 🚀\nEt si tu changes d'avis, écris \"BOT\" ici, je te réponds direct."
+    },
+    {
+      "id": "conv_10",
+      "category": "conversation",
+      "tags": [
+        "idee",
+        "conseil"
+      ],
+      "questions": [
+        "donne moi une idee",
+        "donnez-moi une idee",
+        "propose moi une idee",
+        "une idee de bot"
+      ],
+      "answer": "Bien sûr ! Voici 3 idées qui marchent fort :\n1. Bot qui prend les commandes resto\n2. Bot FAQ pour boutique en ligne\n3. Bot qui envoie les factures auto\nLaquelle t'inspire le plus ?"
+    },
+    {
+      "id": "conv_11",
+      "category": "conversation",
+      "tags": [
+        "idee",
+        "conseil",
+        "projet"
+      ],
+      "questions": [
+        "quel idee me propose tu",
+        "quelle idee tu me propose",
+        "tu me propose quoi",
+        "quelle solution pour moi"
+      ],
+      "answer": "Ça dépend de ton business 👇\nSi tu vends : Bot de prise de commande\nSi tu as beaucoup de questions : Bot FAQ\nSi tu veux fidéliser : Bot de promo auto\nTu fais quoi comme activité ?"
+    },
+    {
+      "id": "conv_12",
+      "category": "conversation",
+      "tags": [
+        "vente",
+        "closing",
+        "creation"
+      ],
+      "questions": [
+        "ok pour la creation",
+        "ok pour la creation du bot",
+        "d accord pour la creation",
+        "je suis d accord pour creer"
+      ],
+      "answer": "Parfait on démarre ! 🔥\nJ'ai juste besoin de 3 infos : 1. Plateforme ? 2. Objectif du bot ? 3. Ton logo.\nJe t'envoie le devis en 2h."
+    },
+    {
+      "id": "conv_14",
+      "category": "conversation",
+      "tags": [
+        "marque",
+        "presentation"
+      ],
+      "questions": [
+        "komara",
+        "komara ??",
+        "komara komara"
+      ],
+      "answer": "Oui KOMARA AGENCY ! L'agence qui crée des bots vendeurs pour PME et e-commerce 🤖\nTu veux voir nos réalisations ?"
+    },
+    {
+      "id": "conv_15",
+      "category": "conversation",
+      "tags": [
+        "vente",
+        "closing",
+        "interet"
+      ],
+      "questions": [
+        "je suis interesse",
+        "je suis interesse par le bot",
+        "ca m interesse",
+        "je suis interesse par vos services"
+      ],
+      "answer": "Génial ! 🔥 Je suis content.\nOn fait un appel de 10min pour définir ton bot ou tu préfères que je t'envoie le catalogue + prix direct ?"
+    },
+    {
+      "id": "conv_16",
+      "category": "conversation",
+      "tags": [
+        "info",
+        "bot",
+        "explication"
+      ],
+      "questions": [
+        "ca fait quoi exactement un bot",
+        "que fait un bot exactement",
+        "ca sert a quoi un bot",
+        "a quoi sert un bot"
+      ],
+      "answer": "Imagine un commercial qui ne dort jamais 🤖\nIl répond aux clients, donne les prix, prend les commandes, envoie la localisation... même à 3h du matin.\nTu veux que je te montre un exemple vidéo de 20sec ?"
+    },
+    {
+      "id": "conv_17",
+      "category": "conversation",
+      "tags": [
+        "support",
+        "garantie",
+        "bug"
+      ],
+      "questions": [
+        "et si le bot bug",
+        "si le bot tombe en panne",
+        "le bot ne marche pas",
+        "le bot bug",
+        "panne"
+      ],
+      "answer": "1 mois de support offert avec chaque bot.\nS'il y a un souci, tu m'écris et je règle en moins de 24h. T'es couvert."
+    },
+    {
+      "id": "conv_18",
+      "category": "conversation",
+      "tags": [
+        "secteur",
+        "restaurant"
+      ],
+      "questions": [
+        "tu peux faire pour mon restaurant",
+        "bot pour restaurant",
+        "pour un resto",
+        "bot pour resto"
+      ],
+      "answer": "Carrément ! 🍽️ Le bot peut prendre les commandes, donner le menu, l'adresse, les horaires.\nTu ne perds plus aucune commande le soir.\nTu veux voir un exemple pour resto ?"
+    },
+    {
+      "id": "conv_19",
+      "category": "conversation",
+      "tags": [
+        "secteur",
+        "boutique"
+      ],
+      "questions": [
+        "tu peux faire pour ma boutique",
+        "bot pour boutique",
+        "pour une boutique",
+        "bot pour mon commerce"
+      ],
+      "answer": "Oui à 100% 👗 Le bot répond \"Dispo ? Prix ? Livraison ?\" à ta place.\nRésultat : +5 ventes/semaine.\nC'est quoi que tu vends ?"
+    },
+    {
+      "id": "conv_20",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "simplicite"
+      ],
+      "questions": [
+        "c est complique a utiliser",
+        "c est difficile a utiliser",
+        "complique",
+        "c est dur a utiliser"
+      ],
+      "answer": "Pas du tout. C'est WhatsApp. Tes clients n'ont rien à installer.\nEt toi tu reçois juste les commandes comme d'hab.\nJe te forme en 10min."
+    },
+    {
+      "id": "conv_21",
+      "category": "conversation",
+      "tags": [
+        "demo",
+        "exemple"
+      ],
+      "questions": [
+        "je veux voir un exemple",
+        "montre moi un exemple",
+        "exemple de bot",
+        "montre un exemple",
+        "voir une demo"
+      ],
+      "answer": "Je t'envoie ça direct 👇\nTu veux le même pour ton business ?"
+    },
+    {
+      "id": "conv_22",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "closing",
+        "retard"
+      ],
+      "questions": [
+        "je reflechis",
+        "je vais reflechir",
+        "je dois reflechir",
+        "laisse moi reflechir",
+        "je vais y penser"
+      ],
+      "answer": "Je comprends 👍 Prends ton temps.\nJuste pour info il me reste 1 place à 99$ ce mois. Après ça repasse à 250$.\nJe te relance demain si tu veux ?"
+    },
+    {
+      "id": "conv_23",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "identite",
+        "humain"
+      ],
+      "questions": [
+        "tu es une vraie personne",
+        "tu es un robot",
+        "je parle a un humain",
+        "tu es reel",
+        "c est un bot qui parle"
+      ],
+      "answer": "Oui je suis Ndine 😄 Mais je suis assisté par l'IA de KOMARA AGENCY pour te répondre plus vite.\nLe bot qu'on va te créer, c'est pareil : humain + rapide."
+    },
+    {
+      "id": "conv_24",
+      "category": "conversation",
+      "tags": [
+        "contact",
+        "whatsapp"
+      ],
+      "questions": [
+        "envoie moi ton numero",
+        "ton numero",
+        "ton contact",
+        "comment te joindre",
+        "ton whatsapp"
+      ],
+      "answer": "Tu me parles déjà sur mon numéro 😄 C'est ici que je livre tous les bots.\nTu veux qu'on passe à la création ?"
+    },
+    {
+      "id": "conv_25",
+      "category": "conversation",
+      "tags": [
+        "equipe",
+        "presentation"
+      ],
+      "questions": [
+        "tu travailles seul",
+        "tu es tout seul",
+        "c est une equipe",
+        "vous etes combien"
+      ],
+      "answer": "KOMARA AGENCY c'est une équipe. Moi je suis ton commercial + chef de projet.\nDerrière on a des devs pour coder le bot nickel."
+    },
+    {
+      "id": "conv_26",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "prix",
+        "etudiant"
+      ],
+      "questions": [
+        "je suis etudiant j ai pas beaucoup d argent",
+        "je suis etudiant",
+        "pas d argent",
+        "budget serre",
+        "je suis fauché"
+      ],
+      "answer": "Je capte 🙏 On a un pack \"Starter\" à 99$ pour débuter.\nIl fait déjà 80% du travail. Quand tu auras des ventes, on upgrade."
+    },
+    {
+      "id": "conv_27",
+      "category": "conversation",
+      "tags": [
+        "reference",
+        "temoignage",
+        "preuve"
+      ],
+      "questions": [
+        "tu as deja fait ca",
+        "vous avez deja fait des bots",
+        "des references",
+        "des temoignages",
+        "tu as des exemples concrets"
+      ],
+      "answer": "Oui ! On a déjà équipé des boutiques, restos et coachs.\nTu veux que je t'envoie 2 témoignages clients ?"
+    },
+    {
+      "id": "conv_28",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "personnalisation"
+      ],
+      "questions": [
+        "mon business est different",
+        "mon cas est different",
+        "mon business est unique",
+        "mon secteur est special"
+      ],
+      "answer": "Chaque bot est 100% personnalisé pour ton business 💡\nDis-moi ce que tu fais et je te dis comment le bot peut t'aider."
+    },
+    {
+      "id": "conv_29",
+      "category": "conversation",
+      "tags": [
+        "closing",
+        "onboarding"
+      ],
+      "questions": [
+        "d accord je veux",
+        "ok je veux",
+        "je veux commencer",
+        "go on demarre",
+        "on demarre",
+        "je prends"
+      ],
+      "answer": "Yes on y va 🔥\nEnvoie-moi : 1. Nom du business 2. 5 questions que tes clients posent 3. Logo si tu as\nOn démarre aujourd'hui."
+    },
+    {
+      "id": "conv_30",
+      "category": "conversation",
+      "tags": [
+        "catalogue",
+        "packs",
+        "prix"
+      ],
+      "questions": [
+        "laisse moi ton catalogue",
+        "ton catalogue",
+        "envoie le catalogue",
+        "les packs",
+        "vos packs",
+        "catalogue des offres"
+      ],
+      "answer": "Voici nos 3 packs KOMARA AGENCY 👇\nSTARTER 99$ : FAQ + Réponses auto\nBUSINESS 150$ : Prise de commande + Paiement\nPREMIUM 250$ : Bot complet + CRM + Stats\nTu veux lequel ?"
+    },
+    {
+      "id": "conv_31",
+      "category": "conversation",
+      "tags": [
+        "smalltalk",
+        "continuation"
+      ],
+      "questions": [
+        "ok envoie",
+        "envoie",
+        "ok vas y",
+        "vas y envoie",
+        "d accord envoie"
+      ],
+      "answer": "Parfait ! Pour t'envoyer le bon truc, c'est pour quel type de business ?\nResto, boutique, service... ?"
+    },
+    {
+      "id": "conv_32",
+      "category": "conversation",
+      "tags": [
+        "objection",
+        "resume"
+      ],
+      "questions": [
+        "trop long a lire",
+        "c est trop long",
+        "resume",
+        "trop de texte",
+        "fais court"
+      ],
+      "answer": "Résumé express : Bot WhatsApp qui vend pour toi 24H/24.\nÀ partir de 99$. Livré en 48H.\nTu veux qu'on démarre ?"
     }
   ],
   "conversations": [

@@ -68,7 +68,7 @@
     },
     {
       "id": 5,
-      "answer": "Les délais dépendent du projet :\n\n⚡ **Bot simple** : 3-5 jours\n⚡ **Site web** : 7-14 jours\n⚡ **Solution complète** : 15-30 jours\n\nNous respectons toujours nos engagements. Un calendrier précis vous est fourni avant le début du projet.",
+      "answer": "48H chrono 🔥 Dès que tu valides et que je reçois les infos, en 2 jours ton bot est prêt.\nOn démarre quand ?",
       "keywords": [
         "délai",
         "livraison",
@@ -81,12 +81,15 @@
         "combien de temps",
         "délais",
         "Quels sont vos délais de livraison ?",
-        "délai livraison"
+        "délai livraison",
+        "combien de temps pour creer",
+        "combien de temps pour un bot",
+        "delai de creation"
       ]
     },
     {
       "id": 6,
-      "answer": "Nous acceptons plusieurs moyens de paiement pour votre commodité :\n\n💳 **Orange Money**\n💳 **MoMo (Mobile Money)**\n💳 **PayPal**\n💳 **Virement bancaire**\n\nPaiement en 2 fois possible : 50% à la commande, 50% à la livraison.",
+      "answer": "Orange Money, Wave, ou Virement. Simple.\n50% pour démarrer, 50% à la livraison. Tu préfères quoi ?",
       "keywords": [
         "paiement",
         "payer",
@@ -100,7 +103,10 @@
         "moyens de paiement",
         "comment payer",
         "Quels moyens de paiement acceptez-vous ?",
-        "paiement"
+        "paiement",
+        "comment on paie",
+        "comment je paie",
+        "moyen de paiement"
       ]
     },
     {
