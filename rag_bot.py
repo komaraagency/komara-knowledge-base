@@ -22,6 +22,7 @@ from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
 from local_search import trouver_meilleure_reponse
+from groq_ai import should_use_ai, find_best_kb_answer, generate_contextual_response, is_groq_available
 from local_stats import record_unrecognized
 
 # ---------------------------------------------------------------------------
@@ -487,7 +488,15 @@ def context_for(chat_id: int) -> list[dict[str, str]]:
 
 
 def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) -> str | None:
-    """Recherche directe puis contextuelle, dans la langue détectée puis fallback."""
+    """Recherche contextuelle avec compréhension sémantique IA.
+
+    Flux optimisé:
+    1. Messages courts (1-2 mots) → keyword matching direct (rapide)
+    2. Phrases complètes (3+ mots) → keyword matching d'abord, puis IA si besoin
+    3. Si keyword matching trouve une réponse ET que Groq est dispo → vérifier
+       qu'elle est sémantiquement correcte (évite le faux "bot" matching)
+    4. Si aucun match → IA génère une réponse contextuelle
+    """
     history = context_for(chat_id)
     previous_user_messages = [
         item["content"] for item in history
@@ -496,10 +505,66 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     recent_context = " ".join(previous_user_messages[-3:])
     combined_text = f"{recent_context} {user_text}".strip()
 
+    # 1. Keyword matching direct (toujours, rapide)
     direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
+
+    # 2. Si le message est une phrase complète et qu'on a l'IA
+    if should_use_ai(user_text):
+        # Récupérer les KB entries pertinents pour l'IA
+        resources = LANG_RESOURCES.get(detected_lang, {"kb": [], "faq": [], "dialogues": []})
+        all_kb = resources["kb"]
+
+        # Si le keyword matching a trouvé une réponse, vérifier avec l'IA
+        if direct_answer and is_groq_available():
+            # Pré-filtrer les entrées KB par keyword matching pour donner du contexte à l'IA
+            from local_search import score_match, normalize_text, _get_questions
+            scored = []
+            for entry in all_kb:
+                questions = _get_questions(entry)
+                best = max((score_match(user_text, q) for q in questions), default=0.0)
+                if best > 0:
+                    scored.append((best, entry))
+            scored.sort(key=lambda x: x[0], reverse=True)
+            top_entries = [e for _, e in scored[:8]]
+
+            if top_entries:
+                ai_answer = find_best_kb_answer(user_text, top_entries)
+                if ai_answer:
+                    logger.info("IA: réponse KB sémantique trouvée (remplace keyword match)")
+                    return ai_answer
+
+        # 3. Si aucun match keyword, essayer l'IA avec toute la KB pré-filtrée
+        if not direct_answer and is_groq_available():
+            from local_search import score_match, _get_questions
+            scored = []
+            for entry in all_kb:
+                questions = _get_questions(entry)
+                best = max((score_match(user_text, q) for q in questions), default=0.0)
+                if best > 0:
+                    scored.append((best, entry))
+            scored.sort(key=lambda x: x[0], reverse=True)
+            top_entries = [e for _, e in scored[:10]]
+
+            # D'abord chercher une réponse KB exacte avec l'IA
+            if top_entries:
+                ai_answer = find_best_kb_answer(user_text, top_entries)
+                if ai_answer:
+                    logger.info("IA: réponse KB trouvée pour phrase sans keyword match")
+                    return ai_answer
+
+            # 4. Sinon, générer une réponse contextuelle
+            ai_response = generate_contextual_response(
+                user_text, top_entries or all_kb[:10], history
+            )
+            if ai_response:
+                logger.info("IA: réponse contextuelle générée")
+                return ai_response
+
+    # 5. Fallback: retourner le keyword match si on en a un
     if direct_answer:
         return direct_answer
 
+    # 6. Recherche contextuelle avec historique
     contextual_answer = trouver_meilleure_reponse_multilingue(combined_text, detected_lang)
     if contextual_answer:
         return contextual_answer

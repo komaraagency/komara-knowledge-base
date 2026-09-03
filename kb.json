@@ -7499,6 +7499,354 @@
         "restauration"
       ],
       "answer": "Sauvegarde auto chaque nuit. Si problème, on restaure en 5min."
+    },
+    {
+      "id": "vente_01",
+      "category": "vente",
+      "questions": [
+        "c'est quoi komara agency",
+        "qu'est-ce que komara agency",
+        "présentation komara",
+        "qui êtes-vous",
+        "c'est quoi ndine komara"
+      ],
+      "answer": "Komara Agency 🇬🇳 c'est ton vendeur qui ne dort jamais.\nUn Agent IA connecté à ton WhatsApp qui répond aux clients, prend les commandes et encaisse 24H/24. Même à 3H du matin pendant que tu dors.",
+      "tags": [
+        "vente",
+        "présentation",
+        "pitch"
+      ]
+    },
+    {
+      "id": "vente_02",
+      "category": "vente",
+      "questions": [
+        "l'ia va remplacer mes vendeurs",
+        "remplacer vendeurs",
+        "ia vs vendeurs",
+        "est-ce que l'ia remplace"
+      ],
+      "answer": "Non. Elle va les rendre 10x plus forts.\nL'IA gère les 100 \"Bonjour prix ?\" et \"Vous livrez ?\".\nTes vendeurs se concentrent sur les gros clients et la vente. Moins de fatigue, plus de vente.",
+      "tags": [
+        "vente",
+        "objection",
+        "vendeurs"
+      ]
+    },
+    {
+      "id": "vente_03",
+      "category": "vente",
+      "questions": [
+        "combien je peux gagner",
+        "roi",
+        "retour sur investissement",
+        "plus de revenu",
+        "rentabilité"
+      ],
+      "answer": "Nos clients font +30% à +60% de réponse.\nPourquoi ? Parce qu'on ne laisse plus aucun client sans réponse.\nUn client qui attend 2H part chez le concurrent. Avec Komara Agency 🇬🇳, réponse en 3 secondes.",
+      "tags": [
+        "vente",
+        "roi",
+        "chiffres"
+      ]
+    },
+    {
+      "id": "vente_04",
+      "category": "vente",
+      "questions": [
+        "ça marche pour mon secteur",
+        "ça marche pour resto",
+        "ça marche pour boutique",
+        "ça marche pour service",
+        "secteur d'activité"
+      ],
+      "answer": "Oui. On a déjà fait pour :\nRestaurants → Prise de commande + Menu\nBoutiques → Catalogue + Stock + Livraison\nCabinets/Coachs → Prise de RDV + Relance\nImmobilier → Visite + Dossier\nSi tu as WhatsApp, on peut l'automatiser.",
+      "tags": [
+        "vente",
+        "secteur",
+        "cas d'usage"
+      ]
+    },
+    {
+      "id": "vente_05",
+      "category": "vente",
+      "questions": [
+        "combien ça coûte par mois",
+        "prix mensuel",
+        "abonnement komara",
+        "récupérer investissement",
+        "50.000 fcfa"
+      ],
+      "answer": "À partir de 50.000 FCFA/mois.\nLa plupart de nos clients rentabilisent en 7 jours.\n1 seule vente de 60.000 FCFA paye déjà l'Agent du mois.",
+      "tags": [
+        "vente",
+        "prix",
+        "fcfa"
+      ]
+    },
+    {
+      "id": "vente_06",
+      "category": "objection",
+      "questions": [
+        "et si l'ia répond mal",
+        "ia répond mal aux clients",
+        "erreur ia",
+        "fausse réponse"
+      ],
+      "answer": "Impossible. On entraîne Komara Agency 🇬🇳 avec TON catalogue, TON ton, TES réponses.\n- Tu valides toutes les réponses avant le lancement.\n- Tu peux reprendre la main sur WhatsApp à tout moment.",
+      "tags": [
+        "objection",
+        "qualité",
+        "contrôle"
+      ]
+    },
+    {
+      "id": "vente_07",
+      "category": "objection",
+      "questions": [
+        "mes clients vont savoir que c'est un robot",
+        "c'est un robot",
+        "robot ou humain",
+        "clients robot"
+      ],
+      "answer": "Non. On lui donne ta voix. Il dit \"Bonjour, c'est l'assistant de Komara Agency 🇬🇳\".\nIl est humain, poli, et rapide. 90% des clients ne voient pas la différence.",
+      "tags": [
+        "objection",
+        "robot",
+        "humain"
+      ]
+    },
+    {
+      "id": "vente_08",
+      "category": "objection",
+      "questions": [
+        "mot de passe whatsapp",
+        "sécurité whatsapp",
+        "donner mot de passe",
+        "risque whatsapp"
+      ],
+      "answer": "Non. Zéro risque.\nOn utilise l'API officielle de WhatsApp Business. Sécurisé par Meta.\nToi seul as accès à tes messages.",
+      "tags": [
+        "objection",
+        "sécurité",
+        "api"
+      ]
+    },
+    {
+      "id": "vente_09",
+      "category": "objection",
+      "questions": [
+        "pas beaucoup de messages",
+        "peu de messages",
+        "10 messages par jour",
+        "faible volume"
+      ],
+      "answer": "C'est justement là qu'il faut commencer.\nKomara Agency 🇬🇳 transforme les 10 messages/jour en 10 ventes.\nQuand tu auras 100 messages/jour, tu seras déjà prêt.",
+      "tags": [
+        "objection",
+        "volume",
+        "démarrage"
+      ]
+    },
+    {
+      "id": "vente_10",
+      "category": "vente",
+      "questions": [
+        "comment on démarre",
+        "comment commencer",
+        "étapes démarrage",
+        "lancer komara",
+        "48h"
+      ],
+      "answer": "3 étapes en 48H :\n1. *Audit 15min* : On regarde ton WhatsApp actuel\n2. *Installation* : On branche Komara Agency 🇬🇳 à ton WhatsApp\n3. *Lancement* : On teste avec 10 clients et on optimise",
+      "tags": [
+        "vente",
+        "démarrage",
+        "processus"
+      ]
+    },
+    {
+      "id": "vente_11",
+      "category": "vente_international",
+      "questions": [
+        "différence whatsapp business et komara",
+        "whatsapp business vs komara",
+        "pourquoi pas whatsapp business"
+      ],
+      "answer": "WhatsApp Business = tu réponds toi-même.\nKomara Agency 🇬🇳 = l'IA répond pour toi, 24H/24, même avec 500 messages.\nRésultat: 0 lead perdu + 0 burnout.",
+      "tags": [
+        "international",
+        "comparaison",
+        "whatsapp"
+      ]
+    },
+    {
+      "id": "vente_12",
+      "category": "vente_international",
+      "questions": [
+        "prendre les commandes",
+        "ia prend commandes",
+        "commandes automatiques",
+        "book appointments"
+      ],
+      "answer": "YES. Il qualifie: Produit, Quantité, Adresse, Paiement.\nIl envoie le récap à ton équipe. Toi tu n'as qu'à livrer.\nParfait pour e-commerce, resto, services, agences.",
+      "tags": [
+        "international",
+        "commandes",
+        "automatisation"
+      ]
+    },
+    {
+      "id": "vente_13",
+      "category": "vente_international",
+      "questions": [
+        "temps installation",
+        "combien de temps installer",
+        "setup time",
+        "délai installation"
+      ],
+      "answer": "48H.\nDay 1: Onboarding + Training de l'IA avec tes infos\nDay 2: Installation + Tests\nDay 3: Go Live + Optimisation.\nHands-free pour toi.",
+      "tags": [
+        "international",
+        "installation",
+        "délai"
+      ]
+    },
+    {
+      "id": "vente_14",
+      "category": "vente_international",
+      "questions": [
+        "annuler",
+        "résilier",
+        "contrat komara",
+        "cancel",
+        "engagement"
+      ],
+      "answer": "No contract. Cancel anytime.\nMais après +40% de taux de réponse, 90% de nos clients restent.",
+      "tags": [
+        "international",
+        "annulation",
+        "contrat"
+      ]
+    },
+    {
+      "id": "vente_15",
+      "category": "vente_international",
+      "questions": [
+        "ça marche la nuit",
+        "nuit et weekend",
+        "24/7",
+        "jour férié",
+        "weekend"
+      ],
+      "answer": "24/7/365. C'est le but.\nPendant que tu dors, Komara Agency 🇬🇳 répond, vend et prend des RDV.\nTu te réveilles avec du CA déjà fait.",
+      "tags": [
+        "international",
+        "disponibilité",
+        "24/7"
+      ]
+    },
+    {
+      "id": "vente_16",
+      "category": "vente_international",
+      "questions": [
+        "vidéos pubs",
+        "ai video",
+        "tiktok reels",
+        "création vidéo",
+        "video creator"
+      ],
+      "answer": "YES. Komara Agency 🇬🇳 = AI Sales Agent + AI Video Creator.\nOn te fait des vidéos TikTok/Reels/Ads pour ramener du trafic vers ton WhatsApp.\nFull stack: Traffic + Conversion.",
+      "tags": [
+        "international",
+        "vidéo",
+        "traffic"
+      ]
+    },
+    {
+      "id": "vente_17",
+      "category": "vente_international",
+      "questions": [
+        "combien followers",
+        "faut-il des followers",
+        "followers nécessaires",
+        "sans abonnés"
+      ],
+      "answer": "0. Il te faut juste un numéro WhatsApp Business.\nOn peut lancer des ads pour toi.\nL'IA transforme même les petits comptes en machine à vente.",
+      "tags": [
+        "international",
+        "followers",
+        "ads"
+      ]
+    },
+    {
+      "id": "vente_18",
+      "category": "vente_international",
+      "questions": [
+        "sécurisé données clients",
+        "sécurité données",
+        "gdpr",
+        "protection données"
+      ],
+      "answer": "100% sécurisé.\nWhatsApp Business API officiel de Meta.\nGDPR Compliant. Tes données = tes données.",
+      "tags": [
+        "international",
+        "sécurité",
+        "gdpr"
+      ]
+    },
+    {
+      "id": "vente_19",
+      "category": "vente_international",
+      "questions": [
+        "quels pays",
+        "travaillez avec quels pays",
+        "international",
+        "remote",
+        "usa europe afrique"
+      ],
+      "answer": "100% Remote. On travaille avec USA, Europe, Afrique, Moyen-Orient.\nOnboarding et support 100% sur WhatsApp et Zoom.",
+      "tags": [
+        "international",
+        "pays",
+        "remote"
+      ]
+    },
+    {
+      "id": "vente_20",
+      "category": "vente_international",
+      "questions": [
+        "comment avoir agent cette semaine",
+        "i want my agent",
+        "demarrer cette semaine",
+        "audit gratuit"
+      ],
+      "answer": "Écris \"I WANT MY AGENT\" ou contacte-nous ici.\nOn te fait un audit gratuit de 15min et on lance ton Agent en 48H.",
+      "tags": [
+        "international",
+        "call_to_action",
+        "audit"
+      ]
+    },
+    {
+      "id": "vente_21",
+      "category": "pricing_international",
+      "questions": [
+        "pricing international",
+        "prix dollars",
+        "prix euros",
+        "tarif international",
+        "starter pro scale",
+        "$99",
+        "$299",
+        "$699"
+      ],
+      "answer": "Tarifs internationaux Komara Agency 🇬🇳 :\n\n*Starter* - $99/mo : Coaches, Freelancers\n*Pro* - $299/mo : Stores, Agencies\n*Scale* - $699/mo : E-commerce, 5+ Agents\n\n1 seule vente à $300 paye déjà le mois entier.",
+      "tags": [
+        "international",
+        "pricing",
+        "dollars"
+      ]
     }
   ],
   "conversations": [
