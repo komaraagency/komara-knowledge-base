@@ -147,6 +147,187 @@
       "questions": [
         "How can I contact you?"
       ]
+    },
+    {
+      "id": "en_sales_01",
+      "category": "sales",
+      "questions": [
+        "what's the difference whatsapp business and komara",
+        "whatsapp business vs komara",
+        "why not whatsapp business"
+      ],
+      "answer": "WhatsApp Business = You reply manually.\nKomara Agency 🇬🇳 = AI replies for you 24/7, even with 500 messages.\nResult: 0 leads lost + 0 burnout.",
+      "tags": [
+        "sales",
+        "comparison",
+        "whatsapp"
+      ]
+    },
+    {
+      "id": "en_sales_02",
+      "category": "sales",
+      "questions": [
+        "can komara take orders",
+        "take orders",
+        "book appointments",
+        "order automation"
+      ],
+      "answer": "YES. It qualifies leads, takes orders, books appointments, and sends the summary to your team.\nPerfect for E-commerce, Restaurants, Agencies, Real Estate, Coaches.",
+      "tags": [
+        "sales",
+        "orders",
+        "automation"
+      ]
+    },
+    {
+      "id": "en_sales_03",
+      "category": "sales",
+      "questions": [
+        "how long setup",
+        "setup time",
+        "installation time",
+        "how fast"
+      ],
+      "answer": "48 Hours.\nDay 1: We train the AI with your products + brand voice\nDay 2: We install + Test with you\nDay 3: We go LIVE + Optimize.\n100% done-for-you.",
+      "tags": [
+        "sales",
+        "setup",
+        "timeframe"
+      ]
+    },
+    {
+      "id": "en_sales_04",
+      "category": "sales",
+      "questions": [
+        "cancel",
+        "cancel anytime",
+        "contract",
+        "what if i cancel"
+      ],
+      "answer": "No contract. Cancel anytime.\nBut after seeing +40% reply rate, 90% of our clients stay.",
+      "tags": [
+        "sales",
+        "cancellation",
+        "contract"
+      ]
+    },
+    {
+      "id": "en_sales_05",
+      "category": "sales",
+      "questions": [
+        "does it work at night",
+        "weekends",
+        "24/7",
+        "holidays",
+        "after hours"
+      ],
+      "answer": "24/7/365. That's the whole point.\nWhile you sleep, Komara Agency 🇬🇳 replies, sells, and books calls.\nYou wake up to sales already made.",
+      "tags": [
+        "sales",
+        "availability",
+        "24/7"
+      ]
+    },
+    {
+      "id": "en_sales_06",
+      "category": "sales",
+      "questions": [
+        "do you create ai videos",
+        "ai video",
+        "tiktok reels",
+        "video ads",
+        "video creator"
+      ],
+      "answer": "YES. Komara Agency 🇬🇳 = AI Sales Agent + AI Video Creator.\nWe create TikTok/Reels/YouTube Shorts to drive traffic to your WhatsApp.\nFull stack: We bring the traffic + We convert it.",
+      "tags": [
+        "sales",
+        "video",
+        "traffic"
+      ]
+    },
+    {
+      "id": "en_sales_07",
+      "category": "sales",
+      "questions": [
+        "do i need followers",
+        "how many followers",
+        "followers needed",
+        "no followers"
+      ],
+      "answer": "No. You just need a WhatsApp Business number.\nWe can also run ads for you.\nOur AI turns small accounts into sales machines.",
+      "tags": [
+        "sales",
+        "followers",
+        "ads"
+      ]
+    },
+    {
+      "id": "en_sales_08",
+      "category": "sales",
+      "questions": [
+        "is it secure",
+        "customer data",
+        "gdpr",
+        "data protection"
+      ],
+      "answer": "100% Secure.\nOfficial WhatsApp Business API by Meta.\nGDPR Compliant. Your data = Your data. Period.",
+      "tags": [
+        "sales",
+        "security",
+        "gdpr"
+      ]
+    },
+    {
+      "id": "en_sales_09",
+      "category": "sales",
+      "questions": [
+        "what countries",
+        "which countries",
+        "do you work internationally",
+        "remote"
+      ],
+      "answer": "100% Remote. We work with USA, Canada, UK, UAE, EU, Africa.\nOnboarding and support 100% on WhatsApp and Zoom.",
+      "tags": [
+        "sales",
+        "countries",
+        "remote"
+      ]
+    },
+    {
+      "id": "en_sales_10",
+      "category": "sales",
+      "questions": [
+        "how do i get my agent",
+        "i want my agent",
+        "get started this week",
+        "free audit"
+      ],
+      "answer": "DM \"I WANT MY AGENT\"\nWe'll do a free 15-min audit and launch your Agent in 48H.",
+      "tags": [
+        "sales",
+        "cta",
+        "audit"
+      ]
+    },
+    {
+      "id": "en_sales_11",
+      "category": "pricing",
+      "questions": [
+        "pricing",
+        "how much",
+        "cost",
+        "plans",
+        "starter pro scale",
+        "$99",
+        "$299",
+        "$699"
+      ],
+      "answer": "Komara Agency 🇬🇳 Pricing:\n\n*Starter* - $99/mo : Coaches, Freelancers\n*Pro* - $299/mo : Stores, Agencies\n*Scale* - $699/mo : E-commerce, 5+ Agents\n\n1 sale at $300 already pays for the whole month.",
+      "tags": [
+        "pricing",
+        "dollars",
+        "plans"
+      ]
     }
   ],
   "packs": [
