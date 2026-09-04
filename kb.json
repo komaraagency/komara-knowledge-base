@@ -2465,11 +2465,11 @@
       "id": "contact_01",
       "category": "contact",
       "questions": [
-        "contact",
         "comment vous contacter",
-        "je veux parler à un conseiller"
+        "je veux parler à un conseiller",
+        "je veux parler a quelqu un"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Tu me parles déjà à moi, Ndine 😊\nDis-moi ton besoin, je m'occupe de tout ici.",
       "tags": [
         "contact",
         "local"
@@ -2479,9 +2479,11 @@
       "id": "contact_02",
       "category": "contact",
       "questions": [
-        "whatsapp"
+        "je veux votre numero whatsapp",
+        "donnez moi votre numero",
+        "votre numero de telephone"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "C'est moi directement ici 😊\nOn peut aussi se prendre 10min d'appel si tu préfères : +212 701 986 219.",
       "tags": [
         "contact",
         "local"
@@ -2491,9 +2493,10 @@
       "id": "contact_03",
       "category": "contact",
       "questions": [
-        "numéro"
+        "votre numero",
+        "quel est votre numero"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Tu es déjà sur le bon numéro 👍\nDis-moi ton projet, je te réponds tout de suite.",
       "tags": [
         "contact",
         "local"
@@ -2503,9 +2506,10 @@
       "id": "contact_04",
       "category": "contact",
       "questions": [
-        "téléphone"
+        "je veux votre telephone",
+        "puis je vous appeler"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Bien sûr, on peut faire ça 📞\nOn se prend 10min d'appel au +212 701 986 219 ?",
       "tags": [
         "contact",
         "local"
@@ -2515,9 +2519,10 @@
       "id": "contact_05",
       "category": "contact",
       "questions": [
-        "joindre komara"
+        "comment joindre komara",
+        "comment joindre komara agency"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Tu m'as déjà trouvé 😄\nRaconte-moi ton projet, je t'accompagne de A à Z ici.",
       "tags": [
         "contact",
         "local"
@@ -2543,9 +2548,10 @@
       "id": "contact_07",
       "category": "contact",
       "questions": [
-        "parler à ndine"
+        "je veux parler a ndine",
+        "je cherche ndine"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "C'est moi, Ndine 👋\nJe t'écoute, dis-moi tout.",
       "tags": [
         "contact",
         "local"
@@ -2555,9 +2561,10 @@
       "id": "contact_08",
       "category": "contact",
       "questions": [
-        "message privé"
+        "je veux vous envoyer un message prive",
+        "message prive"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Tu peux tout me dire ici, c'est déjà privé entre nous 😊\nJe t'écoute.",
       "tags": [
         "contact",
         "local"
@@ -2567,9 +2574,10 @@
       "id": "contact_09",
       "category": "contact",
       "questions": [
-        "contacter un conseiller"
+        "contacter un conseiller",
+        "parler a un humain"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "Tu parles déjà à un humain, moi Ndine 😊\nDis-moi ton besoin, je gère tout ici.",
       "tags": [
         "contact",
         "local"
@@ -2579,9 +2587,10 @@
       "id": "contact_10",
       "category": "contact",
       "questions": [
-        "prise de contact"
+        "prise de contact",
+        "je veux prendre contact"
       ],
-      "answer": "Décrivez votre projet ici ou demandez un conseiller. Pour un contact direct, écrivez sur WhatsApp au +212 701 986 219 en précisant votre activité et votre besoin.",
+      "answer": "C'est fait, on est en contact 👍\nRaconte-moi ton projet, on avance ensemble.",
       "tags": [
         "contact",
         "local"
@@ -4820,7 +4829,7 @@
         "ollama local",
         "donnees"
       ],
-      "answer": "Sur nos serveurs privés ou directement sur ta machine avec Ollama. Tes données restent à toi."
+      "answer": "Tout reste privé et sécurisé chez KOMARA AGENCY.\nTes données ne sont jamais partagées, promis 🔒"
     },
     {
       "id": 68,
@@ -5284,7 +5293,7 @@
         "qwen",
         "ollama"
       ],
-      "answer": "On utilise les meilleurs modèles: Llama 3.1, Qwen 2.5, et des modèles locaux via Ollama pour la confidentialité."
+      "answer": "KOMARA AGENCY développe ses propres outils sur-mesure pour chaque client 😊\nOn ne réutilise pas de solution générique."
     },
     {
       "id": 101,
@@ -10217,6 +10226,67 @@
         "merci pour les infos"
       ],
       "answer": "Je vous en prie 🙏\nPrenez le temps de regarder.\nJe vous relance demain pour répondre à vos questions supplémentaires.\nBelle journée à vous 🇬🇳"
+    },
+    {
+      "id": "pro_36",
+      "category": "qualification",
+      "tags": [
+        "whatsapp",
+        "confirmation plateforme"
+      ],
+      "questions": [
+        "c est pour whatsapp",
+        "pour whatsapp",
+        "sur whatsapp",
+        "ce sera whatsapp",
+        "whatsapp pour moi"
+      ],
+      "answer": "Parfait, WhatsApp 👍\nTu vends quoi exactement ? Et tu reçois combien de messages par jour environ ?"
+    },
+    {
+      "id": "pro_37",
+      "category": "qualification",
+      "tags": [
+        "telegram",
+        "confirmation plateforme"
+      ],
+      "questions": [
+        "c est pour telegram",
+        "pour telegram",
+        "sur telegram",
+        "ce sera telegram",
+        "telegram pour moi"
+      ],
+      "answer": "Parfait, Telegram 👍\nTu vends quoi exactement ? Et tu reçois combien de messages par jour environ ?"
+    },
+    {
+      "id": "pro_38",
+      "category": "qualification",
+      "tags": [
+        "site web",
+        "confirmation plateforme"
+      ],
+      "questions": [
+        "c est pour un site web",
+        "pour un site web",
+        "pour le site web",
+        "ce sera un site web"
+      ],
+      "answer": "Parfait, un site web 👍\nC'est pour quel type d'activité ? Et tu as déjà un logo ou pas encore ?"
+    },
+    {
+      "id": "pro_39",
+      "category": "qualification",
+      "tags": [
+        "deux plateformes",
+        "confirmation"
+      ],
+      "questions": [
+        "whatsapp et telegram",
+        "les deux plateformes",
+        "whatsapp et telegram les deux"
+      ],
+      "answer": "Top, on peut faire les deux 👍\nTu vends quoi exactement ? Et combien de messages par jour environ ?"
     }
   ],
   "conversations": [

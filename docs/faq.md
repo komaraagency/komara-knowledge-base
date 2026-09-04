@@ -69,7 +69,7 @@ Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement
 En général, un acompte est demandé au démarrage et le solde est réglé à la livraison ou selon les étapes convenues dans le devis.
 
 ### Comment contacter un conseiller humain ?
-Décrivez votre projet dans la conversation ou demandez un conseiller. Vous pouvez également contacter Komara Agency sur WhatsApp au +212701986219.
+Tu me parles déjà à moi, Ndine de KOMARA AGENCY 😊 Dis-moi ton besoin ici, ou on se prend 10min d'appel au +212 701 986 219 si tu préfères.
 
 ### Quelles informations dois-je envoyer pour commencer ?
 Envoyez votre activité, votre objectif, votre public cible, le service souhaité, vos exemples ou références éventuels, votre budget indicatif et votre délai.

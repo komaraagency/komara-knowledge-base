@@ -91,8 +91,8 @@ COMMON_FIXES = {
     "nrv": "nerve", "re1": "rien", "ri1": "rien",
     "koi": "quoi", "koif": "quoi",
     "tkt": "t inquiete", "tkt": "t inquiete",
-    "c": "c est", "cé": "c est", "c'est": "c est",
-    "c est": "c est", "c'est": "c est",
+    "c": "c est", "cé": "c est",
+    "c est": "c est", "c'est": "c est", "cest": "c est",  # cle vivante: apostrophe deja supprimee avant lookup
     "vi": "viande", "viande": "viande",
 
     # Erreurs grammaticales communes
