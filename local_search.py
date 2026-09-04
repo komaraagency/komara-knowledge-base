@@ -322,9 +322,14 @@ def trouver_meilleure_reponse(
     # Scoring de tous les candidats
     candidates: List[Tuple[float, str]] = []
 
-    for questions, answer, kw_intent in kb_entries:
+    for questions, answer, _kw_intent_combined in kb_entries:
+        # Intention calculee PAR QUESTION (pas combinee):
+        # une entree avec plusieurs questions de contextes differents
+        # (ex: prix photo + prix bot) ne doit pas etre penalisee par
+        # une intention mixte qui ne correspond a aucune question prise seule.
         best_score = max(
-            (_score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent) for q in questions),
+            (_score_bidirectional(msg_tokens, q, idf, msg_intent,
+                                   _detect_intent(_tokenize(q))) for q in questions),
             default=0.0
         )
         if best_score >= 0.22:

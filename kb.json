@@ -2215,7 +2215,7 @@
         "quels moyens pour régler",
         "comment effectuer le paiement"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2227,7 +2227,7 @@
       "questions": [
         "moyens de paiement"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2239,7 +2239,7 @@
       "questions": [
         "paiement"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2251,7 +2251,7 @@
       "questions": [
         "acompte"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2278,7 +2278,7 @@
       "questions": [
         "paiement par étape"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2290,7 +2290,7 @@
       "questions": [
         "orange money"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2302,7 +2302,7 @@
       "questions": [
         "momo"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2314,7 +2314,7 @@
       "questions": [
         "paypal"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -2326,7 +2326,7 @@
       "questions": [
         "virement bancaire"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Orange Money, Wave, virement bancaire ou espèces à nos bureaux à Conakry 💳\n50% pour démarrer, 50% à la livraison.\nCapture de paiement au +212 701 986 219 😊",
       "tags": [
         "paiement",
         "local"
@@ -8175,7 +8175,7 @@
         "garantie",
         "t es sur que ca marche"
       ],
-      "answer": "Garantie KOMARA : Si en 7 jours le bot ne te fait pas gagner 3h...\nJe te le modifie gratuitement jusqu'à ce que tu sois content."
+      "answer": "Très bonne question.\nGarantie KOMARA : Si sous 7 jours le bot ne vous fait pas gagner au moins 3h de travail, nous le modifions gratuitement jusqu'à satisfaction.\nEt le support est inclus pendant 1 mois.\nVous prenez zéro risque."
     },
     {
       "id": "conv_18",
@@ -9273,7 +9273,7 @@
         "je parle a mon associe",
         "avis de mon associe"
       ],
-      "answer": "Normal 💯 Envoie-lui ce vocal de 15sec pour lui expliquer 👇\nEt dites-moi ce que vous en pensez à deux."
+      "answer": "Aucun problème, c'est une décision importante.\nJe vous envoie un récap PDF + la vidéo démo pour lui montrer.\nJe vous contacte vendredi pour avoir votre retour. Ça vous convient ?"
     },
     {
       "id": "conv_90",
@@ -9684,6 +9684,539 @@
         "t es vieux"
       ],
       "answer": "L'âge c'est juste un nombre 😄\nCe qui compte : je livre des bots qui vendent, jeune ou vieux.\nOn parle de ton projet ?"
+    },
+    {
+      "id": "pro_01",
+      "category": "conversation",
+      "tags": [
+        "renseignements",
+        "accueil pro"
+      ],
+      "questions": [
+        "bonjour j aimerais avoir des informations",
+        "je voudrais des renseignements",
+        "des renseignements svp",
+        "des informations svp",
+        "informations sur vos services",
+        "je veux des renseignements"
+      ],
+      "answer": "Bonjour et merci pour votre message 👋\nJe suis Ndine de KOMARA AGENCY 🇬🇳\nAvec plaisir, je vous renseigne.\nVous souhaitez automatiser quoi exactement ? Les réponses clients, les commandes, les RDV ?"
+    },
+    {
+      "id": "pro_02",
+      "category": "conversation",
+      "tags": [
+        "tutoiement",
+        "vouvoiement"
+      ],
+      "questions": [
+        "on se tutoie ou on se vouvoie",
+        "tu me tutoies ou tu me vouvoies",
+        "tu peux me tutoyer",
+        "on se tutoie"
+      ],
+      "answer": "Comme vous préférez 😊 Beaucoup de nos clients préfèrent le tutoiement, c'est plus simple.\nOn fait comment ?"
+    },
+    {
+      "id": "pro_03",
+      "category": "qualification",
+      "tags": [
+        "cosmetiques",
+        "ecommerce"
+      ],
+      "questions": [
+        "je vends des cosmetiques en ligne",
+        "cosmetiques",
+        "je vends des produits de beaute",
+        "boutique de cosmetiques"
+      ],
+      "answer": "Parfait, merci.\nDans les cosmétiques on reçoit beaucoup de \"prix ?\" \"disponibilité ?\" \"livraison ?\" n'est-ce pas ?\nActuellement comment gérez-vous les messages clients ?"
+    },
+    {
+      "id": "pro_04",
+      "category": "pitch",
+      "tags": [
+        "diagnostic",
+        "perte de temps"
+      ],
+      "questions": [
+        "je reponds moi meme",
+        "je reponds moi meme mais je perds du temps",
+        "je gere mes messages moi meme"
+      ],
+      "answer": "Je comprends parfaitement. C'est le problème de 90% des e-commerçants.\nChez KOMARA AGENCY on met en place un assistant WhatsApp/Telegram qui répond automatiquement H24 aux questions fréquentes, prend les commandes et vous alerte pour les clients importants.\nL'objectif : vous faire gagner 5 à 10h par semaine.\nSouhaitez-vous que je vous montre une démo de 30 secondes ?"
+    },
+    {
+      "id": "pro_05",
+      "category": "qualification",
+      "tags": [
+        "40 messages",
+        "volume"
+      ],
+      "questions": [
+        "40 messages par jour",
+        "environ 40 messages",
+        "je recois 40 messages par jour",
+        "les reponses clients surtout"
+      ],
+      "answer": "Ok c'est un bon volume, je comprends que ça prenne du temps.\nNotre solution c'est un assistant automatique : il répond instantanément aux questions fréquentes (prix, dispo, livraison) et vous envoie une notif quand c'est un client chaud.\nVous ne perdez plus de vente à cause du retard.\nJe vous explique comment ça fonctionne ?"
+    },
+    {
+      "id": "pro_06",
+      "category": "demo",
+      "tags": [
+        "video",
+        "preuve"
+      ],
+      "questions": [
+        "oui je veux voir",
+        "montrez moi la demo",
+        "envoyez la video",
+        "je veux voir la video",
+        "montre la demo"
+      ],
+      "answer": "Voici un exemple concret 👇 [Vidéo démo]\n1. Le client demande \"Gel douche dispo ?\"\n2. Le bot répond avec photo, prix, stock + bouton \"Commander\"\n3. Vous recevez la commande directement sur votre téléphone\nTout cela sans intervention de votre part.\nQu'en pensez-vous ?"
+    },
+    {
+      "id": "pro_07",
+      "category": "explication",
+      "tags": [
+        "3 etapes",
+        "process"
+      ],
+      "questions": [
+        "oui expliquez moi",
+        "expliquez moi comment ca marche techniquement",
+        "comment ca fonctionne techniquement",
+        "ca marche techniquement comment"
+      ],
+      "answer": "C'est très simple en 3 étapes :\n1. Installation : on connecte le bot à votre WhatsApp Business en 48h\n2. Configuration : vos produits, prix, et 10 réponses types\n3. Livraison : je vous forme en 15min par vidéo, et je reste dispo 1 mois\nVous n'avez rien à coder. Vous continuez votre business normalement.\nQu'est-ce qui vous semble le plus important dans tout ça ?"
+    },
+    {
+      "id": "pro_08",
+      "category": "objection",
+      "tags": [
+        "prix",
+        "fiabilite"
+      ],
+      "questions": [
+        "le prix et si c est fiable",
+        "c est fiable",
+        "est ce que c est fiable",
+        "c est quoi le prix et est ce fiable"
+      ],
+      "answer": "Très bonnes questions.\nAu niveau prix : Pack Starter à 99$ une seule fois. Pas d'abonnement.\nAu niveau fiabilité : API officielle WhatsApp de Meta, 0 risque de blocage. + Garantie 7 jours satisfait ou modifié.\nJe peux vous envoyer 2 témoignages clients si vous voulez.\nVous préférez la fiche technique PDF ou une vidéo démo ?"
+    },
+    {
+      "id": "pro_09",
+      "category": "offre",
+      "tags": [
+        "packs",
+        "bot"
+      ],
+      "questions": [
+        "c est interessant le tarif",
+        "quelles sont vos offres",
+        "vos offres bot",
+        "pack starter et pack pro"
+      ],
+      "answer": "Nous avons 2 offres :\n*Pack Starter - 99$*\nBot complet personnalisé à votre marque, 10 produits/services configurés, réponses automatiques + paiement intégré, formation vidéo + 1 mois support\n*Pack Pro - 250$*\nTout le Starter + boutique complète + statistiques + relances auto\nActuellement le Pack Starter est à 99$ jusqu'à dimanche.\nQuelle offre vous correspond le mieux ?"
+    },
+    {
+      "id": "pro_10",
+      "category": "renseignements",
+      "tags": [
+        "photo",
+        "visuel",
+        "creation"
+      ],
+      "questions": [
+        "renseignements sur la creation de photo",
+        "creation de photo",
+        "creation de visuels",
+        "visuels pour mes produits",
+        "je veux des visuels",
+        "photos pro pour vendre"
+      ],
+      "answer": "Bonjour et merci de nous contacter 👋\nIci Ndine de KOMARA AGENCY 🇬🇳\nAvec plaisir. Vous souhaitez des visuels pour quel type de business ? Boutique, resto, produit, événement ?"
+    },
+    {
+      "id": "pro_11",
+      "category": "qualification",
+      "tags": [
+        "vetements",
+        "textile"
+      ],
+      "questions": [
+        "pour ma boutique de vetements",
+        "visuels pour boutique",
+        "photo pour ma boutique",
+        "je vends des vetements"
+      ],
+      "answer": "Super. Dans le textile une belle photo = +50% de ventes.\nActuellement vous faites vos photos vous-même avec téléphone ou vous avez un graphiste ?"
+    },
+    {
+      "id": "pro_12",
+      "category": "pitch",
+      "tags": [
+        "visuel",
+        "scroll"
+      ],
+      "questions": [
+        "je fais avec telephone mais c est pas pro",
+        "je fais mes photos avec telephone",
+        "mes photos ne sont pas pro",
+        "pas pro mes photos"
+      ],
+      "answer": "Je comprends. Le problème c'est que les clients jugent en 2 secondes.\nChez KOMARA AGENCY on crée des visuels \"qui arrêtent le scroll\" :\nPhoto produit + Texte de vente + Votre logo + Couleurs de votre marque.\nVous voulez voir 2 exemples faits pour des boutiques à Conakry ?"
+    },
+    {
+      "id": "pro_13",
+      "category": "preuve",
+      "tags": [
+        "avant apres",
+        "exemple visuel"
+      ],
+      "questions": [
+        "oui montrez moi les exemples",
+        "montre les avant apres",
+        "exemple avant apres",
+        "montrez les exemples conakry"
+      ],
+      "answer": "Voici 👇 [Avant/Après]\nGauche : Photo téléphone classique\nDroite : Visuel KOMARA avec texte \"NOUVELLE COLLECTION - LIVRAISON 24H\"\nLequel donne plus envie d'acheter selon vous ?"
+    },
+    {
+      "id": "pro_14",
+      "category": "offre",
+      "tags": [
+        "packs visuels",
+        "tarifs photos"
+      ],
+      "questions": [
+        "tarifs visuels",
+        "tarifs photos",
+        "packs visuels",
+        "combien pour les visuels",
+        "prix des visuels",
+        "packs photos"
+      ],
+      "answer": "Nous avons 3 packs :\n*Pack Starter - 50.000 FG*\n5 visuels pro + texte accroche + format statut + feed\n*Pack Business - 120.000 FG*\n15 visuels + 3 vidéos courtes + calendrier de publication 1 mois\n*Pack Premium - 250.000 FG*\n30 visuels + branding complet + gestion des statuts 1 mois\nLivraison 48h partout en Guinée. Modifications incluses.\nQuel pack vous intéresse le plus ?"
+    },
+    {
+      "id": "pro_15",
+      "category": "objection",
+      "tags": [
+        "cher",
+        "visuel"
+      ],
+      "questions": [
+        "c est cher un peu",
+        "c est cher pour des photos",
+        "50 000 fg c est cher",
+        "trop cher les visuels"
+      ],
+      "answer": "Je comprends. 50.000 FG c'est un budget.\nMais dites-vous : 1 seule vente de 200.000 FG grâce à un bon visuel et c'est rentabilisé.\nOn peut commencer par le Pack Starter pour tester.\nVous avez des photos de vos produits à m'envoyer ?"
+    },
+    {
+      "id": "pro_16",
+      "category": "closing",
+      "tags": [
+        "test gratuit",
+        "visuel"
+      ],
+      "questions": [
+        "oui j en ai",
+        "j ai des photos de mes produits",
+        "j ai mes photos",
+        "j ai des photos"
+      ],
+      "answer": "Parfait. Envoyez-moi 3 photos + votre logo + les prix.\nJe vous fais 1 visuel test GRATUIT pour que vous voyiez la qualité.\nSi ça vous plaît on lance le pack. Ça vous va ?"
+    },
+    {
+      "id": "pro_17",
+      "category": "renseignements",
+      "tags": [
+        "site web",
+        "creation"
+      ],
+      "questions": [
+        "renseignements pour la creation d un site web",
+        "creation de site web pro",
+        "je veux creer un site vitrine",
+        "faire un site web pour mon entreprise"
+      ],
+      "answer": "Bonjour et merci pour votre message 👋\nIci Ndine de KOMARA AGENCY 🇬🇳\nAvec plaisir. Pour mieux vous orienter, c'est pour quel type de site ?\nVitrine, Boutique en ligne, Portfolio, ou Blog ?"
+    },
+    {
+      "id": "pro_18",
+      "category": "qualification",
+      "tags": [
+        "site vitrine",
+        "btp"
+      ],
+      "questions": [
+        "un site vitrine pour mon entreprise",
+        "site vitrine",
+        "site vitrine pour btp",
+        "site pour entreprise btp"
+      ],
+      "answer": "Parfait. Un site vitrine c'est votre carte de visite 24H/24.\nActuellement vous avez déjà un site ou c'est la première fois ? Et vous avez un logo ?"
+    },
+    {
+      "id": "pro_19",
+      "category": "pitch",
+      "tags": [
+        "premiere fois",
+        "site"
+      ],
+      "questions": [
+        "c est la premiere fois oui j ai un logo",
+        "premiere fois pour un site",
+        "je n ai jamais eu de site",
+        "c est mon premier site"
+      ],
+      "answer": "Excellent.\nChez KOMARA AGENCY on crée des sites qui donnent confiance et qui ramènent des clients.\nOn s'occupe de tout : Design, Textes, Hébergement, et Mise en ligne.\nVous nous envoyez les infos, 7 jours après votre site est en ligne.\nJe vous explique ce qu'il y a dans nos packs ?"
+    },
+    {
+      "id": "pro_20",
+      "category": "offre",
+      "tags": [
+        "packs site",
+        "tarifs guinee"
+      ],
+      "questions": [
+        "quels sont les packs site",
+        "offres site web",
+        "tarifs site web",
+        "combien coute un site vitrine",
+        "packs site guinee"
+      ],
+      "answer": "Nous avons 3 offres pour le marché guinéen :\n*Pack ESSENTIEL - 1.500.000 FG*\n5 pages (Accueil, À Propos, Services, Galerie, Contact), design pro + mobile, formulaire WhatsApp + Google Maps, domaine + hébergement 1 an offerts. Livraison : 7 jours\n*Pack BUSINESS - 3.000.000 FG*\nTout l'Essentiel + 10 pages + blog + SEO de base + Facebook/Instagram. Livraison : 10 jours\n*Pack E-COMMERCE - 5.500.000 FG*\nBoutique complète + paiement Mobile Money + 20 produits + gestion commandes. Livraison : 14 jours\nQuel pack vous correspond le mieux ?"
+    },
+    {
+      "id": "pro_21",
+      "category": "objection",
+      "tags": [
+        "paiement",
+        "site",
+        "2 fois"
+      ],
+      "questions": [
+        "1 500 000 fg possible de payer en 2 fois",
+        "payer le site en 2 fois",
+        "site en plusieurs fois",
+        "payer le site en plusieurs fois"
+      ],
+      "answer": "Oui bien sûr.\n50% pour lancer la maquette. 50% à la livraison avant la mise en ligne.\nEt garantie : si vous n'êtes pas satisfait de la maquette, on reprend jusqu'à ce que ça vous plaise.\nVous prenez zéro risque."
+    },
+    {
+      "id": "pro_22",
+      "category": "question",
+      "tags": [
+        "hebergement",
+        "renouvellement"
+      ],
+      "questions": [
+        "et apres 1 an l hebergement",
+        "renouvellement hebergement",
+        "combien coute l hebergement apres",
+        "apres 1 an le site"
+      ],
+      "answer": "Très bonne question.\nAprès 1 an, le renouvellement domaine + hébergement c'est 250.000 FG / an.\nOn vous prévient 1 mois avant. Et vous restez 100% propriétaire du site."
+    },
+    {
+      "id": "pro_23",
+      "category": "onboarding",
+      "tags": [
+        "site",
+        "demarrage"
+      ],
+      "questions": [
+        "de quoi avez vous besoin pour commencer",
+        "quelles infos pour le site",
+        "que faut il pour demarrer le site",
+        "vos besoins pour le site"
+      ],
+      "answer": "Juste 4 choses :\n1. Votre logo + couleurs\n2. Les textes et photos de vos services\n3. Votre numéro WhatsApp + adresse\n4. Acompte de 50%\nDès réception on lance. Maquette à valider sous 3 jours.\nVous voulez 3 exemples de sites vitrines faits à Conakry ?"
+    },
+    {
+      "id": "pro_24",
+      "category": "question",
+      "tags": [
+        "modifications",
+        "site"
+      ],
+      "questions": [
+        "et si je veux modifier",
+        "modifications apres livraison",
+        "je peux changer le site apres",
+        "modif site apres"
+      ],
+      "answer": "1 mois de modifications gratuites inclus.\nAprès, 10.000 FG la modif.\nEt vous restez propriétaire à 100% de votre site."
+    },
+    {
+      "id": "pro_25",
+      "category": "objection",
+      "tags": [
+        "suivi",
+        "disparition"
+      ],
+      "questions": [
+        "vous disparaissez apres",
+        "apres la livraison vous faites quoi",
+        "et le suivi apres",
+        "vous allez disparaitre"
+      ],
+      "answer": "Non, pas de disparition 😊 Support 1 an inclus.\nOn est à Conakry, vous pouvez venir nous voir.\nOn signe une petite convention pour que tout soit clair."
+    },
+    {
+      "id": "pro_26",
+      "category": "question",
+      "tags": [
+        "paiement",
+        "guinee"
+      ],
+      "questions": [
+        "je paie comment",
+        "moyens de paiement",
+        "paiement en guinee",
+        "comment on regle"
+      ],
+      "answer": "Orange Money, Wave, virement bancaire, ou espèces à nos bureaux à Conakry 💳\nVous choisissez ce qui vous arrange.\n50% pour démarrer, 50% à la livraison."
+    },
+    {
+      "id": "pro_27",
+      "category": "objection",
+      "tags": [
+        "cher",
+        "site"
+      ],
+      "questions": [
+        "c est cher le site",
+        "1 500 000 fg c est cher",
+        "c est trop cher pour un site",
+        "site trop cher"
+      ],
+      "answer": "Un seul contrat gagné via le site rembourse le site.\nC'est un investissement, pas une dépense.\nVotre entreprise mérite d'être visible sur Google."
+    },
+    {
+      "id": "pro_28",
+      "category": "objection",
+      "tags": [
+        "diy",
+        "site"
+      ],
+      "questions": [
+        "je peux faire le site moi meme",
+        "je fais mon site moi meme",
+        "faire mon site moi meme"
+      ],
+      "answer": "Vous pouvez. Mais nous on vous livre en 7 jours un site pro qui convertit.\nVous continuez votre business, on s'occupe du reste.\nVotre temps vaut plus que ça, non ?"
+    },
+    {
+      "id": "pro_29",
+      "category": "renseignements",
+      "tags": [
+        "collaboration",
+        "partenariat"
+      ],
+      "questions": [
+        "comment collaborer avec komara agency",
+        "je veux collaborer avec vous",
+        "travailler avec vous",
+        "collaboration"
+      ],
+      "answer": "Bonjour et merci pour votre intérêt 🙏\nIci Ndine, Fondateur de KOMARA AGENCY 🇬🇳\nVous souhaitez collaborer sur quel type de projet ?\nSite web, Visuels, Bots, ou Partenariat ?"
+    },
+    {
+      "id": "pro_30",
+      "category": "collaboration",
+      "tags": [
+        "agence",
+        "sous traitance"
+      ],
+      "questions": [
+        "je suis agence de pub",
+        "je veux sous traiter",
+        "sous traitance sites web",
+        "agence partenaire",
+        "marque blanche"
+      ],
+      "answer": "Excellent. On propose 2 modes de collaboration :\n*Mode 1 - Sous-traitance Blanche* : Vous vendez au client, on fait le site en arrière-plan avec votre logo. Vous gardez 100% de la relation client. Délai 7 jours.\n*Mode 2 - Co-traitance* : Vous gérez le commercial, nous le technique. 50/50 sur le projet.\nLequel vous parle le plus ?"
+    },
+    {
+      "id": "pro_31",
+      "category": "collaboration",
+      "tags": [
+        "tarifs partenaires",
+        "agence"
+      ],
+      "questions": [
+        "tarifs agences",
+        "tarifs partenaires",
+        "sous traitance tarifs",
+        "tarifs marque blanche"
+      ],
+      "answer": "Pour les agences partenaires, tarifs préférentiels :\nSite Vitrine : 900.000 FG au lieu de 1.500.000 FG\nSite E-commerce : 3.500.000 FG au lieu de 5.500.000 FG\nVisuels : -30% sur tous les packs\nEn échange : minimum 2 projets/mois.\nJe vous envoie le dossier partenaire PDF + 3 sites exemples ?"
+    },
+    {
+      "id": "pro_32",
+      "category": "collaboration",
+      "tags": [
+        "freelance",
+        "casual"
+      ],
+      "questions": [
+        "je veux bosser avec vous",
+        "salut je veux bosser avec vous",
+        "bosser avec vous"
+      ],
+      "answer": "Salut à toi 👋 Merci frérot\nTu veux collaborer comment ? Tu es graphiste, commercial, vidéaste ?"
+    },
+    {
+      "id": "pro_33",
+      "category": "collaboration",
+      "tags": [
+        "community manager",
+        "freelance"
+      ],
+      "questions": [
+        "je suis community manager",
+        "je suis cm",
+        "community manager"
+      ],
+      "answer": "Parfait. On a besoin de CM sérieux.\n2 collabs possibles :\n1. Apporteur d'affaires : tu nous ramènes un client site/bot, on te donne 20% de commission.\n2. Prestation : tu gères la page d'un client KOMARA, on te paie 300.000 FG/mois par client.\nTu préfères vendre ou exécuter ?"
+    },
+    {
+      "id": "pro_34",
+      "category": "collaboration",
+      "tags": [
+        "long terme",
+        "abonnement",
+        "audit"
+      ],
+      "questions": [
+        "comment ca se passe pour travailler avec vous sur la duree",
+        "travailler sur la duree",
+        "accompagnement long terme",
+        "abonnement mensuel",
+        "departement digital"
+      ],
+      "answer": "Chez KOMARA AGENCY on ne fait pas \"1 site et on disparaît\".\nAccompagnement sur 12 mois :\n1. Audit gratuit 30min : on analyse votre business\n2. Proposition : 1 ou 2 offres claires avec délai et budget\n3. Exécution + suivi : livraison + 1 mois support + RDV bilan chaque mois\nL'idée : devenir votre département digital externe (500.000 FG/mois).\nOn cale l'audit gratuit cette semaine ?"
+    },
+    {
+      "id": "pro_35",
+      "category": "closing",
+      "tags": [
+        "merci",
+        "fin pro"
+      ],
+      "questions": [
+        "d accord merci",
+        "ok merci beaucoup",
+        "merci pour les infos"
+      ],
+      "answer": "Je vous en prie 🙏\nPrenez le temps de regarder.\nJe vous relance demain pour répondre à vos questions supplémentaires.\nBelle journée à vous 🇬🇳"
     }
   ],
   "conversations": [
