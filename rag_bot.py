@@ -67,7 +67,7 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
             "oui", "non", "merci", "bonjour", "bonsoir", "prix", "tarif",
             "combien", "voulez", "pouvez", "faites", "proposez", "agence",
             "bot", "service", "créez", "développement", "site", "application",
-            "salut", "salam", "coucou", "hello", "hi",
+            "salut", "salam", "coucou",
         },
         "patterns": ["'", "œ", "à", "é", "è", "ê", "ë", "î", "ï", "ô", "ù", "û", "ü", "ç"],
     },
@@ -526,25 +526,78 @@ def safe_typing(chat_id: int) -> None:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
 
-def send_portfolio(chat_id: int, lang: str) -> None:
-    sent = 0
-    for filename in ("portfolio_01", "portfolio_02"):
-        image_path = BASE_DIR / filename
-        if not image_path.is_file():
-            logger.warning("Fichier portfolio absent : %s", image_path)
-            continue
-        try:
-            with image_path.open("rb") as image_file:
-                bot.send_photo(chat_id, image_file)
-            sent += 1
-            time.sleep(0.5)
-        except Exception:
-            logger.exception("Échec d'envoi du portfolio %s", image_path.name)
+PORTFOLIO_DIR = BASE_DIR / "portfolio"
+PORTFOLIO_BUTTON_PREFIX = "📷 "
+PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-    prefix = "" if sent else "⚠️ "
+
+def portfolio_images() -> list[tuple[str, Path]]:
+    """Liste les images du dossier portfolio/ : [(nom_affiché, chemin), ...].
+
+    Le nom affiché = nom de fichier sans extension, '_' remplacés par espaces.
+    """
+    images: list[tuple[str, Path]] = []
+    if not PORTFOLIO_DIR.is_dir():
+        return images
+    for entry in sorted(PORTFOLIO_DIR.iterdir()):
+        if entry.is_file() and entry.suffix.lower() in PORTFOLIO_EXTENSIONS:
+            display_name = entry.stem.replace("_", " ").replace("-", " ").strip()
+            images.append((display_name, entry))
+    return images
+
+
+def portfolio_keyboard() -> ReplyKeyboardMarkup:
+    """Clavier listant les images portfolio pour que le client choisisse."""
+    keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    buttons = [f"{PORTFOLIO_BUTTON_PREFIX}{name}" for name, _ in portfolio_images()]
+    if buttons:
+        for i in range(0, len(buttons), 2):
+            keyboard.add(*buttons[i:i + 2])
+    else:
+        keyboard.add("💎 Tarifs", "🚀 Commander")
+    return keyboard
+
+
+def send_portfolio(chat_id: int, lang: str) -> None:
+    """Liste les réalisations disponibles et laisse le client choisir la photo."""
+    images = portfolio_images()
     slogan = BRAIN.get("slogan", "") if BRAIN else ""
-    text = f"{prefix}Portfolio KOMARA 💎 {slogan}\n{msg(lang, 'portfolio')}"
-    bot.send_message(chat_id, text, reply_markup=menu_for_lang(lang))
+
+    if not images:
+        text = (
+            f"Portfolio KOMARA 💎 {slogan}\n"
+            f"{msg(lang, 'portfolio')}\n"
+            f"⚠️ {len(images)} réalisation(s) disponible(s)."
+        )
+        bot.send_message(chat_id, text, reply_markup=menu_for_lang(lang))
+        return
+
+    lines = ["Portfolio KOMARA 💎", ""]
+    for name, _ in images:
+        lines.append(f"📷 {name}")
+    lines.append("")
+    lines.append(msg(lang, "portfolio"))
+    text = "\n".join(lines)
+    bot.send_message(chat_id, text, reply_markup=portfolio_keyboard())
+
+
+def send_portfolio_image(chat_id: int, display_name: str, lang: str) -> bool:
+    """Envoie l'image portfolio choisie par le client. Retourne True si envoyée."""
+    for name, path in portfolio_images():
+        if name.lower() == display_name.lower():
+            try:
+                with path.open("rb") as image_file:
+                    bot.send_photo(chat_id, image_file)
+                bot.send_message(
+                    chat_id,
+                    msg(lang, "portfolio"),
+                    reply_markup=portfolio_keyboard(),
+                )
+                return True
+            except Exception:
+                logger.exception("Échec d'envoi de l'image portfolio %s", path.name)
+                return False
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -625,6 +678,15 @@ def handle(message: telebot.types.Message) -> None:
 
         if text in portfolio_labels:
             send_portfolio(chat_id, lang)
+            return
+
+        # Choix d'une image portfolio (ex: "📷 logo elegant")
+        if text.startswith(PORTFOLIO_BUTTON_PREFIX):
+            chosen = text[len(PORTFOLIO_BUTTON_PREFIX):].strip()
+            if send_portfolio_image(chat_id, chosen, lang):
+                remember(chat_id, "assistant", f"[portfolio: {chosen}]")
+                return
+            bot.send_message(chat_id, msg(lang, "fallback"), reply_markup=menu_for_lang(lang))
             return
 
         if text in pricing_labels:

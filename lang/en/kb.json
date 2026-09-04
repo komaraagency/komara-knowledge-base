@@ -328,6 +328,48 @@
         "dollars",
         "plans"
       ]
+    },
+    {
+      "id": "en_conv_01",
+      "category": "conversation",
+      "tags": [
+        "greeting"
+      ],
+      "questions": [
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good evening"
+      ],
+      "answer": "Hello 👋 Welcome to KOMARA AGENCY!\nI'm Ndine, your AI sales agent. We build WhatsApp & Telegram bots that sell for you 24/7.\nWhat's your project?"
+    },
+    {
+      "id": "en_conv_02",
+      "category": "conversation",
+      "tags": [
+        "smalltalk"
+      ],
+      "questions": [
+        "how are you",
+        "how is it going",
+        "you good"
+      ],
+      "answer": "Doing great, thanks 🙏 And you?\nHow can I help with your business today?"
+    },
+    {
+      "id": "en_conv_03",
+      "category": "conversation",
+      "tags": [
+        "closing"
+      ],
+      "questions": [
+        "i want a bot",
+        "i want to create a bot",
+        "i need a chatbot",
+        "i am interested"
+      ],
+      "answer": "Excellent choice! 🚀 A bot will save you time and make you sales.\nIs it for WhatsApp, Telegram, or a website? Tell me your goal."
     }
   ],
   "packs": [

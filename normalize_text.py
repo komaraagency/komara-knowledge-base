@@ -40,7 +40,7 @@ COMMON_FIXES = {
     "telegram": "telegram", "telegrm": "telegram", "tg": "telegram",
     "site": "site", "siteweb": "site web", "site web": "site web",
     "logo": "logo", "logos": "logo",
-    "ia": "ia", "ai": "ia", "inteligence": "intelligence",
+    "ia": "ia", "inteligence": "intelligence",
     "automatiser": "automatiser", "automatisation": "automatisation",
     "auto": "automatisation", "automatique": "automatisation",
 
@@ -250,6 +250,12 @@ def fuzzy_match(word1: str, word2: str, threshold: float = 0.75) -> bool:
         return True
     if len(word1) < 3 or len(word2) < 3:
         return word1 == word2
+
+    # Ancre: la premiere lettre doit matcher. Les vraies fautes de frappe
+    # changent rarement la premiere lettre, et ca elimine les faux positifs
+    # (ex: "ecoute" ne matchera jamais "coute")
+    if word1[0] != word2[0]:
+        return False
 
     # Distance de Levenshtein
     m, n = len(word1), len(word2)
