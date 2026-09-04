@@ -370,6 +370,1151 @@
         "i am interested"
       ],
       "answer": "Excellent choice! 🚀 A bot will save you time and make you sales.\nIs it for WhatsApp, Telegram, or a website? Tell me your goal."
+    },
+    {
+      "id": "conv_01",
+      "category": "conversation",
+      "questions": [
+        "how are you",
+        "how are you doing",
+        "you good"
+      ],
+      "answer": "Doing great, thanks 🙏 And you?\nHow can I help with your project today?"
+    },
+    {
+      "id": "conv_02",
+      "category": "conversation",
+      "questions": [
+        "how to create a whatsapp chatbot",
+        "create whatsapp bot",
+        "whatsapp chatbot"
+      ],
+      "answer": "Super simple 👌 At KOMARA AGENCY we build WhatsApp chatbots that reply for you 24/7.\nWant a bot that takes orders, answers FAQs, or sells?"
+    },
+    {
+      "id": "conv_03",
+      "category": "conversation",
+      "questions": [
+        "i am in guinea",
+        "i am in africa",
+        "i live in guinea"
+      ],
+      "answer": "Guinea! 🇬🇳 We have clients all over Africa!\nDelivery and follow-up are no problem. What's your business in Guinea?"
+    },
+    {
+      "id": "conv_04",
+      "category": "conversation",
+      "questions": [
+        "i want to create a bot",
+        "i want a bot",
+        "create a bot"
+      ],
+      "answer": "Excellent choice! 🚀 A bot will save you time and make you sales.\nWhatsApp, Telegram, or website? Tell me your goal."
+    },
+    {
+      "id": "conv_05",
+      "category": "conversation",
+      "questions": [
+        "i want to create a chatbot",
+        "i want a chatbot"
+      ],
+      "answer": "Awesome! A chatbot is the best salesperson that never sleeps 😄\nAnswer questions, take bookings, or sell directly — what do you need?"
+    },
+    {
+      "id": "conv_06",
+      "category": "conversation",
+      "questions": [
+        "have a good day",
+        "good day",
+        "good evening to you"
+      ],
+      "answer": "Thanks, you too! Have a great day ☀️\nPing me anytime with bot questions."
+    },
+    {
+      "id": "conv_07",
+      "category": "conversation",
+      "questions": [
+        "good night",
+        "going to bed",
+        "i m off to sleep"
+      ],
+      "answer": "Good night 🌙 Rest well.\nWe can launch your bot tomorrow if you want."
+    },
+    {
+      "id": "conv_08",
+      "category": "conversation",
+      "questions": [
+        "see you tomorrow",
+        "till tomorrow"
+      ],
+      "answer": "See you tomorrow! Looking forward to it 💪\nHave a good evening."
+    },
+    {
+      "id": "conv_09",
+      "category": "conversation",
+      "questions": [
+        "see you later",
+        "bye",
+        "goodbye",
+        "later"
+      ],
+      "answer": "Catch you later! 👋\nIf you change your mind, type \"BOT\" here and I'll jump right in."
+    },
+    {
+      "id": "conv_10",
+      "category": "conversation",
+      "questions": [
+        "give me an idea",
+        "any ideas",
+        "suggest an idea"
+      ],
+      "answer": "Sure! Here are 3 hot ideas:\n1. Restaurant order-taking bot\n2. FAQ bot for online shops\n3. Auto-invoice bot\nWhich one inspires you?"
+    },
+    {
+      "id": "conv_11",
+      "category": "conversation",
+      "questions": [
+        "what do you suggest",
+        "what idea for me",
+        "what do you recommend"
+      ],
+      "answer": "Depends on your business 👇\nSelling: order-taking bot. Lots of questions: FAQ bot. Loyalty: auto-promo bot.\nWhat's your activity?"
+    },
+    {
+      "id": "conv_12",
+      "category": "conversation",
+      "questions": [
+        "ok for the creation",
+        "ok let s create",
+        "agreed to build"
+      ],
+      "answer": "Perfect, let's start! 🔥\nI just need 3 things: 1. Platform? 2. Bot goal? 3. Your logo.\nQuote in 2h."
+    },
+    {
+      "id": "conv_14",
+      "category": "conversation",
+      "questions": [
+        "komara",
+        "komara ??",
+        "just komara"
+      ],
+      "answer": "Yes, KOMARA AGENCY! The agency that builds selling bots for SMEs and e-commerce 🤖\nWant to see our work?"
+    },
+    {
+      "id": "conv_15",
+      "category": "conversation",
+      "questions": [
+        "i am interested",
+        "sounds interesting",
+        "i m interested"
+      ],
+      "answer": "Great! 🔥 Glad to hear that.\n10-min call to define your bot, or should I send the catalog + pricing right away?"
+    },
+    {
+      "id": "conv_16",
+      "category": "conversation",
+      "questions": [
+        "what does a bot do exactly",
+        "what s a bot for",
+        "how does a bot work",
+        "what is a bot"
+      ],
+      "answer": "Imagine a salesperson who never sleeps 🤖\nAnswers clients, gives prices, takes orders, sends your location... even at 3 AM.\nWant a 20-sec video demo?"
+    },
+    {
+      "id": "conv_17",
+      "category": "conversation",
+      "questions": [
+        "what if the bot fails",
+        "what if it doesn t work",
+        "guarantee"
+      ],
+      "answer": "It works if your clients message you on WhatsApp.\nTest it for 7 days. If you get 0 results, I rebuild your bot for free.\nZero risk for you."
+    },
+    {
+      "id": "conv_18",
+      "category": "conversation",
+      "questions": [
+        "can you do it for my restaurant",
+        "bot for restaurant",
+        "for a resto"
+      ],
+      "answer": "Absolutely! 🍽️ The bot takes orders, shares the menu, address and hours.\nYou never lose an evening order again.\nWant a restaurant example?"
+    },
+    {
+      "id": "conv_19",
+      "category": "conversation",
+      "questions": [
+        "can you do it for my shop",
+        "bot for shop",
+        "for a store"
+      ],
+      "answer": "Yes, 100% 👗 The bot answers \"Available? Price? Delivery?\" for you.\nResult: +5 sales a week.\nWhat do you sell?"
+    },
+    {
+      "id": "conv_20",
+      "category": "conversation",
+      "questions": [
+        "is it complicated to use",
+        "is it hard to use",
+        "complicated"
+      ],
+      "answer": "Not at all. It's WhatsApp. Your clients install nothing.\nAnd you just receive orders as usual.\nI train you in 10 min."
+    },
+    {
+      "id": "conv_21",
+      "category": "conversation",
+      "questions": [
+        "i want to see an example",
+        "show me an example",
+        "free demo"
+      ],
+      "answer": "Here you go 👇\nWant the same for your business?"
+    },
+    {
+      "id": "conv_22",
+      "category": "conversation",
+      "questions": [
+        "i ll think about it",
+        "let me think",
+        "i m thinking"
+      ],
+      "answer": "I get it 👍 Take your time.\nJust so you know: I have 1 spot left at $99 this month. After that it goes back to $250.\nShall I follow up tomorrow?"
+    },
+    {
+      "id": "conv_23",
+      "category": "conversation",
+      "questions": [
+        "are you a real person",
+        "are you a robot",
+        "am i talking to a human"
+      ],
+      "answer": "Yes, I'm Ndine 😄 Assisted by KOMARA AGENCY's AI to reply faster.\nThe bot we'll build you is the same: human touch + speed."
+    },
+    {
+      "id": "conv_24",
+      "category": "conversation",
+      "questions": [
+        "send me your number",
+        "your number",
+        "your contact"
+      ],
+      "answer": "You're already talking to me on my number 😄 This is where I deliver all bots.\nReady to get started?"
+    },
+    {
+      "id": "conv_25",
+      "category": "conversation",
+      "questions": [
+        "do you work alone",
+        "are you alone",
+        "is it a team"
+      ],
+      "answer": "KOMARA AGENCY is a team. I'm your salesperson + project manager.\nBehind us, devs build your bot flawlessly."
+    },
+    {
+      "id": "conv_26",
+      "category": "conversation",
+      "questions": [
+        "i m a student i don t have much money",
+        "i m a student",
+        "tight budget"
+      ],
+      "answer": "I hear you 🙏 We have a \"Starter\" pack at $99 to begin.\nIt already does 80% of the work. When sales come in, we upgrade."
+    },
+    {
+      "id": "conv_27",
+      "category": "conversation",
+      "questions": [
+        "have you done this before",
+        "any references",
+        "testimonials"
+      ],
+      "answer": "\"Since the bot: +8 orders a week and I sleep at night\" — Boutique client, Conakry\nWant the same result?"
+    },
+    {
+      "id": "conv_28",
+      "category": "conversation",
+      "questions": [
+        "my business is different",
+        "my case is unique"
+      ],
+      "answer": "Every bot is 100% customized for your business 💡\nTell me what you do and I'll tell you how a bot can help."
+    },
+    {
+      "id": "conv_29",
+      "category": "conversation",
+      "questions": [
+        "ok i want it",
+        "i m in",
+        "ok i ll pay",
+        "i want to pay"
+      ],
+      "answer": "YES!!! 🚀 Welcome to KOMARA AGENCY\nSend the payment here plus 3 things: Name, Logo, 5 client questions.\nWe start right now."
+    },
+    {
+      "id": "conv_30",
+      "category": "conversation",
+      "questions": [
+        "send me your catalog",
+        "your packs",
+        "the packages"
+      ],
+      "answer": "Here are our 3 KOMARA AGENCY packs 👇\nSTARTER $99: FAQ + auto-replies\nBUSINESS $150: Order-taking + Payment\nPREMIUM $250: Full bot + CRM + Stats\nWhat exactly are you looking for?"
+    },
+    {
+      "id": "conv_31",
+      "category": "conversation",
+      "questions": [
+        "ok send it",
+        "send it",
+        "go ahead send"
+      ],
+      "answer": "Perfect! To send you the right thing — what type of business is it?\nRestaurant, shop, service...?"
+    },
+    {
+      "id": "conv_32",
+      "category": "conversation",
+      "questions": [
+        "too long to read",
+        "too much text",
+        "make it short"
+      ],
+      "answer": "Express summary: a WhatsApp bot that sells for you 24/7.\nFrom $99. Delivered in 48h.\nShall we start?"
+    },
+    {
+      "id": "conv_33",
+      "category": "conversation",
+      "questions": [
+        "why 99",
+        "why this price",
+        "justify the price"
+      ],
+      "answer": "Because I hand you a 24/7 salesperson for a full year at $99.\nA real salesperson costs $300/month. You win.\nShall we start?"
+    },
+    {
+      "id": "conv_34",
+      "category": "conversation",
+      "questions": [
+        "i don t have time",
+        "no time",
+        "i m overwhelmed",
+        "too busy to set up"
+      ],
+      "answer": "Exactly why you need a bot 😄\nIt takes 2h to build. Then it saves you 3h a day.\nI handle everything. You just give me 3 pieces of info."
+    },
+    {
+      "id": "conv_35",
+      "category": "conversation",
+      "questions": [
+        "i m too busy this week",
+        "not available this week"
+      ],
+      "answer": "No worries. Lock your $99 spot now, we start whenever you want.\nAfter the 30th the price goes back to $250. Shall I hold your spot?"
+    },
+    {
+      "id": "conv_36",
+      "category": "conversation",
+      "questions": [
+        "are you there",
+        "you there",
+        "anyone here"
+      ],
+      "answer": "Yes I'm here 👋 Sorry, I was busy building a bot.\nHave you made a decision about yours?"
+    },
+    {
+      "id": "conv_37",
+      "category": "conversation",
+      "questions": [
+        "i ll reply tomorrow",
+        "answer tomorrow"
+      ],
+      "answer": "Perfect 👍 Noted.\nI'll follow up tomorrow at 10. Meanwhile I keep the $99 rate for you."
+    },
+    {
+      "id": "conv_38",
+      "category": "conversation",
+      "questions": [
+        "send me a reminder",
+        "remind me"
+      ],
+      "answer": "Done! I'll follow up tomorrow.\nMeanwhile here's a video of a bot in action 👇"
+    },
+    {
+      "id": "conv_39",
+      "category": "conversation",
+      "questions": [
+        "invoice",
+        "proforma invoice",
+        "i need an invoice"
+      ],
+      "answer": "Here's your KOMARA AGENCY proforma invoice 👇\nAmount: $99\nDetails: WhatsApp Bot creation + 1 month support\nConfirm and we start."
+    },
+    {
+      "id": "conv_40",
+      "category": "conversation",
+      "questions": [
+        "limited offer",
+        "spots left",
+        "does it expire"
+      ],
+      "answer": "Heads up: only 1 spot left at $99 this month.\nThe other 2 are taken. Want it?"
+    },
+    {
+      "id": "conv_41",
+      "category": "conversation",
+      "questions": [
+        "bonus",
+        "any bonus",
+        "free gift"
+      ],
+      "answer": "Order today and you get:\n1. 10 pro welcome messages\n2. Video training\nOnly for the first 3."
+    },
+    {
+      "id": "conv_42",
+      "category": "conversation",
+      "questions": [
+        "good luck",
+        "best of luck"
+      ],
+      "answer": "Thanks! Good luck with your business too.\nThe bot will help you go faster."
+    },
+    {
+      "id": "conv_43",
+      "category": "conversation",
+      "questions": [
+        "we have a deal",
+        "it s a deal",
+        "deal"
+      ],
+      "answer": "We have a deal 🤝\nSend me your WhatsApp Business and we start."
+    },
+    {
+      "id": "conv_44",
+      "category": "conversation",
+      "questions": [
+        "last question",
+        "just one question"
+      ],
+      "answer": "Go ahead, I'm listening 👂\nThen we launch?"
+    },
+    {
+      "id": "conv_45",
+      "category": "conversation",
+      "questions": [
+        "i m a hairdresser",
+        "i m a beautician",
+        "hair salon"
+      ],
+      "answer": "The bot manages your calendar 💅\n\"Free tomorrow 2 PM?\" → The bot checks and books instantly.\n0 forgotten appointments."
+    },
+    {
+      "id": "conv_46",
+      "category": "conversation",
+      "questions": [
+        "you reply fast",
+        "how do you reply so fast"
+      ],
+      "answer": "Normal — I have my own bot helping me 😂\nThat's exactly what we'll set up for you."
+    },
+    {
+      "id": "conv_47",
+      "category": "conversation",
+      "questions": [
+        "do you work on sundays",
+        "are you available on sunday"
+      ],
+      "answer": "The bot works 24/7 😄 I sleep in a bit on Sundays.\nBut the bot takes your orders all day."
+    },
+    {
+      "id": "conv_48",
+      "category": "conversation",
+      "questions": [
+        "joke",
+        "make me laugh"
+      ],
+      "answer": "With a bot you can finally go on vacation.\nIt works, you relax 🏖️ Deal?"
+    },
+    {
+      "id": "conv_49",
+      "category": "conversation",
+      "questions": [
+        "does it work on 2 phones",
+        "multiple phones",
+        "several devices"
+      ],
+      "answer": "Yes, WhatsApp Business connects up to 4 devices.\nYou + your team + the bot."
+    },
+    {
+      "id": "conv_50",
+      "category": "conversation",
+      "questions": [
+        "is it worth it",
+        "value proposition"
+      ],
+      "answer": "Bottom line: you pay $99 once.\nYou get 3h/day back + extra clients every day.\nIt pays for itself in a week."
+    },
+    {
+      "id": "conv_51",
+      "category": "conversation",
+      "questions": [
+        "hiring vs bot",
+        "why not hire someone",
+        "human salesperson"
+      ],
+      "answer": "Hiring = $200/month.\nBot = $99 lifetime.\nWhich do you pick?"
+    },
+    {
+      "id": "conv_52",
+      "category": "conversation",
+      "questions": [
+        "go",
+        "i say go",
+        "what now"
+      ],
+      "answer": "Just say \"GO\" and I send the payment link.\nWe sort it in 2 min."
+    },
+    {
+      "id": "conv_53",
+      "category": "conversation",
+      "questions": [
+        "no thanks",
+        "not for me",
+        "i ll pass"
+      ],
+      "answer": "No worries 👍 If one day you want to scale your business, you know where to find me.\nI stay available."
+    },
+    {
+      "id": "conv_54",
+      "category": "conversation",
+      "questions": [
+        "congratulations",
+        "well done"
+      ],
+      "answer": "Congrats on your business already 👏\nThe bot will just take you to the next level."
+    },
+    {
+      "id": "conv_55",
+      "category": "conversation",
+      "questions": [
+        "motivation",
+        "how to succeed"
+      ],
+      "answer": "Big businesses all automated.\nThe small ones growing did too.\nWhich side are you on?"
+    },
+    {
+      "id": "conv_56",
+      "category": "conversation",
+      "questions": [
+        "so",
+        "yes or no",
+        "decision"
+      ],
+      "answer": "Let's stop going in circles 😂\nDo you want the bot this week, yes or no?"
+    },
+    {
+      "id": "conv_57",
+      "category": "conversation",
+      "questions": [
+        "my nephew can do it cheaper",
+        "my cousin can code it"
+      ],
+      "answer": "Great! 😊 But does he offer 1-month support and training?\nIf it breaks at 2 AM, I answer. You pay for peace of mind."
+    },
+    {
+      "id": "conv_58",
+      "category": "conversation",
+      "questions": [
+        "i saw it on fiverr for 30",
+        "cheaper on fiverr",
+        "cheaper online"
+      ],
+      "answer": "Yes, I saw too. The issue: those are generic bots.\nOurs is 100% built for YOUR business, in your language. Quality vs price, you see?"
+    },
+    {
+      "id": "conv_59",
+      "category": "conversation",
+      "questions": [
+        "pay after results",
+        "pay on delivery only"
+      ],
+      "answer": "I understand. The thing is, I spend 2 days coding your bot.\n50/50 split? 50% upfront, 50% at delivery. Just for trust."
+    },
+    {
+      "id": "conv_60",
+      "category": "conversation",
+      "questions": [
+        "i do e-commerce",
+        "online store",
+        "e-commerce"
+      ],
+      "answer": "The bot can recover abandoned carts 🔥\n\"You left this in your cart.\" Result: +20% sales."
+    },
+    {
+      "id": "conv_61",
+      "category": "conversation",
+      "questions": [
+        "i already have a community manager",
+        "i have a CM"
+      ],
+      "answer": "Perfect! The bot handles nights and basic questions.\nYour CM focuses on sales and big clients. Dream team."
+    },
+    {
+      "id": "conv_62",
+      "category": "conversation",
+      "questions": [
+        "i m lost i don t know where to start",
+        "i m lost",
+        "where to start"
+      ],
+      "answer": "Breathe 😊 We start small. Starter pack $99.\nI guide you step by step. In 48h you have your bot."
+    },
+    {
+      "id": "conv_63",
+      "category": "conversation",
+      "questions": [
+        "i ve been scammed before",
+        "scam",
+        "is this a scam"
+      ],
+      "answer": "I'm sorry that happened to you 🙏\nAt Komara: 50% upfront, 50% at delivery + invoice + support.\nZero risk. Want the testimonials?"
+    },
+    {
+      "id": "conv_64",
+      "category": "conversation",
+      "questions": [
+        "i don t trust ai",
+        "no trust",
+        "ai is dangerous"
+      ],
+      "answer": "The bot doesn't replace humans. It does the dirty work.\nWhen it matters, it hands the client straight to you. You stay in control."
+    },
+    {
+      "id": "conv_65",
+      "category": "conversation",
+      "questions": [
+        "time is money",
+        "how much time i lose"
+      ],
+      "answer": "If you earn $10/hour and the bot saves you 3h/day...\nit pays for itself in 3 days. The rest is profit."
+    },
+    {
+      "id": "conv_66",
+      "category": "conversation",
+      "questions": [
+        "send it by email",
+        "by mail",
+        "your email"
+      ],
+      "answer": "I prefer WhatsApp — faster for changes.\nBut I can send the recap by email too. What's your email?"
+    },
+    {
+      "id": "conv_67",
+      "category": "conversation",
+      "questions": [
+        "do you also do websites",
+        "you build websites too"
+      ],
+      "answer": "Yes! But first we automate WhatsApp.\nThat's where 80% of your sales happen. The site comes after."
+    },
+    {
+      "id": "conv_68",
+      "category": "conversation",
+      "questions": [
+        "i m traveling",
+        "i m on a trip",
+        "i m abroad"
+      ],
+      "answer": "Enjoy! 🏝️ The bot will work for you while you travel.\nWant me to prepare everything for your return?"
+    },
+    {
+      "id": "conv_69",
+      "category": "conversation",
+      "questions": [
+        "happy birthday",
+        "it s my birthday"
+      ],
+      "answer": "Thank you! 🎉 To celebrate: 2 extra weeks of support if you order this week."
+    },
+    {
+      "id": "conv_70",
+      "category": "conversation",
+      "questions": [
+        "in a bad mood",
+        "i m fed up",
+        "tired of this"
+      ],
+      "answer": "You sound a bit drained 😅 Business talk or something else?\nI'm here for both."
+    },
+    {
+      "id": "conv_71",
+      "category": "conversation",
+      "questions": [
+        "i m listening",
+        "go ahead i m listening"
+      ],
+      "answer": "Thanks for listening 😄\nIn 30 sec: I build WhatsApp bots that answer and sell for you.\nWant to see what it looks like?"
+    },
+    {
+      "id": "conv_72",
+      "category": "conversation",
+      "questions": [
+        "a client case",
+        "a true story",
+        "real results"
+      ],
+      "answer": "You know Fatou the fabric seller?\nShe couldn't keep up with clients. Since the bot: +18 orders/week.\nShe sent me a voice note yesterday: \"Ndine, thank you\" 😂"
+    },
+    {
+      "id": "conv_73",
+      "category": "conversation",
+      "questions": [
+        "concrete examples",
+        "before after"
+      ],
+      "answer": "I had a client losing 10 customers a day by replying too late.\nWe installed the bot. Week 1: 0 lost customers.\nWant the same result?"
+    },
+    {
+      "id": "conv_74",
+      "category": "conversation",
+      "questions": [
+        "lol",
+        "haha",
+        "lmao"
+      ],
+      "answer": "Lol 😂 You got me.\nBack to serious for 2 sec: do you want the bot or not?"
+    },
+    {
+      "id": "conv_75",
+      "category": "conversation",
+      "questions": [
+        "you re pushing",
+        "you insist too much",
+        "stop pushing"
+      ],
+      "answer": "Sorry if I pushed 🙏 My goal is just to help.\nIf now isn't the time, tell me and I'll leave you be."
+    },
+    {
+      "id": "conv_76",
+      "category": "conversation",
+      "questions": [
+        "what s my main problem",
+        "i need help understanding my needs"
+      ],
+      "answer": "Quick question: what drains you most in your business right now?\nMessages? Appointments? Follow-ups?"
+    },
+    {
+      "id": "conv_77",
+      "category": "conversation",
+      "questions": [
+        "i get a lot of messages",
+        "how many messages a day",
+        "too many messages"
+      ],
+      "answer": "How many WhatsApp messages do you get per day on average?\n20? 50? 100?\nSo you easily lose 2h/day replying."
+    },
+    {
+      "id": "conv_78",
+      "category": "conversation",
+      "questions": [
+        "no pressure",
+        "i don t want to rush"
+      ],
+      "answer": "Listen, no pressure.\nIf you feel it can help you, we go.\nIf not, we stay friends 😊 Your call?"
+    },
+    {
+      "id": "conv_79",
+      "category": "conversation",
+      "questions": [
+        "are we a team",
+        "team",
+        "let s be a team"
+      ],
+      "answer": "So, are we a team?\nYou run your business, I set up your bot.\nLet's get rich together 💪"
+    },
+    {
+      "id": "conv_80",
+      "category": "conversation",
+      "questions": [
+        "last day",
+        "last chance",
+        "the train is leaving"
+      ],
+      "answer": "It's now or never.\nAfter Sunday prices go back up.\nAre you getting on the train or watching it leave?"
+    },
+    {
+      "id": "conv_81",
+      "category": "conversation",
+      "questions": [
+        "payment received",
+        "i paid",
+        "i sent the money"
+      ],
+      "answer": "BOOM! Received ✅\nThanks for the trust, brother.\nSend logo + 3 questions + business hours.\nI handle the rest."
+    },
+    {
+      "id": "conv_82",
+      "category": "conversation",
+      "questions": [
+        "where is my bot",
+        "creation status",
+        "is my bot ready"
+      ],
+      "answer": "Your bot is being born 👶\nI'll show you a preview tomorrow.\nGet ready to love it."
+    },
+    {
+      "id": "conv_83",
+      "category": "conversation",
+      "questions": [
+        "it s delivered",
+        "bot delivered",
+        "i received the bot"
+      ],
+      "answer": "IT'S DELIVERED 🎉\nTest it. If any word bothers you, tell me.\nI change it right away. 1 month free support."
+    },
+    {
+      "id": "conv_84",
+      "category": "conversation",
+      "questions": [
+        "shut up",
+        "whatever",
+        "you re annoying"
+      ],
+      "answer": "Whoa, calm down 😅 Let's keep it respectful.\nIf I can't help you, say so and we stop here."
+    },
+    {
+      "id": "conv_85",
+      "category": "conversation",
+      "questions": [
+        "credit",
+        "i want credit",
+        "can i pay later"
+      ],
+      "answer": "I understand you, brother. Money is hard.\n50% now, 50% at delivery? That way you test it."
+    },
+    {
+      "id": "conv_86",
+      "category": "conversation",
+      "questions": [
+        "i m 15",
+        "i m 16",
+        "i m a minor"
+      ],
+      "answer": "Young and motivated — I love it 💪\nTalk to a parent or guardian and come back.\nI'll keep a spot for you."
+    },
+    {
+      "id": "conv_87",
+      "category": "conversation",
+      "questions": [
+        "signature",
+        "what s your mission",
+        "your motto"
+      ],
+      "answer": "I'm Ndine. I don't sell hot air.\nI just want your business running even while you sleep.\n\nNdine — KOMARA AGENCY\n\"I turn your WhatsApp into a 24/7 employee\""
+    },
+    {
+      "id": "conv_88",
+      "category": "conversation",
+      "questions": [
+        "instagram",
+        "bot for instagram",
+        "for ig"
+      ],
+      "answer": "Yes! But we start with WhatsApp.\nThat's where 90% of your sales happen. IG later, ok?"
+    },
+    {
+      "id": "conv_89",
+      "category": "conversation",
+      "questions": [
+        "i need to ask my partner",
+        "my business partner",
+        "my associate"
+      ],
+      "answer": "Totally normal 💯 Send them this 15-sec voice note to explain 👇\nThen tell me what you both think."
+    },
+    {
+      "id": "conv_90",
+      "category": "conversation",
+      "questions": [
+        "i ll check with others",
+        "i ll compare",
+        "the competition"
+      ],
+      "answer": "Good idea to compare 👌\nOne question: do they offer 1-month support + training?\nIf yes, go. If not, you know where to find me."
+    },
+    {
+      "id": "conv_91",
+      "category": "conversation",
+      "questions": [
+        "what if whatsapp blocks me",
+        "whatsapp ban risk"
+      ],
+      "answer": "We use the official WhatsApp Business API.\n0 ban risk. It's Meta-approved."
+    },
+    {
+      "id": "conv_92",
+      "category": "conversation",
+      "questions": [
+        "i ll start small",
+        "small budget",
+        "starting small"
+      ],
+      "answer": "Perfect. Starter pack $99.\n1 product, 5 questions. When it works, we upgrade."
+    },
+    {
+      "id": "conv_93",
+      "category": "conversation",
+      "questions": [
+        "are you sure it works for me",
+        "does it work for my case"
+      ],
+      "answer": "Tell me your business and I'll say yes or no straight.\nI don't sell if it's useless. Honesty first."
+    },
+    {
+      "id": "conv_94",
+      "category": "conversation",
+      "questions": [
+        "i ll get back to you",
+        "i ll come back to you"
+      ],
+      "answer": "Ok 👌 I'll note you down for Friday.\nIf you don't reply, I'll follow up. Deal?"
+    },
+    {
+      "id": "conv_95",
+      "category": "conversation",
+      "questions": [
+        "final price",
+        "is that your last word",
+        "can you lower the price"
+      ],
+      "answer": "$99 is already this month's discounted price 😅\nBut I can throw in 2 extra weeks of support. Deal?"
+    },
+    {
+      "id": "conv_96",
+      "category": "conversation",
+      "questions": [
+        "i saw your status",
+        "your status",
+        "seen your story"
+      ],
+      "answer": "Hey! I saw you saw my status 😄\nStruggling with WhatsApp messages too, or just curious?"
+    },
+    {
+      "id": "conv_97",
+      "category": "conversation",
+      "questions": [
+        "is that you komara agency",
+        "are you komara",
+        "are you the boss"
+      ],
+      "answer": "Yes, it's me, Ndine 😊\nBoss and technician at the same time, lol\nHow can I help you?"
+    },
+    {
+      "id": "conv_98",
+      "category": "conversation",
+      "questions": [
+        "explain to me",
+        "explain how it works"
+      ],
+      "answer": "Basically, imagine:\nA client texts you at 2 AM: \"price?\"\nThe bot replies instantly with the price + photo.\nYou wake up to the order.\nThat's it. You see the magic?"
+    },
+    {
+      "id": "conv_99",
+      "category": "conversation",
+      "questions": [
+        "i m afraid",
+        "afraid to start",
+        "i have doubts"
+      ],
+      "answer": "It's normal to be afraid.\nI was scared the first time too.\nWe start small. If it doesn't work, I refund you. Deal?"
+    },
+    {
+      "id": "conv_100",
+      "category": "conversation",
+      "questions": [
+        "any news",
+        "what s new",
+        "you forgot me"
+      ],
+      "answer": "Hey 👋 Had time to think?\nI'm not harassing you, I just want to know if I should file your request 😅"
+    },
+    {
+      "id": "conv_101",
+      "category": "conversation",
+      "questions": [
+        "i ll ask my wife",
+        "my husband decides",
+        "i ll talk to my wife"
+      ],
+      "answer": "Great idea 👌\nExplain it like this: \"Honey, it answers clients for us\"\nKeep me posted. Fingers crossed for you."
+    },
+    {
+      "id": "conv_102",
+      "category": "conversation",
+      "questions": [
+        "youtube",
+        "i ll check youtube",
+        "youtube tutorial"
+      ],
+      "answer": "Go watch 😄\nBut YouTube doesn't explain YOUR business.\nI build the bot for YOU.\nIf after YouTube you still want it, I'm here."
+    },
+    {
+      "id": "conv_103",
+      "category": "conversation",
+      "questions": [
+        "i don t believe you",
+        "prove it"
+      ],
+      "answer": "You don't have to trust me. Test it 7 days.\nIf it doesn't work, I modify it for free."
+    },
+    {
+      "id": "conv_104",
+      "category": "conversation",
+      "questions": [
+        "ok",
+        "alright",
+        "fine",
+        "i see",
+        "hmm"
+      ],
+      "answer": "Perfect 👍\nAny specific question, or shall I quickly explain how the bot works?"
+    },
+    {
+      "id": "conv_105",
+      "category": "conversation",
+      "questions": [
+        "maybe",
+        "why not",
+        "perhaps"
+      ],
+      "answer": "Why not 😄 A \"maybe\" is almost a yes already.\nWhat's holding you back? Price, time, or trust?"
+    },
+    {
+      "id": "conv_106",
+      "category": "conversation",
+      "questions": [
+        "where are you from",
+        "where do you come from"
+      ],
+      "answer": "I'm Ndine, based between Conakry and Casablanca 🌍\nBut I work 100% online — wherever you are, we can work together."
+    },
+    {
+      "id": "conv_107",
+      "category": "conversation",
+      "questions": [
+        "i have a question",
+        "can i ask a question"
+      ],
+      "answer": "Go ahead, I'm listening 👂\nIs it about price, how it works, or timelines?"
+    },
+    {
+      "id": "conv_108",
+      "category": "conversation",
+      "questions": [
+        "help",
+        "help me",
+        "i need help"
+      ],
+      "answer": "I'm here to help 💪\nWant to know more about bots, pricing, or starting your project?"
+    },
+    {
+      "id": "conv_109",
+      "category": "conversation",
+      "questions": [
+        "not interested",
+        "i don t want this"
+      ],
+      "answer": "No worries 👍 If one day you have too many messages to handle, come back.\nGood luck!"
+    },
+    {
+      "id": "conv_110",
+      "category": "conversation",
+      "questions": [
+        "refund",
+        "i want a refund",
+        "refund policy"
+      ],
+      "answer": "Simple: if the bot is useless to you within 7 days, I modify it for free or refund you.\nYou risk nothing."
+    },
+    {
+      "id": "conv_111",
+      "category": "conversation",
+      "questions": [
+        "meeting",
+        "call",
+        "can we talk",
+        "book a call"
+      ],
+      "answer": "With pleasure 📞 A 10-min call?\nSend me 2 time slots that work for you and I'll confirm."
+    },
+    {
+      "id": "conv_112",
+      "category": "conversation",
+      "questions": [
+        "are you available",
+        "are you here now"
+      ],
+      "answer": "Available for you 😄 What do you want to know?"
+    },
+    {
+      "id": "conv_113",
+      "category": "conversation",
+      "questions": [
+        "clients will know it s a bot",
+        "people will see it s a robot"
+      ],
+      "answer": "If you want, the bot introduces itself as your 24/7 assistant 😎\nClients prefer a 2-sec reply over a 2h wait. That's all they'll remember."
+    },
+    {
+      "id": "conv_114",
+      "category": "conversation",
+      "questions": [
+        "i sell physical products",
+        "physical products",
+        "i sell clothes"
+      ],
+      "answer": "Perfect! The bot gives prices, photos, confirms the order and delivery address.\nYou just prep the packages. What do you sell?"
+    },
+    {
+      "id": "conv_115",
+      "category": "conversation",
+      "questions": [
+        "where do i start",
+        "what do you need",
+        "what are the steps"
+      ],
+      "answer": "3 things:\n1. Your business name\n2. Your 5 most frequent client questions\n3. Your logo if you have one\nThen I handle everything 🔥"
+    },
+    {
+      "id": "conv_116",
+      "category": "conversation",
+      "questions": [
+        "does this really exist",
+        "is this real",
+        "are you real"
+      ],
+      "answer": "100% real ✅ KOMARA AGENCY has delivered bots to shops, restaurants and coaches.\nWant client testimonials?"
+    },
+    {
+      "id": "conv_117",
+      "category": "conversation",
+      "questions": [
+        "how old are you",
+        "your age"
+      ],
+      "answer": "Age is just a number 😄\nWhat matters: I deliver bots that sell, young or old.\nShall we talk about your project?"
+    },
+    {
+      "id": "conv_118",
+      "category": "objection",
+      "tags": [
+        "human",
+        "objection"
+      ],
+      "questions": [
+        "my clients prefer talking to a human",
+        "clients want a human"
+      ],
+      "answer": "The bot replies like a human, but faster.\nAnd for tricky cases it transfers straight to you.\nYou lose 0 clients, you gain some."
     }
   ],
   "packs": [
