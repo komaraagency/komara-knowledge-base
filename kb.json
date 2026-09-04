@@ -8999,7 +8999,10 @@
         "je t écoute",
         "je t ecoute",
         "je t'écoute",
-        "vas y j ecoute"
+        "vas y j ecoute",
+        "j écoute",
+        "j'écoute",
+        "j t écoute"
       ],
       "answer": "Merci de m'écouter 😄\nEn 30sec : Je crée des bots WhatsApp qui répondent et vendent pour toi.\nTu veux voir à quoi ça ressemble ?"
     },
@@ -9476,6 +9479,211 @@
         "t es credible"
       ],
       "answer": "T'es pas obligé de me faire confiance. Teste 7 jours.\nSi ça marche pas je te modifie gratuitement."
+    },
+    {
+      "id": "conv_104",
+      "category": "smalltalk",
+      "tags": [
+        "ack"
+      ],
+      "questions": [
+        "ok",
+        "d accord",
+        "dacc",
+        "bien",
+        "c est bon",
+        "je vois",
+        "hmm"
+      ],
+      "answer": "Parfait 👍\nTu as une question précise ou je t'explique vite comment le bot marche ?"
+    },
+    {
+      "id": "conv_105",
+      "category": "smalltalk",
+      "tags": [
+        "hesitation"
+      ],
+      "questions": [
+        "peut etre",
+        "ptetre",
+        "peut-etre oui",
+        "pourquoi pas"
+      ],
+      "answer": "Pourquoi pas 😄 Un « peut-être » c'est déjà presque un oui.\nQu'est-ce qui te retient ? Le prix, le temps, ou la confiance ?"
+    },
+    {
+      "id": "conv_106",
+      "category": "smalltalk",
+      "tags": [
+        "origine",
+        "identite"
+      ],
+      "questions": [
+        "tu es d ou",
+        "d ou tu viens",
+        "tu es d ou toi",
+        "origine"
+      ],
+      "answer": "Je suis Ndine, entre Conakry et Casablanca 🌍\nMais je travaille 100% en ligne — peu importe où tu es, on peut bosser ensemble."
+    },
+    {
+      "id": "conv_107",
+      "category": "smalltalk",
+      "tags": [
+        "question"
+      ],
+      "questions": [
+        "j ai une question",
+        "je peux poser une question",
+        "j ai besoin d une reponse"
+      ],
+      "answer": "Vas-y, je t'écoute 👂\nTa question c'est sur le prix, le fonctionnement, ou les délais ?"
+    },
+    {
+      "id": "conv_108",
+      "category": "smalltalk",
+      "tags": [
+        "aide"
+      ],
+      "questions": [
+        "aide",
+        "help",
+        "aide moi",
+        "j ai besoin d aide"
+      ],
+      "answer": "Je suis là pour t'aider 💪\nTu veux en savoir plus sur les bots, les prix, ou démarrer ton projet ?"
+    },
+    {
+      "id": "conv_109",
+      "category": "objection",
+      "tags": [
+        "refus",
+        "poli"
+      ],
+      "questions": [
+        "ca m interesse pas",
+        "pas interesse",
+        "je ne veux pas",
+        "ca ne m interesse pas"
+      ],
+      "answer": "Pas de souci 👍 Si un jour t'as trop de messages à gérer, repasse me voir.\nBonne continuation !"
+    },
+    {
+      "id": "conv_110",
+      "category": "objection",
+      "tags": [
+        "remboursement",
+        "garantie"
+      ],
+      "questions": [
+        "remboursement",
+        "rembourse",
+        "je veux etre rembourse",
+        "politique de remboursement"
+      ],
+      "answer": "Simple : si sous 7 jours le bot ne te sert à rien, je te le modifie gratuitement ou je te rembourse.\nTu ne risques rien."
+    },
+    {
+      "id": "conv_111",
+      "category": "closing",
+      "tags": [
+        "appel",
+        "rdv"
+      ],
+      "questions": [
+        "rendez vous",
+        "appel",
+        "call",
+        "on peut se parler",
+        "prendre rdv"
+      ],
+      "answer": "Avec plaisir 📞 On fait un appel de 10min ?\nEnvoie-moi 2 créneaux qui t'arrangent et je confirme."
+    },
+    {
+      "id": "conv_112",
+      "category": "smalltalk",
+      "tags": [
+        "disponibilite"
+      ],
+      "questions": [
+        "tu es dispo",
+        "t es la maintenant",
+        "t es occupe"
+      ],
+      "answer": "Dispo pour toi 😄 Qu'est-ce que tu veux savoir ?"
+    },
+    {
+      "id": "conv_113",
+      "category": "objection",
+      "tags": [
+        "transparence",
+        "bot"
+      ],
+      "questions": [
+        "les clients vont savoir que c est un bot",
+        "les gens vont voir que c est un robot",
+        "ca se voit que c est un bot"
+      ],
+      "answer": "Si tu veux, le bot se présente comme ton assistant 24H/24 😎\nLes clients préfèrent une réponse en 2sec qu'une attente de 2h. C'est tout ce qu'ils retiendront."
+    },
+    {
+      "id": "conv_114",
+      "category": "secteur",
+      "tags": [
+        "produits",
+        "physique"
+      ],
+      "questions": [
+        "je vends des produits physiques",
+        "produits physiques",
+        "je vends des vetements",
+        "je vends des produits"
+      ],
+      "answer": "Parfait ! Le bot donne les prix, les photos, confirme la commande et l'adresse de livraison.\nToi tu prépares juste les colis. Tu vends quoi ?"
+    },
+    {
+      "id": "conv_115",
+      "category": "onboarding",
+      "tags": [
+        "demarrage",
+        "premiers pas"
+      ],
+      "questions": [
+        "avec quoi je commence",
+        "par quoi commencer",
+        "quelles infos tu as besoin",
+        "c est quoi les etapes"
+      ],
+      "answer": "3 choses :\n1. Le nom de ton business\n2. Tes 5 questions clients les plus fréquentes\n3. Ton logo si tu en as un\nAprès ça je m'occupe de tout 🔥"
+    },
+    {
+      "id": "conv_116",
+      "category": "objection",
+      "tags": [
+        "confiance",
+        "existence"
+      ],
+      "questions": [
+        "ca existe vraiment",
+        "c est reel",
+        "tu es vrai",
+        "ca existe ton agence"
+      ],
+      "answer": "100% réel ✅ KOMARA AGENCY a déjà livré des bots à des boutiques, restos et coachs.\nTu veux les témoignages clients ?"
+    },
+    {
+      "id": "conv_117",
+      "category": "smalltalk",
+      "tags": [
+        "fun",
+        "age"
+      ],
+      "questions": [
+        "tu as quel age",
+        "ton age",
+        "t es vieux"
+      ],
+      "answer": "L'âge c'est juste un nombre 😄\nCe qui compte : je livre des bots qui vendent, jeune ou vieux.\nOn parle de ton projet ?"
     }
   ],
   "conversations": [

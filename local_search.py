@@ -32,10 +32,16 @@ def _stem(word: str) -> str:
 
 
 def _tokenize(text: str) -> set[str]:
-    """Extrait et normalise les mots d'un texte (accents + pluriels + fautes)."""
+    """Extrait et normalise les mots d'un texte (accents + pluriels + fautes).
+
+    \w+ avec Unicode: supporte l'arabe, l'espagnol et toutes les langues.
+    (l'ancien [a-z0-9]+ detruisait totalement les mots arabes)
+    """
     text = normalize_text(text)
-    raw = set(re.findall(r'[a-z0-9]+', text.lower()))
-    return {_stem(w) for w in raw if len(w) >= 2}
+    raw = set(re.findall(r'\w+', text.lower()))
+    # retire les underscores isoles, garde les mots de 2+ caracteres
+    cleaned = {w for w in raw if len(w.strip('_')) >= 2}
+    return {_stem(w.strip('_')) for w in cleaned}
 
 
 def _fuzzy_token_match(token: str, token_set: set[str], threshold: float = 0.75) -> bool:
@@ -220,9 +226,17 @@ def _score_bidirectional(
     if not intersection:
         return 0.0
 
+    # Bonus pour les matchs EXACTS vs fuzzy uniquement:
+    # un mot present exactement dans le keyword vaut 1.0,
+    # un mot matche seulement en fuzzy vaut 0.9.
+    # -> a score egal, l'entree avec le mot exact gagne.
+    exact_set = msg_tokens & kw_tokens
+    fuzzy_only = intersection - exact_set
+
     # 1. Couverture du keyword (IDF-pondérée)
     kw_total = sum(idf.get(t, 1.0) for t in kw_tokens)
-    kw_matched = sum(idf.get(t, 1.0) for t in intersection)
+    kw_matched = sum(idf.get(t, 1.0) for t in exact_set) + 0.9 * sum(
+        idf.get(t, 1.0) for t in fuzzy_only)
     keyword_coverage = kw_matched / kw_total if kw_total > 0 else 0.0
 
     # 2. Couverture du message (IDF-pondérée, sans stop words)
@@ -231,7 +245,8 @@ def _score_bidirectional(
         msg_meaningful = msg_tokens  # fallback si tout est stop word
 
     msg_total = sum(idf.get(t, 1.0) for t in msg_meaningful)
-    msg_matched = sum(idf.get(t, 1.0) for t in intersection if t in msg_meaningful)
+    msg_matched = sum(idf.get(t, 1.0) for t in exact_set if t in msg_meaningful) + 0.9 * sum(
+        idf.get(t, 1.0) for t in fuzzy_only if t in msg_meaningful)
     message_coverage = msg_matched / msg_total if msg_total > 0 else 1.0
 
     # 3. Moyenne harmonique des deux couvertures
