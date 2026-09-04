@@ -32,9 +32,9 @@ def _stem(word: str) -> str:
 
 
 def _tokenize(text: str) -> set[str]:
-    """Extrait et normalise les mots d'un texte (accents + pluriels + fautes).
+    r"""Extrait et normalise les mots d'un texte (accents + pluriels + fautes).
 
-    \w+ avec Unicode: supporte l'arabe, l'espagnol et toutes les langues.
+    Utilise \w+ avec Unicode: supporte l'arabe, l'espagnol et toutes les langues.
     (l'ancien [a-z0-9]+ detruisait totalement les mots arabes)
     """
     text = normalize_text(text)
