@@ -108,6 +108,20 @@
         "teléfono"
       ],
       "answer": "Varias formas de contactarnos:\n\n📱 **WhatsApp**: +212 701 986 219 (respuesta en 5 min)\n📧 **Email**: contact@komara.agency\n🌐 **Sitio web**: komara.agency"
+    },
+    {
+      "id": "es_conv_01",
+      "category": "conversation",
+      "tags": [
+        "greeting"
+      ],
+      "questions": [
+        "hola",
+        "buenas",
+        "buenos dias",
+        "buenas tardes"
+      ],
+      "answer": "¡Hola! 👋 Bienvenido a KOMARA AGENCY.\nSoy Ndine, tu agente de ventas IA. Creamos bots de WhatsApp y Telegram que venden por ti 24/7.\n¿Cuál es tu proyecto?"
     }
   ],
   "packs": [

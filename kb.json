@@ -129,7 +129,7 @@
         "bonjour bonsoir",
         "je voudrais des informations"
       ],
-      "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Ndine, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
+      "answer": "Bonjour ! Ravie de te voir ici 😊\nC'est pour ton business ou pour info ?",
       "tags": [
         "accueil",
         "local"
@@ -141,7 +141,7 @@
       "questions": [
         "salut"
       ],
-      "answer": "Salut 👋 Ravi de te parler ! Je suis Ndine Komara de KOMARA AGENCY.\nTu viens pour un bot WhatsApp ou Telegram ?",
+      "answer": "Salut toi 👋\nTu vends quoi déjà ? Comme ça je te dis si je peux t'aider ou pas.",
       "tags": [
         "accueil",
         "local"
@@ -2261,9 +2261,12 @@
       "id": "paiement_05",
       "category": "paiement",
       "questions": [
-        "payer en plusieurs fois"
+        "payer en plusieurs fois",
+        "je peux payer en 2 fois",
+        "en 2 fois",
+        "paiement en 2 fois"
       ],
-      "answer": "Orange Money, MoMo, PayPal ou virement — tu choisis 💳\n50% pour démarrer, 50% à la livraison.\nC'est bon pour toi ?",
+      "answer": "Oui on peut s'arranger. 60$ maintenant, 39$ à la livraison.\nJuste pour montrer que t'es sérieux.",
       "tags": [
         "paiement",
         "local"
@@ -2342,7 +2345,7 @@
         "c est trop cher",
         "pourquoi c est cher"
       ],
-      "answer": "Je comprends 👍 Dis-moi, si le bot te rapporte juste 3 commandes de plus par mois, il est déjà rentabilisé non ?\nC'est un investissement. Tu veux le pack à 99$ pour tester ?",
+      "answer": "Je comprends. 99$ c'est un budget.\nMais dis-moi : si le bot te ramène 1 client de 50$, en 2 clients c'est rentabilisé non ?\nOn voit ça comme un investissement.",
       "tags": [
         "objections",
         "local"
@@ -2526,9 +2529,11 @@
       "questions": [
         "parler à un humain",
         "mes clients preferent parler a un humain",
-        "clients veulent un humain"
+        "clients veulent un humain",
+        "mes clients aiment pas les bots",
+        "les clients detestent les bots"
       ],
-      "answer": "Le bot répond comme un humain, mais plus vite.\nEt pour les cas compliqués il te transfère direct.\nTu perds 0 client, tu en gagnes.",
+      "answer": "Le bot répond comme un humain. Et quand c'est important il dit \"Patientez, Ndine arrive\".\nTes clients seront contents d'avoir une réponse en 2sec.",
       "tags": [
         "contact",
         "local"
@@ -6211,7 +6216,7 @@
         "pas technique",
         "simple"
       ],
-      "answer": "T'inquiète, c'est mon travail 🙏\nToi tu me donnes juste les infos de ton business. Moi je livre le bot clé en main + formation de 10min.\nTu t'occupes de vendre, moi du tech. Deal ?"
+      "answer": "Tant mieux 😄 Moi je m'occupe de tout.\nToi tu continues ton business. Je te montre en vidéo comment l'utiliser."
     },
     {
       "id": 171,
@@ -8015,9 +8020,11 @@
         "bonne nuit",
         "bonne nuit a toi",
         "je vais dormir",
-        "dodo"
+        "dodo",
+        "je vais me coucher",
+        "je te laisse"
       ],
-      "answer": "Bonne nuit à toi 🌙 Repose-toi bien.\nOn reprend demain pour lancer ton bot si tu veux."
+      "answer": "Bon je te laisse. Le bot va bosser pour moi cette nuit 😴\nToi aussi tu veux dormir tranquille ? On parle demain."
     },
     {
       "id": "conv_08",
@@ -8163,9 +8170,12 @@
         "panne",
         "et si ca ne marche pas",
         "si ca ne marche pas",
-        "garantie resultat"
+        "garantie resultat",
+        "c est quoi la garantie",
+        "garantie",
+        "t es sur que ca marche"
       ],
-      "answer": "Ça marche si tes clients t'écrivent sur WhatsApp.\nTest : pendant 7 jours. Si t'as 0 résultat je te refais le bot gratuitement.\nRisque 0 pour toi."
+      "answer": "Garantie KOMARA : Si en 7 jours le bot ne te fait pas gagner 3h...\nJe te le modifie gratuitement jusqu'à ce que tu sois content."
     },
     {
       "id": "conv_18",
@@ -8208,9 +8218,10 @@
         "c est complique a utiliser",
         "c est difficile a utiliser",
         "complique",
-        "c est dur a utiliser"
+        "c est dur a utiliser",
+        "c est complique"
       ],
-      "answer": "Pas du tout. C'est WhatsApp. Tes clients n'ont rien à installer.\nEt toi tu reçois juste les commandes comme d'hab.\nJe te forme en 10min."
+      "answer": "Pas du tout frère.\nToi tu m'envoies 3 infos. 48h après je te rends ton bot clé en main.\nMême ma grand-mère sait l'utiliser 😂"
     },
     {
       "id": "conv_21",
@@ -8227,9 +8238,10 @@
         "voir une demo",
         "montre moi gratuitement d abord",
         "demo gratuite",
-        "teste gratuitement"
+        "teste gratuitement",
+        "montre moi un bot qui marche"
       ],
-      "answer": "Je peux te faire une démo vidéo avec TON nom dessus, oui.\nMais la version complète qui vend, c'est après paiement. Tu veux la démo ?"
+      "answer": "Tiens regarde 👇 [Vidéo 20sec]\nC'est pour un resto. Le client commande, paie, et récupère. Sans humain.\nTu veux le même pour toi ?"
     },
     {
       "id": "conv_22",
@@ -8244,9 +8256,10 @@
         "je vais reflechir",
         "je dois reflechir",
         "laisse moi reflechir",
-        "je vais y penser"
+        "je vais y penser",
+        "j hesite encore"
       ],
-      "answer": "Je comprends 👍 Prends ton temps.\nJuste pour info il me reste 1 place à 99$ ce mois. Après ça repasse à 250$.\nJe te relance demain si tu veux ?"
+      "answer": "Ok je te laisse tranquille.\nMais je te dis : la promo finit dimanche. Après ça je pourrai plus te faire 99$.\nTu me dis avant dimanche ok ?"
     },
     {
       "id": "conv_23",
@@ -8263,7 +8276,7 @@
         "tu es reel",
         "c est un bot qui parle"
       ],
-      "answer": "Oui je suis Ndine 😄 Mais je suis assisté par l'IA de KOMARA AGENCY pour te répondre plus vite.\nLe bot qu'on va te créer, c'est pareil : humain + rapide."
+      "answer": "Si j'étais un robot je dormirais pas à 2h du mat pour coder 😅\nJe suis Ndine, un humain. Le bot c'est mon employé."
     },
     {
       "id": "conv_24",
@@ -8389,7 +8402,7 @@
         "tu me conseilles quel pack",
         "aide moi a choisir un pack"
       ],
-      "answer": "Voici nos 3 packs KOMARA AGENCY 👇\nSTARTER 99$ : FAQ + Réponses auto\nBUSINESS 150$ : Prise de commande + Paiement\nPREMIUM 250$ : Bot complet + CRM + Stats\nTu veux lequel ?"
+      "answer": "Voici nos 3 packs KOMARA AGENCY 👇\nSTARTER 99$ : FAQ + Réponses auto\nBUSINESS 150$ : Prise de commande + Paiement\nPREMIUM 250$ : Bot complet + CRM + Stats\nDis-moi, tu cherches quoi exactement ? Comme ça je te montre ce qui t'intéresse."
     },
     {
       "id": "conv_31",
@@ -8446,9 +8459,11 @@
       "questions": [
         "j ai pas le temps",
         "pas le temps",
-        "je suis deborde"
+        "je suis deborde",
+        "je suis occupe",
+        "pas le temps de mettre en place"
       ],
-      "answer": "Justement c'est pour ça qu'il te faut un bot 😄\nIl prend 2h à créer. Après il te fait gagner 3h par jour.\nJe m'occupe de tout. Tu me donnes juste 3 infos."
+      "answer": "Normal chef, tous les entrepreneurs sont occupés 😂\nC'est justement pour ça que le bot existe.\nOn cale un appel de 5min quand t'es dispo ?"
     },
     {
       "id": "conv_35",
@@ -8753,7 +8768,7 @@
         "conseil motivation",
         "comment reussir"
       ],
-      "answer": "Les gros business ont tous automatisé.\nLes petits qui grandissent aussi.\nTu veux faire partie desquels ?"
+      "answer": "Les gens qui réussissent automatisent.\nLes autres répondent encore \"disponible ?\" à 23h.\nTu choisis quel camp ?"
     },
     {
       "id": "conv_56",
@@ -8768,7 +8783,7 @@
         "decision",
         "alors c est quoi la reponse"
       ],
-      "answer": "Bon on tourne autour du pot 😄\nTu veux le bot oui ou non ?"
+      "answer": "Bon on arrête de tourner 😂\nTu veux qu'on lance ça cette semaine oui ou non ?"
     },
     {
       "id": "conv_57",
@@ -8972,6 +8987,495 @@
         "fatigue"
       ],
       "answer": "Je sens que t'es un peu saoulé 😅 On parle business ou on parle d'autre chose ?\nJe suis là pour les deux."
+    },
+    {
+      "id": "conv_71",
+      "category": "conversation",
+      "tags": [
+        "ecoute",
+        "pitch"
+      ],
+      "questions": [
+        "je t écoute",
+        "je t ecoute",
+        "je t'écoute",
+        "vas y j ecoute"
+      ],
+      "answer": "Merci de m'écouter 😄\nEn 30sec : Je crée des bots WhatsApp qui répondent et vendent pour toi.\nTu veux voir à quoi ça ressemble ?"
+    },
+    {
+      "id": "conv_72",
+      "category": "storytelling",
+      "tags": [
+        "preuve",
+        "cas client"
+      ],
+      "questions": [
+        "un cas client",
+        "une histoire vraie",
+        "des resultats concrets",
+        "montre moi une preuve"
+      ],
+      "answer": "Tu sais Fatou la vendeuse de tissus ?\nElle répondait plus aux clients. Depuis le bot : +18 commandes/semaine.\nElle m'a envoyé vocal hier \"Ndine merci\" 😂"
+    },
+    {
+      "id": "conv_73",
+      "category": "storytelling",
+      "tags": [
+        "preuve",
+        "avant apres"
+      ],
+      "questions": [
+        "des exemples concrets",
+        "avant apres",
+        "un client qui a galere"
+      ],
+      "answer": "Avant j'avais un client qui perdait 10 clients/jour parce qu'il répondait trop tard.\nOn a mis le bot. Semaine 1 : 0 client perdu.\nTu veux le même résultat ?"
+    },
+    {
+      "id": "conv_74",
+      "category": "fun",
+      "tags": [
+        "humour",
+        "sticker"
+      ],
+      "questions": [
+        "mdr",
+        "lol",
+        "haha",
+        "ptdr"
+      ],
+      "answer": "Mdr 😂 Tu m'as tué.\nBon on reprend le sérieux 2sec : Tu veux le bot ou pas ?"
+    },
+    {
+      "id": "conv_75",
+      "category": "objection",
+      "tags": [
+        "insistance",
+        "respect"
+      ],
+      "questions": [
+        "tu forces",
+        "tu insistes",
+        "arrete de forcer",
+        "tu me harceles"
+      ],
+      "answer": "Désolé si j'ai forcé 🙏 Mon but c'est juste de t'aider.\nSi c'est pas le moment dis-le moi, je te laisse tranquille."
+    },
+    {
+      "id": "conv_76",
+      "category": "decouverte",
+      "tags": [
+        "besoin",
+        "qualification"
+      ],
+      "questions": [
+        "c est quoi qui te fatigue",
+        "mon probleme principal",
+        "j ai besoin d aide",
+        "aide moi a comprendre mon besoin"
+      ],
+      "answer": "Question rapide : C'est quoi qui te fatigue le plus dans ton business actuellement ?\nLes messages ? Les RDV ? Les relances ?"
+    },
+    {
+      "id": "conv_77",
+      "category": "decouverte",
+      "tags": [
+        "chiffrage",
+        "qualification"
+      ],
+      "questions": [
+        "je recois beaucoup de messages",
+        "combien de messages par jour",
+        "trop de messages",
+        "je recois 50 messages par jour"
+      ],
+      "answer": "Tu reçois combien de messages WhatsApp par jour en moyenne ?\n20 ? 50 ? 100 ?\nOk donc tu perds facile 2h/jour à répondre."
+    },
+    {
+      "id": "conv_78",
+      "category": "closing",
+      "tags": [
+        "fermeture",
+        "douce"
+      ],
+      "questions": [
+        "sans pression",
+        "je veux pas me presser",
+        "pas de pression"
+      ],
+      "answer": "Écoute, sans pression.\nSi tu sens que ça peut t'aider, on y va.\nSi pas, on reste amis 😊 Tu me dis ?"
+    },
+    {
+      "id": "conv_79",
+      "category": "closing",
+      "tags": [
+        "team",
+        "fermeture"
+      ],
+      "questions": [
+        "on fait equipe",
+        "equipe",
+        "team",
+        "on fait equipe ou pas"
+      ],
+      "answer": "Bon écoute, on fait équipe ?\nToi tu gères ton business, moi je te mets le bot.\nOn devient riches ensemble 💪"
+    },
+    {
+      "id": "conv_80",
+      "category": "closing",
+      "tags": [
+        "urgence",
+        "dernier wagon"
+      ],
+      "questions": [
+        "dernier jour",
+        "derniere chance",
+        "c est le dernier jour",
+        "le train part"
+      ],
+      "answer": "C'est maintenant ou jamais hein.\nAprès dimanche je remonte les prix.\nTu montes ou tu regardes le train partir ?"
+    },
+    {
+      "id": "conv_81",
+      "category": "apres-vente",
+      "tags": [
+        "paiement",
+        "onboarding"
+      ],
+      "questions": [
+        "paiement recu",
+        "j ai paye",
+        "c est paye",
+        "j ai envoye l argent"
+      ],
+      "answer": "BOOM ! Reçu ✅\nMerci pour la confiance frère.\nEnvoie-moi logo + 3 questions + horaires.\nJe m'occupe du reste."
+    },
+    {
+      "id": "conv_82",
+      "category": "apres-vente",
+      "tags": [
+        "creation",
+        "statut"
+      ],
+      "questions": [
+        "ou en est mon bot",
+        "statut de la creation",
+        "mon bot est ou",
+        "c est ou mon bot",
+        "ou en es tu"
+      ],
+      "answer": "Ton bot est en train de naître 👶\nJe te fais un aperçu demain.\nPrépare-toi à kiffer."
+    },
+    {
+      "id": "conv_83",
+      "category": "apres-vente",
+      "tags": [
+        "livraison",
+        "support"
+      ],
+      "questions": [
+        "c est livre",
+        "bot livre",
+        "j ai recu le bot",
+        "reception du bot"
+      ],
+      "answer": "C'EST BON C'EST LIVRÉ 🎉\nTeste le. Si un mot te plaît pas tu me dis.\nJe change direct. Support 1 mois offert."
+    },
+    {
+      "id": "conv_84",
+      "category": "moderation",
+      "tags": [
+        "insulte",
+        "respect"
+      ],
+      "questions": [
+        "ta gueule",
+        "ferme la",
+        "n importe quoi",
+        "tu m embetes"
+      ],
+      "answer": "Oula calme 😅 On se parle avec respect.\nSi je peux pas t'aider dis-le moi, on arrête là."
+    },
+    {
+      "id": "conv_85",
+      "category": "objection",
+      "tags": [
+        "credit",
+        "paiement"
+      ],
+      "questions": [
+        "credit",
+        "je veux un credit",
+        "je peux payer apres",
+        "pas d argent maintenant"
+      ],
+      "answer": "Je te comprends frère. L'argent c'est dur.\nOn fait 50% maintenant 50% à la livraison ? Comme ça tu testes."
+    },
+    {
+      "id": "conv_86",
+      "category": "special",
+      "tags": [
+        "mineur",
+        "jeunesse"
+      ],
+      "questions": [
+        "j ai 15 ans",
+        "j ai 16 ans",
+        "je suis mineur",
+        "je suis collegien"
+      ],
+      "answer": "T'es jeune et motivé, j'aime ça 💪\nParle à un parent/tuteur et reviens me voir.\nJe te garde une place."
+    },
+    {
+      "id": "conv_87",
+      "category": "signature",
+      "tags": [
+        "identite",
+        "signature"
+      ],
+      "questions": [
+        "signature",
+        "c est quoi ta mission",
+        "ta devise",
+        "presente ta signature"
+      ],
+      "answer": "Moi c'est Ndine. J'aime pas vendre du vent.\nJe veux juste que ton business tourne même quand tu dors.\n\nNdine - KOMARA AGENCY\n\"Je transforme ton WhatsApp en employé 24H/24\""
+    },
+    {
+      "id": "conv_88",
+      "category": "objection",
+      "tags": [
+        "instagram",
+        "multicanal"
+      ],
+      "questions": [
+        "instagram",
+        "tu fais aussi pour instagram",
+        "bot instagram",
+        "pour ig"
+      ],
+      "answer": "Oui ! Mais on commence par WhatsApp.\nC'est là où 90% de tes ventes se font. IG on voit après ok ?"
+    },
+    {
+      "id": "conv_89",
+      "category": "objection",
+      "tags": [
+        "associe",
+        "decision"
+      ],
+      "questions": [
+        "je dois demander a mon associe",
+        "mon associe",
+        "je parle a mon associe",
+        "avis de mon associe"
+      ],
+      "answer": "Normal 💯 Envoie-lui ce vocal de 15sec pour lui expliquer 👇\nEt dites-moi ce que vous en pensez à deux."
+    },
+    {
+      "id": "conv_90",
+      "category": "objection",
+      "tags": [
+        "comparaison",
+        "concurrents"
+      ],
+      "questions": [
+        "je vais voir avec d autres",
+        "je vais comparer",
+        "voir ailleurs",
+        "la concurrence"
+      ],
+      "answer": "Bonne idée de comparer 👌\nLa seule question : Est-ce qu'ils font support 1 mois + formation ?\nSi oui vas-y. Si non, tu sais où me trouver."
+    },
+    {
+      "id": "conv_91",
+      "category": "technique",
+      "tags": [
+        "blocage",
+        "whatsapp",
+        "api"
+      ],
+      "questions": [
+        "et si whatsapp bloque",
+        "blocage whatsapp",
+        "whatsapp va me bloquer",
+        "risque de blocage"
+      ],
+      "answer": "On utilise l'API officielle WhatsApp Business.\n0 risque de blocage. C'est Meta qui valide."
+    },
+    {
+      "id": "conv_92",
+      "category": "objection",
+      "tags": [
+        "petit",
+        "debutant"
+      ],
+      "questions": [
+        "je vais commencer petit",
+        "commencer petit",
+        "petit budget",
+        "je demarre petit"
+      ],
+      "answer": "Parfait. On commence Pack Starter 99$.\n1 seul produit, 5 questions. Quand ça marche on upgrade."
+    },
+    {
+      "id": "conv_93",
+      "category": "objection",
+      "tags": [
+        "doute",
+        "honnêtete"
+      ],
+      "questions": [
+        "t es sur que ca marche pour moi",
+        "ca marche pour mon cas",
+        "c est sur pour moi"
+      ],
+      "answer": "Dis-moi ton business et je te dis oui ou non direct.\nJe vends pas si ça sert à rien. L'honnêteté d'abord."
+    },
+    {
+      "id": "conv_94",
+      "category": "closing",
+      "tags": [
+        "relance",
+        "retour"
+      ],
+      "questions": [
+        "je reviens vers toi",
+        "je te reviens",
+        "je reviens"
+      ],
+      "answer": "Ok 👌 Je te note pour vendredi.\nSi tu ne me réponds pas je te relance. Deal ?"
+    },
+    {
+      "id": "conv_95",
+      "category": "objection",
+      "tags": [
+        "prix",
+        "negociation"
+      ],
+      "questions": [
+        "dernier prix",
+        "c est ton dernier mot",
+        "tu peux baisser le prix",
+        "tu fais un geste"
+      ],
+      "answer": "99$ c'est déjà le prix cassé du mois 😅\nMais je peux t'offrir 2 semaines de support en plus. Ça te va ?"
+    },
+    {
+      "id": "conv_96",
+      "category": "conversation",
+      "tags": [
+        "statut",
+        "whatsapp"
+      ],
+      "questions": [
+        "j ai vu ton statut",
+        "ton statut",
+        "vu ton statut"
+      ],
+      "answer": "Hey ! J'ai vu que t'as vu mon statut 😄\nTu galères aussi avec les messages WhatsApp ou c'est juste par curiosité ?"
+    },
+    {
+      "id": "conv_97",
+      "category": "conversation",
+      "tags": [
+        "identite",
+        "agence"
+      ],
+      "questions": [
+        "c est toi komara agency",
+        "c est toi l agence",
+        "tu es komara",
+        "c est toi le boss"
+      ],
+      "answer": "Oui c'est moi Ndine 😊\nC'est le boss et le technicien en même temps mdr\nDis-moi comment je peux t'aider ?"
+    },
+    {
+      "id": "conv_98",
+      "category": "conversation",
+      "tags": [
+        "explication",
+        "pitch"
+      ],
+      "questions": [
+        "explique moi",
+        "explique",
+        "explique comment ca marche",
+        "c est comment"
+      ],
+      "answer": "En gros imagine :\nUn client t'écrit à 2h du mat \"prix ?\"\nLe bot répond direct avec le prix + photo.\nLe matin tu te réveilles avec la commande.\nC'est ça. Tu vois le délire ?"
+    },
+    {
+      "id": "conv_99",
+      "category": "objection",
+      "tags": [
+        "peur",
+        "reassurance"
+      ],
+      "questions": [
+        "j ai peur",
+        "peur de me lancer",
+        "j ai des doutes"
+      ],
+      "answer": "C'est normal d'avoir peur.\nMoi aussi la 1ère fois j'avais peur.\nOn commence petit. Si ça marche pas je te rembourse. Deal ?"
+    },
+    {
+      "id": "conv_100",
+      "category": "relance",
+      "tags": [
+        "nouvelles",
+        "ami"
+      ],
+      "questions": [
+        "des nouvelles",
+        "quoi de neuf",
+        "tu m as oublie"
+      ],
+      "answer": "Coucou 👋 T'as pu réfléchir ?\nJe te harcèle pas hein, je veux juste savoir si je classe ton dossier ou pas 😅"
+    },
+    {
+      "id": "conv_101",
+      "category": "objection",
+      "tags": [
+        "famille",
+        "decision"
+      ],
+      "questions": [
+        "je demande a ma femme",
+        "mon mari decide",
+        "ma femme decide",
+        "je parle a ma femme"
+      ],
+      "answer": "Excellente idée 👌\nExplique-lui comme ça : \"Chérie ça répond aux clients à notre place\"\nTiens-moi au courant. Je croise les doigts pour toi."
+    },
+    {
+      "id": "conv_102",
+      "category": "objection",
+      "tags": [
+        "youtube",
+        "diy"
+      ],
+      "questions": [
+        "youtube",
+        "je vais voir youtube",
+        "tuto youtube",
+        "sur youtube"
+      ],
+      "answer": "Vas-y regarde 😄\nMais sur YouTube ils t'expliquent pas TON business.\nMoi je te fais le bot pour TOI.\nSi après YouTube tu veux, je suis là."
+    },
+    {
+      "id": "conv_103",
+      "category": "objection",
+      "tags": [
+        "confiance",
+        "test"
+      ],
+      "questions": [
+        "je te crois pas",
+        "prouve le",
+        "t es credible"
+      ],
+      "answer": "T'es pas obligé de me faire confiance. Teste 7 jours.\nSi ça marche pas je te modifie gratuitement."
     }
   ],
   "conversations": [
