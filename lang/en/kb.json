@@ -1515,6 +1515,379 @@
         "clients want a human"
       ],
       "answer": "The bot replies like a human, but faster.\nAnd for tricky cases it transfers straight to you.\nYou lose 0 clients, you gain some."
+    },
+    {
+      "id": "pro_01",
+      "category": "pack_pro",
+      "questions": [
+        "hello i would like some information",
+        "i would like information please",
+        "some info please",
+        "information about your services",
+        "i want some information"
+      ],
+      "answer": "Hello and thank you for your message 👋\nI'm Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. What exactly do you want to automate?\nClient replies, orders, or appointments?"
+    },
+    {
+      "id": "pro_02",
+      "category": "pack_pro",
+      "questions": [
+        "do we use tu or vous",
+        "can we be informal",
+        "informal or formal"
+      ],
+      "answer": "Whatever you prefer 😊 Most of our clients prefer being informal, it's simpler.\nWhat works for you?"
+    },
+    {
+      "id": "pro_03",
+      "category": "pack_pro",
+      "questions": [
+        "i sell cosmetics online",
+        "cosmetics",
+        "i sell beauty products",
+        "cosmetics shop"
+      ],
+      "answer": "Perfect, thank you.\nIn cosmetics you get a lot of \"price?\" \"available?\" \"delivery?\" questions, right?\nHow do you currently handle client messages?"
+    },
+    {
+      "id": "pro_04",
+      "category": "pack_pro",
+      "questions": [
+        "i reply myself",
+        "i reply myself but i waste time",
+        "i handle my messages myself"
+      ],
+      "answer": "I completely understand. It's the problem of 90% of e-commerce sellers.\nAt KOMARA AGENCY we set up a WhatsApp/Telegram assistant that answers FAQs automatically 24/7, takes orders, and alerts you for important clients.\nThe goal: save you 5 to 10 hours per week.\nWould you like a 30-second demo?"
+    },
+    {
+      "id": "pro_05",
+      "category": "pack_pro",
+      "questions": [
+        "40 messages a day",
+        "about 40 messages",
+        "i get 40 messages a day",
+        "client replies mostly"
+      ],
+      "answer": "Ok that's a good volume, I understand it takes time.\nOur solution is an automatic assistant: it answers FAQs instantly (price, availability, delivery) and sends you a notification when it's a hot client.\nYou never lose a sale to slow replies again.\nShall I explain how it works?"
+    },
+    {
+      "id": "pro_06",
+      "category": "pack_pro",
+      "questions": [
+        "yes i want to see",
+        "show me the demo",
+        "send the video",
+        "i want to see the video"
+      ],
+      "answer": "Here's a concrete example 👇 [Demo video]\n1. Client asks \"Shower gel available?\"\n2. Bot replies with photo, price, stock + \"Order\" button\n3. You receive the order right on your phone\nAll without your intervention.\nWhat do you think?"
+    },
+    {
+      "id": "pro_07",
+      "category": "pack_pro",
+      "questions": [
+        "yes explain to me",
+        "explain how it works technically",
+        "how does it work technically"
+      ],
+      "answer": "Very simple, 3 steps:\n1. Installation: we connect the bot to your WhatsApp Business in 48h\n2. Configuration: your products, prices, and 10 standard replies\n3. Delivery: I train you in 15min by video, and I stay available 1 month\nYou code nothing. You keep running your business.\nWhat matters most to you in all this?"
+    },
+    {
+      "id": "pro_08",
+      "category": "pack_pro",
+      "questions": [
+        "the price and is it reliable",
+        "is it reliable",
+        "is it trustworthy",
+        "what s the price and is it reliable"
+      ],
+      "answer": "Very good questions.\nOn price: Starter Pack at $99 one-time. No subscription.\nOn reliability: official Meta WhatsApp API, 0 ban risk. + 7-day satisfaction guarantee.\nI can send you 2 client testimonials if you want.\nDo you prefer the technical PDF or a demo video?"
+    },
+    {
+      "id": "pro_09",
+      "category": "pack_pro",
+      "questions": [
+        "interesting what s the price",
+        "what are your offers",
+        "your bot offers",
+        "starter pack and pro pack"
+      ],
+      "answer": "We have 2 offers:\n*Starter Pack - $99*\nFull custom bot with your brand, 10 products/services configured, auto-replies + integrated payment, video training + 1 month support\n*Pro Pack - $250*\nEverything in Starter + full shop + statistics + auto follow-ups\nStarter is at $99 until Sunday.\nWhich offer suits you best?"
+    },
+    {
+      "id": "pro_10",
+      "category": "pack_pro",
+      "questions": [
+        "information about photo creation",
+        "photo creation",
+        "visual creation",
+        "visuals for my products",
+        "i want visuals",
+        "pro photos to sell"
+      ],
+      "answer": "Hello and thank you for reaching out 👋\nThis is Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. What type of business do you need visuals for? Shop, restaurant, product, event?"
+    },
+    {
+      "id": "pro_11",
+      "category": "pack_pro",
+      "questions": [
+        "for my clothing shop",
+        "visuals for shop",
+        "photos for my shop",
+        "i sell clothes"
+      ],
+      "answer": "Great. In textiles a beautiful photo = +50% sales.\nCurrently do you take photos yourself with a phone, or do you have a graphic designer?"
+    },
+    {
+      "id": "pro_12",
+      "category": "pack_pro",
+      "questions": [
+        "i shoot with my phone but it s not pro",
+        "i take my photos with my phone",
+        "my photos aren t professional"
+      ],
+      "answer": "I understand. The problem is clients judge in 2 seconds.\nAt KOMARA AGENCY we create visuals that stop the scroll:\nProduct photo + sales text + your logo + your brand colors.\nWant to see 2 examples made for shops in Conakry?"
+    },
+    {
+      "id": "pro_13",
+      "category": "pack_pro",
+      "questions": [
+        "yes show me the examples",
+        "show the before after",
+        "before after example"
+      ],
+      "answer": "Here you go 👇 [Before/After]\nLeft: classic phone photo\nRight: KOMARA visual with \"NEW COLLECTION - 24H DELIVERY\" text\nWhich one makes you want to buy more?"
+    },
+    {
+      "id": "pro_14",
+      "category": "pack_pro",
+      "questions": [
+        "visuals pricing",
+        "photo pricing",
+        "visual packs",
+        "how much for visuals",
+        "photo packs"
+      ],
+      "answer": "We have 3 packs:\n*Starter Pack - 50,000 GNF*\n5 pro visuals + catchy text + status + feed formats\n*Business Pack - 120,000 GNF*\n15 visuals + 3 short videos + 1-month posting calendar\n*Premium Pack - 250,000 GNF*\n30 visuals + full branding + 1-month status management\n48h delivery anywhere in Guinea. Revisions included.\nWhich pack interests you most?"
+    },
+    {
+      "id": "pro_15",
+      "category": "pack_pro",
+      "questions": [
+        "it s a bit expensive",
+        "expensive for photos",
+        "50 000 gnf is expensive",
+        "visuals too expensive"
+      ],
+      "answer": "I understand. 50,000 GNF is a budget.\nBut think of it: 1 single 200,000 GNF sale thanks to a good visual and it pays for itself.\nWe can start with the Starter Pack to test.\nDo you have photos of your products to send?"
+    },
+    {
+      "id": "pro_16",
+      "category": "pack_pro",
+      "questions": [
+        "yes i have some",
+        "i have photos of my products",
+        "i have my photos",
+        "i have photos"
+      ],
+      "answer": "Perfect. Send me 3 photos + your logo + the prices.\nI'll make you 1 FREE test visual so you can see the quality.\nIf you like it, we launch the pack. Deal?"
+    },
+    {
+      "id": "pro_17",
+      "category": "pack_pro",
+      "questions": [
+        "information about website creation",
+        "professional website creation",
+        "i want to create a showcase site",
+        "make a website for my business"
+      ],
+      "answer": "Hello and thank you for your message 👋\nThis is Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. To guide you better — what type of site is it for?\nShowcase, online store, portfolio, or blog?"
+    },
+    {
+      "id": "pro_18",
+      "category": "pack_pro",
+      "questions": [
+        "a showcase site for my company",
+        "showcase site",
+        "showcase site for construction",
+        "site for my btp company"
+      ],
+      "answer": "Perfect. A showcase site is your 24/7 business card.\nDo you already have a site or is this your first one? And do you have a logo?"
+    },
+    {
+      "id": "pro_19",
+      "category": "pack_pro",
+      "questions": [
+        "first time and yes i have a logo",
+        "first time for a website",
+        "i ve never had a site",
+        "it s my first site"
+      ],
+      "answer": "Excellent.\nAt KOMARA AGENCY we create sites that build trust and bring in clients.\nWe handle everything: design, texts, hosting, and going live.\nYou send us the info, 7 days later your site is online.\nShall I walk you through our packs?"
+    },
+    {
+      "id": "pro_20",
+      "category": "pack_pro",
+      "questions": [
+        "what are the website packs",
+        "website offers",
+        "website pricing",
+        "how much does a showcase site cost",
+        "website packs guinea"
+      ],
+      "answer": "We have 3 offers for the Guinean market:\n*ESSENTIAL Pack - 1,500,000 GNF*\n5 pages (Home, About, Services, Gallery, Contact), pro mobile-friendly design, WhatsApp form + Google Maps, domain + 1 year hosting included. Delivery: 7 days\n*BUSINESS Pack - 3,000,000 GNF*\nEverything in Essential + 10 pages + blog + basic SEO + Facebook/Instagram. Delivery: 10 days\n*E-COMMERCE Pack - 5,500,000 GNF*\nFull online store + Mobile Money payment + 20 products + order management. Delivery: 14 days\nWhich pack suits you best?"
+    },
+    {
+      "id": "pro_21",
+      "category": "pack_pro",
+      "questions": [
+        "1 500 000 gnf can i pay in 2 installments",
+        "pay the site in 2 installments",
+        "site in several payments"
+      ],
+      "answer": "Yes of course.\n50% to launch the mockup. 50% at delivery before going live.\nAnd a guarantee: if you're not satisfied with the mockup, we redo it until you love it.\nYou take zero risk."
+    },
+    {
+      "id": "pro_22",
+      "category": "pack_pro",
+      "questions": [
+        "what about hosting after 1 year",
+        "hosting renewal",
+        "how much does hosting cost after"
+      ],
+      "answer": "Very good question.\nAfter 1 year, domain + hosting renewal is 250,000 GNF/year.\nWe warn you 1 month in advance. And you stay 100% owner of your site."
+    },
+    {
+      "id": "pro_23",
+      "category": "pack_pro",
+      "questions": [
+        "what do you need to get started",
+        "what info for the site",
+        "what s needed to start the site"
+      ],
+      "answer": "Just 4 things:\n1. Your logo + colors\n2. Texts and photos of your services\n3. Your WhatsApp number + address\n4. 50% deposit\nOnce received we launch. Mockup to validate within 3 days.\nWant 3 examples of showcase sites we made in Conakry?"
+    },
+    {
+      "id": "pro_24",
+      "category": "pack_pro",
+      "questions": [
+        "what if i want changes",
+        "changes after delivery",
+        "can i modify the site after"
+      ],
+      "answer": "1 month of free changes included.\nAfter that, 10,000 GNF per change.\nAnd you stay 100% owner of your site."
+    },
+    {
+      "id": "pro_25",
+      "category": "pack_pro",
+      "questions": [
+        "will you disappear after",
+        "what do you do after delivery",
+        "what about follow-up"
+      ],
+      "answer": "No disappearing 😊 1-year support included.\nWe're in Conakry, you can come see us.\nWe sign a small agreement so everything is clear."
+    },
+    {
+      "id": "pro_26",
+      "category": "pack_pro",
+      "questions": [
+        "how do i pay",
+        "payment methods",
+        "payment in guinea"
+      ],
+      "answer": "Orange Money, Wave, bank transfer, or cash at our Conakry office 💳\nYou choose what works for you.\n50% to start, 50% at delivery."
+    },
+    {
+      "id": "pro_27",
+      "category": "pack_pro",
+      "questions": [
+        "the site is expensive",
+        "1 500 000 gnf is expensive",
+        "too expensive for a website"
+      ],
+      "answer": "One single contract won through the site pays for the site.\nIt's an investment, not an expense.\nYour company deserves to be visible on Google."
+    },
+    {
+      "id": "pro_28",
+      "category": "pack_pro",
+      "questions": [
+        "i can build the site myself",
+        "i ll do my own site"
+      ],
+      "answer": "You can. But we deliver a pro converting site in 7 days.\nYou keep running your business, we handle the rest.\nYour time is worth more than that, right?"
+    },
+    {
+      "id": "pro_29",
+      "category": "pack_pro",
+      "questions": [
+        "how to collaborate with komara agency",
+        "i want to collaborate with you",
+        "working with you",
+        "collaboration"
+      ],
+      "answer": "Hello and thank you for your interest 🙏\nThis is Ndine, Founder of KOMARA AGENCY 🇬🇳\nWhat type of project do you want to collaborate on?\nWebsites, visuals, bots, or partnership?"
+    },
+    {
+      "id": "pro_30",
+      "category": "pack_pro",
+      "questions": [
+        "i m an ad agency",
+        "i want to outsource",
+        "website white label",
+        "partner agency",
+        "white label"
+      ],
+      "answer": "Excellent. We offer 2 collaboration modes:\n*Mode 1 - White Label*: you sell to the client, we build the site behind the scenes with your logo. You keep 100% of the client relationship. 7-day delivery.\n*Mode 2 - Co-delivery*: you handle sales, we handle tech. 50/50 on the project.\nWhich speaks to you most?"
+    },
+    {
+      "id": "pro_31",
+      "category": "pack_pro",
+      "questions": [
+        "agency pricing",
+        "partner rates",
+        "white label rates"
+      ],
+      "answer": "For partner agencies, preferential rates:\nShowcase site: 900,000 GNF instead of 1,500,000 GNF\nE-commerce site: 3,500,000 GNF instead of 5,500,000 GNF\nVisuals: -30% on all packs\nIn exchange: minimum 2 projects/month.\nShall I send the partner PDF + 3 example sites?"
+    },
+    {
+      "id": "pro_32",
+      "category": "pack_pro",
+      "questions": [
+        "i want to work with you",
+        "hey i want to work with you"
+      ],
+      "answer": "Hey 👋 Thanks brother\nHow do you want to collaborate? Are you a designer, salesperson, videographer?"
+    },
+    {
+      "id": "pro_33",
+      "category": "pack_pro",
+      "questions": [
+        "i m a community manager",
+        "i m a cm",
+        "community manager"
+      ],
+      "answer": "Perfect. We need serious CMs.\n2 possible collabs:\n1. Lead bringer: you bring us a site/bot client, we give you 20% commission.\n2. Service: you manage a KOMARA client's page, we pay you 300,000 GNF/month per client.\nDo you prefer selling or executing?"
+    },
+    {
+      "id": "pro_34",
+      "category": "pack_pro",
+      "questions": [
+        "how does long-term work with you go",
+        "long-term work",
+        "long-term support",
+        "monthly subscription",
+        "digital department"
+      ],
+      "answer": "At KOMARA AGENCY we don't do \"one site then disappear\".\n12-month support:\n1. Free 30-min audit: we analyze your business\n2. Proposal: 1 or 2 clear offers with timeline and budget\n3. Execution + follow-up: delivery + 1 month support + monthly review meeting\nThe idea: become your external digital department (500,000 GNF/month).\nShall we book the free audit this week?"
+    },
+    {
+      "id": "pro_35",
+      "category": "pack_pro",
+      "questions": [
+        "ok thank you",
+        "ok thanks a lot",
+        "thanks for the info"
+      ],
+      "answer": "You're welcome 🙏\nTake your time to review.\nI'll follow up tomorrow to answer any further questions.\nHave a great day 🇬🇳"
     }
   ],
   "packs": [
