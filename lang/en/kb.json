@@ -1888,6 +1888,59 @@
         "thanks for the info"
       ],
       "answer": "You're welcome 🙏\nTake your time to review.\nI'll follow up tomorrow to answer any further questions.\nHave a great day 🇬🇳"
+    },
+    {
+      "id": "pro_36",
+      "category": "qualification",
+      "tags": [
+        "whatsapp"
+      ],
+      "questions": [
+        "it s for whatsapp",
+        "for whatsapp",
+        "on whatsapp",
+        "whatsapp for me"
+      ],
+      "answer": "Perfect, WhatsApp 👍\nWhat do you sell exactly? And how many messages do you get per day roughly?"
+    },
+    {
+      "id": "pro_37",
+      "category": "qualification",
+      "tags": [
+        "telegram"
+      ],
+      "questions": [
+        "it s for telegram",
+        "for telegram",
+        "on telegram",
+        "telegram for me"
+      ],
+      "answer": "Perfect, Telegram 👍\nWhat do you sell exactly? And how many messages do you get per day roughly?"
+    },
+    {
+      "id": "pro_38",
+      "category": "qualification",
+      "tags": [
+        "website"
+      ],
+      "questions": [
+        "it s for a website",
+        "for a website",
+        "for the website"
+      ],
+      "answer": "Perfect, a website 👍\nWhat type of business is it for? And do you already have a logo or not yet?"
+    },
+    {
+      "id": "pro_39",
+      "category": "qualification",
+      "tags": [
+        "both platforms"
+      ],
+      "questions": [
+        "whatsapp and telegram",
+        "both platforms"
+      ],
+      "answer": "Great, we can do both 👍\nWhat do you sell exactly? And how many messages per day roughly?"
     }
   ],
   "packs": [

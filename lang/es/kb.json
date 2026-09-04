@@ -255,7 +255,7 @@
         "me interesa",
         "me parece interesante"
       ],
-      "answer": "¡Genial! 🔥 Me alegra.\n¿Llamada de 10 min para definir tu bot, o te envío el catálogo + precios directamente?"
+      "answer": "KOMARA AGENCY crea sus propias herramientas a medida para cada cliente 😊\nNo reutilizamos soluciones genéricas."
     },
     {
       "id": "conv_16",
@@ -1613,6 +1613,57 @@
         "gracias por la info"
       ],
       "answer": "De nada 🙏\nTómate tu tiempo para revisar.\nTe escribo mañana para responder tus preguntas.\n¡Buen día! 🇬🇳"
+    },
+    {
+      "id": "pro_36",
+      "category": "qualification",
+      "tags": [
+        "whatsapp"
+      ],
+      "questions": [
+        "es para whatsapp",
+        "para whatsapp",
+        "en whatsapp"
+      ],
+      "answer": "Perfecto, WhatsApp 👍\n¿Qué vendes exactamente? ¿Y cuántos mensajes recibes al día más o menos?"
+    },
+    {
+      "id": "pro_37",
+      "category": "qualification",
+      "tags": [
+        "telegram"
+      ],
+      "questions": [
+        "es para telegram",
+        "para telegram",
+        "en telegram"
+      ],
+      "answer": "Perfecto, Telegram 👍\n¿Qué vendes exactamente? ¿Y cuántos mensajes recibes al día más o menos?"
+    },
+    {
+      "id": "pro_38",
+      "category": "qualification",
+      "tags": [
+        "website"
+      ],
+      "questions": [
+        "es para un sitio web",
+        "para un sitio web",
+        "para el sitio web"
+      ],
+      "answer": "Perfecto, un sitio web 👍\n¿Para qué tipo de negocio? ¿Y ya tienes un logo o todavía no?"
+    },
+    {
+      "id": "pro_39",
+      "category": "qualification",
+      "tags": [
+        "both"
+      ],
+      "questions": [
+        "whatsapp y telegram",
+        "las dos plataformas"
+      ],
+      "answer": "Genial, podemos hacer ambas 👍\n¿Qué vendes exactamente? ¿Y cuántos mensajes al día más o menos?"
     }
   ],
   "packs": [
