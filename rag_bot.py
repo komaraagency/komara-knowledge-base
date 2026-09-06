@@ -1,4 +1,4 @@
-"""Worker Telegram Komara avec polling robuste, multilingue et mémoire locale."""
+"""Worker Telegram Komara avec polling robuste, multilingue et mémoire locale (SQLite)."""
 
 from __future__ import annotations
 
@@ -7,12 +7,11 @@ import logging
 import os
 import re
 import signal
+import sqlite3
 import sys
 import threading
 import time
-import urllib.error
 import urllib.request
-from collections import deque
 from pathlib import Path
 from typing import Any
 
@@ -53,8 +52,10 @@ logger = logging.getLogger("komara.telegram")
 if not TOKEN:
     raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
 
+bot = telebot.TeleBot(TOKEN)
+
 # ---------------------------------------------------------------------------
-# Détecteur de langue local (100% hors-ligne, aucune dépendance externe)
+# Détecteur de langue local (Optimisé avec intersections de sets)
 # ---------------------------------------------------------------------------
 
 LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
@@ -112,42 +113,36 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
 DEFAULT_LANGUAGE = "fr"
 MIN_CONFIDENCE = 2
 
-
 def detect_language(text: str) -> str:
-    """Détecte la langue d'un texte à partir de mots-clés caractéristiques."""
     if not text or not text.strip():
         return DEFAULT_LANGUAGE
 
     text_lower = text.lower()
+    words_in_text = set(re.findall(r'\b\w+\b', text_lower))
     scores: dict[str, int] = {}
 
     for lang, config in LANGUAGE_MARKERS.items():
         score = 0
-        for word in config.get("words", set()):
-            if f" {word} " in f" {text_lower} ":
-                score += 2
-            elif text_lower.startswith(f"{word} ") or text_lower.endswith(f" {word}"):
-                score += 2
+        lang_words = config.get("words", set())
+        score += len(words_in_text.intersection(lang_words)) * 2
+
         for pattern in config.get("patterns", []):
             score += text_lower.count(pattern)
+
         for start, end in config.get("unicode_ranges", []):
             score += sum(1 for char in text if start <= ord(char) <= end)
+
         if score > 0:
             scores[lang] = score
 
     if not scores:
         return DEFAULT_LANGUAGE
 
-    best_lang = max(scores, key=scores.get)  # type: ignore[arg-type]
-    if scores[best_lang] < MIN_CONFIDENCE:
-        return DEFAULT_LANGUAGE
-    return best_lang
-
+    best_lang = max(scores, key=scores.get)
+    return best_lang if scores[best_lang] >= MIN_CONFIDENCE else DEFAULT_LANGUAGE
 
 def get_supported_languages() -> list[str]:
-    """Retourne la liste des langues supportées."""
     return list(LANGUAGE_MARKERS.keys())
-
 
 # ---------------------------------------------------------------------------
 # Chargement multilingue des bases de connaissances
@@ -158,9 +153,7 @@ FAQ_PATH = BASE_DIR / "docs" / "faq.md"
 DIALOGUES_DIR = BASE_DIR / "dialogues"
 LANG_DIR = BASE_DIR / "lang"
 
-
 def load_knowledge_base() -> dict[str, Any]:
-    """Charge la base de connaissances française de secours (racine)."""
     if not KB_PATH.is_file():
         logger.error("Le fichier kb.json est absent : %s", KB_PATH)
         raise RuntimeError(f"Le fichier de base de connaissances {KB_PATH} est absent.")
@@ -169,28 +162,27 @@ def load_knowledge_base() -> dict[str, Any]:
         logger.info("Base de connaissances (kb.json) chargé avec succès.")
         return data
 
+def _parse_markdown_sections(content: str) -> list[dict[str, str]]:
+    items: list[dict[str, str]] = []
+    sections = re.split(r"(?m)^\s*###\s+(.*?)\s*\n", content)
+    for i in range(1, len(sections), 2):
+        if i + 1 < len(sections):
+            question = sections[i].strip()
+            answer = sections[i+1].strip()
+            if question and answer:
+                items.append({"question": question, "answer": answer})
+    return items
 
 def load_local_faq() -> list[dict[str, str]]:
-    """Charge la FAQ française de secours (racine)."""
     if not FAQ_PATH.is_file():
         logger.warning("FAQ locale absente : %s", FAQ_PATH)
         return []
     content = FAQ_PATH.read_text(encoding="utf-8")
-    items: list[dict[str, str]] = []
-    for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-        lines = section.splitlines()
-        if len(lines) < 2:
-            continue
-        question = lines[0].strip()
-        answer = "\n".join(lines[1:]).strip()
-        if question and answer:
-            items.append({"question": question, "answer": answer})
+    items = _parse_markdown_sections(content)
     logger.info("FAQ locale (docs/faq.md) chargée : %s questions", len(items))
     return items
 
-
 def load_dialogues() -> list[dict[str, str]]:
-    """Charge les dialogues français de secours (racine)."""
     dialogues: list[dict[str, str]] = []
     if not DIALOGUES_DIR.is_dir():
         logger.warning("Dossier dialogues absent : %s", DIALOGUES_DIR)
@@ -199,26 +191,16 @@ def load_dialogues() -> list[dict[str, str]]:
         if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
             try:
                 content = file_path.read_text(encoding="utf-8")
-                for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-                    lines = section.splitlines()
-                    if len(lines) < 2:
-                        continue
-                    question = lines[0].strip()
-                    answer = "\n".join(lines[1:]).strip()
-                    if question and answer:
-                        dialogues.append({"question": question, "answer": answer})
+                dialogues.extend(_parse_markdown_sections(content))
             except Exception as e:
                 logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
-    logger.info("Dialogues (docs/dialogues) chargés : %s questions", len(dialogues))
+    logger.info("Dialogues chargés : %s questions", len(dialogues))
     return dialogues
 
-
 def load_language_resources(lang_code: str) -> dict[str, Any]:
-    """Charge kb.json, faq.md et dialogues pour une langue donnée depuis lang/{code}/."""
     lang_path = LANG_DIR / lang_code
     resources: dict[str, Any] = {"kb": [], "faq": [], "dialogues": []}
 
-    # 1. kb.json de la langue
     kb_path = lang_path / "kb.json"
     if kb_path.is_file():
         try:
@@ -229,46 +211,25 @@ def load_language_resources(lang_code: str) -> dict[str, Any]:
         except Exception as e:
             logger.error("[%s] Erreur kb.json : %s", lang_code, e)
 
-    # 2. faq.md de la langue
     faq_path = lang_path / "faq.md"
     if faq_path.is_file():
         try:
             content = faq_path.read_text(encoding="utf-8")
-            items: list[dict[str, str]] = []
-            for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-                lines = section.splitlines()
-                if len(lines) < 2:
-                    continue
-                question = lines[0].strip()
-                answer = "\n".join(lines[1:]).strip()
-                if question and answer:
-                    items.append({"question": question, "answer": answer})
-            resources["faq"] = items
-            logger.info("[%s](faq.md) chargé : %s questions", lang_code, len(items))
+            resources["faq"] = _parse_markdown_sections(content)
+            logger.info("[%s](faq.md) chargé : %s questions", lang_code, len(resources["faq"]))
         except Exception as e:
             logger.error("[%s] Erreur faq.md : %s", lang_code, e)
 
-    # 3. dialogues de la langue
     dialogues_path = lang_path / "dialogues.md"
     if dialogues_path.is_file():
         try:
             content = dialogues_path.read_text(encoding="utf-8")
-            items: list[dict[str, str]] = []
-            for section in re.split(r"^###\s+", content, flags=re.MULTILINE)[1:]:
-                lines = section.splitlines()
-                if len(lines) < 2:
-                    continue
-                question = lines[0].strip()
-                answer = "\n".join(lines[1:]).strip()
-                if question and answer:
-                    items.append({"question": question, "answer": answer})
-            resources["dialogues"] = items
-            logger.info("[%s](dialogues.md) chargé : %s dialogues", lang_code, len(items))
+            resources["dialogues"] = _parse_markdown_sections(content)
+            logger.info("[%s](dialogues.md) chargé : %s dialogues", lang_code, len(resources["dialogues"]))
         except Exception as e:
             logger.error("[%s] Erreur dialogues.md : %s", lang_code, e)
 
     return resources
-
 
 # ---------------------------------------------------------------------------
 # Chargement initial de toutes les ressources
@@ -278,8 +239,6 @@ KB_DATA = load_knowledge_base()
 BRAND = KB_DATA.get("brand", "Komara Agency")
 BRAIN = KB_DATA
 KNOWLEDGE = KB_DATA.get("knowledge", [])
-PACKS = KB_DATA.get("packs", [])
-CONVERSATIONS = KB_DATA.get("conversations", [])
 WHATSAPP = KB_DATA.get("contact", {}).get("whatsapp", "")
 LOCAL_FAQ = load_local_faq()
 LOCAL_DIALOGUES = load_dialogues()
@@ -287,51 +246,84 @@ LOCAL_DIALOGUES = load_dialogues()
 LANG_RESOURCES: dict[str, dict[str, Any]] = {}
 for _lang in get_supported_languages():
     LANG_RESOURCES[_lang] = load_language_resources(_lang)
-    logger.info("Ressources [%s] chargées", _lang)
 
-# FIX BUG #2: Le français doit AUSSI avoir accès aux ressources racine (kb.json, faq, dialogues)
-# en plus des 10 items de lang/fr/kb.json. On fusionne les deux.
-_fr_root_kb = KNOWLEDGE  # 311 items du kb.json racine (déjà au bon format)
-_fr_lang_kb = LANG_RESOURCES.get("fr", {}).get("kb", [])  # 10 items de lang/fr/kb.json
+_fr_root_kb = KNOWLEDGE
+_fr_lang_kb = LANG_RESOURCES.get("fr", {}).get("kb", [])
 _fr_root_faq = LOCAL_FAQ
 _fr_lang_faq = LANG_RESOURCES.get("fr", {}).get("faq", [])
 _fr_root_dialogues = LOCAL_DIALOGUES
 _fr_lang_dialogues = LANG_RESOURCES.get("fr", {}).get("dialogues", [])
 
 LANG_RESOURCES["fr"] = {
-    "kb": _fr_lang_kb + _fr_root_kb,       # 10 items lang + 311 items racine
-    "faq": _fr_lang_faq + _fr_root_faq,    # faq lang + faq racine
+    "kb": _fr_lang_kb + _fr_root_kb,
+    "faq": _fr_lang_faq + _fr_root_faq,
     "dialogues": _fr_lang_dialogues + _fr_root_dialogues,
 }
-logger.info(
-    "Ressources [fr] fusionnées : %s fiches KB, %s FAQ, %s dialogues",
-    len(LANG_RESOURCES["fr"]["kb"]),
-    len(LANG_RESOURCES["fr"]["faq"]),
-    len(LANG_RESOURCES["fr"]["dialogues"]),
-)
-
+logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr"]["kb"]))
 
 # ---------------------------------------------------------------------------
-# Mémoire conversationnelle locale
+# Mémoire conversationnelle locale (SQLite avec connexion persistante)
 # ---------------------------------------------------------------------------
 
 MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
-MEMORY_FILE = MEMORY_DIR / "memory.json"
+MEMORY_FILE = MEMORY_DIR / "memory.db"
 MEMORY_LIMIT = 20
-MEMORY_LOCK = threading.Lock()
+DB_LOCK = threading.Lock()
+DB_CONN: sqlite3.Connection | None = None
 
+def init_memory_db() -> None:
+    global DB_CONN
+    MEMORY_DIR.mkdir(parents=True, exist_ok=True)
+    DB_CONN = sqlite3.connect(MEMORY_FILE, check_same_thread=False)
+    with DB_LOCK:
+        DB_CONN.execute("""
+            CREATE TABLE IF NOT EXISTS memory (
+                chat_id TEXT PRIMARY KEY,
+                history TEXT NOT NULL
+            )
+        """)
+        DB_CONN.commit()
+    logger.info("Base de mémoire SQLite initialisée : %s", MEMORY_FILE)
+
+def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
+    global DB_CONN
+    key = str(chat_id)
+    content = content[:4000]
+
+    with DB_LOCK:
+        row = DB_CONN.execute("SELECT history FROM memory WHERE chat_id =?", (key,)).fetchone()
+        history = json.loads(row[0]) if row else []
+
+        history.append({"role": role, "content": content})
+        if len(history) > MEMORY_LIMIT:
+            history = history[-MEMORY_LIMIT:]
+
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO memory (chat_id, history) VALUES (?,?)",
+            (key, json.dumps(history, ensure_ascii=False))
+        )
+        DB_CONN.commit()
+    return history
+
+def forget(chat_id: int) -> None:
+    global DB_CONN
+    with DB_LOCK:
+        DB_CONN.execute("DELETE FROM memory WHERE chat_id =?", (str(chat_id),))
+        DB_CONN.commit()
+
+def context_for(chat_id: int) -> list[dict[str, str]]:
+    global DB_CONN
+    with DB_LOCK:
+        row = DB_CONN.execute("SELECT history FROM memory WHERE chat_id =?", (str(chat_id),)).fetchone()
+        if row:
+            return json.loads(row[0])[-MEMORY_LIMIT:]
+    return []
 
 # ---------------------------------------------------------------------------
 # Recherche multilingue
 # ---------------------------------------------------------------------------
 
 def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> str | None:
-    """
-    Cherche la meilleure réponse dans la base de la langue détectée.
-    Fallback sur la langue par défaut (fr) si aucun résultat.
-    FIX BUG #2: Même pour le français, on cherche dans les ressources fusionnées
-    (qui incluent maintenant le kb.json racine).
-    """
     resources = LANG_RESOURCES.get(detected_lang, {"kb": [], "faq": [], "dialogues": []})
     result = trouver_meilleure_reponse(
         message, resources["kb"], resources["faq"], resources["dialogues"]
@@ -339,7 +331,6 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    # Fallback français (uniquement si la langue détectée n'est pas le français)
     if detected_lang != DEFAULT_LANGUAGE:
         fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
         result = trouver_meilleure_reponse(
@@ -347,15 +338,12 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
         )
         if result:
             return result
-
     return None
-
 
 # ---------------------------------------------------------------------------
 # Réponses et interface Telegram
 # ---------------------------------------------------------------------------
 
-# Claviers adaptés à chaque langue
 KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
     "fr": [
         ("💎 Voir les Tarifs", "📂 Portfolio"),
@@ -379,7 +367,15 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
     ],
 }
 
-# Commandes de reset par langue
+# FIX : comparer un libellé de bouton à une liste de tuples est toujours faux.
+# On aplatit tous les libellés dans un set pour un test d'appartenance correct.
+BUTTON_LABELS: set[str] = {
+    label
+    for rows in KEYBOARDS.values()
+    for row in rows
+    for label in row
+}
+
 RESET_COMMANDS: dict[str, set[str]] = {
     "fr": {"/reset", "/forget", "oublie", "oublie-moi"},
     "en": {"/reset", "/forget", "forget", "reset"},
@@ -387,16 +383,15 @@ RESET_COMMANDS: dict[str, set[str]] = {
     "es": {"/reset", "/forget", "olvida", "reiniciar"},
 }
 
-# Messages de réponse par langue
 MESSAGES: dict[str, dict[str, str]] = {
     "fr": {
-        "reset": "D'accord, j'ai effacé le contexte de cette conversation. Que souhaitez-vous faire ?",
+        "reset": "D'accord, j'ai effacé le contexte de cette conversation. Que souhaitez-vous faire?",
         "fallback": "Je n'ai pas bien compris votre demande. 🤔\n\nNous proposons : bots WhatsApp/Telegram, sites web, applications, logos et création digitale.\n\nTapez 'prix' pour les tarifs, 'services' pour nos offres, ou décrivez votre projet.",
         "human": f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes.",
-        "portfolio": "Tu veux des exemples pour quel domaine ?",
+        "portfolio": "Tu veux des exemples pour quel domaine?",
         "pricing_intro": "Voici nos offres :",
-        "commander": "Super ! 🛒 Pour préparer votre devis, dites-moi :\n\n1️⃣ Quel service ? (bot, site, logo, app...)\n2️⃣ Votre activité\n3️⃣ Votre délai souhaité\n\nJe vous écoute 👇",
-        "chatbot": "🤖 Vous voulez un bot intelligent pour votre business ?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse ?",
+        "commander": "Super! 🛒 Pour préparer votre devis, dites-moi :\n\n1️⃣ Quel service? (bot, site, logo, app...)\n2️⃣ Votre activité\n3️⃣ Votre délai souhaité\n\nJe vous écoute 👇",
+        "chatbot": "🤖 Vous voulez un bot intelligent pour votre business?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse?",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
     "en": {
@@ -431,91 +426,35 @@ MESSAGES: dict[str, dict[str, str]] = {
     },
 }
 
-
 def menu_for_lang(lang: str) -> ReplyKeyboardMarkup:
-    """Retourne le clavier adapté à la langue détectée."""
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     for row in KEYBOARDS.get(lang, KEYBOARDS["fr"]):
         keyboard.add(*row)
     return keyboard
 
-
 def msg(lang: str, key: str) -> str:
-    """Retourne un message localisé, fallback français."""
     return MESSAGES.get(lang, MESSAGES["fr"]).get(key, MESSAGES["fr"].get(key, ""))
 
-
-def _load_memory() -> dict[str, list[dict[str, str]]]:
-    try:
-        with MEMORY_LOCK:
-            if not MEMORY_FILE.exists():
-                return {}
-            with MEMORY_FILE.open("r", encoding="utf-8") as memory_file:
-                data = json.load(memory_file)
-        return data if isinstance(data, dict) else {}
-    except (OSError, json.JSONDecodeError):
-        logger.warning("Mémoire illisible; démarrage avec une mémoire vide.", exc_info=True)
-        return {}
-
-
-def _save_memory(memory: dict[str, list[dict[str, str]]]) -> None:
-    MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
-    temporary_file = MEMORY_FILE.with_suffix(".tmp")
-    with MEMORY_LOCK:
-        with temporary_file.open("w", encoding="utf-8") as memory_file:
-            json.dump(memory, memory_file, ensure_ascii=False, indent=2)
-        temporary_file.replace(MEMORY_FILE)
-
-
-def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
-    memory = _load_memory()
-    key = str(chat_id)
-    history = deque(memory.get(key, []), maxlen=MEMORY_LIMIT)
-    history.append({"role": role, "content": content[:4000]})
-    memory[key] = list(history)
-    _save_memory(memory)
-    return memory[key]
-
-
-def forget(chat_id: int) -> None:
-    memory = _load_memory()
-    memory.pop(str(chat_id), None)
-    _save_memory(memory)
-
-
-def context_for(chat_id: int) -> list[dict[str, str]]:
-    return _load_memory().get(str(chat_id), [])[-MEMORY_LIMIT:]
-
+# ---------------------------------------------------------------------------
+# Recherche contextuelle sécurisée
+# ---------------------------------------------------------------------------
 
 def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) -> str | None:
-    """Recherche contextuelle avec compréhension sémantique locale.
+    user_text = user_text[:4000].strip()
+    if not user_text:
+        return None
 
-    Le moteur local_search.py utilise maintenant:
-    - Score bidirectionnel (keyword coverage × message coverage)
-    - Pondération IDF (mots rares > mots fréquents)
-    - Détection d'intention (prix, création, info, objection...)
-    - Stop words filtrés
-
-    → "je souhaite créer un bot" ne matche plus "bot" à 100%
-    → "quel est le devis pour un bot whatsapp" matche "devis" plutôt que "bot"
-    """
-    # 1. Recherche sémantique directe (le moteur comprend le sens maintenant)
+    # 1. Recherche sémantique directe
     direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
     if direct_answer:
         return direct_answer
 
-    # BUG CORRIGÉ : un message court/ambigu ("Pour l'info", "Pour business",
-    # "oui", "et après ?") combiné avec l'historique re-matchait à tort une
-    # ancienne question (ex: le message d'accueil "business ou info ?" se
-    # re-déclenchait lui-même en boucle). Un message avec 0-1 mot(s)
-    # significatif(s) est trop ambigu pour ce recollage : mieux vaut le
-    # laisser tomber vers DeepSeek (compréhension réelle) que de deviner
-    # localement et risquer une réponse hors-sujet ou une boucle.
+    # BUG CORRIGÉ : un message court/ambigu ("Pour l'info", "oui") combiné à
+    # l'historique re-matchait à tort une ancienne question (boucle accueil).
     if significant_token_count(user_text) < 2:
         return None
 
-    # 2. Recherche avec contexte de conversation (uniquement si le message
-    # actuel contient assez de contenu propre pour ne pas être ambigu)
+    # 2. Recherche avec contexte de conversation (si assez de contenu propre)
     history = context_for(chat_id)
     previous_user_messages = [
         item["content"] for item in history
@@ -530,24 +469,15 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
 
     return None
 
-
-def safe_typing(chat_id: int) -> None:
-    try:
-        bot.send_chat_action(chat_id, "typing")
-    except Exception:
-        logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
-
+# ---------------------------------------------------------------------------
+# Portfolio
+# ---------------------------------------------------------------------------
 
 PORTFOLIO_DIR = BASE_DIR / "portfolio"
 PORTFOLIO_BUTTON_PREFIX = "📷 "
 PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-
 def portfolio_images() -> list[tuple[str, Path]]:
-    """Liste les images du dossier portfolio/ : [(nom_affiché, chemin), ...].
-
-    Le nom affiché = nom de fichier sans extension, '_' remplacés par espaces.
-    """
     images: list[tuple[str, Path]] = []
     if not PORTFOLIO_DIR.is_dir():
         return images
@@ -557,9 +487,7 @@ def portfolio_images() -> list[tuple[str, Path]]:
             images.append((display_name, entry))
     return images
 
-
 def portfolio_keyboard() -> ReplyKeyboardMarkup:
-    """Clavier listant les images portfolio pour que le client choisisse."""
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     buttons = [f"{PORTFOLIO_BUTTON_PREFIX}{name}" for name, _ in portfolio_images()]
     if buttons:
@@ -569,266 +497,171 @@ def portfolio_keyboard() -> ReplyKeyboardMarkup:
         keyboard.add("💎 Tarifs", "🚀 Commander")
     return keyboard
 
-
 def send_portfolio(chat_id: int, lang: str) -> None:
-    """Liste les réalisations disponibles et laisse le client choisir la photo."""
     images = portfolio_images()
     slogan = BRAIN.get("slogan", "") if BRAIN else ""
-
     if not images:
-        text = (
-            f"Portfolio KOMARA 💎 {slogan}\n"
-            f"{msg(lang, 'portfolio')}\n"
-            f"⚠️ {len(images)} réalisation(s) disponible(s)."
-        )
+        text = f"Portfolio KOMARA 💎 {slogan}\n{msg(lang, 'portfolio')}\n⚠️ Aucune réalisation disponible pour le moment."
         bot.send_message(chat_id, text, reply_markup=menu_for_lang(lang))
         return
-
     lines = ["Portfolio KOMARA 💎", ""]
     for name, _ in images:
         lines.append(f"📷 {name}")
     lines.append("")
     lines.append(msg(lang, "portfolio"))
-    text = "\n".join(lines)
-    bot.send_message(chat_id, text, reply_markup=portfolio_keyboard())
-
+    bot.send_message(chat_id, "\n".join(lines), reply_markup=portfolio_keyboard())
 
 def send_portfolio_image(chat_id: int, display_name: str, lang: str) -> bool:
-    """Envoie l'image portfolio choisie par le client. Retourne True si envoyée."""
     for name, path in portfolio_images():
         if name.lower() == display_name.lower():
             try:
                 with path.open("rb") as image_file:
                     bot.send_photo(chat_id, image_file)
-                bot.send_message(
-                    chat_id,
-                    msg(lang, "portfolio"),
-                    reply_markup=portfolio_keyboard(),
-                )
+                bot.send_message(chat_id, msg(lang, "portfolio"), reply_markup=portfolio_keyboard())
                 return True
             except Exception:
                 logger.exception("Échec d'envoi de l'image portfolio %s", path.name)
                 return False
     return False
 
-
 # ---------------------------------------------------------------------------
-# Bot Telegram
+# Handler principal des messages
 # ---------------------------------------------------------------------------
 
-bot = telebot.TeleBot(TOKEN)
-
-# Variable globale pour le shutdown propre
-_shutdown_requested = False
-
-
-def _handle_signal(signum: int, _frame: Any) -> None:
-    global _shutdown_requested
-    _shutdown_requested = True
-    logger.info("Signal %s reçu, arrêt en cours...", signum)
-    HEARTBEAT_STOP.set()
+def safe_typing(chat_id: int) -> None:
     try:
-        bot.stop_polling()
+        bot.send_chat_action(chat_id, "typing")
     except Exception:
-        pass
+        logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-
-signal.signal(signal.SIGINT, _handle_signal)
-signal.signal(signal.SIGTERM, _handle_signal)
-
-
-@bot.message_handler(commands=["start"])
-def start(message: telebot.types.Message) -> None:
+@bot.message_handler(func=lambda message: True, content_types=['text'])
+def handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
-    text = (message.text or "").strip()
-    lang = detect_language(text)
+    user_text = message.text.strip()
+    detected_lang = detect_language(user_text)
 
-    if text.casefold() == "/start":
+    # 1. Commandes de reset
+    if user_text.lower() in RESET_COMMANDS.get(detected_lang, set()):
         forget(chat_id)
-        lang = DEFAULT_LANGUAGE
-
-    safe_typing(chat_id)
-    time.sleep(1)
-
-    # Chercher le message de bienvenue dans la KB
-    welcome = trouver_meilleure_reponse_multilingue("bonjour", "fr") or f"Bienvenue chez {BRAND} 🇬🇳"
-    remember(chat_id, "assistant", welcome)
-    bot.send_message(chat_id, welcome, reply_markup=menu_for_lang(lang))
-
-
-@bot.message_handler(func=lambda message: True)
-def handle(message: telebot.types.Message) -> None:
-    chat_id = message.chat.id
-    text = (message.text or "").strip()
-    safe_typing(chat_id)
-
-    # Détection de la langue
-    lang = detect_language(text)
-    logger.debug("Langue détectée : %s | message : %s", lang, text[:50])
-
-    # Commandes de reset multilingues
-    all_reset_commands = set()
-    for cmds in RESET_COMMANDS.values():
-        all_reset_commands |= cmds
-    if text.casefold() in all_reset_commands:
-        forget(chat_id)
-        response = msg(lang, "reset")
-        remember(chat_id, "user", text)
-        remember(chat_id, "assistant", response)
-        bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
+        bot.send_message(chat_id, msg(detected_lang, "reset"), reply_markup=menu_for_lang(detected_lang))
         return
 
-    remember(chat_id, "user", text)
-
-    try:
-        # FIX BUG #3: Boutons de menu — inclure Commander et Chatbot IA
-        portfolio_labels = {"📂 Portfolio", "📂 المعرض", "📂 Portafolio"}
-        pricing_labels = {"💎 Voir les Tarifs", "💎 View Pricing", "💎 الأسعار", "💎 Ver Precios"}
-        human_labels = {"👑 Parler à un humain", "👑 Talk to a human", "👑 التحدث مع مستشار", "👑 Hablar con un humano"}
-        commander_labels = {"🚀 Commander", "🚀 Order", "🚀 طلب", "🚀 Ordenar"}
-        chatbot_labels = {"🤖 Chatbot IA", "🤖 AI Chatbot", "🤖 مساعد ذكي", "🤖 Chatbot IA"}
-
-        if text in portfolio_labels:
-            send_portfolio(chat_id, lang)
+    # 2. Gestion des boutons rapides (FIX : test sur le set aplati BUTTON_LABELS)
+    if user_text in BUTTON_LABELS:
+        if "Commander" in user_text or "Order" in user_text or "طلب" in user_text or "Ordenar" in user_text:
+            bot.send_message(chat_id, msg(detected_lang, "commander"), reply_markup=menu_for_lang(detected_lang))
+            return
+        if "Chatbot" in user_text or "IA" in user_text or "ذكي" in user_text:
+            bot.send_message(chat_id, msg(detected_lang, "chatbot"), reply_markup=menu_for_lang(detected_lang))
+            return
+        if "humain" in user_text.lower() or "human" in user_text.lower() or "مستشار" in user_text:
+            bot.send_message(chat_id, msg(detected_lang, "human"), reply_markup=menu_for_lang(detected_lang), parse_mode="Markdown")
+            return
+        if "Portfolio" in user_text or "المعرض" in user_text or "Portafolio" in user_text:
+            send_portfolio(chat_id, detected_lang)
+            return
+        if "Tarif" in user_text or "Pricing" in user_text or "السعر" in user_text or "Precio" in user_text:
+            bot.send_message(chat_id, msg(detected_lang, "pricing_intro"), reply_markup=menu_for_lang(detected_lang))
             return
 
-        # Choix d'une image portfolio (ex: "📷 logo elegant")
-        if text.startswith(PORTFOLIO_BUTTON_PREFIX):
-            chosen = text[len(PORTFOLIO_BUTTON_PREFIX):].strip()
-            if send_portfolio_image(chat_id, chosen, lang):
-                remember(chat_id, "assistant", f"[portfolio: {chosen}]")
-                return
-            bot.send_message(chat_id, msg(lang, "fallback"), reply_markup=menu_for_lang(lang))
-            return
+    # 3. Gestion du Portfolio image
+    if user_text.startswith(PORTFOLIO_BUTTON_PREFIX):
+        display_name = user_text[len(PORTFOLIO_BUTTON_PREFIX):]
+        if not send_portfolio_image(chat_id, display_name, detected_lang):
+            send_portfolio(chat_id, detected_lang)
+        return
 
-        if text in pricing_labels:
-            base_answer = trouver_meilleure_reponse_multilingue("prix", lang) or msg(lang, "pricing_intro")
-            packs_text = "\n".join(
-                f"*{pack.get('nom', 'Pack')}*: {pack.get('prix', '')} - "
-                f"{pack.get('contenu', '')}"
-                for pack in PACKS
-            )
-            response = f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
-            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
-            return
+    # 4. Traitement normal
+    safe_typing(chat_id)
+    remember(chat_id, "user", user_text)
 
-        if text in human_labels:
-            response = msg(lang, "human")
-            remember(chat_id, "assistant", response)
-            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
-            return
+    # 5. Cascade : DeepSeek PRIORITAIRE (reformule la suggestion locale et
+    # garde les chiffres exacts) ; kb.json devient le filet de secours.
+    # Sans clé DeepSeek, comportement identique : la suggestion locale répond.
+    local_suggestion = local_contextual_response(chat_id, user_text, detected_lang)
+    if local_suggestion is None:
+        record_unrecognized(user_text, source="telegram")
 
-        # FIX BUG #3: Handler pour le bouton Commander
-        if text in commander_labels:
-            response = msg(lang, "commander")
-            remember(chat_id, "assistant", response)
-            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
-            return
-
-        # FIX: Handler pour le bouton Chatbot IA
-        if text in chatbot_labels:
-            response = msg(lang, "chatbot")
-            remember(chat_id, "assistant", response)
-            bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
-            return
-
-        # Réponse locale (suggestion) + compréhension DeepSeek en PRIORITÉ.
-        # DeepSeek reformule/adopte la suggestion locale (chiffres exacts) ou
-        # répond seul si rien ne correspond. kb.json devient un filet de
-        # secours quand DeepSeek est absent, désactivé ou en échec.
-        local_suggestion = local_contextual_response(chat_id, text, lang)
-        if local_suggestion is None:
-            record_unrecognized(text, source="telegram")
-
-        response = None
-        if deepseek_available():
-            safe_typing(chat_id)
-            response = ask_deepseek(
-                text, lang, context_for(chat_id), suggestion=local_suggestion
-            )
-        response = response or local_suggestion or msg(lang, "fallback")
-        remember(chat_id, "assistant", response)
-        time.sleep(min(2, len(response) / 200))
-        bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
-
-    except ApiTelegramException:
-        raise
-    except Exception:
-        logger.exception("Erreur lors du traitement du message du chat %s", chat_id)
+    response = None
+    if deepseek_available():
+        history = context_for(chat_id)
         try:
-            bot.send_message(
-                chat_id,
-                msg(lang, "error"),
-                reply_markup=menu_for_lang(lang),
+            # FIX : la signature est ask_deepseek(texte, lang, historique, suggestion)
+            # (le brouillon passait l'historique à la place du texte du client)
+            response = ask_deepseek(
+                user_text, lang=detected_lang, history=history, suggestion=local_suggestion
             )
         except Exception:
-            logger.exception("Impossible d'envoyer le message de secours.")
+            logger.exception("Erreur lors de l'appel à DeepSeek")
+            response = None
 
+    response = response or local_suggestion or msg(detected_lang, "fallback")
+
+    # 6. Sauvegarde et envoi
+    remember(chat_id, "assistant", response)
+
+    if len(response) > 4096:
+        for i in range(0, len(response), 4096):
+            chunk = response[i:i + 4096]
+            is_last = (i + 4096 >= len(response))
+            bot.send_message(chat_id, chunk, reply_markup=menu_for_lang(detected_lang) if is_last else None)
+    else:
+        bot.send_message(chat_id, response, reply_markup=menu_for_lang(detected_lang))
 
 # ---------------------------------------------------------------------------
-# Heartbeat (monitoring optionnel)
+# Monitoring et Cycle de vie
 # ---------------------------------------------------------------------------
-
-def send_heartbeat() -> None:
-    if not MONITOR_API_URL:
-        return
-    try:
-        headers = {"Content-Type": "application/json"}
-        if MONITOR_API_KEY:
-            headers["X-API-Key"] = MONITOR_API_KEY
-        data = json.dumps({"worker": "telegram", "timestamp": time.time()}).encode()
-        req = urllib.request.Request(
-            f"{MONITOR_API_URL}/internal/heartbeat",
-            data=data,
-            headers=headers,
-            method="POST",
-        )
-        urllib.request.urlopen(req, timeout=10)
-    except Exception:
-        logger.debug("Échec d'envoi du heartbeat.", exc_info=True)
-
 
 def heartbeat_loop() -> None:
-    if not MONITOR_API_URL:
-        logger.info("Monitoring désactivé : MONITOR_API_URL non configuré.")
-        return
-    logger.info("Monitoring activé : heartbeat toutes les %ss.", HEARTBEAT_INTERVAL)
-    while not HEARTBEAT_STOP.is_set() and not _shutdown_requested:
-        send_heartbeat()
+    while not HEARTBEAT_STOP.is_set():
+        if MONITOR_API_URL and MONITOR_API_KEY:
+            try:
+                payload = json.dumps({"status": "ok", "brand": BRAND}).encode()
+                req = urllib.request.Request(
+                    f"{MONITOR_API_URL}/heartbeat",
+                    data=payload,
+                    headers={"Authorization": f"Bearer {MONITOR_API_KEY}", "Content-Type": "application/json"},
+                    method="POST"
+                )
+                urllib.request.urlopen(req, timeout=10)
+            except Exception as e:
+                logger.debug("Échec du heartbeat : %s", e)
         HEARTBEAT_STOP.wait(HEARTBEAT_INTERVAL)
 
-
-# ---------------------------------------------------------------------------
-# Polling et stratégie de reprise
-# ---------------------------------------------------------------------------
-
 def prepare_polling() -> None:
-    logger.info("Suppression du webhook Telegram avant le polling.")
-    bot.delete_webhook(drop_pending_updates=DROP_PENDING_UPDATES)
+    try:
+        # drop_pending conforme à DROP_PENDING_UPDATES (conservé de l'ancienne version)
+        bot.delete_webhook(drop_pending_updates=DROP_PENDING_UPDATES)
+        logger.info("Webhook supprimé avec succès.")
+    except Exception as e:
+        logger.warning("Erreur lors de la suppression du webhook : %s", e)
 
+# ---------------------------------------------------------------------------
+# Boucle de Polling Robuste
+# ---------------------------------------------------------------------------
+
+_shutdown_requested = False
 
 def is_conflict(error: ApiTelegramException) -> bool:
     description = str(getattr(error, "description", error)).casefold()
     return getattr(error, "error_code", None) == 409 or "terminated by other" in description
 
-
-CONFLICT_BASE_DELAY = 15   # secondes ; x2 par tentative, cap 120s
-CONFLICT_MAX_RETRIES = 8    # ~8-9 min de patience totale sur conflit 409
-
+CONFLICT_BASE_DELAY = 15
+CONFLICT_MAX_RETRIES = 8
 
 def run() -> None:
     global _shutdown_requested
+
+    init_memory_db()
+
     retry_count = 0
     conflict_count = 0
     threading.Thread(target=heartbeat_loop, name="worker-heartbeat", daemon=True).start()
+
     logger.info(
         "%s démarrage (multilingue : %s) ; polling_timeout=%ss, long_polling_timeout=%ss, "
         "drop_pending_updates=%s",
-        BRAND,
-        ", ".join(get_supported_languages()),
-        POLL_TIMEOUT,
-        LONG_POLLING_TIMEOUT,
-        DROP_PENDING_UPDATES,
+        BRAND, ", ".join(get_supported_languages()), POLL_TIMEOUT, LONG_POLLING_TIMEOUT, DROP_PENDING_UPDATES
     )
 
     while not _shutdown_requested:
@@ -842,33 +675,26 @@ def run() -> None:
                 allowed_updates=["message"],
             )
             retry_count = 0
-
             if not _shutdown_requested:
                 logger.warning("Le polling s'est arrêté sans exception ; nouvelle tentative différée.")
                 time.sleep(5)
 
         except ApiTelegramException as error:
             if is_conflict(error):
-                # Conflit 409 : une autre instance tient le token. Pendant un
-                # redéploiement Railway, l'ancienne instance le garde ~1-2 min :
-                # on attend patiemment (backoff) au lieu de crasher en boucle.
+                # Conflit 409 : pendant un redéploiement Railway, l'ancienne
+                # instance garde le token ~1-2 min. On patiente (backoff
+                # progressif) au lieu de crasher en boucle.
                 conflict_count += 1
                 if conflict_count > CONFLICT_MAX_RETRIES:
                     logger.critical(
-                        "Conflit Telegram 409 persistant après %s tentatives (%s min) : "
-                        "une autre instance utilise vraiment ce token en permanence. "
-                        "Arrêt. Vérifiez Railway (replicas dupliqués) et les autres "
-                        "hébergeurs avant de relancer. Détail : %s",
+                        "Conflit Telegram 409 persistant après %s tentatives. Arrêt.",
                         conflict_count - 1,
-                        (CONFLICT_MAX_RETRIES * CONFLICT_BASE_DELAY) // 60,
-                        error,
                     )
                     raise SystemExit(2) from error
                 delay = min(120, CONFLICT_BASE_DELAY * conflict_count)
                 logger.warning(
-                    "Conflit Telegram 409 (redéploiement ? tentative %s/%s) : "
-                    "nouvelle écoute du token dans %ss. Détail : %s",
-                    conflict_count, CONFLICT_MAX_RETRIES, delay, error,
+                    "Conflit Telegram 409 (tentative %s/%s) : reprise dans %ss.",
+                    conflict_count, CONFLICT_MAX_RETRIES, delay,
                 )
                 time.sleep(delay)
                 continue
@@ -878,13 +704,10 @@ def run() -> None:
             if retry_count > MAX_RETRIES:
                 logger.critical("Trop d'erreurs Telegram consécutives ; arrêt du worker.")
                 raise
-
             delay = min(60, 2 ** min(retry_count, 6))
             logger.exception(
                 "Erreur Telegram transitoire (tentative %s/%s) ; reprise dans %ss.",
-                retry_count,
-                MAX_RETRIES,
-                delay,
+                retry_count, MAX_RETRIES, delay,
             )
             time.sleep(delay)
 
@@ -893,18 +716,24 @@ def run() -> None:
             if retry_count > MAX_RETRIES:
                 logger.critical("Trop d'erreurs consécutives ; arrêt du worker.")
                 raise
-
             delay = min(60, 2 ** min(retry_count, 6))
             logger.exception(
                 "Erreur inattendue du polling (tentative %s/%s) ; reprise dans %ss.",
-                retry_count,
-                MAX_RETRIES,
-                delay,
+                retry_count, MAX_RETRIES, delay,
             )
             time.sleep(delay)
 
     logger.info("Worker Telegram arrêté proprement.")
 
+def handle_sigterm(signum, frame):
+    global _shutdown_requested
+    logger.info("Signal d'arrêt reçu (%s). Fermeture en cours...", signum)
+    _shutdown_requested = True
+    HEARTBEAT_STOP.set()
+    if DB_CONN:
+        DB_CONN.close()
 
 if __name__ == "__main__":
+    signal.signal(signal.SIGTERM, handle_sigterm)
+    signal.signal(signal.SIGINT, handle_sigterm)
     run()

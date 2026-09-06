@@ -190,7 +190,6 @@ backups/
 
 # ===========================================================================
 # AJOUTS POUR LE PROJET MULTILINGUE KOMARA AGENCY
-# ===========================================================================
 
 # Fichiers temporaires et de swap
 *.tmp
@@ -201,7 +200,6 @@ backups/
 
 # Logs applicatifs
 logs/
-*.log
 
 # Fichiers de test locaux (optionnel, à commiter si vous voulez les partager)
 # test_multilang.py
@@ -239,13 +237,9 @@ debug_*.py
 test_*.pyc
 
 # Coverage HTML
-htmlcov/
 
 # pytest
-.pytest_cache/
 
-# mypy
-.mypy_cache/
 
 # Fichiers de traduction automatique (si vous en générez)
 # translations_auto/
