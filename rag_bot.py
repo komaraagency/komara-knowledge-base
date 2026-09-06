@@ -732,19 +732,21 @@ def handle(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
             return
 
-        # Recherche multilingue
-        local_response = local_contextual_response(chat_id, text, lang)
-        deepseek_response = None
-        if local_response is None:
+        # Réponse locale (suggestion) + compréhension DeepSeek en PRIORITÉ.
+        # DeepSeek reformule/adopte la suggestion locale (chiffres exacts) ou
+        # répond seul si rien ne correspond. kb.json devient un filet de
+        # secours quand DeepSeek est absent, désactivé ou en échec.
+        local_suggestion = local_contextual_response(chat_id, text, lang)
+        if local_suggestion is None:
             record_unrecognized(text, source="telegram")
-            # Compréhension externe : DeepSeek quand le local n'a pas reconnu
-            if deepseek_available():
-                safe_typing(chat_id)
-                deepseek_response = ask_deepseek(
-                    text, lang, context_for(chat_id)
-                )
 
-        response = local_response or deepseek_response or msg(lang, "fallback")
+        response = None
+        if deepseek_available():
+            safe_typing(chat_id)
+            response = ask_deepseek(
+                text, lang, context_for(chat_id), suggestion=local_suggestion
+            )
+        response = response or local_suggestion or msg(lang, "fallback")
         remember(chat_id, "assistant", response)
         time.sleep(min(2, len(response) / 200))
         bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
@@ -810,9 +812,14 @@ def is_conflict(error: ApiTelegramException) -> bool:
     return getattr(error, "error_code", None) == 409 or "terminated by other" in description
 
 
+CONFLICT_BASE_DELAY = 15   # secondes ; x2 par tentative, cap 120s
+CONFLICT_MAX_RETRIES = 8    # ~8-9 min de patience totale sur conflit 409
+
+
 def run() -> None:
     global _shutdown_requested
     retry_count = 0
+    conflict_count = 0
     threading.Thread(target=heartbeat_loop, name="worker-heartbeat", daemon=True).start()
     logger.info(
         "%s démarrage (multilingue : %s) ; polling_timeout=%ss, long_polling_timeout=%ss, "
@@ -842,14 +849,31 @@ def run() -> None:
 
         except ApiTelegramException as error:
             if is_conflict(error):
-                logger.critical(
-                    "Conflit Telegram 409 : une autre instance utilise déjà ce token. "
-                    "Arrêt sans boucle de redémarrage. Vérifiez Railway, les replicas et "
-                    "les autres hébergeurs avant de relancer. Détail : %s",
-                    error,
+                # Conflit 409 : une autre instance tient le token. Pendant un
+                # redéploiement Railway, l'ancienne instance le garde ~1-2 min :
+                # on attend patiemment (backoff) au lieu de crasher en boucle.
+                conflict_count += 1
+                if conflict_count > CONFLICT_MAX_RETRIES:
+                    logger.critical(
+                        "Conflit Telegram 409 persistant après %s tentatives (%s min) : "
+                        "une autre instance utilise vraiment ce token en permanence. "
+                        "Arrêt. Vérifiez Railway (replicas dupliqués) et les autres "
+                        "hébergeurs avant de relancer. Détail : %s",
+                        conflict_count - 1,
+                        (CONFLICT_MAX_RETRIES * CONFLICT_BASE_DELAY) // 60,
+                        error,
+                    )
+                    raise SystemExit(2) from error
+                delay = min(120, CONFLICT_BASE_DELAY * conflict_count)
+                logger.warning(
+                    "Conflit Telegram 409 (redéploiement ? tentative %s/%s) : "
+                    "nouvelle écoute du token dans %ss. Détail : %s",
+                    conflict_count, CONFLICT_MAX_RETRIES, delay, error,
                 )
-                raise SystemExit(2) from error
+                time.sleep(delay)
+                continue
 
+            conflict_count = 0
             retry_count += 1
             if retry_count > MAX_RETRIES:
                 logger.critical("Trop d'erreurs Telegram consécutives ; arrêt du worker.")

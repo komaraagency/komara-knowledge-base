@@ -132,8 +132,14 @@ def ask_deepseek(
     user_text: str,
     lang: str = "fr",
     history: list[dict[str, str]] | None = None,
+    suggestion: str | None = None,
 ) -> str | None:
-    """Interroge DeepSeek. Renvoie une réponse courte, ou None si indisponible."""
+    """Interroge DeepSeek. Renvoie une réponse courte, ou None si indisponible.
+
+    `suggestion` : réponse standard trouvée par la base locale (kb.json).
+    DeepSeek s'en inspire pour garder les chiffres exacts mais la reformule
+    naturellement dans son style vivant. None = aucune correspondance locale.
+    """
     cfg = _config()
     if not (cfg["enabled"] and cfg["api_key"]):
         return None
@@ -153,6 +159,27 @@ def ask_deepseek(
 
     messages = [{"role": "system", "content": f"{SYSTEM_PROMPT}\n\n{lang_hint}"}]
     messages.extend(_history_messages(history))
+    if suggestion:
+        suggestion_clean = " ".join(suggestion.split())[:600]
+        messages.append({
+            "role": "system",
+            "content": (
+                "Réponse standard de notre base de connaissances pour ce message : "
+                f"\"{suggestion_clean}\"\n"
+                "Utilise-la comme BASE : garde les chiffres et infos exacts, mais "
+                "reformule-la naturellement dans ton style vivant (elle est parfois "
+                "trop sèche ou formatée). Ne recopie pas mot à mot."
+            ),
+        })
+    else:
+        messages.append({
+            "role": "system",
+            "content": (
+                "Aucune réponse standard de notre base ne correspond à ce message : "
+                "réponds naturellement en te basant sur la fiche Komara Agency. "
+                "Si tu n'as pas l'info exacte, dis-le simplement et propose un échange."
+            ),
+        })
     messages.append({"role": "user", "content": text})
 
     payload = json.dumps(

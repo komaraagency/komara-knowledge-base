@@ -116,13 +116,15 @@ def repondre(message: str) -> str:
             for pack in PACKS
         )
         return f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
-    local_response = chercher(text)
-    if local_response:
-        return local_response
-    record_unrecognized(text, source="api")
-    deepseek_response = ask_deepseek(text)
+    local_suggestion = chercher(text)
+    if local_suggestion is None:
+        record_unrecognized(text, source="api")
+    # DeepSeek prioritaire (reformule la suggestion locale), kb.json en secours
+    deepseek_response = ask_deepseek(text, suggestion=local_suggestion)
     if deepseek_response:
         return deepseek_response
+    if local_suggestion:
+        return local_suggestion
     return (
         "Je peux vous orienter vers un bot, un site ou une application, "
         "une automatisation, ou une création digitale. Quel est votre besoin ?"
