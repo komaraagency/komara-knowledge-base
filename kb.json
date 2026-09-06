@@ -2001,7 +2001,10 @@
       "id": "tarifs_04",
       "category": "tarifs",
       "questions": [
-        "combien ça coûte"
+        "combien ça coûte",
+        "combien c est",
+        "ca coute combien",
+        "combien ca fait"
       ],
       "answer": "Ça dépend de ton projet 😊\nMais pour te donner une idée : packs à partir de 1200 MAD, Pack Business à 3500 MAD, et le sur-mesure sur devis.\nTu veux un devis précis pour ton projet ?",
       "tags": [
@@ -2025,7 +2028,11 @@
       "id": "tarifs_06",
       "category": "tarifs",
       "questions": [
-        "prix d’un bot"
+        "prix d’un bot",
+        "combien pour un bot",
+        "combien un bot",
+        "combien c est un bot",
+        "le bot c est combien"
       ],
       "answer": "Ça dépend de ton projet 😊\nMais pour te donner une idée : packs à partir de 1200 MAD, Pack Business à 3500 MAD, et le sur-mesure sur devis.\nTu veux un devis précis pour ton projet ?",
       "tags": [
@@ -2037,7 +2044,10 @@
       "id": "tarifs_07",
       "category": "tarifs",
       "questions": [
-        "prix d’un site"
+        "prix d’un site",
+        "combien pour un site",
+        "combien c est un site",
+        "le site c est combien"
       ],
       "answer": "Ça dépend de ton projet 😊\nMais pour te donner une idée : packs à partir de 1200 MAD, Pack Business à 3500 MAD, et le sur-mesure sur devis.\nTu veux un devis précis pour ton projet ?",
       "tags": [
@@ -2049,7 +2059,9 @@
       "id": "tarifs_08",
       "category": "tarifs",
       "questions": [
-        "prix d’un logo"
+        "prix d’un logo",
+        "combien pour un logo",
+        "combien c est un logo"
       ],
       "answer": "Ça dépend de ton projet 😊\nMais pour te donner une idée : packs à partir de 1200 MAD, Pack Business à 3500 MAD, et le sur-mesure sur devis.\nTu veux un devis précis pour ton projet ?",
       "tags": [
@@ -2061,7 +2073,10 @@
       "id": "tarifs_09",
       "category": "tarifs",
       "questions": [
-        "prix d’une application"
+        "prix d’une application",
+        "combien pour une application",
+        "combien c est une application",
+        "l application c est combien"
       ],
       "answer": "Ça dépend de ton projet 😊\nMais pour te donner une idée : packs à partir de 1200 MAD, Pack Business à 3500 MAD, et le sur-mesure sur devis.\nTu veux un devis précis pour ton projet ?",
       "tags": [

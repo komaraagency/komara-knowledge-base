@@ -16,6 +16,7 @@ from typing import Any
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
+from deepseek_client import ask_deepseek
 from local_search import score_match
 from local_stats import get_unrecognized_stats, record_unrecognized
 
@@ -119,6 +120,9 @@ def repondre(message: str) -> str:
     if local_response:
         return local_response
     record_unrecognized(text, source="api")
+    deepseek_response = ask_deepseek(text)
+    if deepseek_response:
+        return deepseek_response
     return (
         "Je peux vous orienter vers un bot, un site ou une application, "
         "une automatisation, ou une création digitale. Quel est votre besoin ?"

@@ -57,8 +57,29 @@ Recherche par intersection de mots dans :
     ↓
 Si aucun score suffisant → recherche contextuelle (message + historique)
     ↓
-Réponse locale de clarification si aucune correspondance
+Si toujours rien → compréhension externe DeepSeek (deepseek_client.py)
+    ↓
+Réponse locale de clarification en dernier recours
 ```
+
+#### DeepSeek — couche de compréhension externe (optionnelle)
+
+Quand le moteur local ne reconnaît pas un message (argot, phrasé inattendu,
+question hors base), `deepseek_client.py` interroge l'API DeepSeek
+(`deepseek-chat`) avec le persona Komara Agency : réponse courte (2-4 phrases),
+langue du client (FR/EN/AR/ES), jamais de mention « IA », et ramène toujours
+vers la vente. Si la clé est absente, si l'API échoue ou expire, le bot
+retombe silencieusement sur le fallback local — aucune exception, aucun blocage.
+
+Variables d'environnement (Railway → Variables) :
+
+| Variable | Défaut | Rôle |
+|---|---|---|
+| `DEEPSEEK_API_KEY` | *(vide = désactivé)* | Clé API DeepSeek |
+| `DEEPSEEK_ENABLED` | `true` | Coupe-circuit on/off |
+| `DEEPSEEK_MODEL` | `deepseek-chat` | Modèle utilisé |
+| `DEEPSEEK_TIMEOUT` | `12` | Timeout HTTP en secondes |
+| `DEEPSEEK_MAX_TOKENS` | `300` | Longueur max des réponses |
 
 Le moteur donne priorité aux expressions les plus précises. Une demande comme « payer en plusieurs fois » ne doit donc pas être capturée par une réponse générale sur le paiement. Une question sans correspondance suffisante reçoit une demande de précision plutôt qu'une réponse inventée.
 

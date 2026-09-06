@@ -21,6 +21,7 @@ from dotenv import load_dotenv
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
+from deepseek_client import ask_deepseek, deepseek_available
 from local_search import trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
@@ -722,10 +723,17 @@ def handle(message: telebot.types.Message) -> None:
 
         # Recherche multilingue
         local_response = local_contextual_response(chat_id, text, lang)
+        deepseek_response = None
         if local_response is None:
             record_unrecognized(text, source="telegram")
+            # Compréhension externe : DeepSeek quand le local n'a pas reconnu
+            if deepseek_available():
+                safe_typing(chat_id)
+                deepseek_response = ask_deepseek(
+                    text, lang, context_for(chat_id)
+                )
 
-        response = local_response or msg(lang, "fallback")
+        response = local_response or deepseek_response or msg(lang, "fallback")
         remember(chat_id, "assistant", response)
         time.sleep(min(2, len(response) / 200))
         bot.send_message(chat_id, response, reply_markup=menu_for_lang(lang))
