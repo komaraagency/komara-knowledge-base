@@ -44,6 +44,18 @@ def _tokenize(text: str) -> set[str]:
     return {_stem(w.strip('_')) for w in cleaned}
 
 
+def significant_token_count(text: str) -> int:
+    """Compte les tokens significatifs (hors stop words) d'un message.
+
+    Utilise pour decider si un message est trop court/ambigu pour etre
+    recombine avec l'historique de conversation (voir BUG contextuel :
+    un message court comme "pour l'info" combine avec un historique
+    contenant "bonjour" re-matchait a tort le message d'accueil).
+    """
+    tokens = _tokenize(text)
+    return len(tokens - STOP_WORDS)
+
+
 def _fuzzy_token_match(token: str, token_set: set[str], threshold: float = 0.75) -> bool:
     """Vérifie si un token correspond approximativement à un token dans un set.
 

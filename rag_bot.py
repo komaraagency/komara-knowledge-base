@@ -22,7 +22,7 @@ from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
 from deepseek_client import ask_deepseek, deepseek_available
-from local_search import trouver_meilleure_reponse
+from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
 # ---------------------------------------------------------------------------
@@ -499,6 +499,23 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     → "je souhaite créer un bot" ne matche plus "bot" à 100%
     → "quel est le devis pour un bot whatsapp" matche "devis" plutôt que "bot"
     """
+    # 1. Recherche sémantique directe (le moteur comprend le sens maintenant)
+    direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
+    if direct_answer:
+        return direct_answer
+
+    # BUG CORRIGÉ : un message court/ambigu ("Pour l'info", "Pour business",
+    # "oui", "et après ?") combiné avec l'historique re-matchait à tort une
+    # ancienne question (ex: le message d'accueil "business ou info ?" se
+    # re-déclenchait lui-même en boucle). Un message avec 0-1 mot(s)
+    # significatif(s) est trop ambigu pour ce recollage : mieux vaut le
+    # laisser tomber vers DeepSeek (compréhension réelle) que de deviner
+    # localement et risquer une réponse hors-sujet ou une boucle.
+    if significant_token_count(user_text) < 2:
+        return None
+
+    # 2. Recherche avec contexte de conversation (uniquement si le message
+    # actuel contient assez de contenu propre pour ne pas être ambigu)
     history = context_for(chat_id)
     previous_user_messages = [
         item["content"] for item in history
@@ -507,12 +524,6 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     recent_context = " ".join(previous_user_messages[-3:])
     combined_text = f"{recent_context} {user_text}".strip()
 
-    # 1. Recherche sémantique directe (le moteur comprend le sens maintenant)
-    direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
-    if direct_answer:
-        return direct_answer
-
-    # 2. Recherche avec contexte de conversation
     contextual_answer = trouver_meilleure_reponse_multilingue(combined_text, detected_lang)
     if contextual_answer:
         return contextual_answer

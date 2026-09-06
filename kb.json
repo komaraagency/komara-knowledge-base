@@ -10302,6 +10302,41 @@
         "whatsapp et telegram les deux"
       ],
       "answer": "Top, on peut faire les deux 👍\nTu vends quoi exactement ? Et combien de messages par jour environ ?"
+    },
+    {
+      "id": "accueil_info_business_01",
+      "category": "accueil",
+      "questions": [
+        "pour l'info",
+        "pour info",
+        "pour des infos",
+        "juste des infos",
+        "je veux juste des infos",
+        "pour information"
+      ],
+      "answer": "Avec plaisir 😊 KOMARA AGENCY crée des bots WhatsApp/Telegram, des sites web et des visuels pour ton business. Le bot répond H24 à tes clients et prend les commandes à ta place.\nTu es dans quel domaine ?",
+      "tags": [
+        "accueil",
+        "info",
+        "presentation"
+      ]
+    },
+    {
+      "id": "accueil_info_business_02",
+      "category": "accueil",
+      "questions": [
+        "pour business",
+        "pour le business",
+        "pour mon business",
+        "pour du business",
+        "c'est pour mon business"
+      ],
+      "answer": "Parfait 💪 Tu es dans quel domaine exactement ? (boutique, resto, services...) Comme ça je te montre directement ce qu'on peut faire pour toi.",
+      "tags": [
+        "accueil",
+        "business",
+        "qualification"
+      ]
     }
   ],
   "conversations": [

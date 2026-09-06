@@ -192,9 +192,14 @@ def normalize(message: str) -> str:
     text = remove_accents(text)
     # Nettoyage: espaces multiples → un seul
     text = re.sub(r'\s+', ' ', text)
-    # 1. Corrections multi-mots d'abord (phrases)
+    # 1. Corrections multi-mots d'abord (phrases, avant que l'apostrophe soit touchee)
     for bad, good in PHRASE_FIXES.items():
         text = text.replace(bad, good)
+    # 1bis. Apostrophe = separateur de mots, jamais une fusion.
+    # BUG corrige : "l'info" devenait "linfo" (mot fusionne, illisible pour le
+    # matching) au lieu de "l info" -> "info" reste identifiable.
+    text = re.sub(r"[''’]", ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
     # 2. Correction des fautes courantes (mot par mot)
     words = text.split()
     fixed = []
