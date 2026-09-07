@@ -16,7 +16,6 @@ from typing import Any
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
-from deepseek_client import ask_deepseek
 from local_search import score_match
 from local_stats import get_unrecognized_stats, record_unrecognized
 
@@ -116,15 +115,12 @@ def repondre(message: str) -> str:
             for pack in PACKS
         )
         return f"{base_answer}\n\n{packs_text}" if packs_text else base_answer
-    local_suggestion = chercher(text)
-    if local_suggestion is None:
+    # Recherche locale uniquement (DeepSeek retiré définitivement)
+    local_response = chercher(text)
+    if local_response is None:
         record_unrecognized(text, source="api")
-    # DeepSeek prioritaire (reformule la suggestion locale), kb.json en secours
-    deepseek_response = ask_deepseek(text, suggestion=local_suggestion)
-    if deepseek_response:
-        return deepseek_response
-    if local_suggestion:
-        return local_suggestion
+    if local_response:
+        return local_response
     return (
         "Je peux vous orienter vers un bot, un site ou une application, "
         "une automatisation, ou une création digitale. Quel est votre besoin ?"

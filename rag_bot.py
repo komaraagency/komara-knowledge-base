@@ -20,7 +20,6 @@ from dotenv import load_dotenv
 from telebot.apihelper import ApiTelegramException
 from telebot.types import ReplyKeyboardMarkup
 
-from deepseek_client import ask_deepseek, deepseek_available
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 
@@ -575,27 +574,13 @@ def handle_message(message: telebot.types.Message) -> None:
     safe_typing(chat_id)
     remember(chat_id, "user", user_text)
 
-    # 5. Cascade : DeepSeek PRIORITAIRE (reformule la suggestion locale et
-    # garde les chiffres exacts) ; kb.json devient le filet de secours.
-    # Sans clé DeepSeek, comportement identique : la suggestion locale répond.
-    local_suggestion = local_contextual_response(chat_id, user_text, detected_lang)
-    if local_suggestion is None:
+    # 5. Recherche locale uniquement (DeepSeek retiré définitivement) :
+    # kb.json + FAQ + dialogues multilingues, mémoire SQLite pour le contexte.
+    local_response = local_contextual_response(chat_id, user_text, detected_lang)
+    if local_response is None:
         record_unrecognized(user_text, source="telegram")
 
-    response = None
-    if deepseek_available():
-        history = context_for(chat_id)
-        try:
-            # FIX : la signature est ask_deepseek(texte, lang, historique, suggestion)
-            # (le brouillon passait l'historique à la place du texte du client)
-            response = ask_deepseek(
-                user_text, lang=detected_lang, history=history, suggestion=local_suggestion
-            )
-        except Exception:
-            logger.exception("Erreur lors de l'appel à DeepSeek")
-            response = None
-
-    response = response or local_suggestion or msg(detected_lang, "fallback")
+    response = local_response or msg(detected_lang, "fallback")
 
     # 6. Sauvegarde et envoi
     remember(chat_id, "assistant", response)
