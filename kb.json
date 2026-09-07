@@ -1836,38 +1836,10 @@
       ]
     },
     {
-      "id": "portfolio_01",
-      "category": "portfolio",
-      "questions": [
-        "portfolio",
-        "puis-je voir vos réalisations",
-        "avez-vous un portfolio à montrer",
-        "qu'est-ce qu'un portfolio",
-        "notre portfolio"
-      ],
-      "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
-      "tags": [
-        "portfolio",
-        "local"
-      ]
-    },
-    {
       "id": "portfolio_02",
       "category": "portfolio",
       "questions": [
         "réalisations"
-      ],
-      "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
-      "tags": [
-        "portfolio",
-        "local"
-      ]
-    },
-    {
-      "id": "portfolio_03",
-      "category": "portfolio",
-      "questions": [
-        "vos exemples"
       ],
       "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
       "tags": [
@@ -1928,18 +1900,6 @@
       "category": "portfolio",
       "questions": [
         "voir votre travail"
-      ],
-      "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
-      "tags": [
-        "portfolio",
-        "local"
-      ]
-    },
-    {
-      "id": "portfolio_09",
-      "category": "portfolio",
-      "questions": [
-        "avez-vous des exemples"
       ],
       "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
       "tags": [
@@ -10337,6 +10297,28 @@
         "business",
         "qualification"
       ]
+    },
+    {
+      "questions": [
+        "portfolio",
+        "puis-je voir vos réalisations",
+        "avez-vous un portfolio à montrer",
+        "qu'est-ce qu'un portfolio",
+        "notre portfolio"
+      ],
+      "answer": "__SHOW_PORTFOLIO__"
+    },
+    {
+      "questions": [
+        "vos exemples"
+      ],
+      "answer": "__SHOW_PORTFOLIO__"
+    },
+    {
+      "questions": [
+        "avez-vous des exemples"
+      ],
+      "answer": "__SHOW_PORTFOLIO__"
     }
   ],
   "conversations": [

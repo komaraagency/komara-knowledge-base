@@ -22,6 +22,7 @@ from telebot.types import ReplyKeyboardMarkup
 
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
+from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
 # Configuration générale
@@ -494,6 +495,7 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
 
 PORTFOLIO_DIR = BASE_DIR / "portfolio"
 PORTFOLIO_BUTTON_PREFIX = "📷 "
+PORTFOLIO_SENTINEL = "__SHOW_PORTFOLIO__"
 PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
 def portfolio_images() -> list[tuple[str, Path]]:
@@ -630,6 +632,16 @@ def handle_message(message: telebot.types.Message) -> None:
     local_response = local_contextual_response(chat_id, user_text, detected_lang)
     if local_response is None:
         record_unrecognized(user_text, source="telegram")
+
+    # BUG corrigé : un client qui tape "Portfolio"/"vos exemples" au clavier
+    # (au lieu de cliquer le bouton "📂 Portfolio") recevait une réponse
+    # texte générique au lieu des VRAIES images. Le kb.json marque ces
+    # questions avec un sentinel PORTFOLIO_SENTINEL ; le scoring sémantique
+    # existant (qui distingue déjà bien "vos exemples" de "montre moi un
+    # exemple de bot") décide, puis on redirige ici vers le vrai portfolio.
+    if local_response == PORTFOLIO_SENTINEL:
+        send_portfolio(chat_id, detected_lang)
+        return
 
     response = local_response or msg(detected_lang, "fallback")
 

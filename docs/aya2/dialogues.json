@@ -64,6 +64,46 @@
     {
       "question": "je veux un bot pour ma page facebook",
       "answer": "Très bon plan 😄 Un bot sur ta page Facebook répond aux clients, prend les commandes et te prévient quand quelqu'un est vraiment intéressé. Tu reçois déjà beaucoup de messages sur ta page ?"
+    },
+    {
+      "question": "vous etes serieux ou c'est encore une arnaque de bot",
+      "answer": "Question normale, tu as raison de te méfier 😊 On travaille avec des vrais clients en Guinée, tu peux voir nos réalisations et on avance étape par étape, rien n'est caché. On commence par ton projet ?"
+    },
+    {
+      "question": "je gere une boutique en ligne j'ai deja un catalogue facebook",
+      "answer": "Parfait, ça va nous faire gagner du temps 🔥 On peut connecter ton bot direct à ton catalogue Facebook pour que les clients commandent sans sortir de la conversation. Tu as combien de produits environ ?"
+    },
+    {
+      "question": "je veux un bot en français et en anglais",
+      "answer": "Aucun souci, le bot peut gérer plusieurs langues en même temps et répondre selon la langue du client 🌍 Tu as des clients surtout en Guinée ou aussi à l'international ?"
+    },
+    {
+      "question": "et si je ne suis pas satisfait du resultat",
+      "answer": "On corrige jusqu'à ce que ça te convienne, c'est inclus dans l'accompagnement 💪 On avance par étapes justement pour éviter les mauvaises surprises à la fin. On démarre avec quoi ?"
+    },
+    {
+      "question": "vous avez des promotions en ce moment",
+      "answer": "Ça dépend de la période, mais dis-moi ton projet et je te dirai ce qu'on peut faire pour toi 😊 Certains packs ont des offres de lancement. C'est pour un bot ou un site ?"
+    },
+    {
+      "question": "je suis une petite entreprise est-ce que c'est fait pour moi",
+      "answer": "Carrément, c'est même l'idéal 🔥 Beaucoup de nos clients démarrent petit avec le pack Starter à 99$ et on grandit ensemble après. Tu es dans quel secteur ?"
+    },
+    {
+      "question": "comment je sais que le bot comprend bien mes clients",
+      "answer": "On teste ensemble avant la mise en ligne, avec de vraies questions que tes clients pourraient poser 👌 Si quelque chose bloque, on ajuste avant que ça touche un vrai client. Tu veux qu'on commence le test ?"
+    },
+    {
+      "question": "je veux resilier ou arreter apres",
+      "answer": "Pas de souci, il n'y a pas d'engagement caché 😊 Tu restes libre. On préfère te garder parce que le bot te fait gagner de l'argent, pas parce que tu es coincé. Un projet en tête pour l'instant ?"
+    },
+    {
+      "question": "vous livrez aussi en dehors de conakry",
+      "answer": "Oui, partout où il y a internet 🌍 Tout se passe en ligne donc que tu sois à Conakry, Kankan, Labé ou même à l'étranger, ça marche pareil. Tu es basé où ?"
+    },
+    {
+      "question": "je veux d'abord parler a quelqu'un avant de payer",
+      "answer": "Logique, tu peux me poser toutes tes questions ici directement 😊 Dis-moi ton projet et ton secteur, je t'oriente vers ce qui te convient le mieux avant même de parler de prix."
     }
   ]
 }
