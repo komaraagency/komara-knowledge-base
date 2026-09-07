@@ -91,7 +91,10 @@ def _fuzzy_intersection(msg_tokens: set[str], kw_tokens: set[str]) -> set[str]:
 
 
 # Stop words: très fréquents, ne portent pas de sens — exclus du scoring
-STOP_WORDS = {
+# Mots-outils bruts (formes pleines). La liste STEMMEE ci-dessous est celle
+# utilisee pour la comparaison : _tokenize() renvoie des stems ("vous"->"vou",
+# "suis"->"sui"), donc comparer a des formes pleines ne marchait jamais.
+_STOP_WORDS_RAW = {
     # Français
     'le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'est',
     'sont', 'je', 'tu', 'il', 'nous', 'vous', 'ils', 'mon', 'ton',
@@ -101,6 +104,12 @@ STOP_WORDS = {
     'ou', 'donc', 'car', 'si', 'comme', 'aussi', 'tres', 'tout',
     'tous', 'toute', 'toutes', 'mes', 'tes', 'ses', 'etre',
     'c', 'est', 'ca', 'sa', 'va', 'faut',
+    # Français : verbes/pronoms-outils (le bug "pouvez" faisait matcher
+    # "pouvez-vous créer mon site" sur un message de livraison)
+    'suis', 'es', 'sommes', 'etes', 'pouvez', 'peux', 'peut',
+    'pouvent', 'puis', 'pourrais', 'pourrait', 'pourriez', 'pouvoir',
+    'me', 'te', 'se', 'moi', 'toi', 'lui', 'chez', 'ai', 'as',
+    'avons', 'avez', 'ont', 'vais', 'vas', 'veux', 'vouloir',
     # Anglais
     'the', 'a', 'an', 'is', 'are', 'am', 'be', 'been', 'was', 'were',
     'i', 'you', 'he', 'she', 'it', 'we', 'they', 'my', 'your', 'his',
@@ -109,9 +118,10 @@ STOP_WORDS = {
     'to', 'of', 'in', 'on', 'at', 'by', 'for', 'from',
     'and', 'or', 'but', 'not', 'no', 'yes', 'so', 'if', 'as',
     # Espagnol
-    'el', 'los', 'las', 'una', 'unas', 'y', 'es', 'son', 'mi', 'tu',
+    'el', 'los', 'las', 'una', 'unas', 'y', 'es', 'mi', 'tu',
     'su', 'que', 'con', 'sin', 'para', 'por', 'pero',
 }
+STOP_WORDS = _STOP_WORDS_RAW | {_stem(w) for w in _STOP_WORDS_RAW}
 
 # Patterns d'intention: (nom, mots-clés qui signalent cette intention)
 _INTENT_PATTERNS_RAW: dict[str, set[str]] = {
@@ -254,7 +264,9 @@ def _score_bidirectional(
     # 2. Couverture du message (IDF-pondérée, sans stop words)
     msg_meaningful = {t for t in msg_tokens if t not in STOP_WORDS}
     if not msg_meaningful:
-        msg_meaningful = msg_tokens  # fallback si tout est stop word
+        # Message 100% stop-words ("je", "un", "c est") : aucun signal
+        # sémantique, on ne peut pas deviner l'intention -> aucun match.
+        return 0.0
 
     msg_total = sum(idf.get(t, 1.0) for t in msg_meaningful)
     msg_matched = sum(idf.get(t, 1.0) for t in exact_set if t in msg_meaningful) + 0.9 * sum(
@@ -267,7 +279,15 @@ def _score_bidirectional(
     else:
         base_score = 2 * keyword_coverage * message_coverage / (keyword_coverage + message_coverage)
 
-    # 4. Boost/pénalité d'intention
+    # 4. Garde-fou phrase entière : sur une phrase de 3+ mots
+    # significatifs, un match d'un seul mot n'est pas une vraie réponse
+    # (ex: "je cherche une agence pour faire mon site" ne doit pas
+    # déclencher une entrée juste parce que "site" matche).
+    matched_meaningful = (exact_set | fuzzy_only) & msg_meaningful
+    if len(msg_meaningful) >= 3 and len(matched_meaningful) == 1:
+        base_score *= 0.35
+
+    # 5. Boost/pénalité d'intention
     if msg_intent and kw_intent:
         if msg_intent == kw_intent:
             base_score *= 1.3  # même intention → boost

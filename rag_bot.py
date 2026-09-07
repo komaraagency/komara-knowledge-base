@@ -150,6 +150,7 @@ def get_supported_languages() -> list[str]:
 KB_PATH = BASE_DIR / "kb.json"
 FAQ_PATH = BASE_DIR / "docs" / "faq.md"
 DIALOGUES_DIR = BASE_DIR / "dialogues"
+AYA2_DIALOGUES_PATH = BASE_DIR / "docs" / "aya2" / "dialogues.json"
 LANG_DIR = BASE_DIR / "lang"
 
 def load_knowledge_base() -> dict[str, Any]:
@@ -183,18 +184,37 @@ def load_local_faq() -> list[dict[str, str]]:
 
 def load_dialogues() -> list[dict[str, str]]:
     dialogues: list[dict[str, str]] = []
-    if not DIALOGUES_DIR.is_dir():
-        logger.warning("Dossier dialogues absent : %s", DIALOGUES_DIR)
-        return dialogues
-    for file_path in DIALOGUES_DIR.iterdir():
-        if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
-            try:
-                content = file_path.read_text(encoding="utf-8")
-                dialogues.extend(_parse_markdown_sections(content))
-            except Exception as e:
-                logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
+    if DIALOGUES_DIR.is_dir():
+        for file_path in DIALOGUES_DIR.iterdir():
+            if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
+                try:
+                    content = file_path.read_text(encoding="utf-8")
+                    dialogues.extend(_parse_markdown_sections(content))
+                except Exception as e:
+                    logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
+    dialogues.extend(load_aya2_dialogues())
     logger.info("Dialogues chargés : %s questions", len(dialogues))
     return dialogues
+
+def load_aya2_dialogues() -> list[dict[str, str]]:
+    """Dialogues 'ton africain pro' (Pack Aya2) au format JSON."""
+    if not AYA2_DIALOGUES_PATH.is_file():
+        logger.warning("Fichier dialogues aya2 absent : %s", AYA2_DIALOGUES_PATH)
+        return []
+    try:
+        with AYA2_DIALOGUES_PATH.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+        items = data.get("dialogues", data) if isinstance(data, dict) else data
+        dialogues = [
+            {"question": item["question"], "answer": item["answer"]}
+            for item in items
+            if item.get("question") and item.get("answer")
+        ]
+        logger.info("Dialogues Aya2 (ton africain pro) chargés : %s questions", len(dialogues))
+        return dialogues
+    except Exception as e:
+        logger.error("Erreur de lecture des dialogues Aya2 : %s", e)
+        return []
 
 def load_language_resources(lang_code: str) -> dict[str, Any]:
     lang_path = LANG_DIR / lang_code

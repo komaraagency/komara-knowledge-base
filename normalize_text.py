@@ -91,7 +91,7 @@ COMMON_FIXES = {
     "nrv": "nerve", "re1": "rien", "ri1": "rien",
     "koi": "quoi", "koif": "quoi",
     "tkt": "t inquiete", "tkt": "t inquiete",
-    "c": "c est", "cé": "c est",
+    "c": "c",  # identite : PHRASE_FIXES gere deja "c koi"/"c quoi" (sinon double "est") "cé": "c est",
     "c est": "c est", "c'est": "c est", "cest": "c est",  # cle vivante: apostrophe deja supprimee avant lookup
     "vi": "viande", "viande": "viande",
 
@@ -193,8 +193,16 @@ def normalize(message: str) -> str:
     # Nettoyage: espaces multiples → un seul
     text = re.sub(r'\s+', ' ', text)
     # 1. Corrections multi-mots d'abord (phrases, avant que l'apostrophe soit touchee)
-    for bad, good in PHRASE_FIXES.items():
-        text = text.replace(bad, good)
+    # BUG corrige : le simple str.replace matchait les SOUS-CHAINES.
+    # "je veu" (cle) se retrouvait DANS "je veux" (valeur deja appliquee)
+    # -> "veux" devenait "veuxx", "veut" devenait "veuxt".
+    # On applique chaque correction avec des bords de mots stricts.
+    # BUG corrige 2 : les cles accentuees ("je vé") etaient du code mort
+    # car remove_accents passe AVANT -> on desaccentue aussi les cles.
+    fixes = {remove_accents(k): v for k, v in PHRASE_FIXES.items()}
+    for bad, good in fixes.items():
+        pattern = r'(?<![a-z0-9])' + re.escape(bad) + r'(?![a-z0-9])'
+        text = re.sub(pattern, good.replace('\\', '\\\\'), text)
     # 1bis. Apostrophe = separateur de mots, jamais une fusion.
     # BUG corrige : "l'info" devenait "linfo" (mot fusionne, illisible pour le
     # matching) au lieu de "l info" -> "info" reste identifiable.

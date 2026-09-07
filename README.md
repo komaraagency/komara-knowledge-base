@@ -53,6 +53,7 @@ Recherche directe dans la nouvelle question
 Recherche par intersection de mots dans :
     • kb.json
     • docs/faq.md
+    • docs/aya2/dialogues.json (ton africain pro — Pack Aya2)
     • docs/dialogues/
     ↓
 Si aucun score suffisant → recherche contextuelle (message + historique SQLite)
