@@ -482,7 +482,10 @@ def portfolio_images() -> list[tuple[str, Path]]:
         return images
     for entry in sorted(PORTFOLIO_DIR.iterdir()):
         if entry.is_file() and entry.suffix.lower() in PORTFOLIO_EXTENSIONS:
-            display_name = entry.stem.replace("_", " ").replace("-", " ").strip()
+            # Le préfixe numérique ("01_", "02_"...) sert seulement à fixer
+            # l'ordre alphabétique de tri ; on le masque à l'affichage.
+            stem = re.sub(r"^\d+[_\-]", "", entry.stem)
+            display_name = stem.replace("_", " ").replace("-", " ").strip()
             images.append((display_name, entry))
     return images
 
@@ -503,24 +506,38 @@ def send_portfolio(chat_id: int, lang: str) -> None:
         text = f"Portfolio KOMARA 💎 {slogan}\n{msg(lang, 'portfolio')}\n⚠️ Aucune réalisation disponible pour le moment."
         bot.send_message(chat_id, text, reply_markup=menu_for_lang(lang))
         return
+    # Toujours proposer un choix explicite (numéro OU titre) pour que le
+    # client valide avant l'envoi de l'image, plutôt que de deviner.
     lines = ["Portfolio KOMARA 💎", ""]
-    for name, _ in images:
-        lines.append(f"📷 {name}")
+    for i, (name, _) in enumerate(images, start=1):
+        lines.append(f"{i}️⃣ {name}" if i <= 9 else f"{i}. {name}")
     lines.append("")
-    lines.append(msg(lang, "portfolio"))
+    lines.append("👉 Réponds avec le numéro ou le titre pour voir la réalisation.")
     bot.send_message(chat_id, "\n".join(lines), reply_markup=portfolio_keyboard())
 
+def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
+    """Envoie l'image du portfolio à la position `index` (1-based)."""
+    images = portfolio_images()
+    if not (1 <= index <= len(images)):
+        return False
+    name, path = images[index - 1]
+    try:
+        with path.open("rb") as image_file:
+            bot.send_photo(chat_id, image_file, caption=f"📷 {name}")
+        bot.send_message(
+            chat_id,
+            "Une autre réalisation t'intéresse ? Numéro ou titre 👇",
+            reply_markup=portfolio_keyboard(),
+        )
+        return True
+    except Exception:
+        logger.exception("Échec d'envoi de l'image portfolio %s", path.name)
+        return False
+
 def send_portfolio_image(chat_id: int, display_name: str, lang: str) -> bool:
-    for name, path in portfolio_images():
+    for i, (name, _path) in enumerate(portfolio_images(), start=1):
         if name.lower() == display_name.lower():
-            try:
-                with path.open("rb") as image_file:
-                    bot.send_photo(chat_id, image_file)
-                bot.send_message(chat_id, msg(lang, "portfolio"), reply_markup=portfolio_keyboard())
-                return True
-            except Exception:
-                logger.exception("Échec d'envoi de l'image portfolio %s", path.name)
-                return False
+            return send_portfolio_image_by_index(chat_id, i, lang)
     return False
 
 # ---------------------------------------------------------------------------
@@ -563,12 +580,26 @@ def handle_message(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, msg(detected_lang, "pricing_intro"), reply_markup=menu_for_lang(detected_lang))
             return
 
-    # 3. Gestion du Portfolio image
+    # 3. Gestion du Portfolio image — par titre (bouton 📷 nom)
     if user_text.startswith(PORTFOLIO_BUTTON_PREFIX):
         display_name = user_text[len(PORTFOLIO_BUTTON_PREFIX):]
         if not send_portfolio_image(chat_id, display_name, detected_lang):
             send_portfolio(chat_id, detected_lang)
         return
+
+    # 3bis. Gestion du Portfolio image — par numéro simple ("1", "2️⃣ 2"...)
+    # Permet au client de valider son choix en tapant juste le chiffre
+    # affiché dans la liste envoyée par send_portfolio().
+    numero_match = re.fullmatch(r"[1-9]️?⃣?\.?\s*", user_text)
+    if numero_match and portfolio_images():
+        digits = re.sub(r"[^\d]", "", user_text)
+        if digits:
+            index = int(digits)
+            if send_portfolio_image_by_index(chat_id, index, detected_lang):
+                return
+            # numéro hors plage -> on réaffiche la liste plutôt que de deviner
+            send_portfolio(chat_id, detected_lang)
+            return
 
     # 4. Traitement normal
     safe_typing(chat_id)
