@@ -323,7 +323,7 @@
         "dejame pensarlo",
         "estoy pensando"
       ],
-      "answer": "Te entiendo 👍 Tómate tu tiempo.\nSolo para que sepas: me queda 1 lugar a 99$ este mes. Después vuelve a 250$.\n¿Te escribo mañana?"
+      "answer": "Te entiendo 👍 Tómate tu tiempo.\nSolo para que sepas: me queda 1 lugar a 99€ este mes. Después vuelve a 250€.\n¿Te escribo mañana?"
     },
     {
       "id": "conv_23",
@@ -363,7 +363,7 @@
         "soy estudiante",
         "presupuesto ajustado"
       ],
-      "answer": "Te entiendo 🙏 Tenemos el pack \"Starter\" a 99$ para empezar.\nYa hace el 80% del trabajo. Cuando vendas, subimos de nivel."
+      "answer": "Te entiendo 🙏 Tenemos el pack \"Starter\" a 99€ para empezar.\nYa hace el 80% del trabajo. Cuando vendas, subimos de nivel."
     },
     {
       "id": "conv_27",
@@ -403,7 +403,7 @@
         "tus packs",
         "los paquetes"
       ],
-      "answer": "Aquí están nuestros 3 packs KOMARA AGENCY 👇\nSTARTER 99$: FAQ + respuestas auto\nBUSINESS 150$: Toma de pedidos + Pago\nPREMIUM 250$: Bot completo + CRM + Estadísticas\n¿Qué estás buscando exactamente?"
+      "answer": "Aquí están nuestros 3 packs KOMARA AGENCY 👇\nSTARTER 99€: FAQ + respuestas auto\nBUSINESS 150€: Toma de pedidos + Pago\nPREMIUM 250€: Bot completo + CRM + Estadísticas\n¿Qué estás buscando exactamente?"
     },
     {
       "id": "conv_31",
@@ -423,7 +423,7 @@
         "mucho texto",
         "hazlo corto"
       ],
-      "answer": "Resumen exprés: un bot de WhatsApp que vende por ti 24/7.\nDesde 99$. Entregado en 48h.\n¿Empezamos?"
+      "answer": "Resumen exprés: un bot de WhatsApp que vende por ti 24/7.\nDesde 99€. Entregado en 48h.\n¿Empezamos?"
     },
     {
       "id": "conv_33",
@@ -433,7 +433,7 @@
         "por que ese precio",
         "justifica el precio"
       ],
-      "answer": "Porque te entrego un vendedor 24/7 durante un año por 99$.\nUn vendedor real cuesta 300$/mes. Aquí ganas tú.\n¿Empezamos?"
+      "answer": "Porque te entrego un vendedor 24/7 durante un año por 99€.\nUn vendedor real cuesta 300€/mes. Aquí ganas tú.\n¿Empezamos?"
     },
     {
       "id": "conv_34",
@@ -453,7 +453,7 @@
         "estoy muy ocupado esta semana",
         "no disponible esta semana"
       ],
-      "answer": "Sin problema. Reserva tu lugar a 99$ ahora y empezamos cuando quieras.\nDespués del 30 el precio vuelve a 250$. ¿Te guardo el lugar?"
+      "answer": "Sin problema. Reserva tu lugar a 99€ ahora y empezamos cuando quieras.\nDespués del 30 el precio vuelve a 250€. ¿Te guardo el lugar?"
     },
     {
       "id": "conv_36",
@@ -471,7 +471,7 @@
         "te respondo mañana",
         "mañana te digo"
       ],
-      "answer": "Perfecto 👍 Anotado.\nTe escribo mañana a las 10. Mientras tanto te guardo la tarifa de 99$."
+      "answer": "Perfecto 👍 Anotado.\nTe escribo mañana a las 10. Mientras tanto te guardo la tarifa de 99€."
     },
     {
       "id": "conv_38",
@@ -490,7 +490,7 @@
         "factura proforma",
         "necesito factura"
       ],
-      "answer": "Aquí tu factura proforma KOMARA AGENCY 👇\nMonto: 99$\nDetalle: Creación Bot WhatsApp + 1 mes de soporte\nConfirmas y empezamos."
+      "answer": "Aquí tu factura proforma KOMARA AGENCY 👇\nMonto: 99€\nDetalle: Creación Bot WhatsApp + 1 mes de soporte\nConfirmas y empezamos."
     },
     {
       "id": "conv_40",
@@ -500,7 +500,7 @@
         "cupos restantes",
         "expira"
       ],
-      "answer": "Info: me queda solo 1 lugar a 99$ este mes.\nLos otros 2 ya están tomados. ¿Lo quieres?"
+      "answer": "Info: me queda solo 1 lugar a 99€ este mes.\nLos otros 2 ya están tomados. ¿Lo quieres?"
     },
     {
       "id": "conv_41",
@@ -592,7 +592,7 @@
         "vale la pena",
         "propuesta de valor"
       ],
-      "answer": "Resumen: pagas 99$ una vez.\nRecuperas 3h/día + clientes extra cada día.\nSe paga solo en una semana."
+      "answer": "Resumen: pagas 99€ una vez.\nRecuperas 3h/día + clientes extra cada día.\nSe paga solo en una semana."
     },
     {
       "id": "conv_51",
@@ -602,7 +602,7 @@
         "por que no contratas",
         "vendedor humano"
       ],
-      "answer": "Contratar = 200$/mes.\nBot = 99$ de por vida.\n¿Cuál eliges?"
+      "answer": "Contratar = 200€/mes.\nBot = 99€ de por vida.\n¿Cuál eliges?"
     },
     {
       "id": "conv_52",
@@ -706,7 +706,7 @@
         "estoy perdido",
         "por donde empiezo"
       ],
-      "answer": "Respira 😊 Empezamos pequeño. Pack Starter 99$.\nTe guío paso a paso. En 48h tienes tu bot."
+      "answer": "Respira 😊 Empezamos pequeño. Pack Starter 99€.\nTe guío paso a paso. En 48h tienes tu bot."
     },
     {
       "id": "conv_63",
@@ -735,7 +735,7 @@
         "el tiempo es dinero",
         "cuanto tiempo pierdo"
       ],
-      "answer": "Si ganas 10$/hora y el bot te ahorra 3h al día...\nse paga solo en 3 días. El resto es ganancia."
+      "answer": "Si ganas 10€/hora y el bot te ahorra 3h al día...\nse paga solo en 3 días. El resto es ganancia."
     },
     {
       "id": "conv_66",
@@ -997,7 +997,7 @@
         "presupuesto pequeno",
         "poco a poco"
       ],
-      "answer": "Perfecto. Empezamos con el pack Starter 99$.\n1 producto, 5 preguntas. Cuando funcione, subimos."
+      "answer": "Perfecto. Empezamos con el pack Starter 99€.\n1 producto, 5 preguntas. Cuando funcione, subimos."
     },
     {
       "id": "conv_93",
@@ -1025,7 +1025,7 @@
         "es tu ultima palabra",
         "puedes bajar el precio"
       ],
-      "answer": "99$ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Va?"
+      "answer": "99€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Va?"
     },
     {
       "id": "conv_96",
@@ -1325,7 +1325,7 @@
         "se puede confiar",
         "cual es el precio y es confiable"
       ],
-      "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 99$ una sola vez. Sin suscripción.\nEn confiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo. + Garantía de 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes si quieres.\n¿Prefieres la ficha técnica PDF o un video demo?"
+      "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 99€ una sola vez. Sin suscripción.\nEn confiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo. + Garantía de 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes si quieres.\n¿Prefieres la ficha técnica PDF o un video demo?"
     },
     {
       "id": "pro_09",
@@ -1336,7 +1336,7 @@
         "ofertas de bots",
         "pack starter y pack pro"
       ],
-      "answer": "Tenemos 2 ofertas:\n*Pack Starter - 99$*\nBot completo personalizado a tu marca, 10 productos/servicios configurados, respuestas automáticas + pago integrado, capacitación en video + 1 mes de soporte\n*Pack Pro - 250$*\nTodo el Starter + tienda completa + estadísticas + seguimientos automáticos\nEl Starter está a 99$ hasta el domingo.\n¿Cuál oferta te conviene más?"
+      "answer": "Tenemos 2 ofertas:\n*Pack Starter - 99€*\nBot completo personalizado a tu marca, 10 productos/servicios configurados, respuestas automáticas + pago integrado, capacitación en video + 1 mes de soporte\n*Pack Pro - 250€*\nTodo el Starter + tienda completa + estadísticas + seguimientos automáticos\nEl Starter está a 99€ hasta el domingo.\n¿Cuál oferta te conviene más?"
     },
     {
       "id": "pro_10",
@@ -1392,7 +1392,7 @@
         "cuanto por los visuales",
         "packs de fotos"
       ],
-      "answer": "Tenemos 3 packs:\n*Pack Starter - 50.000 GNF*\n5 visuales pro + texto gancho + formato estado + feed\n*Pack Business - 120.000 GNF*\n15 visuales + 3 videos cortos + calendario de publicaciones 1 mes\n*Pack Premium - 250.000 GNF*\n30 visuales + branding completo + gestión de estados 1 mes\nEntrega 48h en toda Guinea. Modificaciones incluidas.\n¿Qué pack te interesa más?"
+      "answer": "Tenemos 3 packs:\n*Pack Starter - 5€*\n5 visuales pro + texto gancho + formato estado + feed\n*Pack Business - 12€*\n15 visuales + 3 videos cortos + calendario de publicaciones 1 mes\n*Pack Premium - 25€*\n30 visuales + branding completo + gestión de estados 1 mes\nEntrega 48h en toda Guinea. Modificaciones incluidas.\n¿Qué pack te interesa más?"
     },
     {
       "id": "pro_15",
@@ -1400,10 +1400,10 @@
       "questions": [
         "es un poco caro",
         "caro para fotos",
-        "50 000 gnf es caro",
+        "5€ es caro",
         "visuales muy caros"
       ],
-      "answer": "Lo entiendo. 50.000 GNF es un presupuesto.\nPero piénsalo: 1 sola venta de 200.000 GNF gracias a un buen visual y ya se pagó.\nPodemos empezar con el Starter para probar.\n¿Tienes fotos de tus productos para enviar?"
+      "answer": "Lo entiendo. 5€ es un presupuesto.\nPero piénsalo: 1 sola venta de 20€ gracias a un buen visual y ya se pagó.\nPodemos empezar con el Starter para probar.\n¿Tienes fotos de tus productos para enviar?"
     },
     {
       "id": "pro_16",
@@ -1459,13 +1459,13 @@
         "cuanto cuesta un sitio vitrina",
         "packs sitios guinea"
       ],
-      "answer": "Tenemos 3 ofertas para el mercado guineano:\n*Pack ESENCIAL - 1.500.000 GNF*\n5 páginas, diseño pro + móvil, formulario WhatsApp + Google Maps, dominio + hosting 1 año gratis. Entrega: 7 días\n*Pack BUSINESS - 3.000.000 GNF*\nTodo el Esencial + 10 páginas + blog + SEO básico + Facebook/Instagram. Entrega: 10 días\n*Pack E-COMMERCE - 5.500.000 GNF*\nTienda completa + pago Mobile Money + 20 productos + gestión de pedidos. Entrega: 14 días\n¿Qué pack te conviene más?"
+      "answer": "Tenemos 3 ofertas para el mercado guineano:\n*Pack ESENCIAL - 150€*\n5 páginas, diseño pro + móvil, formulario WhatsApp + Google Maps, dominio + hosting 1 año gratis. Entrega: 7 días\n*Pack BUSINESS - 300€*\nTodo el Esencial + 10 páginas + blog + SEO básico + Facebook/Instagram. Entrega: 10 días\n*Pack E-COMMERCE - 550€*\nTienda completa + pago Mobile Money + 20 productos + gestión de pedidos. Entrega: 14 días\n¿Qué pack te conviene más?"
     },
     {
       "id": "pro_21",
       "category": "pack_pro",
       "questions": [
-        "1 500 000 gnf se puede pagar en 2 partes",
+        "150€ se puede pagar en 2 partes",
         "pagar el sitio en 2 partes",
         "sitio en varias partes"
       ],
@@ -1479,7 +1479,7 @@
         "renovacion de hosting",
         "cuanto cuesta el hosting despues"
       ],
-      "answer": "Muy buena pregunta.\nDespués de 1 año, la renovación dominio + hosting es 250.000 GNF/año.\nTe avisamos 1 mes antes. Y sigues siendo 100% dueño de tu sitio."
+      "answer": "Muy buena pregunta.\nDespués de 1 año, la renovación dominio + hosting es 25€/año.\nTe avisamos 1 mes antes. Y sigues siendo 100% dueño de tu sitio."
     },
     {
       "id": "pro_23",
@@ -1499,7 +1499,7 @@
         "modificaciones despues de la entrega",
         "puedo cambiar el sitio despues"
       ],
-      "answer": "1 mes de modificaciones gratuitas incluido.\nDespués, 10.000 GNF por modificación.\nY sigues siendo 100% dueño de tu sitio."
+      "answer": "1 mes de modificaciones gratuitas incluido.\nDespués, 1€ por modificación.\nY sigues siendo 100% dueño de tu sitio."
     },
     {
       "id": "pro_25",
@@ -1526,7 +1526,7 @@
       "category": "pack_pro",
       "questions": [
         "el sitio es caro",
-        "1 500 000 gnf es caro",
+        "150€ es caro",
         "muy caro para un sitio"
       ],
       "answer": "Un solo contrato ganado a través del sitio paga el sitio.\nEs una inversión, no un gasto.\nTu empresa merece estar visible en Google."
@@ -1571,7 +1571,7 @@
         "tarifas de socios",
         "tarifas marca blanca"
       ],
-      "answer": "Para agencias aliadas, tarifas preferenciales:\nSitio Vitrina: 900.000 GNF en vez de 1.500.000 GNF\nSitio E-commerce: 3.500.000 GNF en vez de 5.500.000 GNF\nVisuales: -30% en todos los packs\nA cambio: mínimo 2 proyectos/mes.\n¿Te envío el dossier de socio PDF + 3 sitios de ejemplo?"
+      "answer": "Para agencias aliadas, tarifas preferenciales:\nSitio Vitrina: 90€ en vez de 150€\nSitio E-commerce: 350€ en vez de 550€\nVisuales: -30% en todos los packs\nA cambio: mínimo 2 proyectos/mes.\n¿Te envío el dossier de socio PDF + 3 sitios de ejemplo?"
     },
     {
       "id": "pro_32",
@@ -1590,7 +1590,7 @@
         "soy cm",
         "community manager"
       ],
-      "answer": "Perfecto. Necesitamos CMs serios.\n2 colaboraciones posibles:\n1. Referidor: nos traes un cliente de sitio/bot, te damos 20% de comisión.\n2. Servicio: gestionas la página de un cliente KOMARA, te pagamos 300.000 GNF/mes por cliente.\n¿Prefieres vender o ejecutar?"
+      "answer": "Perfecto. Necesitamos CMs serios.\n2 colaboraciones posibles:\n1. Referidor: nos traes un cliente de sitio/bot, te damos 20% de comisión.\n2. Servicio: gestionas la página de un cliente KOMARA, te pagamos 30€/mes por cliente.\n¿Prefieres vender o ejecutar?"
     },
     {
       "id": "pro_34",
@@ -1602,7 +1602,7 @@
         "suscripcion mensual",
         "departamento digital"
       ],
-      "answer": "En KOMARA AGENCY no hacemos \"un sitio y desaparecer\".\nAcompañamiento de 12 meses:\n1. Auditoría gratis 30min: analizamos tu negocio\n2. Propuesta: 1 o 2 ofertas claras con plazos y presupuesto\n3. Ejecución + seguimiento: entrega + 1 mes soporte + reunión mensual\nLa idea: ser tu departamento digital externo (500.000 GNF/mes).\n¿Agendamos la auditoría gratis esta semana?"
+      "answer": "En KOMARA AGENCY no hacemos \"un sitio y desaparecer\".\nAcompañamiento de 12 meses:\n1. Auditoría gratis 30min: analizamos tu negocio\n2. Propuesta: 1 o 2 ofertas claras con plazos y presupuesto\n3. Ejecución + seguimiento: entrega + 1 mes soporte + reunión mensual\nLa idea: ser tu departamento digital externo (50€/mes).\n¿Agendamos la auditoría gratis esta semana?"
     },
     {
       "id": "pro_35",

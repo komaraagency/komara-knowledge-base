@@ -17,7 +17,7 @@ Les vocaux convertissent 3x plus que le texte. À envoyer selon la situation du 
 
 ## 2. Vocal Urgence (relance avec rareté)
 
-> "Hey ! Petite info, il me reste une seule place à 99$ pour ce mois.
+> "Hey ! Petite info, il me reste une seule place à 99€ pour ce mois.
 > Après ça repasse à 250. Tu veux que je te la bloque 24h ?"
 
 **Quand l'envoyer :** quand le client hésite sur le prix ou traîne.
