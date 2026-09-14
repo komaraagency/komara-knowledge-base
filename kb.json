@@ -12464,6 +12464,574 @@
         "science",
         "business"
       ]
+    },
+    {
+      "id": "guinee_07",
+      "category": "guinee",
+      "questions": [
+        "où se trouve la guinée",
+        "la guinée conakry c'est où",
+        "situation géographique de la guinée"
+      ],
+      "answer": "En Afrique de l'Ouest, face à l'océan Atlantique 🇬🇳\nSes voisins : Mali, Sénégal, Guinée-Bissau, Sierra Leone, Côte d'Ivoire, Liberia.\nSurnomée « le château d'eau de l'Afrique de l'Ouest » — tu vas comprendre pourquoi 😊",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_08",
+      "category": "guinee",
+      "questions": [
+        "les 4 régions naturelles de la guinée",
+        "basse guinée moyenne guinée haute guinée"
+      ],
+      "answer": "4 régions, 4 caractères :\n🌊 Basse Guinée (côte, Conakry) — ⛰️ Moyenne Guinée (Fouta Djallon) — 🌾 Haute Guinée (savane, Kankan) — 🌳 Guinée forestière (N'Zérékoré).\nUn seul pays, quatre mondes. C'est la richesse de la Guinée.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_09",
+      "category": "guinee",
+      "questions": [
+        "c'est quoi le fouta djallon",
+        "le massif du fouta"
+      ],
+      "answer": "Le toit de la Guinée, en Moyenne Guinée ⛰️\nUn plateau verdoyant où naissent le Niger, le Sénégal et la Gambie — d'où le surnom « château d'eau ».\nClimat frais, paysages à couper le souffle, villes comme Labé, Mamou, Pita. Un trésor à visiter.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_10",
+      "category": "guinee",
+      "questions": [
+        "le fleuve niger prend sa source où",
+        "où naît le niger"
+      ],
+      "answer": "En Guinée ! Il prend sa source dans le Fouta Djallon, sous le nom de Bafing 💧\nPuis il traverse le Mali, le Niger, le Nigeria avant de rejoindre l'océan.\nUn des plus grands fleuves d'Afrique est guinéen à l'origine. Fier 🇬🇳",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_11",
+      "category": "guinee",
+      "questions": [
+        "c'est quoi le mont nimba",
+        "le point culminant de la guinée"
+      ],
+      "answer": "Le toit de la Guinée : ~1 752 mètres, classé au patrimoine de l'UNESCO 🏔️\nÀ la frontière avec la Côte d'Ivoire et le Liberia, réserve naturelle unique.\nSa zone abrite des espèces qu'on ne trouve nulle part ailleurs. Un joyau à protéger.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_12",
+      "category": "guinee",
+      "questions": [
+        "les îles de los",
+        "les plages près de conakry"
+      ],
+      "answer": "Un petit archipel paradisiaque à 30 minutes de bateau de Conakry 🏝️\nKassa, Roume, Tamara, Fotoba : plages de sable, cocotiers, eau turquoise.\nLe spot détente des Conakrykas le week-end. Un morceau de paradis, vraiment.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_13",
+      "category": "guinee",
+      "questions": [
+        "que visiter à conakry",
+        "les lieux à voir à conakry"
+      ],
+      "answer": "Conakry bouge ! 🌆\nLa Grande Mosquée Fayçal, le Marché Madina, le Marché du Niger, la corniche au coucher du soleil, le Musée national.\nEt le soir, l'ambiance des maquis avec musique et grillades. Conakry ne dort jamais 😄",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_14",
+      "category": "guinee",
+      "questions": [
+        "la grande mosquée de conakry",
+        "la mosquée fayçal"
+      ],
+      "answer": "La Grande Mosquée Fayçal de Conakry, une des plus grandes d'Afrique de l'Ouest 🕌\nCapacité ~25 000 fidèles, style marocain somptueux.\nUn lieu de fierté nationale et un repère visuel de la ville.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_15",
+      "category": "guinee",
+      "questions": [
+        "les grandes villes de guinée",
+        "kankan kindia labe nzerekore"
+      ],
+      "answer": "Conakry la capitale, bien sûr 🇬🇳\nEnsuite : Kankan (capitale de Haute Guinée), Labé et Mamou (Fouta), Kindia (le jardin de la Guinée), N'Zérékoré (la forestière), Boké et Kamsar (la mine).\nChaque ville a son caractère — c'est ce qui rend les voyages internes passionnants.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_16",
+      "category": "guinee",
+      "questions": [
+        "le climat en guinée conakry",
+        "quand partir en guinée",
+        "saison sèche et hivernage en guinée"
+      ],
+      "answer": "Deux grandes saisons :\n☀️ Saison sèche : novembre à mai, ciel bleu, harmattan frais.\n🌧️ Hivernage : juin à octobre, pluies généreuses surtout sur la côte et le Fouta.\nPour visiter : décembre-février, le temps parfait. Pour voir la Guinée verte : après les pluies, tout explose de verdure 🌿",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_17",
+      "category": "guinee",
+      "questions": [
+        "les langues nationales de guinée",
+        "soussou malinké peul kissi"
+      ],
+      "answer": "Le français est officiel, mais la vraie richesse c'est les langues nationales 🗣️\nSoussou (la côte), Malinké (Haute Guinée), Poular/Peul (Fouta), Kissi, Toma, Kpèlè (forestière).\nLa plupart des Guinéens en parlent 2-3. La Guinée est naturellement multilingue !",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_18",
+      "category": "guinee",
+      "questions": [
+        "la monnaie de la guinée",
+        "le franc guinéen gnf"
+      ],
+      "answer": "Le franc guinéen (GNF) 💵\n1€ ≈ 11 000 GNF environ — les prix en Guinée se comptent souvent en milliers.\nEt pour tout le monde : Orange Money et MTN MoMo règlent presque tout désormais, même au marché.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_19",
+      "category": "guinee",
+      "questions": [
+        "l'indépendance de la guinée 1958",
+        "sekou touré le non"
+      ],
+      "answer": "Le 2 octobre 1958, la Guinée dit « NON » au général De Gaulle 🇬🇳\nPremière colonie française d'Afrique à choisir l'indépendance immédiate, guidée par Sékou Touré.\n« Nous préférons la pauvreté dans la liberté à la richesse dans la servitude. » Une phrase qui a fait le tour du monde.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_20",
+      "category": "guinee",
+      "questions": [
+        "l'économie de la guinée",
+        "la bauxite de guinée"
+      ],
+      "answer": "La Guinée est assise sur un trésor : la bauxite 🪙\nPremière réserve mondiale ! La fonte de l'aluminium du monde entier commence souvent en Guinée.\nAjoute le fer de Simandou, l'or de Siguiri, l'agriculture du Fouta — un potentiel immense.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_21",
+      "category": "guinee",
+      "questions": [
+        "c'est quoi simandou",
+        "le gisement de fer de simandou"
+      ],
+      "answer": "Le plus grand gisement de fer inexploité au monde 🏗️\nDans le sud-est de la Guinée, avec un projet de train de +600 km vers la côte.\nQuand il tournera à pleine capacité, il pourrait transformer l'économie guinéenne. Le monde entier regarde la Guinée.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_22",
+      "category": "guinee",
+      "questions": [
+        "que manger en guinée",
+        "le fouté et le riz gras",
+        "les plats guinéens"
+      ],
+      "answer": "Prépare ta faim 😋\nLe riz gras du dimanche, la sauce graine, le fouté de banane plantain, le poulet bicyclette grillé au feu de bois.\nEt les maquis de Conakry le soir : poisson braisé, attiéké, musique live. La Guinée se goûte autant qu'elle se visite.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_23",
+      "category": "guinee",
+      "questions": [
+        "la musique guinéenne",
+        "bembeya jazz mory kanté"
+      ],
+      "answer": "La Guinée est une puissance musicale 🎶\nBembeya Jazz National, Mory Kanté (le fameux « Yé ké yé ké » !), Sekouba Bambino, Sory Kandia — l'école du griot guinéen est légendaire.\nLa kora, le balafon, le djembé : l'Afrique entière reconnaît la patte guinéenne.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_24",
+      "category": "guinee",
+      "questions": [
+        "le marché madina",
+        "les marchés de conakry"
+      ],
+      "answer": "Madina, c'est le cœur battant de Conakry 🛍️\nUn labyrinthe géant où on trouve TOUT : tissus, pagnes, épices, téléphones, jusqu'aux pièces détachées.\nLe Marché du Niger pour le haut de gamme, Madina pour l'authentique. Négociation obligatoire, sourire recommandé 😄",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_25",
+      "category": "guinee",
+      "questions": [
+        "les chutes d'eau de guinée",
+        "kambadaga kinkon saala"
+      ],
+      "answer": "La Guinée regorge de cascades 💦\nKambadaga, Kinkon, Saala... le Fouta Djallon en est parsemé.\nDes piscines naturelles au pied de chutes, au milieu des montagnes vertes. Encore peu touristiques = paradis préservés.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_26",
+      "category": "guinee",
+      "questions": [
+        "le drapeau de la guinée",
+        "rouge jaune vert signification"
+      ],
+      "answer": "Rouge, Jaune, Vert 🇬🇳\nRouge : le sang des martyrs de l'indépendance. Jaune : l'or et le soleil. Vert : la végétation et la prospérité.\nEt la devise : « Travail, Justice, Solidarité ». Fierté nationale dans trois couleurs.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_27",
+      "category": "guinee",
+      "questions": [
+        "combien d'habitants en guinée",
+        "la population de guinée"
+      ],
+      "answer": "~14 millions d'habitants, dont plus d'1,7 million à Conakry 🌍\nUne population très jeune : la majorité a moins de 25 ans.\nUne jeunesse connectée, entreprenante, bilingue — c'est l'avenir qui pousse fort en Guinée.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "guinee_28",
+      "category": "guinee",
+      "questions": [
+        "la religion en guinée",
+        "l'islam en guinée"
+      ],
+      "answer": "La Guinée est un pays à majorité musulmane (~85%) 🕌\nAvec des communautés chrétiennes et animistes qui vivent ensemble en paix.\nRamadan, Tabaski, Noël : les fêtes rythment l'année et réunissent tout le monde. La tolérance guinéenne est une vraie leçon.",
+      "tags": [
+        "guinee",
+        "guinee"
+      ]
+    },
+    {
+      "id": "digital_01",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi un bon logo",
+        "les critères d'un logo réussi"
+      ],
+      "answer": "3 critères : simple, mémorable, intemporel ✨\nSimple = lisible en petit et de loin. Mémorable = reconnu en 1 seconde. Intemporel = encore beau dans 10 ans.\nNike, Apple, MTN : aucune ne réinvente la roue. La simplicité, c'est le luxe du design.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_02",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi une charte graphique en détail",
+        "que comprend une charte graphique"
+      ],
+      "answer": "Le mode d'emploi visuel d'une marque 📘\nLogo + variantes, couleurs exactes, typographies, tailles, ce qui est interdit.\nElle garantit que ta marque paraît pareil partout : flyer, réseaux, facture. La discipline qui fait passer de « joli » à « pro ».",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_03",
+      "category": "creation_digitale",
+      "questions": [
+        "la psychologie des couleurs",
+        "quelle couleur pour ma marque"
+      ],
+      "answer": "Les couleurs parlent avant les mots 🎨\nBleu = confiance (banques, tech). Rouge = énergie (food, sport). Vert = nature/santé. Or = prestige. Noir = luxe.\nAstuce : choisis la couleur de l'émotion que ton client doit ressentir, pas juste ta préférée.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_04",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi la typographie",
+        "police serif ou sans serif"
+      ],
+      "answer": "L'art de choisir les caractères ✍️\nSerif (avec empattements) = classique, sérieux. Sans serif = moderne, épuré.\nRègle : 2 polices max par visuel. Au-delà, l'œil se perd. Et la lisibilité prime toujours sur l'originalité.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_05",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le branding",
+        "différence marque et logo"
+      ],
+      "answer": "Le branding, c'est la promesse + la personnalité + la constance 🌟\nLe logo n'est que le visage ; la marque, c'est le caractère.\nCe que les gens disent de toi quand tu n'es pas là — voilà ta vraie marque. Le design juste la rend visible.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_06",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi la retouche photo pro",
+        "améliorer une photo c'est quoi"
+      ],
+      "answer": "Révéler le meilleur d'une photo sans mentir ✨\nLumière, teint, netteté, cadrage : on corrige ce que l'appareil a raté.\nUne bonne retouche ne se voit pas — elle se sent. La photo paraît juste... parfaite. C'est notre spécialité chez KOMARA, disons-le 😄",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_07",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le montage vidéo"
+      ],
+      "answer": "Assembler des plans en une histoire qui tient 🎬\nRythme, coupes, musique, sous-titres : chaque seconde doit servir le message.\nSur TikTok/Reels, les 3 premières secondes décident si on reste. C'est là que tout se joue.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_08",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le motion design"
+      ],
+      "answer": "Le graphisme qui bouge 🎞️\nLogos animés, textes qui dansent, infographies en mouvement.\nUne vidéo motion explique une idée complexe en 30 secondes — parfait pour ton concept que personne ne comprend au premier abord 😄",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_09",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi l'ux et l'ui design"
+      ],
+      "answer": "UX = l'expérience (est-ce fluide ?). UI = l'interface (est-ce beau ?) 🖱️\nUX pense au parcours, UI pense à l'émotion visuelle.\nUn site magnifique où on ne trouve rien échoue. Un site efficace mais moche fait fuir. Il faut les deux.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_10",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le webdesign",
+        "bien designer un site web"
+      ],
+      "answer": "L'art de rendre un site clair, rapide et désirable 🌐\nHiérarchie : l'essentiel en gros, le reste s'efface. Respirer : les espaces vides sont ton ami.\nUn visiteur décide en 5 secondes s'il reste. Le webdesign, c'est gagner ces 5 secondes.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_11",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le packaging design"
+      ],
+      "answer": "La première poignée de main du produit 📦\nUn bon packaging raconte : qui tu es, pourquoi c'est mieux, pour qui c'est.\nEn boutique, 70% des décisions d'achat se prennent devant le rayon. Le packaging, c'est ton vendeur silencieux 24/7.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_12",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi un moodboard"
+      ],
+      "answer": "Le tableau d'ambiance avant de créer 🖼️\nImages, couleurs, textures, mots-clés : on fixe le style AVANT de dessiner.\nÉvite 10 allers-retours de révisions. Client et designer regardent dans la même direction dès le départ.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_13",
+      "category": "creation_digitale",
+      "questions": [
+        "les formats réseaux sociaux",
+        "format 9:16 ou 1:1 ou 16:9"
+      ],
+      "answer": "Chaque réseau a sa morphologie 📐\n9:16 vertical : Stories, Reels, TikTok, statuts WhatsApp. 1:1 carré : feed Instagram. 16:9 horizontal : YouTube, LinkedIn.\nUn seul visuel adapté partout = visuel flou partout. Adapte à chaque format, c'est la règle.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_14",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi une miniature youtube",
+        "une bonne thumbnail"
+      ],
+      "answer": "L'affiche qui décide du clic 🖼️\nVisage expressif, 3 mots max, contraste fort : la miniature doit se lire sur un écran de téléphone.\nLa vidéo peut être un chef-d'œuvre : sans miniature, personne ne clique. C'est la porte d'entrée.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_15",
+      "category": "creation_digitale",
+      "questions": [
+        "pourquoi faire des carrousels instagram"
+      ],
+      "answer": "Le carrousel, c'est l'arme silencieuse 📊\nChaque slide retient 2 secondes de plus — et Instagram pousse les posts qui font glisser.\nIdéal pour : étapes, avant/après, mini-tutos. Et le swipeup mental donne envie de tout voir 😄",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_16",
+      "category": "creation_digitale",
+      "questions": [
+        "quelle résolution pour imprimer",
+        "dpi impression vs web"
+      ],
+      "answer": "Impression : 300 dpi minimum 🖨️\nWeb : 72 dpi suffisent (écrans).\nEnvoyer une image 72 dpi à l'imprimeur = flou garanti. Toujours demander le format final en cm avant de créer, jamais l'inverse.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_17",
+      "category": "creation_digitale",
+      "questions": [
+        "cmyk ou rgb la différence"
+      ],
+      "answer": "RVB (RGB) = lumière des écrans 🌈\nCMJN (CMYK) = encres de l'impression 🖨️\nRègle : écran → RVB, flyer → CMJN. Convertir trop tard fait virer les couleurs au tirage. Un classique qui coûte cher.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_18",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi l'art génératif ia",
+        "créer des images avec l'ia"
+      ],
+      "answer": "Générer des visuels à partir d'un texte descriptif 🤖\nOn écrit le style, la lumière, l'ambiance — l'IA peint en quelques secondes.\nRésultat pro = prompt précis + sélection + retouche. L'IA est un pinceau, pas un artiste : l'œil reste humain 😊",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_19",
+      "category": "creation_digitale",
+      "questions": [
+        "quels logiciels pour créer des visuels",
+        "photoshop illustrator canva figma"
+      ],
+      "answer": "Les classiques du métier 🛠️\nPhotoshop (photos), Illustrator (logos/vecteurs), Figma (interfaces), Premiere (vidéo), Canva (rapide et simple).\nCanva dépanne très bien, mais sur un logo pro on reste sur du vectoriel — pour qu'il reste net à toutes les tailles.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_20",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi un prompt pour une image ia",
+        "bien écrire un prompt image"
+      ],
+      "answer": "La recette que tu donnes à l'IA 📝\nStyle + sujet + lumière + format + ambiance. Plus c'est précis, plus c'est proche de ton idée.\n« Un lion » donnera un résultat vague ; « portrait studio d'un fier chef peul, lumière dorée, 8k » donne un chef-d'œuvre.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_21",
+      "category": "creation_digitale",
+      "questions": [
+        "pourquoi un visuel pro vend plus",
+        "l'impact d'un bon design sur les ventes"
+      ],
+      "answer": "Le design, c'est du silent selling 🤫\nUn visuel pro = confiance instantanée = client qui ose payer le prix juste.\nDeux boutiques, même produit : celle au visuel propre vend 2-3 fois plus. Le design ne coûte pas, il rapporte.",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
+    },
+    {
+      "id": "digital_22",
+      "category": "creation_digitale",
+      "questions": [
+        "c'est quoi le storytelling visuel",
+        "raconter une histoire avec des images"
+      ],
+      "answer": "Faire ressentir avant de faire lire 📖\nUne séquence : problème → émotion → solution → preuve. Tes images guident le client comme un film.\nQuand le client se reconnaît dans le visuel, il achète l'histoire — le produit vient avec 😊",
+      "tags": [
+        "creation",
+        "creation_digitale"
+      ]
     }
   ],
   "conversations": [
@@ -12968,5 +13536,5 @@
       "theme": "contact"
     }
   ],
-  "brain_version": "3.0-local-200qa-100conversations"
+  "brain_version": "3.3"
 }
