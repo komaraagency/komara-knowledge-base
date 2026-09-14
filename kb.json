@@ -10319,6 +10319,1277 @@
         "avez-vous des exemples"
       ],
       "answer": "__SHOW_PORTFOLIO__"
+    },
+    {
+      "id": "science_astro_01",
+      "category": "science_astronomie",
+      "questions": [
+        "c'est quoi une étoile filante",
+        "pourquoi on voit des étoiles filantes",
+        "étoile filante"
+      ],
+      "answer": "C'est un petit grain de poussière spatiale qui brûle en entrant dans notre atmosphère 😊\nRésultat : une belle lumière qui file dans le ciel.\nTu en as déjà vu une de près ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_02",
+      "category": "science_astronomie",
+      "questions": [
+        "pourquoi le ciel est bleu",
+        "le ciel pourquoi bleu"
+      ],
+      "answer": "C'est l'air qui diffuse la lumière du soleil.\nLe bleu est la couleur qui se disperse le plus, donc tout le ciel paraît bleu.\nAu coucher du soleil c'est le rouge qui gagne 🌅 Joli non ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_03",
+      "category": "science_astronomie",
+      "questions": [
+        "c'est quoi un trou noir",
+        "trou noir"
+      ],
+      "answer": "Un trou noir c'est une zone où la gravité est tellement forte que même la lumière ne peut pas s'échapper 🕳️\nImagine un aspirateur cosmique géant.\nTu veux savoir comment on les découvre puisqu'ils sont invisibles ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_04",
+      "category": "science_astronomie",
+      "questions": [
+        "combien d'étoiles dans l'univers",
+        "nombre d'étoiles"
+      ],
+      "answer": "Impossible à compter exactement 😅\nMais les scientifiques estiment environ 200 milliards de milliards d'étoiles.\nPlus que de grains de sable sur Terre. Ça remet les idées en place non ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_05",
+      "category": "science_astronomie",
+      "questions": [
+        "peut-on vivre sur mars",
+        "vivre sur mars",
+        "la vie sur mars"
+      ],
+      "answer": "Pas encore. Pas d'oxygène, très froid, et pas d'eau liquide en surface 🟥\nMais des projets existent, comme les missions SpaceX.\nToi tu partirais sur Mars si c'était possible ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_06",
+      "category": "science_astronomie",
+      "questions": [
+        "c'est quoi une galaxie",
+        "galaxie c'est quoi"
+      ],
+      "answer": "C'est un immense regroupement d'étoiles, de gaz et de poussière qui tourne ensemble 🌌\nNotre galaxie s'appelle la Voie lactée et contient ~200 milliards d'étoiles.\nEt l'univers contient des milliards de galaxies. Vertigineux non ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_07",
+      "category": "science_astronomie",
+      "questions": [
+        "combien de planètes dans le système solaire",
+        "les planètes du système solaire"
+      ],
+      "answer": "8 planètes : Mercure, Vénus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune 🪐\nAstuce pour retenir l'ordre : Me Vois Tu, Manger Jean Saluer Une Nana.\nTa planète préférée c'est laquelle ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_08",
+      "category": "science_astronomie",
+      "questions": [
+        "c'est quoi la station spatiale",
+        "la iss",
+        "station spatiale internationale"
+      ],
+      "answer": "C'est un laboratoire géant qui tourne autour de la Terre à 28 000 km/h 🛰️\nDes astronautes y vivent 6 mois pour faire des expériences.\nElle fait le tour de la Terre en 90 minutes. Une journée = 16 couchers de soleil !",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_09",
+      "category": "science_astronomie",
+      "questions": [
+        "le soleil va exploser un jour",
+        "le soleil va mourir",
+        "fin du soleil"
+      ],
+      "answer": "Oui, mais pas de panique 😄\nLe Soleil a encore ~5 milliards d'années devant lui.\nOn a le temps de voir venir, crois-moi.",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_astro_10",
+      "category": "science_astronomie",
+      "questions": [
+        "c'est quoi une éclipse",
+        "éclipse solaire lunaire"
+      ],
+      "answer": "C'est quand une planète se cache devant une autre 🌑\nÉclipse solaire : la Lune cache le Soleil. Éclipse lunaire : la Terre cache la Lune.\nLa prochaine dans ta région, je peux te la trouver si tu veux ?",
+      "tags": [
+        "science",
+        "astronomie"
+      ]
+    },
+    {
+      "id": "science_phys_01",
+      "category": "science_physique",
+      "questions": [
+        "c'est quoi la gravité",
+        "pourquoi les objets tombent",
+        "la gravité"
+      ],
+      "answer": "C'est la force qui attire tout vers le sol 🌍\nC'est elle qui fait tomber la pomme et qui garde la Lune en orbite.\nSans gravité on flotterait tous dans les airs. Amusant 2 minutes, fatigant à long terme 😄",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_02",
+      "category": "science_physique",
+      "questions": [
+        "c'est quoi la vitesse de la lumière",
+        "vitesse de la lumière"
+      ],
+      "answer": "300 000 km par seconde ⚡\nPour te donner une idée : en 1 seconde, la lumière fait 7 fois le tour de la Terre.\nRien ne va plus vite dans l'univers. C'est la règle d'or de la physique.",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_03",
+      "category": "science_physique",
+      "questions": [
+        "pourquoi le tonnerre arrive après l'éclair",
+        "éclair et tonnerre différence"
+      ],
+      "answer": "Parce que la lumière voyage beaucoup plus vite que le son ⚡\nL'éclair te montre le coup, le tonnerre c'est le bruit qui arrive après.\nAstuce : compte les secondes entre les deux, divise par 3 = distance en km !",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_04",
+      "category": "science_physique",
+      "questions": [
+        "c'est quoi un atome",
+        "atome c'est quoi"
+      ],
+      "answer": "C'est la brique de base de toute matière 🔬\nTout ce que tu vois — toi, ton téléphone, l'air — est fait d'atomes.\nEt un atome c'est 99,99% de vide. On touche des choses... qu'on ne touche pas vraiment 😅",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_05",
+      "category": "science_physique",
+      "questions": [
+        "pourquoi l'eau bout à 100 degrés",
+        "eau bout à quelle température"
+      ],
+      "answer": "À 100°C au niveau de la mer 💧\nC'est le moment où l'eau se transforme en vapeur.\nEn montagne ça bout plus tôt car l'air est moins dense — à 3000m vers 90°C. Les pâtes y cuisent moins vite !",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_06",
+      "category": "science_physique",
+      "questions": [
+        "c'est quoi l'énergie",
+        "l'énergie c'est quoi"
+      ],
+      "answer": "C'est ce qui permet de faire bouger ou chauffer les choses ⚡\nElle se transforme mais ne disparaît jamais — c'est la fameuse loi de conservation.\nLe soleil, le vent, ta nourriture : tout est énergie en mouvement.",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_phys_07",
+      "category": "science_physique",
+      "questions": [
+        "les trois états de l'eau",
+        "eau solide liquide gaz"
+      ],
+      "answer": "Glace (solide), eau (liquide), vapeur (gaz) 💧\nLa même molécule, trois costumes différents selon la température.\nC'est la seule substance qu'on voit facilement dans ses 3 états dans la nature.",
+      "tags": [
+        "science",
+        "physique"
+      ]
+    },
+    {
+      "id": "science_chim_01",
+      "category": "science_chimie",
+      "questions": [
+        "pourquoi le fer rouille",
+        "le fer qui rouille"
+      ],
+      "answer": "C'est une réaction entre le fer, l'oxygène et l'eau 🔩\nLe fer s'oxyde et forme cette couche orange qu'on appelle la rouille.\nSolution : peindre ou huiler le métal pour le protéger de l'humidité.",
+      "tags": [
+        "science",
+        "chimie"
+      ]
+    },
+    {
+      "id": "science_chim_02",
+      "category": "science_chimie",
+      "questions": [
+        "pourquoi l'oignon fait pleurer",
+        "l'oignon qui fait pleurer"
+      ],
+      "answer": "Quand tu coupes, l'oignon libère un gaz irritant 🧅\nTes yeux produisent des larmes pour se défendre.\nAstuce de grand-mère : mets l'oignon au frais 15 min avant, ou coupe sous l'eau.",
+      "tags": [
+        "science",
+        "chimie"
+      ]
+    },
+    {
+      "id": "science_chim_03",
+      "category": "science_chimie",
+      "questions": [
+        "c'est quoi une réaction chimique",
+        "réaction chimique c'est quoi"
+      ],
+      "answer": "C'est quand des substances se transforment en autres substances 🧪\nExemple : le vinaigre + le bicarbonate = mousse (du gaz!).\nUne fois transformées, impossible de revenir en arrière. La cuisine en est pleine d'ailleurs !",
+      "tags": [
+        "science",
+        "chimie"
+      ]
+    },
+    {
+      "id": "science_chim_04",
+      "category": "science_chimie",
+      "questions": [
+        "c'est quoi l'oxygène",
+        "l'oxygène c'est quoi"
+      ],
+      "answer": "C'est le gaz que nous respirons pour vivre 🌬️\nNos cellules brûlent leur carburant grâce à lui.\nEt devine qui en fabrique le plus ? Les océans, avec le phytoplancton — pas juste les arbres !",
+      "tags": [
+        "science",
+        "chimie"
+      ]
+    },
+    {
+      "id": "science_bio_01",
+      "category": "science_biologie",
+      "questions": [
+        "c'est quoi l'adn",
+        "adn c'est quoi",
+        "l'adn expliqué"
+      ],
+      "answer": "C'est le mode d'emploi de tout être vivant 🧬\nIl contient les instructions qui font que tu es toi — couleur des yeux, taille, tout.\nSi on déroulait l'ADN d'une seule de tes cellules : 2 mètres de long. Fou non ?",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_02",
+      "category": "science_biologie",
+      "questions": [
+        "comment les plantes fabriquent l'oxygène",
+        "la photosynthèse c'est quoi",
+        "photosynthèse"
+      ],
+      "answer": "Grâce à la photosynthèse 🌱\nLes plantes captent la lumière du soleil, boivent du CO2 et rejettent de l'oxygène.\nElles nous font vivre, littéralement. Un bon argument pour les arroser régulièrement 😄",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_03",
+      "category": "science_biologie",
+      "questions": [
+        "pourquoi les feuilles sont vertes",
+        "chlorophylle c'est quoi"
+      ],
+      "answer": "À cause de la chlorophylle 🍃\nC'est la molécule qui capte la lumière du soleil pour nourrir la plante.\nEn automne elle se cache et laisse apparaître les jaunes et oranges. La nature fait le spectacle.",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_04",
+      "category": "science_biologie",
+      "questions": [
+        "pourquoi on baille",
+        "le bâillement contagieux"
+      ],
+      "answer": "Pour oxygéner le cerveau quand il est en veille 😴\nEt oui, le bâillement est contagieux — même voir le mot donne envie d'en faire un ;)\nTu viens d'en faire un en lisant ça ? Avoue 😄",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_05",
+      "category": "science_biologie",
+      "questions": [
+        "pourquoi les chats ronronnent",
+        "chat qui ronronne"
+      ],
+      "answer": "Pour communiquer bien-être et parfois s'apaiser 🐈\nLe ronronnement vibre entre 25 et 150 Hz, une fréquence qui favorise la guérison des os.\nUn chat c'est presque un médecin de poche avec moustaches.",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_06",
+      "category": "science_biologie",
+      "questions": [
+        "c'est quoi l'évolution",
+        "la théorie de l'évolution"
+      ],
+      "answer": "C'est l'idée que les espèces changent lentement au fil des générations 🐒\nCeux qui s'adaptent le mieux survivent et transmettent leurs traits.\nDarwin l'a expliqué avec les pinces des pinsons des Galápagos. Simple et génial.",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_bio_07",
+      "category": "science_biologie",
+      "questions": [
+        "combien d'espèces sur terre",
+        "nombre d'espèces animales"
+      ],
+      "answer": "~8,7 millions d'espèces estimées, et on n'en a découvert qu'un quart 🌍\nChaque année on en trouve des milliers de nouvelles.\nEt dans l'océan ? On connaît mieux la surface de Mars que le fond des mers !",
+      "tags": [
+        "science",
+        "biologie"
+      ]
+    },
+    {
+      "id": "science_sante_01",
+      "category": "science_sante",
+      "questions": [
+        "pourquoi le cœur bat",
+        "le cœur humain"
+      ],
+      "answer": "C'est ton moteur qui pompe le sang partout dans le corps ❤️\n~100 000 battements par jour sans que tu y penses.\nPrends-en soin : bouger, dormir, manger sainement. Il travaille pour toi, travaille pour lui.",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_02",
+      "category": "science_sante",
+      "questions": [
+        "c'est quoi le système immunitaire",
+        "les défenses du corps"
+      ],
+      "answer": "C'est ton armée intérieure contre les microbes 🛡️\nPeau, globules blancs, anticorps : plusieurs lignes de défense.\nPour l'entraîner : sommeil, fruits, légumes et bonne humeur. Sérieusement, ça compte.",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_03",
+      "category": "science_sante",
+      "questions": [
+        "pourquoi on éternue",
+        "l'éternuement"
+      ],
+      "answer": "C'est une défense : le corps expulse un intrus à 160 km/h 💨\nImpossible d'éternuer les yeux ouverts — le réflexe les ferme.\nEt dire santé après ? Tradition sympa, science discutée 😄",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_04",
+      "category": "science_sante",
+      "questions": [
+        "combien d'os dans le corps humain",
+        "les os du corps"
+      ],
+      "answer": "206 chez l'adulte 🦴\nMais un bébé en a ~300 ! Certains fusionnent en grandissant.\nLe plus petit : l'étrier dans l'oreille, 3mm. Le plus grand : le fémur.",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_05",
+      "category": "science_sante",
+      "questions": [
+        "pourquoi le sang est rouge",
+        "la couleur du sang"
+      ],
+      "answer": "À cause du fer dans l'hémoglobine 🩸\nLe sang appauvri en oxygène est plus sombre, le sang oxygéné plus rouge vif.\nAlors vers-dit « sang bleu » dans les veines ? Mythe — il est juste moins éclairé 😄",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_06",
+      "category": "science_sante",
+      "questions": [
+        "pourquoi il faut dormir",
+        "le sommeil c'est important"
+      ],
+      "answer": "Le sommeil c'est la maintenance du cerveau 😴\nIl consolide la mémoire, répare le corps et nettoie les déchets du cerveau.\n7-9h c'est l'idéal. Une bonne nuit vaut mieux que 3 cafés le matin.",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_07",
+      "category": "science_sante",
+      "questions": [
+        "c'est quoi un vaccin",
+        "comment marche un vaccin"
+      ],
+      "answer": "C'est un entraînement pour ton système immunitaire 💉\nOn lui montre un morceau inoffensif du microbe pour qu'il apprenne à le combattre.\nComme un sparring avant le vrai combat. Pratique non ?",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_sante_08",
+      "category": "science_sante",
+      "questions": [
+        "combien d'eau boire par jour",
+        "boire de l'eau tous les jours"
+      ],
+      "answer": "Environ 1,5 à 2 litres par jour 💧\nTon corps c'est 60% d'eau — le cerveau même 75%.\nPas besoin de compter les verres : ta soif est un bon guide.",
+      "tags": [
+        "science",
+        "sante"
+      ]
+    },
+    {
+      "id": "science_psy_01",
+      "category": "science_psychologie",
+      "questions": [
+        "pourquoi on procrastine",
+        "la procrastination c'est quoi"
+      ],
+      "answer": "Notre cerveau préfère la récompense immédiate 😅\nScroller sur TikTok = plaisir maintenant, la tâche = plaisir plus tard.\nAstuce anti-procrastination : la règle des 2 minutes. Commence juste 2 minutes. Le reste suit souvent.",
+      "tags": [
+        "science",
+        "psychologie"
+      ]
+    },
+    {
+      "id": "science_psy_02",
+      "category": "science_psychologie",
+      "questions": [
+        "c'est quoi le stress",
+        "gérer le stress"
+      ],
+      "answer": "C'est une alarme naturelle du corps 🚨\nUtile en petite dose, épuisant en grande.\nLe plus simple pour le calmer : respire 4 secondes, bloque 4, souffle 6. Répète 5 fois. Essaie, ça marche vraiment.",
+      "tags": [
+        "science",
+        "psychologie"
+      ]
+    },
+    {
+      "id": "science_psy_03",
+      "category": "science_psychologie",
+      "questions": [
+        "pourquoi la musique nous rend heureux",
+        "la musique et le cerveau"
+      ],
+      "answer": "La musique libère de la dopamine, l'hormone du plaisir 🎵\nElle touche même la mémoire et les émotions en même temps.\nC'est pour ça qu'une chanson peut te ramener 10 ans en arrière en 3 secondes.",
+      "tags": [
+        "science",
+        "psychologie"
+      ]
+    },
+    {
+      "id": "science_psy_04",
+      "category": "science_psychologie",
+      "questions": [
+        "comment mieux apprendre et retenir",
+        "technique pour mémoriser"
+      ],
+      "answer": "La répétition espacée : revoir à J+1, J+3, J+7, J+21 📚\nLe cerveau retient ce qui revient, pas ce qu'on bosse 4h d'un coup.\nEt t'expliquer à voix haute ce que tu apprends — effet prof garanti 😄",
+      "tags": [
+        "science",
+        "psychologie"
+      ]
+    },
+    {
+      "id": "science_psy_05",
+      "category": "science_psychologie",
+      "questions": [
+        "c'est quoi l'intelligence émotionnelle",
+        "eq émotionnel"
+      ],
+      "answer": "C'est la capacité à comprendre et gérer ses émotions — et celles des autres 🧠\nSouvent plus déterminante que le QI au travail.\nConcrètement : reconnaître sa colère avant d'envoyer le message. Point.",
+      "tags": [
+        "science",
+        "psychologie"
+      ]
+    },
+    {
+      "id": "science_math_01",
+      "category": "science_mathematiques",
+      "questions": [
+        "c'est quoi pi",
+        "le nombre pi"
+      ],
+      "answer": "C'est le nombre secret des cercles : π ≈ 3,14159 🔵\nCirconférence ÷ diamètre = toujours π, quel que soit le cercle.\nOn connaît des milliards de ses décimales. Les 10 premières suffisent pour presque tout 😄",
+      "tags": [
+        "science",
+        "mathematiques"
+      ]
+    },
+    {
+      "id": "science_math_02",
+      "category": "science_mathematiques",
+      "questions": [
+        "pourquoi zéro est important",
+        "qui a inventé le zéro"
+      ],
+      "answer": "Le zéro a été inventé en Inde, puis voyagé via le monde arabe 🔄\nSans lui : pas de calcul moderne, pas d'informatique, rien.\nUn « rien » qui a changé le monde. Belle leçon non ?",
+      "tags": [
+        "science",
+        "mathematiques"
+      ]
+    },
+    {
+      "id": "science_math_03",
+      "category": "science_mathematiques",
+      "questions": [
+        "c'est quoi un nombre premier",
+        "nombres premiers"
+      ],
+      "answer": "Un nombre divisible seulement par 1 et lui-même 🔢\n2, 3, 5, 7, 11, 13...\nIls sont les atomes des maths — et le chiffrement de tes messages bancaires repose dessus !",
+      "tags": [
+        "science",
+        "mathematiques"
+      ]
+    },
+    {
+      "id": "science_math_04",
+      "category": "science_mathematiques",
+      "questions": [
+        "à quoi servent les maths au quotidien",
+        "les maths dans la vie"
+      ],
+      "answer": "Partout : calculer un prix, cuisiner une recette, gérer un budget 🧮\nMême la musique et les jeux vidéo en sont remplis.\nLes maths c'est juste le langage de la logique. Et la logique, ça sert tous les jours.",
+      "tags": [
+        "science",
+        "mathematiques"
+      ]
+    },
+    {
+      "id": "science_ia_01",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi l'intelligence artificielle en général",
+        "comment marche l'ia",
+        "ia c'est quoi exactement"
+      ],
+      "answer": "C'est des programmes qui apprennent à partir d'exemples 🤖\nAu lieu de coder toutes les règles, on montre des milliers d'exemples et la machine repère les schémas.\nD'ailleurs on crée des IA pour les entreprises chez KOMARA — mais là je te raconte la science 😄",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_02",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi le machine learning",
+        "apprentissage automatique"
+      ],
+      "answer": "C'est la branche de l'IA où la machine apprend des données 📊\nExemple : tu lui montres 1000 chats, elle finit par reconnaître les chats toute seule.\nC'est exactement ce qu'on fait avec nos bots : ils apprennent tes réponses pour répondre comme toi 😊",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_03",
+      "category": "science_informatique",
+      "questions": [
+        "comment marche internet",
+        "le fonctionnement d'internet"
+      ],
+      "answer": "Internet c'est un réseau de câbles, de serveurs et de protocoles 🌐\nTa requête voyage parfois des milliers de km en quelques millisecondes.\nLe câble qui relie l'Europe à l'Afrique de l'Ouest ? Il passe sous l'océan. Vraiment.",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_04",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi un algorithme",
+        "algorithme c'est quoi"
+      ],
+      "answer": "C'est une suite d'instructions pour résoudre un problème ⚙️\nUne recette de cuisine, c'est un algorithme : étapes dans l'ordre, résultat garanti.\nIl y en a partout : GPS, recommandations YouTube, tri de tes emails.",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_05",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi le cloud",
+        "stockage cloud"
+      ],
+      "answer": "C'est stocker et traiter des données sur des serveurs distants ☁️\nTes photos WhatsApp ? Elles vivent dans des datacenters.\nAvantage : tu y accèdes partout. C'est aussi ce qui fait tourner nos bots 24/7 😊",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_06",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi la cybersécurité",
+        "se protéger des pirates"
+      ],
+      "answer": "C'est l'art de protéger ses données et systèmes 🔐\nRègle n°1 : des mots de passe différents partout, et longs.\nRègle n°2 : méfie-toi des liens trop beaux. Le pirate utilise souvent la curiosité, pas la technique.",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_07",
+      "category": "science_informatique",
+      "questions": [
+        "l'ia va-t-elle remplacer les humains",
+        "l'ia danger pour l'emploi"
+      ],
+      "answer": "Elle remplace des tâches, pas des personnes 🤝\nCeux qui l'utilisent remplacent ceux qui l'ignorent.\nNotre approche chez KOMARA : l'IA fait le répétitif, l'humain garde la relation. Le meilleur des deux mondes.",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_ia_08",
+      "category": "science_informatique",
+      "questions": [
+        "c'est quoi la 5g",
+        "la 5g expliquée"
+      ],
+      "answer": "La 5e génération de réseau mobile : plus rapide et plus fluide 📶\nLatence quasi nulle : parfait pour la visio, les jeux, les objets connectés.\nUn film HD téléchargé en quelques secondes. Le futur arrive vite !",
+      "tags": [
+        "science",
+        "informatique"
+      ]
+    },
+    {
+      "id": "science_hist_01",
+      "category": "science_histoire",
+      "questions": [
+        "qui a construit les pyramides d'egypte",
+        "les pyramides d'égypte"
+      ],
+      "answer": "Les Égyptiens anciens, il y a plus de 4500 ans 🔺\nLa grande pyramide de Khéops : 2,3 millions de blocs, 20 ans de chantier.\nEt non, pas des esclaves : des ouvriers payés et logés, ça les archéologues l'ont confirmé.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_02",
+      "category": "science_histoire",
+      "questions": [
+        "c'était quoi l'empire du mali",
+        "l'empire du mali histoire",
+        "soundiata keita"
+      ],
+      "answer": "Un des plus grands empires d'Afrique de l'Ouest (13e-16e siècle) 🏛️\nFondé par Soundiata Keïta, l'homme de la bataille de Kirina.\nC'est aussi là qu'est née la Charte du Manden, un des premiers textes sur les droits humains. Fiers héritage.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_03",
+      "category": "science_histoire",
+      "questions": [
+        "qui était mansa moussa",
+        "mansa musa l'homme le plus riche"
+      ],
+      "answer": "L'empereur du Mali au 14e siècle, souvent cité comme l'homme le plus riche de l'histoire 👑\nSon pèlerinage à La Mecque était si fastueux qu'il a fait chuter le prix de l'or en Égypte pendant des années.\nL'or du Mali a illuminé le monde — littéralement.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_04",
+      "category": "science_histoire",
+      "questions": [
+        "qui était samory touré",
+        "samory toure résistant"
+      ],
+      "answer": "Le grand résistant guinéen face à la colonisation (1830-1900) 🛡️\nIl a bâti un empire et une armée moderne, et a tenu tête aux Français pendant 16 ans.\nUn symbole de dignité pour toute la Guinée. Connaître son histoire, c'est se connaître.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_05",
+      "category": "science_histoire",
+      "questions": [
+        "c'était quoi l'empire du ghana",
+        "l'empire du ghana médiéval",
+        "l'empire du wagadu"
+      ],
+      "answer": "Le premier grand empire d'Afrique de l'Ouest (8e-11e siècle), le Wagadu 🏜️\nSa richesse : l'or et le sel, contrôlés par les Soninkés.\nD'ailleurs l'actuel Ghana a pris ce nom en hommage — mais c'était situé plutôt dans l'actuel Mali/Mauritanie.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_06",
+      "category": "science_histoire",
+      "questions": [
+        "quand l'homme a marché sur la lune",
+        "apollo 11 1969"
+      ],
+      "answer": "Le 20 juillet 1969 🌕\nNeil Armstrong et Buzz Aldrin, mission Apollo 11.\n« Un petit pas pour l'homme, un bond de géant pour l'humanité. » Et la fameuse théorie du studio ? Les 400 000 ingénieurs qui ont travaillé dessus rigoleraient bien 😄",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_07",
+      "category": "science_histoire",
+      "questions": [
+        "qui a inventé l'écriture",
+        "la première écriture"
+      ],
+      "answer": "En Mésopotamie, il y a ~5400 ans — l'écriture cunéiforme ✍️\nAu début c'était pour compter les récoltes et le bétail. La compta avant la poésie 😄\nEn Égypte, les hiéroglyphes arrivent presque en même temps.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_08",
+      "category": "science_histoire",
+      "questions": [
+        "qui était nelson mandela",
+        "mandela 27 ans prison"
+      ],
+      "answer": "Le leader sud-africain qui a combattu l'apartheid 🕊️\n27 ans en prison, puis président et symbole de réconciliation.\nSon arme la plus forte : le pardon sans faiblesse. « Personne ne naît en haïssant. »",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_hist_09",
+      "category": "science_histoire",
+      "questions": [
+        "c'était quoi la route de l'or",
+        "les routes commerciales transsahariennes"
+      ],
+      "answer": "Les routes caravanières qui reliaient l'Afrique de l'Ouest au Maghreb 🐪\nOr de la Boucle du Niger contre sel, livres et tissus.\nTombouctou, Gao, Oualata : des métropoles du savoir et du commerce. L'Afrique commerçait avec le monde avant tout le monde.",
+      "tags": [
+        "science",
+        "histoire"
+      ]
+    },
+    {
+      "id": "science_geo_01",
+      "category": "science_geographie",
+      "questions": [
+        "quel est le plus grand océan du monde",
+        "l'océan pacifique"
+      ],
+      "answer": "Le Pacifique 🌊\nIl couvre à lui seul ~30% de la surface de la Terre.\nPlus grand que toutes les terres émergées réunies. Un océan qui mérite bien son nom.",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_geo_02",
+      "category": "science_geographie",
+      "questions": [
+        "quel est le plus grand désert du monde",
+        "le sahara désert"
+      ],
+      "answer": "L'Antarctique, techniquement — un désert polaire ❄️\nLe plus grand désert chaud : le Sahara, 9 millions de km².\nIl y a 10 000 ans le Sahara était vert avec des lacs. Le climat danse avec le temps.",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_geo_03",
+      "category": "science_geographie",
+      "questions": [
+        "combien de pays en afrique",
+        "les 54 pays d'afrique"
+      ],
+      "answer": "54 pays reconnus 🌍\nPlus de 2000 langues et des milliers de cultures.\nL'Afrique ce n'est pas un pays, c'est un monde. Et le plus jeune du monde : médiane d'âge ~19 ans !",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_geo_04",
+      "category": "science_geographie",
+      "questions": [
+        "quel est le plus long fleuve du monde",
+        "le nil ou l'amazone"
+      ],
+      "answer": "Débat classique 😄\nL'Amazone gagne en volume (roi incontesté) et selon certaines mesures en longueur.\nLe Nil garde ~6650 km dans les livres. Les deux sont majestueux, ça c'est sûr.",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_geo_05",
+      "category": "science_geographie",
+      "questions": [
+        "c'est quoi un volcan",
+        "comment marche un volcan"
+      ],
+      "answer": "Une cheminée vers le magma de la Terre 🌋\nQuand la pression monte, l'éruption coule.\nSurprenant : les cendres volcaniques enrichissent les sols. Les vignobles de l'Etna n'existeraient pas sans lui.",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_geo_06",
+      "category": "science_geographie",
+      "questions": [
+        "pourquoi il y a des saisons",
+        "les saisons de la terre"
+      ],
+      "answer": "À cause de l'inclinaison de la Terre (23,5°) 🌞\nQuand ton hémisphère penche vers le Soleil : été. Loin : hiver.\nPas la distance au Soleil — la pente. Étonnant non ?",
+      "tags": [
+        "science",
+        "geographie"
+      ]
+    },
+    {
+      "id": "science_ecolo_01",
+      "category": "science_ecologie",
+      "questions": [
+        "c'est quoi le réchauffement climatique",
+        "le changement climatique expliqué"
+      ],
+      "answer": "La Terre se réchauffe à cause de nos gaz à effet de serre 🌡️\n+1,2°C déjà depuis l'ère industrielle — et ça suffit à dérégler les saisons.\nChaque degré compte : les petits gestes multipliés par 8 milliards font de vraies vagues.",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
+    },
+    {
+      "id": "science_ecolo_02",
+      "category": "science_ecologie",
+      "questions": [
+        "c'est quoi l'effet de serre",
+        "l'effet de serre expliqué"
+      ],
+      "answer": "Un phéno naturel : l'atmosphère garde une partie de la chaleur ☀️\nSans lui : -18°C en moyenne sur Terre, la glace partout.\nLe problème c'est l'excès — trop de CO₂ = couverture trop épaisse. On veut une couverture, pas un sauna.",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
+    },
+    {
+      "id": "science_ecolo_03",
+      "category": "science_ecologie",
+      "questions": [
+        "pourquoi les abeilles sont importantes",
+        "les abeilles et la pollinisation"
+      ],
+      "answer": "Elles pollinisent un tiers de ce que nous mangeons 🐝\nPommes, mangues, café — derrière chacun, une abeille au travail.\nEinstein aurait dit : sans elles, l'humanité tiendrait 4 ans. Une raison de plus de les protéger.",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
+    },
+    {
+      "id": "science_ecolo_04",
+      "category": "science_ecologie",
+      "questions": [
+        "c'est quoi la biodiversité",
+        "pourquoi protéger la biodiversité"
+      ],
+      "answer": "C'est toute la variété du vivant : animaux, plantes, insectes, microbes 🌿\nUn écosystème diversifié résiste mieux aux chocs — comme un team aux talents variés.\nChaque espèce qui disparaît, c'est un fil du tissu qui se dénoue.",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
+    },
+    {
+      "id": "science_ecolo_05",
+      "category": "science_ecologie",
+      "questions": [
+        "comment économiser l'eau au quotidien",
+        "économiser l'eau"
+      ],
+      "answer": "Douche courte (1 min de moins = 12L), robinet fermé en brossant les dents 💧\nRéparer les fuites : un robinet qui goutte = 4L/jour partis.\nL'eau douce, c'est 3% de l'eau de la planète. Chaque goutte a de la valeur.",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
+    },
+    {
+      "id": "science_culture_01",
+      "category": "science_cultures",
+      "questions": [
+        "c'est quoi un griot",
+        "le griot africain"
+      ],
+      "answer": "Le gardien de la mémoire dans les sociétés d'Afrique de l'Ouest 🎶\nGénéalogiste, musicien, porte-parole : il conserve l'histoire des familles et des royaumes.\nChez nous en Guinée, le griot c'est la voix du passé qui parle au présent.",
+      "tags": [
+        "science",
+        "cultures"
+      ]
+    },
+    {
+      "id": "science_culture_02",
+      "category": "science_cultures",
+      "questions": [
+        "c'est quoi ubuntu",
+        "la philosophie ubuntu"
+      ],
+      "answer": "« Je suis parce que nous sommes » 🤝\nUne philosophie d'Afrique australe : l'individu existe par les autres.\nDesmond Tutu et Mandela l'ont fait connaître au monde. Une leçon de vie simple et puissante.",
+      "tags": [
+        "science",
+        "cultures"
+      ]
+    },
+    {
+      "id": "science_culture_03",
+      "category": "science_cultures",
+      "questions": [
+        "combien de langues en afrique",
+        "les langues africaines"
+      ],
+      "answer": "Plus de 2000 langues 🗣️\nSoussou, Malinké, Peul, Yorouba, Swahili, Haoussa... chacune avec sa vision du monde.\nLe swahili seul est parlé par +150 millions de personnes. L'avenir est multilingue !",
+      "tags": [
+        "science",
+        "cultures"
+      ]
+    },
+    {
+      "id": "science_culture_04",
+      "category": "science_cultures",
+      "questions": [
+        "pourquoi les proverbes africains sont forts",
+        "un proverbe africain"
+      ],
+      "answer": "Ils condensent la sagesse en une image 🌍\n« Seul on va vite, ensemble on va loin. »\n« La pluie ne tombe pas sur un seul toit. » Chaque proverbe est un cours de vie en une phrase.",
+      "tags": [
+        "science",
+        "cultures"
+      ]
+    },
+    {
+      "id": "science_eco_01",
+      "category": "science_economie",
+      "questions": [
+        "c'est quoi l'inflation",
+        "l'inflation expliquée simplement"
+      ],
+      "answer": "Quand les prix montent et le pouvoir d'achat descend 📈\nUn peu d'inflation saine l'économie, trop la casse.\nSignal d'alerte : quand ton panier du marché coûte plus pour la même liste de courses.",
+      "tags": [
+        "science",
+        "economie"
+      ]
+    },
+    {
+      "id": "science_eco_02",
+      "category": "science_economie",
+      "questions": [
+        "pourquoi épargner de l'argent",
+        "l'importance d'épargner"
+      ],
+      "answer": "L'épargne c'est ta tranquillité demain 💰\nMême petit : 10% de chaque rentrée, automatiquement.\nLa règle des 3 mois : viser un matelas qui couvre 3 mois de dépenses. Ensuite, on peut investir.",
+      "tags": [
+        "science",
+        "economie"
+      ]
+    },
+    {
+      "id": "science_eco_03",
+      "category": "science_economie",
+      "questions": [
+        "c'est quoi le pib",
+        "le pib expliqué"
+      ],
+      "answer": "Le Produit Intérieur Brut : la richesse produite par un pays en un an 📊\nC'est le thermomètre de l'économie, mais pas le bonheur des gens.\nLe PIB ne compte pas la cuisine de ta mère ni les fous rires — pour ça il y a d'autres indicateurs 😄",
+      "tags": [
+        "science",
+        "economie"
+      ]
+    },
+    {
+      "id": "science_eco_04",
+      "category": "science_economie",
+      "questions": [
+        "c'est quoi un entrepreneur",
+        "l'esprit entrepreneur"
+      ],
+      "answer": "Quelqu'un qui transforme une idée en valeur pour les autres 💡\nPas besoin d'être Bill Gates : la vendeuse qui innove dans son quartier est une entrepreneure.\nL'audace de commencer + la discipline de continuer. C'est tout.",
+      "tags": [
+        "science",
+        "economie"
+      ]
+    },
+    {
+      "id": "science_philo_01",
+      "category": "science_philosophie",
+      "questions": [
+        "c'est quoi la philosophie",
+        "philosopher c'est quoi"
+      ],
+      "answer": "« L'amour de la sagesse » — le sens grec du mot 🤔\nPoser des questions simples sur des choses profondes : qui suis-je, qu'est-ce qui a de la valeur ?\nTu n'as pas besoin d'un diplôme : réfléchir à deux fois avant d'agir, c'est déjà philosopher.",
+      "tags": [
+        "science",
+        "philosophie"
+      ]
+    },
+    {
+      "id": "science_philo_02",
+      "category": "science_philosophie",
+      "questions": [
+        "qui était socrate",
+        "le doute de socrate"
+      ],
+      "answer": "Le philosophe grec qui questionnait tout le monde sur l'agora 🏛️\n« Je sais que je ne sais rien » — le doute comme point de départ.\nSa méthode : poser des questions jusqu'à ce que la vraie réponse apparaisse. Le Socrate de l'antiquité, le coach d'aujourd'hui 😄",
+      "tags": [
+        "science",
+        "philosophie"
+      ]
+    },
+    {
+      "id": "science_philo_03",
+      "category": "science_philosophie",
+      "questions": [
+        "c'est quoi le bonheur",
+        "comment être heureux"
+      ],
+      "answer": "Question à un million 😊\nLes recherches disent : des relations humaines solides avant tout, puis du sens à ce qu'on fait.\nL'argent aide jusqu'au confort — après, c'est la qualité de tes liens qui fait la différence.",
+      "tags": [
+        "science",
+        "philosophie"
+      ]
+    },
+    {
+      "id": "science_nutri_01",
+      "category": "science_nutrition",
+      "questions": [
+        "pourquoi le petit déjeuner est important",
+        "le petit déjeuner santé"
+      ],
+      "answer": "Il relance le corps après 8h de jeûne 🌅\nLe cerveau glucides pour bien fonctionner le matin.\nIdéal : un féculent + un fruit + une protéine. Vite préparé, longtemps efficace.",
+      "tags": [
+        "science",
+        "nutrition"
+      ]
+    },
+    {
+      "id": "science_nutri_02",
+      "category": "science_nutrition",
+      "questions": [
+        "c'est quoi les protéines",
+        "pourquoi manger des protéines"
+      ],
+      "answer": "Les briques du corps : muscles, cheveux, défenses immunitaires 🍗\nPoisson, œufs, lentilles, viande, arachide — l'Afrique de l'Ouest en connaît un rayon.\nRépartir sur la journée vaut mieux qu'un gros dîner seul.",
+      "tags": [
+        "science",
+        "nutrition"
+      ]
+    },
+    {
+      "id": "science_nutri_03",
+      "category": "science_nutrition",
+      "questions": [
+        "pourquoi manger des légumes",
+        "les bienfaits des légumes"
+      ],
+      "answer": "Fibres, vitamines, eau — le kit complet du corps 🥬\nIls nourrissent aussi les bonnes bactéries de ton intestin (oui, on a des locataires utiles !).\nObjectif simple : de la couleur dans l'assiette à chaque repas.",
+      "tags": [
+        "science",
+        "nutrition"
+      ]
+    },
+    {
+      "id": "science_ocean_01",
+      "category": "science_oceans",
+      "questions": [
+        "pourquoi la mer est salée",
+        "le sel de la mer"
+      ],
+      "answer": "Les rivières dissolvent les minéraux des roches depuis des millions d'annères 🧂\nTout finit dans l'océan, qui garde le sel et évapore l'eau.\nSi on répartissait ce sel sur les terres : une couche de 150 mètres. De quoi salter tout le monde 😄",
+      "tags": [
+        "science",
+        "oceans"
+      ]
+    },
+    {
+      "id": "science_ocean_02",
+      "category": "science_oceans",
+      "questions": [
+        "c'est quoi les marées",
+        "pourquoi la mer monte et descend"
+      ],
+      "answer": "C'est la Lune qui tire sur l'océan 🌙\nDeux marées par jour : l'eau suit l'attraction lunaire.\nLes pêcheurs le savent mieux que personne — la mer a son horaire, et elle le tient.",
+      "tags": [
+        "science",
+        "oceans"
+      ]
+    },
+    {
+      "id": "science_ocean_03",
+      "category": "science_oceans",
+      "questions": [
+        "pourquoi les arbres sont importants",
+        "les bienfaits des arbres"
+      ],
+      "answer": "Ombre, oxygène, fruits, sols retenus, climat frais 🌳\nUn arbre mature peut absorber ~20kg de CO₂ par an.\nEt sous chaque arbre, un micro-monde de vie. Planter, c'est semer de la fraîcheur.",
+      "tags": [
+        "science",
+        "oceans"
+      ]
+    },
+    {
+      "id": "science_tech_01",
+      "category": "science_technologie",
+      "questions": [
+        "pourquoi l'avion vole",
+        "comment un avion tient en l'air"
+      ],
+      "answer": "Les ailes poussent l'air vers le bas, l'air pousse l'avion vers le haut ✈️\nC'est la portance — la 3e loi de Newton en action.\nUn avion de 400 tonnes file à 900km/h à 10 000m. La physique est vraiment une magie expliquée.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_02",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le gps",
+        "comment marche le gps"
+      ],
+      "answer": "Ton téléphone écoute des satellites qui lui donnent l'heure et la position 🛰️\nAvec 4 satellites, il triangule ta position au mètre près.\nLa relativité d'Einstein est corrigée dedans — sans elle, le GPS se tromperait de 10km par jour !",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_03",
+      "category": "science_technologie",
+      "questions": [
+        "comment marche une batterie",
+        "le lithium-ion"
+      ],
+      "answer": "Des ions qui voyagent d'une électrode à l'autre 🔋\nCharger = les renvoyer à la maison. Décharger = les laisser sortir travailler.\nTon téléphone en contient l'énergie de... quelques grammes de lithium. Compact et puissant.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_lang_01",
+      "category": "science_linguistique",
+      "questions": [
+        "d'où vient le mot robot",
+        "l'origine du mot robot"
+      ],
+      "answer": "Du tchèque « robota » = travail forcé 🤖\nApparu dans une pièce de théâtre de 1920, sci-fi avant l'heure.\nIronie : le mot est né d'une histoire où les robots se révoltent. On espère que les nôtres resteront sympas 😄",
+      "tags": [
+        "science",
+        "linguistique"
+      ]
+    },
+    {
+      "id": "science_lang_02",
+      "category": "science_linguistique",
+      "questions": [
+        "combien de langues dans le monde",
+        "les 7000 langues"
+      ],
+      "answer": "~7000 langues vivantes 🗣️\nUne langue meurt toutes les 2 semaines — et avec elle une façon de voir le monde.\nLe multilinguisme c'est de la richesse : tu penses différemment dans chaque langue.",
+      "tags": [
+        "science",
+        "linguistique"
+      ]
+    },
+    {
+      "id": "science_culture_05",
+      "category": "science_cultures",
+      "questions": [
+        "pourquoi les fêtes traditionnelles sont importantes",
+        "les fêtes en afrique de l'ouest"
+      ],
+      "answer": "Elles relient les générations 🥁\nMariages, baptêmes, récoltes : chaque fête transmet l'histoire et les valeurs.\nPlus une communauté célèbre ensemble, plus elle tient ensemble. Simple comme ça.",
+      "tags": [
+        "science",
+        "cultures"
+      ]
+    },
+    {
+      "id": "science_ecolo_06",
+      "category": "science_ecologie",
+      "questions": [
+        "c'est quoi l'énergie solaire",
+        "les panneaux solaires"
+      ],
+      "answer": "Transformer la lumière du soleil en électricité ☀️\nL'Afrique a le meilleur ensoleillement de la planète — une chance énorme.\nLe soleil donne gratuitement ; le panneau transforme. L'avenir est lumineux, littéralement 😄",
+      "tags": [
+        "science",
+        "ecologie"
+      ]
     }
   ],
   "conversations": [
