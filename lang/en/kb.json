@@ -1941,6 +1941,1326 @@
         "both platforms"
       ],
       "answer": "Great, we can do both 👍\nWhat do you sell exactly? And how many messages per day roughly?"
+    },
+    {
+      "id": "en_science_astro_01",
+      "category": "science",
+      "questions": [
+        "what is a shooting star",
+        "why do we see shooting stars"
+      ],
+      "keywords": [
+        "star",
+        "space",
+        "sky"
+      ],
+      "answer": "It's a tiny grain of space dust burning up in our atmosphere 😊\nThe result: a beautiful streak of light across the sky.\nEver made a wish on one?"
+    },
+    {
+      "id": "en_science_astro_02",
+      "category": "science",
+      "questions": [
+        "why is the sky blue"
+      ],
+      "keywords": [
+        "sky",
+        "blue",
+        "light"
+      ],
+      "answer": "The air scatters sunlight.\nBlue is the color that disperses the most, so the whole sky looks blue.\nAt sunset red takes over 🌅 Beautiful, right?"
+    },
+    {
+      "id": "en_science_astro_03",
+      "category": "science",
+      "questions": [
+        "what is a black hole"
+      ],
+      "keywords": [
+        "black hole",
+        "space",
+        "gravity"
+      ],
+      "answer": "A zone where gravity is so strong even light can't escape 🕳️\nImagine a giant cosmic vacuum cleaner.\nWant to know how we detect them, since they're invisible?"
+    },
+    {
+      "id": "en_science_astro_04",
+      "category": "science",
+      "questions": [
+        "how many stars in the universe"
+      ],
+      "keywords": [
+        "stars",
+        "universe",
+        "count"
+      ],
+      "answer": "Impossible to count exactly 😅\nScientists estimate around 200 billion billion stars.\nMore than grains of sand on Earth. Puts things in perspective, right?"
+    },
+    {
+      "id": "en_science_astro_05",
+      "category": "science",
+      "questions": [
+        "can we live on mars",
+        "life on mars"
+      ],
+      "keywords": [
+        "mars",
+        "live",
+        "planet"
+      ],
+      "answer": "Not yet. No oxygen, very cold, no liquid water on the surface 🟥\nBut projects exist, like SpaceX missions.\nWould you go to Mars if you could?"
+    },
+    {
+      "id": "en_science_astro_06",
+      "category": "science",
+      "questions": [
+        "what is a galaxy"
+      ],
+      "keywords": [
+        "galaxy",
+        "space",
+        "stars"
+      ],
+      "answer": "A huge grouping of stars, gas and dust spinning together 🌌\nOur galaxy is the Milky Way with ~200 billion stars.\nAnd the universe holds billions of galaxies. Mind-blowing, right?"
+    },
+    {
+      "id": "en_science_astro_07",
+      "category": "science",
+      "questions": [
+        "how many planets in the solar system"
+      ],
+      "keywords": [
+        "planets",
+        "solar system"
+      ],
+      "answer": "8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune 🪐\nWhich one is your favorite?"
+    },
+    {
+      "id": "en_science_astro_08",
+      "category": "science",
+      "questions": [
+        "what is the international space station",
+        "the iss"
+      ],
+      "keywords": [
+        "space station",
+        "astronauts",
+        "iss"
+      ],
+      "answer": "A giant laboratory orbiting Earth at 28,000 km/h 🛰️\nAstronauts live there 6 months doing experiments.\nIt circles Earth in 90 minutes — 16 sunsets a day!"
+    },
+    {
+      "id": "en_science_astro_09",
+      "category": "science",
+      "questions": [
+        "will the sun explode one day",
+        "will the sun die"
+      ],
+      "keywords": [
+        "sun",
+        "explode",
+        "die"
+      ],
+      "answer": "Yes, but no panic 😄\nThe Sun has ~5 billion years left.\nPlenty of time, trust me."
+    },
+    {
+      "id": "en_science_astro_10",
+      "category": "science",
+      "questions": [
+        "what is an eclipse"
+      ],
+      "keywords": [
+        "eclipse",
+        "sun",
+        "moon"
+      ],
+      "answer": "When one space body hides another 🌑\nSolar eclipse: the Moon covers the Sun. Lunar: Earth's shadow covers the Moon.\nWant me to find when the next one is visible where you are?"
+    },
+    {
+      "id": "en_science_phys_01",
+      "category": "science",
+      "questions": [
+        "what is gravity",
+        "why do objects fall"
+      ],
+      "keywords": [
+        "gravity",
+        "fall",
+        "earth"
+      ],
+      "answer": "The force that pulls everything toward the ground 🌍\nIt makes apples fall and keeps the Moon in orbit.\nWithout it we'd all float away. Fun for 2 minutes 😄"
+    },
+    {
+      "id": "en_science_phys_02",
+      "category": "science",
+      "questions": [
+        "what is the speed of light"
+      ],
+      "keywords": [
+        "light",
+        "speed",
+        "physics"
+      ],
+      "answer": "300,000 km per second ⚡\nIn one second, light circles Earth 7 times.\nNothing in the universe goes faster. Physics' golden rule."
+    },
+    {
+      "id": "en_science_phys_03",
+      "category": "science",
+      "questions": [
+        "why does thunder come after lightning"
+      ],
+      "keywords": [
+        "thunder",
+        "lightning",
+        "storm"
+      ],
+      "answer": "Because light travels much faster than sound ⚡\nThe flash shows the strike, thunder is the sound arriving late.\nTip: count seconds between them, divide by 3 = distance in km!"
+    },
+    {
+      "id": "en_science_phys_04",
+      "category": "science",
+      "questions": [
+        "what is an atom"
+      ],
+      "keywords": [
+        "atom",
+        "matter",
+        "science"
+      ],
+      "answer": "The basic building block of all matter 🔬\nEverything you see — you, your phone, the air — is made of atoms.\nAnd an atom is 99.99% empty space. Mind-bending 😅"
+    },
+    {
+      "id": "en_science_phys_05",
+      "category": "science",
+      "questions": [
+        "why does water boil at 100 degrees"
+      ],
+      "keywords": [
+        "water",
+        "boil",
+        "temperature"
+      ],
+      "answer": "At 100°C at sea level 💧\nThat's when water turns to vapor.\nIn the mountains it boils earlier — at 3000m around 90°C. Pasta cooks slower there!"
+    },
+    {
+      "id": "en_science_phys_06",
+      "category": "science",
+      "questions": [
+        "what is energy"
+      ],
+      "keywords": [
+        "energy",
+        "physics",
+        "power"
+      ],
+      "answer": "What makes things move or heat up ⚡\nIt transforms but never disappears — the famous conservation law.\nSun, wind, your food: all energy in motion."
+    },
+    {
+      "id": "en_science_phys_07",
+      "category": "science",
+      "questions": [
+        "the three states of water"
+      ],
+      "keywords": [
+        "water",
+        "ice",
+        "steam"
+      ],
+      "answer": "Ice (solid), water (liquid), vapor (gas) 💧\nSame molecule, three costumes depending on temperature.\nThe only substance we easily see in all 3 states in nature."
+    },
+    {
+      "id": "en_science_chim_01",
+      "category": "science",
+      "questions": [
+        "why does iron rust"
+      ],
+      "keywords": [
+        "iron",
+        "rust",
+        "metal"
+      ],
+      "answer": "A reaction between iron, oxygen and water 🔩\nThe iron oxidizes, forming that orange layer called rust.\nFix: paint or oil the metal to protect it from humidity."
+    },
+    {
+      "id": "en_science_chim_02",
+      "category": "science",
+      "questions": [
+        "why do onions make you cry"
+      ],
+      "keywords": [
+        "onion",
+        "cry",
+        "tears"
+      ],
+      "answer": "Cutting releases an irritating gas 🧅\nYour eyes produce tears to defend themselves.\nGrandma's tip: chill the onion 15 min first, or cut under water."
+    },
+    {
+      "id": "en_science_chim_03",
+      "category": "science",
+      "questions": [
+        "what is a chemical reaction"
+      ],
+      "keywords": [
+        "chemistry",
+        "reaction",
+        "transform"
+      ],
+      "answer": "When substances transform into other substances 🧪\nExample: vinegar + baking soda = foam (gas!)\nOnce transformed, no going back. Cooking is full of them!"
+    },
+    {
+      "id": "en_science_chim_04",
+      "category": "science",
+      "questions": [
+        "what is oxygen"
+      ],
+      "keywords": [
+        "oxygen",
+        "air",
+        "breathing"
+      ],
+      "answer": "The gas we breathe to live 🌬️\nOur cells burn their fuel thanks to it.\nAnd who makes the most of it? The oceans with phytoplankton — not just trees!"
+    },
+    {
+      "id": "en_science_bio_01",
+      "category": "science",
+      "questions": [
+        "what is dna"
+      ],
+      "keywords": [
+        "dna",
+        "genetics",
+        "biology"
+      ],
+      "answer": "The instruction manual of every living being 🧬\nIt holds the instructions that make you you — eye color, height, everything.\nUnravel one cell's DNA: 2 meters long. Crazy, right?"
+    },
+    {
+      "id": "en_science_bio_02",
+      "category": "science",
+      "questions": [
+        "how do plants make oxygen",
+        "what is photosynthesis"
+      ],
+      "keywords": [
+        "photosynthesis",
+        "plants",
+        "oxygen"
+      ],
+      "answer": "Through photosynthesis 🌱\nPlants capture sunlight, drink CO2 and release oxygen.\nThey literally keep us alive. Good reason to water them 😄"
+    },
+    {
+      "id": "en_science_bio_03",
+      "category": "science",
+      "questions": [
+        "why are leaves green",
+        "what is chlorophyll"
+      ],
+      "keywords": [
+        "leaves",
+        "green",
+        "chlorophyll"
+      ],
+      "answer": "Because of chlorophyll 🍃\nIt's the molecule that captures sunlight to feed the plant.\nIn autumn it hides, revealing yellows and oranges. Nature's show."
+    },
+    {
+      "id": "en_science_bio_04",
+      "category": "science",
+      "questions": [
+        "why do we yawn",
+        "is yawning contagious"
+      ],
+      "keywords": [
+        "yawn",
+        "sleep",
+        "contagious"
+      ],
+      "answer": "To oxygenate the brain when it's idling 😴\nAnd yes, yawning is contagious — even reading the word triggers one ;)\nDid you just yawn reading this? Be honest 😄"
+    },
+    {
+      "id": "en_science_bio_05",
+      "category": "science",
+      "questions": [
+        "why do cats purr"
+      ],
+      "keywords": [
+        "cats",
+        "purr",
+        "animals"
+      ],
+      "answer": "To communicate well-being, and sometimes to soothe themselves 🐈\nPurring vibrates at 25-150 Hz, a frequency that promotes bone healing.\nA cat is almost a pocket doctor with whiskers."
+    },
+    {
+      "id": "en_science_bio_06",
+      "category": "science",
+      "questions": [
+        "what is evolution",
+        "the theory of evolution"
+      ],
+      "keywords": [
+        "evolution",
+        "darwin",
+        "species"
+      ],
+      "answer": "The idea that species slowly change over generations 🐒\nThose who adapt best survive and pass on their traits.\nDarwin explained it with Galápagos finch beaks. Simple and brilliant."
+    },
+    {
+      "id": "en_science_bio_07",
+      "category": "science",
+      "questions": [
+        "how many species on earth"
+      ],
+      "keywords": [
+        "species",
+        "animals",
+        "biodiversity"
+      ],
+      "answer": "~8.7 million estimated, and we've only discovered a quarter 🌍\nThousands of new ones are found every year.\nWe know Mars' surface better than the ocean floor!"
+    },
+    {
+      "id": "en_science_sante_01",
+      "category": "science",
+      "questions": [
+        "why does the heart beat"
+      ],
+      "keywords": [
+        "heart",
+        "blood",
+        "beat"
+      ],
+      "answer": "It's your engine pumping blood around the body ❤️\n~100,000 beats a day without you thinking about it.\nTake care of it: move, sleep, eat well. It works for you."
+    },
+    {
+      "id": "en_science_sante_02",
+      "category": "science",
+      "questions": [
+        "what is the immune system"
+      ],
+      "keywords": [
+        "immune system",
+        "defenses",
+        "health"
+      ],
+      "answer": "Your inner army against germs 🛡️\nSkin, white blood cells, antibodies: several lines of defense.\nTrain it with sleep, fruits, veggies and good mood. Really."
+    },
+    {
+      "id": "en_science_sante_03",
+      "category": "science",
+      "questions": [
+        "why do we sneeze"
+      ],
+      "keywords": [
+        "sneeze",
+        "nose",
+        "reflex"
+      ],
+      "answer": "A defense mechanism: the body expels an intruder at 160 km/h 💨\nYou can't sneeze with your eyes open — the reflex closes them.\nBless you! 😄"
+    },
+    {
+      "id": "en_science_sante_04",
+      "category": "science",
+      "questions": [
+        "how many bones in the human body"
+      ],
+      "keywords": [
+        "bones",
+        "skeleton",
+        "body"
+      ],
+      "answer": "206 in an adult 🦴\nBut a baby has ~300! Some fuse as we grow.\nSmallest: the stirrup bone in your ear, 3mm. Largest: the femur."
+    },
+    {
+      "id": "en_science_sante_05",
+      "category": "science",
+      "questions": [
+        "why is blood red"
+      ],
+      "keywords": [
+        "blood",
+        "red",
+        "hemoglobin"
+      ],
+      "answer": "Because of the iron in hemoglobin 🩸\nOxygen-poor blood is darker, oxygen-rich blood bright red.\nThe famous 'blue blood' in veins? Myth — it's just less lit 😄"
+    },
+    {
+      "id": "en_science_sante_06",
+      "category": "science",
+      "questions": [
+        "why do we need sleep",
+        "is sleep important"
+      ],
+      "keywords": [
+        "sleep",
+        "rest",
+        "night"
+      ],
+      "answer": "Sleep is your brain's maintenance 😴\nIt consolidates memory, repairs the body, clears brain waste.\n7-9 hours is ideal. A good night beats 3 coffees."
+    },
+    {
+      "id": "en_science_sante_07",
+      "category": "science",
+      "questions": [
+        "what is a vaccine",
+        "how do vaccines work"
+      ],
+      "keywords": [
+        "vaccine",
+        "immunity",
+        "medicine"
+      ],
+      "answer": "A training session for your immune system 💉\nWe show it a harmless piece of the germ so it learns to fight.\nLike a sparring partner before the real fight."
+    },
+    {
+      "id": "en_science_sante_08",
+      "category": "science",
+      "questions": [
+        "how much water should i drink daily"
+      ],
+      "keywords": [
+        "water",
+        "drink",
+        "hydration"
+      ],
+      "answer": "About 1.5 to 2 liters a day 💧\nYour body is 60% water — the brain 75%.\nNo need to count glasses: thirst is a good guide."
+    },
+    {
+      "id": "en_science_psy_01",
+      "category": "science",
+      "questions": [
+        "why do we procrastinate",
+        "what is procrastination"
+      ],
+      "keywords": [
+        "procrastination",
+        "delay",
+        "habits"
+      ],
+      "answer": "Our brain prefers immediate reward 😅\nScrolling TikTok = pleasure now, the task = pleasure later.\nAnti-procrastination tip: the 2-minute rule. Just start 2 minutes. The rest usually follows."
+    },
+    {
+      "id": "en_science_psy_02",
+      "category": "science",
+      "questions": [
+        "what is stress",
+        "how to manage stress"
+      ],
+      "keywords": [
+        "stress",
+        "anxiety",
+        "calm"
+      ],
+      "answer": "The body's natural alarm 🚨\nUseful in small doses, exhausting in large ones.\nSimplest fix: breathe in 4 seconds, hold 4, out 6. Repeat 5 times. It really works."
+    },
+    {
+      "id": "en_science_psy_03",
+      "category": "science",
+      "questions": [
+        "why does music make us happy"
+      ],
+      "keywords": [
+        "music",
+        "happiness",
+        "dopamine"
+      ],
+      "answer": "Music releases dopamine, the pleasure hormone 🎵\nIt touches memory and emotions at the same time.\nThat's why a song can send you 10 years back in 3 seconds."
+    },
+    {
+      "id": "en_science_psy_04",
+      "category": "science",
+      "questions": [
+        "how to learn better and remember",
+        "memorization techniques"
+      ],
+      "keywords": [
+        "learning",
+        "memory",
+        "study"
+      ],
+      "answer": "Spaced repetition: review at D+1, D+3, D+7, D+21 📚\nThe brain keeps what comes back, not what you cram for 4 hours.\nAnd explain out loud what you learn — instant teacher effect 😄"
+    },
+    {
+      "id": "en_science_psy_05",
+      "category": "science",
+      "questions": [
+        "what is emotional intelligence"
+      ],
+      "keywords": [
+        "emotional intelligence",
+        "eq",
+        "emotions"
+      ],
+      "answer": "The ability to understand and manage your emotions — and others' 🧠\nOften matters more than IQ at work.\nConcretely: recognize your anger before hitting send."
+    },
+    {
+      "id": "en_science_math_01",
+      "category": "science",
+      "questions": [
+        "what is pi",
+        "the number pi"
+      ],
+      "keywords": [
+        "pi",
+        "circle",
+        "math"
+      ],
+      "answer": "The circle's secret number: π ≈ 3.14159 🔵\nCircumference ÷ diameter = always π, any circle.\nBillions of digits known. The first 10 handle almost everything 😄"
+    },
+    {
+      "id": "en_science_math_02",
+      "category": "science",
+      "questions": [
+        "why is zero important",
+        "who invented zero"
+      ],
+      "keywords": [
+        "zero",
+        "math",
+        "india"
+      ],
+      "answer": "Zero was invented in India, then traveled through the Arab world 🔄\nWithout it: no modern math, no computing, nothing.\nA 'nothing' that changed the world. Nice lesson, right?"
+    },
+    {
+      "id": "en_science_math_03",
+      "category": "science",
+      "questions": [
+        "what is a prime number"
+      ],
+      "keywords": [
+        "prime numbers",
+        "math",
+        "divisors"
+      ],
+      "answer": "A number divisible only by 1 and itself 🔢\n2, 3, 5, 7, 11, 13...\nThey're the atoms of math — your banking encryption relies on them!"
+    },
+    {
+      "id": "en_science_math_04",
+      "category": "science",
+      "questions": [
+        "what are math useful for in daily life"
+      ],
+      "keywords": [
+        "math",
+        "daily life",
+        "logic"
+      ],
+      "answer": "Everywhere: pricing a job, cooking a recipe, managing a budget 🧮\nEven music and video games are full of it.\nMath is just the language of logic. And logic serves you daily."
+    },
+    {
+      "id": "en_science_ia_01",
+      "category": "science",
+      "questions": [
+        "what is artificial intelligence in general",
+        "how does ai work"
+      ],
+      "keywords": [
+        "ai",
+        "artificial intelligence",
+        "learning"
+      ],
+      "answer": "Programs that learn from examples 🤖\nInstead of coding every rule, we show thousands of examples and the machine spots patterns.\nBy the way, we build AI for businesses at KOMARA — but here I'm telling you the science 😄"
+    },
+    {
+      "id": "en_science_ia_02",
+      "category": "science",
+      "questions": [
+        "what is machine learning"
+      ],
+      "keywords": [
+        "machine learning",
+        "data",
+        "training"
+      ],
+      "answer": "The branch of AI where machines learn from data 📊\nShow it 1000 cats, it eventually recognizes cats on its own.\nExactly what we do with our bots: they learn your replies to sound like you 😊"
+    },
+    {
+      "id": "en_science_ia_03",
+      "category": "science",
+      "questions": [
+        "how does the internet work"
+      ],
+      "keywords": [
+        "internet",
+        "network",
+        "cables"
+      ],
+      "answer": "A network of cables, servers and protocols 🌐\nYour request sometimes travels thousands of km in milliseconds.\nThe cable linking Europe to West Africa? It runs under the ocean. Really."
+    },
+    {
+      "id": "en_science_ia_04",
+      "category": "science",
+      "questions": [
+        "what is an algorithm"
+      ],
+      "keywords": [
+        "algorithm",
+        "instructions",
+        "steps"
+      ],
+      "answer": "A sequence of instructions to solve a problem ⚙️\nA cooking recipe is an algorithm: steps in order, guaranteed result.\nThey're everywhere: GPS, YouTube recommendations, email filters."
+    },
+    {
+      "id": "en_science_ia_05",
+      "category": "science",
+      "questions": [
+        "what is the cloud"
+      ],
+      "keywords": [
+        "cloud",
+        "storage",
+        "servers"
+      ],
+      "answer": "Storing and processing data on remote servers ☁️\nYour WhatsApp photos live in datacenters.\nAdvantage: access anywhere. It's also what keeps our bots running 24/7 😊"
+    },
+    {
+      "id": "en_science_ia_06",
+      "category": "science",
+      "questions": [
+        "what is cybersecurity",
+        "how to protect from hackers"
+      ],
+      "keywords": [
+        "cybersecurity",
+        "password",
+        "hackers"
+      ],
+      "answer": "The art of protecting your data and systems 🔐\nRule 1: different, long passwords everywhere.\nRule 2: beware of links that look too good. Hackers use curiosity, not technique."
+    },
+    {
+      "id": "en_science_ia_07",
+      "category": "science",
+      "questions": [
+        "will ai replace humans",
+        "is ai a danger for jobs"
+      ],
+      "keywords": [
+        "ai",
+        "jobs",
+        "future"
+      ],
+      "answer": "It replaces tasks, not people 🤝\nThose who use it replace those who ignore it.\nOur approach at KOMARA: AI does the repetitive, humans keep the relationship. Best of both worlds."
+    },
+    {
+      "id": "en_science_ia_08",
+      "category": "science",
+      "questions": [
+        "what is 5g"
+      ],
+      "keywords": [
+        "5g",
+        "network",
+        "mobile"
+      ],
+      "answer": "The 5th generation of mobile networks: faster and smoother 📶\nNear-zero latency: perfect for video calls, games, connected objects.\nAn HD movie downloaded in seconds. The future moves fast!"
+    },
+    {
+      "id": "en_science_hist_01",
+      "category": "science",
+      "questions": [
+        "who built the pyramids of egypt"
+      ],
+      "keywords": [
+        "pyramids",
+        "egypt",
+        "pharaohs"
+      ],
+      "answer": "Ancient Egyptians, over 4,500 years ago 🔺\nThe Great Pyramid of Giza: 2.3 million blocks, 20 years of work.\nAnd no, not slaves — paid, housed workers, archaeologists confirmed it."
+    },
+    {
+      "id": "en_science_hist_02",
+      "category": "science",
+      "questions": [
+        "what was the mali empire",
+        "soundiata keita"
+      ],
+      "keywords": [
+        "mali empire",
+        "soundiata",
+        "west africa"
+      ],
+      "answer": "One of West Africa's greatest empires (13th-16th century) 🏛️\nFounded by Soundiata Keïta, hero of the Kirina battle.\nIt also gave us the Manden Charter, one of the earliest human rights texts. Proud heritage."
+    },
+    {
+      "id": "en_science_hist_03",
+      "category": "science",
+      "questions": [
+        "who was mansa musa",
+        "the richest man in history"
+      ],
+      "keywords": [
+        "mansa musa",
+        "mali",
+        "gold"
+      ],
+      "answer": "Emperor of Mali in the 14th century, often called the richest man in history 👑\nHis pilgrimage to Mecca was so lavish it crashed Egypt's gold price for years.\nMali's gold lit up the world — literally."
+    },
+    {
+      "id": "en_science_hist_04",
+      "category": "science",
+      "questions": [
+        "who was samory toure"
+      ],
+      "keywords": [
+        "samory toure",
+        "guinea",
+        "resistance"
+      ],
+      "answer": "The great Guinean resistance hero against colonization (1830-1900) 🛡️\nHe built an empire and a modern army, holding off the French for 16 years.\nA symbol of dignity for all of Guinea."
+    },
+    {
+      "id": "en_science_hist_05",
+      "category": "science",
+      "questions": [
+        "what was the ghana empire",
+        "the wagadu empire"
+      ],
+      "keywords": [
+        "ghana empire",
+        "wagadu",
+        "soninke"
+      ],
+      "answer": "The first great West African empire (8th-11th century), the Wagadu 🏜️\nIts wealth: gold and salt, controlled by the Soninke.\nToday's Ghana took the name in tribute — but it was located in modern Mali/Mauritania."
+    },
+    {
+      "id": "en_science_hist_06",
+      "category": "science",
+      "questions": [
+        "when did man walk on the moon",
+        "apollo 11"
+      ],
+      "keywords": [
+        "moon",
+        "apollo",
+        "armstrong"
+      ],
+      "answer": "July 20, 1969 🌕\nNeil Armstrong and Buzz Aldrin, Apollo 11.\n'One small step for man, one giant leap for mankind.' The studio theory? 400,000 engineers would laugh 😄"
+    },
+    {
+      "id": "en_science_hist_07",
+      "category": "science",
+      "questions": [
+        "who invented writing",
+        "the first writing"
+      ],
+      "keywords": [
+        "writing",
+        "mesopotamia",
+        "cuneiform"
+      ],
+      "answer": "In Mesopotamia ~5,400 years ago — cuneiform script ✍️\nIt started as crop and cattle counting. Accounting before poetry 😄\nEgyptian hieroglyphs came almost at the same time."
+    },
+    {
+      "id": "en_science_hist_08",
+      "category": "science",
+      "questions": [
+        "who was nelson mandela",
+        "mandela 27 years in prison"
+      ],
+      "keywords": [
+        "mandela",
+        "south africa",
+        "apartheid"
+      ],
+      "answer": "The South African leader who fought apartheid 🕊️\n27 years in prison, then president and symbol of reconciliation.\nHis strongest weapon: forgiveness without weakness. 'No one is born hating.'"
+    },
+    {
+      "id": "en_science_hist_09",
+      "category": "science",
+      "questions": [
+        "what was the gold road",
+        "trans-saharan trade routes"
+      ],
+      "keywords": [
+        "gold road",
+        "caravans",
+        "timbuktu"
+      ],
+      "answer": "The caravan routes linking West Africa to the Maghreb 🐪\nNiger gold traded for salt, books and fabrics.\nTimbuktu, Gao, Oualata: capitals of knowledge and commerce. Africa traded with the world before everyone."
+    },
+    {
+      "id": "en_science_geo_01",
+      "category": "science",
+      "questions": [
+        "what is the largest ocean in the world",
+        "the pacific ocean"
+      ],
+      "keywords": [
+        "pacific",
+        "ocean",
+        "largest"
+      ],
+      "answer": "The Pacific 🌊\nIt alone covers ~30% of Earth's surface.\nBigger than all land combined. An ocean true to its name."
+    },
+    {
+      "id": "en_science_geo_02",
+      "category": "science",
+      "questions": [
+        "what is the largest desert in the world",
+        "the sahara desert"
+      ],
+      "keywords": [
+        "desert",
+        "sahara",
+        "antarctica"
+      ],
+      "answer": "Antarctica, technically — a polar desert ❄️\nThe largest hot desert: the Sahara, 9 million km².\n10,000 years ago the Sahara was green with lakes. Climate dances with time."
+    },
+    {
+      "id": "en_science_geo_03",
+      "category": "science",
+      "questions": [
+        "how many countries in africa"
+      ],
+      "keywords": [
+        "africa",
+        "countries",
+        "54"
+      ],
+      "answer": "54 recognized countries 🌍\nOver 2,000 languages and thousands of cultures.\nAfrica isn't a country, it's a world. The youngest too: median age ~19!"
+    },
+    {
+      "id": "en_science_geo_04",
+      "category": "science",
+      "questions": [
+        "what is the longest river in the world",
+        "the nile or the amazon"
+      ],
+      "keywords": [
+        "nile",
+        "amazon",
+        "river"
+      ],
+      "answer": "A classic debate 😄\nThe Amazon wins on volume (undisputed king) and by some length measures.\nThe Nile keeps ~6,650 km in the books. Both are majestic, that's certain."
+    },
+    {
+      "id": "en_science_geo_05",
+      "category": "science",
+      "questions": [
+        "what is a volcano",
+        "how does a volcano work"
+      ],
+      "keywords": [
+        "volcano",
+        "magma",
+        "eruption"
+      ],
+      "answer": "A chimney to Earth's magma 🌋\nWhen pressure builds, the eruption flows.\nSurprising: volcanic ash enriches soil. Etna's vineyards wouldn't exist without it."
+    },
+    {
+      "id": "en_science_geo_06",
+      "category": "science",
+      "questions": [
+        "why are there seasons",
+        "the seasons of the earth"
+      ],
+      "keywords": [
+        "seasons",
+        "earth",
+        "tilt"
+      ],
+      "answer": "Because of Earth's tilt (23.5°) 🌞\nWhen your hemisphere leans toward the Sun: summer. Away: winter.\nNot the distance to the Sun — the lean. Surprising, right?"
+    },
+    {
+      "id": "en_science_ecolo_01",
+      "category": "science",
+      "questions": [
+        "what is global warming",
+        "climate change explained"
+      ],
+      "keywords": [
+        "climate",
+        "warming",
+        "co2"
+      ],
+      "answer": "Earth is heating up because of our greenhouse gases 🌡️\n+1.2°C since the industrial era — enough to disrupt seasons.\nEvery degree counts: small gestures × 8 billion people make real waves."
+    },
+    {
+      "id": "en_science_ecolo_02",
+      "category": "science",
+      "questions": [
+        "what is the greenhouse effect",
+        "greenhouse effect explained"
+      ],
+      "keywords": [
+        "greenhouse",
+        "effect",
+        "atmosphere"
+      ],
+      "answer": "A natural phenomenon: the atmosphere keeps some of the heat ☀️\nWithout it: -18°C average on Earth, ice everywhere.\nThe problem is excess — too much CO2 = blanket too thick. We want a blanket, not a sauna."
+    },
+    {
+      "id": "en_science_ecolo_03",
+      "category": "science",
+      "questions": [
+        "why are bees important",
+        "bees and pollination"
+      ],
+      "keywords": [
+        "bees",
+        "pollination",
+        "honey"
+      ],
+      "answer": "They pollinate a third of what we eat 🐝\nApples, mangoes, coffee — behind each one, a bee at work.\nEinstein allegedly said: without them, humanity lasts 4 years. One more reason to protect them."
+    },
+    {
+      "id": "en_science_ecolo_04",
+      "category": "science",
+      "questions": [
+        "what is biodiversity",
+        "why protect biodiversity"
+      ],
+      "keywords": [
+        "biodiversity",
+        "species",
+        "ecosystem"
+      ],
+      "answer": "The whole variety of life: animals, plants, insects, microbes 🌿\nA diverse ecosystem resists shocks better — like a team with varied talents.\nEvery extinct species is a thread unraveling from the fabric."
+    },
+    {
+      "id": "en_science_ecolo_05",
+      "category": "science",
+      "questions": [
+        "how to save water daily",
+        "saving water"
+      ],
+      "keywords": [
+        "water",
+        "saving",
+        "habits"
+      ],
+      "answer": "Short showers (1 min less = 12L), tap off while brushing 💧\nFix leaks: a dripping tap = 4L/day gone.\nFreshwater is 3% of Earth's water. Every drop has value."
+    },
+    {
+      "id": "en_science_culture_01",
+      "category": "science",
+      "questions": [
+        "what is a griot",
+        "the west african griot"
+      ],
+      "keywords": [
+        "griot",
+        "memory",
+        "tradition"
+      ],
+      "answer": "The memory keeper of West African societies 🎶\nGenealogist, musician, spokesperson: he preserves the history of families and kingdoms.\nIn Guinea, the griot is the voice of the past speaking to the present."
+    },
+    {
+      "id": "en_science_culture_02",
+      "category": "science",
+      "questions": [
+        "what is ubuntu",
+        "the ubuntu philosophy"
+      ],
+      "keywords": [
+        "ubuntu",
+        "philosophy",
+        "humanity"
+      ],
+      "answer": "'I am because we are' 🤝\nA philosophy from southern Africa: the individual exists through others.\nDesmond Tutu and Mandela shared it with the world. Simple and powerful."
+    },
+    {
+      "id": "en_science_culture_03",
+      "category": "science",
+      "questions": [
+        "how many languages in africa",
+        "african languages"
+      ],
+      "keywords": [
+        "languages",
+        "africa",
+        "swahili"
+      ],
+      "answer": "Over 2,000 languages 🗣️\nSusu, Malinké, Fulani, Yoruba, Swahili, Hausa... each with its worldview.\nSwahili alone is spoken by 150+ million people. The future is multilingual!"
+    },
+    {
+      "id": "en_science_culture_04",
+      "category": "science",
+      "questions": [
+        "why are african proverbs powerful",
+        "an african proverb"
+      ],
+      "keywords": [
+        "proverbs",
+        "wisdom",
+        "africa"
+      ],
+      "answer": "They pack wisdom into a single image 🌍\n'If you want to go fast, go alone. If you want to go far, go together.'\nEvery proverb is a life lesson in one sentence."
+    },
+    {
+      "id": "en_science_culture_05",
+      "category": "science",
+      "questions": [
+        "why are traditional festivals important",
+        "festivals in west africa"
+      ],
+      "keywords": [
+        "festival",
+        "tradition",
+        "community"
+      ],
+      "answer": "They connect generations 🥁\nWeddings, naming ceremonies, harvests: every festival passes on history and values.\nThe more a community celebrates together, the more it holds together."
+    },
+    {
+      "id": "en_science_eco_01",
+      "category": "science",
+      "questions": [
+        "what is inflation",
+        "inflation explained simply"
+      ],
+      "keywords": [
+        "inflation",
+        "prices",
+        "economy"
+      ],
+      "answer": "When prices rise and purchasing power falls 📈\nA little is healthy, too much breaks the economy.\nWarning sign: your market basket costs more for the same list."
+    },
+    {
+      "id": "en_science_eco_02",
+      "category": "science",
+      "questions": [
+        "why save money",
+        "the importance of saving"
+      ],
+      "keywords": [
+        "saving",
+        "money",
+        "security"
+      ],
+      "answer": "Savings are your peace of mind tomorrow 💰\nEven small: 10% of every income, automatically.\nThe 3-month rule: aim for a cushion covering 3 months of expenses. Then invest."
+    },
+    {
+      "id": "en_science_eco_03",
+      "category": "science",
+      "questions": [
+        "what is gdp",
+        "gdp explained"
+      ],
+      "keywords": [
+        "gdp",
+        "economy",
+        "indicator"
+      ],
+      "answer": "Gross Domestic Product: the wealth a country produces in a year 📊\nIt's the economy's thermometer, not people's happiness.\nGDP doesn't count your mother's cooking or laughter — other indicators do 😄"
+    },
+    {
+      "id": "en_science_eco_04",
+      "category": "science",
+      "questions": [
+        "what is an entrepreneur",
+        "the entrepreneurial spirit"
+      ],
+      "keywords": [
+        "entrepreneur",
+        "business",
+        "mindset"
+      ],
+      "answer": "Someone who turns an idea into value for others 💡\nNo need to be Bill Gates: the market vendor innovating in her neighborhood is an entrepreneur.\nThe courage to start + the discipline to continue. That's all."
+    },
+    {
+      "id": "en_science_philo_01",
+      "category": "science",
+      "questions": [
+        "what is philosophy",
+        "what does it mean to philosophize"
+      ],
+      "keywords": [
+        "philosophy",
+        "wisdom",
+        "questions"
+      ],
+      "answer": "'The love of wisdom' — the Greek meaning 🤔\nAsking simple questions about deep things: who am I, what matters?\nNo diploma needed: thinking twice before acting is already philosophy."
+    },
+    {
+      "id": "en_science_philo_02",
+      "category": "science",
+      "questions": [
+        "who was socrates",
+        "socratic doubt"
+      ],
+      "keywords": [
+        "socrates",
+        "greek",
+        "questions"
+      ],
+      "answer": "The Greek philosopher who questioned everyone in the agora 🏛️\n'I know that I know nothing' — doubt as a starting point.\nHis method: keep asking until the real answer appears. The ancient Socrates, today's coach 😄"
+    },
+    {
+      "id": "en_science_philo_03",
+      "category": "science",
+      "questions": [
+        "what is happiness",
+        "how to be happy"
+      ],
+      "keywords": [
+        "happiness",
+        "joy",
+        "life"
+      ],
+      "answer": "The million-dollar question 😊\nResearch says: solid human relationships first, then purpose in what you do.\nMoney helps up to comfort — beyond, it's the quality of your bonds that counts."
+    },
+    {
+      "id": "en_science_nutri_01",
+      "category": "science",
+      "questions": [
+        "why is breakfast important",
+        "healthy breakfast"
+      ],
+      "keywords": [
+        "breakfast",
+        "morning",
+        "energy"
+      ],
+      "answer": "It restarts the body after 8 hours of fasting 🌅\nThe brain needs fuel to work in the morning.\nIdeal: a starch + a fruit + a protein. Quick to make, long-lasting."
+    },
+    {
+      "id": "en_science_nutri_02",
+      "category": "science",
+      "questions": [
+        "what are proteins",
+        "why eat protein"
+      ],
+      "keywords": [
+        "protein",
+        "muscles",
+        "food"
+      ],
+      "answer": "The body's building blocks: muscles, hair, immune defenses 🍗\nFish, eggs, lentils, meat, peanuts — West Africa knows all about it.\nSpread across the day beats one big dinner."
+    },
+    {
+      "id": "en_science_nutri_03",
+      "category": "science",
+      "questions": [
+        "why eat vegetables",
+        "benefits of vegetables"
+      ],
+      "keywords": [
+        "vegetables",
+        "fiber",
+        "vitamins"
+      ],
+      "answer": "Fiber, vitamins, water — the body's complete kit 🥬\nThey also feed your gut's good bacteria (yes, we have useful tenants!).\nSimple goal: color on your plate at every meal."
+    },
+    {
+      "id": "en_science_ocean_01",
+      "category": "science",
+      "questions": [
+        "why is the sea salty",
+        "the salt of the sea"
+      ],
+      "keywords": [
+        "sea",
+        "salt",
+        "ocean"
+      ],
+      "answer": "Rivers have dissolved minerals from rocks for millions of years 🧂\nIt all ends in the ocean, which keeps the salt and evaporates the water.\nSpread that salt over all land: a 150-meter layer. Enough for everyone 😄"
+    },
+    {
+      "id": "en_science_ocean_02",
+      "category": "science",
+      "questions": [
+        "what are tides",
+        "why does the sea rise and fall"
+      ],
+      "keywords": [
+        "tides",
+        "moon",
+        "sea"
+      ],
+      "answer": "The Moon pulls on the ocean 🌙\nTwo tides a day: the water follows lunar attraction.\nFishermen know it best — the sea keeps its schedule."
+    },
+    {
+      "id": "en_science_ocean_03",
+      "category": "science",
+      "questions": [
+        "why are trees important",
+        "the benefits of trees"
+      ],
+      "keywords": [
+        "trees",
+        "oxygen",
+        "shade"
+      ],
+      "answer": "Shade, oxygen, fruit, held soil, cooler air 🌳\nA mature tree absorbs ~20kg of CO2 per year.\nAnd under every tree, a micro-world of life. Planting is sowing freshness."
+    },
+    {
+      "id": "en_science_tech_01",
+      "category": "science",
+      "questions": [
+        "why do planes fly",
+        "how does a plane stay in the air"
+      ],
+      "keywords": [
+        "plane",
+        "flight",
+        "wings"
+      ],
+      "answer": "The wings push air down, the air pushes the plane up ✈️\nIt's lift — Newton's 3rd law in action.\nA 400-ton aircraft at 900 km/h and 10,000m. Physics is explained magic."
+    },
+    {
+      "id": "en_science_tech_02",
+      "category": "science",
+      "questions": [
+        "what is gps",
+        "how does gps work"
+      ],
+      "keywords": [
+        "gps",
+        "satellite",
+        "position"
+      ],
+      "answer": "Your phone listens to satellites that give it time and position 🛰️\nWith 4 satellites it triangulates your position to the meter.\nEinstein's relativity is corrected inside — without it, GPS would drift 10km a day!"
+    },
+    {
+      "id": "en_science_tech_03",
+      "category": "science",
+      "questions": [
+        "how does a battery work",
+        "lithium-ion"
+      ],
+      "keywords": [
+        "battery",
+        "lithium",
+        "energy"
+      ],
+      "answer": "Ions traveling from one electrode to another 🔋\nCharging = sending them home. Discharging = letting them out to work.\nYour phone runs on the energy of... a few grams of lithium."
+    },
+    {
+      "id": "en_science_lang_01",
+      "category": "science",
+      "questions": [
+        "where does the word robot come from",
+        "the origin of the word robot"
+      ],
+      "keywords": [
+        "robot",
+        "czech",
+        "origin"
+      ],
+      "answer": "From the Czech 'robota' = forced labor 🤖\nIt appeared in a 1920 play — sci-fi before its time.\nIrony: the word was born from a story where robots revolt. Hoping ours stay nice 😄"
+    },
+    {
+      "id": "en_science_lang_02",
+      "category": "science",
+      "questions": [
+        "how many languages in the world",
+        "the 7000 languages"
+      ],
+      "keywords": [
+        "languages",
+        "world",
+        "multilingual"
+      ],
+      "answer": "~7,000 living languages 🗣️\nOne dies every 2 weeks — and with it, a way of seeing the world.\nMultilingualism is wealth: you think differently in each language."
+    },
+    {
+      "id": "en_science_ecolo_06",
+      "category": "science",
+      "questions": [
+        "what is solar energy",
+        "solar panels"
+      ],
+      "keywords": [
+        "solar",
+        "panels",
+        "energy"
+      ],
+      "answer": "Turning sunlight into electricity ☀️\nAfrica has the planet's best sunshine — a huge opportunity.\nThe sun gives freely; the panel transforms. The future is bright 😄"
     }
   ],
   "packs": [

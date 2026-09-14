@@ -1664,6 +1664,1323 @@
         "las dos plataformas"
       ],
       "answer": "Genial, podemos hacer ambas 👍\n¿Qué vendes exactamente? ¿Y cuántos mensajes al día más o menos?"
+    },
+    {
+      "id": "es_science_astro_01",
+      "category": "science",
+      "questions": [
+        "qué es una estrella fugaz",
+        "por qué se ven estrellas fugaces"
+      ],
+      "keywords": [
+        "estrella",
+        "cielo",
+        "espacio"
+      ],
+      "answer": "Es un granito de polvo espacial que se quema al entrar en nuestra atmósfera 😊\nResultado: una luz hermosa que cruza el cielo.\n¿Alguna vez le has pedido un deseo a una?"
+    },
+    {
+      "id": "es_science_astro_02",
+      "category": "science",
+      "questions": [
+        "por qué el cielo es azul"
+      ],
+      "keywords": [
+        "cielo",
+        "azul",
+        "luz"
+      ],
+      "answer": "El aire dispersa la luz del sol.\nEl azul es el color que más se dispersa, por eso todo el cielo parece azul.\nAl atardecer gana el rojo 🌅 ¿Bonito, no?"
+    },
+    {
+      "id": "es_science_astro_03",
+      "category": "science",
+      "questions": [
+        "qué es un agujero negro"
+      ],
+      "keywords": [
+        "agujero negro",
+        "espacio",
+        "gravedad"
+      ],
+      "answer": "Una zona donde la gravedad es tan fuerte que ni la luz escapa 🕳️\nImagina una aspiradora cósmica gigante.\n¿Quieres saber cómo los detectamos si son invisibles?"
+    },
+    {
+      "id": "es_science_astro_04",
+      "category": "science",
+      "questions": [
+        "cuántas estrellas hay en el universo"
+      ],
+      "keywords": [
+        "estrellas",
+        "universo"
+      ],
+      "answer": "Imposible contarlas exactamente 😅\nLos científicos estiman unos 200 mil millones de mil millones de estrellas.\nMás que granos de arena en la Tierra. ¿Pone las cosas en perspectiva, no?"
+    },
+    {
+      "id": "es_science_astro_05",
+      "category": "science",
+      "questions": [
+        "se puede vivir en marte",
+        "vida en marte"
+      ],
+      "keywords": [
+        "marte",
+        "vivir",
+        "planeta"
+      ],
+      "answer": "Todavía no. Sin oxígeno, muy frío y sin agua líquida en la superficie 🟥\nPero existen proyectos, como las misiones de SpaceX.\n¿Tú irías a Marte si pudieras?"
+    },
+    {
+      "id": "es_science_astro_06",
+      "category": "science",
+      "questions": [
+        "qué es una galaxia"
+      ],
+      "keywords": [
+        "galaxia",
+        "espacio",
+        "estrellas"
+      ],
+      "answer": "Un enorme grupo de estrellas, gas y polvo que giran juntos 🌌\nNuestra galaxia es la Vía Láctea con ~200 mil millones de estrellas.\nY el universo contiene miles de millones de galaxias. Vertiginoso, ¿no?"
+    },
+    {
+      "id": "es_science_astro_07",
+      "category": "science",
+      "questions": [
+        "cuántos planetas hay en el sistema solar"
+      ],
+      "keywords": [
+        "planetas",
+        "sistema solar"
+      ],
+      "answer": "8 planetas: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno 🪐\n¿Cuál es tu favorito?"
+    },
+    {
+      "id": "es_science_astro_08",
+      "category": "science",
+      "questions": [
+        "qué es la estación espacial internacional",
+        "la eei"
+      ],
+      "keywords": [
+        "estación espacial",
+        "astronautas"
+      ],
+      "answer": "Un laboratorio gigante que orbita la Tierra a 28.000 km/h 🛰️\nLos astronautas viven allí 6 meses haciendo experimentos.\n¡Da la vuelta a la Tierra en 90 minutos: 16 atardeceres al día!"
+    },
+    {
+      "id": "es_science_astro_09",
+      "category": "science",
+      "questions": [
+        "el sol explotará algún día",
+        "el sol morirá"
+      ],
+      "keywords": [
+        "sol",
+        "explotar"
+      ],
+      "answer": "Sí, pero sin pánico 😄\nEl Sol todavía tiene ~5 mil millones de años por delante.\nTiempo de sobra, créeme."
+    },
+    {
+      "id": "es_science_astro_10",
+      "category": "science",
+      "questions": [
+        "qué es un eclipse"
+      ],
+      "keywords": [
+        "eclipse",
+        "sol",
+        "luna"
+      ],
+      "answer": "Cuando un astro se esconde delante de otro 🌑\nEclipse solar: la Luna tapa el Sol. Lunar: la sombra de la Tierra cubre la Luna.\n¿Quieres que busque cuándo será el próximo en tu zona?"
+    },
+    {
+      "id": "es_science_phys_01",
+      "category": "science",
+      "questions": [
+        "qué es la gravedad",
+        "por qué caen los objetos"
+      ],
+      "keywords": [
+        "gravedad",
+        "caer",
+        "tierra"
+      ],
+      "answer": "La fuerza que atrae todo hacia el suelo 🌍\nHace caer la manzana y mantiene la Luna en órbita.\nSin ella flotaríamos todos. Divertido 2 minutos 😄"
+    },
+    {
+      "id": "es_science_phys_02",
+      "category": "science",
+      "questions": [
+        "cuál es la velocidad de la luz"
+      ],
+      "keywords": [
+        "luz",
+        "velocidad",
+        "física"
+      ],
+      "answer": "300.000 km por segundo ⚡\nEn 1 segundo, la luz da 7 vueltas a la Tierra.\nNada va más rápido en el universo. La regla de oro de la física."
+    },
+    {
+      "id": "es_science_phys_03",
+      "category": "science",
+      "questions": [
+        "por qué el trueno llega después del relámpago"
+      ],
+      "keywords": [
+        "trueno",
+        "relámpago",
+        "tormenta"
+      ],
+      "answer": "Porque la luz viaja mucho más rápido que el sonido ⚡\nEl relámpago muestra el golpe, el trueno llega tarde.\nTruco: cuenta los segundos entre ambos, divide entre 3 = distancia en km."
+    },
+    {
+      "id": "es_science_phys_04",
+      "category": "science",
+      "questions": [
+        "qué es un átomo"
+      ],
+      "keywords": [
+        "átomo",
+        "materia",
+        "ciencia"
+      ],
+      "answer": "El ladrillo básico de toda la materia 🔬\nTodo lo que ves — tú, tu móvil, el aire — está hecho de átomos.\nY un átomo es 99,99% vacío. Alucinante 😅"
+    },
+    {
+      "id": "es_science_phys_05",
+      "category": "science",
+      "questions": [
+        "por qué el agua hierve a 100 grados"
+      ],
+      "keywords": [
+        "agua",
+        "hervir",
+        "temperatura"
+      ],
+      "answer": "A 100°C a nivel del mar 💧\nEs el momento en que el agua se convierte en vapor.\nEn la montaña hierve antes — a 3000m sobre 90°C. ¡La pasta tarda más allí!"
+    },
+    {
+      "id": "es_science_phys_06",
+      "category": "science",
+      "questions": [
+        "qué es la energía"
+      ],
+      "keywords": [
+        "energía",
+        "física",
+        "poder"
+      ],
+      "answer": "Lo que hace mover o calentar las cosas ⚡\nSe transforma pero nunca desaparece — la famosa ley de conservación.\nSol, viento, tu comida: todo es energía en movimiento."
+    },
+    {
+      "id": "es_science_phys_07",
+      "category": "science",
+      "questions": [
+        "los tres estados del agua"
+      ],
+      "keywords": [
+        "agua",
+        "hielo",
+        "vapor"
+      ],
+      "answer": "Hielo (sólido), agua (líquido), vapor (gas) 💧\nLa misma molécula, tres trajes según la temperatura.\nLa única sustancia que vemos fácilmente en sus 3 estados en la naturaleza."
+    },
+    {
+      "id": "es_science_chim_01",
+      "category": "science",
+      "questions": [
+        "por qué se oxida el hierro"
+      ],
+      "keywords": [
+        "hierro",
+        "óxido",
+        "metal"
+      ],
+      "answer": "Una reacción entre el hierro, el oxígeno y el agua 🔩\nEl hierro se oxida y forma esa capa naranja llamada óxido.\nSolución: pintar o aceitar el metal para protegerlo de la humedad."
+    },
+    {
+      "id": "es_science_chim_02",
+      "category": "science",
+      "questions": [
+        "por qué la cebolla hace llorar"
+      ],
+      "keywords": [
+        "cebolla",
+        "llorar",
+        "lágrimas"
+      ],
+      "answer": "Al cortarla libera un gas irritante 🧅\nTus ojos producen lágrimas para defenderse.\nTruco de la abuela: enfría la cebolla 15 min antes, o corta bajo el agua."
+    },
+    {
+      "id": "es_science_chim_03",
+      "category": "science",
+      "questions": [
+        "qué es una reacción química"
+      ],
+      "keywords": [
+        "química",
+        "reacción",
+        "transformación"
+      ],
+      "answer": "Cuando unas sustancias se transforman en otras 🧪\nEjemplo: vinagre + bicarbonato = espuma (¡gas!)\nUna vez transformadas, no hay vuelta atrás. ¡La cocina está llena de ellas!"
+    },
+    {
+      "id": "es_science_chim_04",
+      "category": "science",
+      "questions": [
+        "qué es el oxígeno"
+      ],
+      "keywords": [
+        "oxígeno",
+        "aire",
+        "respirar"
+      ],
+      "answer": "El gas que respiramos para vivir 🌬️\nNuestras células queman su combustible gracias a él.\n¿Y quién fabrica más? Los océanos con el fitoplancton — ¡no solo los árboles!"
+    },
+    {
+      "id": "es_science_bio_01",
+      "category": "science",
+      "questions": [
+        "qué es el adn"
+      ],
+      "keywords": [
+        "adn",
+        "genética",
+        "biología"
+      ],
+      "answer": "El manual de instrucciones de todo ser vivo 🧬\nContiene las instrucciones que te hacen ser tú — color de ojos, altura, todo.\nSi desenrollas el ADN de una sola célula: 2 metros. Increíble, ¿no?"
+    },
+    {
+      "id": "es_science_bio_02",
+      "category": "science",
+      "questions": [
+        "cómo fabrican oxígeno las plantas",
+        "qué es la fotosíntesis"
+      ],
+      "keywords": [
+        "fotosíntesis",
+        "plantas",
+        "oxígeno"
+      ],
+      "answer": "Gracias a la fotosíntesis 🌱\nLas plantas capturan la luz del sol, beben CO2 y liberan oxígeno.\nNos hacen vivir, literalmente. Buena razón para regarlas 😄"
+    },
+    {
+      "id": "es_science_bio_03",
+      "category": "science",
+      "questions": [
+        "por qué las hojas son verdes",
+        "qué es la clorofila"
+      ],
+      "keywords": [
+        "hojas",
+        "verde",
+        "clorofila"
+      ],
+      "answer": "Por la clorofila 🍃\nEs la molécula que captura la luz del sol para alimentar la planta.\nEn otoño se esconde y dejan ver los amarillos y naranjas. La naturaleza hace el espectáculo."
+    },
+    {
+      "id": "es_science_bio_04",
+      "category": "science",
+      "questions": [
+        "por qué bostezamos",
+        "el bostezo es contagioso"
+      ],
+      "keywords": [
+        "bostezo",
+        "sueño",
+        "contagioso"
+      ],
+      "answer": "Para oxigenar el cerebro cuando está en reposo 😴\nY sí, el bostezo es contagioso — hasta leer la palabra da ganas ;)\n¿Acabas de bostezar leyendo esto? Confiesa 😄"
+    },
+    {
+      "id": "es_science_bio_05",
+      "category": "science",
+      "questions": [
+        "por qué ronronean los gatos"
+      ],
+      "keywords": [
+        "gatos",
+        "ronroneo",
+        "animales"
+      ],
+      "answer": "Para comunicar bienestar y a veces calmarse 🐈\nEl ronroneo vibra entre 25 y 150 Hz, una frecuencia que favorece la curación de huesos.\nUn gato es casi un médico de bolsillo con bigotes."
+    },
+    {
+      "id": "es_science_bio_06",
+      "category": "science",
+      "questions": [
+        "qué es la evolución",
+        "la teoría de la evolución"
+      ],
+      "keywords": [
+        "evolución",
+        "darwin",
+        "especies"
+      ],
+      "answer": "La idea de que las especies cambian lentamente con las generaciones 🐒\nLos que mejor se adaptan sobreviven y transmiten sus rasgos.\nDarwin lo explicó con los picos de los pinzones de Galápagos. Simple y genial."
+    },
+    {
+      "id": "es_science_bio_07",
+      "category": "science",
+      "questions": [
+        "cuántas especies hay en la tierra"
+      ],
+      "keywords": [
+        "especies",
+        "animales",
+        "biodiversidad"
+      ],
+      "answer": "~8,7 millones estimadas, y solo hemos descubierto una cuarta parte 🌍\nCada año se encuentran miles nuevas.\n¡Conocemos mejor la superficie de Marte que el fondo del mar!"
+    },
+    {
+      "id": "es_science_sante_01",
+      "category": "science",
+      "questions": [
+        "por qué late el corazón"
+      ],
+      "keywords": [
+        "corazón",
+        "sangre",
+        "latido"
+      ],
+      "answer": "Es tu motor bombeando sangre por todo el cuerpo ❤️\n~100.000 latidos al día sin que lo pienses.\nCuídalo: muévete, duerme, come bien. Trabaja para ti."
+    },
+    {
+      "id": "es_science_sante_02",
+      "category": "science",
+      "questions": [
+        "qué es el sistema inmunológico"
+      ],
+      "keywords": [
+        "sistema inmunológico",
+        "defensas",
+        "salud"
+      ],
+      "answer": "Tu ejército interior contra los microbios 🛡️\nPiel, glóbulos blancos, anticuerpos: varias líneas de defensa.\nPara entrenarlo: sueño, frutas, verduras y buen humor. En serio."
+    },
+    {
+      "id": "es_science_sante_03",
+      "category": "science",
+      "questions": [
+        "por qué estornudamos"
+      ],
+      "keywords": [
+        "estornudo",
+        "nariz",
+        "reflejo"
+      ],
+      "answer": "Una defensa: el cuerpo expulsa un intruso a 160 km/h 💨\nNo se puede estornudar con los ojos abiertos — el reflejo los cierra.\n¡Salud! 😄"
+    },
+    {
+      "id": "es_science_sante_04",
+      "category": "science",
+      "questions": [
+        "cuántos huesos tiene el cuerpo humano"
+      ],
+      "keywords": [
+        "huesos",
+        "esqueleto",
+        "cuerpo"
+      ],
+      "answer": "206 en un adulto 🦴\n¡Pero un bebé tiene ~300! Algunos se fusionan al crecer.\nEl más pequeño: el estribo del oído, 3mm. El más grande: el fémur."
+    },
+    {
+      "id": "es_science_sante_05",
+      "category": "science",
+      "questions": [
+        "por qué la sangre es roja"
+      ],
+      "keywords": [
+        "sangre",
+        "roja",
+        "hemoglobina"
+      ],
+      "answer": "Por el hierro de la hemoglobina 🩸\nLa sangre pobre en oxígeno es más oscura, la oxigenada más roja viva.\n¿La famosa 'sangre azul' de las venas? Mito — solo está menos iluminada 😄"
+    },
+    {
+      "id": "es_science_sante_06",
+      "category": "science",
+      "questions": [
+        "por qué hay que dormir",
+        "es importante dormir"
+      ],
+      "keywords": [
+        "dormir",
+        "descanso",
+        "noche"
+      ],
+      "answer": "El sueño es el mantenimiento del cerebro 😴\nConsolida la memoria, repara el cuerpo y limpia los desechos cerebrales.\n7-9 horas es lo ideal. Una buena noche vale más que 3 cafés."
+    },
+    {
+      "id": "es_science_sante_07",
+      "category": "science",
+      "questions": [
+        "qué es una vacuna",
+        "cómo funcionan las vacunas"
+      ],
+      "keywords": [
+        "vacuna",
+        "inmunidad",
+        "medicina"
+      ],
+      "answer": "Un entrenamiento para tu sistema inmunológico 💉\nLe mostramos un trozo inofensivo del microbio para que aprenda a combatirlo.\nComo un sparring antes del combate real."
+    },
+    {
+      "id": "es_science_sante_08",
+      "category": "science",
+      "questions": [
+        "cuánta agua beber al día"
+      ],
+      "keywords": [
+        "agua",
+        "beber",
+        "hidratación"
+      ],
+      "answer": "Unos 1,5 a 2 litros al día 💧\nTu cuerpo es 60% agua — el cerebro 75%.\nNo hace falta contar vasos: la sed es una buena guía."
+    },
+    {
+      "id": "es_science_psy_01",
+      "category": "science",
+      "questions": [
+        "por qué procrastinamos",
+        "qué es la procrastinación"
+      ],
+      "keywords": [
+        "procrastinación",
+        "retraso",
+        "hábitos"
+      ],
+      "answer": "Nuestro cerebro prefiere la recompensa inmediata 😅\nScrollear TikTok = placer ahora, la tarea = placer después.\nTruco anti-procrastinación: la regla de los 2 minutos. Empieza solo 2 minutos. El resto suele venir solo."
+    },
+    {
+      "id": "es_science_psy_02",
+      "category": "science",
+      "questions": [
+        "qué es el estrés",
+        "cómo gestionar el estrés"
+      ],
+      "keywords": [
+        "estrés",
+        "ansiedad",
+        "calma"
+      ],
+      "answer": "La alarma natural del cuerpo 🚨\nÚtil en dosis pequeñas, agotador en grandes.\nLo más simple: inhala 4 segundos, aguantA 4, exhala 6. Repite 5 veces. Funciona de verdad."
+    },
+    {
+      "id": "es_science_psy_03",
+      "category": "science",
+      "questions": [
+        "por qué la música nos hace felices"
+      ],
+      "keywords": [
+        "música",
+        "felicidad",
+        "dopamina"
+      ],
+      "answer": "La música libera dopamina, la hormona del placer 🎵\nToca la memoria y las emociones a la vez.\nPor eso una canción te devuelve 10 años atrás en 3 segundos."
+    },
+    {
+      "id": "es_science_psy_04",
+      "category": "science",
+      "questions": [
+        "cómo aprender mejor y recordar",
+        "técnicas de memorización"
+      ],
+      "keywords": [
+        "aprender",
+        "memoria",
+        "estudio"
+      ],
+      "answer": "La repetición espaciada: repasar a D+1, D+3, D+7, D+21 📚\nEl cerebro retiene lo que vuelve, no lo que estudias 4 horas seguidas.\nY explicar en voz alta lo que aprendes — efecto profe instantáneo 😄"
+    },
+    {
+      "id": "es_science_psy_05",
+      "category": "science",
+      "questions": [
+        "qué es la inteligencia emocional"
+      ],
+      "keywords": [
+        "inteligencia emocional",
+        "eq",
+        "emociones"
+      ],
+      "answer": "La capacidad de entender y gestionar tus emociones — y las de los demás 🧠\nA menudo pesa más que el IQ en el trabajo.\nConcretamente: reconocer tu enfado antes de enviar el mensaje."
+    },
+    {
+      "id": "es_science_math_01",
+      "category": "science",
+      "questions": [
+        "qué es pi",
+        "el número pi"
+      ],
+      "keywords": [
+        "pi",
+        "círculo",
+        "mates"
+      ],
+      "answer": "El número secreto de los círculos: π ≈ 3,14159 🔵\nCircunferencia ÷ diámetro = siempre π, cualquier círculo.\nSe conocen miles de millones de decimales. Los primeros 10 sirven para casi todo 😄"
+    },
+    {
+      "id": "es_science_math_02",
+      "category": "science",
+      "questions": [
+        "por qué el cero es importante",
+        "quién inventó el cero"
+      ],
+      "keywords": [
+        "cero",
+        "mates",
+        "india"
+      ],
+      "answer": "El cero se inventó en India y viajó por el mundo árabe 🔄\nSin él: no hay cálculo moderno, ni informática, nada.\nUna 'nada' que cambió el mundo. Buena lección, ¿no?"
+    },
+    {
+      "id": "es_science_math_03",
+      "category": "science",
+      "questions": [
+        "qué es un número primo"
+      ],
+      "keywords": [
+        "números primos",
+        "mates",
+        "divisores"
+      ],
+      "answer": "Un número divisible solo entre 1 y sí mismo 🔢\n2, 3, 5, 7, 11, 13...\nSon los átomos de las mates — ¡el cifrado de tu banco se basa en ellos!"
+    },
+    {
+      "id": "es_science_math_04",
+      "category": "science",
+      "questions": [
+        "para qué sirven las mates en la vida diaria"
+      ],
+      "keywords": [
+        "mates",
+        "vida diaria",
+        "lógica"
+      ],
+      "answer": "En todas partes: calcular un precio, cocinar una receta, gestionar un presupuesto 🧮\nIncluso la música y los videojuegos están llenos.\nLas mates son el idioma de la lógica. Y la lógica sirve a diario."
+    },
+    {
+      "id": "es_science_ia_01",
+      "category": "science",
+      "questions": [
+        "qué es la inteligencia artificial en general",
+        "cómo funciona la ia"
+      ],
+      "keywords": [
+        "ia",
+        "inteligencia artificial",
+        "aprendizaje"
+      ],
+      "answer": "Programas que aprenden de ejemplos 🤖\nEn vez de programar todas las reglas, mostramos miles de ejemplos y la máquina detecta patrones.\nPor cierto, creamos IA para empresas en KOMARA — pero aquí te cuento la ciencia 😄"
+    },
+    {
+      "id": "es_science_ia_02",
+      "category": "science",
+      "questions": [
+        "qué es el machine learning"
+      ],
+      "keywords": [
+        "machine learning",
+        "datos",
+        "entrenamiento"
+      ],
+      "answer": "La rama de la IA donde la máquina aprende de los datos 📊\nLe enseñas 1000 gatos y acaba reconociendo gatos sola.\nExactamente lo que hacemos con nuestros bots: aprenden tus respuestas para sonar como tú 😊"
+    },
+    {
+      "id": "es_science_ia_03",
+      "category": "science",
+      "questions": [
+        "cómo funciona internet"
+      ],
+      "keywords": [
+        "internet",
+        "red",
+        "cables"
+      ],
+      "answer": "Una red de cables, servidores y protocolos 🌐\nTu petición viaja a veces miles de km en milisegundos.\n¿El cable que une Europa con África Occidental? Pasa bajo el océano. De verdad."
+    },
+    {
+      "id": "es_science_ia_04",
+      "category": "science",
+      "questions": [
+        "qué es un algoritmo"
+      ],
+      "keywords": [
+        "algoritmo",
+        "instrucciones",
+        "pasos"
+      ],
+      "answer": "Una secuencia de instrucciones para resolver un problema ⚙️\nUna receta de cocina es un algoritmo: pasos en orden, resultado garantizado.\nEstán en todas partes: GPS, recomendaciones de YouTube, filtros de correo."
+    },
+    {
+      "id": "es_science_ia_05",
+      "category": "science",
+      "questions": [
+        "qué es la nube",
+        "el cloud"
+      ],
+      "keywords": [
+        "nube",
+        "almacenamiento",
+        "servidores"
+      ],
+      "answer": "Guardar y procesar datos en servidores remotos ☁️\nTus fotos de WhatsApp viven en centros de datos.\nVentaja: acceso desde cualquier lugar. También es lo que mantiene nuestros bots 24/7 😊"
+    },
+    {
+      "id": "es_science_ia_06",
+      "category": "science",
+      "questions": [
+        "qué es la ciberseguridad",
+        "cómo protegerse de los piratas"
+      ],
+      "keywords": [
+        "ciberseguridad",
+        "contraseña",
+        "hackers"
+      ],
+      "answer": "El arte de proteger tus datos y sistemas 🔐\nRegla 1: contraseñas distintas y largas en todas partes.\nRegla 2: desconfía de los enlaces demasiado bonitos. El pirata usa la curiosidad, no la técnica."
+    },
+    {
+      "id": "es_science_ia_07",
+      "category": "science",
+      "questions": [
+        "la ia reemplazará a los humanos",
+        "es la ia un peligro para el empleo"
+      ],
+      "keywords": [
+        "ia",
+        "empleo",
+        "futuro"
+      ],
+      "answer": "Reemplaza tareas, no personas 🤝\nQuienes la usan reemplazan a quienes la ignoran.\nNuestro enfoque en KOMARA: la IA hace lo repetitivo, el humano guarda la relación. Lo mejor de ambos mundos."
+    },
+    {
+      "id": "es_science_ia_08",
+      "category": "science",
+      "questions": [
+        "qué es el 5g"
+      ],
+      "keywords": [
+        "5g",
+        "red",
+        "móvil"
+      ],
+      "answer": "La 5ª generación de red móvil: más rápida y fluida 📶\nLatencia casi nula: perfecta para videollamadas, juegos y objetos conectados.\nUna película HD descargada en segundos. ¡El futuro llega rápido!"
+    },
+    {
+      "id": "es_science_hist_01",
+      "category": "science",
+      "questions": [
+        "quién construyó las pirámides de egipto"
+      ],
+      "keywords": [
+        "pirámides",
+        "egipto",
+        "faraones"
+      ],
+      "answer": "Los egipcios antiguos, hace más de 4500 años 🔺\nLa gran pirámide de Guiza: 2,3 millones de bloques, 20 años de obra.\nY no, no esclavos: trabajadores pagados y alojados, lo confirmaron los arqueólogos."
+    },
+    {
+      "id": "es_science_hist_02",
+      "category": "science",
+      "questions": [
+        "qué era el imperio de mali",
+        "soundiata keita"
+      ],
+      "keywords": [
+        "imperio de mali",
+        "soundiata",
+        "áfrica occidental"
+      ],
+      "answer": "Uno de los mayores imperios de África Occidental (siglos 13-16) 🏛️\nFundado por Soundiata Keïta, héroe de la batalla de Kirina.\nTambién nos dio la Carta del Mandén, uno de los primeros textos sobre derechos humanos. Orgullo heredado."
+    },
+    {
+      "id": "es_science_hist_03",
+      "category": "science",
+      "questions": [
+        "quién era mansa musa",
+        "el hombre más rico de la historia"
+      ],
+      "keywords": [
+        "mansa musa",
+        "mali",
+        "oro"
+      ],
+      "answer": "Emperador de Mali en el siglo 14, citado a menudo como el hombre más rico de la historia 👑\nSu peregrinación a La Meca fue tan fastuosa que hundió el precio del oro en Egipto durante años.\nEl oro de Mali iluminó el mundo — literalmente."
+    },
+    {
+      "id": "es_science_hist_04",
+      "category": "science",
+      "questions": [
+        "quién era samory touré"
+      ],
+      "keywords": [
+        "samory touré",
+        "guinea",
+        "resistencia"
+      ],
+      "answer": "El gran resistente guineano frente a la colonización (1830-1900) 🛡️\nConstruyó un imperio y un ejército moderno, y resistió a los franceses 16 años.\nUn símbolo de dignidad para toda Guinea."
+    },
+    {
+      "id": "es_science_hist_05",
+      "category": "science",
+      "questions": [
+        "qué era el imperio de ghana",
+        "el imperio wagadu"
+      ],
+      "keywords": [
+        "imperio de ghana",
+        "wagadu",
+        "soninké"
+      ],
+      "answer": "El primer gran imperio de África Occidental (siglos 8-11), el Wagadu 🏜️\nSu riqueza: el oro y la sal, controlados por los soninké.\nEl Ghana actual tomó el nombre en homenaje — pero estaba en el actual Mali/Mauritania."
+    },
+    {
+      "id": "es_science_hist_06",
+      "category": "science",
+      "questions": [
+        "cuándo caminó el hombre en la luna",
+        "apollo 11"
+      ],
+      "keywords": [
+        "luna",
+        "apollo",
+        "armstrong"
+      ],
+      "answer": "El 20 de julio de 1969 🌕\nNeil Armstrong y Buzz Aldrin, misión Apolo 11.\n'Un pequeño paso para el hombre, un gran salto para la humanidad.' ¿La teoría del estudio? 400.000 ingenieros se reirían 😄"
+    },
+    {
+      "id": "es_science_hist_07",
+      "category": "science",
+      "questions": [
+        "quién inventó la escritura",
+        "la primera escritura"
+      ],
+      "keywords": [
+        "escritura",
+        "mesopotamia",
+        "cuneiforme"
+      ],
+      "answer": "En Mesopotamia hace ~5400 años — la escritura cuneiforme ✍️\nAl principio era para contar cosechas y ganado. La contabilidad antes que la poesía 😄\nLos jeroglífos egipcios llegaron casi al mismo tiempo."
+    },
+    {
+      "id": "es_science_hist_08",
+      "category": "science",
+      "questions": [
+        "quién era nelson mandela",
+        "mandela 27 años en prisión"
+      ],
+      "keywords": [
+        "mandela",
+        "sudáfrica",
+        "apartheid"
+      ],
+      "answer": "El líder sudafricano que luchó contra el apartheid 🕊️\n27 años en prisión, luego presidente y símbolo de reconciliación.\nSu arma más fuerte: el perdón sin debilidad. 'Nadie nace odiando.'"
+    },
+    {
+      "id": "es_science_hist_09",
+      "category": "science",
+      "questions": [
+        "qué era la ruta del oro",
+        "las rutas comerciales transaharianas"
+      ],
+      "keywords": [
+        "ruta del oro",
+        "caravanas",
+        "tombuctú"
+      ],
+      "answer": "Las rutas de caravanas que unían África Occidental con el Magreb 🐪\nOro del Níger a cambio de sal, libros y telas.\nTombuctú, Gao, Ualata: metrópolis del saber y el comercio. África comerciaba con el mundo antes que nadie."
+    },
+    {
+      "id": "es_science_geo_01",
+      "category": "science",
+      "questions": [
+        "cuál es el océano más grande del mundo",
+        "el océano pacífico"
+      ],
+      "keywords": [
+        "pacífico",
+        "océano",
+        "grande"
+      ],
+      "answer": "El Pacífico 🌊\nÉl solo cubre ~30% de la superficie de la Tierra.\nMás grande que todas las tierras emergidas juntas. Un océano fiel a su nombre."
+    },
+    {
+      "id": "es_science_geo_02",
+      "category": "science",
+      "questions": [
+        "cuál es el desierto más grande del mundo",
+        "el desierto del sahara"
+      ],
+      "keywords": [
+        "desierto",
+        "sahara",
+        "antártida"
+      ],
+      "answer": "La Antártida, técnicamente — un desierto polar ❄️\nEl desierto caliente más grande: el Sáhara, 9 millones de km².\nHace 10.000 años el Sáhara era verde con lagos. El clima baila con el tiempo."
+    },
+    {
+      "id": "es_science_geo_03",
+      "category": "science",
+      "questions": [
+        "cuántos países hay en áfrica"
+      ],
+      "keywords": [
+        "áfrica",
+        "países",
+        "54"
+      ],
+      "answer": "54 países reconocidos 🌍\nMás de 2000 lenguas y miles de culturas.\nÁfrica no es un país, es un mundo. Y el más joven: ¡mediana de edad ~19 años!"
+    },
+    {
+      "id": "es_science_geo_04",
+      "category": "science",
+      "questions": [
+        "cuál es el río más largo del mundo",
+        "el nilo o el amazonas"
+      ],
+      "keywords": [
+        "nilo",
+        "amazonas",
+        "río"
+      ],
+      "answer": "Debate clásico 😄\nEl Amazonas gana en volumen (rey indiscutible) y según algunas mediciones en longitud.\nEl Nilo mantiene ~6650 km en los libros. Los dos son majestuosos."
+    },
+    {
+      "id": "es_science_geo_05",
+      "category": "science",
+      "questions": [
+        "qué es un volcán",
+        "cómo funciona un volcán"
+      ],
+      "keywords": [
+        "volcán",
+        "magma",
+        "erupción"
+      ],
+      "answer": "Una chimenea hacia el magma de la Tierra 🌋\nCuando la presión sube, la erupción fluye.\nSorprendente: las cenizas volcánicas enriquecen los suelos. Los viñedos del Etna no existirían sin él."
+    },
+    {
+      "id": "es_science_geo_06",
+      "category": "science",
+      "questions": [
+        "por qué hay estaciones",
+        "las estaciones de la tierra"
+      ],
+      "keywords": [
+        "estaciones",
+        "tierra",
+        "inclinación"
+      ],
+      "answer": "Por la inclinación de la Tierra (23,5°) 🌞\nCuando tu hemisferio se inclina hacia el Sol: verano. Lejos: invierno.\nNo es la distancia al Sol — es la inclinación. ¿Sorprendente, no?"
+    },
+    {
+      "id": "es_science_ecolo_01",
+      "category": "science",
+      "questions": [
+        "qué es el calentamiento global",
+        "el cambio climático explicado"
+      ],
+      "keywords": [
+        "clima",
+        "calentamiento",
+        "co2"
+      ],
+      "answer": "La Tierra se calienta por nuestros gases de efecto invernadero 🌡️\n+1,2°C desde la era industrial — suficiente para desregular las estaciones.\nCada grado cuenta: pequeños gestos × 8 mil millones hacen olas reales."
+    },
+    {
+      "id": "es_science_ecolo_02",
+      "category": "science",
+      "questions": [
+        "qué es el efecto invernadero",
+        "el efecto invernadero explicado"
+      ],
+      "keywords": [
+        "efecto invernadero",
+        "atmósfera"
+      ],
+      "answer": "Un fenómeno natural: la atmósfera retiene parte del calor ☀️\nSin él: -18°C de media en la Tierra, hielo por todas partes.\nEl problema es el exceso — demasiado CO2 = manta demasiado gruesa. Queremos una manta, no un sauna."
+    },
+    {
+      "id": "es_science_ecolo_03",
+      "category": "science",
+      "questions": [
+        "por qué son importantes las abejas",
+        "las abejas y la polinización"
+      ],
+      "keywords": [
+        "abejas",
+        "polinización",
+        "miel"
+      ],
+      "answer": "Polinizan un tercio de lo que comemos 🐝\nManzanas, mangos, café — detrás de cada uno, una abeja trabajando.\nEinstein decía: sin ellas, la humanidad duraría 4 años. Una razón más para protegerlas."
+    },
+    {
+      "id": "es_science_ecolo_04",
+      "category": "science",
+      "questions": [
+        "qué es la biodiversidad",
+        "por qué proteger la biodiversidad"
+      ],
+      "keywords": [
+        "biodiversidad",
+        "especies",
+        "ecosistema"
+      ],
+      "answer": "Toda la variedad de lo vivo: animales, plantas, insectos, microbios 🌿\nUn ecosistema diversificado resiste mejor los golpes — como un equipo con talentos variados.\nCada especie extinta es un hilo que se desteje."
+    },
+    {
+      "id": "es_science_ecolo_05",
+      "category": "science",
+      "questions": [
+        "cómo ahorrar agua a diario",
+        "ahorrar agua"
+      ],
+      "keywords": [
+        "agua",
+        "ahorro",
+        "hábitos"
+      ],
+      "answer": "Duchas cortas (1 min menos = 12L), grifo cerrado al cepillarte 💧\nRepara las fugas: un grifo que gotea = 4L/día perdidos.\nEl agua dulce es el 3% del agua del planeta. Cada gota vale."
+    },
+    {
+      "id": "es_science_culture_01",
+      "category": "science",
+      "questions": [
+        "qué es un griot",
+        "el griot africano"
+      ],
+      "keywords": [
+        "griot",
+        "memoria",
+        "tradición"
+      ],
+      "answer": "El guardián de la memoria en las sociedades de África Occidental 🎶\nGenealogista, músico, portavoz: conserva la historia de familias y reinos.\nEn Guinea, el griot es la voz del pasado hablando al presente."
+    },
+    {
+      "id": "es_science_culture_02",
+      "category": "science",
+      "questions": [
+        "qué es ubuntu",
+        "la filosofía ubuntu"
+      ],
+      "keywords": [
+        "ubuntu",
+        "filosofía",
+        "humanidad"
+      ],
+      "answer": "«Soy porque somos» 🤝\nUna filosofía del sur de África: el individuo existe a través de los otros.\nDesmond Tutu y Mandela la dieron a conocer al mundo. Simple y poderosa."
+    },
+    {
+      "id": "es_science_culture_03",
+      "category": "science",
+      "questions": [
+        "cuántas lenguas hay en áfrica",
+        "las lenguas africanas"
+      ],
+      "keywords": [
+        "lenguas",
+        "áfrica",
+        "suajili"
+      ],
+      "answer": "Más de 2000 lenguas 🗣️\nSusu, Malinké, Peul, Yoruba, Suajili, Haussa... cada una con su visión del mundo.\n¡Solo el suajili lo hablan más de 150 millones!"
+    },
+    {
+      "id": "es_science_culture_04",
+      "category": "science",
+      "questions": [
+        "por qué son fuertes los proverbios africanos",
+        "un proverbio africano"
+      ],
+      "keywords": [
+        "proverbios",
+        "sabiduría",
+        "áfrica"
+      ],
+      "answer": "Condensan la sabiduría en una imagen 🌍\n«Si quieres ir rápido, ve solo. Si quieres llegar lejos, ve acompañado.»\nCada proverbio es un curso de vida en una frase."
+    },
+    {
+      "id": "es_science_culture_05",
+      "category": "science",
+      "questions": [
+        "por qué son importantes las fiestas tradicionales",
+        "las fiestas en áfrica occidental"
+      ],
+      "keywords": [
+        "fiesta",
+        "tradición",
+        "comunidad"
+      ],
+      "answer": "Conectan a las generaciones 🥁\nBodas, bautizos, cosechas: cada fiesta transmite historia y valores.\nCuanto más celebra junto una comunidad, más unida se mantiene."
+    },
+    {
+      "id": "es_science_eco_01",
+      "category": "science",
+      "questions": [
+        "qué es la inflación",
+        "la inflación explicada"
+      ],
+      "keywords": [
+        "inflación",
+        "precios",
+        "economía"
+      ],
+      "answer": "Cuando los precios suben y el poder de compra baja 📈\nUn poco es sano, demasiado rompe la economía.\nSeñal de alerta: tu cesta del mercado cuesta más por la misma lista."
+    },
+    {
+      "id": "es_science_eco_02",
+      "category": "science",
+      "questions": [
+        "por qué ahorrar dinero",
+        "la importancia de ahorrar"
+      ],
+      "keywords": [
+        "ahorro",
+        "dinero",
+        "seguridad"
+      ],
+      "answer": "El ahorro es tu tranquilidad mañana 💰\nAunque sea poco: 10% de cada entrada, automático.\nLa regla de los 3 meses: apunta a un colchón que cubra 3 meses de gastos. Después, invierte."
+    },
+    {
+      "id": "es_science_eco_03",
+      "category": "science",
+      "questions": [
+        "qué es el pib",
+        "el pib explicado"
+      ],
+      "keywords": [
+        "pib",
+        "economía",
+        "indicador"
+      ],
+      "answer": "El Producto Interior Bruto: la riqueza que produce un país en un año 📊\nEs el termómetro de la economía, no la felicidad de la gente.\nEl PIB no cuenta la cocina de tu madre ni las risas — para eso hay otros indicadores 😄"
+    },
+    {
+      "id": "es_science_eco_04",
+      "category": "science",
+      "questions": [
+        "qué es un emprendedor",
+        "el espíritu emprendedor"
+      ],
+      "keywords": [
+        "emprendedor",
+        "negocio",
+        "mentalidad"
+      ],
+      "answer": "Alguien que transforma una idea en valor para los demás 💡\nNo hace falta ser Bill Gates: la vendedora que innova en su barrio es emprendedora.\nLa audacia de empezar + la disciplina de continuar. Eso es todo."
+    },
+    {
+      "id": "es_science_philo_01",
+      "category": "science",
+      "questions": [
+        "qué es la filosofía",
+        "qué significa filosofar"
+      ],
+      "keywords": [
+        "filosofía",
+        "sabiduría",
+        "preguntas"
+      ],
+      "answer": "«El amor a la sabiduría» — el sentido griego 🤔\nHacer preguntas simples sobre cosas profundas: ¿quién soy, qué importa?\nNo hace falta un título: pensar dos veces antes de actuar ya es filosofar."
+    },
+    {
+      "id": "es_science_philo_02",
+      "category": "science",
+      "questions": [
+        "quién era sócrates",
+        "la duda socrática"
+      ],
+      "keywords": [
+        "sócrates",
+        "griego",
+        "preguntas"
+      ],
+      "answer": "El filósofo griego que cuestionaba a todos en el ágora 🏛️\n«Solo sé que no sé nada» — la duda como punto de partida.\nSu método: preguntar hasta que aparece la verdadera respuesta. El Sócrates antiguo, el coach de hoy 😄"
+    },
+    {
+      "id": "es_science_philo_03",
+      "category": "science",
+      "questions": [
+        "qué es la felicidad",
+        "cómo ser feliz"
+      ],
+      "keywords": [
+        "felicidad",
+        "alegría",
+        "vida"
+      ],
+      "answer": "La pregunta del millón 😊\nLa investigación dice: relaciones humanas sólidas primero, luego sentido en lo que haces.\nEl dinero ayuda hasta el confort — después, es la calidad de tus vínculos lo que cuenta."
+    },
+    {
+      "id": "es_science_nutri_01",
+      "category": "science",
+      "questions": [
+        "por qué es importante el desayuno",
+        "el desayuno saludable"
+      ],
+      "keywords": [
+        "desayuno",
+        "mañana",
+        "energía"
+      ],
+      "answer": "Reinicia el cuerpo tras 8 horas de ayuno 🌅\nEl cerebro necesita combustible para funcionar por la mañana.\nIdeal: un féculento + una fruta + una proteína. Rápido de hacer, duradero."
+    },
+    {
+      "id": "es_science_nutri_02",
+      "category": "science",
+      "questions": [
+        "qué son las proteínas",
+        "por qué comer proteínas"
+      ],
+      "keywords": [
+        "proteínas",
+        "músculos",
+        "comida"
+      ],
+      "answer": "Los ladrillos del cuerpo: músculos, pelo, defensas inmunes 🍗\nPescado, huevos, lentejas, carne, cacahuetes — África Occidental sabe mucho de esto.\nRepartir durante el día mejor que una gran cena sola."
+    },
+    {
+      "id": "es_science_nutri_03",
+      "category": "science",
+      "questions": [
+        "por qué comer verduras",
+        "los beneficios de las verduras"
+      ],
+      "keywords": [
+        "verduras",
+        "fibra",
+        "vitaminas"
+      ],
+      "answer": "Fibra, vitaminas, agua — el kit completo del cuerpo 🥬\nTambién alimentan las bacterias buenas del intestino (¡sí, tenemos inquilinos útiles!).\nObjetivo simple: color en el plato en cada comida."
+    },
+    {
+      "id": "es_science_ocean_01",
+      "category": "science",
+      "questions": [
+        "por qué el mar es salado",
+        "la sal del mar"
+      ],
+      "keywords": [
+        "mar",
+        "sal",
+        "océano"
+      ],
+      "answer": "Los ríos disuelven minerales de las rochas desde hace millones de años 🧂\nTodo acaba en el océano, que guarda la sal y evapora el agua.\nSi repartiéramos esa sal sobre la tierra: una capa de 150 metros."
+    },
+    {
+      "id": "es_science_ocean_02",
+      "category": "science",
+      "questions": [
+        "qué son las mareas",
+        "por qué sube y baja el mar"
+      ],
+      "keywords": [
+        "mareas",
+        "luna",
+        "mar"
+      ],
+      "answer": "La Luna tira del océano 🌙\nDos mareas al día: el agua sigue la atracción lunar.\nLos pescadores lo saben mejor que nadie — el mar cumple su horario."
+    },
+    {
+      "id": "es_science_ocean_03",
+      "category": "science",
+      "questions": [
+        "por qué son importantes los árboles",
+        "los beneficios de los árboles"
+      ],
+      "keywords": [
+        "árboles",
+        "oxígeno",
+        "sombra"
+      ],
+      "answer": "Sombra, oxígeno, frutas, suelos sujetados, aire fresco 🌳\nUn árbol adulto absorbe ~20kg de CO2 al año.\nY bajo cada árbol, un micromundo de vida. Plantar es sembrar frescura."
+    },
+    {
+      "id": "es_science_tech_01",
+      "category": "science",
+      "questions": [
+        "por qué vuelan los aviones",
+        "cómo se mantiene un avión en el aire"
+      ],
+      "keywords": [
+        "avión",
+        "vuelo",
+        "alas"
+      ],
+      "answer": "Las alas empujan el aire hacia abajo, el aire empuja el avión hacia arriba ✈️\nEs la sustentación — la 3ª ley de Newton en acción.\nUn avión de 400 toneladas a 900 km/h y 10.000m. La física es magia explicada."
+    },
+    {
+      "id": "es_science_tech_02",
+      "category": "science",
+      "questions": [
+        "qué es el gps",
+        "cómo funciona el gps"
+      ],
+      "keywords": [
+        "gps",
+        "satélite",
+        "posición"
+      ],
+      "answer": "Tu teléfono escucha satélites que le dan la hora y la posición 🛰️\nCon 4 satélites triangula tu posición al metro.\n¡La relatividad de Einstein se corrige dentro — sin ella, el GPS se equivocaría 10km al día!"
+    },
+    {
+      "id": "es_science_tech_03",
+      "category": "science",
+      "questions": [
+        "cómo funciona una batería",
+        "el litio-ion"
+      ],
+      "keywords": [
+        "batería",
+        "litio",
+        "energía"
+      ],
+      "answer": "Iones que viajan de un electrodo a otro 🔋\nCargar = mandarlos a casa. Descargar = dejarlos salir a trabajar.\nTu móvil funciona con la energía de... unos gramos de litio."
+    },
+    {
+      "id": "es_science_lang_01",
+      "category": "science",
+      "questions": [
+        "de dónde viene la palabra robot",
+        "el origen de la palabra robot"
+      ],
+      "keywords": [
+        "robot",
+        "checo",
+        "origen"
+      ],
+      "answer": "Del checo «robota» = trabajo forzado 🤖\nApareció en una obra de teatro de 1920 — ciencia ficción antes de hora.\nIronía: la palabra nació de una historia donde los robots se rebelan. Ojalá los nuestros sigan simpáticos 😄"
+    },
+    {
+      "id": "es_science_lang_02",
+      "category": "science",
+      "questions": [
+        "cuántas lenguas hay en el mundo",
+        "las 7000 lenguas"
+      ],
+      "keywords": [
+        "lenguas",
+        "mundo",
+        "multilingüe"
+      ],
+      "answer": "~7000 lenguas vivas 🗣️\nUna muere cada 2 semanas — y con ella, una forma de ver el mundo.\nEl multilingüismo es riqueza: piensas distinto en cada lengua."
+    },
+    {
+      "id": "es_science_ecolo_06",
+      "category": "science",
+      "questions": [
+        "qué es la energía solar",
+        "los paneles solares"
+      ],
+      "keywords": [
+        "solar",
+        "paneles",
+        "energía"
+      ],
+      "answer": "Transformar la luz del sol en electricidad ☀️\nÁfrica tiene el mejor sol del planeta — una oportunidad enorme.\nEl sol regala; el panel transforma. El futuro es luminoso 😄"
     }
   ],
   "packs": [
