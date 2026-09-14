@@ -5146,6 +5146,779 @@
         "senegal"
       ],
       "answer": "La lucha en Senegal llena estadios enteros 🤼\nMás que un deporte: ritos, cantos, griots y apuestas — el fútbol está celoso.\nY el maratón etíope, el boxeo Dambe nigeriano: África siempre ha criado campeones."
+    },
+    {
+      "id": "es_tarifs_01",
+      "category": "pricing",
+      "questions": [
+        "precio",
+        "cuál es el coste",
+        "cuánto hay que prever"
+      ],
+      "keywords": [
+        "precio",
+        "coste",
+        "presupuesto"
+      ],
+      "answer": "Depende de lo que quieras que haga el bot 😊\nNuestros packs empiezan en 99€. El más vendido: bot de pedidos + FAQ por 150€.\n¿Quieres el detalle de los 3 packs?"
+    },
+    {
+      "id": "es_tarifs_02",
+      "category": "pricing",
+      "questions": [
+        "tarifas"
+      ],
+      "keywords": [
+        "tarifas",
+        "precios"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_03",
+      "category": "pricing",
+      "questions": [
+        "coste"
+      ],
+      "keywords": [
+        "coste"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_04",
+      "category": "pricing",
+      "questions": [
+        "cuánto cuesta",
+        "cuánto es esto",
+        "esto cuánto vale"
+      ],
+      "keywords": [
+        "cuánto",
+        "coste"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_05",
+      "category": "pricing",
+      "questions": [
+        "cuál es el presupuesto"
+      ],
+      "keywords": [
+        "presupuesto"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_06",
+      "category": "pricing",
+      "questions": [
+        "precio de un bot",
+        "cuánto por un bot",
+        "un bot cuánto es"
+      ],
+      "keywords": [
+        "bot",
+        "precio"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_07",
+      "category": "pricing",
+      "questions": [
+        "precio de una web",
+        "cuánto por una web",
+        "una web cuánto es"
+      ],
+      "keywords": [
+        "web",
+        "precio"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_08",
+      "category": "pricing",
+      "questions": [
+        "precio de un logo",
+        "cuánto por un logo"
+      ],
+      "keywords": [
+        "logo",
+        "precio"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_09",
+      "category": "pricing",
+      "questions": [
+        "precio de una app",
+        "cuánto por una app",
+        "una app cuánto es"
+      ],
+      "keywords": [
+        "app",
+        "precio"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_10",
+      "category": "pricing",
+      "questions": [
+        "presupuesto",
+        "cotización"
+      ],
+      "keywords": [
+        "presupuesto",
+        "cotización"
+      ],
+      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+    },
+    {
+      "id": "es_tarifs_82",
+      "category": "pricing",
+      "questions": [
+        "cuánto cuesta un agente ia"
+      ],
+      "keywords": [
+        "agente",
+        "ia",
+        "precio"
+      ],
+      "answer": "Desde 300€ de instalación + 90€/mes de mantenimiento. ROI medio en 45 días."
+    },
+    {
+      "id": "es_tarifs_83",
+      "category": "pricing",
+      "questions": [
+        "hay gastos ocultos"
+      ],
+      "keywords": [
+        "ocultos",
+        "gastos",
+        "extra"
+      ],
+      "answer": "Cero. El precio anunciado = todo incluido. API, hosting, actualizaciones."
+    },
+    {
+      "id": "es_tarifs_84",
+      "category": "pricing",
+      "questions": [
+        "hacéis pago en varias veces",
+        "puedo pagar a plazos"
+      ],
+      "keywords": [
+        "plazos",
+        "pago",
+        "partes"
+      ],
+      "answer": "Sí. 3 plazos sin intereses para la instalación."
+    },
+    {
+      "id": "es_tarifs_85",
+      "category": "pricing",
+      "questions": [
+        "qué diferencia hay entre pack starter y premium"
+      ],
+      "keywords": [
+        "starter",
+        "premium",
+        "diferencia"
+      ],
+      "answer": "Starter = 1 canal + 1 idioma. Premium = 4 canales + voz + CRM + estadísticas avanzadas."
+    },
+    {
+      "id": "es_tarifs_86",
+      "category": "pricing",
+      "questions": [
+        "pago a comisión"
+      ],
+      "keywords": [
+        "comisión",
+        "pago"
+      ],
+      "answer": "Opción posible. 15% sobre las ventas generadas por el Agente durante 6 meses."
+    },
+    {
+      "id": "es_tarifs_87",
+      "category": "pricing",
+      "questions": [
+        "la web está incluida"
+      ],
+      "keywords": [
+        "web",
+        "incluida",
+        "pack"
+      ],
+      "answer": "En el Pack Máquina de Ventas sí. Si no, son 500€ por una web vitrina que convierte."
+    },
+    {
+      "id": "es_tarifs_88",
+      "category": "pricing",
+      "questions": [
+        "hacéis promos",
+        "descuentos"
+      ],
+      "keywords": [
+        "promo",
+        "descuento",
+        "oferta"
+      ],
+      "answer": "Sí. -20% para las 10 primeras empresas de cada mes."
+    },
+    {
+      "id": "es_tarifs_89",
+      "category": "pricing",
+      "questions": [
+        "qué incluye la suscripción mensual"
+      ],
+      "keywords": [
+        "suscripción",
+        "mensual",
+        "incluye"
+      ],
+      "answer": "Hosting, actualizaciones de IA, soporte, mejora de respuestas, informes de ventas."
+    },
+    {
+      "id": "es_tarifs_90",
+      "category": "pricing",
+      "questions": [
+        "puedo cancelar cuando quiera",
+        "parar el bot",
+        "desactivar el bot"
+      ],
+      "keywords": [
+        "cancelar",
+        "parar",
+        "desactivar"
+      ],
+      "answer": "Sí, lo desactivas en 1 clic.\nPero cuando pruebas las ventas automáticas, ya no querrás volver 😏"
+    },
+    {
+      "id": "es_tarifs_91",
+      "category": "pricing",
+      "questions": [
+        "hacéis presupuestos gratis"
+      ],
+      "keywords": [
+        "presupuesto",
+        "gratis"
+      ],
+      "answer": "Siempre. Analizamos tu negocio y te decimos cuánto puedes ganar. Gratis."
+    },
+    {
+      "id": "es_obj_vente_06",
+      "category": "objection",
+      "questions": [
+        "y si la ia responde mal",
+        "la ia se equivoca con clientes"
+      ],
+      "keywords": [
+        "ia",
+        "mal",
+        "error"
+      ],
+      "answer": "Imposible. Entrenamos a Komara Agency 🇬🇳 con TU catálogo, TU tono, TUS respuestas.\n- Tú validas todas las respuestas antes del lanzamiento.\n- Puedes retomar el control en WhatsApp cuando quieras."
+    },
+    {
+      "id": "es_obj_vente_07",
+      "category": "objection",
+      "questions": [
+        "mis clientes sabrán que es un robot",
+        "es un robot",
+        "robot o humano"
+      ],
+      "keywords": [
+        "robot",
+        "clientes",
+        "humano"
+      ],
+      "answer": "No. Le damos tu voz. Dice \"Hola, soy el asistente de Komara Agency 🇬🇳\".\nEs amable, educado y rápido. El 90% de los clientes no notan la diferencia."
+    },
+    {
+      "id": "es_obj_vente_08",
+      "category": "objection",
+      "questions": [
+        "contraseña de whatsapp",
+        "seguridad de whatsapp",
+        "dar mi contraseña"
+      ],
+      "keywords": [
+        "whatsapp",
+        "seguridad",
+        "contraseña"
+      ],
+      "answer": "No. Cero riesgo.\nUsamos la API oficial de WhatsApp Business. Asegurada por Meta.\nSolo tú accedes a tus mensajes."
+    },
+    {
+      "id": "es_obj_vente_09",
+      "category": "objection",
+      "questions": [
+        "no tengo muchos mensajes",
+        "10 mensajes al día",
+        "poco volumen"
+      ],
+      "keywords": [
+        "mensajes",
+        "volumen",
+        "poco"
+      ],
+      "answer": "Justo por ahí hay que empezar.\nKomara Agency 🇬🇳 convierte 10 mensajes/día en 10 ventas.\nCuando llegues a 100/día, ya estarás listo."
+    },
+    {
+      "id": "es_obj_conv_34",
+      "category": "objection",
+      "questions": [
+        "no tengo tiempo",
+        "estoy desbordado",
+        "estoy ocupado",
+        "sin tiempo para montarlo"
+      ],
+      "keywords": [
+        "tiempo",
+        "ocupado",
+        "desbordado"
+      ],
+      "answer": "Normal jefe, todos los emprendedores van ocupados 😂\nJusto por eso existe el bot.\n¿Reservamos una llamada de 5min cuando estés libre?"
+    },
+    {
+      "id": "es_obj_conv_57",
+      "category": "objection",
+      "questions": [
+        "mi sobrino lo hace más barato",
+        "mi primo sabe programar",
+        "mi hermano sabe código"
+      ],
+      "keywords": [
+        "sobrino",
+        "primo",
+        "barato"
+      ],
+      "answer": "¡Genial! 😊 ¿Pero hace 1 mes de soporte y formación?\nCon nosotros, si falla a las 2 de la mañana, respondo. Pagas por la tranquilidad."
+    },
+    {
+      "id": "es_obj_conv_58",
+      "category": "objection",
+      "questions": [
+        "lo vi en fiverr a 30€",
+        "más barato en internet",
+        "en fiverr sale mejor"
+      ],
+      "keywords": [
+        "fiverr",
+        "barato",
+        "internet"
+      ],
+      "answer": "Sí, también lo vi. El problema es que son bots genéricos.\nEl nuestro es 100% para TU negocio y en tu idioma. ¿Calidad vs Precio, ves?"
+    },
+    {
+      "id": "es_obj_conv_59",
+      "category": "objection",
+      "questions": [
+        "págame después de los resultados",
+        "pago después",
+        "pagar solo tras la entrega"
+      ],
+      "keywords": [
+        "pago",
+        "después",
+        "resultados"
+      ],
+      "answer": "Te entiendo. El tema es que paso 2 días programando tu bot.\n¿Hacemos 50/50? 50% antes, 50% tras la entrega. Solo por confianza."
+    },
+    {
+      "id": "es_obj_conv_61",
+      "category": "objection",
+      "questions": [
+        "ya tengo community manager",
+        "tengo un cm",
+        "ya tengo a alguien"
+      ],
+      "keywords": [
+        "community",
+        "manager",
+        "cm"
+      ],
+      "answer": "¡Perfecto! El bot se encarga de la noche y las preguntas básicas.\nTu CM se centra en vender y en los grandes clientes. Equipo de ensueño."
+    },
+    {
+      "id": "es_obj_conv_62",
+      "category": "objection",
+      "questions": [
+        "estoy perdido no sé por dónde empezar",
+        "estoy perdido",
+        "por dónde empezar"
+      ],
+      "keywords": [
+        "perdido",
+        "empezar",
+        "guía"
+      ],
+      "answer": "Respira 😊 Empezamos pequeño. Pack Starter 99€.\nTe guío paso a paso. En 48h tienes tu bot y respiras."
+    },
+    {
+      "id": "es_obj_conv_63",
+      "category": "objection",
+      "questions": [
+        "ya me estafaron",
+        "es una estafa",
+        "miedo a que me estafen"
+      ],
+      "keywords": [
+        "estafa",
+        "confianza",
+        "miedo"
+      ],
+      "answer": "Lo siento de verdad 🙏\nEn Komara hacemos 50% antes, 50% después + factura + soporte.\nCero riesgo. ¿Quieres los testimonios?"
+    },
+    {
+      "id": "es_obj_conv_64",
+      "category": "objection",
+      "questions": [
+        "no confío en la ia",
+        "la ia es peligrosa",
+        "no me fío"
+      ],
+      "keywords": [
+        "confianza",
+        "ia",
+        "peligro"
+      ],
+      "answer": "El bot no reemplaza al humano. Hace el trabajo sucio.\nCuando es importante te pasa al cliente directamente. Tú mantienes el control."
+    },
+    {
+      "id": "es_obj_conv_75",
+      "category": "objection",
+      "questions": [
+        "presionas",
+        "insistes",
+        "deja de presionar",
+        "me acosas"
+      ],
+      "keywords": [
+        "presión",
+        "insistencia",
+        "acoso"
+      ],
+      "answer": "Perdona si presioné 🙏 Mi objetivo es solo ayudarte.\nSi no es el momento dímelo, y te dejo en paz."
+    },
+    {
+      "id": "es_obj_conv_85",
+      "category": "objection",
+      "questions": [
+        "crédito",
+        "quiero crédito",
+        "puedo pagar después",
+        "no hay dinero ahora"
+      ],
+      "keywords": [
+        "crédito",
+        "dinero",
+        "después"
+      ],
+      "answer": "Te entiendo hermano. El dinero está difícil.\n¿Hacemos 50% ahora y 50% a la entrega? Así pruebas."
+    },
+    {
+      "id": "es_obj_conv_88",
+      "category": "objection",
+      "questions": [
+        "instagram",
+        "también para instagram",
+        "bot de instagram",
+        "para ig"
+      ],
+      "keywords": [
+        "instagram",
+        "ig",
+        "bot"
+      ],
+      "answer": "¡Sí! Pero empezamos por WhatsApp.\nEs donde se hace el 90% de tus ventas. IG lo vemos después, ¿ok?"
+    },
+    {
+      "id": "es_obj_conv_89",
+      "category": "objection",
+      "questions": [
+        "tengo que preguntar a mi socio",
+        "mi socio decide",
+        "hablo con mi socio"
+      ],
+      "keywords": [
+        "socio",
+        "decisión",
+        "pareja"
+      ],
+      "answer": "Sin problema, es una decisión importante.\nTe envío un resumen PDF + el vídeo demo para enseñárselo.\nOs contacto el viernes para vuestra respuesta. ¿Os va bien?"
+    },
+    {
+      "id": "es_obj_conv_90",
+      "category": "objection",
+      "questions": [
+        "voy a ver otras opciones",
+        "voy a comparar",
+        "la competencia"
+      ],
+      "keywords": [
+        "comparar",
+        "otros",
+        "competencia"
+      ],
+      "answer": "Buena idea comparar 👌\nLa única pregunta: ¿hacen 1 mes de soporte + formación?\nSi sí, adelante. Si no, ya sabes dónde encontrarme."
+    },
+    {
+      "id": "es_obj_conv_92",
+      "category": "objection",
+      "questions": [
+        "voy a empezar pequeño",
+        "presupuesto pequeño",
+        "empezar poco a poco"
+      ],
+      "keywords": [
+        "pequeño",
+        "presupuesto",
+        "empezar"
+      ],
+      "answer": "Perfecto. Empezamos con el Pack Starter 99€.\n1 producto, 5 preguntas. Cuando funcione, subimos de nivel."
+    },
+    {
+      "id": "es_obj_conv_93",
+      "category": "objection",
+      "questions": [
+        "seguro que me funciona a mí",
+        "funciona en mi caso"
+      ],
+      "keywords": [
+        "funciona",
+        "caso",
+        "seguro"
+      ],
+      "answer": "Dime tu negocio y te digo sí o no directamente.\nNo vendo si no sirve de nada. La honestidad primero."
+    },
+    {
+      "id": "es_obj_conv_95",
+      "category": "objection",
+      "questions": [
+        "último precio",
+        "es tu última palabra",
+        "puedes bajar el precio",
+        "hazme un descuento"
+      ],
+      "keywords": [
+        "descuento",
+        "precio",
+        "bajar"
+      ],
+      "answer": "99€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Te sirve?"
+    },
+    {
+      "id": "es_obj_conv_99",
+      "category": "objection",
+      "questions": [
+        "tengo miedo",
+        "miedo a lanzarme",
+        "tengo dudas"
+      ],
+      "keywords": [
+        "miedo",
+        "lanzar",
+        "dudas"
+      ],
+      "answer": "Es normal tener miedo.\nYo también lo tuve la primera vez.\nEmpezamos pequeño. Si no funciona te devuelvo el dinero. ¿Trato?"
+    },
+    {
+      "id": "es_obj_conv_101",
+      "category": "objection",
+      "questions": [
+        "le pregunto a mi mujer",
+        "mi marido decide",
+        "hablo con mi mujer"
+      ],
+      "keywords": [
+        "mujer",
+        "marido",
+        "decisión"
+      ],
+      "answer": "Excelente idea 👌\nExplícaselo así: \"Cariño, esto responde a los clientes por nosotros\"\nCuéntame qué tal. Cruzo los dedos por ti."
+    },
+    {
+      "id": "es_obj_conv_102",
+      "category": "objection",
+      "questions": [
+        "youtube",
+        "voy a mirar youtube",
+        "tutoriales de youtube"
+      ],
+      "keywords": [
+        "youtube",
+        "tutorial",
+        "diy"
+      ],
+      "answer": "Ve a mirar 😄\nPero en YouTube no te explican TU negocio.\nYo te hago el bot para TI.\nSi tras YouTube quieres, aquí estoy."
+    },
+    {
+      "id": "es_obj_conv_103",
+      "category": "objection",
+      "questions": [
+        "no te creo",
+        "demuéstralo",
+        "eres fiable"
+      ],
+      "keywords": [
+        "creer",
+        "probar",
+        "fiable"
+      ],
+      "answer": "No estás obligado a confiar en mí. Prueba 7 días.\nSi no funciona, te lo modifico gratis."
+    },
+    {
+      "id": "es_obj_conv_109",
+      "category": "objection",
+      "questions": [
+        "no me interesa",
+        "no quiero"
+      ],
+      "keywords": [
+        "interesa",
+        "rechazo"
+      ],
+      "answer": "Sin problema 👍 Si un día tienes demasiados mensajes que gestionar, vuelve.\n¡Suerte!"
+    },
+    {
+      "id": "es_obj_conv_110",
+      "category": "objection",
+      "questions": [
+        "reembolso",
+        "quiero que me devuelvan",
+        "política de reembolso"
+      ],
+      "keywords": [
+        "reembolso",
+        "política",
+        "devolver"
+      ],
+      "answer": "Simple: si en 7 días el bot no te sirve, te lo modifico gratis o te devuelvo el dinero.\nNo arriesgas nada."
+    },
+    {
+      "id": "es_obj_conv_113",
+      "category": "objection",
+      "questions": [
+        "los clientes sabrán que es un bot",
+        "se notará que es un robot"
+      ],
+      "keywords": [
+        "bot",
+        "robot",
+        "clientes"
+      ],
+      "answer": "Si quieres, el bot se presenta como tu asistente 24H/24 😎\nLos clientes prefieren respuesta en 2 segundos a una espera de 2 horas. Eso es lo único que recordarán."
+    },
+    {
+      "id": "es_obj_conv_116",
+      "category": "objection",
+      "questions": [
+        "existe de verdad",
+        "es real",
+        "eres real",
+        "existe vuestra agencia"
+      ],
+      "keywords": [
+        "real",
+        "existe",
+        "agencia"
+      ],
+      "answer": "100% real ✅ KOMARA AGENCY ya ha entregado bots a tiendas, restaurantes y coachs.\n¿Quieres los testimonios de clientes?"
+    },
+    {
+      "id": "es_obj_pro_08",
+      "category": "objection",
+      "questions": [
+        "el precio y si es fiable",
+        "es fiable",
+        "cuál es el precio y es de fiar"
+      ],
+      "keywords": [
+        "precio",
+        "fiable",
+        "confianza"
+      ],
+      "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 99€ una sola vez. Sin suscripción.\nEn fiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo + garantía 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes.\n¿Prefieres la ficha técnica en PDF o un vídeo demo?"
+    },
+    {
+      "id": "es_obj_pro_15",
+      "category": "objection",
+      "questions": [
+        "es un poco caro",
+        "es caro para fotos",
+        "los visuales son caros"
+      ],
+      "keywords": [
+        "caro",
+        "fotos",
+        "visuales"
+      ],
+      "answer": "Lo entiendo. 5€ es un presupuesto.\nPero piénsalo: 1 sola venta de 20€ gracias a un buen visual y ya está amortizado.\nPodemos empezar por el Pack Starter para probar.\n¿Tienes fotos de tus productos para enviarme?"
+    },
+    {
+      "id": "es_obj_pro_21",
+      "category": "objection",
+      "questions": [
+        "puedo pagar la web en 2 veces",
+        "la web a plazos",
+        "pagar la web en varias veces"
+      ],
+      "keywords": [
+        "web",
+        "plazos",
+        "partes"
+      ],
+      "answer": "Sí claro.\n50% para lanzar la maqueta. 50% a la entrega antes de publicar.\nY garantía: si la maqueta no te convence, repetimos hasta que te encante.\nNo arriesgas nada."
+    },
+    {
+      "id": "es_obj_pro_25",
+      "category": "objection",
+      "questions": [
+        "desapareceréis después",
+        "qué pasa tras la entrega",
+        "y el seguimiento"
+      ],
+      "keywords": [
+        "desaparecer",
+        "después",
+        "soporte"
+      ],
+      "answer": "No, aquí no desaparecemos 😊 Soporte 1 año incluido.\nEstamos en Conakry, puedes venir a vernos.\nFirmamos un pequeño convenio para que todo quede claro."
+    },
+    {
+      "id": "es_obj_pro_27",
+      "category": "objection",
+      "questions": [
+        "la web es cara",
+        "es muy caro para una web",
+        "web demasiado cara"
+      ],
+      "keywords": [
+        "web",
+        "caro",
+        "precio"
+      ],
+      "answer": "Un solo contrato ganado gracias a la web paga la web.\nEs una inversión, no un gasto.\nTu empresa merece verse en Google."
+    },
+    {
+      "id": "es_obj_pro_28",
+      "category": "objection",
+      "questions": [
+        "puedo hacer la web yo mismo",
+        "me hago mi propia web"
+      ],
+      "keywords": [
+        "diy",
+        "mismo",
+        "web"
+      ],
+      "answer": "Puedes. Pero nosotros te entregamos en 7 días una web profesional que convierte.\nTú sigues con tu negocio, del resto nos encargamos.\nTu tiempo vale más que eso, ¿no?"
     }
   ],
   "packs": [
