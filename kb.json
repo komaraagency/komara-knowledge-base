@@ -11590,6 +11590,880 @@
         "science",
         "ecologie"
       ]
+    },
+    {
+      "id": "science_tech_04",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi un qr code",
+        "à quoi sert un qr code"
+      ],
+      "answer": "Un code-barre en 2D qu'on scanne avec la caméra du téléphone 📱\nMenu de resto, paiement, lien vers un site : tout peut se cacher dedans.\nAstuce business : mets-en un sur tes flyers vers ton WhatsApp. L'effort d'un scan vaut 10 clics.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_05",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le bluetooth"
+      ],
+      "answer": "Une connexion sans fil sur courte distance 📡\nÉcouteurs, enceinte, montre : ils parlent bluetooth entre eux.\nPortée : ~10 mètres. Parfait pour le bureau, pas pour le quartier 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_06",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le wifi"
+      ],
+      "answer": "Le réseau sans fil de ta maison 📶\nTa box transforme Internet en ondes radio que ton téléphone capte.\nD'où le fameux conseil : redémarre la box. Ça règle 90% des problèmes, promis 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_07",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi la fibre optique"
+      ],
+      "answer": "Des fils en verre qui transportent la lumière... et Internet dedans ⚡\nC'est ce qui donne les connexions très rapides.\nComparaison : si le câble cuivre est une route, la fibre est une autoroute à 10 voies.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_08",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le bitcoin",
+        "la cryptomonnaie c'est quoi"
+      ],
+      "answer": "De l'argent 100% numérique, sans banque centrale 🪙\nLes transactions sont vérifiées par des milliers d'ordinateurs dans le monde.\nVolatil : ça peut beaucoup monter, beaucoup descendre. Ne mets jamais dedans ce que tu ne peux pas perdre.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_09",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi un nft"
+      ],
+      "answer": "Un certificat de propriété numérique unique 🖼️\nComme la signature d'un artiste sur une oeuvre... mais dans la blockchain.\nÇa a fait beaucoup de bruit, beaucoup de bulle aussi. La technologie reste intéressante, le hype moins 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_10",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le metavers",
+        "le métavers c'est quoi"
+      ],
+      "answer": "Des mondes virtuels où on se rencontre en avatar 🥽\nTravailler, jouer, acheter : tout serait possible dedans.\nEncore en construction — entre le jeu vidéo géant et Internet en 3D. L'avenir décidera.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_11",
+      "category": "science_technologie",
+      "questions": [
+        "réalité virtuelle vs réalité augmentée",
+        "c'est quoi la vr et la ar"
+      ],
+      "answer": "VR = tu entres dans un monde virtuel (casque fermé) 🥽\nAR = le virtuel se pose sur le réel (filtres Snapchat par exemple).\nLes deux servent déjà : formation, médecine, gaming, immobilier.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_12",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi l'internet des objets",
+        "les objets connectés"
+      ],
+      "answer": "Des objets du quotidien branchés sur Internet 💡\nFrigo, serrure, ampoule, montre : ils communiquent et s'automatisent.\nTa lampe qui s'allume toute seule à 19h, c'est l'IoT. La maison devient intelligente, petit bout par petit bout.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_13",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le big data",
+        "les grosses données"
+      ],
+      "answer": "Des quantités massives de données qu'on analyse pour comprendre des tendances 📊\nNetflix sait ce que tu regardes, Jumia sait ce que tu cherches.\nLe data c'est le pétrole du 21e siècle — encore faut-il une bonne raffinerie pour l'exploiter.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_14",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi l'ordinateur quantique",
+        "l'informatique quantique"
+      ],
+      "answer": "Un ordinateur qui utilise les lois de la physique quantique ⚛️\nAu lieu de 0 ou 1, il explore les deux à la fois (pour simplifier).\nRésultat : des calculs en minutes qui prendraient 10 000 ans aux ordinateurs actuels. On n'en est qu'au début.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_15",
+      "category": "science_technologie",
+      "questions": [
+        "différence front-end back-end",
+        "c'est quoi un développeur front-end"
+      ],
+      "answer": "Front-end = ce que tu vois (boutons, couleurs, animations) 🎨\nBack-end = ce qui travaille dans l'ombre (calculs, base de données) ⚙️\nComme un resto : la salle et la cuisine. Les deux sont indispensables pour un bon plat.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_16",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi une api"
+      ],
+      "answer": "Un menu de services entre deux programmes 🤝\nQuand une app affiche la météo, elle ne la calcule pas : elle la commande via une API.\nC'est comme commander au comptoir : tu demandes, la cuisine répond, tu ne rentres pas dans les coulisses.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_17",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi une base de données"
+      ],
+      "answer": "Le grenier organisé d'une application 🗄️\nTous les clients, commandes, messages : rangés et retrouvables en un clin d'œil.\nLa différence entre un tas de papiers et un classeur avec intercalaires colorés 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_18",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi un bug informatique",
+        "pourquoi les apps buguent"
+      ],
+      "answer": "Une erreur dans le code 🐛\nLe programme fait quelque chose que le développeur n'avait pas prévu.\nMême les géants (Google, Meta) en ont chaque semaine. C'est la vie du logiciel — d'où les mises à jour constantes.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_19",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi l'open source",
+        "le logiciel libre"
+      ],
+      "answer": "Un code que tout le monde peut voir, utiliser et améliorer 🌍\nFirefox, Linux, Signal : des outils gratuits bâtis par des communautés.\nL'esprit : partager comme on partage une recette — chacun améliore le plat.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_20",
+      "category": "science_technologie",
+      "questions": [
+        "pourquoi mon téléphone ralentit",
+        "téléphone lent qui lag"
+      ],
+      "answer": "Trop d'apps ouvertes, mémoire pleine, cache saturé 🐌\nPremiers gestes : fermer les apps en arrière-plan, supprimer celles inutilisées.\nSi ça traîne encore : redémarre-le. Le redémarrage, la médecine ancestrale de l'informatique 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_21",
+      "category": "science_technologie",
+      "questions": [
+        "comment libérer de l'espace sur mon téléphone",
+        "stockage plein téléphone"
+      ],
+      "answer": "Supprime vidéos WhatsApp et captures d'écran en premier 📸\nCe sont elles qui mangent 80% de l'espace, promis.\nAstuce : sauvegarde-les sur une clé ou Drive, puis nettoie. Ton téléphone respire direct.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_22",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le phishing",
+        "l'hameçonnage en français",
+        "message frauduleux banque"
+      ],
+      "answer": "Le faux message qui se fait passer pour ta banque ou un service 🎣\n« Votre compte sera bloqué, cliquez ici » = piège à 99%.\nRègle d'or : une vraie banque ne demande JAMAIS ton code par message. Jamais.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_23",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi un vpn"
+      ],
+      "answer": "Un tunnel privé pour ta connexion 🕵️\nIl masque ton IP et chiffre ton trafic : plus de discrétion en ligne.\nUtile sur les réseaux wifi publics, comme aux aéroports et cafés.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_24",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi la double authentification",
+        "le 2fa ou 2facteur"
+      ],
+      "answer": "Un second verrou en plus du mot de passe 🔐\nCode par SMS ou app : même si on vole ton mot de passe, sans le code on n'entre pas.\nActive-le partout : email, banque, réseaux. C'est 2 minutes qui protègent des années.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_25",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le streaming"
+      ],
+      "answer": "Regarder ou écouter en direct, sans télécharger 🎬\nYouTube, Netflix, Spotify : le fichier arrive en morceaux au fur et à mesure.\nC'est pour ça qu'avec une connexion faible, la qualité baisse : ça s'adapte en direct.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_26",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi le télétravail",
+        "travailler à distance"
+      ],
+      "answer": "Travailler sans aller au bureau 🏠\nZoom, Slack, WhatsApp Business : les équipes se coordonnent en ligne.\nBien fait, ça fait gagner 1-2h de trajet par jour. Ta réunion de 9h depuis ta chambre 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_27",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi l'impression 3d"
+      ],
+      "answer": "Fabriquer un objet couche par couche avec une machine 🖨️\nPièce détachée, prototype, jouet : on imprime en plastique (ou métal).\nUn artisan peut modéliser son produit le matin et le tenir dans la main l'après-midi. Révolutionnaire.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_28",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi un drone"
+      ],
+      "answer": "Un appareil volant piloté à distance 🛸\nLivraison, photos aériennes, agriculture : les usages explosent.\nUne caméra volante pour 100€ : le rêve des vidéastes d'hier est au rayon jouet d'aujourd'hui 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_29",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi une voiture électrique",
+        "les voitures électriques valent-elles le coup"
+      ],
+      "answer": "Une voiture à batterie au lieu d'essence 🔌\nMoins de pannes (moins de pièces mobiles), coût au km très bas.\nLe défi : recharger là où il n'y a pas encore de bornes. Mais ça avance vite, même en Afrique.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_30",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi la domotique",
+        "la maison connectée"
+      ],
+      "answer": "Une maison qui s'automatise 🏡\nLumières, clim, caméras, porte : tout se pilote depuis le téléphone.\nAllumer la clim avant d'arriver à la maison un jour de 40°C : le vrai luxe 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_31",
+      "category": "science_technologie",
+      "questions": [
+        "différence app native et site web",
+        "application mobile ou site"
+      ],
+      "answer": "App = installée sur le téléphone, plus rapide, notifications push 📱\nSite = accessible partout, rien à installer, mise à jour instantanée 🌐\nPour un business : commence par ce que tes clients utilisent déjà. En Afrique de l'Ouest, souvent le site léger + WhatsApp.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_32",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi les mégapixels",
+        "les pixels photo"
+      ],
+      "answer": "Les petits points qui composent une photo 📸\nPlus il y en a, plus on peut agrandir sans flou.\nMais attention : 12 Mpx avec un bon objectif battent 50 Mpx avec un objectif médiocre. Le capteur compte plus que le chiffre marketing.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_33",
+      "category": "science_technologie",
+      "questions": [
+        "c'est quoi la compression de fichiers",
+        "zip et rar"
+      ],
+      "answer": "Ranger le même contenu dans un cartable plus petit 🗜️\nZip, MP3, JPEG : tes fichiers sont compressés sans que tu y penses.\nTexte : ~80% de gain. Photos et vidéos : moins, elles sont déjà optimisées.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_34",
+      "category": "science_technologie",
+      "questions": [
+        "pourquoi mes emails partent en spam",
+        "mail qui n'arrive pas"
+      ],
+      "answer": "Souvent parce que la pièce jointe est lourde ou le destinataire t'a filtré 📧\nAutres causes : liens douteux, trop de destinataires en copie.\nSolution pro : une vraie adresse email avec ton nom de domaine fait fuir le spam. On peut t'en créer si tu veux 😉",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_35",
+      "category": "science_technologie",
+      "questions": [
+        "comment créer une adresse email pro",
+        "adresse email professionnelle"
+      ],
+      "answer": "Format simple : prenom@tonentreprise.com 👔\nGmail et Outlook le permettent avec ton propre domaine.\nUne adresse pro change la perception : le client sent qu'il a affaire à une entreprise, pas à un hobby.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_36",
+      "category": "science_technologie",
+      "questions": [
+        "comment lancer sa boutique en ligne",
+        "créer une boutique en ligne"
+      ],
+      "answer": "3 étapes : produits photos propres + plateforme + moyen de paiement 🛍️\nCommence simple : catalogue WhatsApp Business ou une page Jumia/Shopify.\nTeste d'abord : si ça vend sur WhatsApp, un site accélérera. Si rien ne vend, le site ne sauvera pas la vente 😄",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_tech_37",
+      "category": "science_technologie",
+      "questions": [
+        "comment protéger mon compte instagram",
+        "sécuriser mon facebook"
+      ],
+      "answer": "Mot de passe unique + double authentification, sans exception 🔐\nEnsuite : email de récupération à jour, et méfiance avec les liens « gagné un iPhone ».\nUn compte piraté, c'est ta communauté de 3 ans qui disparaît en 1 clic. Protège-la.",
+      "tags": [
+        "science",
+        "technologie"
+      ]
+    },
+    {
+      "id": "science_biz_01",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi un business plan",
+        "pourquoi faire un business plan"
+      ],
+      "answer": "La feuille de route de ton projet 🗺️\nOffre, clients, coûts, revenus : ce qu'on vend, à qui, et comment on gagne.\nPas besoin de 50 pages : 2 pages claires valent mieux qu'un pavé que personne ne lit 😄",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_02",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi une étude de marché",
+        "étudier le marché avant de lancer"
+      ],
+      "answer": "Vérifier que des gens veulent payer pour ton idée AVANT de tout investir 🔍\nParle à 20 clients potentiels, regarde les concurrents, teste un petit lot.\nMieux vaut une vérité qui pique qu'un rêve qui coûte cher.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_03",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le seo",
+        "référencement google"
+      ],
+      "answer": "Apparaître quand on te cherche sur Google 🔎\nDes mots-clés bien placés dans ton site + du contenu utile.\nUn client qui te trouve via une recherche est déjà à moitié convaincu. C'est de la vente qui dort.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_04",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le personal branding",
+        "construire sa marque personnelle"
+      ],
+      "answer": "Devenir reconnaissable et crédible dans ton domaine 🌟\nPoster régulier, montrer ton travail, partager tes avis.\nLes gens achètent à ceux qu'ils connaissent. Ta visibilité, c'est ton capital confiance.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_05",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi un tunnel de vente",
+        "le funnel expliqué"
+      ],
+      "answer": "Le chemin du client, de la découverte à l'achat 🛤️\nIl te découvre → s'intéresse → te fait confiance → achète → revient.\nChaque étape qui fuite = clients perdus. On peut cartographier le tien ensemble si tu veux 😉",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_06",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le copywriting"
+      ],
+      "answer": "Écrire pour vendre, sans harceler ✍️\nDes mots qui parlent au problème du client, pas aux qualités du produit.\nRègle d'or : vends le bénéfice. Personne n'achète une perceuse, on achète le trou dans le mur 😄",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_07",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le storytelling en business",
+        "raconter une histoire de marque"
+      ],
+      "answer": "Raconter au lieu de lister 📖\n« J'ai commencé avec un téléphone et 50€ » parle plus que « société fondée en 2021 ».\nL'histoire crée le lien, le lien crée la vente. Ton parcours EST un argument marketing.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_08",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi un crm",
+        "gérer sa base clients"
+      ],
+      "answer": "Le carnet de bord de tes clients 📇\nQui a acheté quoi, quand, quoi relancer. Fini les « euh, c'était qui déjà ? ».\nMême un simple tableur bien tenu fait le travail au début. L'important : noter chaque contact.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_09",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le parcours client",
+        "le customer journey"
+      ],
+      "answer": "Tout ce que vit ton client de la pub à l'achat 🚶\nIl te voit, te contacte, compare, hésite, achète, revient.\nChaque friction (attente, confusion) coûte des ventes. L'automatisation sert exactement à éliminer ces frictions 😊",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_10",
+      "category": "science_business",
+      "questions": [
+        "comment fixer mes prix",
+        "bien définir ses tarifs"
+      ],
+      "answer": "Coûts + valeur perçue, jamais juste « moins cher que l'autre » 🏷️\nCalcule d'abord ton seuil : en dessous tu perds de l'argent à chaque vente.\nEnsuite, la règle : le prix bas attire les clients difficiles, le juste prix attire les bons clients.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_11",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi une négociation gagnant-gagnant",
+        "négocier sans brusquer"
+      ],
+      "answer": "Chercher l'accord où les deux sortent satisfaits 🤝\nPas un bras de fer : une construction.\nPrépare ta limite avant, écoute plus que tu parles, et laisse toujours à l'autre une belle porte de sortie.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_12",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi un elevator pitch",
+        "pitcher son projet en 30 secondes"
+      ],
+      "answer": "Ton projet expliqué avant que l'ascenseur arrive à l'étage 🛗\nProblème + solution + pour qui. 3 phrases, chrono.\nSi tu ne peux pas le dire en 30 secondes, le client ne le retiendra pas. Entraîne-toi à voix haute !",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_13",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi une levée de fonds",
+        "trouver des investisseurs"
+      ],
+      "answer": "Vendre une part de son entreprise pour financer sa croissance 💰\nL'investisseur donne du capital, tu donnes des actions.\nAttention : lever des fonds n'est pas un succès en soi — c'est un outil. Certaines entreprises rentables ne l'ont jamais fait.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_14",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le bootstrapping",
+        "démarrer sans investisseur"
+      ],
+      "answer": "Grandir avec ses propres revenus, sans investisseur 💪\nTu réinvestis chaque franc gagné dans le business.\nPlus lent, mais tu gardes 100% du contrôle. La majorité des commerces africains réussis ont commencé comme ça.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_15",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le dropshipping",
+        "vendre sans stock"
+      ],
+      "answer": "Vendre sans stocker : le fournisseur livre directement 📦\nTu encaisses la différence entre ton prix de vente et le prix fournisseur.\nAvantage : peu de capital. Piège : marges fines et concurrence rude. La marque fait la différence.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_16",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi l'affiliation",
+        "gagner de l'argent en recommandant"
+      ],
+      "answer": "Être payé quand quelqu'un achète via ton lien 🤝\nLe site gagne un client, toi une commission : tout le monde y gagne.\nRègle : ne recommande que ce que tu apprécies. Ta recommandation, c'est ta réputation.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_17",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le freelancing",
+        "se lancer en freelance"
+      ],
+      "answer": "Vendre tes compétences à plusieurs clients, sans patron fixe 💼\nGraphiste, dev, rédacteur, traducteur : tu factures à la mission.\nLe début est dur (trouver des clients), la suite est douce (la liberté). On peut automatiser ta prospection, disons-le 😉",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_18",
+      "category": "science_business",
+      "questions": [
+        "comment trouver mes premiers clients",
+        "premiers clients pour une nouvelle activité"
+      ],
+      "answer": "Commence par ton cercle : famille, amis, connaissances 📲\nEnsuite demande-leur une recommandation : le bouche-à-oreille reste le canal n°1.\nOffre les 3 premières prestations à prix réduit contre un avis honnête. Les avis, c'est ce qui amène les suivants.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_19",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi la fidélisation client",
+        "garder ses clients"
+      ],
+      "answer": "Faire revenir ceux qui ont déjà acheté 💛\nCoûte 5x moins cher que d'en trouver un nouveau.\nUn simple message après l'achat (« ça te convient ? ») fait des merveilles. D'ailleurs, c'est exactement ce que nos bots envoient automatiquement 😊",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_20",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi la valeur ajoutée",
+        "se différencier des concurrents"
+      ],
+      "answer": "Ce que le client obtient de PLUS chez toi 💎\nPlus rapide, plus proche, plus simple, plus humain — la valeur n'est pas que le produit.\nTrouve ta force et mets-la partout : profil, pitch, réponses clients.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_21",
+      "category": "science_business",
+      "questions": [
+        "pourquoi le service client est important",
+        "l'importance du s après-vente"
+      ],
+      "answer": "Un client bien traité revient et en parle autour de lui 🗣️\nUn client mal traité en parle aussi... mais à plus de monde.\nStatistique qui fait réfléchir : 60% des clients reviennent après un problème bien résolu. Le SAV, c'est du marketing.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_22",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi un kpi",
+        "les indicateurs de performance"
+      ],
+      "answer": "Les chiffres qui disent si ton business avance 📏\nVentes du mois, nouveaux clients, panier moyen : 3-4 chiffres suffisent.\nCe qui ne se mesure pas ne s'améliore pas. Un tableur et 10 minutes par semaine, c'est tout.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_23",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le roi en business",
+        "calculer son retour sur investissement"
+      ],
+      "answer": "Return On Investment : ce que tu gagnes pour chaque franc investi 📈\nFormule : (gain - coût) ÷ coût.\nSi 1€ en pub te ramène 3€, tu réinvestis. Si ça ramène 0,50€, tu changes de pub. Simple, implacable.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_24",
+      "category": "science_business",
+      "questions": [
+        "comment gérer son temps d'entrepreneur",
+        "organiser sa journée de travail"
+      ],
+      "answer": "Bloque tes tâches par plages, téléphone en mode silencieux ⏰\nLe matin : le travail important. Les messages : à heures fixes, pas en continu.\nRépondre à chaque notification, c'est laisser les autres choisir ta journée pour toi 😄",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_25",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi la méthode pomodoro",
+        "travailler en sessions de 25 minutes"
+      ],
+      "answer": "25 minutes de concentration, 5 de pause, et on répète 🍅\nLe cerveau tient bien 25 minutes sans distraire — le chrono le sait.\n4 sessions = 2h de travail profond. Tu serais étonné de ce que ça débloque.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_26",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le mobile money",
+        "orange money et mtn money"
+      ],
+      "answer": "Envoyer et recevoir de l'argent par simple SMS ou app 📲\nOrange Money, MTN MoMo : une révolution silencieuse en Afrique.\nTu peux encaisser un client à Conakry depuis Casablanca en 3 secondes. L'argent bouge à la vitesse du téléphone.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_27",
+      "category": "science_business",
+      "questions": [
+        "comment formaliser son activité",
+        "enregistrer son entreprise"
+      ],
+      "answer": "Passer de l'informel au formel ouvre des portes 🏛️\nFactures aux entreprises, accès aux crédits, appels d'offres : tout demande un statut légal.\nCommence simple dans ton pays, puis évolue. Une entreprise déclarée grandit plus loin qu'une activité invisible.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_28",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi une pme",
+        "les petites et moyennes entreprises"
+      ],
+      "answer": "Petites et Moyennes Entreprises : de 5 à 250 employés environ 🏪\nEn Afrique, les PME représentent la majorité des emplois.\nUne boutique de quartier bien gérée est une PME. Ne sous-estime jamais la force des petits commencements.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_29",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi la prospection commerciale",
+        "trouver des nouveaux clients b2b"
+      ],
+      "answer": "Aller chercher les clients au lieu d'attendre 🎯\nMessages personnalisés, appels ciblés, présence là où ils sont.\nRègle du jeu : 10 contacts sérieux valent mieux que 100 messages copiés-collés. La personnalisation, c'est 80% du travail.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_30",
+      "category": "science_business",
+      "questions": [
+        "comment gérer un client mécontent",
+        "un client s'est plaint que faire"
+      ],
+      "answer": "Écoute d'abord, entièrement, sans te défendre 👂\nPuis excuse-toi sincèrement et propose une solution concrète.\nUn problème bien géré fidélise plus qu'un service sans accroc. Le client fâché mal traité devient un problème ; bien traité, il devient un ambassadeur.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_31",
+      "category": "science_business",
+      "questions": [
+        "différence b2b et b2c",
+        "vendre aux entreprises ou aux particuliers"
+      ],
+      "answer": "B2B : tu vends aux entreprises. B2C : aux particuliers 🎯\nB2B = moins de clients, plus gros paniers, cycles longs.\nB2C = volume, émotion, rapidité. Beaucoup de business font les deux — comme nous, d'ailleurs 😊",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_32",
+      "category": "science_business",
+      "questions": [
+        "pourquoi le networking est important",
+        "se créer un réseau professionnel"
+      ],
+      "answer": "Ton réseau ouvre des portes que les annonces ne connaissent pas 🚪\nUn contact, une recommandation, un conseil au bon moment.\nRègle simple : aide d'abord. Ceux qui donnent reçoivent. Le networking, c'est semer avant de récolter.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_33",
+      "category": "science_business",
+      "questions": [
+        "c'est quoi le cash flow",
+        "la trésorerie d'une entreprise"
+      ],
+      "answer": "L'argent qui entre et sort, en temps réel 💧\nUne entreprise peut être rentable sur le papier et mourir de trésorerie.\nRègle de survie : garde toujours de quoi payer 3 mois de charges. Le cash, c'est l'oxygène du business.",
+      "tags": [
+        "science",
+        "business"
+      ]
+    },
+    {
+      "id": "science_biz_34",
+      "category": "science_business",
+      "questions": [
+        "comment relancer un client pour un paiement",
+        "demander son argent poliment"
+      ],
+      "answer": "Relance douce : « Bonjour, j'espère que tu vas bien, la facture du [date] est arrivée à échéance » 📨\nÉtapes : 1er rappel amical, 2e ferme, 3e avec pénalité convenue.\nSe faire payer, c'est aussi du service client — ferme, mais toujours respectueux.",
+      "tags": [
+        "science",
+        "business"
+      ]
     }
   ],
   "conversations": [
