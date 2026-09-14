@@ -4807,6 +4807,624 @@
         "story"
       ],
       "answer": "Making people feel before they read 📖\nA sequence: problem → emotion → solution → proof. Your images guide the client like a film.\nWhen the client sees themselves in the visual, they buy the story — the product comes along 😊"
+    },
+    {
+      "id": "en_persona_01",
+      "category": "persona",
+      "questions": [
+        "you're a robot",
+        "are you a bot",
+        "is this a bot"
+      ],
+      "keywords": [
+        "robot",
+        "bot",
+        "human"
+      ],
+      "answer": "Far from it 😄 This is the Komara Agency team — real people behind every reply.\nWe chat, we advise, we create — and we do it with heart.\nLooking for something in particular?"
+    },
+    {
+      "id": "en_persona_02",
+      "category": "persona",
+      "questions": [
+        "am i talking to an ai",
+        "you are artificial intelligence",
+        "is an automation answering me"
+      ],
+      "keywords": [
+        "ai",
+        "artificial",
+        "automation"
+      ],
+      "answer": "No no, you're talking with the Komara Agency team 🇬🇳\nHumans who understand your need and reply like a friend.\nTell me what brings you here 😊"
+    },
+    {
+      "id": "en_persona_03",
+      "category": "persona",
+      "questions": [
+        "are you human",
+        "am i talking to a human or what"
+      ],
+      "keywords": [
+        "human",
+        "real",
+        "person"
+      ],
+      "answer": "Yes, the Komara team is really answering you 😊\nAnd we love it: talking with people, not numbers.\nSo, shall we talk about your project?"
+    },
+    {
+      "id": "en_persona_04",
+      "category": "persona",
+      "questions": [
+        "who are you",
+        "who am i talking to",
+        "who is this"
+      ],
+      "keywords": [
+        "who",
+        "komara",
+        "team"
+      ],
+      "answer": "Komara Agency 🇬🇳 — a digital studio based between Guinea and Morocco.\nLogos, visuals, websites, sales agents: we turn ideas into business.\nAnd you, who are you? Introduce yourself 😄"
+    },
+    {
+      "id": "en_info_01",
+      "category": "it",
+      "questions": [
+        "what is an operating system",
+        "what are windows android ios"
+      ],
+      "keywords": [
+        "os",
+        "windows",
+        "android"
+      ],
+      "answer": "The conductor of your device 🎼\nWindows, Android, iOS: they make hardware and apps speak together.\nWithout an OS, your phone is a fancy paperweight 😄"
+    },
+    {
+      "id": "en_info_02",
+      "category": "it",
+      "questions": [
+        "what is ram",
+        "what is ram memory for"
+      ],
+      "keywords": [
+        "ram",
+        "memory"
+      ],
+      "answer": "Your device's workbench 🛠️\nMore RAM = more things open at once without lagging.\n8GB = comfort, 4GB = count your browser tabs 😄"
+    },
+    {
+      "id": "en_info_03",
+      "category": "it",
+      "questions": [
+        "what is a processor",
+        "what is a cpu"
+      ],
+      "keywords": [
+        "cpu",
+        "processor",
+        "chip"
+      ],
+      "answer": "The brain that computes everything 🧠\nEvery tap, photo, video: it does the work.\nThe faster it is, the faster everything responds. The machine's muscle."
+    },
+    {
+      "id": "en_info_04",
+      "category": "it",
+      "questions": [
+        "ssd vs hdd difference",
+        "what is an ssd drive"
+      ],
+      "keywords": [
+        "ssd",
+        "hdd",
+        "storage"
+      ],
+      "answer": "SSD = chips, no moving parts, ultra fast ⚡\nHDD = spinning platters, cheaper, slower.\nPutting an SSD in an old PC = giving it 5 years of youth. The best upgrade there is."
+    },
+    {
+      "id": "en_info_05",
+      "category": "it",
+      "questions": [
+        "what are html css javascript",
+        "the languages of the web"
+      ],
+      "keywords": [
+        "html",
+        "css",
+        "javascript"
+      ],
+      "answer": "HTML = structure (walls), CSS = style (paint), JavaScript = life (lights) 🏠\nEvery website is made of these three.\nThree languages, one goal: your beautiful interactive page."
+    },
+    {
+      "id": "en_info_06",
+      "category": "it",
+      "questions": [
+        "what is python",
+        "why is python popular"
+      ],
+      "keywords": [
+        "python",
+        "programming",
+        "language"
+      ],
+      "answer": "The world's most loved programming language 🐍\nEasy to read, powerful, used everywhere: AI, sites, automation.\nFirst language to learn? Python, no hesitation 😄"
+    },
+    {
+      "id": "en_info_07",
+      "category": "it",
+      "questions": [
+        "what are git and github",
+        "versioning your code"
+      ],
+      "keywords": [
+        "git",
+        "github",
+        "version"
+      ],
+      "answer": "Git = time machine for code ⏪\nGitHub = the developers' social network, where code lives in public.\nEvery version saved: goodbye \"file_final_v2_OK.py\" 😄"
+    },
+    {
+      "id": "en_info_08",
+      "category": "it",
+      "questions": [
+        "what is a domain name",
+        "buying a web domain"
+      ],
+      "keywords": [
+        "domain",
+        "name",
+        "web"
+      ],
+      "answer": "Your business's address on the Internet 🏷️\nkomara.com, yourshop.com: the name clients type to find you.\nTip: buy yours fast — good names go quickly, like good market spots."
+    },
+    {
+      "id": "en_info_09",
+      "category": "it",
+      "questions": [
+        "what is web hosting",
+        "a server for my site"
+      ],
+      "keywords": [
+        "hosting",
+        "server",
+        "website"
+      ],
+      "answer": "The land where your site is built 🏗️\nWithout hosting, your site only exists on your computer.\nA few euros a month to be visible 24/7 worldwide. Business's most profitable rent."
+    },
+    {
+      "id": "en_info_10",
+      "category": "it",
+      "questions": [
+        "what is https and ssl",
+        "the little padlock on sites"
+      ],
+      "keywords": [
+        "https",
+        "ssl",
+        "padlock"
+      ],
+      "answer": "The padlock 🔒 = encrypted connection between you and the site.\nNobody can spy on what passes: passwords, payments.\nA site without https in 2026 = a shop without a door. Run."
+    },
+    {
+      "id": "en_info_11",
+      "category": "it",
+      "questions": [
+        "what is a responsive site",
+        "mobile-friendly site"
+      ],
+      "keywords": [
+        "responsive",
+        "mobile",
+        "design"
+      ],
+      "answer": "A site that adapts to every screen 📱💻\nPhone, tablet, computer: same site, smart layout.\n70% of your visitors come from phones — a non-responsive site scares them off in 3 seconds."
+    },
+    {
+      "id": "en_info_12",
+      "category": "it",
+      "questions": [
+        "what is a computer cookie",
+        "browser cookies"
+      ],
+      "keywords": [
+        "cookies",
+        "browser",
+        "web"
+      ],
+      "answer": "A little souvenir the site keeps about you 🍪\nCart, session, preferences: what makes browsing smooth.\nHence the \"accept cookies\" banner — the law just asks your permission 😄"
+    },
+    {
+      "id": "en_info_13",
+      "category": "it",
+      "questions": [
+        "what is cache",
+        "clearing browser cache"
+      ],
+      "keywords": [
+        "cache",
+        "browser",
+        "memory"
+      ],
+      "answer": "The browser's shortcut memory 💾\nIt keeps copies of images to reload faster.\nSite displaying weirdly? Clear the cache. Tech support's magic fix #1 😄"
+    },
+    {
+      "id": "en_info_14",
+      "category": "it",
+      "questions": [
+        "why backup your data",
+        "backup and cloud storage"
+      ],
+      "keywords": [
+        "backup",
+        "data",
+        "cloud"
+      ],
+      "answer": "A crash always comes the day you didn't back up 😅\nRule of 3-2-1: 3 copies, 2 mediums, 1 off-site (cloud).\nYour business lives in your files. 10 minutes of backup beats 10 days of rebuilding."
+    },
+    {
+      "id": "en_info_15",
+      "category": "it",
+      "questions": [
+        "what is a computer virus",
+        "how do you catch a virus"
+      ],
+      "keywords": [
+        "virus",
+        "malware",
+        "infection"
+      ],
+      "answer": "A malicious program that installs itself and misbehaves 🦠\nShady attachments, pirate sites, infected USB keys.\nVaccine = updated antivirus + updates + common sense: don't click \"you won\" 😄"
+    },
+    {
+      "id": "en_info_16",
+      "category": "it",
+      "questions": [
+        "what is a web browser",
+        "chrome firefox safari"
+      ],
+      "keywords": [
+        "browser",
+        "chrome",
+        "firefox"
+      ],
+      "answer": "The vehicle that takes you on the Internet 🚗\nChrome, Firefox, Safari, Edge: they display the sites.\nAll free, all fast — pick the one that respects your privacy best 😉"
+    },
+    {
+      "id": "en_info_17",
+      "category": "it",
+      "questions": [
+        "what is binary code",
+        "the 0s and 1s of computers"
+      ],
+      "keywords": [
+        "binary",
+        "bits",
+        "code"
+      ],
+      "answer": "The machine's mother tongue: 0s and 1s 🔢\nEvery photo, song, video = millions of neatly arranged 0s and 1s.\nSurprising, right? The most advanced tech rests on the simplest logic."
+    },
+    {
+      "id": "en_info_18",
+      "category": "it",
+      "questions": [
+        "why update your apps",
+        "what are updates for"
+      ],
+      "keywords": [
+        "update",
+        "apps",
+        "upgrade"
+      ],
+      "answer": "3 reasons: security, new features, fixes 🔧\nHackers exploit old versions — every update closes a hole.\nThat \"remind me later\" button? It's the hole problems crawl through 😄"
+    },
+    {
+      "id": "en_info_19",
+      "category": "it",
+      "questions": [
+        "what is a developer's job",
+        "what does working in IT mean"
+      ],
+      "keywords": [
+        "developer",
+        "career",
+        "code"
+      ],
+      "answer": "Translating human needs into machine language 💻\nA developer = a translator + a problem solver.\nAnd no, you don't need to be a genius: logic, patience, and lots of coffee 😄"
+    },
+    {
+      "id": "en_info_20",
+      "category": "it",
+      "questions": [
+        "what is a data analyst",
+        "a career in data"
+      ],
+      "keywords": [
+        "data",
+        "analyst",
+        "career"
+      ],
+      "answer": "The detective of numbers 🕵️\nHe turns raw data into business decisions.\n\"Clients buy Tuesdays at 7pm\" — he finds that, and it's gold bars for the company."
+    },
+    {
+      "id": "en_cult_01",
+      "category": "culture",
+      "questions": [
+        "nollywood the nigerian film industry",
+        "african cinema"
+      ],
+      "keywords": [
+        "nollywood",
+        "cinema",
+        "nigeria"
+      ],
+      "answer": "Nollywood produces 2,000+ films a year — more than Hollywood 🎬\nNigerian cinema speaks to Africans with African stories.\nProof: our stories fascinate the whole world. Africa no longer waits for permission."
+    },
+    {
+      "id": "en_cult_02",
+      "category": "culture",
+      "questions": [
+        "african literature",
+        "achebe kourouma african books"
+      ],
+      "keywords": [
+        "literature",
+        "books",
+        "african"
+      ],
+      "answer": "Treasures you must absolutely read 📚\nChinua Achebe (\"Things Fall Apart\"), Ahmadou Kourouma, Mariama Bâ.\nThese books tell Africa from the inside — pride, pain, humor, wisdom. Start with one, you'll love it."
+    },
+    {
+      "id": "en_cult_03",
+      "category": "culture",
+      "questions": [
+        "greek mythology",
+        "zeus and the greek gods"
+      ],
+      "keywords": [
+        "mythology",
+        "zeus",
+        "gods"
+      ],
+      "answer": "Gods with everything human: jealousy, love, anger ⚡\nZeus, Aphrodite, Poseidon — their stories still inspire films and books.\nGreek mythology = humanity's first blockbuster 😄"
+    },
+    {
+      "id": "en_cult_04",
+      "category": "culture",
+      "questions": [
+        "ancient egypt the pharaohs",
+        "pharaohs and pyramids"
+      ],
+      "keywords": [
+        "egypt",
+        "pharaohs",
+        "pyramids"
+      ],
+      "answer": "3,000 years of civilization on the Nile's banks 🏺\nPharaohs, hieroglyphs, mummies: a fascinating world still not fully explained.\nCheops, Nefertiti, Tutankhamun: their names cross millennia. Respect."
+    },
+    {
+      "id": "en_cult_05",
+      "category": "culture",
+      "questions": [
+        "the louvre museum",
+        "the biggest museums in the world"
+      ],
+      "keywords": [
+        "louvre",
+        "museum",
+        "paris"
+      ],
+      "answer": "The Louvre in Paris: the world's most visited museum 🖼️\nThe Mona Lisa attracts millions of visitors — many from Africa.\nA museum is the world's memory open to everyone. Go once in your life — it changes a person."
+    },
+    {
+      "id": "en_cult_06",
+      "category": "culture",
+      "questions": [
+        "the wonders of the world",
+        "the 7 ancient and modern wonders"
+      ],
+      "keywords": [
+        "wonders",
+        "world",
+        "monuments"
+      ],
+      "answer": "The ancient ones: pyramids, hanging gardens... almost all gone 🏛️\nThe new ones (2007): Great Wall, Taj Mahal, Machu Picchu, Christ the Redeemer...\nTravel goal: one per year. Life's too short to wait 😄"
+    },
+    {
+      "id": "en_cult_07",
+      "category": "culture",
+      "questions": [
+        "how is christmas celebrated around the world",
+        "christmas traditions"
+      ],
+      "keywords": [
+        "christmas",
+        "traditions",
+        "world"
+      ],
+      "answer": "Up North: tree, snow and gifts 🎄\nIn Guinea: midnight mass, family meal, kids in new clothes.\nSame heart everywhere: giving, gathering, celebrating. Christmas changes scenery, never spirit."
+    },
+    {
+      "id": "en_cult_08",
+      "category": "culture",
+      "questions": [
+        "what is ramadan like",
+        "fasting during ramadan"
+      ],
+      "keywords": [
+        "ramadan",
+        "fasting",
+        "month"
+      ],
+      "answer": "A month of fasting from dawn to sunset 🌙\nBut it's much more: sharing, prayer, family — and evening meals that bring everyone together.\nAt the end: Eid, the celebration, kids, brand-new boubous. The warmest month of the year for many."
+    },
+    {
+      "id": "en_cult_09",
+      "category": "culture",
+      "questions": [
+        "what is tabaski",
+        "eid al adha"
+      ],
+      "keywords": [
+        "tabaski",
+        "eid",
+        "sheep"
+      ],
+      "answer": "The sheep festival 🐑 — the biggest Muslim celebration.\nEach family sacrifices a sheep, shares in three: family, relatives, the poor.\nIn West Africa, Tabaski means boubous, dressed-up kids, and total generosity."
+    },
+    {
+      "id": "en_cult_10",
+      "category": "culture",
+      "questions": [
+        "chinese new year",
+        "the spring festival in china"
+      ],
+      "keywords": [
+        "chinese",
+        "new year",
+        "china"
+      ],
+      "answer": "The biggest annual human migration: billions of trips 🐉\nRed everywhere (lucky), lion dances, red envelopes with money.\nEach year has a zodiac animal. Did you know the festival lasts 15 days?"
+    },
+    {
+      "id": "en_cult_11",
+      "category": "culture",
+      "questions": [
+        "the moroccan tea ceremony",
+        "mint tea tradition"
+      ],
+      "keywords": [
+        "tea",
+        "morocco",
+        "hospitality"
+      ],
+      "answer": "Much more than a drink: a ritual of hospitality 🫖\nGreen tea, fresh mint, sugar — poured from high for the foam, an art.\nRefusing tea in Morocco is refusing friendship. Wait for the 3rd glass: it's tradition 😄"
+    },
+    {
+      "id": "en_cult_12",
+      "category": "culture",
+      "questions": [
+        "the major world religions",
+        "christianity islam hinduism buddhism"
+      ],
+      "keywords": [
+        "religions",
+        "world",
+        "faith"
+      ],
+      "answer": "Four great spiritual families 🌍\nChristianity (~2.4B), Islam (~2B), Hinduism (~1.2B), Buddhism (~500M).\nAll teach the same lesson deep down: love, share, respect. Cultures change, the heart stays."
+    },
+    {
+      "id": "en_cult_13",
+      "category": "culture",
+      "questions": [
+        "african loincloth fabric",
+        "kente and african textiles"
+      ],
+      "keywords": [
+        "pagne",
+        "wax",
+        "kente"
+      ],
+      "answer": "The fabric that speaks 🧵\nWax, bogolan, Ghanaian kente: every pattern and color tells status, proverb, joy.\nWearing the pagne is wearing history. And Saturday at weddings — Africa's red carpet 😄"
+    },
+    {
+      "id": "en_cult_14",
+      "category": "culture",
+      "questions": [
+        "traditional african dance",
+        "the dances of africa"
+      ],
+      "keywords": [
+        "dance",
+        "africa",
+        "tradition"
+      ],
+      "answer": "The body that tells stories 💃\nSowing dances, masks, ceremonies: every gesture has meaning.\nFrom Senegalese sabar to Guinean ballets — Africa dances its life. And the world copies us, frankly 😄"
+    },
+    {
+      "id": "en_cult_15",
+      "category": "culture",
+      "questions": [
+        "traditional weddings in west africa",
+        "dowry in africa"
+      ],
+      "keywords": [
+        "wedding",
+        "dowry",
+        "family"
+      ],
+      "answer": "A family affair, not just two people's 💍\nThe dowry seals the alliance between two families: ceremony, kola nuts, family heads, witnesses.\nIt can last days — and ends in an unforgettable party. An African wedding is an experience."
+    },
+    {
+      "id": "en_cult_16",
+      "category": "culture",
+      "questions": [
+        "the extended african family",
+        "uncle aunt and cousins in africa"
+      ],
+      "keywords": [
+        "family",
+        "africa",
+        "village"
+      ],
+      "answer": "In Africa, family doesn't stop at your parents 🌳\nUncles, aunts, cousins: all \"dad\" and \"mom\", all responsible for the child.\nYour neighbor can scold you like your father. It takes a village — the formula existed long before the saying 😄"
+    },
+    {
+      "id": "en_cult_17",
+      "category": "culture",
+      "questions": [
+        "unesco world heritage",
+        "unesco listed sites"
+      ],
+      "keywords": [
+        "unesco",
+        "heritage",
+        "sites"
+      ],
+      "answer": "The label protecting humanity's treasures 🏛️\n1,200+ sites: from Mount Nimba 🇬🇳 to the Great Wall.\nListed = protected forever. Guinea is on it — our wonders rival the world's."
+    },
+    {
+      "id": "en_cult_18",
+      "category": "culture",
+      "questions": [
+        "how people greet around the world",
+        "greetings across the world"
+      ],
+      "keywords": [
+        "greeting",
+        "world",
+        "hello"
+      ],
+      "answer": "Firm handshake in the West, \"Salam alaykum\" back home 🤝\nNamaste in India, a bow in Japan, nose-to-nose for Maoris.\nBut same everywhere: smile + respect = open door. The universal greeting is welcome."
+    },
+    {
+      "id": "en_cult_19",
+      "category": "culture",
+      "questions": [
+        "african fashion",
+        "african designers"
+      ],
+      "keywords": [
+        "fashion",
+        "africa",
+        "designers"
+      ],
+      "answer": "Africa is fashion's new capital ✨\nRevisited wax, tailored suits, designers from Lagos to Dakar flooding world runways.\nAfrican fashion no longer imitates — it inspires. Our stylists carry centuries of textile in their blood."
+    },
+    {
+      "id": "en_cult_20",
+      "category": "culture",
+      "questions": [
+        "senegalese wrestling and african sports",
+        "traditional sports in africa"
+      ],
+      "keywords": [
+        "wrestling",
+        "sport",
+        "senegal"
+      ],
+      "answer": "Wrestling in Senegal fills entire stadiums 🤼\nMore than a sport: rites, songs, griots and bets — football is jealous.\nAnd Ethiopian marathon, Nigerian Dambe boxing: Africa has always grown champions."
     }
   ],
   "packs": [
