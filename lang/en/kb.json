@@ -3261,6 +3261,1552 @@
         "energy"
       ],
       "answer": "Turning sunlight into electricity ☀️\nAfrica has the planet's best sunshine — a huge opportunity.\nThe sun gives freely; the panel transforms. The future is bright 😄"
+    },
+    {
+      "id": "en_tech_04",
+      "category": "technology",
+      "questions": [
+        "what is a qr code",
+        "what's a qr code for"
+      ],
+      "keywords": [
+        "qr",
+        "scan",
+        "code"
+      ],
+      "answer": "A 2D barcode you scan with your phone camera 📱\nRestaurant menus, payments, website links — anything hides inside.\nBusiness tip: put one on your flyers leading to your WhatsApp. One scan beats 10 taps."
+    },
+    {
+      "id": "en_tech_05",
+      "category": "technology",
+      "questions": [
+        "what is bluetooth"
+      ],
+      "keywords": [
+        "bluetooth",
+        "wireless"
+      ],
+      "answer": "A short-range wireless connection 📡\nEarbuds, speakers, watches — they all talk bluetooth.\nRange: ~10 meters. Perfect for the office, not the neighborhood 😄"
+    },
+    {
+      "id": "en_tech_06",
+      "category": "technology",
+      "questions": [
+        "what is wifi"
+      ],
+      "keywords": [
+        "wifi",
+        "wireless",
+        "internet"
+      ],
+      "answer": "Your home's wireless network 📶\nYour box turns Internet into radio waves your phone catches.\nHence the classic advice: restart the box. Fixes 90% of problems, promise 😄"
+    },
+    {
+      "id": "en_tech_07",
+      "category": "technology",
+      "questions": [
+        "what is fiber optic"
+      ],
+      "keywords": [
+        "fiber",
+        "optical",
+        "internet"
+      ],
+      "answer": "Glass threads that transport light... and Internet inside ⚡\nThat's what gives super fast connections.\nIf copper cable is a road, fiber is a 10-lane highway."
+    },
+    {
+      "id": "en_tech_08",
+      "category": "technology",
+      "questions": [
+        "what is bitcoin",
+        "what is cryptocurrency"
+      ],
+      "keywords": [
+        "bitcoin",
+        "crypto",
+        "digital money"
+      ],
+      "answer": "100% digital money, no central bank 🪙\nTransactions are verified by thousands of computers worldwide.\nVolatile: it can rise a lot, and fall a lot. Never put in what you can't afford to lose."
+    },
+    {
+      "id": "en_tech_09",
+      "category": "technology",
+      "questions": [
+        "what is an nft"
+      ],
+      "keywords": [
+        "nft",
+        "digital art",
+        "token"
+      ],
+      "answer": "A unique digital ownership certificate 🖼️\nLike an artist's signature on a work... but on the blockchain.\nIt made huge noise, and a huge bubble too. The tech is interesting, the hype less 😄"
+    },
+    {
+      "id": "en_tech_10",
+      "category": "technology",
+      "questions": [
+        "what is the metaverse"
+      ],
+      "keywords": [
+        "metaverse",
+        "virtual world"
+      ],
+      "answer": "Virtual worlds where you meet as an avatar 🥽\nWork, play, shop — all possible inside.\nStill under construction — somewhere between a giant video game and 3D Internet. Time will tell."
+    },
+    {
+      "id": "en_tech_11",
+      "category": "technology",
+      "questions": [
+        "virtual reality vs augmented reality",
+        "what is vr and ar"
+      ],
+      "keywords": [
+        "vr",
+        "ar",
+        "headset"
+      ],
+      "answer": "VR = you enter a virtual world (closed headset) 🥽\nAR = the virtual layers onto the real (Snapchat filters).\nAlready used in training, medicine, gaming, real estate."
+    },
+    {
+      "id": "en_tech_12",
+      "category": "technology",
+      "questions": [
+        "what is the internet of things",
+        "connected devices"
+      ],
+      "keywords": [
+        "iot",
+        "connected",
+        "smart home"
+      ],
+      "answer": "Everyday objects connected to the Internet 💡\nFridge, lock, bulb, watch: they communicate and automate.\nYour lamp switching on by itself at 7pm — that's IoT. The home gets smart piece by piece."
+    },
+    {
+      "id": "en_tech_13",
+      "category": "technology",
+      "questions": [
+        "what is big data"
+      ],
+      "keywords": [
+        "big data",
+        "analytics",
+        "data"
+      ],
+      "answer": "Massive amounts of data analyzed for trends 📊\nNetflix knows what you watch, Amazon knows what you browse.\nData is the 21st century's oil — you still need a good refinery to use it."
+    },
+    {
+      "id": "en_tech_14",
+      "category": "technology",
+      "questions": [
+        "what is a quantum computer",
+        "quantum computing"
+      ],
+      "keywords": [
+        "quantum",
+        "computing",
+        "physics"
+      ],
+      "answer": "A computer using the laws of quantum physics ⚛️\nInstead of 0 or 1, it explores both at once (simply put).\nResult: calculations in minutes that would take today's computers 10,000 years. We're just at the start."
+    },
+    {
+      "id": "en_tech_15",
+      "category": "technology",
+      "questions": [
+        "front-end vs back-end difference",
+        "what is a front-end developer"
+      ],
+      "keywords": [
+        "frontend",
+        "backend",
+        "developer"
+      ],
+      "answer": "Front-end = what you see (buttons, colors, animations) 🎨\nBack-end = what works in the shadows (logic, database) ⚙️\nLike a restaurant: dining room and kitchen. Both are essential."
+    },
+    {
+      "id": "en_tech_16",
+      "category": "technology",
+      "questions": [
+        "what is an api"
+      ],
+      "keywords": [
+        "api",
+        "interface",
+        "services"
+      ],
+      "answer": "A services menu between two programs 🤝\nWhen an app shows weather, it doesn't compute it — it orders via an API.\nLike ordering at the counter: you ask, the kitchen answers, you never enter the back."
+    },
+    {
+      "id": "en_tech_17",
+      "category": "technology",
+      "questions": [
+        "what is a database"
+      ],
+      "keywords": [
+        "database",
+        "data",
+        "storage"
+      ],
+      "answer": "An application's organized attic 🗄️\nAll customers, orders, messages: stored and findable in a blink.\nThe difference between a paper pile and a folder with colorful tabs 😄"
+    },
+    {
+      "id": "en_tech_18",
+      "category": "technology",
+      "questions": [
+        "what is a software bug",
+        "why do apps glitch"
+      ],
+      "keywords": [
+        "bug",
+        "error",
+        "code"
+      ],
+      "answer": "An error in the code 🐛\nThe program does something the developer didn't plan.\nEven giants (Google, Meta) ship some every week. A software's life — hence constant updates."
+    },
+    {
+      "id": "en_tech_19",
+      "category": "technology",
+      "questions": [
+        "what is open source",
+        "free software"
+      ],
+      "keywords": [
+        "open source",
+        "linux",
+        "community"
+      ],
+      "answer": "Code everyone can see, use and improve 🌍\nFirefox, Linux, Signal: free tools built by communities.\nThe spirit: share like a recipe — everyone improves the dish."
+    },
+    {
+      "id": "en_tech_20",
+      "category": "technology",
+      "questions": [
+        "why is my phone slow",
+        "slow laggy phone"
+      ],
+      "keywords": [
+        "phone",
+        "slow",
+        "memory"
+      ],
+      "answer": "Too many open apps, full memory, clogged cache 🐌\nFirst moves: close background apps, delete unused ones.\nStill sluggish? Restart it. The ancestral medicine of IT 😄"
+    },
+    {
+      "id": "en_tech_21",
+      "category": "technology",
+      "questions": [
+        "how to free up phone storage",
+        "storage full phone"
+      ],
+      "keywords": [
+        "storage",
+        "space",
+        "cleanup"
+      ],
+      "answer": "Delete WhatsApp videos and screenshots first 📸\nThey eat 80% of your space, promise.\nTip: back them up to a drive, then clean. Your phone breathes again."
+    },
+    {
+      "id": "en_tech_22",
+      "category": "technology",
+      "questions": [
+        "what is phishing",
+        "fraudulent bank message"
+      ],
+      "keywords": [
+        "phishing",
+        "scam",
+        "fraud"
+      ],
+      "answer": "The fake message pretending to be your bank 🎣\n\"Your account will be blocked, click here\" = 99% trap.\nGolden rule: a real bank NEVER asks for your code by message. Never."
+    },
+    {
+      "id": "en_tech_23",
+      "category": "technology",
+      "questions": [
+        "what is a vpn"
+      ],
+      "keywords": [
+        "vpn",
+        "privacy",
+        "tunnel"
+      ],
+      "answer": "A private tunnel for your connection 🕵️\nIt hides your IP and encrypts your traffic: more privacy online.\nUseful on public wifi — airports and cafés."
+    },
+    {
+      "id": "en_tech_24",
+      "category": "technology",
+      "questions": [
+        "what is two-factor authentication",
+        "what is 2fa"
+      ],
+      "keywords": [
+        "2fa",
+        "security",
+        "code"
+      ],
+      "answer": "A second lock beyond the password 🔐\nA code by SMS or app: even with a stolen password, no code = no entry.\nTurn it on everywhere: email, bank, socials. 2 minutes protecting years."
+    },
+    {
+      "id": "en_tech_25",
+      "category": "technology",
+      "questions": [
+        "what is streaming"
+      ],
+      "keywords": [
+        "streaming",
+        "netflix",
+        "video"
+      ],
+      "answer": "Watching or listening live, without downloading 🎬\nYouTube, Netflix, Spotify: the file arrives in pieces as you go.\nThat's why quality drops on weak connections — it adapts live."
+    },
+    {
+      "id": "en_tech_26",
+      "category": "technology",
+      "questions": [
+        "what is remote work",
+        "working from home"
+      ],
+      "keywords": [
+        "remote",
+        "telework",
+        "home"
+      ],
+      "answer": "Working without going to the office 🏠\nZoom, Slack, WhatsApp Business: teams coordinate online.\nDone well, it saves 1-2h of commute daily. Your 9am meeting from your bed 😄"
+    },
+    {
+      "id": "en_tech_27",
+      "category": "technology",
+      "questions": [
+        "what is 3d printing"
+      ],
+      "keywords": [
+        "3d printing",
+        "printer",
+        "prototype"
+      ],
+      "answer": "Building an object layer by layer with a machine 🖨️\nSpare part, prototype, toy: printed in plastic (or metal).\nA craftsman can model in the morning and hold the object in the afternoon. Revolutionary."
+    },
+    {
+      "id": "en_tech_28",
+      "category": "technology",
+      "questions": [
+        "what is a drone"
+      ],
+      "keywords": [
+        "drone",
+        "flying",
+        "camera"
+      ],
+      "answer": "A flying device piloted remotely 🛸\nDelivery, aerial photos, farming: uses are exploding.\nA flying camera for 100€: yesterday's videographer dream is today's toy aisle 😄"
+    },
+    {
+      "id": "en_tech_29",
+      "category": "technology",
+      "questions": [
+        "what is an electric car",
+        "are electric cars worth it"
+      ],
+      "keywords": [
+        "electric",
+        "car",
+        "battery"
+      ],
+      "answer": "A battery car instead of petrol 🔌\nFewer breakdowns (fewer moving parts), very low cost per km.\nThe challenge: charging where there are no stations yet. But it's moving fast, even in Africa."
+    },
+    {
+      "id": "en_tech_30",
+      "category": "technology",
+      "questions": [
+        "what is home automation",
+        "the smart home"
+      ],
+      "keywords": [
+        "domotics",
+        "smart home",
+        "automation"
+      ],
+      "answer": "A home that runs itself 🏡\nLights, AC, cameras, doors: all controlled from your phone.\nTurning on the AC before arriving home on a 40°C day: true luxury 😄"
+    },
+    {
+      "id": "en_tech_31",
+      "category": "technology",
+      "questions": [
+        "native app vs website difference",
+        "mobile app or site"
+      ],
+      "keywords": [
+        "app",
+        "native",
+        "website"
+      ],
+      "answer": "App = installed on the phone, faster, push notifications 📱\nWebsite = accessible everywhere, nothing to install 🌐\nFor business: start where your customers already are. In West Africa: a light site + WhatsApp."
+    },
+    {
+      "id": "en_tech_32",
+      "category": "technology",
+      "questions": [
+        "what are megapixels",
+        "camera pixels"
+      ],
+      "keywords": [
+        "megapixels",
+        "camera",
+        "photo"
+      ],
+      "answer": "The tiny dots composing a photo 📸\nMore of them = bigger enlargements without blur.\nBut careful: 12 Mpx with a good lens beats 50 Mpx with a bad one. The sensor matters more than marketing numbers."
+    },
+    {
+      "id": "en_tech_33",
+      "category": "technology",
+      "questions": [
+        "what is file compression",
+        "zip and rar files"
+      ],
+      "keywords": [
+        "compression",
+        "zip",
+        "files"
+      ],
+      "answer": "Packing the same content into a smaller box 🗜️\nZip, MP3, JPEG: your files are compressed without you noticing.\nText: ~80% saved. Photos and videos: less, they're already optimized."
+    },
+    {
+      "id": "en_tech_34",
+      "category": "technology",
+      "questions": [
+        "why do my emails go to spam",
+        "email not arriving"
+      ],
+      "keywords": [
+        "spam",
+        "email",
+        "junk"
+      ],
+      "answer": "Often a heavy attachment, or the recipient filtered you 📧\nOther causes: shady links, too many recipients in copy.\nPro fix: a real email address on your own domain escapes spam. We can create yours 😉"
+    },
+    {
+      "id": "en_tech_35",
+      "category": "technology",
+      "questions": [
+        "how to create a professional email address"
+      ],
+      "keywords": [
+        "email",
+        "professional",
+        "domain"
+      ],
+      "answer": "Simple format: name@yourcompany.com 👔\nGmail and Outlook allow it with your own domain.\nA pro address changes perception: the client feels a company, not a hobby."
+    },
+    {
+      "id": "en_tech_36",
+      "category": "technology",
+      "questions": [
+        "how to launch an online store",
+        "create an online shop"
+      ],
+      "keywords": [
+        "ecommerce",
+        "store",
+        "online"
+      ],
+      "answer": "3 steps: clean product photos + platform + payment 🛍️\nStart simple: WhatsApp Business catalogue or a Jumia/Shopify page.\nTest first: if it sells on WhatsApp, a site accelerates. If nothing sells, the site won't save it 😄"
+    },
+    {
+      "id": "en_tech_37",
+      "category": "technology",
+      "questions": [
+        "how to protect my instagram account",
+        "secure my facebook"
+      ],
+      "keywords": [
+        "instagram",
+        "facebook",
+        "security"
+      ],
+      "answer": "Unique password + two-factor, no exceptions 🔐\nThen: recovery email up to date, and beware of \"you won an iPhone\" links.\nA hacked account = 3 years of community gone in 1 click. Protect it."
+    },
+    {
+      "id": "en_biz_01",
+      "category": "business",
+      "questions": [
+        "what is a business plan",
+        "why write a business plan"
+      ],
+      "keywords": [
+        "business plan",
+        "roadmap",
+        "strategy"
+      ],
+      "answer": "Your project's roadmap 🗺️\nOffer, customers, costs, revenue: what you sell, to whom, how you profit.\nNo need for 50 pages: 2 clear ones beat a tome nobody reads 😄"
+    },
+    {
+      "id": "en_biz_02",
+      "category": "business",
+      "questions": [
+        "what is market research",
+        "study the market before launching"
+      ],
+      "keywords": [
+        "market research",
+        "validation",
+        "customers"
+      ],
+      "answer": "Checking people will pay for your idea BEFORE investing everything 🔍\nTalk to 20 potential customers, study competitors, test a small batch.\nA truth that stings beats a dream that costs."
+    },
+    {
+      "id": "en_biz_03",
+      "category": "business",
+      "questions": [
+        "what is seo",
+        "google ranking"
+      ],
+      "keywords": [
+        "seo",
+        "google",
+        "ranking"
+      ],
+      "answer": "Showing up when people search for you on Google 🔎\nWell-placed keywords on your site + useful content.\nA client who finds you via search is half convinced already. It's sales that sleep."
+    },
+    {
+      "id": "en_biz_04",
+      "category": "business",
+      "questions": [
+        "what is personal branding",
+        "building your personal brand"
+      ],
+      "keywords": [
+        "branding",
+        "personal",
+        "reputation"
+      ],
+      "answer": "Becoming known and trusted in your field 🌟\nPost consistently, show your work, share your views.\nPeople buy from those they know. Your visibility is your trust capital."
+    },
+    {
+      "id": "en_biz_05",
+      "category": "business",
+      "questions": [
+        "what is a sales funnel",
+        "the funnel explained"
+      ],
+      "keywords": [
+        "funnel",
+        "sales",
+        "conversion"
+      ],
+      "answer": "The customer's path from discovery to purchase 🛤️\nHe discovers you → gets interested → trusts you → buys → returns.\nEvery leaking step = lost customers. We can map yours together 😉"
+    },
+    {
+      "id": "en_biz_06",
+      "category": "business",
+      "questions": [
+        "what is copywriting"
+      ],
+      "keywords": [
+        "copywriting",
+        "writing",
+        "sales"
+      ],
+      "answer": "Writing that sells, without pestering ✍️\nWords that speak to the customer's problem, not the product's features.\nGolden rule: sell the benefit. Nobody buys a drill, they buy the hole in the wall 😄"
+    },
+    {
+      "id": "en_biz_07",
+      "category": "business",
+      "questions": [
+        "what is business storytelling",
+        "telling your brand story"
+      ],
+      "keywords": [
+        "storytelling",
+        "story",
+        "brand"
+      ],
+      "answer": "Telling instead of listing 📖\n\"I started with a phone and 50€\" beats \"founded in 2021\".\nThe story creates the bond, the bond creates the sale. Your journey IS a marketing argument."
+    },
+    {
+      "id": "en_biz_08",
+      "category": "business",
+      "questions": [
+        "what is a crm",
+        "managing your customer base"
+      ],
+      "keywords": [
+        "crm",
+        "customers",
+        "tracking"
+      ],
+      "answer": "Your customers' logbook 📇\nWho bought what, when, what to follow up. No more \"uh, who was that again?\".\nEven a well-kept spreadsheet does the job at first. What matters: log every contact."
+    },
+    {
+      "id": "en_biz_09",
+      "category": "business",
+      "questions": [
+        "what is the customer journey"
+      ],
+      "keywords": [
+        "customer journey",
+        "experience",
+        "path"
+      ],
+      "answer": "Everything your customer lives from ad to purchase 🚶\nHe sees you, contacts you, compares, hesitates, buys, returns.\nEvery friction (waiting, confusion) costs sales. Automation exists to remove exactly those 😊"
+    },
+    {
+      "id": "en_biz_10",
+      "category": "business",
+      "questions": [
+        "how to set my prices",
+        "defining your rates well"
+      ],
+      "keywords": [
+        "pricing",
+        "rates",
+        "prices"
+      ],
+      "answer": "Costs + perceived value, never just \"cheaper than the other\" 🏷️\nCalculate your break-even first: below it you lose money per sale.\nThen remember: low prices attract difficult clients, fair prices attract good ones."
+    },
+    {
+      "id": "en_biz_11",
+      "category": "business",
+      "questions": [
+        "what is a win-win negotiation",
+        "negotiating without friction"
+      ],
+      "keywords": [
+        "negotiation",
+        "win-win",
+        "deal"
+      ],
+      "answer": "Seeking an agreement where both sides walk away happy 🤝\nNot a tug-of-war: a construction.\nKnow your limit beforehand, listen more than you speak, always leave the other a graceful exit."
+    },
+    {
+      "id": "en_biz_12",
+      "category": "business",
+      "questions": [
+        "what is an elevator pitch",
+        "pitching in 30 seconds"
+      ],
+      "keywords": [
+        "pitch",
+        "elevator",
+        "presentation"
+      ],
+      "answer": "Your project explained before the elevator reaches the floor 🛗\nProblem + solution + for whom. 3 sentences, stopwatch on.\nIf you can't say it in 30 seconds, the client won't remember it. Practice out loud!"
+    },
+    {
+      "id": "en_biz_13",
+      "category": "business",
+      "questions": [
+        "what is fundraising",
+        "finding investors"
+      ],
+      "keywords": [
+        "funding",
+        "investors",
+        "capital"
+      ],
+      "answer": "Selling a share of your company to finance growth 💰\nThe investor gives capital, you give equity.\nCareful: raising funds isn't success in itself — it's a tool. Plenty of profitable companies never did."
+    },
+    {
+      "id": "en_biz_14",
+      "category": "business",
+      "questions": [
+        "what is bootstrapping",
+        "starting without investors"
+      ],
+      "keywords": [
+        "bootstrapping",
+        "self-funded",
+        "growth"
+      ],
+      "answer": "Growing on your own revenue, no investors 💪\nYou reinvest every franc earned into the business.\nSlower, but you keep 100% control. Most successful African businesses started this way."
+    },
+    {
+      "id": "en_biz_15",
+      "category": "business",
+      "questions": [
+        "what is dropshipping",
+        "selling without stock"
+      ],
+      "keywords": [
+        "dropshipping",
+        "stock",
+        "supplier"
+      ],
+      "answer": "Selling without stocking: the supplier ships directly 📦\nYou pocket the difference between your price and the supplier's.\nAdvantage: little capital. Trap: thin margins, fierce competition. Brand makes the difference."
+    },
+    {
+      "id": "en_biz_16",
+      "category": "business",
+      "questions": [
+        "what is affiliate marketing",
+        "earning by recommending"
+      ],
+      "keywords": [
+        "affiliate",
+        "commission",
+        "referral"
+      ],
+      "answer": "Getting paid when someone buys through your link 🤝\nThe site gains a customer, you a commission: everyone wins.\nRule: only recommend what you appreciate. Your recommendation is your reputation."
+    },
+    {
+      "id": "en_biz_17",
+      "category": "business",
+      "questions": [
+        "what is freelancing",
+        "going freelance"
+      ],
+      "keywords": [
+        "freelance",
+        "self-employed",
+        "skills"
+      ],
+      "answer": "Selling your skills to several clients, no fixed boss 💼\nDesigner, dev, writer, translator: you bill per mission.\nThe start is hard (finding clients), the rest is sweet (freedom). We can automate your prospecting, just saying 😉"
+    },
+    {
+      "id": "en_biz_18",
+      "category": "business",
+      "questions": [
+        "how to find my first clients",
+        "first customers for a new business"
+      ],
+      "keywords": [
+        "clients",
+        "first",
+        "start"
+      ],
+      "answer": "Start with your circle: family, friends, acquaintances 📲\nThen ask each for a referral: word of mouth remains channel #1.\nOffer your first 3 gigs at a discount for an honest review. Reviews bring the next ones."
+    },
+    {
+      "id": "en_biz_19",
+      "category": "business",
+      "questions": [
+        "what is customer retention",
+        "keeping your customers"
+      ],
+      "keywords": [
+        "retention",
+        "loyalty",
+        "repeat"
+      ],
+      "answer": "Bringing back those who already bought 💛\nCosts 5x less than finding new ones.\nA simple post-purchase message (\"happy with it?\") works wonders. That's exactly what our bots send automatically 😊"
+    },
+    {
+      "id": "en_biz_20",
+      "category": "business",
+      "questions": [
+        "what is added value",
+        "standing out from competitors"
+      ],
+      "keywords": [
+        "value",
+        "differentiation",
+        "edge"
+      ],
+      "answer": "What the customer gets MORE with you 💎\nFaster, closer, simpler, more human — value isn't just the product.\nFind your strength and put it everywhere: profile, pitch, client replies."
+    },
+    {
+      "id": "en_biz_21",
+      "category": "business",
+      "questions": [
+        "why customer service matters",
+        "the importance of after-sales"
+      ],
+      "keywords": [
+        "service",
+        "after-sales",
+        "support"
+      ],
+      "answer": "A well-treated customer returns and talks about you 🗣️\nA badly-treated one also talks... to more people.\nThought-provoking stat: 60% of customers return after a well-solved problem. Support IS marketing."
+    },
+    {
+      "id": "en_biz_22",
+      "category": "business",
+      "questions": [
+        "what is a kpi",
+        "performance indicators"
+      ],
+      "keywords": [
+        "kpi",
+        "metrics",
+        "indicators"
+      ],
+      "answer": "The numbers telling if your business moves 📏\nMonthly sales, new customers, average basket: 3-4 numbers are enough.\nWhat isn't measured doesn't improve. A spreadsheet and 10 minutes a week — that's all."
+    },
+    {
+      "id": "en_biz_23",
+      "category": "business",
+      "questions": [
+        "what is roi in business",
+        "calculating return on investment"
+      ],
+      "keywords": [
+        "roi",
+        "investment",
+        "return"
+      ],
+      "answer": "Return On Investment: what you earn per franc invested 📈\nFormula: (gain - cost) ÷ cost.\nIf 1€ in ads brings 3€, reinvest. If it brings 0.50€, change the ad. Simple, merciless."
+    },
+    {
+      "id": "en_biz_24",
+      "category": "business",
+      "questions": [
+        "how to manage time as an entrepreneur",
+        "organizing your workday"
+      ],
+      "keywords": [
+        "time",
+        "management",
+        "schedule"
+      ],
+      "answer": "Block your tasks in time slots, phone on silent ⏰\nMornings: the important work. Messages: at fixed hours, not continuously.\nAnswering every notification means letting others choose your day 😄"
+    },
+    {
+      "id": "en_biz_25",
+      "category": "business",
+      "questions": [
+        "what is the pomodoro technique",
+        "working in 25-minute sessions"
+      ],
+      "keywords": [
+        "pomodoro",
+        "focus",
+        "sessions"
+      ],
+      "answer": "25 minutes of focus, 5 of break, repeat 🍅\nThe brain holds 25 minutes of focus well — the timer knows it.\n4 sessions = 2h of deep work. You'd be amazed what that unlocks."
+    },
+    {
+      "id": "en_biz_26",
+      "category": "business",
+      "questions": [
+        "what is mobile money",
+        "orange money and mtn money"
+      ],
+      "keywords": [
+        "mobile money",
+        "orange",
+        "mtn"
+      ],
+      "answer": "Sending and receiving money by simple SMS or app 📲\nOrange Money, MTN MoMo: a silent revolution in Africa.\nYou can collect from a client in Conakry from Casablanca in 3 seconds. Money moves at phone speed."
+    },
+    {
+      "id": "en_biz_27",
+      "category": "business",
+      "questions": [
+        "how to formalize my business",
+        "registering a company"
+      ],
+      "keywords": [
+        "formalize",
+        "register",
+        "legal"
+      ],
+      "answer": "Going from informal to formal opens doors 🏛️\nInvoicing companies, loan access, public tenders: all require legal status.\nStart simple in your country, then evolve. A declared company grows further than an invisible one."
+    },
+    {
+      "id": "en_biz_28",
+      "category": "business",
+      "questions": [
+        "what is an sme",
+        "small and medium enterprises"
+      ],
+      "keywords": [
+        "sme",
+        "business",
+        "pme"
+      ],
+      "answer": "Small and Medium Enterprises: roughly 5 to 250 employees 🏪\nIn Africa, SMEs provide most jobs.\nA well-run corner shop is an SME. Never underestimate small beginnings."
+    },
+    {
+      "id": "en_biz_29",
+      "category": "business",
+      "questions": [
+        "what is sales prospecting",
+        "finding new b2b clients"
+      ],
+      "keywords": [
+        "prospecting",
+        "b2b",
+        "sales"
+      ],
+      "answer": "Going to find clients instead of waiting 🎯\nPersonalized messages, targeted calls, presence where they are.\nGame rule: 10 serious contacts beat 100 copy-pasted messages. Personalization is 80% of the work."
+    },
+    {
+      "id": "en_biz_30",
+      "category": "business",
+      "questions": [
+        "how to handle an unhappy customer",
+        "a customer complained what now"
+      ],
+      "keywords": [
+        "complaint",
+        "customer",
+        "angry"
+      ],
+      "answer": "Listen first, fully, without defending yourself 👂\nThen apologize sincerely and offer a concrete fix.\nA well-handled problem builds more loyalty than a flawless service. Handled well, an angry customer becomes an ambassador."
+    },
+    {
+      "id": "en_biz_31",
+      "category": "business",
+      "questions": [
+        "b2b vs b2c difference",
+        "selling to companies or individuals"
+      ],
+      "keywords": [
+        "b2b",
+        "b2c",
+        "market"
+      ],
+      "answer": "B2B: you sell to companies. B2C: to individuals 🎯\nB2B = fewer clients, bigger baskets, long cycles.\nB2C = volume, emotion, speed. Many businesses do both — like us, by the way 😊"
+    },
+    {
+      "id": "en_biz_32",
+      "category": "business",
+      "questions": [
+        "why networking matters",
+        "building a professional network"
+      ],
+      "keywords": [
+        "networking",
+        "network",
+        "contacts"
+      ],
+      "answer": "Your network opens doors job boards never heard of 🚪\nA contact, a referral, advice at the right moment.\nSimple rule: give first. Those who give, receive. Networking is sowing before harvesting."
+    },
+    {
+      "id": "en_biz_33",
+      "category": "business",
+      "questions": [
+        "what is cash flow",
+        "company treasury"
+      ],
+      "keywords": [
+        "cash flow",
+        "treasury",
+        "finance"
+      ],
+      "answer": "Money in and out, in real time 💧\nA company can be profitable on paper and die of cash shortage.\nSurvival rule: always keep enough to cover 3 months of charges. Cash is a business's oxygen."
+    },
+    {
+      "id": "en_biz_34",
+      "category": "business",
+      "questions": [
+        "how to remind a client about payment",
+        "asking for your money politely"
+      ],
+      "keywords": [
+        "payment",
+        "reminder",
+        "invoice"
+      ],
+      "answer": "Gentle follow-up: \"Hi, hope you're well, the invoice from [date] is now due\" 📨\nSteps: 1st friendly reminder, 2nd firm, 3rd with agreed penalty.\nGetting paid is customer service too — firm, but always respectful."
+    },
+    {
+      "id": "en_guinee_07",
+      "category": "guinea",
+      "questions": [
+        "where is guinea located",
+        "where is guinea conakry",
+        "guinea's location"
+      ],
+      "keywords": [
+        "guinea",
+        "location",
+        "africa"
+      ],
+      "answer": "In West Africa, facing the Atlantic Ocean 🇬🇳\nNeighbors: Mali, Senegal, Guinea-Bissau, Sierra Leone, Côte d'Ivoire, Liberia.\nNicknamed \"West Africa's water tower\" — you'll see why 😊"
+    },
+    {
+      "id": "en_guinee_08",
+      "category": "guinea",
+      "questions": [
+        "the 4 natural regions of guinea",
+        "lower middle upper guinea"
+      ],
+      "keywords": [
+        "regions",
+        "guinea",
+        "forest"
+      ],
+      "answer": "4 regions, 4 characters:\n🌊 Lower Guinea (coast, Conakry) — ⛰️ Middle Guinea (Fouta Djallon) — 🌾 Upper Guinea (savanna, Kankan) — 🌳 Forest Guinea (N'Zérékoré).\nOne country, four worlds. That's Guinea's wealth."
+    },
+    {
+      "id": "en_guinee_09",
+      "category": "guinea",
+      "questions": [
+        "what is the fouta djallon",
+        "the fouta massif"
+      ],
+      "keywords": [
+        "fouta",
+        "djallon",
+        "highlands"
+      ],
+      "answer": "Guinea's roof, in Middle Guinea ⛰️\nA green plateau where the Niger, Senegal and Gambia rivers are born — hence \"water tower\".\nCool climate, breathtaking landscapes, towns like Labé, Mamou, Pita. A treasure to visit."
+    },
+    {
+      "id": "en_guinee_10",
+      "category": "guinea",
+      "questions": [
+        "where does the niger river start",
+        "where is the niger born"
+      ],
+      "keywords": [
+        "niger",
+        "river",
+        "source"
+      ],
+      "answer": "In Guinea! It's born in the Fouta Djallon, under the name Bafing 💧\nThen it flows through Mali, Niger, Nigeria to the ocean.\nOne of Africa's great rivers is Guinean at its source. Proud 🇬🇳"
+    },
+    {
+      "id": "en_guinee_11",
+      "category": "guinea",
+      "questions": [
+        "what is mount nimba",
+        "guinea's highest point"
+      ],
+      "keywords": [
+        "nimba",
+        "mountain",
+        "unesco"
+      ],
+      "answer": "Guinea's roof: ~1,752 meters, UNESCO heritage 🏔️\nAt the border with Côte d'Ivoire and Liberia, a unique nature reserve.\nIts zone holds species found nowhere else. A jewel to protect."
+    },
+    {
+      "id": "en_guinee_12",
+      "category": "guinea",
+      "questions": [
+        "the los islands",
+        "beaches near conakry"
+      ],
+      "keywords": [
+        "islands",
+        "beach",
+        "los"
+      ],
+      "answer": "A little paradise archipelago, 30 minutes by boat from Conakry 🏝️\nKassa, Roume, Tamara, Fotoba: sandy beaches, palm trees, turquoise water.\nConakrykas' weekend escape. A piece of paradise, truly."
+    },
+    {
+      "id": "en_guinee_13",
+      "category": "guinea",
+      "questions": [
+        "what to visit in conakry",
+        "places to see in conakry"
+      ],
+      "keywords": [
+        "conakry",
+        "visit",
+        "places"
+      ],
+      "answer": "Conakry is buzzing! 🌆\nThe Grand Mosque Fayçal, Madina Market, Niger Market, the corniche at sunset, the National Museum.\nAnd at night, the maquis vibe with music and grilled food. Conakry never sleeps 😄"
+    },
+    {
+      "id": "en_guinee_14",
+      "category": "guinea",
+      "questions": [
+        "the grand mosque of conakry",
+        "the faycal mosque"
+      ],
+      "keywords": [
+        "mosque",
+        "faycal",
+        "conakry"
+      ],
+      "answer": "The Grand Mosque Fayçal of Conakry, one of West Africa's largest 🕌\nCapacity ~25,000 worshippers, sumptuous Moroccan style.\nA source of national pride and a landmark of the city."
+    },
+    {
+      "id": "en_guinee_15",
+      "category": "guinea",
+      "questions": [
+        "major cities of guinea",
+        "kankan kindia labe nzerekore"
+      ],
+      "keywords": [
+        "cities",
+        "kankan",
+        "labe"
+      ],
+      "answer": "Conakry the capital, of course 🇬🇳\nThen: Kankan (Upper Guinea's capital), Labé and Mamou (Fouta), Kindia (Guinea's garden), N'Zérékoré (forest region), Boké and Kamsar (mining).\nEach city has its character — that's what makes inland travel fascinating."
+    },
+    {
+      "id": "en_guinee_16",
+      "category": "guinea",
+      "questions": [
+        "guinea's climate",
+        "when to visit guinea",
+        "dry and rainy season in guinea"
+      ],
+      "keywords": [
+        "climate",
+        "season",
+        "weather"
+      ],
+      "answer": "Two main seasons:\n☀️ Dry season: November to May, blue skies, cool harmattan.\n🌧️ Rainy season: June to October, generous rains especially on the coast and Fouta.\nTo visit: December-February, perfect weather. To see green Guinea: right after the rains, everything explodes 🌿"
+    },
+    {
+      "id": "en_guinee_17",
+      "category": "guinea",
+      "questions": [
+        "guinea's national languages",
+        "susu malinke fula kissi"
+      ],
+      "keywords": [
+        "languages",
+        "susu",
+        "malinke"
+      ],
+      "answer": "French is official, but the real wealth is the national languages 🗣️\nSusu (coast), Malinké (Upper Guinea), Pular/Fula (Fouta), Kissi, Toma, Kpèlè (forest region).\nMost Guineans speak 2-3 of them. Guinea is naturally multilingual!"
+    },
+    {
+      "id": "en_guinee_18",
+      "category": "guinea",
+      "questions": [
+        "guinea's currency",
+        "the guinean franc gnf"
+      ],
+      "keywords": [
+        "currency",
+        "gnf",
+        "franc"
+      ],
+      "answer": "The Guinean franc (GNF) 💵\n1€ ≈ 11,000 GNF — prices in Guinea are often counted in thousands.\nAnd everywhere: Orange Money and MTN MoMo now settle almost everything, even at the market."
+    },
+    {
+      "id": "en_guinee_19",
+      "category": "guinea",
+      "questions": [
+        "guinea's independence 1958",
+        "sekou toure the no"
+      ],
+      "keywords": [
+        "independence",
+        "1958",
+        "history"
+      ],
+      "answer": "On October 2, 1958, Guinea said \"NO\" to General De Gaulle 🇬🇳\nThe first French colony in Africa to choose immediate independence, led by Sékou Touré.\n\"We prefer poverty in freedom to wealth in servitude.\" A sentence that traveled the world."
+    },
+    {
+      "id": "en_guinee_20",
+      "category": "guinea",
+      "questions": [
+        "guinea's economy",
+        "guinea's bauxite"
+      ],
+      "keywords": [
+        "economy",
+        "bauxite",
+        "mining"
+      ],
+      "answer": "Guinea sits on a treasure: bauxite 🪙\nThe world's #1 reserve! The world's aluminum often starts its journey in Guinea.\nAdd the iron of Simandou, the gold of Siguiri, Fouta agriculture — immense potential."
+    },
+    {
+      "id": "en_guinee_21",
+      "category": "guinea",
+      "questions": [
+        "what is simandou",
+        "the simandou iron deposit"
+      ],
+      "keywords": [
+        "simandou",
+        "iron",
+        "mine"
+      ],
+      "answer": "The world's largest untapped iron deposit 🏗️\nIn Guinea's southeast, with a 600+ km railway project to the coast.\nAt full capacity, it could transform the Guinean economy. The whole world is watching Guinea."
+    },
+    {
+      "id": "en_guinee_22",
+      "category": "guinea",
+      "questions": [
+        "what to eat in guinea",
+        "fouté and riz gras",
+        "guinean dishes"
+      ],
+      "keywords": [
+        "food",
+        "cuisine",
+        "guinean"
+      ],
+      "answer": "Get hungry 😋\nSunday's riz gras, sauce graine, plantain fouté, chicken bicyclette grilled over wood.\nAnd Conakry's maquis at night: grilled fish, attiéké, live music. Guinea is tasted as much as visited."
+    },
+    {
+      "id": "en_guinee_23",
+      "category": "guinea",
+      "questions": [
+        "guinean music",
+        "bembeya jazz mory kante"
+      ],
+      "keywords": [
+        "music",
+        "bembeya",
+        "griot"
+      ],
+      "answer": "Guinea is a musical powerhouse 🎶\nBembeya Jazz National, Mory Kanté (the famous \"Yé ké yé ké\"!), Sekouba Bambino, Sory Kandia — the Guinean griot school is legendary.\nKora, balafon, djembe: all of Africa recognizes the Guinean touch."
+    },
+    {
+      "id": "en_guinee_24",
+      "category": "guinea",
+      "questions": [
+        "the madina market",
+        "conakry's markets"
+      ],
+      "keywords": [
+        "madina",
+        "market",
+        "shopping"
+      ],
+      "answer": "Madina is Conakry's beating heart 🛍️\nA giant labyrinth where you find EVERYTHING: fabrics, loincloths, spices, phones, even spare parts.\nNiger Market for upscale, Madina for authentic. Bargaining required, smiling recommended 😄"
+    },
+    {
+      "id": "en_guinee_25",
+      "category": "guinea",
+      "questions": [
+        "guinea's waterfalls",
+        "kambadaga kinkon saala"
+      ],
+      "keywords": [
+        "waterfalls",
+        "cascades",
+        "fouta"
+      ],
+      "answer": "Guinea is full of waterfalls 💦\nKambadaga, Kinkon, Saala... the Fouta Djallon is sprinkled with them.\nNatural pools at the foot of falls, amid green mountains. Still barely touristic = preserved paradise."
+    },
+    {
+      "id": "en_guinee_26",
+      "category": "guinea",
+      "questions": [
+        "guinea's flag",
+        "red yellow green meaning"
+      ],
+      "keywords": [
+        "flag",
+        "colors",
+        "guinea"
+      ],
+      "answer": "Red, Yellow, Green 🇬🇳\nRed: the blood of independence martyrs. Yellow: gold and the sun. Green: vegetation and prosperity.\nAnd the motto: \"Work, Justice, Solidarity.\" National pride in three colors."
+    },
+    {
+      "id": "en_guinee_27",
+      "category": "guinea",
+      "questions": [
+        "how many people live in guinea",
+        "guinea's population"
+      ],
+      "keywords": [
+        "population",
+        "inhabitants",
+        "demographics"
+      ],
+      "answer": "~14 million inhabitants, over 1.7 million in Conakry 🌍\nA very young population: the majority is under 25.\nA connected, entrepreneurial, multilingual youth — the future growing strong in Guinea."
+    },
+    {
+      "id": "en_guinee_28",
+      "category": "guinea",
+      "questions": [
+        "religion in guinea",
+        "islam in guinea"
+      ],
+      "keywords": [
+        "religion",
+        "islam",
+        "muslim"
+      ],
+      "answer": "Guinea is a majority Muslim country (~85%) 🕌\nWith Christian and animist communities living together in peace.\nRamadan, Tabaski, Christmas: the holidays punctuate the year and bring everyone together. Guinean tolerance is a real lesson."
+    },
+    {
+      "id": "en_digital_01",
+      "category": "creation",
+      "questions": [
+        "what makes a good logo",
+        "criteria of a successful logo"
+      ],
+      "keywords": [
+        "logo",
+        "design",
+        "criteria"
+      ],
+      "answer": "3 criteria: simple, memorable, timeless ✨\nSimple = readable small and far. Memorable = recognized in 1 second. Timeless = still handsome in 10 years.\nNike, Apple, MTN: none reinvented the wheel. Simplicity is design's luxury."
+    },
+    {
+      "id": "en_digital_02",
+      "category": "creation",
+      "questions": [
+        "what does a brand guide include",
+        "what is a graphic charter"
+      ],
+      "keywords": [
+        "charter",
+        "brand guide",
+        "visual"
+      ],
+      "answer": "A brand's visual instruction manual 📘\nLogo + variants, exact colors, typography, sizes, what's forbidden.\nIt guarantees your brand looks the same everywhere: flyer, socials, invoice. The discipline that turns \"pretty\" into \"pro\"."
+    },
+    {
+      "id": "en_digital_03",
+      "category": "creation",
+      "questions": [
+        "color psychology",
+        "which color for my brand"
+      ],
+      "keywords": [
+        "colors",
+        "psychology",
+        "brand"
+      ],
+      "answer": "Colors speak before words 🎨\nBlue = trust (banks, tech). Red = energy (food, sport). Green = nature/health. Gold = prestige. Black = luxury.\nTip: choose the color of the emotion your client should feel, not just your favorite."
+    },
+    {
+      "id": "en_digital_04",
+      "category": "creation",
+      "questions": [
+        "what is typography",
+        "serif or sans serif"
+      ],
+      "keywords": [
+        "typography",
+        "font",
+        "serif"
+      ],
+      "answer": "The art of choosing characters ✍️\nSerif = classic, serious. Sans serif = modern, clean.\nRule: 2 fonts max per visual. Beyond that, the eye gets lost. Readability always beats originality."
+    },
+    {
+      "id": "en_digital_05",
+      "category": "creation",
+      "questions": [
+        "what is branding",
+        "difference between brand and logo"
+      ],
+      "keywords": [
+        "branding",
+        "brand",
+        "identity"
+      ],
+      "answer": "Branding = the promise + the personality + the consistency 🌟\nThe logo is just the face; the brand is the character.\nWhat people say about you when you're not there — that's your real brand. Design just makes it visible."
+    },
+    {
+      "id": "en_digital_06",
+      "category": "creation",
+      "questions": [
+        "what is professional photo retouching"
+      ],
+      "keywords": [
+        "retouching",
+        "photo",
+        "editing"
+      ],
+      "answer": "Revealing a photo's best without lying ✨\nLight, skin tone, sharpness, framing: we fix what the camera missed.\nGood retouching doesn't show — it's felt. The photo just looks... right. That's our specialty at KOMARA 😄"
+    },
+    {
+      "id": "en_digital_07",
+      "category": "creation",
+      "questions": [
+        "what is video editing"
+      ],
+      "keywords": [
+        "editing",
+        "video",
+        "montage"
+      ],
+      "answer": "Assembling shots into a story that holds 🎬\nRhythm, cuts, music, subtitles: every second must serve the message.\nOn TikTok/Reels, the first 3 seconds decide if people stay. That's where everything is won."
+    },
+    {
+      "id": "en_digital_08",
+      "category": "creation",
+      "questions": [
+        "what is motion design"
+      ],
+      "keywords": [
+        "motion",
+        "animation",
+        "design"
+      ],
+      "answer": "Graphics that move 🎞️\nAnimated logos, dancing text, moving infographics.\nA motion video explains a complex idea in 30 seconds — perfect for that concept nobody gets at first 😄"
+    },
+    {
+      "id": "en_digital_09",
+      "category": "creation",
+      "questions": [
+        "what is ux and ui design"
+      ],
+      "keywords": [
+        "ux",
+        "ui",
+        "design"
+      ],
+      "answer": "UX = the experience (is it fluid?). UI = the interface (is it beautiful?) 🖱️\nUX thinks the journey, UI thinks the visual emotion.\nA gorgeous site where you find nothing fails. An efficient but ugly site scares people. You need both."
+    },
+    {
+      "id": "en_digital_10",
+      "category": "creation",
+      "questions": [
+        "what is web design",
+        "designing a good website"
+      ],
+      "keywords": [
+        "webdesign",
+        "website",
+        "layout"
+      ],
+      "answer": "The art of making a site clear, fast and desirable 🌐\nHierarchy: the essential big, the rest quiet. Breathing: empty space is your friend.\nA visitor decides in 5 seconds whether to stay. Web design is winning those 5 seconds."
+    },
+    {
+      "id": "en_digital_11",
+      "category": "creation",
+      "questions": [
+        "what is packaging design"
+      ],
+      "keywords": [
+        "packaging",
+        "product",
+        "design"
+      ],
+      "answer": "The product's first handshake 📦\nGood packaging tells: who you are, why it's better, who it's for.\nIn stores, 70% of purchase decisions happen at the shelf. Packaging is your silent 24/7 salesperson."
+    },
+    {
+      "id": "en_digital_12",
+      "category": "creation",
+      "questions": [
+        "what is a moodboard"
+      ],
+      "keywords": [
+        "moodboard",
+        "style",
+        "inspiration"
+      ],
+      "answer": "The mood board you build before creating 🖼️\nImages, colors, textures, keywords: fix the style BEFORE drawing.\nSaves 10 rounds of revisions. Client and designer look in the same direction from the start."
+    },
+    {
+      "id": "en_digital_13",
+      "category": "creation",
+      "questions": [
+        "social media formats",
+        "9:16 1:1 or 16:9 format"
+      ],
+      "keywords": [
+        "formats",
+        "9:16",
+        "social"
+      ],
+      "answer": "Each network has its shape 📐\n9:16 vertical: Stories, Reels, TikTok, WhatsApp status. 1:1 square: Instagram feed. 16:9 horizontal: YouTube, LinkedIn.\nOne visual adapted nowhere = blurry everywhere. Adapt per format — that's the rule."
+    },
+    {
+      "id": "en_digital_14",
+      "category": "creation",
+      "questions": [
+        "what is a youtube thumbnail",
+        "a good thumbnail"
+      ],
+      "keywords": [
+        "thumbnail",
+        "youtube",
+        "click"
+      ],
+      "answer": "The poster that decides the click 🖼️\nExpressive face, 3 words max, strong contrast: it must read on a phone screen.\nThe video can be a masterpiece: without a thumbnail, nobody clicks. It's the front door."
+    },
+    {
+      "id": "en_digital_15",
+      "category": "creation",
+      "questions": [
+        "why make instagram carousels"
+      ],
+      "keywords": [
+        "carousel",
+        "instagram",
+        "swipe"
+      ],
+      "answer": "The carousel is the silent weapon 📊\nEach slide holds 2 more seconds of attention — and Instagram pushes posts people swipe.\nPerfect for: steps, before/after, mini-tutorials. And the mental swipe-up makes people see it all 😄"
+    },
+    {
+      "id": "en_digital_16",
+      "category": "creation",
+      "questions": [
+        "what resolution for printing",
+        "dpi print vs web"
+      ],
+      "keywords": [
+        "dpi",
+        "resolution",
+        "print"
+      ],
+      "answer": "Printing: 300 dpi minimum 🖨️\nWeb: 72 dpi is enough (screens).\nSending a 72 dpi image to the printer = guaranteed blur. Always ask for the final size in cm before creating, never the reverse."
+    },
+    {
+      "id": "en_digital_17",
+      "category": "creation",
+      "questions": [
+        "cmyk or rgb the difference"
+      ],
+      "keywords": [
+        "cmyk",
+        "rgb",
+        "color"
+      ],
+      "answer": "RGB = light of screens 🌈\nCMYK = printing inks 🖨️\nRule: screen → RGB, flyer → CMYK. Converting too late shifts colors at the printer. A classic that costs money."
+    },
+    {
+      "id": "en_digital_18",
+      "category": "creation",
+      "questions": [
+        "what is ai generative art",
+        "creating images with ai"
+      ],
+      "keywords": [
+        "ai",
+        "generative",
+        "art"
+      ],
+      "answer": "Generating visuals from a descriptive text 🤖\nYou write the style, the light, the mood — the AI paints in seconds.\nPro result = precise prompt + selection + retouching. AI is a brush, not an artist: the eye stays human 😊"
+    },
+    {
+      "id": "en_digital_19",
+      "category": "creation",
+      "questions": [
+        "which software to create visuals",
+        "photoshop illustrator canva figma"
+      ],
+      "keywords": [
+        "software",
+        "photoshop",
+        "canva"
+      ],
+      "answer": "The trade's classics 🛠️\nPhotoshop (photos), Illustrator (logos/vectors), Figma (interfaces), Premiere (video), Canva (quick and simple).\nCanva helps a lot, but a pro logo stays vector — so it stays sharp at every size."
+    },
+    {
+      "id": "en_digital_20",
+      "category": "creation",
+      "questions": [
+        "what is an image ai prompt",
+        "writing a good image prompt"
+      ],
+      "keywords": [
+        "prompt",
+        "ai",
+        "image"
+      ],
+      "answer": "The recipe you give the AI 📝\nStyle + subject + light + format + mood. The more precise, the closer to your idea.\n\"A lion\" gives a vague result; \"studio portrait of a proud Fula chief, golden light, 8k\" gives a masterpiece."
+    },
+    {
+      "id": "en_digital_21",
+      "category": "creation",
+      "questions": [
+        "why professional visuals sell more",
+        "the impact of good design on sales"
+      ],
+      "keywords": [
+        "design",
+        "sales",
+        "impact"
+      ],
+      "answer": "Design is silent selling 🤫\nA pro visual = instant trust = a client who dares pay the fair price.\nTwo shops, same product: the clean one sells 2-3x more. Design doesn't cost — it pays."
+    },
+    {
+      "id": "en_digital_22",
+      "category": "creation",
+      "questions": [
+        "what is visual storytelling",
+        "telling a story with images"
+      ],
+      "keywords": [
+        "storytelling",
+        "visual",
+        "story"
+      ],
+      "answer": "Making people feel before they read 📖\nA sequence: problem → emotion → solution → proof. Your images guide the client like a film.\nWhen the client sees themselves in the visual, they buy the story — the product comes along 😊"
     }
   ],
   "packs": [

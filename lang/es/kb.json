@@ -2981,6 +2981,1553 @@
         "energía"
       ],
       "answer": "Transformar la luz del sol en electricidad ☀️\nÁfrica tiene el mejor sol del planeta — una oportunidad enorme.\nEl sol regala; el panel transforma. El futuro es luminoso 😄"
+    },
+    {
+      "id": "es_tech_04",
+      "category": "technology",
+      "questions": [
+        "qué es un código qr",
+        "para qué sirve un qr"
+      ],
+      "keywords": [
+        "qr",
+        "código",
+        "escanear"
+      ],
+      "answer": "Un código de barras 2D que escaneas con la cámara 📱\nMenús, pagos, enlaces: todo puede esconderse dentro.\nConsejo: pon uno en tus flyers hacia tu WhatsApp. Un escaneo vale 10 toques."
+    },
+    {
+      "id": "es_tech_05",
+      "category": "technology",
+      "questions": [
+        "qué es el bluetooth"
+      ],
+      "keywords": [
+        "bluetooth",
+        "inalámbrico"
+      ],
+      "answer": "Una conexión inalámbrica de corto alcance 📡\nAuriculares, altavoces, relojes: todos hablan bluetooth.\nAlcance: ~10 metros. Perfecto para la oficina 😄"
+    },
+    {
+      "id": "es_tech_06",
+      "category": "technology",
+      "questions": [
+        "qué es el wifi"
+      ],
+      "keywords": [
+        "wifi",
+        "inalámbrico",
+        "internet"
+      ],
+      "answer": "La red inalámbrica de tu casa 📶\nTu router convierte Internet en ondas de radio.\nDe ahí el consejo clásico: reinicia el router. Arregla el 90% de los problemas 😄"
+    },
+    {
+      "id": "es_tech_07",
+      "category": "technology",
+      "questions": [
+        "qué es la fibra óptica"
+      ],
+      "keywords": [
+        "fibra",
+        "óptica",
+        "internet"
+      ],
+      "answer": "Hilos de cristal que transportan luz... e Internet dentro ⚡\nEs lo que da las conexiones ultrarrápidas.\nSi el cable de cobre es una carretera, la fibra es una autopista de 10 carriles."
+    },
+    {
+      "id": "es_tech_08",
+      "category": "technology",
+      "questions": [
+        "qué es el bitcoin",
+        "qué es la criptomoneda"
+      ],
+      "keywords": [
+        "bitcoin",
+        "cripto",
+        "dinero"
+      ],
+      "answer": "Dinero 100% digital, sin banco central 🪙\nLas transacciones las verifican miles de ordenadores en el mundo.\nVolátil: puede subir mucho, y bajar mucho. Nunca metas lo que no puedas perder."
+    },
+    {
+      "id": "es_tech_09",
+      "category": "technology",
+      "questions": [
+        "qué es un nft"
+      ],
+      "keywords": [
+        "nft",
+        "arte digital",
+        "token"
+      ],
+      "answer": "Un certificado digital de propiedad único 🖼️\nComo la firma de un artista... pero en la blockchain.\nHizo mucho ruido y una burbuja enorme. La tecnología es interesante, el hype menos 😄"
+    },
+    {
+      "id": "es_tech_10",
+      "category": "technology",
+      "questions": [
+        "qué es el metaverso"
+      ],
+      "keywords": [
+        "metaverso",
+        "virtual"
+      ],
+      "answer": "Mundos virtuales donde te encuentras como avatar 🥽\nTrabajar, jugar, comprar: todo es posible dentro.\nAún en construcción — entre videojuego gigante e Internet en 3D."
+    },
+    {
+      "id": "es_tech_11",
+      "category": "technology",
+      "questions": [
+        "realidad virtual vs realidad aumentada",
+        "qué es la vr y la ar"
+      ],
+      "keywords": [
+        "vr",
+        "ar",
+        "casco"
+      ],
+      "answer": "VR = entras en un mundo virtual (casco cerrado) 🥽\nAR = lo virtual se superpone a lo real (filtros Snapchat).\nYa se usa en formación, medicina, gaming e inmobiliaria."
+    },
+    {
+      "id": "es_tech_12",
+      "category": "technology",
+      "questions": [
+        "qué es el internet de las cosas",
+        "los objetos conectados"
+      ],
+      "keywords": [
+        "iot",
+        "conectados",
+        "casa"
+      ],
+      "answer": "Objetos cotidianos conectados a Internet 💡\nNevera, cerradura, bombilla, reloj: se comunican y se automatizan.\nTu lámpara que se enciende sola a las 19h: eso es IoT."
+    },
+    {
+      "id": "es_tech_13",
+      "category": "technology",
+      "questions": [
+        "qué es el big data"
+      ],
+      "keywords": [
+        "big data",
+        "datos",
+        "análisis"
+      ],
+      "answer": "Cantidades masivas de datos analizadas para ver tendencias 📊\nNetflix sabe lo que ves, Amazon sabe lo que buscas.\nLos datos son el petróleo del siglo XXI — falta una buena refinería."
+    },
+    {
+      "id": "es_tech_14",
+      "category": "technology",
+      "questions": [
+        "qué es el ordenador cuántico",
+        "la computación cuántica"
+      ],
+      "keywords": [
+        "cuántico",
+        "computación",
+        "física"
+      ],
+      "answer": "Un ordenador que usa las leyes de la física cuántica ⚛️\nEn vez de 0 o 1, explora ambos a la vez (por simplificar).\nCálculos en minutos que tardarían 10.000 años. Estamos al principio."
+    },
+    {
+      "id": "es_tech_15",
+      "category": "technology",
+      "questions": [
+        "diferencia front-end back-end",
+        "qué es un desarrollador front-end"
+      ],
+      "keywords": [
+        "frontend",
+        "backend",
+        "dev"
+      ],
+      "answer": "Front-end = lo que ves (botones, colores) 🎨\nBack-end = lo que trabaja en la sombra (cálculos, base de datos) ⚙️\nComo un restaurante: sala y cocina. Ambos imprescindibles."
+    },
+    {
+      "id": "es_tech_16",
+      "category": "technology",
+      "questions": [
+        "qué es una api"
+      ],
+      "keywords": [
+        "api",
+        "interfaz",
+        "servicios"
+      ],
+      "answer": "Un menú de servicios entre dos programas 🤝\nCuando una app muestra el tiempo, no lo calcula: lo pide por API.\nComo pedir en el mostrador: pides, la cocina responde, no entras detrás."
+    },
+    {
+      "id": "es_tech_17",
+      "category": "technology",
+      "questions": [
+        "qué es una base de datos"
+      ],
+      "keywords": [
+        "base de datos",
+        "almacenamiento"
+      ],
+      "answer": "El desván organizado de una aplicación 🗄️\nClientes, pedidos, mensajes: guardados y localizables al instante.\nLa diferencia entre una pila de papeles y un archivador con pestañas 😄"
+    },
+    {
+      "id": "es_tech_18",
+      "category": "technology",
+      "questions": [
+        "qué es un bug informático",
+        "por qué fallan las apps"
+      ],
+      "keywords": [
+        "bug",
+        "error",
+        "código"
+      ],
+      "answer": "Un error en el código 🐛\nEl programa hace algo que el desarrollador no previó.\nHasta los gigantes tienen cada semana. Es la vida del software — de ahí las actualizaciones."
+    },
+    {
+      "id": "es_tech_19",
+      "category": "technology",
+      "questions": [
+        "qué es el open source",
+        "el software libre"
+      ],
+      "keywords": [
+        "open source",
+        "libre",
+        "comunidad"
+      ],
+      "answer": "Código que todos pueden ver, usar y mejorar 🌍\nFirefox, Linux, Signal: herramientas gratuitas hechas por comunidades.\nEl espíritu: compartir como una receta — cada quien mejora el plato."
+    },
+    {
+      "id": "es_tech_20",
+      "category": "technology",
+      "questions": [
+        "por qué mi teléfono va lento",
+        "teléfono lento que se traba"
+      ],
+      "keywords": [
+        "teléfono",
+        "lento",
+        "memoria"
+      ],
+      "answer": "Demasiadas apps abiertas, memoria llena, caché saturado 🐌\nPrimeros gestos: cierra apps en segundo plano, borra las que no usas.\n¿Sigue lento? Reinícialo. La medicina ancestral de la informática 😄"
+    },
+    {
+      "id": "es_tech_21",
+      "category": "technology",
+      "questions": [
+        "cómo liberar espacio en el teléfono",
+        "almacenamiento lleno"
+      ],
+      "keywords": [
+        "espacio",
+        "limpiar",
+        "teléfono"
+      ],
+      "answer": "Borra primero vídeos de WhatsApp y capturas 📸\nEllas se comen el 80% del espacio, prometo.\nTruco: cópialas a Drive, luego limpia. Tu teléfono respira."
+    },
+    {
+      "id": "es_tech_22",
+      "category": "technology",
+      "questions": [
+        "qué es el phishing",
+        "mensaje fraudulento del banco"
+      ],
+      "keywords": [
+        "phishing",
+        "estafa",
+        "fraude"
+      ],
+      "answer": "El falso mensaje que se hace pasar por tu banco 🎣\n«Su cuenta será bloqueada, pulse aquí» = trampa al 99%.\nRegla de oro: un banco NUNCA pide tu código por mensaje. Nunca."
+    },
+    {
+      "id": "es_tech_23",
+      "category": "technology",
+      "questions": [
+        "qué es un vpn"
+      ],
+      "keywords": [
+        "vpn",
+        "privacidad",
+        "túnel"
+      ],
+      "answer": "Un túnel privado para tu conexión 🕵️\nOculta tu IP y cifra tu tráfico: más discreción.\nÚtil en wifi públicos — aeropuertos y cafés."
+    },
+    {
+      "id": "es_tech_24",
+      "category": "technology",
+      "questions": [
+        "qué es la autenticación de dos factores",
+        "qué es el 2fa"
+      ],
+      "keywords": [
+        "2fa",
+        "seguridad",
+        "código"
+      ],
+      "answer": "Un segundo cerrojo además de la contraseña 🔐\nCódigo por SMS o app: con la contraseña robada, sin código no entran.\nActívalo en todo: email, banco, redes. 2 minutos que protegen años."
+    },
+    {
+      "id": "es_tech_25",
+      "category": "technology",
+      "questions": [
+        "qué es el streaming"
+      ],
+      "keywords": [
+        "streaming",
+        "netflix",
+        "vídeo"
+      ],
+      "answer": "Ver o escuchar en directo, sin descargar 🎬\nYouTube, Netflix, Spotify: el archivo llega a trozos según lo ves.\nPor eso la calidad baja con conexión débil — se adapta en vivo."
+    },
+    {
+      "id": "es_tech_26",
+      "category": "technology",
+      "questions": [
+        "qué es el teletrabajo",
+        "trabajar desde casa"
+      ],
+      "keywords": [
+        "teletrabajo",
+        "remoto",
+        "casa"
+      ],
+      "answer": "Trabajar sin ir a la oficina 🏠\nZoom, Slack, WhatsApp Business: los equipos se coordinan en línea.\nBien hecho, ahorra 1-2h de trayecto al día 😄"
+    },
+    {
+      "id": "es_tech_27",
+      "category": "technology",
+      "questions": [
+        "qué es la impresión 3d"
+      ],
+      "keywords": [
+        "3d",
+        "impresión",
+        "prototipo"
+      ],
+      "answer": "Fabricar un objeto capa por capa con una máquina 🖨️\nPieza de repuesto, prototipo, juguete: se imprime en plástico.\nUn artesano modela por la mañana y lo tiene en la mano por la tarde. Revolucionario."
+    },
+    {
+      "id": "es_tech_28",
+      "category": "technology",
+      "questions": [
+        "qué es un dron"
+      ],
+      "keywords": [
+        "dron",
+        "vuelo",
+        "cámara"
+      ],
+      "answer": "Un aparato volante pilotado a distancia 🛸\nEntregas, fotos aéreas, agricultura: los usos explotan.\nUna cámara voladora por 100€: el sueño de ayer en el pasillo de juguetes 😄"
+    },
+    {
+      "id": "es_tech_29",
+      "category": "technology",
+      "questions": [
+        "qué es un coche eléctrico",
+        "valen la pena los coches eléctricos"
+      ],
+      "keywords": [
+        "eléctrico",
+        "coche",
+        "batería"
+      ],
+      "answer": "Un coche de batería en vez de gasolina 🔌\nMenos averías (menos piezas móviles), coste por km bajísimo.\nEl reto: cargar donde no hay estaciones. Pero avanza rápido, también en África."
+    },
+    {
+      "id": "es_tech_30",
+      "category": "technology",
+      "questions": [
+        "qué es la domótica",
+        "la casa conectada"
+      ],
+      "keywords": [
+        "domótica",
+        "casa",
+        "automatización"
+      ],
+      "answer": "Una casa que se automatiza 🏡\nLuces, aire acondicionado, cámaras: todo desde el teléfono.\nEncender el aire antes de llegar con 40°C: el verdadero lujo 😄"
+    },
+    {
+      "id": "es_tech_31",
+      "category": "technology",
+      "questions": [
+        "diferencia app nativa y web",
+        "app móvil o sitio"
+      ],
+      "keywords": [
+        "app",
+        "nativa",
+        "sitio"
+      ],
+      "answer": "App = instalada en el teléfono, más rápida, notificaciones 📱\nSitio = accesible en todas partes, nada que instalar 🌐\nPara negocios: empieza donde ya están tus clientes. En África Occidental: web ligera + WhatsApp."
+    },
+    {
+      "id": "es_tech_32",
+      "category": "technology",
+      "questions": [
+        "qué son los megapíxeles",
+        "los píxeles de cámara"
+      ],
+      "keywords": [
+        "megapíxeles",
+        "cámara",
+        "foto"
+      ],
+      "answer": "Los puntitos que componen una foto 📸\nMás = ampliar sin desenfoque.\nOjo: 12 Mpx con buen objetivo ganan a 50 Mpx con uno mediocre. El sensor importa más que el marketing."
+    },
+    {
+      "id": "es_tech_33",
+      "category": "technology",
+      "questions": [
+        "qué es la compresión de archivos",
+        "zip y rar"
+      ],
+      "keywords": [
+        "compresión",
+        "zip",
+        "archivos"
+      ],
+      "answer": "Guardar el mismo contenido en una caja más pequeña 🗜️\nZip, MP3, JPEG: tus archivos ya están comprimidos.\nTexto: ~80% de ganancia. Fotos y vídeos: menos, ya optimizados."
+    },
+    {
+      "id": "es_tech_34",
+      "category": "technology",
+      "questions": [
+        "por qué mis correos van a spam",
+        "email que no llega"
+      ],
+      "keywords": [
+        "spam",
+        "correo",
+        "basura"
+      ],
+      "answer": "A menudo un adjunto pesado o el destinatario te filtró 📧\nOtras causas: enlaces dudosos, demasiados destinatarios.\nSolución pro: un email con tu propio dominio huye del spam. Te lo creamos 😉"
+    },
+    {
+      "id": "es_tech_35",
+      "category": "technology",
+      "questions": [
+        "cómo crear un correo profesional",
+        "dirección email pro"
+      ],
+      "keywords": [
+        "email",
+        "profesional",
+        "dominio"
+      ],
+      "answer": "Formato simple: nombre@tuempresa.com 👔\nGmail y Outlook lo permiten con tu dominio.\nUn correo pro cambia la percepción: el cliente siente una empresa, no un hobby."
+    },
+    {
+      "id": "es_tech_36",
+      "category": "technology",
+      "questions": [
+        "cómo lanzar mi tienda online",
+        "crear una boutique en línea"
+      ],
+      "keywords": [
+        "tienda",
+        "online",
+        "ecommerce"
+      ],
+      "answer": "3 pasos: fotos limpias + plataforma + pago 🛍️\nEmpieza simple: catálogo de WhatsApp Business o una página Shopify.\nPrueba primero: si vende en WhatsApp, la web acelera. Si no vende, la web no lo salvará 😄"
+    },
+    {
+      "id": "es_tech_37",
+      "category": "technology",
+      "questions": [
+        "cómo proteger mi cuenta de instagram",
+        "asegurar mi facebook"
+      ],
+      "keywords": [
+        "instagram",
+        "facebook",
+        "seguridad"
+      ],
+      "answer": "Contraseña única + doble factor, sin excepción 🔐\nLuego: email de recuperación al día, y ojo con «ganaste un iPhone».\nUna cuenta hackeada = 3 años de comunidad en 1 clic. Protégela."
+    },
+    {
+      "id": "es_biz_01",
+      "category": "business",
+      "questions": [
+        "qué es un plan de negocio",
+        "por qué hacer un business plan"
+      ],
+      "keywords": [
+        "plan",
+        "negocio",
+        "estrategia"
+      ],
+      "answer": "La hoja de ruta de tu proyecto 🗺️\nOferta, clientes, costes, ingresos: qué vendes, a quién y cómo ganas.\nSin 50 páginas: 2 claras valen más que un tomo que nadie lee 😄"
+    },
+    {
+      "id": "es_biz_02",
+      "category": "business",
+      "questions": [
+        "qué es un estudio de mercado",
+        "estudiar el mercado antes de lanzar"
+      ],
+      "keywords": [
+        "mercado",
+        "estudio",
+        "clientes"
+      ],
+      "answer": "Comprobar que alguien pagará por tu idea ANTES de invertirlo todo 🔍\nHabla con 20 clientes potenciales, mira la competencia, prueba un lote pequeño.\nUna verdad que pica vale más que un sueño caro."
+    },
+    {
+      "id": "es_biz_03",
+      "category": "business",
+      "questions": [
+        "qué es el seo",
+        "posicionamiento en google"
+      ],
+      "keywords": [
+        "seo",
+        "google",
+        "posicionamiento"
+      ],
+      "answer": "Aparecer cuando te buscan en Google 🔎\nPalabras clave bien puestas + contenido útil.\nUn cliente que te encuentra buscando ya está medio convencido. Venta dormida."
+    },
+    {
+      "id": "es_biz_04",
+      "category": "business",
+      "questions": [
+        "qué es el personal branding",
+        "construir tu marca personal"
+      ],
+      "keywords": [
+        "branding",
+        "marca",
+        "personal"
+      ],
+      "answer": "Ser reconocido y confiable en tu campo 🌟\nPublica con constancia, muestra tu trabajo, comparte tus ideas.\nLa gente compra a quien conoce. Tu visibilidad es tu capital de confianza."
+    },
+    {
+      "id": "es_biz_05",
+      "category": "business",
+      "questions": [
+        "qué es un embudo de ventas",
+        "el funnel explicado"
+      ],
+      "keywords": [
+        "funnel",
+        "embudo",
+        "ventas"
+      ],
+      "answer": "El camino del cliente del descubrimiento a la compra 🛤️\nTe descubre → se interesa → confía → compra → vuelve.\nCada etapa que pierde agua = clientes perdidos. Podemos mapear el tuyo 😉"
+    },
+    {
+      "id": "es_biz_06",
+      "category": "business",
+      "questions": [
+        "qué es el copywriting"
+      ],
+      "keywords": [
+        "copywriting",
+        "escribir",
+        "ventas"
+      ],
+      "answer": "Escribir para vender, sin molestar ✍️\nPalabras que hablan del problema del cliente, no de las cualidades del producto.\nRegla de oro: vende el beneficio. Nadie compra un taladro, compra el agujero 😄"
+    },
+    {
+      "id": "es_biz_07",
+      "category": "business",
+      "questions": [
+        "qué es el storytelling en los negocios",
+        "contar la historia de tu marca"
+      ],
+      "keywords": [
+        "storytelling",
+        "historia",
+        "marca"
+      ],
+      "answer": "Contar en vez de listar 📖\n«Empecé con un teléfono y 50€» conecta más que «fundada en 2021».\nLa historia crea el vínculo, el vínculo crea la venta."
+    },
+    {
+      "id": "es_biz_08",
+      "category": "business",
+      "questions": [
+        "qué es un crm",
+        "gestionar tu base de clientes"
+      ],
+      "keywords": [
+        "crm",
+        "clientes",
+        "gestión"
+      ],
+      "answer": "El cuaderno de bitácora de tus clientes 📇\nQuién compró qué, cuándo, qué seguir. Se acabó el «¿quién era?».\nHasta una hoja de cálculo bien cuida el trabajo al principio."
+    },
+    {
+      "id": "es_biz_09",
+      "category": "business",
+      "questions": [
+        "qué es el recorrido del cliente",
+        "el customer journey"
+      ],
+      "keywords": [
+        "customer journey",
+        "recorrido",
+        "cliente"
+      ],
+      "answer": "Todo lo que vive tu cliente del anuncio a la compra 🚶\nTe ve, te contacta, compara, duda, compra, vuelve.\nCada fricción (espera, confusión) cuesta ventas. La automatización elimina justamente eso 😊"
+    },
+    {
+      "id": "es_biz_10",
+      "category": "business",
+      "questions": [
+        "cómo fijar mis precios",
+        "definir bien mis tarifas"
+      ],
+      "keywords": [
+        "precios",
+        "tarifas",
+        "fijar"
+      ],
+      "answer": "Costes + valor percibido, nunca solo «más barato que el otro» 🏷️\nCalcula tu umbral primero: por debajo pierdes dinero en cada venta.\nRecuerda: precios bajos atraen clientes difíciles, precio justo atrae buenos clientes."
+    },
+    {
+      "id": "es_biz_11",
+      "category": "business",
+      "questions": [
+        "qué es una negociación ganar-ganar",
+        "negociar sin rozar"
+      ],
+      "keywords": [
+        "negociación",
+        "ganar-ganar",
+        "acuerdo"
+      ],
+      "answer": "Buscar el acuerdo donde ambos salen satisfechos 🤝\nNo un pulso: una construcción.\nPrepara tu límite antes, escucha más de lo que hablas, deja siempre una salida elegante."
+    },
+    {
+      "id": "es_biz_12",
+      "category": "business",
+      "questions": [
+        "qué es un elevator pitch",
+        "presentar tu proyecto en 30 segundos"
+      ],
+      "keywords": [
+        "pitch",
+        "elevator",
+        "presentación"
+      ],
+      "answer": "Tu proyecto explicado antes de que llegue el ascensor 🛗\nProblema + solución + para quién. 3 frases, cronómetro.\nSi no puedes en 30 segundos, el cliente no lo recordará. ¡Ensaya en voz alta!"
+    },
+    {
+      "id": "es_biz_13",
+      "category": "business",
+      "questions": [
+        "qué es una ronda de financiación",
+        "buscar inversores"
+      ],
+      "keywords": [
+        "financiación",
+        "inversores",
+        "capital"
+      ],
+      "answer": "Vender una parte de tu empresa para financiar el crecimiento 💰\nEl inversor da capital, tú das acciones.\nOjo: levantar fondos no es un éxito en sí — es una herramienta."
+    },
+    {
+      "id": "es_biz_14",
+      "category": "business",
+      "questions": [
+        "qué es el bootstrapping",
+        "empezar sin inversores"
+      ],
+      "keywords": [
+        "bootstrapping",
+        "autofinanciado",
+        "crecimiento"
+      ],
+      "answer": "Crecer con tus propios ingresos, sin inversores 💪\nReinviertes cada céntimo ganado en el negocio.\nMás lento, pero guardas el 100% del control. La mayoría de los negocios africanos empezaron así."
+    },
+    {
+      "id": "es_biz_15",
+      "category": "business",
+      "questions": [
+        "qué es el dropshipping",
+        "vender sin stock"
+      ],
+      "keywords": [
+        "dropshipping",
+        "stock",
+        "proveedor"
+      ],
+      "answer": "Vender sin almacenar: el proveedor envía directo 📦\nTe quedas con la diferencia entre tu precio y el del proveedor.\nVentaja: poco capital. Trampa: márgenes finos y competencia feroz."
+    },
+    {
+      "id": "es_biz_16",
+      "category": "business",
+      "questions": [
+        "qué es el marketing de afiliación",
+        "ganar recomendando"
+      ],
+      "keywords": [
+        "afiliación",
+        "comisión",
+        "recomendación"
+      ],
+      "answer": "Cobras cuando alguien compra por tu enlace 🤝\nLa web gana un cliente, tú una comisión: todos ganan.\nRegla: recomienda solo lo que aprecias. Tu recomendación es tu reputación."
+    },
+    {
+      "id": "es_biz_17",
+      "category": "business",
+      "questions": [
+        "qué es el freelancing",
+        "lanzarse como freelance"
+      ],
+      "keywords": [
+        "freelance",
+        "autónomo",
+        "habilidades"
+      ],
+      "answer": "Vender tus habilidades a varios clientes, sin jefe fijo 💼\nDiseñador, dev, redactor: facturas por misión.\nEl inicio cuesta (encontrar clientes), después llega la libertad 😉"
+    },
+    {
+      "id": "es_biz_18",
+      "category": "business",
+      "questions": [
+        "cómo encontrar mis primeros clientes",
+        "primeros clientes para un negocio nuevo"
+      ],
+      "keywords": [
+        "clientes",
+        "primeros",
+        "empezar"
+      ],
+      "answer": "Empieza por tu círculo: familia, amigos, conocidos 📲\nPide a cada uno una recomendación: el boca a boca es el canal n1.\nOfrece las 3 primeras a precio reducido por una reseña honesta."
+    },
+    {
+      "id": "es_biz_19",
+      "category": "business",
+      "questions": [
+        "qué es la fidelización de clientes",
+        "retener a tus clientes"
+      ],
+      "keywords": [
+        "fidelización",
+        "retención",
+        "clientes"
+      ],
+      "answer": "Hacer volver a quien ya compró 💛\nCuesta 5 veces menos que conseguir uno nuevo.\nUn mensaje post-compra («¿todo bien?») hace maravillas. Eso es lo que nuestros bots envían 😊"
+    },
+    {
+      "id": "es_biz_20",
+      "category": "business",
+      "questions": [
+        "qué es el valor añadido",
+        "diferenciarse de la competencia"
+      ],
+      "keywords": [
+        "valor",
+        "diferenciación",
+        "ventaja"
+      ],
+      "answer": "Lo que el cliente obtiene de MÁS contigo 💎\nMás rápido, más cerca, más simple, más humano.\nEncuentra tu fuerza y ponla en todas partes: perfil, pitch, respuestas."
+    },
+    {
+      "id": "es_biz_21",
+      "category": "business",
+      "questions": [
+        "por qué importa el servicio al cliente",
+        "la importancia del posventa"
+      ],
+      "keywords": [
+        "servicio",
+        "posventa",
+        "soporte"
+      ],
+      "answer": "Un cliente bien tratado vuelve y habla de ti 🗣️\nUno mal tratado también habla... pero a más gente.\nDato que hace pensar: el 60% vuelve tras un problema bien resuelto. El soporte ES marketing."
+    },
+    {
+      "id": "es_biz_22",
+      "category": "business",
+      "questions": [
+        "qué es un kpi",
+        "indicadores de rendimiento"
+      ],
+      "keywords": [
+        "kpi",
+        "métricas",
+        "indicadores"
+      ],
+      "answer": "Los números que dicen si tu negocio avanza 📏\nVentas del mes, clientes nuevos, ticket medio: 3-4 cifras bastan.\nLo que no se mide no mejora. Una hoja de cálculo y 10 minutos a la semana."
+    },
+    {
+      "id": "es_biz_23",
+      "category": "business",
+      "questions": [
+        "qué es el roi en negocios",
+        "calcular el retorno de inversión"
+      ],
+      "keywords": [
+        "roi",
+        "inversión",
+        "retorno"
+      ],
+      "answer": "Return On Investment: lo que ganas por cada euro invertido 📈\nFórmula: (ganancia - coste) ÷ coste.\nSi 1€ en anuncios trae 3€, reinvierte. Si trae 0,50€, cambia el anuncio."
+    },
+    {
+      "id": "es_biz_24",
+      "category": "business",
+      "questions": [
+        "cómo gestionar mi tiempo de emprendedor",
+        "organizar mi jornada"
+      ],
+      "keywords": [
+        "tiempo",
+        "gestión",
+        "agenda"
+      ],
+      "answer": "Bloques de tareas, teléfono en silencio ⏰\nMañanas: lo importante. Mensajes: a horas fijas, no continuo.\nResponder a cada notificación es dejar que otros elijan tu día 😄"
+    },
+    {
+      "id": "es_biz_25",
+      "category": "business",
+      "questions": [
+        "qué es la técnica pomodoro",
+        "trabajar en sesiones de 25 minutos"
+      ],
+      "keywords": [
+        "pomodoro",
+        "enfoque",
+        "sesiones"
+      ],
+      "answer": "25 minutos de concentración, 5 de descanso, y repite 🍅\nEl cerebro aguanta bien 25 minutos — el reloj lo sabe.\n4 sesiones = 2h de trabajo profundo."
+    },
+    {
+      "id": "es_biz_26",
+      "category": "business",
+      "questions": [
+        "qué es el mobile money",
+        "orange money y mtn money"
+      ],
+      "keywords": [
+        "mobile money",
+        "orange",
+        "mtn"
+      ],
+      "answer": "Enviar y recibir dinero por SMS o app 📲\nOrange Money, MTN MoMo: una revolución silenciosa en África.\nPuedes cobrar de un cliente en Conakry desde Casablanca en 3 segundos."
+    },
+    {
+      "id": "es_biz_27",
+      "category": "business",
+      "questions": [
+        "cómo formalizar mi actividad",
+        "registrar mi empresa"
+      ],
+      "keywords": [
+        "formalizar",
+        "registrar",
+        "legal"
+      ],
+      "answer": "Pasar de lo informal a lo formal abre puertas 🏛️\nFacturar a empresas, créditos, licitaciones: todo pide un estatus legal.\nEmpieza simple en tu país, luego evoluciona. Una empresa declarada llega más lejos."
+    },
+    {
+      "id": "es_biz_28",
+      "category": "business",
+      "questions": [
+        "qué es una pyme",
+        "pequeñas y medianas empresas"
+      ],
+      "keywords": [
+        "pyme",
+        "empresa",
+        "negocio"
+      ],
+      "answer": "Pequeñas y Medianas Empresas: de 5 a 250 empleados 🏪\nEn África, las pymes crean la mayoría de empleos.\nUna tienda de barrio bien gestionada es una pyme. No subestimes los comienzos pequeños."
+    },
+    {
+      "id": "es_biz_29",
+      "category": "business",
+      "questions": [
+        "qué es la prospección comercial",
+        "buscar clientes b2b"
+      ],
+      "keywords": [
+        "prospección",
+        "b2b",
+        "ventas"
+      ],
+      "answer": "Ir a buscar los clientes en vez de esperar 🎯\nMensajes personalizados, llamadas dirigidas, presencia donde están.\n10 contactos serios valen más que 100 copiados. La personalización es el 80% del trabajo."
+    },
+    {
+      "id": "es_biz_30",
+      "category": "business",
+      "questions": [
+        "cómo manejar a un cliente descontento",
+        "un cliente se quejó qué hago"
+      ],
+      "keywords": [
+        "queja",
+        "cliente",
+        "enfadado"
+      ],
+      "answer": "Escucha primero, del todo, sin defenderte 👂\nDespués discúlpate sinceramente y ofrece una solución concreta.\nUn problema bien gestionado fideliza más que un servicio sin fallos."
+    },
+    {
+      "id": "es_biz_31",
+      "category": "business",
+      "questions": [
+        "diferencia b2b y b2c",
+        "vender a empresas o particulares"
+      ],
+      "keywords": [
+        "b2b",
+        "b2c",
+        "mercado"
+      ],
+      "answer": "B2B: vendes a empresas. B2C: a particulares 🎯\nB2B = menos clientes, cestas mayores, ciclos largos.\nB2C = volumen, emoción, rapidez. Muchos negocios hacen ambos — como nosotros 😊"
+    },
+    {
+      "id": "es_biz_32",
+      "category": "business",
+      "questions": [
+        "por qué importa el networking",
+        "crear una red profesional"
+      ],
+      "keywords": [
+        "networking",
+        "red",
+        "contactos"
+      ],
+      "answer": "Tu red abre puertas que los anuncios no conocen 🚪\nUn contacto, una recomendación, un consejo en el momento justo.\nRegla simple: ayuda primero. Quien da, recibe. Sembrar antes de cosechar."
+    },
+    {
+      "id": "es_biz_33",
+      "category": "business",
+      "questions": [
+        "qué es el cash flow",
+        "la tesorería de una empresa"
+      ],
+      "keywords": [
+        "cash flow",
+        "tesorería",
+        "finanzas"
+      ],
+      "answer": "El dinero que entra y sale, en tiempo real 💧\nUna empresa puede ser rentable sobre el papel y morir por tesorería.\nRegla de supervivencia: guarda 3 meses de gastos. El cash es el oxígeno."
+    },
+    {
+      "id": "es_biz_34",
+      "category": "business",
+      "questions": [
+        "cómo reclamar un pago a un cliente",
+        "pedir mi dinero con elegancia"
+      ],
+      "keywords": [
+        "pago",
+        "recordatorio",
+        "factura"
+      ],
+      "answer": "Recordatorio suave: «Hola, espero que estés bien, la factura del [fecha] venció» 📨\nPasos: 1º amable, 2º firme, 3º con penalización acordada.\nCobrar también es servicio al cliente — firme, pero siempre respetuoso."
+    },
+    {
+      "id": "es_guinee_07",
+      "category": "guinea",
+      "questions": [
+        "dónde está guinea",
+        "dónde está guinea conakry",
+        "la situación de guinea"
+      ],
+      "keywords": [
+        "guinea",
+        "ubicación",
+        "áfrica"
+      ],
+      "answer": "En África Occidental, frente al océano Atlántico 🇬🇳\nVecinos: Malí, Senegal, Guinea-Bisáu, Sierra Leona, Costa de Marfil, Liberia.\nApodada «la cisterna de África Occidental» — ya verás por qué 😊"
+    },
+    {
+      "id": "es_guinee_08",
+      "category": "guinea",
+      "questions": [
+        "las 4 regiones naturales de guinea",
+        "baja media alta guinea"
+      ],
+      "keywords": [
+        "regiones",
+        "guinea",
+        "bosque"
+      ],
+      "answer": "4 regiones, 4 caracteres:\n🌊 Baja Guinea (costa, Conakry) — ⛰️ Media Guinea (Fouta Djallon) — 🌾 Alta Guinea (sabana, Kankan) — 🌳 Guinea Forestal (N'Zérékoré).\nUn país, cuatro mundos. Esa es la riqueza de Guinea."
+    },
+    {
+      "id": "es_guinee_09",
+      "category": "guinea",
+      "questions": [
+        "qué es el fouta djallon",
+        "el macizo del fouta"
+      ],
+      "keywords": [
+        "fouta",
+        "djallon",
+        "meseta"
+      ],
+      "answer": "El techo de Guinea, en la Media Guinea ⛰️\nUna meseta verde donde nacen el Níger, el Senegal y el Gambia — de ahí «la cisterna».\nClima fresco, paisajes espectaculares, ciudades como Labé, Mamou, Pita."
+    },
+    {
+      "id": "es_guinee_10",
+      "category": "guinea",
+      "questions": [
+        "dónde nace el río níger",
+        "la fuente del níger"
+      ],
+      "keywords": [
+        "níger",
+        "río",
+        "fuente"
+      ],
+      "answer": "¡En Guinea! Nace en el Fouta Djallon, con el nombre de Bafing 💧\nLuego cruza Malí, Níger y Nigeria hasta el océano.\nUno de los grandes ríos de África es guineano en su origen. Orgullo 🇬🇳"
+    },
+    {
+      "id": "es_guinee_11",
+      "category": "guinea",
+      "questions": [
+        "qué es el monte nimba",
+        "el punto más alto de guinea"
+      ],
+      "keywords": [
+        "nimba",
+        "montaña",
+        "unesco"
+      ],
+      "answer": "El techo de Guinea: ~1.752 metros, patrimonio de la UNESCO 🏔️\nEn la frontera con Costa de Marfil y Liberia, reserva natural única.\nAlberga especies que no existen en ningún otro lugar. Una joya que proteger."
+    },
+    {
+      "id": "es_guinee_12",
+      "category": "guinea",
+      "questions": [
+        "las islas de los",
+        "las playas cerca de conakry"
+      ],
+      "keywords": [
+        "islas",
+        "playa",
+        "los"
+      ],
+      "answer": "Un pequeño archipiélago paradisíaco a 30 minutos en barca de Conakry 🏝️\nKassa, Roume, Tamara, Fotoba: playas de arena, cocoteros, agua turquesa.\nEl plan de los conakrykas el fin de semana. Un trozo de paraíso."
+    },
+    {
+      "id": "es_guinee_13",
+      "category": "guinea",
+      "questions": [
+        "qué visitar en conakry",
+        "lugares para ver en conakry"
+      ],
+      "keywords": [
+        "conakry",
+        "visitar",
+        "lugares"
+      ],
+      "answer": "¡Conakry está en marcha! 🌆\nLa Gran Mezquita Fayçal, el Mercado Madina, el Mercado de Níger, la cornisa al atardecer, el Museo Nacional.\nY de noche, el ambiente de los maquis con música y parrillas 😄"
+    },
+    {
+      "id": "es_guinee_14",
+      "category": "guinea",
+      "questions": [
+        "la gran mezquita de conakry",
+        "la mezquita fayçal"
+      ],
+      "keywords": [
+        "mezquita",
+        "fayçal",
+        "conakry"
+      ],
+      "answer": "La Gran Mezquita Fayçal de Conakry, una de las mayores de África Occidental 🕌\nCapacidad ~25.000 fieles, estilo marroquí suntuoso.\nOrgullo nacional y punto de referencia de la ciudad."
+    },
+    {
+      "id": "es_guinee_15",
+      "category": "guinea",
+      "questions": [
+        "las grandes ciudades de guinea",
+        "kankan kindia labe nzerekore"
+      ],
+      "keywords": [
+        "ciudades",
+        "kankan",
+        "labe"
+      ],
+      "answer": "Conakry la capital, claro 🇬🇳\nLuego: Kankan (Alta Guinea), Labé y Mamou (Fouta), Kindia (el jardín de Guinea), N'Zérékoré (forestal), Boké y Kamsar (minería).\nCada ciudad tiene su carácter — por eso viajar dentro del país apasiona."
+    },
+    {
+      "id": "es_guinee_16",
+      "category": "guinea",
+      "questions": [
+        "el clima de guinea",
+        "cuándo viajar a guinée",
+        "estación seca y lluvias en guinea"
+      ],
+      "keywords": [
+        "clima",
+        "estación",
+        "tiempo"
+      ],
+      "answer": "Dos grandes estaciones:\n☀️ Seca: noviembre a mayo, cielo azul, harmattan fresco.\n🌧️ Lluvias: junio a octubre, generosas sobre todo en la costa y el Fouta.\nPara visitar: diciembre-febrero. Para ver la Guinea verde: tras las lluvias 🌿"
+    },
+    {
+      "id": "es_guinee_17",
+      "category": "guinea",
+      "questions": [
+        "las lenguas nacionales de guinea",
+        "susu malinké peul kissi"
+      ],
+      "keywords": [
+        "lenguas",
+        "susu",
+        "malinké"
+      ],
+      "answer": "El francés es oficial, pero la riqueza son las lenguas nacionales 🗣️\nSusu (costa), Malinké (Alta Guinea), Pular/Peul (Fouta), Kissi, Toma, Kpèlè (forestal).\nLa mayoría de los guineanos hablan 2-3. ¡Guinea es naturalmente multilingüe!"
+    },
+    {
+      "id": "es_guinee_18",
+      "category": "guinea",
+      "questions": [
+        "la moneda de guinea",
+        "el franco guineano gnf"
+      ],
+      "keywords": [
+        "moneda",
+        "gnf",
+        "franco"
+      ],
+      "answer": "El franco guineano (GNF) 💵\n1€ ≈ 11.000 GNF — los precios se cuentan a menudo en miles.\nY en todas partes: Orange Money y MTN MoMo ya resuelven casi todo, hasta en el mercado."
+    },
+    {
+      "id": "es_guinee_19",
+      "category": "guinea",
+      "questions": [
+        "la independencia de guinea 1958",
+        "sekou touré el no"
+      ],
+      "keywords": [
+        "independencia",
+        "1958",
+        "historia"
+      ],
+      "answer": "El 2 de octubre de 1958, Guinea dijo «NO» al general De Gaulle 🇬🇳\nPrimera colonia francesa de África en elegir la independencia inmediata, con Sékou Touré.\n«Preferimos la pobreza en la libertad a la riqueza en la servidumbre.» Una frase que dio la vuelta al mundo."
+    },
+    {
+      "id": "es_guinee_20",
+      "category": "guinea",
+      "questions": [
+        "la economía de guinea",
+        "la bauxita de guinea"
+      ],
+      "keywords": [
+        "economía",
+        "bauxita",
+        "minería"
+      ],
+      "answer": "Guinea se sienta sobre un tesoro: la bauxita 🪙\n¡Primera reserva mundial! El aluminio del mundo suele empezar en Guinea.\nAñade el hierro de Simandou, el oro de Siguiri, la agricultura del Fouta — potencial inmenso."
+    },
+    {
+      "id": "es_guinee_21",
+      "category": "guinea",
+      "questions": [
+        "qué es simandou",
+        "el yacimiento de hierro de simandou"
+      ],
+      "keywords": [
+        "simandou",
+        "hierro",
+        "mina"
+      ],
+      "answer": "El mayor yacimiento de hierro sin explotar del mundo 🏗️\nEn el sureste de Guinea, con un proyecto de tren de +600 km hacia la costa.\nA plena capacidad podría transformar la economía guineana. El mundo entero mira a Guinea."
+    },
+    {
+      "id": "es_guinee_22",
+      "category": "guinea",
+      "questions": [
+        "qué comer en guinea",
+        "el fouté y el riz gras",
+        "platos guineanos"
+      ],
+      "keywords": [
+        "comida",
+        "cocina",
+        "guineana"
+      ],
+      "answer": "Prepara el apetito 😋\nEl riz gras del domingo, la sauce graine, el fouté de plátano, el pollo bicyclette a la leña.\nY los maquis de Conakry de noche: pescado braseado, attiéké, música en directo."
+    },
+    {
+      "id": "es_guinee_23",
+      "category": "guinea",
+      "questions": [
+        "la música guineana",
+        "bembeya jazz mory kanté"
+      ],
+      "keywords": [
+        "música",
+        "bembeya",
+        "grioto"
+      ],
+      "answer": "Guinea es una potencia musical 🎶\nBembeya Jazz National, Mory Kanté (¡el famoso «Yé ké yé ké»!), Sekouba Bambino, Sory Kandia — la escuela del griot guineano es legendaria.\nKora, balafón, yembé: toda África reconoce el toque guineano."
+    },
+    {
+      "id": "es_guinee_24",
+      "category": "guinea",
+      "questions": [
+        "el mercado madina",
+        "los mercados de conakry"
+      ],
+      "keywords": [
+        "madina",
+        "mercado",
+        "compras"
+      ],
+      "answer": "Madina es el corazón que late de Conakry 🛍️\nUn laberinto gigante donde encuentras TODO: telas, especias, teléfonos, hasta repuestos.\nMercado de Níger para lo elegante, Madina para lo auténtico. Regateo obligatorio 😄"
+    },
+    {
+      "id": "es_guinee_25",
+      "category": "guinea",
+      "questions": [
+        "las cascadas de guinea",
+        "kambadaga kinkon saala"
+      ],
+      "keywords": [
+        "cascadas",
+        "saltos",
+        "fouta"
+      ],
+      "answer": "Guinea rebosa de cascadas 💦\nKambadaga, Kinkon, Saala... el Fouta Djallon está sembrado de ellas.\nPiscinas naturales al pie de saltos, entre montañas verdes. Un paraíso aún preservado."
+    },
+    {
+      "id": "es_guinee_26",
+      "category": "guinea",
+      "questions": [
+        "la bandera de guinea",
+        "rojo amarillo verde significado"
+      ],
+      "keywords": [
+        "bandera",
+        "colores",
+        "guinea"
+      ],
+      "answer": "Rojo, Amarillo, Verde 🇬🇳\nRojo: la sangre de los mártires. Amarillo: el oro y el sol. Verde: la vegetación y la prosperidad.\nY el lema: «Trabajo, Justicia, Solidaridad». Orgullo en tres colores."
+    },
+    {
+      "id": "es_guinee_27",
+      "category": "guinea",
+      "questions": [
+        "cuántos habitantes tiene guinea",
+        "la población de guinea"
+      ],
+      "keywords": [
+        "población",
+        "habitantes",
+        "demografía"
+      ],
+      "answer": "~14 millones de habitantes, más de 1,7 en Conakry 🌍\nPoblación muy joven: la mayoría menos de 25 años.\nUna juventud conectada, emprendedora y multilingüe — el futuro empuja fuerte."
+    },
+    {
+      "id": "es_guinee_28",
+      "category": "guinea",
+      "questions": [
+        "la religión en guinea",
+        "el islam en guinea"
+      ],
+      "keywords": [
+        "religión",
+        "islam",
+        "musulmana"
+      ],
+      "answer": "Guinea es mayoritariamente musulmana (~85%) 🕌\nCon comunidades cristianas y animistas viviendo juntas en paz.\nRamadán, Tabaski, Navidad: las fiestas marcan el año y unen a todos. La tolerancia guineana es una lección."
+    },
+    {
+      "id": "es_digital_01",
+      "category": "creation",
+      "questions": [
+        "qué es un buen logo",
+        "los criterios de un logo logrado"
+      ],
+      "keywords": [
+        "logo",
+        "diseño",
+        "criterios"
+      ],
+      "answer": "3 criterios: simple, memorable, atemporal ✨\nSimple = legible pequeño y lejos. Memorable = reconocido en 1 segundo. Atemporal = bello dentro de 10 años.\nNike, Apple, MTN: ninguna reinventó la rueda. La simplicidad es el lujo del diseño."
+    },
+    {
+      "id": "es_digital_02",
+      "category": "creation",
+      "questions": [
+        "qué es una guía de marca",
+        "qué contiene un manual de identidad"
+      ],
+      "keywords": [
+        "manual",
+        "marca",
+        "identidad"
+      ],
+      "answer": "El manual de instrucciones visual de una marca 📘\nLogo + variantes, colores exactos, tipografías, tamaños, lo prohibido.\nGarantiza que tu marca se ve igual en todas partes: flyer, redes, factura. La disciplina que convierte «bonito» en «pro»."
+    },
+    {
+      "id": "es_digital_03",
+      "category": "creation",
+      "questions": [
+        "la psicología de los colores",
+        "qué color para mi marca"
+      ],
+      "keywords": [
+        "colores",
+        "psicología",
+        "marca"
+      ],
+      "answer": "Los colores hablan antes que las palabras 🎨\nAzul = confianza (bancos, tech). Rojo = energía (comida, deporte). Verde = naturaleza/salud. Dorado = prestigio. Negro = lujo.\nConsejo: elige el color de la emoción que tu cliente debe sentir."
+    },
+    {
+      "id": "es_digital_04",
+      "category": "creation",
+      "questions": [
+        "qué es la tipografía",
+        "serif o sans serif"
+      ],
+      "keywords": [
+        "tipografía",
+        "fuente",
+        "serif"
+      ],
+      "answer": "El arte de elegir los caracteres ✍️\nSerif = clásico, serio. Sans serif = moderno, limpio.\nRegla: 2 fuentes máximo por visual. La legibilidad gana siempre a la originalidad."
+    },
+    {
+      "id": "es_digital_05",
+      "category": "creation",
+      "questions": [
+        "qué es el branding",
+        "diferencia entre marca y logo"
+      ],
+      "keywords": [
+        "branding",
+        "marca",
+        "logo"
+      ],
+      "answer": "El branding = la promesa + la personalidad + la constancia 🌟\nEl logo es solo el rostro; la marca es el carácter.\nLo que dicen de ti cuando no estás — esa es tu verdadera marca. El diseño solo la hace visible."
+    },
+    {
+      "id": "es_digital_06",
+      "category": "creation",
+      "questions": [
+        "qué es el retoque fotográfico profesional"
+      ],
+      "keywords": [
+        "retoque",
+        "foto",
+        "edición"
+      ],
+      "answer": "Revelar lo mejor de una foto sin mentir ✨\nLuz, tono, nitidez, encuadre: corregimos lo que la cámara falló.\nUn buen retoque no se ve — se siente. Es nuestra especialidad en KOMARA 😄"
+    },
+    {
+      "id": "es_digital_07",
+      "category": "creation",
+      "questions": [
+        "qué es la edición de vídeo"
+      ],
+      "keywords": [
+        "edición",
+        "vídeo",
+        "montaje"
+      ],
+      "answer": "Ensamblar planos en una historia que sostiene 🎬\nRitmo, cortes, música, subtítulos: cada segundo debe servir al mensaje.\nEn TikTok/Reels, los primeros 3 segundos deciden si se quedan."
+    },
+    {
+      "id": "es_digital_08",
+      "category": "creation",
+      "questions": [
+        "qué es el motion design"
+      ],
+      "keywords": [
+        "motion",
+        "animación",
+        "diseño"
+      ],
+      "answer": "El diseño gráfico que se mueve 🎞️\nLogos animados, textos que bailan, infografías en movimiento.\nUn vídeo motion explica una idea compleja en 30 segundos 😄"
+    },
+    {
+      "id": "es_digital_09",
+      "category": "creation",
+      "questions": [
+        "qué es el diseño ux y ui"
+      ],
+      "keywords": [
+        "ux",
+        "ui",
+        "diseño"
+      ],
+      "answer": "UX = la experiencia (¿es fluido?). UI = la interfaz (¿es bello?) 🖱️\nUX piensa el recorrido, UI piensa la emoción visual.\nUn sitio precioso donde no encuentras nada fracasa. Necesitas ambos."
+    },
+    {
+      "id": "es_digital_10",
+      "category": "creation",
+      "questions": [
+        "qué es el web design",
+        "diseñar bien un sitio web"
+      ],
+      "keywords": [
+        "webdesign",
+        "sitio",
+        "web"
+      ],
+      "answer": "El arte de hacer un sitio claro, rápido y deseable 🌐\nJerarquía: lo esencial grande, lo demás en silencio. Respirar: el espacio vacío es tu amigo.\nUn visitante decide en 5 segundos si se queda. Ganar esos 5 segundos."
+    },
+    {
+      "id": "es_digital_11",
+      "category": "creation",
+      "questions": [
+        "qué es el packaging design"
+      ],
+      "keywords": [
+        "packaging",
+        "producto",
+        "diseño"
+      ],
+      "answer": "El primer apretón de manos del producto 📦\nUn buen packaging cuenta: quién eres, por qué es mejor, para quién.\nEn tienda, el 70% de las decisiones se toman frente al estante. Tu vendedor silencioso 24/7."
+    },
+    {
+      "id": "es_digital_12",
+      "category": "creation",
+      "questions": [
+        "qué es un moodboard"
+      ],
+      "keywords": [
+        "moodboard",
+        "estilo",
+        "inspiración"
+      ],
+      "answer": "El tablero de ambiente antes de crear 🖼️\nImágenes, colores, texturas, palabras: fijar el estilo ANTES de dibujar.\nEvita 10 rondas de revisiones. Cliente y diseñador miran en la misma dirección."
+    },
+    {
+      "id": "es_digital_13",
+      "category": "creation",
+      "questions": [
+        "los formatos de redes sociales",
+        "formato 9:16 1:1 o 16:9"
+      ],
+      "keywords": [
+        "formatos",
+        "9:16",
+        "social"
+      ],
+      "answer": "Cada red tiene su forma 📐\n9:16 vertical: Stories, Reels, TikTok, estados de WhatsApp. 1:1 cuadrado: feed de Instagram. 16:9: YouTube, LinkedIn.\nUn visual adaptado a ninguno = borroso en todos. Adapta por formato."
+    },
+    {
+      "id": "es_digital_14",
+      "category": "creation",
+      "questions": [
+        "qué es una miniatura de youtube",
+        "una buena thumbnail"
+      ],
+      "keywords": [
+        "miniatura",
+        "thumbnail",
+        "youtube"
+      ],
+      "answer": "El póster que decide el clic 🖼️\nCara expresiva, 3 palabras máximo, contraste fuerte: debe leerse en un móvil.\nEl vídeo puede ser una obra maestra: sin miniatura, nadie hace clic."
+    },
+    {
+      "id": "es_digital_15",
+      "category": "creation",
+      "questions": [
+        "por qué hacer carruseles en instagram"
+      ],
+      "keywords": [
+        "carrusel",
+        "instagram",
+        "diapositivas"
+      ],
+      "answer": "El carrusel es el arma silenciosa 📊\nCada diapositiva retiene 2 segundos más — e Instagram empuja los posts que se deslizan.\nIdeal para: pasos, antes/después, minitutoriales 😄"
+    },
+    {
+      "id": "es_digital_16",
+      "category": "creation",
+      "questions": [
+        "qué resolución para imprimir",
+        "dpi impresión vs web"
+      ],
+      "keywords": [
+        "dpi",
+        "resolución",
+        "impresión"
+      ],
+      "answer": "Impresión: 300 dpi mínimo 🖨️\nWeb: 72 dpi bastan (pantallas).\nEnviar una imagen de 72 dpi a imprenta = borroso garantizado. Pide siempre el tamaño final en cm antes."
+    },
+    {
+      "id": "es_digital_17",
+      "category": "creation",
+      "questions": [
+        "cmyk o rgb la diferencia"
+      ],
+      "keywords": [
+        "cmyk",
+        "rgb",
+        "color"
+      ],
+      "answer": "RGB = luz de las pantallas 🌈\nCMYK = tintas de impresión 🖨️\nRegla: pantalla → RGB, flyer → CMYK. Convertir tarde cambia los colores en el tiraje. Un clásico caro."
+    },
+    {
+      "id": "es_digital_18",
+      "category": "creation",
+      "questions": [
+        "qué es el arte generativo ia",
+        "crear imágenes con ia"
+      ],
+      "keywords": [
+        "ia",
+        "generativo",
+        "arte"
+      ],
+      "answer": "Generar visuales a partir de un texto descriptivo 🤖\nEscribes el estilo, la luz, el ambiente — la IA pinta en segundos.\nResultado pro = prompt preciso + selección + retoque. La IA es un pincel, el ojo sigue siendo humano 😊"
+    },
+    {
+      "id": "es_digital_19",
+      "category": "creation",
+      "questions": [
+        "qué programas para crear visuales",
+        "photoshop illustrator canva figma"
+      ],
+      "keywords": [
+        "programas",
+        "photoshop",
+        "canva"
+      ],
+      "answer": "Los clásicos del oficio 🛠️\nPhotoshop (fotos), Illustrator (logos/vectores), Figma (interfaces), Premiere (vídeo), Canva (rápido y simple).\nCanva salva, pero un logo pro sigue siendo vectorial — nítido en todos los tamaños."
+    },
+    {
+      "id": "es_digital_20",
+      "category": "creation",
+      "questions": [
+        "qué es un prompt para imagen ia",
+        "escribir bien un prompt"
+      ],
+      "keywords": [
+        "prompt",
+        "ia",
+        "imagen"
+      ],
+      "answer": "La receta que le das a la IA 📝\nEstilo + sujeto + luz + formato + ambiente. Cuanto más preciso, más cerca de tu idea.\n«Un león» da algo vago; «retrato de estudio de un jefe peul orgulloso, luz dorada, 8k» da una obra maestra."
+    },
+    {
+      "id": "es_digital_21",
+      "category": "creation",
+      "questions": [
+        "por qué un visual pro vende más",
+        "el impacto del diseño en las ventas"
+      ],
+      "keywords": [
+        "diseño",
+        "ventas",
+        "impacto"
+      ],
+      "answer": "El diseño vende en silencio 🤫\nUn visual pro = confianza instantánea = cliente que se atreve a pagar el precio justo.\nDos tiendas, mismo producto: la del visual limpio vende 2-3 veces más."
+    },
+    {
+      "id": "es_digital_22",
+      "category": "creation",
+      "questions": [
+        "qué es el storytelling visual",
+        "contar una historia con imágenes"
+      ],
+      "keywords": [
+        "storytelling",
+        "visual",
+        "historia"
+      ],
+      "answer": "Hacer sentir antes de hacer leer 📖\nUna secuencia: problema → emoción → solución → prueba. Tus imágenes guían al cliente como una película.\nCuando el cliente se reconoce en el visual, compra la historia — el producto viene de regalo 😊"
     }
   ],
   "packs": [
