@@ -5919,6 +5919,368 @@
         "web"
       ],
       "answer": "Puedes. Pero nosotros te entregamos en 7 días una web profesional que convierte.\nTú sigues con tu negocio, del resto nos encargamos.\nTu tiempo vale más que eso, ¿no?"
+    },
+    {
+      "id": "scenarios_react_01",
+      "category": "scenarios",
+      "questions": [
+        "recibí su presupuesto",
+        "todavía no he decidido",
+        "puedes llamarme",
+        "volveré a ti",
+        "sigo pensando en tu oferta"
+      ],
+      "answer": "Tranquilo, toma tu tiempo 😊\nPara ayudarte a decidir: una demo de 15 minutos muestra el bot con tu negocio real.\n¿Te envío el enlace esta semana?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_02",
+      "category": "scenarios",
+      "questions": [
+        "soy un cliente antiguo",
+        "ya trabajé con ustedes",
+        "vuelvo después de unos meses"
+      ],
+      "answer": "¡Qué gusto verte de nuevo! 👋\nLos clientes que vuelven tienen -10% en cualquier nueva automatización este mes.\n¿Retomamos el proyecto que hablamos o pruebas algo nuevo?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_03",
+      "category": "scenarios",
+      "questions": [
+        "qué es el mantenimiento",
+        "hay garantía?",
+        "y después de la entrega?",
+        "qué pasa si el bot falla",
+        "el mantenimiento es obligatorio?"
+      ],
+      "answer": "Buena pregunta 😊\nEl mantenimiento de 90€/mes cubre correcciones, actualizaciones y pequeñas mejoras: tu bot nunca se queda caído mucho tiempo.\n¿Te lo añado para el lanzamiento?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_04",
+      "category": "scenarios",
+      "questions": [
+        "va con retraso",
+        "pasaron el plazo",
+        "todavía no entregado",
+        "estoy decepcionado por el retraso"
+      ],
+      "answer": "Tienes razón y lo siento de verdad 🙏\nTe entrego la versión final mañana y añado una revisión gratis por las molestias.\n¿Te parece bien?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_05",
+      "category": "scenarios",
+      "questions": [
+        "podemos añadir una función?",
+        "quisiera cambiar el diseño",
+        "algo más fuera del presupuesto",
+        "una modificación rápida"
+      ],
+      "answer": "Podemos añadir todo 😊\nTransparencia: sale del presupuesto inicial, así que te lo cotizo aparte antes de empezar.\n¿Me dices exactamente qué quieres?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_06",
+      "category": "scenarios",
+      "questions": [
+        "pagaré la semana que viene",
+        "pueden esperar el pago",
+        "pago con retraso",
+        "un poco de paciencia para el pago"
+      ],
+      "answer": "Gracias por avisarme, anotado 😊\nTe propongo un punto a fin de semana: en cuanto pase el saldo, desbloqueo la entrega final inmediatamente.\n¿Mantenemos esa fecha?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_07",
+      "category": "scenarios",
+      "questions": [
+        "pueden hacer un gesto",
+        "un pequeño descuento?",
+        "último precio",
+        "puedo tener una reducción?"
+      ],
+      "answer": "Prefiero proponerte un plan antes que un descuento 😊\n50% de anticipo este mes y el saldo el mes siguiente: el proyecto empieza sin esperar.\n¿Te ayuda?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_08",
+      "category": "scenarios",
+      "questions": [
+        "quiero parar",
+        "cancelo",
+        "no sigo más",
+        "detener la suscripción",
+        "cancelar mi plan"
+      ],
+      "answer": "Sin problema, eres libre 😊\nAntes de confirmar: ¿qué no funcionó? Muchas veces un ajuste lo resuelve en 24h.\nSi aún quieres irte, lo detengo sin costes ocultos.",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_09",
+      "category": "scenarios",
+      "questions": [
+        "el bot no responde",
+        "da errores",
+        "mi bot está caído",
+        "ya no funciona"
+      ],
+      "answer": "Lo reviso ahora mismo 🔧\nMándame una captura o el mensaje problemático: la mayoría de los fallos se resuelven en 24h.\n¿Cuál es exactamente el comportamiento raro?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_10",
+      "category": "scenarios",
+      "questions": [
+        "estoy muy contento",
+        "gran resultado",
+        "el bot es genial",
+        "estoy satisfecho con el trabajo"
+      ],
+      "answer": "Gracias, me hace ilusión 😍\n¿Me dejas 2 frases como testimonio? A cambio te regalo una pequeña mejora del bot.\nY si un amigo necesita lo mismo, comparte mi contacto 😊",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_11",
+      "category": "scenarios",
+      "questions": [
+        "es muy urgente",
+        "lo quiero para mañana",
+        "entrega en 24h posible?",
+        "entrega exprés"
+      ],
+      "answer": "Sí, es posible con la opción exprés 🚀\nEntrega en 24h con +30% en el precio. Bloqueo mi agenda en cuanto llegue el anticipo.\n¿Vamos?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_12",
+      "category": "scenarios",
+      "questions": [
+        "emiten facturas?",
+        "hay contrato?",
+        "puedo tener una factura",
+        "están registrados?"
+      ],
+      "answer": "Claro que sí, todo en regla 😊\nPresupuesto firmado, factura detallada y contrato con entregables y plazos claros.\n¿Te envío el dosier completo por email ahora?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_01",
+      "category": "scenarios",
+      "questions": [
+        "tengo un restaurante",
+        "sirve para un restaurante?",
+        "bot para mi restaurante",
+        "gestionar reservas del restaurante"
+      ],
+      "answer": "Perfecto para un restaurante 😋\nEl bot toma las reservas, envía el menú y responde solo a «¿tienen mesas esta noche?».\nResultado: menos llamadas perdidas, más comensales.\n¿Me enseñas tu menú y te hago una demo?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_02",
+      "category": "scenarios",
+      "questions": [
+        "soy médico",
+        "bot para una clínica",
+        "gestionar citas médicas",
+        "recordatorios de citas"
+      ],
+      "answer": "Excelente uso 🩺\nEl agente confirma las citas, envía recordatorios la víspera y libera a tu secretaría de llamadas repetitivas.\nMenos citas perdidas, agenda llena.\n¿Qué agenda usas hoy?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_03",
+      "category": "scenarios",
+      "questions": [
+        "soy agente inmobiliario",
+        "bot para inmobiliaria",
+        "calificar compradores",
+        "gestionar visitas"
+      ],
+      "answer": "Buen terreno 🏠\nEl agente califica a cada comprador (presupuesto, zona, plazo) y programa las visitas automáticamente.\nDejas de perder tiempo con los curiosos.\n¿Cuántas propiedades vendes al mes?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_04",
+      "category": "scenarios",
+      "questions": [
+        "tengo una tienda",
+        "vender por whatsapp",
+        "bot para mi tienda",
+        "gestionar pedidos"
+      ],
+      "answer": "Tu tienda lo va a adorar 🛍️\nEl bot envía el catálogo, toma los pedidos y confirma el pago Mobile Money.\nVendes incluso de noche.\n¿Cuántos productos quieres mostrar?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_05",
+      "category": "scenarios",
+      "questions": [
+        "dirijo una escuela",
+        "bot para centro de formación",
+        "inscripciones automáticas",
+        "gestionar alumnos"
+      ],
+      "answer": "Gran proyecto 🎓\nEl agente responde preguntas sobre programas, precios y fechas, y recoge las inscripciones directamente.\nTu equipo se concentra en enseñar.\n¿Cuántos programas ofreces?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_06",
+      "category": "scenarios",
+      "questions": [
+        "trabajo en transporte",
+        "seguimiento de entregas",
+        "bot para entregas",
+        "gestionar paquetes"
+      ],
+      "answer": "Ideal para transporte 🚚\nEl bot da el estado de cada entrega y avisa al cliente automáticamente.\nMenos llamadas de «¿dónde está mi paquete?», más confianza.\n¿Cuántas entregas haces al día?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_07",
+      "category": "scenarios",
+      "questions": [
+        "soy peluquero",
+        "bot para peluquería",
+        "citas de peluquería",
+        "reserva barbería"
+      ],
+      "answer": "Perfecto para un salón 💈\nEl bot gestiona los huecos, confirma las citas y llena las horas muertas con ofertas.\nCero huecos perdidos.\n¿Cómo tomas las citas hoy?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_08",
+      "category": "scenarios",
+      "questions": [
+        "tengo una tienda de barrio",
+        "pedidos por whatsapp",
+        "bot para supermercado",
+        "tienda de barrio"
+      ],
+      "answer": "Buena idea 🛒\nTus clientes piden por WhatsApp, el bot lista los productos y confirma la entrega.\nGanas tiempo en cada pedido.\n¿En qué barrio repartes?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_09",
+      "category": "scenarios",
+      "questions": [
+        "soy abogado",
+        "bot para despacho de abogados",
+        "clasificar expedientes",
+        "captación jurídica"
+      ],
+      "answer": "Uso muy pertinente ⚖️\nEl agente hace las primeras preguntas, califica el expediente y agenda los casos serios.\nTu tiempo queda para los verdaderos expedientes.\n¿Cuántas consultas recibes a la semana?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_10",
+      "category": "scenarios",
+      "questions": [
+        "gestiono un hotel",
+        "reservas hoteleras automáticas",
+        "bot para guesthouse",
+        "habitaciones disponibles"
+      ],
+      "answer": "Excelente para hostelería 🏨\nEl bot muestra disponibilidad, tarifas y confirma las reservas al instante.\nTus clientes reservan incluso a las 2 de la mañana.\n¿Cuántas habitaciones tienes?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_11",
+      "category": "scenarios",
+      "questions": [
+        "soy wedding planner",
+        "bot para eventos",
+        "gestionar peticiones de presupuesto",
+        "agencia de eventos"
+      ],
+      "answer": "Genial para eventos 🎉\nEl agente recoge fecha, lugar, presupuesto y envía un presupuesto prellenado.\nPasas menos tiempo al teléfono.\n¿Cuántos eventos haces al mes?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_12",
+      "category": "scenarios",
+      "questions": [
+        "somos una ong",
+        "bot para asociación",
+        "recoger donaciones",
+        "gestionar voluntarios"
+      ],
+      "answer": "Bonita misión 🙏\nEl agente informa sobre vuestras acciones, recoge donaciones y coordina a los voluntarios.\nMás tiempo para el terreno.\n¿Me cuentas vuestras acciones principales?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
     }
   ],
   "packs": [

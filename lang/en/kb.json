@@ -6201,6 +6201,368 @@
         "site"
       ],
       "answer": "You can. But we deliver in 7 days a pro site that converts.\nYou keep running your business, we handle the rest.\nYour time is worth more than that, right?"
+    },
+    {
+      "id": "scenarios_react_01",
+      "category": "scenarios",
+      "questions": [
+        "i received your quote",
+        "i haven't decided yet",
+        "can you call me back",
+        "i'll get back to you",
+        "i'm still thinking about your offer"
+      ],
+      "answer": "No worries, take your time 😊\nTo help you decide: a 15-minute demo shows the bot with your real business.\nShall I send you a link this week?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_02",
+      "category": "scenarios",
+      "questions": [
+        "i'm a former client",
+        "i already worked with you",
+        "i'm coming back after a few months"
+      ],
+      "answer": "Great to see you back 👋\nReturning clients get -10% on any new automation this month.\nWant to pick up the project we discussed or try something new?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_03",
+      "category": "scenarios",
+      "questions": [
+        "what is the maintenance",
+        "is there a warranty?",
+        "what about after delivery?",
+        "what if the bot breaks",
+        "is maintenance required?"
+      ],
+      "answer": "Good question 😊\nThe 90€/month maintenance covers fixes, updates and small improvements: your bot never stays down for long.\nShall I add it for launch?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_04",
+      "category": "scenarios",
+      "questions": [
+        "it's late",
+        "you missed the deadline",
+        "still not delivered",
+        "i'm disappointed by the delay"
+      ],
+      "answer": "You're right, and I'm truly sorry 🙏\nI'll deliver the final version tomorrow and add a free revision for the inconvenience.\nDoes that work for you?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_05",
+      "category": "scenarios",
+      "questions": [
+        "can we add a feature?",
+        "i'd like to change the design",
+        "something beyond the quote",
+        "a quick modification"
+      ],
+      "answer": "We can add anything 😊\nFull transparency: it goes beyond the initial quote, so I'll price the request first.\nTell me exactly what you need?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_06",
+      "category": "scenarios",
+      "questions": [
+        "i'll pay next week",
+        "can you wait for the payment",
+        "late payment",
+        "a little patience for payment"
+      ],
+      "answer": "Thanks for the heads-up, noted 😊\nLet's touch base at the end of the week: as soon as the balance clears, I unlock the final delivery immediately.\nShall we keep that date?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_07",
+      "category": "scenarios",
+      "questions": [
+        "can you do something on the price",
+        "a small discount?",
+        "best price",
+        "can i get a reduction?"
+      ],
+      "answer": "I'd rather offer a plan than a discount 😊\n50% deposit this month and the balance next month: the project starts right away.\nDoes that help?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_08",
+      "category": "scenarios",
+      "questions": [
+        "i want to stop",
+        "i'm cancelling",
+        "i'm not continuing",
+        "stop the subscription",
+        "cancel my plan"
+      ],
+      "answer": "No worries, you're free 😊\nBefore I confirm: what didn't work? Often a quick tweak fixes it within 24h.\nIf you still want to leave, I'll stop with no hidden fees.",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_09",
+      "category": "scenarios",
+      "questions": [
+        "the bot stopped responding",
+        "it's buggy",
+        "my bot is down",
+        "it doesn't work anymore"
+      ],
+      "answer": "I'm on it right now 🔧\nSend me a screenshot or the message causing trouble: most issues are fixed within 24h.\nWhat exactly is the weird behaviour?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_10",
+      "category": "scenarios",
+      "questions": [
+        "i'm very happy",
+        "great result",
+        "the bot is amazing",
+        "i'm satisfied with the work"
+      ],
+      "answer": "Thank you, that really makes my day 😍\nCould you give me 2 sentences as a testimonial? In exchange I'll offer a small bot upgrade.\nAnd if a friend needs the same, share my contact 😊",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_11",
+      "category": "scenarios",
+      "questions": [
+        "it's very urgent",
+        "i want it by tomorrow",
+        "can you deliver in 24h",
+        "express delivery"
+      ],
+      "answer": "Yes, possible with the express option 🚀\n24h delivery with +30% on the price. I lock my schedule as soon as the deposit lands.\nShall we go?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_react_12",
+      "category": "scenarios",
+      "questions": [
+        "do you issue invoices?",
+        "is there a contract?",
+        "can i get an invoice",
+        "are you registered?"
+      ],
+      "answer": "Of course, everything is squared away 😊\nSigned quote, detailed invoice and a contract with clear deliverables and deadlines.\nShall I send you the full pack by email now?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_01",
+      "category": "scenarios",
+      "questions": [
+        "i run a restaurant",
+        "does it work for a restaurant?",
+        "bot for my restaurant",
+        "manage restaurant bookings"
+      ],
+      "answer": "Perfect for a restaurant 😋\nThe bot takes bookings, sends the menu and answers “do you have tables tonight?” on its own.\nResult: fewer missed calls, more covers.\nShow me your menu and I'll do a demo?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_02",
+      "category": "scenarios",
+      "questions": [
+        "i'm a doctor",
+        "bot for a clinic",
+        "manage medical appointments",
+        "appointment reminders"
+      ],
+      "answer": "Excellent use case 🩺\nThe agent confirms appointments, sends reminders the day before and frees your front desk from repetitive calls.\nFewer no-shows, a full calendar.\nWhat calendar do you use today?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_03",
+      "category": "scenarios",
+      "questions": [
+        "i'm a real estate agent",
+        "bot for a real estate agency",
+        "qualify buyers",
+        "manage property viewings"
+      ],
+      "answer": "Great territory 🏠\nThe agent qualifies each buyer (budget, area, timeline) and schedules viewings automatically.\nYou stop wasting time on the curious ones.\nHow many properties do you sell per month on average?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_04",
+      "category": "scenarios",
+      "questions": [
+        "i own a shop",
+        "selling on whatsapp",
+        "bot for my shop",
+        "manage customer orders"
+      ],
+      "answer": "Your shop will love it 🛍️\nThe bot sends the catalogue, takes orders and confirms Mobile Money payments.\nYou even sell at night.\nHow many products do you want to showcase?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_05",
+      "category": "scenarios",
+      "questions": [
+        "i run a school",
+        "bot for a training center",
+        "automated enrollments",
+        "manage students"
+      ],
+      "answer": "Great project 🎓\nThe agent answers questions about programs, prices and dates, and collects enrollments directly.\nYour team focuses on teaching.\nHow many programs do you offer?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_06",
+      "category": "scenarios",
+      "questions": [
+        "i'm in transport",
+        "delivery tracking",
+        "bot for deliveries",
+        "manage parcels"
+      ],
+      "answer": "Ideal for transport 🚚\nThe bot gives the status of each delivery and notifies the customer automatically.\nFewer “where is my parcel?” calls, more trust.\nHow many deliveries do you make per day?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_07",
+      "category": "scenarios",
+      "questions": [
+        "i'm a hairdresser",
+        "bot for a hair salon",
+        "handle hair appointments",
+        "barber booking"
+      ],
+      "answer": "Perfect for a salon 💈\nThe bot manages time slots, confirms appointments and fills quiet hours with offers.\nZero lost slots.\nHow do you take appointments today?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_08",
+      "category": "scenarios",
+      "questions": [
+        "i run a grocery store",
+        "orders on whatsapp",
+        "bot for a supermarket",
+        "neighborhood shop"
+      ],
+      "answer": "Good thinking 🛒\nYour customers order on WhatsApp, the bot lists products and confirms delivery.\nYou save time on every order.\nWhich neighbourhood do you deliver to?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_09",
+      "category": "scenarios",
+      "questions": [
+        "i'm a lawyer",
+        "bot for a law firm",
+        "triage client cases",
+        "legal intake"
+      ],
+      "answer": "Very relevant use ⚖️\nThe agent asks the first questions, qualifies the case and books appointments for serious matters.\nYour time stays with real files.\nHow many inquiries do you get per week?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_10",
+      "category": "scenarios",
+      "questions": [
+        "i run a hotel",
+        "automated hotel bookings",
+        "bot for a guesthouse",
+        "available rooms"
+      ],
+      "answer": "Excellent for hospitality 🏨\nThe bot shows availability, rates and confirms bookings instantly.\nYour guests book even at 2am.\nHow many rooms do you have?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_11",
+      "category": "scenarios",
+      "questions": [
+        "i'm a wedding planner",
+        "bot for events",
+        "manage event quote requests",
+        "event agency"
+      ],
+      "answer": "Perfect for events 🎉\nThe agent collects date, venue, budget and sends a pre-filled quote.\nYou spend less time on the phone.\nHow many events do you run per month?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_secteur_12",
+      "category": "scenarios",
+      "questions": [
+        "we are an ngo",
+        "bot for an association",
+        "collect donations",
+        "manage volunteers"
+      ],
+      "answer": "Beautiful mission 🙏\nThe agent explains your actions, collects donations and coordinates volunteers.\nMore time for the field.\nTell me about your main actions?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
     }
   ],
   "packs": [
