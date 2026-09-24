@@ -13945,6 +13945,186 @@
         "scenarios",
         "secteurs"
       ]
+    },
+    {
+      "id": "scenarios_vente_01",
+      "category": "scenarios",
+      "questions": [
+        "on marche au bouche-à-oreille",
+        "le bouche-à-oreille nous suffit",
+        "on vit du bouche-à-oreille",
+        "ça nous suffit pour l'instant"
+      ],
+      "answer": "Le bouche-à-oreille, c'est ta plus grande force 👌\nMais aujourd'hui, 8 clients sur 10 vérifient le site et les avis avant d'appeler.\nT'en captes combien, de ces clients qui hésitent ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_02",
+      "category": "scenarios",
+      "questions": [
+        "je n'ai pas le temps de m'occuper de ça",
+        "pas le temps pour le digital",
+        "je suis débordé",
+        "j'ai trop de travail pour penser au site"
+      ],
+      "answer": "C'est exactement pour ça qu'on existe 😊\nOn configure tout, toi tu touches à rien.\n15 minutes en visio pour te montrer comment capter ces clients sans effort ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_03",
+      "category": "scenarios",
+      "questions": [
+        "je n'ai pas le budget pour refaire tout ça",
+        "pas les moyens pour un nouveau site",
+        "c'est hors budget",
+        "trop cher pour l'instant"
+      ],
+      "answer": "Pas besoin de tout refaire 😊\nOn commence par une optimisation ciblée à partir de 150€ et on monte petit à petit.\nJe te montre ce qui rapporte le plus en premier ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_04",
+      "category": "scenarios",
+      "questions": [
+        "d'accord jeudi 10h",
+        "ok pour jeudi",
+        "je prends le rendez-vous",
+        "c'est noté pour la visio",
+        "je serai là jeudi"
+      ],
+      "answer": "Parfait, c'est noté 📅\nJe t'envoie le lien visio tout de suite.\nÀ jeudi, et garde tes chiffres de ventes sous la main, tu vas aimer la suite 😎",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_05",
+      "category": "scenarios",
+      "questions": [
+        "nos visuels sont beaux mais personne ne clique",
+        "nos posts sont beaux mais pas de ventes",
+        "on a du contenu mais ça ne convertit pas",
+        "les gens ne cliquent pas sur notre site"
+      ],
+      "answer": "Je vois exactement 😅\nLe problème n'est pas le design, c'est le parcours entre ton post et le paiement.\nTu sais combien ce manque de clics te coûte chaque mois ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_06",
+      "category": "scenarios",
+      "questions": [
+        "on perd 20% de notre trafic",
+        "au moins 20% du trafic en moins",
+        "on perd peut-être 20% des visiteurs"
+      ],
+      "answer": "Exact, et ça fait mal au chiffre 😬\nSi on aligne tes visuels et ton site pour récupérer juste la moitié de ce trafic, l'investissement se rembourse vite.\nOn commence par un audit UX de 48h ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_07",
+      "category": "scenarios",
+      "questions": [
+        "notre site manque de vie",
+        "on est à la traîne par rapport aux concurrents",
+        "nos concurrents sont plus visibles que nous",
+        "notre image digitale est dépassée"
+      ],
+      "answer": "Très courant, et ça se règle 😊\nIl faut une seule histoire cohérente : du premier post jusqu'au paiement, mêmes couleurs, même ton, même promesse.\nT'es sur combien de réseaux aujourd'hui ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_08",
+      "category": "scenarios",
+      "questions": [
+        "comment vous procédez pour la première phase ?",
+        "c'est quoi la première étape ?",
+        "on démarre comment ?",
+        "quelles sont vos étapes ?"
+      ],
+      "answer": "Simple : d'abord un audit UX de 48h 🔍\nOn repère où tes clients décrochent, puis tu reçois un plan d'action clair avec les priorités.\nJe te prépare ça ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_09",
+      "category": "scenarios",
+      "questions": [
+        "votre devis est 30% plus cher que l'agence d'en face",
+        "l'autre agence est moins chère",
+        "j'ai un devis moins cher ailleurs",
+        "pourquoi vous coûtez plus cher que les autres ?"
+      ],
+      "answer": "C'est vrai, et je t'explique 😊\nEux te livrent le code, nous on inclut le suivi, la formation de ton équipe et le tracking des résultats.\nSi le bot de l'autre tombe le jour de ton lancement, combien ça te coûte en clients ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_10",
+      "category": "scenarios",
+      "questions": [
+        "c'est juste du détail technique",
+        "la formation c'est secondaire",
+        "on se débrouillera pour la maintenance",
+        "on n'a pas besoin du suivi"
+      ],
+      "answer": "C'est ce détail qui change tout 🔧\nUne appli mal construite coûte le double en maintenance 6 mois plus tard.\nJe te montre ligne par ligne ce qui est inclus pour te rassurer ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_11",
+      "category": "scenarios",
+      "questions": [
+        "la fiabilité est clé pour nous",
+        "on a besoin que ça marche au lancement",
+        "zéro bug au lancement c'est important",
+        "on ne peut pas se permettre une panne"
+      ],
+      "answer": "Alors t'es au bon endroit 😊\nNotre prix inclut cette sérénité : tests, monitoring et maintenance 90€/mois pour que ça tienne.\nOn regarde les détails ensemble ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
+    },
+    {
+      "id": "scenarios_vente_12",
+      "category": "scenarios",
+      "questions": [
+        "c'est quoi votre méthode ?",
+        "vous travaillez comment ?",
+        "votre approche c'est quoi ?",
+        "pourquoi choisir komara agency ?"
+      ],
+      "answer": "Notre méthode est simple 💪\nOn vend un résultat, pas de la technique : chaque livrable se mesure en ventes gagnées ou en heures économisées.\nROI moyen constaté : 21 jours. On commence par un audit gratuit de ton activité ?",
+      "tags": [
+        "scenarios",
+        "vente_digitale"
+      ]
     }
   ],
   "conversations": [

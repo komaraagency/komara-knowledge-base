@@ -6281,6 +6281,186 @@
         "scenarios",
         "translation"
       ]
+    },
+    {
+      "id": "scenarios_vente_01",
+      "category": "scenarios",
+      "questions": [
+        "funcionamos con el boca a boca",
+        "el boca a boca nos basta",
+        "vivimos del boca a boca",
+        "por ahora nos sirve"
+      ],
+      "answer": "El boca a boca es tu mayor fuerza 👌\nPero hoy, 8 de cada 10 clientes miran la web y las reseñas antes de llamar.\n¿A cuántos de esos clientes que dudan estás captando?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_02",
+      "category": "scenarios",
+      "questions": [
+        "no tengo tiempo para ocuparme de eso",
+        "sin tiempo para lo digital",
+        "estoy desbordado",
+        "tengo demasiado trabajo para pensar en la web"
+      ],
+      "answer": "Existimos exactamente para eso 😊\nLo configuramos todo, tú no tocas nada.\n¿15 minutos en visio para mostrarte cómo captar a esos clientes sin esfuerzo?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_03",
+      "category": "scenarios",
+      "questions": [
+        "no tengo presupuesto para rehacer todo",
+        "no hay medios para una web nueva",
+        "está fuera de presupuesto",
+        "demasiado caro por ahora"
+      ],
+      "answer": "No hace falta rehacer todo 😊\nEmpezamos con una optimización puntual desde 150€ y crecemos poco a poco.\n¿Te muestro primero lo que más rentabiliza?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_04",
+      "category": "scenarios",
+      "questions": [
+        "vale, jueves a las 10",
+        "ok por el jueves",
+        "acepto la cita",
+        "apuntado para la visio",
+        "allí estaré el jueves"
+      ],
+      "answer": "Perfecto, apuntado 📅\nTe envío ahora mismo el enlace de la visio.\nHasta el jueves, y ten a mano tus cifras de ventas, te va a gustar lo que viene 😎",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_05",
+      "category": "scenarios",
+      "questions": [
+        "nuestros visuales son bonitos pero nadie hace clic",
+        "nuestros posts son bonitos pero no venden",
+        "tenemos contenido pero no convierte",
+        "la gente no entra en nuestra web"
+      ],
+      "answer": "Lo veo exacto 😅\nEl problema no es el diseño, es el recorrido entre tu post y el pago.\n¿Sabes cuánto te cuesta cada mes esa falta de clics?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_06",
+      "category": "scenarios",
+      "questions": [
+        "perdemos el 20% de nuestro tráfico",
+        "al menos 20% menos de tráfico",
+        "quizá perdemos el 20% de visitantes"
+      ],
+      "answer": "Exacto, y eso duele en la caja 😬\nSi alineamos tus visuales y tu web para recuperar solo la mitad de ese tráfico, la inversión se amortiza rápido.\n¿Empezamos con una auditoría UX de 48h?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_07",
+      "category": "scenarios",
+      "questions": [
+        "nuestra web está sin vida",
+        "vamos por detrás de la competencia",
+        "nuestros competidores son más visibles",
+        "nuestra imagen digital está anticuada"
+      ],
+      "answer": "Muy común, y tiene arreglo 😊\nHace falta una sola historia coherente: del primer post al pago, mismos colores, mismo tono, misma promesa.\n¿En cuántas redes estás hoy?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_08",
+      "category": "scenarios",
+      "questions": [
+        "cómo proceden para la primera fase?",
+        "cuál es el primer paso?",
+        "cómo empezamos?",
+        "cuáles son sus etapas?"
+      ],
+      "answer": "Simple: primero una auditoría UX de 48h 🔍\nDetectamos dónde abandonan tus clientes y recibes un plan de acción claro con prioridades.\n¿Te lo preparo?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_09",
+      "category": "scenarios",
+      "questions": [
+        "su presupuesto es 30% más caro que la agencia de enfrente",
+        "la otra agencia es más barata",
+        "tengo un presupuesto más barato en otro sitio",
+        "por qué cuestan más que otros?"
+      ],
+      "answer": "Es cierto, y te lo explico 😊\nEllos entregan el código; nosotros incluimos seguimiento, formación para tu equipo y tracking de resultados.\nSi el bot del otro se cae el día de tu lanzamiento, ¿cuánto te cuesta en clientes?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_10",
+      "category": "scenarios",
+      "questions": [
+        "es solo un detalle técnico",
+        "la formación es secundaria",
+        "la mantención nos la apañamos",
+        "no necesitamos seguimiento"
+      ],
+      "answer": "Ese detalle lo cambia todo 🔧\nUna app mal construida cuesta el doble en mantenimiento 6 meses después.\n¿Te muestro línea por línea lo que incluye para tranquilizarte?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_11",
+      "category": "scenarios",
+      "questions": [
+        "la fiabilidad es clave para nosotros",
+        "necesitamos que funcione en el lanzamiento",
+        "cero fallos al lanzar es importante",
+        "no podemos permitirnos una caída"
+      ],
+      "answer": "Entonces estás en el sitio correcto 😊\nNuestro precio incluye esa tranquilidad: pruebas, monitorización y mantenimiento de 90€/mes.\n¿Repasamos los detalles juntos?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
+    },
+    {
+      "id": "scenarios_vente_12",
+      "category": "scenarios",
+      "questions": [
+        "cuál es su método?",
+        "cómo trabajan?",
+        "cuál es su enfoque?",
+        "por qué elegir komara agency?"
+      ],
+      "answer": "Nuestro método es simple 💪\nVendemos un resultado, no técnica: cada entregable se mide en ventas ganadas o horas ahorradas.\nROI medio: 21 días. ¿Empezamos con una auditoría gratuita de tu negocio?",
+      "tags": [
+        "scenarios",
+        "translation"
+      ]
     }
   ],
   "packs": [
