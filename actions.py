@@ -107,7 +107,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -1064,6 +1064,11 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+
+    if command == "/kb_import":
+        import kb_import
+        bot.send_message(chat_id, kb_import.USAGE)
         return True
 
     if command in {"/produit", "/produits"}:

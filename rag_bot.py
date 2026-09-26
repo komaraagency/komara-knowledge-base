@@ -25,6 +25,7 @@ from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
 import catalogue
+import kb_import
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -300,6 +301,19 @@ LANG_RESOURCES["fr"] = {
     "dialogues": _fr_lang_dialogues + _fr_root_dialogues,
 }
 logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr"]["kb"]))
+
+
+def refresh_resources(lang_code: str) -> None:
+    """Recharge une langue (après /kb_import) en réappliquant la fusion fr."""
+    lang_res = load_language_resources(lang_code)
+    if lang_code == "fr":
+        lang_res = {
+            "kb": lang_res.get("kb", []) + load_knowledge_base().get("knowledge", []),
+            "faq": lang_res.get("faq", []) + load_local_faq(),
+            "dialogues": lang_res.get("dialogues", []) + load_dialogues(),
+        }
+    LANG_RESOURCES[lang_code] = lang_res
+    logger.info("Ressources [%s] rechargées : %s fiches KB", lang_code, len(lang_res["kb"]))
 
 # ---------------------------------------------------------------------------
 # Mémoire conversationnelle locale (SQLite avec connexion persistante)
@@ -673,9 +687,16 @@ def safe_typing(chat_id: int) -> None:
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio'])
+@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document'])
 def handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
+
+    # Document (admin) → /kb_import : enrichissement de la base de connaissances
+    if message.document:
+        detected_lang = detect_language(message.caption or "") if message.caption else "fr"
+        safe_typing(chat_id)
+        kb_import.handle_document(bot, message, detected_lang)
+        return
 
     # Vocal/audio → transcription 100% locale (Whisper embarqué)
     if not message.text and (message.voice or message.audio):
