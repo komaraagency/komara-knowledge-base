@@ -5297,14 +5297,18 @@
       "category": "pricing",
       "questions": [
         "hacéis promos",
-        "descuentos"
+        "descuentos",
+        "código promocional",
+        "código de descuento",
+        "cómo usar un código",
+        "promociones"
       ],
       "keywords": [
         "promo",
         "descuento",
         "oferta"
       ],
-      "answer": "Sí. -20% para las 10 primeras empresas de cada mes."
+      "answer": "Sí 🎟️\n-20% para las 10 primeras empresas de cada mes.\nLos códigos se aplican automáticamente en el presupuesto: escribe 'presupuesto' y luego introduce tu código."
     },
     {
       "id": "es_tarifs_89",

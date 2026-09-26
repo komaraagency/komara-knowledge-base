@@ -5566,14 +5566,18 @@
       "category": "pricing",
       "questions": [
         "do you do promos",
-        "any discounts"
+        "any discounts",
+        "promo code",
+        "discount code",
+        "how to use a promo code",
+        "any promo codes"
       ],
       "keywords": [
         "promo",
         "discount",
         "deal"
       ],
-      "answer": "Yes. -20% for the first 10 companies each month."
+      "answer": "Yes 🎟️\n-20% for the first 10 companies each month.\nPromo codes apply automatically at quote time: type 'quote', then enter your code when asked."
     },
     {
       "id": "en_tarifs_89",

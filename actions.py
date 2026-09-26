@@ -122,6 +122,7 @@ OK_WORDS: set[str] = {"ok", "oui", "yes", "si", "صحيح"}
 
 # Suivi de commande côté client
 TRACKING_TRIGGERS: set[str] = {
+    "/suivi", "/tracking", "/track", "/estado", "/seguimiento", "/تتبع",
     "suivi", "suivi commande", "suivi de commande", "statut", "statut commande",
     "où en est ma commande", "ou en est ma commande", "où est ma commande",
     "ma commande", "état de ma commande", "ou ça en est",
@@ -183,6 +184,10 @@ T = {
         "export_sent": "📤 Export en cours...",
         "devis_promo": "🎟️ Tu as un code promo ?\nTape le code, ou 'passer' si tu n'en as pas.",
         "promo_invalid": "❌ Code invalide ou expiré. Tape un code valide, ou 'passer'.",
+        "tracking_none": "📦 Pas encore de commande chez nous.\nTape 'commander' pour lancer ton projet 🚀",
+        "tracking_head": "📦 Suivi de ta commande :",
+        "tracking_order": "Commande",
+        "tracking_since": "depuis le",
         "devis_promo_ok": "🎟️ Code *{code}* appliqué : -{pct:g}% !",
         "known_greeting": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\nComment je peux t'aider aujourd'hui ?",
         "rdv_known_start": "Re-bonjour {name} 👋\nSur quel sujet veux-tu un RDV ?",
@@ -225,6 +230,10 @@ T = {
         "export_sent": "📤 Exporting...",
         "devis_promo": "🎟️ Got a promo code?\nType the code, or 'pass' if you don't.",
         "promo_invalid": "❌ Invalid or expired code. Type a valid one, or 'pass'.",
+        "tracking_none": "📦 No order with us yet.\nType 'order' to start your project 🚀",
+        "tracking_head": "📦 Your order tracking:",
+        "tracking_order": "Order",
+        "tracking_since": "since",
         "devis_promo_ok": "🎟️ Code *{code}* applied: -{pct:g}%!",
         "known_greeting": "Hello again {name} 👋 Welcome back to Komara Agency 🇬🇳!\nHow can I help you today?",
         "rdv_known_start": "Hello again {name} 👋\nWhat's the appointment about?",
@@ -267,6 +276,10 @@ T = {
         "export_sent": "📤 Exportando...",
         "devis_promo": "🎟️ ¿Tienes un código promo?\nEscribe el código, o 'pasar' si no tienes.",
         "promo_invalid": "❌ Código inválido o expirado. Escribe uno válido, o 'pasar'.",
+        "tracking_none": "📦 Aún no tienes pedidos con nosotros.\nEscribe 'ordenar' para empezar tu proyecto 🚀",
+        "tracking_head": "📦 Seguimiento de tu pedido:",
+        "tracking_order": "Pedido",
+        "tracking_since": "desde el",
         "devis_promo_ok": "🎟️ Código *{code}* aplicado: -{pct:g}%!",
         "known_greeting": "¡Hola de nuevo {name} 👋 ¡Bienvenido otra vez a Komara Agency 🇬🇳!\n¿Cómo te ayudo hoy?",
         "rdv_known_start": "¡Hola de nuevo {name} 👋\n¿Sobre qué tema es la cita?",
@@ -1182,21 +1195,14 @@ def order_tracking(bot, chat_id: int, lang: str) -> bool:
             (str(chat_id),),
         ).fetchall()
     if not rows:
-        bot.send_message(
-            chat_id,
-            "📦 Pas encore de commande chez nous.\nTape 'commander' pour lancer ton projet 🚀",
-        )
+        bot.send_message(chat_id, t(lang, "tracking_none"))
         return True
 
     lines = []
     for oid, service, status, created in rows:
         label = ORDER_STATUSES.get((status or "en attente").lower(), f"🕐 {status}")
-        lines.append(f"📌 Commande n°{oid} — {service}\n   {label} (depuis le {created[:10]})")
-    bot.send_message(
-        chat_id,
-        "📦 Suivi de ta commande :\n\n" + "\n\n".join(lines) +
-        "\n\nUne question sur ton projet ? Écris ici 👍",
-    )
+        lines.append(f"📌 {t(lang, 'tracking_order')} n°{oid} — {service}\n   {label} ({t(lang, 'tracking_since')} {created[:10]})")
+    bot.send_message(chat_id, t(lang, "tracking_head") + "\n\n" + "\n\n".join(lines))
     return True
 
 

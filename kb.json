@@ -5087,7 +5087,13 @@
       "id": 88,
       "category": "tarifs",
       "questions": [
-        "Vous faites des promos"
+        "Vous faites des promos",
+        "code promo",
+        "as tu un code promo",
+        "comment utiliser un code promo",
+        "promo en cours",
+        "des réductions ?",
+        "des promotions ?"
       ],
       "tags": [
         "promo",
@@ -5095,7 +5101,7 @@
         "reduction",
         "-20%"
       ],
-      "answer": "Oui. -20% pour les 10 premières entreprises de chaque mois."
+      "answer": "Oui 🎟️\n-20% pour les 10 premières entreprises de chaque mois.\nLes codes promo s'appliquent automatiquement au moment du devis : tape 'devis', puis entre ton code à l'étape demandée."
     },
     {
       "id": 89,

@@ -305,7 +305,7 @@ logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr
 
 MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
 MEMORY_FILE = MEMORY_DIR / "memory.db"
-MEMORY_LIMIT = 60  # longue mémoire : 60 derniers échanges par client
+MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
 DB_LOCK = threading.Lock()
 DB_CONN: sqlite3.Connection | None = None
 
@@ -387,24 +387,28 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
         ("💎 Voir les Tarifs", "📂 Portfolio"),
         ("🚀 Commander", "🤖 Chatbot IA"),
         ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
+        ("📦 Suivi commande", "🎟️ Code promo"),
         ("👑 Parler à un humain",),
     ],
     "en": [
         ("💎 View Pricing", "📂 Portfolio"),
         ("🚀 Order", "🤖 AI Chatbot"),
         ("📅 Book a call", "📄 Quote", "⭐ Feedback"),
+        ("📦 Order Tracking", "🎟️ Promo Code"),
         ("👑 Talk to a human",),
     ],
     "ar": [
         ("💎 الأسعار", "📂 المعرض"),
         ("🚀 طلب", "🤖 مساعد ذكي"),
         ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
+        ("📦 تتبع الطلب", "🎟️ كود الخصم"),
         ("👑 التحدث مع مستشار",),
     ],
     "es": [
         ("💎 Ver Precios", "📂 Portafolio"),
         ("🚀 Ordenar", "🤖 Chatbot IA"),
         ("📅 Reservar", "📄 Presupuesto", "⭐ Opinión"),
+        ("📦 Seguimiento", "🎟️ Código Promo"),
         ("👑 Hablar con un humano",),
     ],
 }
@@ -417,6 +421,8 @@ BUTTON_LABELS: set[str] = {
     for row in rows
     for label in row
 }
+
+START_COMMANDS: set[str] = {"/start", "/star", "/menu", "/help", "/ayuda", "/inicio"}
 
 RESET_COMMANDS: dict[str, set[str]] = {
     "fr": {"/reset", "/forget", "oublie", "oublie-moi"},
@@ -434,6 +440,9 @@ MESSAGES: dict[str, dict[str, str]] = {
         "pricing_intro": "Voici nos offres :",
         "commander": "Super! 🛒 Pour préparer votre devis, dites-moi :\n\n1️⃣ Quel service? (bot, site, logo, app...)\n2️⃣ Votre activité\n3️⃣ Votre délai souhaité\n\nJe vous écoute 👇",
         "chatbot": "🤖 Vous voulez un bot intelligent pour votre business?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse?",
+        "start": "Salut 👋 Bienvenue chez Komara Agency 🇬🇳 !\n\nJe crée des solutions digitales : chatbots, sites web, logos, visuels IA.\n\nChoisis une option 👇 ou décris ton besoin.",
+        "welcome_back": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\n\nChoisis une option 👇 ou décris ton besoin.",
+        "promo": "🎟️ Nos codes promo s'appliquent automatiquement au moment du devis.\n\n1. Tape 'devis'\n2. Décris ton besoin\n3. Entre ton code à l'étape demandée\n\nLes codes actifs sont annoncés ici par l'équipe 🇬🇳",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
     "en": {
@@ -444,6 +453,9 @@ MESSAGES: dict[str, dict[str, str]] = {
         "pricing_intro": "Here are our offers:",
         "commander": "Great! 🛒 To prepare your quote, tell me:\n\n1️⃣ Which service? (bot, website, logo, app...)\n2️⃣ Your business\n3️⃣ Your preferred timeline\n\nI'm listening 👇",
         "chatbot": "🤖 Want a smart bot for your business?\n\nWe create custom WhatsApp, Telegram and TikTok bots.\n\nWhich channel interests you?",
+        "start": "Hi 👋 Welcome to Komara Agency 🇬🇳!\n\nI create digital solutions: chatbots, websites, logos, AI visuals.\n\nPick an option 👇 or describe your need.",
+        "welcome_back": "Hello again {name} 👋 Great to see you back at Komara Agency 🇬🇳!\n\nPick an option 👇 or describe your need.",
+        "promo": "🎟️ Our promo codes apply automatically at quote time.\n\n1. Type 'quote'\n2. Describe your need\n3. Enter your code when asked\n\nActive codes are announced here by the team 🇬🇳",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
     },
     "ar": {
@@ -454,6 +466,9 @@ MESSAGES: dict[str, dict[str, str]] = {
         "pricing_intro": "إليك عروضنا:",
         "commander": "رائع! 🛒 لإعداد عرض السعر، أخبرني:\n\n1️⃣ أي خدمة؟ (بوت، موقع، شعار، تطبيق...)\n2️⃣ نشاطك\n3️⃣ الموعد النهائي المفضل\n\nأستمع إليك 👇",
         "chatbot": "🤖 تريد بوت ذكي لعملك؟\n\nننشئ بوتات واتساب وتيليجرام وتيك توك مخصصة.\n\nأي قناة تهمك؟",
+        "start": "مرحبا 👋 أهلا بك في Komara Agency 🇬🇳!\n\nأنشئ حلولا رقمية: بوتات ذكية، مواقع، شعارات، صور بالذكاء الاصطناعي.\n\nاختر خيارا 👇 أو صف احتياجك.",
+        "welcome_back": "مرحبا بك مجددا {name} 👋 سعداء بعودتك إلى Komara Agency 🇬🇳!\n\nاختر خيارا 👇 أو صف احتياجك.",
+        "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'devis'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
     },
     "es": {
@@ -464,6 +479,9 @@ MESSAGES: dict[str, dict[str, str]] = {
         "pricing_intro": "Aquí están nuestras ofertas:",
         "commander": "¡Genial! 🛒 Para preparar tu presupuesto, dime:\n\n1️⃣ ¿Qué servicio? (bot, sitio, logo, app...)\n2️⃣ Tu negocio\n3️⃣ Tu plazo preferido\n\nTe escucho 👇",
         "chatbot": "🤖 ¿Quieres un bot inteligente para tu negocio?\n\nCreamos bots de WhatsApp, Telegram y TikTok personalizados.\n\n¿Qué canal te interesa?",
+        "start": "Hola 👋 ¡Bienvenido a Komara Agency 🇬🇳!\n\nCreo soluciones digitales: chatbots, sitios web, logos, visuales IA.\n\nElige una opción 👇 o describe tu necesidad.",
+        "welcome_back": "Hola de nuevo {name} 👋 ¡Qué gusto verte otra vez en Komara Agency 🇬🇳!\n\nElige una opción 👇 o describe tu necesidad.",
+        "promo": "🎟️ Nuestros códigos promo se aplican automáticamente en el presupuesto.\n\n1. Escribe 'presupuesto'\n2. Describe tu necesidad\n3. Introduce tu código cuando te lo pida\n\nLos códigos activos los anuncia aquí el equipo 🇬🇳",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
     },
 }
@@ -600,6 +618,16 @@ def handle_message(message: telebot.types.Message) -> None:
     user_text = message.text.strip()
     detected_lang = detect_language(user_text)
 
+    # 0. Commandes de démarrage/assistance (/start, /menu, /help)
+    if user_text.lower() in START_COMMANDS:
+        client = actions.get_client(chat_id)
+        if client and client["name"]:
+            welcome = msg(detected_lang, "welcome_back").replace("{name}", client["name"])
+        else:
+            welcome = msg(detected_lang, "start")
+        bot.send_message(chat_id, welcome, reply_markup=menu_for_lang(detected_lang))
+        return
+
     # 1. Commandes de reset
     if user_text.lower() in RESET_COMMANDS.get(detected_lang, set()):
         forget(chat_id)
@@ -612,6 +640,12 @@ def handle_message(message: telebot.types.Message) -> None:
 
     # 2. Gestion des boutons rapides (FIX : test sur le set aplati BUTTON_LABELS)
     if user_text in BUTTON_LABELS:
+        if "Suivi" in user_text or "Tracking" in user_text or "Seguimiento" in user_text or "تتبع" in user_text:
+            actions.order_tracking(bot, chat_id, detected_lang)
+            return
+        if "promo" in user_text.lower() or "خصم" in user_text:
+            bot.send_message(chat_id, msg(detected_lang, "promo"), reply_markup=menu_for_lang(detected_lang))
+            return
         if "Commander" in user_text or "Order" in user_text or "طلب" in user_text or "Ordenar" in user_text:
             bot.send_message(chat_id, msg(detected_lang, "commander"), reply_markup=menu_for_lang(detected_lang))
             return
