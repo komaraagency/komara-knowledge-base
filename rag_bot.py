@@ -24,6 +24,7 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
+import catalogue
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -436,6 +437,7 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
         ("🚀 Commander", "🤖 Chatbot IA"),
         ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
         ("📦 Suivi commande", "🎟️ Code promo"),
+        ("🛍️ Catalogue", "🛒 Panier"),
         ("👑 Parler à un humain",),
     ],
     "en": [
@@ -443,6 +445,7 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
         ("🚀 Order", "🤖 AI Chatbot"),
         ("📅 Book a call", "📄 Quote", "⭐ Feedback"),
         ("📦 Order Tracking", "🎟️ Promo Code"),
+        ("🛍️ Catalogue", "🛒 Cart"),
         ("👑 Talk to a human",),
     ],
     "ar": [
@@ -450,6 +453,7 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
         ("🚀 طلب", "🤖 مساعد ذكي"),
         ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
         ("📦 تتبع الطلب", "🎟️ كود الخصم"),
+        ("🛍️ كتالوج", "🛒 سلة"),
         ("👑 التحدث مع مستشار",),
     ],
     "es": [
@@ -457,6 +461,7 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
         ("🚀 Ordenar", "🤖 Chatbot IA"),
         ("📅 Reservar", "📄 Presupuesto", "⭐ Opinión"),
         ("📦 Seguimiento", "🎟️ Código Promo"),
+        ("🛍️ Catálogo", "🛒 Carrito"),
         ("👑 Hablar con un humano",),
     ],
 }
@@ -724,7 +729,16 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str) -> None:
             bot.send_message(chat_id, msg(detected_lang, "promo"), reply_markup=menu_for_lang(detected_lang))
             return
         if "Commander" in user_text or "Order" in user_text or "طلب" in user_text or "Ordenar" in user_text:
+            # Panier non vide → tunnel catalogue
+            if catalogue.start_checkout(bot, chat_id, detected_lang):
+                return
             bot.send_message(chat_id, msg(detected_lang, "commander"), reply_markup=menu_for_lang(detected_lang))
+            return
+        if "Catalogue" in user_text or "Catálogo" in user_text or "كتالوج" in user_text:
+            catalogue.show_catalogue(bot, chat_id, detected_lang)
+            return
+        if "Panier" in user_text or "Cart" in user_text or "Carrito" in user_text or "سلة" in user_text:
+            catalogue.show_cart(bot, chat_id, detected_lang)
             return
         if "Chatbot" in user_text or "IA" in user_text or "ذكي" in user_text:
             bot.send_message(chat_id, msg(detected_lang, "chatbot"), reply_markup=menu_for_lang(detected_lang))

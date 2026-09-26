@@ -22,6 +22,7 @@ import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
+import catalogue
 from local_stats import get_unrecognized_stats
 
 logger = logging.getLogger("komara.actions")
@@ -106,7 +107,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -380,6 +381,8 @@ def init_db() -> None:
                 sent INTEGER DEFAULT 0, created_at TEXT NOT NULL
             );
         """)
+        # Tables catalogue + panier
+        catalogue.init_catalogue_db(DB_CONN)
         DB_CONN.commit()
         # Migrations pour bases déjà déployées
         for migration in (
@@ -538,6 +541,10 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if low in TRACKING_TRIGGERS:
         return order_tracking(bot, chat_id, lang)
 
+    # 0ter-bis. Catalogue, panier, ajouter/vider
+    if catalogue.handle_client(bot, chat_id, text_clean, lang):
+        return True
+
     # 0bis. Message hors horaires (1x/jour, n'interrompt rien)
     maybe_off_hours_notice(bot, chat_id, lang)
 
@@ -550,6 +557,9 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     # 2. Démarrage d'un flux (déclencheurs / boutons)
     for flow, words in TRIGGERS.items():
         if text_clean in words or low in words:
+            # Panier non vide → tunnel catalogue au lieu du flux commande
+            if flow == "order" and catalogue.start_checkout(bot, chat_id, lang):
+                return True
             return start_flow(bot, chat_id, flow, lang)
 
     # 2bis. 'nouveau rdv' force un RDV même si un existe déjà
@@ -623,6 +633,8 @@ def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str
         return _step_lead(bot, chat_id, step, data, text, lang)
     if flow == "survey":
         return _step_survey(bot, chat_id, step, data, text, lang)
+    if flow == "checkout":
+        return catalogue.step_checkout(bot, chat_id, step, data, text, lang)
     _clear_flow(chat_id)
     return False
 
@@ -1052,6 +1064,10 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+
+    if command in {"/produit", "/produits"}:
+        catalogue.admin_product(bot, chat_id, args, lang)
         return True
 
     if command == "/stats":
