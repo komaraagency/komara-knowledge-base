@@ -8,6 +8,7 @@ import os
 import re
 import signal
 import sqlite3
+import tempfile
 import sys
 import threading
 import time
@@ -306,6 +307,53 @@ logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr
 MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
 MEMORY_FILE = MEMORY_DIR / "memory.db"
 MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
+
+# ---------------------------------------------------------------------------
+# Transcription vocale 100% locale (faster-whisper, aucune IA externe)
+# ---------------------------------------------------------------------------
+VOICE_ENABLED = os.getenv("VOICE_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+WHISPER_MODEL_NAME = os.getenv("WHISPER_MODEL", "base")  # tiny/base/small selon RAM
+WHISPER_MODEL_OBJ = None
+WHISPER_LOCK = threading.Lock()
+
+def get_whisper_model():
+    """Charge faster-whisper une seule fois (modèle local, sans API)."""
+    global WHISPER_MODEL_OBJ
+    if WHISPER_MODEL_OBJ is not None:
+        return WHISPER_MODEL_OBJ
+    with WHISPER_LOCK:
+        if WHISPER_MODEL_OBJ is None:
+            from faster_whisper import WhisperModel  # import paresseux
+            WHISPER_MODEL_OBJ = WhisperModel(
+                WHISPER_MODEL_NAME, device="cpu", compute_type="int8"
+            )
+            logger.info("Whisper local prêt (modèle %s)", WHISPER_MODEL_NAME)
+    return WHISPER_MODEL_OBJ
+
+def transcribe_voice(bot, message) -> str | None:
+    """Transcrit un vocal/audio Telegram en local. Retourne le texte ou None."""
+    chat_id = message.chat.id
+    try:
+        voice = message.voice or message.audio
+        file_info = bot.get_file(voice.file_id)
+        file_data = bot.download_file(file_info.file_path)
+        suffix = ".ogg" if message.voice else ".mp3"
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(file_data)
+            tmp_path = tmp.name
+        try:
+            model = get_whisper_model()
+            segments, _info = model.transcribe(tmp_path, beam_size=2)
+            text = " ".join(seg.text.strip() for seg in segments).strip()
+            return text if text else None
+        finally:
+            Path(tmp_path).unlink(missing_ok=True)
+    except ImportError:
+        logger.warning("faster-whisper non installé : vocaux indisponibles")
+        return None
+    except Exception as e:
+        logger.error("Transcription vocale impossible : %s", e)
+        return None
 DB_LOCK = threading.Lock()
 DB_CONN: sqlite3.Connection | None = None
 
@@ -443,6 +491,8 @@ MESSAGES: dict[str, dict[str, str]] = {
         "start": "Salut 👋 Bienvenue chez Komara Agency 🇬🇳 !\n\nJe crée des solutions digitales : chatbots, sites web, logos, visuels IA.\n\nChoisis une option 👇 ou décris ton besoin.",
         "welcome_back": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\n\nChoisis une option 👇 ou décris ton besoin.",
         "promo": "🎟️ Nos codes promo s'appliquent automatiquement au moment du devis.\n\n1. Tape 'devis'\n2. Décris ton besoin\n3. Entre ton code à l'étape demandée\n\nLes codes actifs sont annoncés ici par l'équipe 🇬🇳",
+        "voice_received": "🎤 Ton vocal : «{text}»\n\nJe m'occupe de ta demande 👇",
+        "voice_unavailable": "🎤 Je n'ai pas pu écouter ce vocal pour l'instant. Écris-moi ton message 🙏",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
     "en": {
@@ -456,6 +506,8 @@ MESSAGES: dict[str, dict[str, str]] = {
         "start": "Hi 👋 Welcome to Komara Agency 🇬🇳!\n\nI create digital solutions: chatbots, websites, logos, AI visuals.\n\nPick an option 👇 or describe your need.",
         "welcome_back": "Hello again {name} 👋 Great to see you back at Komara Agency 🇬🇳!\n\nPick an option 👇 or describe your need.",
         "promo": "🎟️ Our promo codes apply automatically at quote time.\n\n1. Type 'quote'\n2. Describe your need\n3. Enter your code when asked\n\nActive codes are announced here by the team 🇬🇳",
+        "voice_received": "🎤 Your voice: '{text}'\n\nTaking care of your request 👇",
+        "voice_unavailable": "🎤 I couldn't listen to this voice note yet. Please type your message 🙏",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
     },
     "ar": {
@@ -469,6 +521,8 @@ MESSAGES: dict[str, dict[str, str]] = {
         "start": "مرحبا 👋 أهلا بك في Komara Agency 🇬🇳!\n\nأنشئ حلولا رقمية: بوتات ذكية، مواقع، شعارات، صور بالذكاء الاصطناعي.\n\nاختر خيارا 👇 أو صف احتياجك.",
         "welcome_back": "مرحبا بك مجددا {name} 👋 سعداء بعودتك إلى Komara Agency 🇬🇳!\n\nاختر خيارا 👇 أو صف احتياجك.",
         "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'devis'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
+        "voice_received": "🎤 رسالتك الصوتية: «{text}»\n\nأتولى طلبك 👇",
+        "voice_unavailable": "🎤 لم أستطع الاستماع لهذه الرسالة الصوتية الآن. اكتب لي رسالتك 🙏",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
     },
     "es": {
@@ -482,6 +536,8 @@ MESSAGES: dict[str, dict[str, str]] = {
         "start": "Hola 👋 ¡Bienvenido a Komara Agency 🇬🇳!\n\nCreo soluciones digitales: chatbots, sitios web, logos, visuales IA.\n\nElige una opción 👇 o describe tu necesidad.",
         "welcome_back": "Hola de nuevo {name} 👋 ¡Qué gusto verte otra vez en Komara Agency 🇬🇳!\n\nElige una opción 👇 o describe tu necesidad.",
         "promo": "🎟️ Nuestros códigos promo se aplican automáticamente en el presupuesto.\n\n1. Escribe 'presupuesto'\n2. Describe tu necesidad\n3. Introduce tu código cuando te lo pida\n\nLos códigos activos los anuncia aquí el equipo 🇬🇳",
+        "voice_received": "🎤 Tu voz: '{text}'\n\nMe encargo de tu solicitud 👇",
+        "voice_unavailable": "🎤 No pude escuchar esta nota de voz. Escríbeme tu mensaje 🙏",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
     },
 }
@@ -612,11 +668,32 @@ def safe_typing(chat_id: int) -> None:
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-@bot.message_handler(func=lambda message: True, content_types=['text'])
+@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio'])
 def handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
+
+    # Vocal/audio → transcription 100% locale (Whisper embarqué)
+    if not message.text and (message.voice or message.audio):
+        safe_typing(chat_id)
+        text = transcribe_voice(bot, message) if VOICE_ENABLED else None
+        if not text:
+            bot.send_message(chat_id, msg(detect_language("fr"), "voice_unavailable"))
+            return
+        detected_lang = detect_language(text)
+        bot.send_message(
+            chat_id,
+            msg(detected_lang, "voice_received").replace("{text}", text[:200]),
+        )
+        _process_text(chat_id, text, detected_lang)
+        return
+
+    if not message.text:
+        return
     user_text = message.text.strip()
-    detected_lang = detect_language(user_text)
+    _process_text(chat_id, user_text, detect_language(user_text))
+
+
+def _process_text(chat_id: int, user_text: str, detected_lang: str) -> None:
 
     # 0. Commandes de démarrage/assistance (/start, /menu, /help)
     if user_text.lower() in START_COMMANDS:

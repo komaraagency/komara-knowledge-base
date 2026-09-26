@@ -9,7 +9,7 @@ Répondre, vendre, prendre RDV — tout automatique.
 Vous êtes dans quel secteur ?
 
 ### Salut prix bot ?
-Hey ! Ça va de 490€ à 2500€/mois selon ce qu'on automatise.
+Hey ! Ça commence dès 300€ l'installation + 50€/mois selon ce qu'on automatise.
 Le plus simple : je te fais une démo gratuite de 5min avec ton business.
 Tu veux quand ?
 
@@ -28,15 +28,15 @@ Coucou ! Oui carrément 😄
 Il répond aux DM, prend RDV et envoie ton catalogue auto.
 Tu veux que je te montre sur un faux compte ?
 
-### 1200€ c'est cher non ?
+### C'est cher non ?
 Je te comprends.
 Un salarié c'est 2500€/mois et il fait des pauses.
 Le bot travaille 24h/24. La plupart de nos clients sont rentables en 21 jours.
-On commence petit à 490€ si tu veux tester.
+On commence petit à 300€ si tu veux tester.
 
 ### Je peux payer en 2 fois ?
 Oui aucun souci.
-Soit 2 x 650€ au lieu de 1200€ d'un coup.
+Soit en 2 fois : la moitié puis le reste à la livraison d'un coup.
 Tu veux que je t'envoie le lien pour le 1er versement ?
 
 ### C'est mieux que ManyChat ?
@@ -47,14 +47,14 @@ Démo ?
 
 ### J'ai que 500€ de budget
 On peut faire quelque chose avec ça 👌
-On part sur la Formule Découverte à 490€.
+On part sur la Formule Découverte à 300€.
 Juste FAQ + prise RDV pour commencer.
 On upgrade quand tu as du ROI. Ça te va ?
 
 ### Je vais rentabiliser comment ?
 Exemple : Si 1 client vous rapporte 300€.
 Et que le bot vous ramène 10 clients/mois en plus = 3000€.
-Le bot coûte 1200€. Bénéfice = 1800€.
+Le bot coûte 300€ + 50€/mois. Bénéfice net dès le 1er mois.
 Je vous fais le calcul exact avec vos chiffres ?
 
 ### Je m'y connais pas en tech
@@ -105,7 +105,7 @@ On démarre lundi. Je vous envoie le contrat ?
 ### La démo était top
 Merci ! Content que ça vous plaise 😊
 On lance la version 1 la semaine prochaine ?
-Je vous envoie le récap + facture proforma de 490€ d'acompte.
+Je vous envoie le récap + facture proforma d'acompte selon ton devis.
 
 ### On commence le projet ensemble
 Yes 🔥

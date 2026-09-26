@@ -4,7 +4,7 @@ Objetivo: ahorrarte tiempo y no perder ninguna venta.
 ¿En qué sector estás?
 
 ### Hola precio bot?
-Hey! Va de 490€ a 2500€/mes según lo que automatizamos.
+Hey! Empieza desde 300€ + 50€/mes según lo que automatizamos.
 Lo más simple: te hago una demo gratuita de 5min con tu negocio.
 ¿Cuándo te va bien?
 
@@ -23,15 +23,15 @@ Sí exacto! Bienvenido 👋
 Responde a los DM, reserva citas y envía tu catálogo automáticamente.
 ¿Quieres que te lo muestre en una cuenta de prueba?
 
-### 1200€ es caro no?
+### ¿Es caro?
 Te entiendo.
 Un empleado cuesta 2500€/mes y hace pausas.
 El bot trabaja 24/7. La mayoría de nuestros clientes son rentables en 21 días.
-Podemos empezar pequeño con 490€ si quieres probar.
+Podemos empezar pequeño con 300€ si quieres probar.
 
 ### Puedo pagar en 2 veces?
 Sí sin problema.
-2 x 650€ en lugar de 1200€ de golpe.
+En 2 pagos: la mitad y el resto a la entrega.
 ¿Te envío el enlace para el primer pago?
 
 ### Es mejor que ManyChat?
@@ -42,14 +42,14 @@ Y sobre todo lo hacemos todo llave en mano. No tocas nada.
 
 ### Solo tengo 500€ de presupuesto
 Podemos hacer algo con eso 👌
-Empezamos con la Fórmula Descubrimiento a 490€.
+Empezamos con la Fórmula Descubrimiento a 300€.
 Solo FAQ + reserva de citas para empezar.
 Ampliamos cuando tengas ROI. ¿Te parece bien?
 
 ### Cómo voy a rentabilizarlo?
 Ejemplo: si 1 cliente te aporta 300€.
 Y el bot te trae 10 clientes/mes extra = 3000€.
-El bot cuesta 1200€. Beneficio = 1800€.
+El bot cuesta 300€ + 50€/mes. Beneficio neto desde el mes 1.
 ¿Te hago el cálculo exacto con tus cifras?
 
 ### No entiendo de tecnología
@@ -100,4 +100,4 @@ Empezamos el lunes. ¿Te envío el contrato?
 ### La demo fue genial
 Gracias! Contento de que te guste 😊
 ¿Lanzamos la versión 1 la semana que viene?
-Te envío el resumen + factura proforma de 490€ de anticipo.
+Te envío el resumen + factura proforma según tu presupuesto.

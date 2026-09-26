@@ -188,6 +188,9 @@ T = {
         "tracking_head": "📦 Suivi de ta commande :",
         "tracking_order": "Commande",
         "tracking_since": "depuis le",
+        "devis_activity": "Super 👍 C'est pour quel type d'activité ?\n(boutique, restaurant, immo, formation...)",
+        "devis_deadline": "Et ton délai souhaité ?\n(urgent, 2 semaines, flexible...)",
+        "devis_calc": "📄 *Devis {service}* — Komara Agency 🇬🇳\n\nCalcul de ton projet :\n{calc}\n\n➡️ Total estimé : *{total}€*\n⏱️ Délai : {delay}\n\n⚠️ Estimation : le prix final est confirmé par l'équipe avant de commencer.\nUne question ? Écris ici ou sur WhatsApp {whatsapp} 🚀",
         "devis_promo_ok": "🎟️ Code *{code}* appliqué : -{pct:g}% !",
         "known_greeting": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\nComment je peux t'aider aujourd'hui ?",
         "rdv_known_start": "Re-bonjour {name} 👋\nSur quel sujet veux-tu un RDV ?",
@@ -234,6 +237,9 @@ T = {
         "tracking_head": "📦 Your order tracking:",
         "tracking_order": "Order",
         "tracking_since": "since",
+        "devis_activity": "Great 👍 What type of business is it for?\n(shop, restaurant, real estate, training...)",
+        "devis_deadline": "And your preferred timeline?\n(urgent, 2 weeks, flexible...)",
+        "devis_calc": "📄 *Quote {service}* — Komara Agency 🇬🇳\n\nYour project calculation:\n{calc}\n\n➡️ Estimated total: *{total}€*\n⏱️ Timeline: {delay}\n\n⚠️ Estimate: the final price is confirmed by the team before we start.\nA question? Write here or on WhatsApp {whatsapp} 🚀",
         "devis_promo_ok": "🎟️ Code *{code}* applied: -{pct:g}%!",
         "known_greeting": "Hello again {name} 👋 Welcome back to Komara Agency 🇬🇳!\nHow can I help you today?",
         "rdv_known_start": "Hello again {name} 👋\nWhat's the appointment about?",
@@ -280,6 +286,9 @@ T = {
         "tracking_head": "📦 Seguimiento de tu pedido:",
         "tracking_order": "Pedido",
         "tracking_since": "desde el",
+        "devis_activity": "Genial 👍 ¿Para qué tipo de negocio?\n(tienda, restaurante, inmobiliaria, formación...)",
+        "devis_deadline": "¿Y tu plazo preferido?\n(urgente, 2 semanas, flexible...)",
+        "devis_calc": "📄 *Presupuesto {service}* — Komara Agency 🇬🇳\n\nCálculo de tu proyecto:\n{calc}\n\n➡️ Total estimado: *{total}€*\n⏱️ Plazo: {delay}\n\n⚠️ Estimación: el precio final lo confirma el equipo antes de empezar.\n¿Una pregunta? Escribe aquí o por WhatsApp {whatsapp} 🚀",
         "devis_promo_ok": "🎟️ Código *{code}* aplicado: -{pct:g}%!",
         "known_greeting": "¡Hola de nuevo {name} 👋 ¡Bienvenido otra vez a Komara Agency 🇬🇳!\n¿Cómo te ayudo hoy?",
         "rdv_known_start": "¡Hola de nuevo {name} 👋\n¿Sobre qué tema es la cita?",
@@ -786,6 +795,66 @@ def _step_rdv(bot, chat_id: int, step: str, data: dict, text: str, lang: str) ->
     return False
 
 
+# ---------------------------------------------------------------------------
+# Calcul du devis : base + complexité + urgence - promo (100% local)
+# ---------------------------------------------------------------------------
+
+DEVIS_BASE_PRICES: dict[str, float] = {
+    "Agent IA WhatsApp/Telegram": 300.0,
+    "Site web vitrine": 300.0,
+    "Logo professionnel": 80.0,
+    "Application web": 800.0,
+    "Visuels & vidéo IA": 30.0,
+}
+
+DEVIS_COMPLEX_RULES: list[tuple[list[str], int, str]] = [
+    (["e-commerce", "ecommerce", "boutique en ligne", "panier", "paiement en ligne",
+      "orange money", "wave", "paypal"], 40, "Boutique/paiement en ligne"),
+    (["multilingue", "plusieurs langues", "anglais et", "en arabe", "en espagnol"], 20, "Version multilingue"),
+    (["crm", "google agenda", "notion", "google sheet", "formulaire"], 15, "Intégrations (agenda/CRM)"),
+    (["messenger", "instagram", "tiktok", "multi-canal", "multi canal", "4 canaux"], 25, "Canaux supplémentaires"),
+    (["vidéo", "animation", "motion"], 30, "Contenu vidéo"),
+]
+
+DEVIS_URGENT_WORDS = ["urgent", "24h", "48h", "72h", "express", "rapidement",
+                      "au plus vite", "cette semaine", "this week", "urgente"]
+DEVIS_FLEXIBLE_WORDS = ["flexible", "peu importe", "3 mois", "6 mois", "no rush"]
+
+def _norm(s: str) -> str:
+    s = (s or "").lower()
+    for a, b in [("é","e"),("è","e"),("ê","e"),("à","a"),("ç","c"),("ù","u")]:
+        s = s.replace(a, b)
+    return s
+
+def calc_devis(data: dict) -> tuple[list[str], float]:
+    """Calcule le devis à partir des infos collectées. Retourne (lignes, total)."""
+    service = data.get("service", "")
+    base = DEVIS_BASE_PRICES.get(service, 100.0)
+    lines = [f"Base {service} : {base:g}€"]
+    total = base
+
+    details = _norm(data.get("details", "") + " " + data.get("activity", ""))
+    for keywords, pct, label in DEVIS_COMPLEX_RULES:
+        if any(k in details for k in keywords):
+            add = base * pct / 100
+            lines.append(f"{label} : +{pct}% (+{add:g}€)")
+            total += add
+
+    deadline = _norm(data.get("deadline", ""))
+    if any(w in deadline for w in DEVIS_URGENT_WORDS):
+        add = base * 25 / 100
+        lines.append(f"Délai express : +25% (+{add:g}€)")
+        total += add
+
+    promo = data.get("promo")
+    if promo:
+        remise = total * promo["pct"] / 100
+        lines.append(f"Code {promo['code']} : -{promo['pct']:g}% (-{remise:g}€)")
+        total -= remise
+
+    return lines, round(total, 2)
+
+
 def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
     if step == "service":
         digits = text.strip()
@@ -801,6 +870,18 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
 
     if step == "details":
         data["details"] = text[:500]
+        _save_flow(chat_id, "devis", "activity", data)
+        bot.send_message(chat_id, t(lang, "devis_activity"))
+        return True
+
+    if step == "activity":
+        data["activity"] = text[:200]
+        _save_flow(chat_id, "devis", "deadline", data)
+        bot.send_message(chat_id, t(lang, "devis_deadline"))
+        return True
+
+    if step == "deadline":
+        data["deadline"] = text[:100]
         _save_flow(chat_id, "devis", "promo", data)
         bot.send_message(chat_id, t(lang, "devis_promo"))
         return True
@@ -832,29 +913,25 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
 def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
     _clear_flow(chat_id)
     promo = data.get("promo")
-    price = data.get("price", "")
-    price_display = price
-    promo_line = ""
-    if promo:
-        price_display = apply_discount(price, promo["pct"])
-        promo_line = (
-            f"🎟️ Code {promo['code']} : -{promo['pct']:g}% appliqué\n"
-        )
+
+    # Calcul complet : base + complexité + urgence - promo
+    calc_lines, total = calc_devis(data)
+    calc_display = "\n".join("• " + ln for ln in calc_lines)
+
     _insert("quotes", {
         "chat_id": str(chat_id), "service": data.get("service", ""),
-        "price": price_display, "delay": data.get("delay", ""),
+        "price": f"{total:g}€", "delay": data.get("deadline", ""),
         "details": data.get("details", ""), "code": promo["code"] if promo else "",
         "created_at": _now(),
     })
     bot.send_message(
         chat_id,
         t(
-            lang, "devis_done",
-            service=data.get("service", ""), price=price_display,
-            delay=data.get("delay", ""), details=data.get("details", ""),
+            lang, "devis_calc",
+            service=data.get("service", ""), calc=calc_display,
+            total=f"{total:g}", delay=data.get("deadline", ""),
             whatsapp=WHATSAPP_FALLBACK,
         ),
-        parse_mode="Markdown",
     )
     upsert_client(
         chat_id,
@@ -865,7 +942,7 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
     notify_admin(
         bot,
         f"📄 DEVIS EXPRESS{admin_note}\n🛠️ {data.get('service','')}\n"
-        f"💰 {price_display}\n📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
+        f"💰 {total:g}€\n📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
     )
     return True
 

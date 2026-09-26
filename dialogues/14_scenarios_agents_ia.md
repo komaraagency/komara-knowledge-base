@@ -50,7 +50,7 @@ On teste sur votre prochain recrutement ?
 ### On n'arrive pas à publier régulièrement
 On crée un agent "Content".
 Il regarde vos ventes, crée 30 posts/mois, planifie, répond aux commentaires.
-Coût : 1200€/mois. Vs 1 community manager à 3000€.
+Coût : dès 50€/mois. Vs 1 community manager à 3000€.
 Démo ?
 
 ### La facturation nous prend 2 jours

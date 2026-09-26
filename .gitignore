@@ -245,3 +245,4 @@ test_*.pyc
 # translations_auto/
 # auto_translated/
 data/
+data*/

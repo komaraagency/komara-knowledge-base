@@ -50,7 +50,7 @@ Solo ves los mejores perfiles.
 ### No conseguimos publicar con regularidad
 Creamos un agente "Content".
 Mira tus ventas, crea 30 posts/mes, programa, responde a los comentarios.
-Coste: 1200€/mes. Vs 1 community manager a 3000€.
+Coste: desde 50€/mes. Vs 1 community manager a 3000€.
 ¿Demo?
 
 ### La facturación nos toma 2 días
