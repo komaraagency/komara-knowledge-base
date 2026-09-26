@@ -40,9 +40,28 @@ ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0") or 0)
 FOLLOWUP_LOOP_INTERVAL = max(30, int(os.getenv("FOLLOWUP_INTERVAL", "60")))
 
 # Horaires de bureau (heure locale de l'agence ; Guinée = UTC+0)
+# Formats acceptés: "9:30", "21:00", "9.5", "9"
 TIMEZONE_OFFSET = int(os.getenv("TIMEZONE_OFFSET", "0"))
-WORK_START = int(os.getenv("WORK_START", "9"))
-WORK_END = int(os.getenv("WORK_END", "18"))
+
+
+def _parse_hour(value: str, default: float) -> float:
+    try:
+        value = (value or "").strip()
+        if ":" in value:
+            hours, minutes = value.split(":", 1)
+            return int(hours) + int(minutes) / 60
+        return float(value)
+    except (ValueError, AttributeError):
+        return default
+
+
+def _fmt_hour(value: float) -> str:
+    hours, minutes = int(value), int(round((value - int(value)) * 60))
+    return f"{hours}h{minutes:02d}" if minutes else f"{hours}h"
+
+
+WORK_START = _parse_hour(os.getenv("WORK_START", "9:30"), 9.5)
+WORK_END = _parse_hour(os.getenv("WORK_END", "21:00"), 21.0)
 WEEKEND_OFF = os.getenv("WEEKEND_OFF", "true").lower() in {"1", "true", "yes", "on"}
 
 # Grille de prix alignée sur kb.json (monnaies 100% €)
@@ -775,11 +794,12 @@ def _agency_now() -> datetime:
 
 
 def is_off_hours() -> bool:
-    """Vrai si l'agence est fermée : week-end (optionnel) ou hors 9h-18h."""
+    """Vrai si l'agence est fermée : week-end (optionnel) ou hors horaires."""
     now = _agency_now()
     if WEEKEND_OFF and now.weekday() >= 5:
         return True
-    return now.hour < WORK_START or now.hour >= WORK_END
+    current = now.hour + now.minute / 60
+    return current < WORK_START or current >= WORK_END
 
 
 def maybe_off_hours_notice(bot, chat_id: int, lang: str) -> None:
@@ -799,7 +819,7 @@ def maybe_off_hours_notice(bot, chat_id: int, lang: str) -> None:
             (str(chat_id), today),
         )
         DB_CONN.commit()
-    hours = f"{WORK_START}h-{WORK_END}h"
+    hours = f"{_fmt_hour(WORK_START)}-{_fmt_hour(WORK_END)}"
     bot.send_message(chat_id, t(lang, "off_hours", hours=hours))
 
 
