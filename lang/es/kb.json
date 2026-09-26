@@ -9120,6 +9120,37 @@
         "ver"
       ],
       "answer": "Mi amigo, voy a ser franco contigo. El te aviso es lo que dice el 90% de la gente que nunca vuelve y se queda estancada. Tú no eres así, tú eres de los que toman acción. Dudar es normal, pero con 1000 € Komara te quita todos los riesgos: te lanzamos, te acompañamos, no estás solo. ¿Vamos adelante?"
+    },
+    {
+      "id": "intent_logo_es",
+      "questions": [
+        "quiero un logo",
+        "necesito un logo",
+        "logo para mi negocio",
+        "logo para mi tienda",
+        "logo para mi marca",
+        "quiero un logo para mi empresa"
+      ],
+      "answer": "Logos que venden 🎨\nDesde 120€, Pack Business 350€ (logo + branding completo).\nEntrega en 48h con 3 variaciones, estilo Luxury African.\n¿Cuál es tu negocio?",
+      "tags": [
+        "logo",
+        "closing"
+      ]
+    },
+    {
+      "id": "intent_web_es",
+      "questions": [
+        "quiero un sitio web",
+        "necesito un sitio web",
+        "quiero una página web",
+        "sitio web para mi negocio",
+        "quiero una página para mi negocio"
+      ],
+      "answer": "Sitios que venden, no que duermen 🚀\n3 packs desde 150€: Esencial, Pro, Business.\n¿Qué tipo necesitas: vitrina, e-commerce o app?\nCuéntame tu proyecto 👇",
+      "tags": [
+        "website",
+        "closing"
+      ]
     }
   ],
   "packs": [

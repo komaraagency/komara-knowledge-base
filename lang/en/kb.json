@@ -9307,6 +9307,39 @@
         "and"
       ],
       "answer": "My friend I'm going to be frank with you. \"I'll get back to you\" is 90% of people who never come back and stay stuck. You're not like that, you're an action taker. Hesitating is normal, but with 1000 € Komara removes all risks for you: we launch you, we support you, you're not alone. Shall we go?"
+    },
+    {
+      "id": "intent_logo_en",
+      "questions": [
+        "i want a logo",
+        "i need a logo",
+        "logo for my business",
+        "logo for my shop",
+        "logo for my brand",
+        "i want a new logo",
+        "i need a logo for my business"
+      ],
+      "answer": "Logos that sell 🎨\nFrom 120€, Business Pack 350€ (logo + full branding).\nDelivered in 48h with 3 variations, Luxury African style.\nWhat's your business about?",
+      "tags": [
+        "logo",
+        "closing"
+      ]
+    },
+    {
+      "id": "intent_website_en",
+      "questions": [
+        "i want a website",
+        "i need a website",
+        "website for my business",
+        "build me a website",
+        "i want a site",
+        "website for my shop"
+      ],
+      "answer": "Sites that sell, not that sleep 🚀\n3 packs from 150€: Essential, Pro, Business.\nWhich type do you need: showcase, e-commerce or app?\nTell me about your project 👇",
+      "tags": [
+        "website",
+        "closing"
+      ]
     }
   ],
   "packs": [

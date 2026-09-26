@@ -106,7 +106,30 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos"}
+
+# Suivi de commande côté client
+TRACKING_TRIGGERS: set[str] = {
+    "suivi", "suivi commande", "suivi de commande", "statut", "statut commande",
+    "où en est ma commande", "ou en est ma commande", "où est ma commande",
+    "ma commande", "état de ma commande", "ou ça en est",
+    "where is my order", "order status", "my order", "tracking",
+    "dónde está mi pedido", "donde esta mi pedido", "estado de mi pedido", "mi pedido",
+    "أين طلبي", "حالة طلبي",
+}
+
+ORDER_STATUSES: dict[str, str] = {
+    "attente": "🕐 En attente",
+    "en attente": "🕐 En attente",
+    "en cours": "🔧 En cours",
+    "cours": "🔧 En cours",
+    "livre": "✅ Livré",
+    "livré": "✅ Livré",
+    "livree": "✅ Livré",
+    "annule": "❌ Annulé",
+    "annulé": "❌ Annulé",
+    "annulee": "❌ Annulé",
+}
 
 # ---------------------------------------------------------------------------
 # Textes des flux (fr complet, en/es essentiels, ar → fr)
@@ -146,6 +169,9 @@ T = {
         "admin_only": "🔒 Commande réservée à l'administration.",
         "off_hours": "🌙 Komara Agency 🇬🇳 est fermée en ce moment.\nBureau ouvert : {hours} (lun-ven).\n\nPas de stress : je prends ta commande et tes questions 24/7, un humain te répond à l'ouverture 👍",
         "export_sent": "📤 Export en cours...",
+        "devis_promo": "🎟️ Tu as un code promo ?\nTape le code, ou 'passer' si tu n'en as pas.",
+        "promo_invalid": "❌ Code invalide ou expiré. Tape un code valide, ou 'passer'.",
+        "devis_promo_ok": "🎟️ Code *{code}* appliqué : -{pct:g}% !",
     },
     "en": {
         "cancelled": "OK, cancelled 🚫\nType 'order' whenever you're ready 🚀",
@@ -180,6 +206,9 @@ T = {
         "admin_only": "🔒 Admin-only command.",
         "off_hours": "🌙 Komara Agency 🇬🇳 is closed right now.\nOffice hours: {hours} (Mon-Fri).\n\nNo worries: I take your order and questions 24/7, a human replies at opening 👍",
         "export_sent": "📤 Exporting...",
+        "devis_promo": "🎟️ Got a promo code?\nType the code, or 'pass' if you don't.",
+        "promo_invalid": "❌ Invalid or expired code. Type a valid one, or 'pass'.",
+        "devis_promo_ok": "🎟️ Code *{code}* applied: -{pct:g}%!",
     },
     "es": {
         "cancelled": "OK, cancelado 🚫\nEscribe 'ordenar' cuando quieras 🚀",
@@ -214,6 +243,9 @@ T = {
         "admin_only": "🔒 Comando solo para administración.",
         "off_hours": "🌙 Komara Agency 🇬🇳 está cerrada ahora.\nHorario: {hours} (lun-vie).\n\nTranquilo: tomo tu pedido y preguntas 24/7, un humano responde a la apertura 👍",
         "export_sent": "📤 Exportando...",
+        "devis_promo": "🎟️ ¿Tienes un código promo?\nEscribe el código, o 'pasar' si no tienes.",
+        "promo_invalid": "❌ Código inválido o expirado. Escribe uno válido, o 'pasar'.",
+        "devis_promo_ok": "🎟️ Código *{code}* aplicado: -{pct:g}%!",
     },
 }
 
@@ -252,7 +284,8 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS orders (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, service TEXT, activity TEXT, deadline TEXT,
-                name TEXT, phone TEXT, created_at TEXT NOT NULL
+                name TEXT, phone TEXT, status TEXT DEFAULT 'en attente',
+                created_at TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS appointments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -262,7 +295,8 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS quotes (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, service TEXT, price TEXT,
-                delay TEXT, details TEXT, created_at TEXT NOT NULL
+                delay TEXT, details TEXT, code TEXT DEFAULT '',
+                created_at TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS survey_answers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -273,6 +307,14 @@ def init_db() -> None:
                 day TEXT,
                 PRIMARY KEY (chat_id, day)
             );
+            CREATE TABLE IF NOT EXISTS promo_codes (
+                code TEXT PRIMARY KEY,
+                discount_pct REAL NOT NULL,
+                active INTEGER DEFAULT 1,
+                uses INTEGER DEFAULT 0,
+                max_uses INTEGER DEFAULT 0,
+                created_at TEXT NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS followups (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, message TEXT, due_at TEXT NOT NULL,
@@ -280,6 +322,16 @@ def init_db() -> None:
             );
         """)
         DB_CONN.commit()
+        # Migrations pour bases déjà déployées
+        for migration in (
+            "ALTER TABLE orders ADD COLUMN status TEXT DEFAULT 'en attente'",
+            "ALTER TABLE quotes ADD COLUMN code TEXT DEFAULT ''",
+        ):
+            try:
+                DB_CONN.execute(migration)
+                DB_CONN.commit()
+            except sqlite3.OperationalError:
+                pass  # colonne déjà présente
     logger.info("Base actions SQLite initialisée : %s", ACTIONS_DB)
 
 
@@ -414,10 +466,17 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
 
     text_clean = text.strip()
 
-    # 0. Commandes admin
+    # 0. Commandes admin (premier mot, arguments autorisés)
     low = text_clean.lower()
-    if low in ADMIN_COMMANDS:
-        return _admin_command(bot, chat_id, low, lang)
+    words = text_clean.split()
+    first_word = words[0].lower() if words else ""
+    if first_word in ADMIN_COMMANDS:
+        args = text_clean.split(maxsplit=1)[1] if len(words) > 1 else ""
+        return _admin_command(bot, chat_id, first_word, args, lang)
+
+    # 0ter. Suivi de commande (statut depuis la base locale)
+    if low in TRACKING_TRIGGERS:
+        return order_tracking(bot, chat_id, lang)
 
     # 0bis. Message hors horaires (1x/jour, n'interrompt rien)
     maybe_off_hours_notice(bot, chat_id, lang)
@@ -520,11 +579,11 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         data["phone"] = text[:50]
         _clear_flow(chat_id)
 
-        _insert("orders", {
+        order_id = _insert("orders", {
             "chat_id": str(chat_id), "service": data.get("service", ""),
             "activity": data.get("activity", ""), "deadline": data.get("deadline", ""),
             "name": data.get("name", ""), "phone": data.get("phone", ""),
-            "created_at": _now(),
+            "status": "en attente", "created_at": _now(),
         })
         _insert("leads", {
             "chat_id": str(chat_id), "name": data.get("name", ""),
@@ -534,6 +593,7 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         })
 
         recap = (
+            f"📌 Commande n°{order_id}\n"
             f"🛠️ Service : {data.get('service','')}\n"
             f"💼 Activité : {data.get('activity','')}\n"
             f"⏱️ Délai : {data.get('deadline','')}\n"
@@ -629,30 +689,68 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
 
     if step == "details":
         data["details"] = text[:500]
-        _clear_flow(chat_id)
-        _insert("quotes", {
-            "chat_id": str(chat_id), "service": data.get("service", ""),
-            "price": data.get("price", ""), "delay": data.get("delay", ""),
-            "details": data.get("details", ""), "created_at": _now(),
-        })
-        bot.send_message(
-            chat_id,
-            t(
-                lang, "devis_done",
-                service=data.get("service", ""), price=data.get("price", ""),
-                delay=data.get("delay", ""), details=data.get("details", ""),
-                whatsapp=WHATSAPP_FALLBACK,
-            ),
-            parse_mode="Markdown",
-        )
-        notify_admin(
-            bot,
-            f"📄 DEVIS EXPRESS\n🛠️ {data.get('service','')}\n📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
-        )
+        _save_flow(chat_id, "devis", "promo", data)
+        bot.send_message(chat_id, t(lang, "devis_promo"))
         return True
+
+    if step == "promo":
+        low_answer = text.strip().lower()
+        if low_answer in {"passer", "pass", "skip", "pasar", "نم"}:
+            data["promo"] = None
+        else:
+            result = check_promo_code(text)
+            if not result:
+                bot.send_message(chat_id, t(lang, "promo_invalid"))
+                return True
+            code, pct = result
+            with DB_LOCK:
+                DB_CONN.execute(
+                    "UPDATE promo_codes SET uses = uses + 1 WHERE code =?", (code,)
+                )
+                DB_CONN.commit()
+            data["promo"] = {"code": code, "pct": pct}
+            bot.send_message(chat_id, t(lang, "devis_promo_ok", code=code, pct=pct),
+                            parse_mode="Markdown")
+        return _finish_devis(bot, chat_id, data, lang)
 
     _clear_flow(chat_id)
     return False
+
+
+def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
+    _clear_flow(chat_id)
+    promo = data.get("promo")
+    price = data.get("price", "")
+    price_display = price
+    promo_line = ""
+    if promo:
+        price_display = apply_discount(price, promo["pct"])
+        promo_line = (
+            f"🎟️ Code {promo['code']} : -{promo['pct']:g}% appliqué\n"
+        )
+    _insert("quotes", {
+        "chat_id": str(chat_id), "service": data.get("service", ""),
+        "price": price_display, "delay": data.get("delay", ""),
+        "details": data.get("details", ""), "code": promo["code"] if promo else "",
+        "created_at": _now(),
+    })
+    bot.send_message(
+        chat_id,
+        t(
+            lang, "devis_done",
+            service=data.get("service", ""), price=price_display,
+            delay=data.get("delay", ""), details=data.get("details", ""),
+            whatsapp=WHATSAPP_FALLBACK,
+        ),
+        parse_mode="Markdown",
+    )
+    admin_note = f" (code {promo['code']} -{promo['pct']:g}%)" if promo else ""
+    notify_admin(
+        bot,
+        f"📄 DEVIS EXPRESS{admin_note}\n🛠️ {data.get('service','')}\n"
+        f"💰 {price_display}\n📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
+    )
+    return True
 
 
 def _step_lead(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
@@ -753,7 +851,7 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 # Commandes admin : /stats et /rapport
 # ---------------------------------------------------------------------------
 
-def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
+def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
         return True
@@ -783,6 +881,30 @@ def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
         )
         return True
 
+    if command in {"/maj", "/update"}:
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_update_order(bot, chat_id, args, lang)
+
+    if command in {"/commandes", "/orders"}:
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_list_orders(bot, chat_id, lang)
+
+    if command == "/promo":
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_promo(bot, chat_id, args, lang)
+
+    if command == "/promos":
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_list_promos(bot, chat_id, lang)
+
     if command == "/export":
         return export_csv(bot, chat_id, lang)
 
@@ -802,6 +924,203 @@ def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
     return False
 
 
+
+
+# ---------------------------------------------------------------------------
+# Suivi de commande (client) + gestion (admin)
+# ---------------------------------------------------------------------------
+
+def order_tracking(bot, chat_id: int, lang: str) -> bool:
+    """Statut de la dernière commande du client, depuis la base locale."""
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT id, service, status, created_at FROM orders "
+            "WHERE chat_id =? AND status != 'annulé' ORDER BY id DESC LIMIT 3",
+            (str(chat_id),),
+        ).fetchall()
+    if not rows:
+        bot.send_message(
+            chat_id,
+            "📦 Pas encore de commande chez nous.\nTape 'commander' pour lancer ton projet 🚀",
+        )
+        return True
+
+    lines = []
+    for oid, service, status, created in rows:
+        label = ORDER_STATUSES.get((status or "en attente").lower(), f"🕐 {status}")
+        lines.append(f"📌 Commande n°{oid} — {service}\n   {label} (depuis le {created[:10]})")
+    bot.send_message(
+        chat_id,
+        "📦 Suivi de ta commande :\n\n" + "\n\n".join(lines) +
+        "\n\nUne question sur ton projet ? Écris ici 👍",
+    )
+    return True
+
+
+def admin_update_order(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /maj <id> <statut> — attente | cours | livre | annule."""
+    parts = args.split()
+    if len(parts) < 2 or not parts[0].isdigit():
+        bot.send_message(
+            chat_id,
+            "Usage : /maj <id> <statut>\nStatuts : attente, cours, livre, annule\n"
+            "Exemple : /maj 5 cours",
+        )
+        return True
+    order_id, raw_status = parts[0], " ".join(parts[1:]).lower()
+    if raw_status not in ORDER_STATUSES:
+        bot.send_message(chat_id, f"❌ Statut inconnu '{raw_status}'. Statuts : attente, cours, livre, annule")
+        return True
+
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT chat_id, name, service FROM orders WHERE id =?", (order_id,)
+        ).fetchone()
+        if not row:
+            bot.send_message(chat_id, f"❌ Commande n°{order_id} introuvable")
+            return True
+        DB_CONN.execute("UPDATE orders SET status =? WHERE id =?", (raw_status, order_id))
+        DB_CONN.commit()
+    client_id, name, service = row
+    bot.send_message(
+        chat_id,
+        f"✅ Commande n°{order_id} → {ORDER_STATUSES[raw_status]}\n"
+        f"👤 {name} | 🛠️ {service}",
+    )
+    # Le client est informé automatiquement
+    if str(chat_id) != str(client_id):
+        try:
+            bot.send_message(
+                int(client_id),
+                f"📦 Mise à jour de ta commande n°{order_id} ({service}) :\n"
+                f"{ORDER_STATUSES[raw_status]}\nMerci pour ta confiance 🙏",
+            )
+        except Exception as exc:
+            logger.warning("Notification client %s échouée : %s", client_id, exc)
+    return True
+
+
+def admin_list_orders(bot, chat_id: int, lang: str) -> bool:
+    """Admin : /commandes — 10 dernières commandes avec statut."""
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT id, name, service, status, created_at FROM orders ORDER BY id DESC LIMIT 10"
+        ).fetchall()
+    if not rows:
+        bot.send_message(chat_id, "📭 Aucune commande enregistrée")
+        return True
+    lines = [
+        f"n°{oid} — {name} — {service} — {ORDER_STATUSES.get((status or 'en attente').lower(), status)} ({created[:10]})"
+        for oid, name, service, status, created in rows
+    ]
+    bot.send_message(chat_id, "📋 Dernières commandes :\n\n" + "\n".join(lines) +
+                     "\n\nMise à jour : /maj <id> <statut>")
+    return True
+
+
+# ---------------------------------------------------------------------------
+# Codes promo (admin crée, client applique au devis)
+# ---------------------------------------------------------------------------
+
+def admin_promo(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /promo CODE 10 [max_uses] | /promo off CODE | /promos."""
+    parts = args.split()
+    if not parts:
+        bot.send_message(
+            chat_id,
+            "Usage :\n/promo CODE 10 → crée CODE (-10%)\n"
+            "/promo CODE 20 50 → -20%, max 50 utilisations\n"
+            "/promo off CODE → désactive\n/promos → liste",
+        )
+        return True
+
+    if parts[0].lower() == "off" and len(parts) >= 2:
+        code = parts[1].upper()
+        with DB_LOCK:
+            cur = DB_CONN.execute("UPDATE promo_codes SET active = 0 WHERE code =?", (code,))
+            DB_CONN.commit()
+        bot.send_message(
+            chat_id, f"✅ Code {code} désactivé" if cur.rowcount else f"❌ Code {code} introuvable"
+        )
+        return True
+
+    if len(parts) < 2:
+        bot.send_message(chat_id, "Usage : /promo CODE <pourcentage> [max_uses]")
+        return True
+
+    code = parts[0].upper()
+    try:
+        pct = float(parts[1].replace(",", "."))
+        max_uses = int(parts[2]) if len(parts) > 2 else 0
+    except ValueError:
+        bot.send_message(chat_id, "❌ Pourcentage ou max invalide. Exemple : /promo RAMADAN 15 100")
+        return True
+    if not (0 < pct <= 90):
+        bot.send_message(chat_id, "❌ Le pourcentage doit être entre 1 et 90")
+        return True
+
+    with DB_LOCK:
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO promo_codes (code, discount_pct, active, uses, max_uses, created_at) "
+            "VALUES (?,?,1,0,?,?)",
+            (code, pct, max_uses, _now()),
+        )
+        DB_CONN.commit()
+    bot.send_message(
+        chat_id,
+        f"🎟️ Code promo créé : *{code}* (-{pct:g}%)" + (f", max {max_uses} utilisations" if max_uses else ""),
+        parse_mode="Markdown",
+    )
+    return True
+
+
+def admin_list_promos(bot, chat_id: int, lang: str) -> bool:
+    """Admin : /promos — tous les codes avec leur usage."""
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT code, discount_pct, active, uses, max_uses FROM promo_codes ORDER BY code"
+        ).fetchall()
+    if not rows:
+        bot.send_message(chat_id, "🎟️ Aucun code promo. Créer : /promo CODE 10")
+        return True
+    lines = [
+        f"{'✅' if active else '⛔'} {code} : -{pct:g}% — {uses} utilisation(s)"
+        + (f" / {max_uses}" if max_uses else "")
+        for code, pct, active, uses, max_uses in rows
+    ]
+    bot.send_message(chat_id, "🎟️ Codes promo :\n\n" + "\n".join(lines))
+    return True
+
+
+def check_promo_code(code: str):
+    """Valide un code promo. Retourne (code, pct) ou None."""
+    code = code.strip().upper()
+    if not code:
+        return None
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT code, discount_pct, max_uses, uses FROM promo_codes "
+            "WHERE code =? AND active = 1",
+            (code,),
+        ).fetchone()
+    if not row:
+        return None
+    _, pct, max_uses, uses = row
+    if max_uses and uses >= max_uses:
+        return None
+    return code, pct
+
+
+def apply_discount(price: str, pct: float) -> str:
+    """Réduit tous les montants 'NNN€' d'une chaîne prix de pct%."""
+    import re as _re
+
+    def _reduce(match: "_re.Match") -> str:
+        amount = float(match.group(1))
+        reduced = int(amount * (100 - pct) / 100 + 0.5)  # arrondi commercial
+        return f"{reduced}€"
+
+    return _re.sub(r"(\d+(?:\.\d+)?)€", _reduce, price)
 
 # ---------------------------------------------------------------------------
 # Message hors horaires (1 fois par jour et par client)

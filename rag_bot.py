@@ -241,14 +241,31 @@ def load_language_resources(lang_code: str) -> dict[str, Any]:
         except Exception as e:
             logger.error("[%s] Erreur faq.md : %s", lang_code, e)
 
+    # 1. Fichier unique dialogues.md (compatibilité)
     dialogues_path = lang_path / "dialogues.md"
     if dialogues_path.is_file():
         try:
             content = dialogues_path.read_text(encoding="utf-8")
-            resources["dialogues"] = _parse_markdown_sections(content)
+            resources["dialogues"].extend(_parse_markdown_sections(content))
             logger.info("[%s](dialogues.md) chargé : %s dialogues", lang_code, len(resources["dialogues"]))
         except Exception as e:
             logger.error("[%s] Erreur dialogues.md : %s", lang_code, e)
+
+    # 2. Dossier dialogues/ (fichiers multiples — FIX : était ignoré pour en/es/ar)
+    dialogues_dir = lang_path / "dialogues"
+    if dialogues_dir.is_dir():
+        loaded = 0
+        for file_path in sorted(dialogues_dir.iterdir()):
+            if file_path.is_file() and file_path.suffix in {".md", ".txt"}:
+                try:
+                    sections = _parse_markdown_sections(file_path.read_text(encoding="utf-8"))
+                    resources["dialogues"].extend(sections)
+                    loaded += len(sections)
+                except Exception as e:
+                    logger.error("[%s] Erreur %s : %s", lang_code, file_path.name, e)
+        if loaded:
+            logger.info("[%s](dialogues/) chargé : %s dialogues de %s fichiers",
+                        lang_code, loaded, len(list(dialogues_dir.iterdir())))
 
     return resources
 
