@@ -66,9 +66,9 @@ WEEKEND_OFF = os.getenv("WEEKEND_OFF", "true").lower() in {"1", "true", "yes", "
 
 # Grille de prix alignée sur kb.json (monnaies 100% €)
 PRICE_GRID: list[tuple[str, str, str, str]] = [
-    ("1", "Agent IA WhatsApp/Telegram", "300€ installation + 90€/mois maintenance", "3-5 jours"),
-    ("2", "Site web vitrine", "à partir de 250€", "1-2 semaines"),
-    ("3", "Logo professionnel", "à partir de 150€", "2-3 jours"),
+    ("1", "Agent IA WhatsApp/Telegram", "sur devis (gratuit sous 24h)", "3-5 jours"),
+    ("2", "Site web vitrine", "sur devis (gratuit sous 24h)", "1-2 semaines"),
+    ("3", "Logo professionnel", "sur devis (gratuit sous 24h)", "2-3 jours"),
     ("4", "Application web", "sur devis (gratuit sous 24h)", "2-4 semaines"),
     ("5", "Visuels & vidéo IA", "sur devis", "selon projet"),
 ]

@@ -1454,7 +1454,7 @@
         "cuanto cuesta un sitio vitrina",
         "packs sitios guinea"
       ],
-      "answer": "Tenemos 3 ofertas para el mercado guineano:\n*Pack ESENCIAL - 150€*\n5 páginas, diseño pro + móvil, formulario WhatsApp + Google Maps, dominio + hosting 1 año gratis. Entrega: 7 días\n*Pack BUSINESS - 300€*\nTodo el Esencial + 10 páginas + blog + SEO básico + Facebook/Instagram. Entrega: 10 días\n*Pack E-COMMERCE - 550€*\nTienda completa + pago Mobile Money + 20 productos + gestión de pedidos. Entrega: 14 días\n¿Qué pack te conviene más?"
+      "answer": "Tenemos 3 ofertas para el mercado guineano:\n*Pack ESENCIAL*\n5 páginas, diseño pro + móvil, formulario WhatsApp + Google Maps, dominio + hosting 1 año gratis. Entrega: 7 días\n*Pack BUSINESS*\nTodo el Esencial + 10 páginas + blog + SEO básico + Facebook/Instagram. Entrega: 10 días\n*Pack E-COMMERCE*\nTienda completa + pago Mobile Money + 20 productos + gestión de pedidos. Entrega: 14 días\n¿Qué pack te conviene más?\nPrecios: a presupuesto según tu proyecto."
     },
     {
       "id": "pro_21",
@@ -5172,7 +5172,7 @@
         "web",
         "precio"
       ],
-      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+      "answer": "Depende de tu proyecto 😊\nCada proyecto es diferente: el precio se da a presupuesto (gratis, respuesta en 24h).\n¿Quieres un presupuesto exacto para tu proyecto?"
     },
     {
       "id": "es_tarifs_08",
@@ -5185,7 +5185,7 @@
         "logo",
         "precio"
       ],
-      "answer": "Depende de tu proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quieres un presupuesto exacto para tu proyecto?"
+      "answer": "Depende de tu proyecto 😊\nEl precio de un logo depende de tu negocio y tu estilo: a presupuesto (gratis, en 24h).\n¿Quieres un presupuesto exacto para tu proyecto?"
     },
     {
       "id": "es_tarifs_09",
@@ -6231,7 +6231,7 @@
         "está fuera de presupuesto",
         "demasiado caro por ahora"
       ],
-      "answer": "No hace falta rehacer todo 😊\nEmpezamos con una optimización puntual desde 150€ y crecemos poco a poco.\n¿Te muestro primero lo que más rentabiliza?",
+      "answer": "No hace falta rehacer todo 😊\nEmpezamos con una optimización dirigida a presupuesto y crecemos poco a poco.\n¿Te muestro primero lo que más rentabilidad da?",
       "tags": [
         "scenarios",
         "translation"
@@ -9131,7 +9131,7 @@
         "logo para mi marca",
         "quiero un logo para mi empresa"
       ],
-      "answer": "Logos que venden 🎨\nDesde 120€, Pack Business 350€ (logo + branding completo).\nEntrega en 48h con 3 variaciones, estilo Luxury African.\n¿Cuál es tu negocio?",
+      "answer": "Logos que venden 🎨\nEntrega en 48h con 3 variaciones, estilo Luxury African.\nPrecio a presupuesto (gratis, en 24h).\n¿Cuál es tu negocio?",
       "tags": [
         "logo",
         "closing"
@@ -9146,7 +9146,7 @@
         "sitio web para mi negocio",
         "quiero una página para mi negocio"
       ],
-      "answer": "Sitios que venden, no que duermen 🚀\n3 packs desde 150€: Esencial, Pro, Business.\n¿Qué tipo necesitas: vitrina, e-commerce o app?\nCuéntame tu proyecto 👇",
+      "answer": "Sitios que venden, no que duermen 🚀\n3 packs: Esencial, Business, E-commerce.\nPrecio a presupuesto (gratis, en 24h).\nCuéntame tu proyecto 👇",
       "tags": [
         "website",
         "closing"
