@@ -305,7 +305,7 @@ logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr
 
 MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
 MEMORY_FILE = MEMORY_DIR / "memory.db"
-MEMORY_LIMIT = 20
+MEMORY_LIMIT = 60  # longue mémoire : 60 derniers échanges par client
 DB_LOCK = threading.Lock()
 DB_CONN: sqlite3.Connection | None = None
 

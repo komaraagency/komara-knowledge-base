@@ -66,11 +66,11 @@ WEEKEND_OFF = os.getenv("WEEKEND_OFF", "true").lower() in {"1", "true", "yes", "
 
 # Grille de prix alignée sur kb.json (monnaies 100% €)
 PRICE_GRID: list[tuple[str, str, str, str]] = [
-    ("1", "Agent IA WhatsApp/Telegram", "sur devis (gratuit sous 24h)", "3-5 jours"),
-    ("2", "Site web vitrine", "sur devis (gratuit sous 24h)", "1-2 semaines"),
-    ("3", "Logo professionnel", "sur devis (gratuit sous 24h)", "2-3 jours"),
-    ("4", "Application web", "sur devis (gratuit sous 24h)", "2-4 semaines"),
-    ("5", "Visuels & vidéo IA", "sur devis", "selon projet"),
+    ("1", "Agent IA WhatsApp/Telegram", "à partir de 300€ + 50€/mois maintenance", "3-5 jours"),
+    ("2", "Site web vitrine", "à partir de 300€", "1-2 semaines"),
+    ("3", "Logo professionnel", "à partir de 80€", "2-3 jours"),
+    ("4", "Application web", "à partir de 800€", "2-4 semaines"),
+    ("5", "Visuels & vidéo IA", "visuels dès 30€, vidéo dès 80€", "selon projet"),
 ]
 
 SURVEY_QUESTIONS = [
@@ -106,7 +106,19 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients"}
+
+GREETING_WORDS: set[str] = {
+    "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
+    "buenos dias", "buenas", "salam", "salam aleykoum", "أهلا", "مرحبا", "سلام",
+}
+
+NEW_RDV_WORDS: set[str] = {
+    "nouveau rdv", "nouveau rendez-vous", "nouveau rendez",
+    "new rdv", "new appointment", "nuevo rdv", "nueva cita",
+}
+
+OK_WORDS: set[str] = {"ok", "oui", "yes", "si", "صحيح"}
 
 # Suivi de commande côté client
 TRACKING_TRIGGERS: set[str] = {
@@ -172,6 +184,11 @@ T = {
         "devis_promo": "🎟️ Tu as un code promo ?\nTape le code, ou 'passer' si tu n'en as pas.",
         "promo_invalid": "❌ Code invalide ou expiré. Tape un code valide, ou 'passer'.",
         "devis_promo_ok": "🎟️ Code *{code}* appliqué : -{pct:g}% !",
+        "known_greeting": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\nComment je peux t'aider aujourd'hui ?",
+        "rdv_known_start": "Re-bonjour {name} 👋\nSur quel sujet veux-tu un RDV ?",
+        "rdv_already": "📅 Tu as déjà un RDV : {slot}\n📝 Sujet : {topic}\n\nPour en prendre un autre, tape 'nouveau rdv'.",
+        "order_known_name": "Je te connais déjà, {name} 😊\nTape 'ok' pour garder ce nom, ou écris le bon.",
+        "order_known_phone": "Je garde aussi ton numéro : {phone}\nTape 'ok' pour confirmer, ou écris le nouveau.",
     },
     "en": {
         "cancelled": "OK, cancelled 🚫\nType 'order' whenever you're ready 🚀",
@@ -209,6 +226,11 @@ T = {
         "devis_promo": "🎟️ Got a promo code?\nType the code, or 'pass' if you don't.",
         "promo_invalid": "❌ Invalid or expired code. Type a valid one, or 'pass'.",
         "devis_promo_ok": "🎟️ Code *{code}* applied: -{pct:g}%!",
+        "known_greeting": "Hello again {name} 👋 Welcome back to Komara Agency 🇬🇳!\nHow can I help you today?",
+        "rdv_known_start": "Hello again {name} 👋\nWhat's the appointment about?",
+        "rdv_already": "📅 You already have an appointment: {slot}\n📝 Topic: {topic}\n\nTo book another one, type 'new appointment'.",
+        "order_known_name": "I remember you, {name} 😊\nType 'ok' to keep this name, or write the right one.",
+        "order_known_phone": "I also remember your number: {phone}\nType 'ok' to confirm, or write a new one.",
     },
     "es": {
         "cancelled": "OK, cancelado 🚫\nEscribe 'ordenar' cuando quieras 🚀",
@@ -246,6 +268,11 @@ T = {
         "devis_promo": "🎟️ ¿Tienes un código promo?\nEscribe el código, o 'pasar' si no tienes.",
         "promo_invalid": "❌ Código inválido o expirado. Escribe uno válido, o 'pasar'.",
         "devis_promo_ok": "🎟️ Código *{code}* aplicado: -{pct:g}%!",
+        "known_greeting": "¡Hola de nuevo {name} 👋 ¡Bienvenido otra vez a Komara Agency 🇬🇳!\n¿Cómo te ayudo hoy?",
+        "rdv_known_start": "¡Hola de nuevo {name} 👋\n¿Sobre qué tema es la cita?",
+        "rdv_already": "📅 Ya tienes una cita: {slot}\n📝 Tema: {topic}\n\nPara otra, escribe 'nueva cita'.",
+        "order_known_name": "Te conozco, {name} 😊\nEscribe 'ok' para confirmar, o el nombre correcto.",
+        "order_known_phone": "También guardo tu número: {phone}\nEscribe 'ok' para confirmar, o el nuevo.",
     },
 }
 
@@ -290,7 +317,8 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS appointments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, name TEXT, topic TEXT,
-                slot TEXT, created_at TEXT NOT NULL
+                slot TEXT, slot_iso TEXT DEFAULT '',
+                created_at TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS quotes (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -306,6 +334,15 @@ def init_db() -> None:
                 chat_id TEXT,
                 day TEXT,
                 PRIMARY KEY (chat_id, day)
+            );
+            CREATE TABLE IF NOT EXISTS clients (
+                chat_id TEXT PRIMARY KEY,
+                name TEXT DEFAULT '',
+                phone TEXT DEFAULT '',
+                activity TEXT DEFAULT '',
+                events TEXT DEFAULT '[]',
+                first_seen TEXT NOT NULL,
+                last_seen TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS promo_codes (
                 code TEXT PRIMARY KEY,
@@ -326,6 +363,7 @@ def init_db() -> None:
         for migration in (
             "ALTER TABLE orders ADD COLUMN status TEXT DEFAULT 'en attente'",
             "ALTER TABLE quotes ADD COLUMN code TEXT DEFAULT ''",
+            "ALTER TABLE appointments ADD COLUMN slot_iso TEXT DEFAULT ''",
         ):
             try:
                 DB_CONN.execute(migration)
@@ -492,23 +530,45 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
         if text_clean in words or low in words:
             return start_flow(bot, chat_id, flow, lang)
 
+    # 2bis. 'nouveau rdv' force un RDV même si un existe déjà
+    if low in NEW_RDV_WORDS:
+        return start_flow(bot, chat_id, "rdv", lang, force=True)
+
     # 3. Étape d'un flux actif
     active = _fetch_flow(chat_id)
     if active:
         flow, step, data = active
         return _advance_flow(bot, chat_id, flow, step, data, text_clean, lang)
 
+    # 4. Client connu : salutation personnalisée (mémoire longue)
+    if low in GREETING_WORDS and client_greeting(bot, chat_id, lang):
+        return True
+
     return False
 
 
-def start_flow(bot, chat_id: int, flow: str, lang: str) -> bool:
+def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False) -> bool:
     """Démarre un flux : premier message envoyé au client."""
     if flow == "order":
         _save_flow(chat_id, "order", "service", {})
         bot.send_message(chat_id, t(lang, "order_start"))
     elif flow == "rdv":
-        _save_flow(chat_id, "rdv", "name", {})
-        bot.send_message(chat_id, t(lang, "rdv_start"))
+        # Mémoire : déjà un RDV à venir → on le rappelle au lieu de mélanger
+        if not force:
+            upcoming = upcoming_appointment(chat_id)
+            if upcoming:
+                bot.send_message(
+                    chat_id, t(lang, "rdv_already", slot=upcoming[0], topic=upcoming[1]),
+                )
+                return True
+        # Mémoire : client connu → on saute la demande de nom
+        client = get_client(chat_id)
+        if client and client["name"]:
+            _save_flow(chat_id, "rdv", "topic", {"name": client["name"], "known": True})
+            bot.send_message(chat_id, t(lang, "rdv_known_start", name=client["name"]))
+        else:
+            _save_flow(chat_id, "rdv", "name", {})
+            bot.send_message(chat_id, t(lang, "rdv_start"))
     elif flow == "devis":
         grid = "\n".join(
             f"{n}️⃣ {name} — {price}" for n, name, price, _ in PRICE_GRID
@@ -546,6 +606,7 @@ def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str
 
 
 def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
+    low = text.strip().lower()
     if step == "service":
         digits = text.strip()
         service = _service_by_num(digits)
@@ -566,17 +627,43 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     if step == "deadline":
         data["deadline"] = text[:100]
         _save_flow(chat_id, "order", "name", data)
-        bot.send_message(chat_id, t(lang, "order_name"))
+        # Mémoire : client connu → on propose son nom enregistré
+        client = get_client(chat_id)
+        if client and client["name"]:
+            bot.send_message(chat_id, t(lang, "order_known_name", name=client["name"]))
+        else:
+            bot.send_message(chat_id, t(lang, "order_name"))
         return True
 
     if step == "name":
-        data["name"] = text[:100]
+        # Mémoire : 'ok' → on garde le nom déjà connu
+        if low in OK_WORDS:
+            known = get_client(chat_id)
+            if known and known["name"]:
+                data["name"] = known["name"]
+            else:
+                bot.send_message(chat_id, t(lang, "order_name"))
+                return True
+        else:
+            data["name"] = text[:100]
+        client = get_client(chat_id)
         _save_flow(chat_id, "order", "phone", data)
-        bot.send_message(chat_id, t(lang, "order_phone"))
+        if client and client["phone"]:
+            bot.send_message(chat_id, t(lang, "order_known_phone", phone=client["phone"]))
+        else:
+            bot.send_message(chat_id, t(lang, "order_phone"))
         return True
 
     if step == "phone":
-        data["phone"] = text[:50]
+        if low in OK_WORDS and not data.get("phone_entered"):
+            known = get_client(chat_id)
+            if known and known["phone"]:
+                data["phone"] = known["phone"]
+            else:
+                bot.send_message(chat_id, t(lang, "order_phone"))
+                return True
+        else:
+            data["phone"] = text[:50]
         _clear_flow(chat_id)
 
         order_id = _insert("orders", {
@@ -591,6 +678,12 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             "need": data.get("service", ""), "budget": data.get("deadline", ""),
             "created_at": _now(),
         })
+        # Mémoire longue : fiche client enrichie + historique
+        upsert_client(
+            chat_id, name=data.get("name", ""), phone=data.get("phone", ""),
+            activity=data.get("activity", ""),
+            event=f"Commande n°{order_id} : {data.get('service','')}",
+        )
 
         recap = (
             f"📌 Commande n°{order_id}\n"
@@ -648,8 +741,14 @@ def _step_rdv(bot, chat_id: int, step: str, data: dict, text: str, lang: str) ->
 
         _insert("appointments", {
             "chat_id": str(chat_id), "name": data.get("name", ""),
-            "topic": data.get("topic", ""), "slot": label, "created_at": _now(),
+            "topic": data.get("topic", ""), "slot": label, "slot_iso": slot_iso,
+            "created_at": _now(),
         })
+        # Mémoire longue : fiche client + historique
+        upsert_client(
+            chat_id, name=data.get("name", ""),
+            event=f"RDV pris : {label} ({data.get('topic', '')})",
+        )
         bot.send_message(
             chat_id,
             t(lang, "rdv_done", name=data.get("name", ""), topic=data.get("topic", ""), slot=label),
@@ -744,6 +843,11 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
         ),
         parse_mode="Markdown",
     )
+    upsert_client(
+        chat_id,
+        event=f"Devis express : {data.get('service','')}"
+        + (f" (code {promo['code']} -{promo['pct']:g}%)" if promo else ""),
+    )
     admin_note = f" (code {promo['code']} -{promo['pct']:g}%)" if promo else ""
     notify_admin(
         bot,
@@ -780,6 +884,10 @@ def _step_lead(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -
             "phone": data.get("phone", ""), "sector": data.get("sector", ""),
             "need": data.get("need", ""), "budget": "", "created_at": _now(),
         })
+        upsert_client(
+            chat_id, name=data.get("name", ""), phone=data.get("phone", ""),
+            event=f"Lead : {data.get('sector','')} — {data.get('need','')}",
+        )
         bot.send_message(chat_id, t(lang, "lead_done", whatsapp=WHATSAPP_FALLBACK))
         notify_admin(
             bot,
@@ -905,6 +1013,18 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
             return True
         return admin_list_promos(bot, chat_id, lang)
 
+    if command == "/rdvs":
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_list_rdv(bot, chat_id, lang)
+
+    if command == "/clients":
+        if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+            bot.send_message(chat_id, t(lang, "admin_only"))
+            return True
+        return admin_list_clients(bot, chat_id, lang)
+
     if command == "/export":
         return export_csv(bot, chat_id, lang)
 
@@ -924,6 +1044,129 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
     return False
 
 
+
+
+
+# ---------------------------------------------------------------------------
+# Mémoire longue : fiche client persistante (nom, téléphone, historique)
+# ---------------------------------------------------------------------------
+
+def upsert_client(chat_id: int, name: str = "", phone: str = "",
+                  activity: str = "", event: str = "") -> None:
+    """Crée ou met à jour la fiche client + journalise un évènement."""
+    key = str(chat_id)
+    now = _now()
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT name, phone, activity, events, first_seen FROM clients WHERE chat_id =?",
+            (key,),
+        ).fetchone()
+        if row:
+            old_name, old_phone, old_activity, old_events, first_seen = row
+            name = name or old_name
+            phone = phone or old_phone
+            activity = activity or old_activity
+            events = json.loads(old_events or "[]")
+        else:
+            events = []
+            first_seen = now
+        if event:
+            events.append(f"{now[:10]} : {event}")
+            events = events[-50:]  # 50 derniers évènements max
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO clients "
+            "(chat_id, name, phone, activity, events, first_seen, last_seen) "
+            "VALUES (?,?,?,?,?,?,?)",
+            (key, name[:100], phone[:50], activity[:150],
+             json.dumps(events, ensure_ascii=False), first_seen, now),
+        )
+        DB_CONN.commit()
+
+
+def get_client(chat_id: int) -> dict | None:
+    """Retourne la fiche client connue, ou None."""
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT name, phone, activity, events, first_seen, last_seen "
+            "FROM clients WHERE chat_id =?",
+            (str(chat_id),),
+        ).fetchone()
+    if not row:
+        return None
+    name, phone, activity, events, first_seen, last_seen = row
+    if not (name or phone or activity):
+        return None
+    return {
+        "name": name, "phone": phone, "activity": activity,
+        "events": json.loads(events or "[]"),
+        "first_seen": first_seen, "last_seen": last_seen,
+    }
+
+
+def upcoming_appointment(chat_id: int) -> tuple[str, str] | None:
+    """Prochain RDV à venir du client (label, topic) ou None."""
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT slot, topic FROM appointments "
+            "WHERE chat_id =? AND slot_iso >=? ORDER BY slot_iso ASC LIMIT 1",
+            (str(chat_id), _now()),
+        ).fetchone()
+    return (row[0], row[1]) if row else None
+
+
+def client_greeting(bot, chat_id: int, lang: str) -> bool:
+    """Salutation personnalisée pour un client déjà connu."""
+    client = get_client(chat_id)
+    if not client or not client["name"]:
+        return False
+    bot.send_message(
+        chat_id,
+        t(lang, "known_greeting", name=client["name"],
+           n_events=len(client["events"])),
+    )
+    return True
+
+
+def admin_list_rdv(bot, chat_id: int, lang: str) -> bool:
+    """Admin : /rdvs — tous les RDV à venir, triés par date."""
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT a.slot, a.name, a.topic, COALESCE(c.phone, '') "
+            "FROM appointments a LEFT JOIN clients c ON a.chat_id = c.chat_id "
+            "WHERE a.slot_iso >=? ORDER BY a.slot_iso ASC LIMIT 20",
+            (_now(),),
+        ).fetchall()
+    if not rows:
+        bot.send_message(chat_id, "📭 Aucun RDV à venir")
+        return True
+    lines = [
+        f"📅 {slot}\n👤 {name} — {topic}" + (f" ({phone})" if phone else "")
+        for slot, name, topic, phone in rows
+    ]
+    bot.send_message(chat_id, "📅 RDV à venir :\n\n" + "\n\n".join(lines))
+    return True
+
+
+def admin_list_clients(bot, chat_id: int, lang: str) -> bool:
+    """Admin : /clients — fiches clients connues avec historique."""
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT chat_id, name, phone, activity, events FROM clients "
+            "ORDER BY last_seen DESC LIMIT 15"
+        ).fetchall()
+    if not rows:
+        bot.send_message(chat_id, "📭 Aucun client enregistré pour l'instant")
+        return True
+    lines = []
+    for cid, name, phone, activity, events in rows:
+        ev = json.loads(events or "[]")
+        lines.append(
+            f"👤 {name or '(sans nom)'} — {phone or 'sans numéro'}\n"
+            f"   {activity or 'activité inconnue'} — {len(ev)} évènement(s)\n"
+            + ("\n   • " + "\n   • ".join(ev[-3:]) if ev else "")
+        )
+    bot.send_message(chat_id, "🧠 Clients connus :\n\n" + "\n\n".join(lines))
+    return True
 
 
 # ---------------------------------------------------------------------------
