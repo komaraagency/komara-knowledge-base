@@ -93,3 +93,56 @@ Oui. Nous recommandons souvent de commencer par le besoin prioritaire, puis d'aj
 
 ### J’ai une demande particulière qui n’est pas listée.
 Décrivez-la. Nous étudierons la possibilité de proposer une solution sur mesure ou de vous orienter vers le service le plus proche.
+
+## VI. Questions complémentaires issues des dialogues fréquents
+
+### Avez-vous des packs ?
+Oui. Le Pack Starter est proposé à 120€ et comprend 5 visuels, 3 vidéos et un logo. Le Pack Business est proposé à 350€ et comprend 15 visuels, 10 vidéos et 1 mois de publicité.
+
+### Vos services sont-ils adaptés aux petites entreprises ?
+Oui. Nous pouvons commencer avec une solution simple et évolutive, puis ajouter des fonctionnalités lorsque votre activité se développe.
+
+### C’est trop cher pour moi, que pouvez-vous proposer ?
+Nous pouvons réduire le périmètre du projet et commencer par la fonctionnalité la plus importante. L’objectif est de lancer une première version utile, puis de l’améliorer progressivement.
+
+### Comment se déroule une commande ?
+Le processus est simple : vous décrivez votre besoin, nous clarifions le périmètre, nous validons le devis, nous démarrons après l’acompte, puis nous livrons le résultat pour validation et modifications prévues.
+
+### Puis-je demander des modifications ?
+Oui. Les modifications sont possibles selon le périmètre et l’offre validés. Nous clarifions le nombre de retouches incluses avant de commencer.
+
+### Livrez-vous à distance ?
+Oui. Les échanges, validations et livraisons peuvent être réalisés à distance par WhatsApp ou par le canal convenu.
+
+### Est-ce que vous accompagnez le client après la livraison ?
+Oui, selon la nature du projet. Nous pouvons expliquer l’utilisation, corriger les problèmes prévus dans le périmètre et proposer une maintenance ou une évolution.
+
+### Quels moyens de paiement acceptez-vous ?
+Les moyens disponibles peuvent inclure Orange Money, MoMo, PayPal et le virement, selon le pays et le projet.
+
+### Faut-il payer tout avant le début ?
+En général, un acompte est demandé au démarrage et le solde est réglé à la livraison ou selon les étapes convenues dans le devis.
+
+### Comment contacter un conseiller humain ?
+Tu me parles déjà à moi, Ndine de KOMARA AGENCY 😊 Dis-moi ton besoin ici, ou on se prend 10min d'appel au +212 701 986 219 si tu préfères.
+
+### Quelles informations dois-je envoyer pour commencer ?
+Envoyez votre activité, votre objectif, votre public cible, le service souhaité, vos exemples ou références éventuels, votre budget indicatif et votre délai.
+
+### Je ne sais pas quel service choisir.
+Aucun problème. Dites-nous simplement ce que vous voulez améliorer : répondre aux clients, vendre davantage, créer un site, automatiser une tâche ou améliorer votre image. Nous vous orienterons vers le bon pôle.
+
+### Je veux automatiser mon service client.
+Le pôle BOTS INTELLIGENTS est adapté. Nous pouvons étudier un bot qui répond aux questions fréquentes, qualifie les demandes et transmet les cas importants à votre équipe.
+
+### Je veux vendre sur les réseaux sociaux.
+Nous pouvons combiner contenu pour réseaux sociaux, design graphique, bot conversationnel et automatisation commerciale. Indiquez le réseau utilisé et le produit que vous vendez.
+
+### Je veux lancer une nouvelle activité.
+Nous pouvons vous accompagner avec une identité visuelle, un site ou une page de présentation, des contenus sociaux et un système de contact ou de qualification des prospects.
+
+### Puis-je commencer par une seule prestation ?
+Oui. Nous recommandons souvent de commencer par le besoin prioritaire, puis d'ajouter les autres éléments lorsque les premiers résultats sont validés.
+
+### J’ai une demande particulière qui n’est pas listée.
+Décrivez-la. Nous étudierons la possibilité de proposer une solution sur mesure ou de vous orienter vers le service le plus proche.
