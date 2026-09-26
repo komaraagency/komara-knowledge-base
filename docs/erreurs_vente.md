@@ -27,7 +27,7 @@ Guide de vente KOMARA AGENCY — à éviter absolument, pour toi et ton équipe.
 
 ---
 
-# 💬 Phrases Signature de Ndine (Pack 9)
+# 💬 Phrases Signature de Komara Agency 🇬🇳 (Pack 9)
 
 À utiliser dans les conversations, les statuts et les signatures :
 
@@ -40,5 +40,5 @@ Guide de vente KOMARA AGENCY — à éviter absolument, pour toi et ton équipe.
 7. "Je suis pas là pour être ton ami. Je suis là pour scaler ton business. Après on peut devenir amis 😂"
 
 **Signature :**
-> Ndine - KOMARA AGENCY
+> Komara Agency 🇬🇳
 > "Je transforme ton WhatsApp en employé 24H/24"

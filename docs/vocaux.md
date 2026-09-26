@@ -1,13 +1,13 @@
 # 🎙️ Scripts Vocaux KOMARA AGENCY (15 sec à enregistrer)
 
-Ces scripts sont à **enregistrer en vocal WhatsApp** par Ndine Komara.
+Ces scripts sont à **enregistrer en vocal WhatsApp** par Komara Agency 🇬🇳.
 Les vocaux convertissent 3x plus que le texte. À envoyer selon la situation du client.
 
 ---
 
 ## 1. Vocal Accroche (premier contact, après un message ignoré)
 
-> "Salut c'est Ndine de Komara Agency ! Je t'ai envoyé un message tout à l'heure.
+> "Salut c'est Komara Agency 🇬🇳 ! Je t'ai envoyé un message tout à l'heure.
 > En gros je crée des bots WhatsApp qui vendent pour toi.
 > Tu veux que je t'envoie une démo de 20 secondes ?"
 
