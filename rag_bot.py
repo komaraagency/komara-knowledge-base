@@ -22,6 +22,7 @@ from telebot.types import ReplyKeyboardMarkup
 
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
+import actions
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -368,21 +369,25 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
     "fr": [
         ("💎 Voir les Tarifs", "📂 Portfolio"),
         ("🚀 Commander", "🤖 Chatbot IA"),
+        ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
         ("👑 Parler à un humain",),
     ],
     "en": [
         ("💎 View Pricing", "📂 Portfolio"),
         ("🚀 Order", "🤖 AI Chatbot"),
+        ("📅 Book a call", "📄 Quote", "⭐ Feedback"),
         ("👑 Talk to a human",),
     ],
     "ar": [
         ("💎 الأسعار", "📂 المعرض"),
         ("🚀 طلب", "🤖 مساعد ذكي"),
+        ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
         ("👑 التحدث مع مستشار",),
     ],
     "es": [
         ("💎 Ver Precios", "📂 Portafolio"),
         ("🚀 Ordenar", "🤖 Chatbot IA"),
+        ("📅 Reservar", "📄 Presupuesto", "⭐ Opinión"),
         ("👑 Hablar con un humano",),
     ],
 }
@@ -584,6 +589,10 @@ def handle_message(message: telebot.types.Message) -> None:
         bot.send_message(chat_id, msg(detected_lang, "reset"), reply_markup=menu_for_lang(detected_lang))
         return
 
+    # 1bis. Flux exécutables (commande, RDV, devis, lead, sondage) — 100% local
+    if actions.handle(bot, chat_id, user_text, detected_lang):
+        return
+
     # 2. Gestion des boutons rapides (FIX : test sur le set aplati BUTTON_LABELS)
     if user_text in BUTTON_LABELS:
         if "Commander" in user_text or "Order" in user_text or "طلب" in user_text or "Ordenar" in user_text:
@@ -701,6 +710,7 @@ def run() -> None:
     global _shutdown_requested
 
     init_memory_db()
+    actions.start_background(bot)
 
     retry_count = 0
     conflict_count = 0

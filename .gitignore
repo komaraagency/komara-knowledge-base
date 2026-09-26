@@ -244,3 +244,4 @@ test_*.pyc
 # Fichiers de traduction automatique (si vous en générez)
 # translations_auto/
 # auto_translated/
+data/
