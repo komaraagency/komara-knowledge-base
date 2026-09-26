@@ -26,6 +26,7 @@ from local_stats import record_unrecognized
 import actions
 import catalogue
 import kb_import
+import google_link
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -957,4 +958,6 @@ def handle_sigterm(signum, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGTERM, handle_sigterm)
     signal.signal(signal.SIGINT, handle_sigterm)
+    # Serveur de callback OAuth Google (Sheets + Contacts) si configuré
+    google_link.run_oauth_server()
     run()

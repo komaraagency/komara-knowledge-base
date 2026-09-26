@@ -23,6 +23,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import catalogue
+import google_link
 from local_stats import get_unrecognized_stats
 
 logger = logging.getLogger("komara.actions")
@@ -107,7 +108,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -383,6 +384,7 @@ def init_db() -> None:
         """)
         # Tables catalogue + panier
         catalogue.init_catalogue_db(DB_CONN)
+        google_link.ensure_table(DB_CONN)
         DB_CONN.commit()
         # Migrations pour bases déjà déployées
         for migration in (
@@ -439,7 +441,14 @@ def _insert(table: str, fields: dict) -> int:
             f"INSERT INTO {table} ({cols}) VALUES ({marks})", tuple(fields.values())
         )
         DB_CONN.commit()
-        return cur.lastrowid or 0
+        row_id = cur.lastrowid or 0
+    # Sync Google (Sheets + Contacts) — silencieuse si non liée
+    if table in {"orders", "leads", "appointments"}:
+        try:
+            google_link.hook(table, fields)
+        except Exception:
+            pass
+    return row_id
 
 
 def _count(table: str) -> int:
@@ -1064,6 +1073,10 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+
+    if command == "/google":
+        google_link.cmd_google(bot, chat_id, lang)
         return True
 
     if command == "/kb_import":
