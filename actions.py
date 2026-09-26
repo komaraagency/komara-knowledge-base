@@ -365,17 +365,35 @@ def _service_by_num(num: str) -> tuple[str, str, str, str] | None:
     return None
 
 
-def _gen_slots() -> list[tuple[str, str]]:
-    """6 créneaux : 3 prochains jours ouvrés × 10h/15h."""
+def _agency_now() -> datetime:
+    return datetime.utcnow() + timedelta(hours=TIMEZONE_OFFSET)
+
+
+DAY_NAMES: dict[str, list[str]] = {
+    "fr": ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+    "en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "es": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+    "ar": ["إثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت", "أحد"],
+}
+
+
+def _day_name(lang: str, weekday: int) -> str:
+    return DAY_NAMES.get(lang, DAY_NAMES["fr"])[weekday]
+
+
+def _gen_slots(lang: str = "fr") -> list[tuple[str, str]]:
+    """6 créneaux : 3 prochains jours × 10h/15h.
+    Inclut le week-end si l'agence est ouverte 7j/7 (WEEKEND_OFF=false)."""
     slots = []
-    day = datetime.now()
+    day = _agency_now()
     while len(slots) < 6:
         day += timedelta(days=1)
-        if day.weekday() >= 5:  # samedi/dimanche
+        if WEEKEND_OFF and day.weekday() >= 5:  # samedi/dimanche
             continue
         for hour in (10, 15):
             slot_dt = day.replace(hour=hour, minute=0, second=0, microsecond=0)
-            label = slot_dt.strftime("%a %d/%m à %Hh")
+            connector = {"en": "at", "es": "a las", "ar": "في"}.get(lang, "à")
+            label = f"{_day_name(lang, slot_dt.weekday())} {slot_dt.strftime('%d/%m')} {connector} {slot_dt.strftime('%Hh')}"
             slots.append((label, slot_dt))
     return slots
 
@@ -552,7 +570,7 @@ def _step_rdv(bot, chat_id: int, step: str, data: dict, text: str, lang: str) ->
 
     if step == "topic":
         data["topic"] = text[:200]
-        slots = _gen_slots()
+        slots = _gen_slots(lang)
         data["slots"] = [[label, dt.isoformat(timespec="seconds")] for label, dt in slots]
         _save_flow(chat_id, "rdv", "slot", data)
         bot.send_message(chat_id, t(lang, "rdv_slot", slots=_fmt_slots(slots)))
@@ -788,10 +806,6 @@ def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
 # ---------------------------------------------------------------------------
 # Message hors horaires (1 fois par jour et par client)
 # ---------------------------------------------------------------------------
-
-def _agency_now() -> datetime:
-    return datetime.utcnow() + timedelta(hours=TIMEZONE_OFFSET)
-
 
 def is_off_hours() -> bool:
     """Vrai si l'agence est fermée : week-end (optionnel) ou hors horaires."""
