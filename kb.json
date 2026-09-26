@@ -17028,6 +17028,298 @@
         "reviens",
         "terrain"
       ]
+    },
+    {
+      "id": "fidele_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je travaille déjà avec vous depuis 3 mois"
+      ],
+      "answer": "Content de t'entendre mon fidèle 🙏 Comment se porte ton bot depuis le lancement ? Tu veux qu'on ajoute une fonctionnalité ?",
+      "tags": [
+        "travaille",
+        "déjà",
+        "vous",
+        "depuis",
+        "lot3"
+      ]
+    },
+    {
+      "id": "fidele_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "le bot marche super bien merci"
+      ],
+      "answer": "Ça me fait plaisir mon ami 😊 C'est le travail de l'équipe Komara qui paye. Tu veux qu'on pousse encore plus loin, genre relance auto des clients inactifs ?",
+      "tags": [
+        "bot",
+        "marche",
+        "super",
+        "bien",
+        "lot3"
+      ]
+    },
+    {
+      "id": "fidele_03",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je veux ajouter une fonctionnalité à mon bot"
+      ],
+      "answer": "Parfait, on grandit ensemble. Dis-moi ce que tu veux ajouter, je note et l'équipe Komara te fait un point rapide.",
+      "tags": [
+        "veux",
+        "ajouter",
+        "fonctionnalité",
+        "bot",
+        "lot3"
+      ]
+    },
+    {
+      "id": "fidele_04",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je veux un deuxième bot pour un autre business"
+      ],
+      "answer": "Excellent mon ami. On te fait ça en parallèle, sans toucher au premier. C'est quoi le nouveau business ?",
+      "tags": [
+        "veux",
+        "deuxième",
+        "bot",
+        "autre",
+        "lot3"
+      ]
+    },
+    {
+      "id": "fidele_05",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "vous faites des réductions pour les clients fidèles"
+      ],
+      "answer": "Oui carrément. Les anciens clients Komara ont -10% sur toute nouvelle automatisation. Tu veux qu'on regarde ce qu'on ajoute ?",
+      "tags": [
+        "vous",
+        "faites",
+        "réductions",
+        "clients",
+        "lot3"
+      ]
+    },
+    {
+      "id": "objection_delai_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "c'est long 48h j'ai besoin de suite"
+      ],
+      "answer": "Je comprends l'urgence mon ami. 48h c'est déjà notre record pour un bot complet et testé. On peut prioriser ton dossier si c'est vraiment urgent aujourd'hui.",
+      "tags": [
+        "c'est",
+        "long",
+        "48h",
+        "j'ai",
+        "lot3"
+      ]
+    },
+    {
+      "id": "objection_delai_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "pourquoi pas instantané"
+      ],
+      "answer": "Parce qu'un bot bâclé en 5 min te fait perdre des clients au lieu d'en gagner. On prend 48h pour bien faire, testé sur ton business réel.",
+      "tags": [
+        "instantané",
+        "lot3"
+      ]
+    },
+    {
+      "id": "objection_qualite_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "comment je sais que la qualité sera bonne"
+      ],
+      "answer": "Bonne question. On te montre une démo avant paiement final, et 2 révisions gratuites sont incluses si un détail ne va pas.",
+      "tags": [
+        "sais",
+        "qualité",
+        "sera",
+        "bonne",
+        "lot3"
+      ]
+    },
+    {
+      "id": "objection_qualite_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "et si je n'aime pas le résultat"
+      ],
+      "answer": "On ajuste jusqu'à ce que ça te convienne, dans la limite du raisonnable. Komara ne livre pas un truc que le client n'aime pas.",
+      "tags": [
+        "si",
+        "n'aime",
+        "résultat",
+        "lot3"
+      ]
+    },
+    {
+      "id": "suivi_client_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "comment se passe le support après livraison"
+      ],
+      "answer": "Tu as un mois de support inclus après la mise en ligne. Après ça, l'équipe reste dispo pour tout ajustement, à la demande.",
+      "tags": [
+        "passe",
+        "support",
+        "après",
+        "livraison",
+        "lot3"
+      ]
+    },
+    {
+      "id": "suivi_client_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "vous restez disponible après le paiement"
+      ],
+      "answer": "Toujours mon ami. Komara ne disparaît pas après la vente, c'est notre différence. On t'accompagne dans la durée.",
+      "tags": [
+        "vous",
+        "restez",
+        "disponible",
+        "après",
+        "lot3"
+      ]
+    },
+    {
+      "id": "parrainage_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je peux recommander komara à un ami"
+      ],
+      "answer": "Avec grand plaisir 🙏 Si ton ami signe grâce à toi, tu as une réduction sur ta prochaine automatisation. Je t'envoie les détails ?",
+      "tags": [
+        "peux",
+        "recommander",
+        "komara",
+        "ami",
+        "lot3"
+      ]
+    },
+    {
+      "id": "parrainage_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "c'est quoi le programme de parrainage"
+      ],
+      "answer": "Simple : tu ramènes un client, Komara te récompense en réduction ou commission selon ce que tu préfères. Ça t'intéresse ?",
+      "tags": [
+        "c'est",
+        "programme",
+        "parrainage",
+        "lot3"
+      ]
+    },
+    {
+      "id": "secteur_sante_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je gère une clinique privée"
+      ],
+      "answer": "Parfait mon ami. Je peux gérer les prises de rendez-vous, rappeler les patients, répondre aux questions fréquentes sur les horaires et tarifs. On regarde ça ?",
+      "tags": [
+        "gère",
+        "clinique",
+        "privée",
+        "lot3"
+      ]
+    },
+    {
+      "id": "secteur_education_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je dirige un centre de formation"
+      ],
+      "answer": "Top secteur. Komara peut qualifier tes prospects, envoyer le programme automatiquement, et relancer ceux qui n'ont pas fini leur inscription.",
+      "tags": [
+        "dirige",
+        "centre",
+        "formation",
+        "lot3"
+      ]
+    },
+    {
+      "id": "secteur_transport_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "j'ai une agence de transport voyageurs"
+      ],
+      "answer": "Bien reçu. Je peux gérer les réservations, donner les horaires de départ et confirmer les places disponibles automatiquement.",
+      "tags": [
+        "j'ai",
+        "agence",
+        "transport",
+        "voyageurs",
+        "lot3"
+      ]
+    },
+    {
+      "id": "secteur_artisanat_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je vends de l'artisanat local"
+      ],
+      "answer": "J'adore ce secteur mon ami. Komara peut mettre en valeur chaque pièce, répondre sur les prix et délais, et relancer les curieux qui n'ont pas acheté.",
+      "tags": [
+        "vends",
+        "l'artisanat",
+        "local",
+        "lot3"
+      ]
+    },
+    {
+      "id": "urgence_technique_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "mon bot ne répond plus depuis ce matin"
+      ],
+      "answer": "Je note l'urgence mon ami, je transfère direct à l'équipe technique Komara pour vérifier ça maintenant. Tu peux me dire depuis quelle heure exactement ?",
+      "tags": [
+        "bot",
+        "ne",
+        "répond",
+        "plus",
+        "lot3"
+      ]
+    },
+    {
+      "id": "urgence_technique_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "les clients se plaignent que le bot répond bizarre"
+      ],
+      "answer": "Merci de me le dire vite. Je transmets à l'équipe pour corriger ça en priorité. Tu as un exemple de message bizarre à me montrer ?",
+      "tags": [
+        "clients",
+        "plaignent",
+        "bot",
+        "répond",
+        "lot3"
+      ]
+    },
+    {
+      "id": "cloture_soft_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "je note tout ça et je te reviens dans la semaine"
+      ],
+      "answer": "Pas de souci mon ami, prends ton temps. Je garde ton dossier de côté. Un petit rappel dans quelques jours te va ?",
+      "tags": [
+        "note",
+        "tout",
+        "ça",
+        "reviens",
+        "lot3"
+      ]
     }
   ],
   "conversations": [
