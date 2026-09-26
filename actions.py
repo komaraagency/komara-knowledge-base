@@ -39,6 +39,12 @@ DB_CONN: sqlite3.Connection | None = None
 ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0") or 0)
 FOLLOWUP_LOOP_INTERVAL = max(30, int(os.getenv("FOLLOWUP_INTERVAL", "60")))
 
+# Horaires de bureau (heure locale de l'agence ; Guinée = UTC+0)
+TIMEZONE_OFFSET = int(os.getenv("TIMEZONE_OFFSET", "0"))
+WORK_START = int(os.getenv("WORK_START", "9"))
+WORK_END = int(os.getenv("WORK_END", "18"))
+WEEKEND_OFF = os.getenv("WEEKEND_OFF", "true").lower() in {"1", "true", "yes", "on"}
+
 # Grille de prix alignée sur kb.json (monnaies 100% €)
 PRICE_GRID: list[tuple[str, str, str, str]] = [
     ("1", "Agent IA WhatsApp/Telegram", "300€ installation + 90€/mois maintenance", "3-5 jours"),
@@ -81,7 +87,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export"}
 
 # ---------------------------------------------------------------------------
 # Textes des flux (fr complet, en/es essentiels, ar → fr)
@@ -119,6 +125,8 @@ T = {
         "admin_stats": "📊 Stats Komara Agency\n\n🛒 Commandes : {orders}\n📅 RDV : {rdv}\n📞 Leads : {leads}\n📄 Devis : {quotes}\n⭐ Sondages : {surveys}\n😀 Satisfaction moyenne : {satisfaction}/5\n👍 Recommandent : {reco}%\n\n❓ Questions non reconnues : {unrecognized}",
         "admin_report": "📋 Rapport questions sans réponse (top {limit}) :\n\n{items}\n\n→ À intégrer dans kb.json pour améliorer le bot.",
         "admin_only": "🔒 Commande réservée à l'administration.",
+        "off_hours": "🌙 Komara Agency 🇬🇳 est fermée en ce moment.\nBureau ouvert : {hours} (lun-ven).\n\nPas de stress : je prends ta commande et tes questions 24/7, un humain te répond à l'ouverture 👍",
+        "export_sent": "📤 Export en cours...",
     },
     "en": {
         "cancelled": "OK, cancelled 🚫\nType 'order' whenever you're ready 🚀",
@@ -151,6 +159,8 @@ T = {
         "admin_stats": "📊 Komara Agency Stats\n\n🛒 Orders: {orders}\n📅 Calls: {rdv}\n📞 Leads: {leads}\n📄 Quotes: {quotes}\n⭐ Surveys: {surveys}\n😀 Avg satisfaction: {satisfaction}/5\n👍 Would recommend: {reco}%",
         "admin_report": "📋 Unanswered questions report (top {limit}):\n\n{items}\n\n→ Add to kb.json to improve the bot.",
         "admin_only": "🔒 Admin-only command.",
+        "off_hours": "🌙 Komara Agency 🇬🇳 is closed right now.\nOffice hours: {hours} (Mon-Fri).\n\nNo worries: I take your order and questions 24/7, a human replies at opening 👍",
+        "export_sent": "📤 Exporting...",
     },
     "es": {
         "cancelled": "OK, cancelado 🚫\nEscribe 'ordenar' cuando quieras 🚀",
@@ -183,6 +193,8 @@ T = {
         "admin_stats": "📊 Estadísticas Komara Agency\n\n🛒 Pedidos: {orders}\n📅 Llamadas: {rdv}\n📞 Leads: {leads}\n📄 Presupuestos: {quotes}\n⭐ Encuestas: {surveys}\n😀 Satisfacción media: {satisfaction}/5\n👍 Recomendarían: {reco}%",
         "admin_report": "📋 Informe de preguntas sin respuesta (top {limit}):\n\n{items}\n\n→ Añadir a kb.json para mejorar el bot.",
         "admin_only": "🔒 Comando solo para administración.",
+        "off_hours": "🌙 Komara Agency 🇬🇳 está cerrada ahora.\nHorario: {hours} (lun-vie).\n\nTranquilo: tomo tu pedido y preguntas 24/7, un humano responde a la apertura 👍",
+        "export_sent": "📤 Exportando...",
     },
 }
 
@@ -236,6 +248,11 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS survey_answers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, question_id TEXT, answer TEXT, created_at TEXT NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS offhours_notified (
+                chat_id TEXT,
+                day TEXT,
+                PRIMARY KEY (chat_id, day)
             );
             CREATE TABLE IF NOT EXISTS followups (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -364,6 +381,9 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     low = text_clean.lower()
     if low in ADMIN_COMMANDS:
         return _admin_command(bot, chat_id, low, lang)
+
+    # 0bis. Message hors horaires (1x/jour, n'interrompt rien)
+    maybe_off_hours_notice(bot, chat_id, lang)
 
     # 1. Annulation d'un flux actif
     if low in CANCEL_WORDS and _fetch_flow(chat_id):
@@ -726,6 +746,9 @@ def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
         )
         return True
 
+    if command == "/export":
+        return export_csv(bot, chat_id, lang)
+
     if command == "/rapport":
         stats = get_unrecognized_stats(limit=10)
         items = stats.get("items", [])
@@ -741,6 +764,91 @@ def _admin_command(bot, chat_id: int, command: str, lang: str) -> bool:
 
     return False
 
+
+
+# ---------------------------------------------------------------------------
+# Message hors horaires (1 fois par jour et par client)
+# ---------------------------------------------------------------------------
+
+def _agency_now() -> datetime:
+    return datetime.utcnow() + timedelta(hours=TIMEZONE_OFFSET)
+
+
+def is_off_hours() -> bool:
+    """Vrai si l'agence est fermée : week-end (optionnel) ou hors 9h-18h."""
+    now = _agency_now()
+    if WEEKEND_OFF and now.weekday() >= 5:
+        return True
+    return now.hour < WORK_START or now.hour >= WORK_END
+
+
+def maybe_off_hours_notice(bot, chat_id: int, lang: str) -> None:
+    """Prévient le client (1x/jour) que le bureau est fermé, sans bloquer."""
+    if not is_off_hours():
+        return
+    today = _agency_now().strftime("%Y-%m-%d")
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT 1 FROM offhours_notified WHERE chat_id =? AND day =?",
+            (str(chat_id), today),
+        ).fetchone()
+        if row:
+            return
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO offhours_notified (chat_id, day) VALUES (?,?)",
+            (str(chat_id), today),
+        )
+        DB_CONN.commit()
+    hours = f"{WORK_START}h-{WORK_END}h"
+    bot.send_message(chat_id, t(lang, "off_hours", hours=hours))
+
+
+def export_csv(bot, chat_id: int, lang: str) -> bool:
+    """Export CSV des leads/commandes/RDV/devis, envoyé en document Telegram."""
+    import csv
+    import tempfile
+
+    if not ADMIN_CHAT_ID or chat_id != ADMIN_CHAT_ID:
+        bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+
+    bot.send_message(chat_id, t(lang, "export_sent"))
+
+    tables = {
+        "leads": ["id", "chat_id", "name", "phone", "sector", "need", "budget", "created_at"],
+        "orders": ["id", "chat_id", "service", "activity", "deadline", "name", "phone", "created_at"],
+        "appointments": ["id", "chat_id", "name", "topic", "slot", "created_at"],
+        "quotes": ["id", "chat_id", "service", "price", "delay", "details", "created_at"],
+    }
+
+    stamp = _agency_now().strftime("%Y%m%d_%H%M")
+    exported = 0
+    for table, cols in tables.items():
+        with DB_LOCK:
+            rows = DB_CONN.execute(
+                f"SELECT {', '.join(cols)} FROM {table} ORDER BY id DESC"
+            ).fetchall()
+        if not rows:
+            continue
+        exported += len(rows)
+        fd, path = tempfile.mkstemp(prefix=f"komara_{table}_{stamp}_", suffix=".csv")
+        with os.fdopen(fd, "w", encoding="utf-8-sig", newline="") as handle:  # BOM = Excel FR OK
+            writer = csv.writer(handle)
+            writer.writerow(cols)
+            writer.writerows(rows)
+        try:
+            with open(path, "rb") as doc:
+                bot.send_document(chat_id, doc, visible_filename=f"{table}_{stamp}.csv")
+        except Exception as exc:
+            logger.warning("Export %s échoué : %s", table, exc)
+        finally:
+            os.unlink(path)
+
+    if not exported:
+        bot.send_message(chat_id, "📭 Aucune donnée à exporter pour le moment.")
+    else:
+        logger.info("Export CSV envoyé à l'admin : %d lignes", exported)
+    return True
 
 # ---------------------------------------------------------------------------
 # File de rappels : thread d'arrière-plan
