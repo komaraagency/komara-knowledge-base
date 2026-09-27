@@ -24,6 +24,10 @@ from pathlib import Path
 
 import catalogue
 import google_link
+import invoices
+import osm_maps
+import backup_drive
+import weekly_report
 from local_stats import get_unrecognized_stats
 
 logger = logging.getLogger("komara.actions")
@@ -102,13 +106,17 @@ TRIGGERS: dict[str, set[str]] = {
         "📞 Être rappelé", "être rappelé", "etre rappelé", "être rappelé(e)",
         "rappelez-moi", "rappel", "on m'appelle", "call me back",
     },
+    "parrainage": {
+        "/parrainage", "parrainage", "parrain", "programme de parrainage",
+        "referral", "parraine", "je parraine",
+    },
     "survey": {
         "⭐ Avis", "⭐ Feedback", "⭐ Opinión",
         "/sondage", "sondage", "donner mon avis", "laisser un avis", "mon avis",
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google"}
+ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -376,6 +384,18 @@ def init_db() -> None:
                 max_uses INTEGER DEFAULT 0,
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS referrals (
+                code TEXT PRIMARY KEY,
+                owner_chat TEXT NOT NULL,
+                credits INTEGER DEFAULT 0,
+                created_at TEXT NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS referral_uses (
+                code TEXT NOT NULL,
+                new_chat TEXT NOT NULL,
+                created_at TEXT NOT NULL,
+                PRIMARY KEY (code, new_chat)
+            );
             CREATE TABLE IF NOT EXISTS followups (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 chat_id TEXT, message TEXT, due_at TEXT NOT NULL,
@@ -567,6 +587,8 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     for flow, words in TRIGGERS.items():
         if text_clean in words or low in words:
             # Panier non vide → tunnel catalogue au lieu du flux commande
+            if flow == "parrainage":
+                return _parrainage_reply(bot, chat_id, lang)
             if flow == "order" and catalogue.start_checkout(bot, chat_id, lang):
                 return True
             return start_flow(bot, chat_id, flow, lang)
@@ -914,6 +936,8 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         else:
             result = check_promo_code(text)
             if not result:
+                result = _referral_as_promo(bot, chat_id, text)
+            if not result:
                 bot.send_message(chat_id, t(lang, "promo_invalid"))
                 return True
             code, pct = result
@@ -1073,6 +1097,18 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+
+    if command == "/facture":
+        invoices.cmd_facture(bot, chat_id, args, lang)
+        return True
+
+    if command == "/backup":
+        backup_drive.cmd_backup(bot, chat_id, lang)
+        return True
+
+    if command == "/hebdo":
+        weekly_report.cmd_hebdo(bot, chat_id, lang)
         return True
 
     if command == "/google":
@@ -1450,6 +1486,76 @@ def admin_list_promos(bot, chat_id: int, lang: str) -> bool:
     ]
     bot.send_message(chat_id, "🎟️ Codes promo :\n\n" + "\n".join(lines))
     return True
+
+
+PARRAIN_PCT = 10  # remise offerte au filleul
+
+PARRAINAGE_TEXTS = {
+    "fr": "🎁 Ton code de parrainage : *{code}*\n\nPartage-le : ton ami obtient *-{pct}%* sur son devis, et tu gagnes un crédit offert à chaque utilisation 🚀",
+    "en": "🎁 Your referral code: *{code}*\n\nShare it: your friend gets *-{pct}%* on their quote, and you earn a free credit each time 🚀",
+    "es": "🎁 Tu código de referido: *{code}*\n\nCompártelo: tu amigo obtiene *-{pct}%* en su presupuesto, y tú ganas un crédito cada vez 🚀",
+    "ar": "🎁 رمز الإحالة الخاص بك: *{code}*\n\nشاركه: صديقك يحصل على *-{pct}%* على عرضه، وأنت تكسب رصيدا مجانيا 🚀",
+}
+
+
+def _get_or_create_referral(chat_id: int) -> str:
+    """Code de parrainage unique du client (créé au besoin)."""
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT code FROM referrals WHERE owner_chat =?", (str(chat_id),)
+        ).fetchone()
+        if row:
+            return row[0]
+        import secrets
+        code = "KA-" + secrets.token_hex(3).upper()
+        DB_CONN.execute(
+            "INSERT INTO referrals (code, owner_chat, credits, created_at) VALUES (?,?,0,?)",
+            (code, str(chat_id), _now()),
+        )
+        DB_CONN.commit()
+        return code
+
+
+def _parrainage_reply(bot, chat_id: int, lang: str) -> bool:
+    code = _get_or_create_referral(chat_id)
+    txt = PARRAINAGE_TEXTS.get(lang, PARRAINAGE_TEXTS["fr"])
+    bot.send_message(chat_id, txt.format(code=code, pct=PARRAIN_PCT),
+                    parse_mode="Markdown")
+    return True
+
+
+def _referral_as_promo(bot, chat_id: int, text: str):
+    """Code de parrainage d'un AUTRE client → remise filleul + crédit au parrain."""
+    code = text.strip().upper()
+    if not code.startswith("KA-"):
+        return None
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT owner_chat FROM referrals WHERE code =?", (code,)
+        ).fetchone()
+        if not row or row[0] == str(chat_id):
+            return None
+        already = DB_CONN.execute(
+            "SELECT 1 FROM referral_uses WHERE code =? AND new_chat =?",
+            (code, str(chat_id)),
+        ).fetchone()
+        if already:
+            return None
+        DB_CONN.execute(
+            "INSERT INTO referral_uses (code, new_chat, created_at) VALUES (?,?,?)",
+            (code, str(chat_id), _now()),
+        )
+        DB_CONN.execute(
+            "UPDATE referrals SET credits = credits + 1 WHERE code =?", (code,)
+        )
+        DB_CONN.commit()
+    owner = row[0]
+    notify_admin(
+        bot,
+        f"🎁 Parrainage utilisé : code {code} par le client {chat_id} "
+        f"— parrain #{owner} crédité (+1)",
+    )
+    return (code, PARRAIN_PCT)
 
 
 def check_promo_code(code: str):

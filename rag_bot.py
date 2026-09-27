@@ -27,6 +27,9 @@ import actions
 import catalogue
 import kb_import
 import google_link
+import osm_maps
+import backup_drive
+import weekly_report
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -688,9 +691,17 @@ def safe_typing(chat_id: int) -> None:
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document'])
+@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location'])
 def handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
+
+    # Position partagée → infos de livraison (OpenStreetMap, sans clé)
+    if message.location:
+        safe_typing(chat_id)
+        osm_maps.handle_location(bot, message.location.latitude,
+                                 message.location.longitude,
+                                 _LAST_LANG.get(chat_id, "fr"))
+        return
 
     # Document (admin) → /kb_import : enrichissement de la base de connaissances
     if message.document:
@@ -720,7 +731,18 @@ def handle_message(message: telebot.types.Message) -> None:
     _process_text(chat_id, user_text, detect_language(user_text))
 
 
+_LAST_LANG: dict[int, str] = {}
+
+
 def _process_text(chat_id: int, user_text: str, detected_lang: str) -> None:
+    _LAST_LANG[chat_id] = detected_lang
+    # Livraison : "livraison <adresse>" → OpenStreetMap (gratuit, sans clé)
+    delivery_addr = osm_maps.is_delivery_intent(user_text)
+    if delivery_addr:
+        safe_typing(chat_id)
+        osm_maps.handle_text(bot, chat_id, delivery_addr, detected_lang)
+        return
+
 
     # 0. Commandes de démarrage/assistance (/start, /menu, /help)
     if user_text.lower() in START_COMMANDS:
@@ -960,4 +982,10 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, handle_sigterm)
     # Serveur de callback OAuth Google (Sheets + Contacts) si configuré
     google_link.run_oauth_server()
+    # Rapport hebdo chaque lundi 09h00 (heure Guinée) → admin
+    threading.Thread(target=weekly_report.scheduler_loop, args=(bot,),
+                     name="weekly-report", daemon=True).start()
+    # Sauvegarde automatique de la base → Google Drive chaque nuit 03h00
+    threading.Thread(target=backup_drive.scheduler_loop,
+                     name="drive-backup", daemon=True).start()
     run()

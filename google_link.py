@@ -32,7 +32,8 @@ REDIRECT_URI = os.getenv(
 
 SCOPES = (
     "https://www.googleapis.com/auth/spreadsheets "
-    "https://www.googleapis.com/auth/contacts"
+    "https://www.googleapis.com/auth/contacts "
+    "https://www.googleapis.com/auth/drive.file"
 )
 
 API_TOKEN_URL = "https://oauth2.googleapis.com/token"
