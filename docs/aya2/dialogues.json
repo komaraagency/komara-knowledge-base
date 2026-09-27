@@ -15,7 +15,7 @@
   },
   {
    "question": "c'est trop cher pour moi",
-   "answer": "Je comprends vraiment, le budget c'est important 😊 Mais regarde : les packs commencent à 99€ — souvent moins qu'un mois de pub dans la rue, et le bot travaille 24h/24 pour toi. On peut aussi voir un paiement échelonné si un pack t'intéresse. Je t'explique ?"
+   "answer": "Je comprends vraiment, le budget c'est important 😊 Chaque projet est calculé sur devis, souvent moins qu'un mois de pub dans la rue — et le bot travaille 24h/24 pour toi. On peut aussi voir un paiement échelonné si ça t'arrange. Tu me dis ton budget en confiance ?"
   },
   {
    "question": "comment je peux payer",
@@ -59,7 +59,7 @@
   },
   {
    "question": "vous faites des prix pour les debutants",
-   "answer": "Oui 😊 Le pack Starter commence à 99€ : parfait pour tester sans casser ta caisse. Et quand ton business grandit, on fait évoluer le bot avec toi. Tu démarres quel type de business ?"
+   "answer": "Oui 😊 Il y a une formule pensée pour les débutants — le montant exact se voit sur devis, parfait pour tester sans casser ta caisse. Et quand ton business grandit, on fait évoluer le bot avec toi. Tu démarres quel type de business ?"
   },
   {
    "question": "je veux un bot pour ma page facebook",
@@ -87,7 +87,7 @@
   },
   {
    "question": "je suis une petite entreprise est-ce que c'est fait pour moi",
-   "answer": "Carrément, c'est même l'idéal 🔥 Beaucoup de nos clients démarrent petit avec le pack Starter à 99€ et on grandit ensemble après. Tu es dans quel secteur ?"
+   "answer": "Carrément, c'est même l'idéal 🔥 Beaucoup de nos clients démarrent petit avec une formule d'entrée calculée sur devis, et on grandit ensemble après. Tu es dans quel secteur ?"
   },
   {
    "question": "comment je sais que le bot comprend bien mes clients",
@@ -440,6 +440,106 @@
   {
    "question": "mes clients parlent plusieurs langues c est possible",
    "answer": "Absolument ✅ Tes sites et tes bots peuvent parler français, anglais, espagnol, arabe selon ta clientèle. Le client écrit dans sa langue, il est servi dans la sienne. Quelles langues sont prioritaires pour toi ?"
+  },
+  {
+   "question": "je tiens un hotel comment prendre des reservations en ligne",
+   "answer": "Bienvenue aux voyageurs 🏨 Un site d'hôtel qui rassure : chambres avec photos, tarifs par saison, réservation en ligne et confirmation automatique. Le client réserve depuis son téléphone, même la nuit. Combien de chambres tu gères ?"
+  },
+  {
+   "question": "agence de voyage je veux vendre des circuits touristiques",
+   "answer": "La Guinée a des merveilles à vendre 🌍 Le Fouta, les îles de Loos, les cascades… On te fait un site avec circuits, prix, photos et réservation, plus un bot qui répond aux voyageurs en français et en anglais. Tu proposes des circuits dans quelles régions ?"
+  },
+  {
+   "question": "j ai une boulangerie je veux prendre les commandes d avance",
+   "answer": "Le pain chaud, ça se réserve aussi 🥖 On te met en place la commande d'avance : le client commande le matin, vient chercher à l'heure. Plus de files d'attente, plus de ventes perdues. Tu fais aussi les gâteaux et pâtisseries ?"
+  },
+  {
+   "question": "je vends des cosmetiques naturels savon karite",
+   "answer": "Le karité made in Guinée, ça s'arrache quand c'est bien présenté 🧴 Photos propres, bienfaits expliqués, commandes directes avec livraison. On te fait une vitrine qui inspire confiance même aux clientes de l'étranger. Tu vends en Guinée seulement ou tu expédies aussi ?"
+  },
+  {
+   "question": "je suis coach sportif je veux plus d eleves",
+   "answer": "Un coach visible attire la foule 💪 Ton site ou bot : programmes, tarifs par formule, inscription et suivi des élèves. Les motivated s'inscrivent sans que tu répètes. C'est du coaching en ligne, en salle ou à domicile ?"
+  },
+  {
+   "question": "je donne des cours de soutien comment m organiser",
+   "answer": "Les parents cherchent un bon répétiteur sérieux 📚 Un site avec tes matières, tes horaires et un bot qui prend les inscriptions : les parents inscrivent leur enfant en deux minutes. Tu enseignes quelles classes et quelles matières ?"
+  },
+  {
+   "question": "notre eglise notre mosquee veut communiquer avec les fideles",
+   "answer": "Une communauté connectée, c'est une communauté vivante 🤲 Annonces, horaires, événements, collectes — tout arrive directement sur les téléphones des fidèles via un canal et un bot bien organisés. C'est pour quelle communauté et combien de membres à peu près ?"
+  },
+  {
+   "question": "je suis photographe je veux presenter mon book",
+   "answer": "Ton book mérite un vrai cadre 📸 Un site galerie qui met tes photos en valeur : mariages, portraits, événements, avec demande de devis directe. Le client voit ton niveau, il appelle pour réserver. Tu bosses surtout sur quel genre de shootings ?"
+  },
+  {
+   "question": "j ai un garage comment gerer les rendez vous",
+   "answer": "Un garage organisé, c'est plus de voitures réparées 🔧 Un bot qui prend les RDV, rappelle au client la veille, et note le problème décrit. Toi tu bosses tranquille, le planning se remplit tout seul. Tu prends quelles marques de véhicules ?"
+  },
+  {
+   "question": "je loue des voitures comment gerer les locations",
+   "answer": "La location moderne se réserve en ligne 🚗 Site avec véhicules, tarifs par jour, conditions, et demande de réservation directe. Le client choisit sa voiture et réserve sans appeler dix fois. Tu as combien de véhicules dans ta flotte ?"
+  },
+  {
+   "question": "je vends des bijoux et accessoires",
+   "answer": "Des bijoux bien photographiés, ça vend tout seul ✨ Catalogue avec photos soignées, prix, commande WhatsApp. Tes clientes achètent pour elles ou pour des cadeaux ? On peut ajouter une section « mariage » aussi. C'est des bijoux en or, en argent, ou artisanaux ?"
+  },
+  {
+   "question": "j ai deja un site mais il est vieux",
+   "answer": "Un site vieux, c'est une boutique dont la peinture s'écaille 🎨 Refonte moderne, rapide, adaptée au téléphone — parce que tes clients naviguent surtout sur mobile. On garde ce qui marche, on modernise le reste. Envoie-moi l'adresse actuelle de ton site, l'équipe regarde et te fait un devis ?"
+  },
+  {
+   "question": "mon site ne m apporte aucun client",
+   "answer": "Un site sans visiteurs, c'est une belle affiche dans le désert 🏜️ On regarde deux choses : comment les gens te trouvent (référencement) et ce qu'ils font une fois arrivés (clarté, boutons d'achat). Souvent quelques corrections changent tout. Tu peux me dire l'adresse du site et ce que tu vends ?"
+  },
+  {
+   "question": "je n ai pas le temps de repondre aux clients",
+   "answer": "C'est EXACTEMENT pour ça qu'on existe ⏰ Un bot répond à ta place 24h/24 : questions, prix, prises de RDV, commandes. Toi tu gères ton business, le bot gère tes clients. Combien de messages tu loupes par jour en ce moment ?"
+  },
+  {
+   "question": "le bot va remplacer les humains",
+   "answer": "Non, il les libère 😊 Le bot gère les questions répétitives et les prises de RDV. Les décisions, la confiance, le savoir-faire, ça reste humain. Ici même, derrière Aya, il y a une vraie équipe Komara qui reprend la main dès que c'est sensible. Ton business a besoin d'automatiser quoi en priorité ?"
+  },
+  {
+   "question": "je suis tres mecontent de ma commande",
+   "answer": "Je suis vraiment désolée pour ce désagrément 🙏 Ton mécontentement est entendu, c'est la priorité. Dis-moi exactement ce qui s'est passé : je note tout, et je te connecte à l'équipe humaine Komara pour régler ça rapidement. C'est un problème de délai, de qualité, ou de livraison ?"
+  },
+  {
+   "question": "je veux modifier ma commande",
+   "answer": "Pas de souci, les choses changent 😊 Donne-moi le numéro de ta commande et la modification que tu veux : nouvelle couleur, autre taille, adresse différente. Si la commande n'est pas encore partie, on ajuste. Quel est ton numéro de commande ?"
+  },
+  {
+   "question": "je veux annuler mon rendez vous",
+   "answer": "C'est noté sans problème 📅 Donne-moi la date et l'heure de ton RDV, je l'annule. Et si tu veux, tu peux en reprendre un autre tout de suite. Tu préfères annuler ou plutôt décaler ?"
+  },
+  {
+   "question": "comment se passe le paiement",
+   "answer": "Simple et sécurisé 💳 Orange Money, Wave, Moov Money, virement ou espèces selon le projet — tu choisis ce qui t'arrange. Et comme toujours, le montant exact est établi sur devis avant tout engagement, zéro surprise. Quel moyen te convient le mieux ?"
+  },
+  {
+   "question": "vous etes situes ou",
+   "answer": "Komara Agency est basée à Conakry 🇬🇳 Mais bonne nouvelle : on travaille à distance avec tout le pays et l'étranger. Tout se règle par WhatsApp et téléphone — devis, suivi, livraison. Tu es en Guinée ou à l'étranger ?"
+  },
+  {
+   "question": "je veux juste un conseil gratuit",
+   "answer": "Avec plaisir 😄 Dis-moi ton problème en une phrase, et je te dis gratuitement la meilleure direction à prendre. Ensuite, si tu veux qu'on le fasse pour toi, on passe au devis. C'est quoi ton besoin exactement ?"
+  },
+  {
+   "question": "vous faites des reductions pour plusieurs projets",
+   "answer": "Bien vu, l'union fait la force 😉 Quand tu combines plusieurs services — logo + site, ou site + bot — le pack est calculé en ta faveur sur devis. C'est quoi la combinaison que tu envisages ?"
+  },
+  {
+   "question": "comment on commence un projet avec vous",
+   "answer": "Simple comme bonjour 🚀 1) Tu me décris ton besoin. 2) L'équipe te fait un devis clair. 3) Dès que tu valides, la production démarre avec un suivi à chaque étape. 4) Livraison, réglages, et tu es lancé. On commence par quoi : site, logo, bot ou visuels ?"
+  },
+  {
+   "question": "je prepare la tabaski ramadan pour mes ventes",
+   "answer": "Excellent réflexe, les fêtes c'est la haute saison des ventes 🎉 Affiches Tabaski ou Ramadan, visuels promo, countdown, publications prêtes à publier — on prépare ta campagne AVANT que tout le monde s'y mette. C'est pour quelles offres ou produits cette année ?"
+  },
+  {
+   "question": "je veux que mes clients partagent mes services a leurs amis",
+   "answer": "Le bouche-à-oreille digital, ça se construit 👥 Un système de parrainage intégré : tes clients partagent leur code, leurs proches profitent d'une remise, et toi tu gagnes des clients sans dépenser un franc en pub. Tu veux que le parrainage donne une remise ou un petit cadeau ?"
   }
  ]
 }

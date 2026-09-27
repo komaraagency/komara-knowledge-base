@@ -96,6 +96,110 @@
   {
    "question": "my clients speak several languages is that possible",
    "answer": "Absolutely ✅ Your sites and bots can speak French, English, Spanish or Arabic to match your clientele. Clients write in their language and get served in it. Which languages are your priority?"
+  },
+  {
+   "question": "i run a hotel how do i take online bookings",
+   "answer": "Welcome to travelers 🏨 A hotel site that reassures: rooms with photos, seasonal rates, online booking and automatic confirmation. Guests book from their phone, even at night. How many rooms do you manage?"
+  },
+  {
+   "question": "travel agency i want to sell tour packages",
+   "answer": "Guinea has wonders to sell 🌍 Fouta, the Loos islands, waterfalls… We build a site with tours, prices, photos and booking, plus a bot that answers travelers in French and English. Which regions do you cover?"
+  },
+  {
+   "question": "i own a bakery and want to take orders in advance",
+   "answer": "Warm bread deserves pre-ordering too 🥖 We set up advance ordering: the client orders in the morning, picks up on time. No more queues, no more lost sales. Do you also make cakes and pastries?"
+  },
+  {
+   "question": "i sell natural cosmetics shea butter soap",
+   "answer": "Made-in-Guinea shea sells fast when it's well presented 🧴 Clean photos, benefits explained, direct orders with delivery. A showcase that inspires trust even for clients abroad. Do you sell in Guinea only or do you ship too?"
+  },
+  {
+   "question": "i'm a fitness coach and want more students",
+   "answer": "A visible coach attracts the crowd 💪 Your site or bot: programs, package rates, sign-ups and student tracking. The motivated enroll without you repeating yourself. Is it online coaching, gym or home visits?"
+  },
+  {
+   "question": "i tutor students how do i get organized",
+   "answer": "Parents look for a serious tutor 📚 A site with your subjects, your hours, and a bot taking registrations: parents enroll their child in two minutes. Which grades and subjects do you teach?"
+  },
+  {
+   "question": "our church or mosque wants to reach the faithful",
+   "answer": "A connected community is a living one 🤲 Announcements, hours, events, collections — everything reaches members' phones through a well-organized channel and bot. What community is it, and roughly how many members?"
+  },
+  {
+   "question": "i'm a photographer and want to showcase my portfolio",
+   "answer": "Your portfolio deserves a real frame 📸 A gallery site that shows your photos at their best: weddings, portraits, events, with direct quote requests. The client sees your level and books. What kind of shoots do you do most?"
+  },
+  {
+   "question": "i have a garage how do i manage appointments",
+   "answer": "An organized garage repairs more cars 🔧 A bot that takes bookings, reminds the client the day before, and logs the described problem. You work calmly while the schedule fills itself. Which car brands do you service?"
+  },
+  {
+   "question": "i rent cars how do i manage rentals",
+   "answer": "Modern rental happens online 🚗 A site with vehicles, daily rates, conditions, and direct booking requests. The client picks a car and reserves without calling ten times. How many vehicles in your fleet?"
+  },
+  {
+   "question": "i sell jewelry and accessories",
+   "answer": "Well-photographed jewelry sells itself ✨ A catalogue with clean photos, prices, WhatsApp ordering. Your clients buy for themselves or as gifts? We can add a « wedding » section too. Gold, silver, or handmade pieces?"
+  },
+  {
+   "question": "i already have a website but it's outdated",
+   "answer": "An old site is a shop with peeling paint 🎨 A modern, fast, mobile-friendly redesign — because your clients browse mostly on phones. We keep what works, modernize the rest. Send me your site's address and the team will review it for a quote?"
+  },
+  {
+   "question": "my website brings me no clients",
+   "answer": "A site without visitors is a nice billboard in the desert 🏜️ We check two things: how people find you (search ranking) and what they do once there (clarity, buy buttons). Small fixes often change everything. What's the site's address and what do you sell?"
+  },
+  {
+   "question": "i don't have time to answer clients",
+   "answer": "That's EXACTLY why we exist ⏰ A bot answers for you 24/7: questions, prices, bookings, orders. You run your business, the bot handles your clients. How many messages do you currently miss per day?"
+  },
+  {
+   "question": "will the bot replace humans",
+   "answer": "No — it frees them 😊 The bot handles repetitive questions and bookings. Decisions, trust, expertise stay human. Right here, behind Aya, there's a real Komara team that steps in whenever it gets sensitive. What does your business need automated first?"
+  },
+  {
+   "question": "what if the bot breaks down",
+   "answer": "Good manager's question 👌 First, the bot is built to keep answering even through small hiccups, and if something truly breaks, the team is alerted and steps in — that's Komara support. You're never left alone with a silent tool. Shall we discuss maintenance in the quote?"
+  },
+  {
+   "question": "i'm very unhappy with my order",
+   "answer": "I'm truly sorry for the inconvenience 🙏 Your frustration is heard and it's the priority. Tell me exactly what happened: I log everything and connect you with the Komara human team to fix it fast. Is it a delay, a quality issue, or a delivery problem?"
+  },
+  {
+   "question": "i want to change my order",
+   "answer": "No problem, things change 😊 Give me your order number and the change you want: new color, different size, another address. If the order hasn't shipped yet, we adjust it. What's your order number?"
+  },
+  {
+   "question": "i want to cancel my appointment",
+   "answer": "Noted, no problem 📅 Give me the date and time of your appointment and I'll cancel it. And if you like, you can book another right away. Would you rather cancel or reschedule?"
+  },
+  {
+   "question": "how does payment work",
+   "answer": "Simple and secure 💳 Mobile money, bank transfer or cash depending on the project — you pick what suits you. And as always, the exact amount is set by quote before any commitment, zero surprises. Which method works best for you?"
+  },
+  {
+   "question": "where are you located",
+   "answer": "Komara Agency is based in Conakry 🇬🇳 But good news: we work remotely across the country and abroad. Everything happens via WhatsApp and phone — quote, follow-up, delivery. Are you in Guinea or abroad?"
+  },
+  {
+   "question": "i just want free advice",
+   "answer": "With pleasure 😄 Describe your problem in one sentence and I'll tell you, free of charge, the best direction to take. Then if you want us to do it for you, we move to a quote. What's your exact need?"
+  },
+  {
+   "question": "do you offer discounts for multiple projects",
+   "answer": "Sharp eye — strength in numbers 😉 When you combine services — logo + site, or site + bot — the package is priced in your favor by quote. Which combination are you considering?"
+  },
+  {
+   "question": "how do we start a project with you",
+   "answer": "Simple as hello 🚀 1) Describe your need to me. 2) The team sends a clear quote. 3) Once you approve, production starts with step-by-step updates. 4) Delivery, fine-tuning, and you're live. Where do we start: site, logo, bot or visuals?"
+  },
+  {
+   "question": "i'm preparing for eid or ramadan sales",
+   "answer": "Excellent thinking — the holidays are peak sales season 🎉 Eid or Ramadan posters, promo visuals, countdowns, ready-to-post content — we prepare your campaign BEFORE everyone else jumps in. Which offers or products this year?"
+  },
+  {
+   "question": "i want my clients to share my services with friends",
+   "answer": "Digital word of mouth is built 👥 A built-in referral system: your clients share their code, their friends get a discount, and you gain customers without spending a franc on ads. Should referrals give a discount or a small gift?"
   }
  ]
 }

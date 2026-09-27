@@ -96,6 +96,110 @@
   {
    "question": "mis clientes hablan varios idiomas es posible",
    "answer": "Absolutamente ✅ Tus sitios y bots pueden hablar francés, inglés, español o árabe según tu clientela. El cliente escribe en su idioma y se le atiende en él. ¿Qué idiomas son prioritarios para ti?"
+  },
+  {
+   "question": "tengo un hotel cómo tomo reservas en línea",
+   "answer": "Bienvenidos los viajeros 🏨 Un sitio de hotel que tranquiliza: habitaciones con fotos, tarifas por temporada, reserva en línea y confirmación automática. El huésped reserva desde su teléfono, incluso de noche. ¿Cuántas habitaciones gestionas?"
+  },
+  {
+   "question": "agencia de viajes quiero vender circuitos turísticos",
+   "answer": "Guinea tiene maravillas que vender 🌍 El Fouta, las islas Loos, las cascadas… Te hacemos un sitio con circuitos, precios, fotos y reservas, más un bot que responde a los viajeros en francés e inglés. ¿Qué regiones ofreces?"
+  },
+  {
+   "question": "tengo una panadería y quiero recibir pedidos por adelantado",
+   "answer": "El pan caliente también se reserva 🥖 Preparamos el pedido anticipado: el cliente pide por la mañana y recoge a la hora. Sin colas ni ventas perdidas. ¿También haces pasteles y repostería?"
+  },
+  {
+   "question": "vendo cosméticos naturales jabón de karité",
+   "answer": "El karité hecho en Guinea vuela cuando está bien presentado 🧴 Fotos limpias, beneficios explicados, pedidos directos con entrega. Una vitrina que inspira confianza hasta a clientes del extranjero. ¿Vendes solo en Guinea o también envías?"
+  },
+  {
+   "question": "soy entrenador fitness y quiero más alumnos",
+   "answer": "Un entrenador visible atrae multitud 💪 Tu sitio o bot: programas, tarifas por paquete, inscripción y seguimiento. Los motivados se apuntan sin que repitas. ¿Es coaching en línea, gimnasio o a domicilio?"
+  },
+  {
+   "question": "doy clases de apoyo cómo organizarme",
+   "answer": "Los padres buscan un profesor serio 📚 Un sitio con tus materias, horarios y un bot que toma inscripciones: los padres inscriben al hijo en dos minutos. ¿Qué cursos y niveles enseñas?"
+  },
+  {
+   "question": "nuestra iglesia o mezquita quiere comunicarse con los fieles",
+   "answer": "Una comunidad conectada es una comunidad viva 🤲 Anuncios, horarios, eventos, colectas — todo llega al teléfono de los fieles por un canal y un bot bien organizados. ¿Qué comunidad es y cuántos miembros más o menos?"
+  },
+  {
+   "question": "soy fotógrafo y quiero mostrar mi portafolio",
+   "answer": "Tu book merece un buen marco 📸 Un sitio galería que luce tus fotos: bodas, retratos, eventos, con solicitud de presupuesto directa. El cliente ve tu nivel y reserva. ¿Qué tipo de sesiones haces más?"
+  },
+  {
+   "question": "tengo un taller cómo gestiono las citas",
+   "answer": "Un taller organizado repara más carros 🔧 Un bot que toma citas, recuerda al cliente la víspera y anota la falla descrita. Tú trabajas tranquilo mientras la agenda se llena sola. ¿Qué marcas atiendes?"
+  },
+  {
+   "question": "alquilo coches cómo gestiono los alquileres",
+   "answer": "El alquiler moderno se reserva en línea 🚗 Sitio con vehículos, tarifas por día, condiciones y solicitud de reserva directa. El cliente elige y reserva sin llamar diez veces. ¿Cuántos vehículos tienes?"
+  },
+  {
+   "question": "vendo joyas y accesorios",
+   "answer": "Las joyas bien fotografiadas se venden solas ✨ Catálogo con fotos cuidadas, precios, pedido por WhatsApp. ¿Tus clientas compran para ellas o como regalo? También podemos añadir una sección « bodas ». ¿Oro, plata o artesanía?"
+  },
+  {
+   "question": "ya tengo un sitio pero está anticuado",
+   "answer": "Un sitio viejo es una tienda con la pintura descascarada 🎨 Rediseño moderno, rápido, adaptado al móvil — porque tus clientes navegan sobre todo desde el teléfono. Conservamos lo que funciona. ¿Me pasas la dirección y el equipo la revisa para un presupuesto?"
+  },
+  {
+   "question": "mi sitio no me trae clientes",
+   "answer": "Un sitio sin visitantes es un buen cartel en el desierto 🏜️ Revisamos dos cosas: cómo te encuentran (posicionamiento) y qué hacen al llegar (claridad, botones de compra). Pequeños ajustes suelen cambiarlo todo. ¿Cuál es la dirección y qué vendes?"
+  },
+  {
+   "question": "no tengo tiempo para responder a los clientes",
+   "answer": "Es EXACTAMENTE por eso que existimos ⏰ Un bot responde por ti 24h: preguntas, precios, citas, pedidos. Tú manejas tu negocio, el bot maneja a tus clientes. ¿Cuántos mensajes pierdes al día ahora?"
+  },
+  {
+   "question": "el bot va a reemplazar a los humanos",
+   "answer": "No — los libera 😊 El bot se ocupa de las preguntas repetitivas y las citas. Las decisiones, la confianza, el oficio siguen siendo humanos. Aquí mismo, detrás de Aya, hay un verdadero equipo Komara que retoma el mando cuando el tema es delicado. ¿Qué necesita tu negocio automatizar primero?"
+  },
+  {
+   "question": "y si el bot se avería",
+   "answer": "Buena pregunta de gestor 👌 Primero, el bot está construido para seguir respondiendo ante pequeños fallos, y si algo de verdad se rompe, el equipo es alertado e interviene — eso es el soporte Komara. Nunca te quedas solo con una herramienta muda. ¿Hablamos del mantenimiento en el presupuesto?"
+  },
+  {
+   "question": "estoy muy descontento con mi pedido",
+   "answer": "Lamento mucho el inconveniente 🙏 Tu malestar queda registrado y es la prioridad. Cuéntame exactamente qué pasó: lo anoto todo y te conecto con el equipo humano Komara para resolverlo rápido. ¿Es problema de plazo, calidad o entrega?"
+  },
+  {
+   "question": "quiero modificar mi pedido",
+   "answer": "Sin problema, las cosas cambian 😊 Dame tu número de pedido y el cambio: otro color, otra talla, otra dirección. Si aún no se ha enviado, lo ajustamos. ¿Cuál es tu número de pedido?"
+  },
+  {
+   "question": "quiero cancelar mi cita",
+   "answer": "Anotado, sin problema 📅 Dame la fecha y hora de tu cita y la cancelo. Y si quieres, reservas otra enseguida. ¿Prefieres cancelar o reprogramar?"
+  },
+  {
+   "question": "cómo funciona el pago",
+   "answer": "Simple y seguro 💳 Money móvil, transferencia o efectivo según el proyecto — tú eliges. Y como siempre, el monto exacto se define por presupuesto antes de cualquier compromiso, sin sorpresas. ¿Qué método te conviene más?"
+  },
+  {
+   "question": "dónde están ubicados",
+   "answer": "Komara Agency tiene base en Conakri 🇬🇳 Pero buena noticia: trabajamos en remoto en todo el país y el extranjero. Todo por WhatsApp y teléfono — presupuesto, seguimiento, entrega. ¿Estás en Guinea o en el exterior?"
+  },
+  {
+   "question": "solo quiero un consejo gratis",
+   "answer": "Con gusto 😄 Cuéntame tu problema en una frase y te digo gratis la mejor dirección. Después, si quieres que lo hagamos por ti, pasamos al presupuesto. ¿Cuál es tu necesidad exacta?"
+  },
+  {
+   "question": "hacen descuentos por varios proyectos",
+   "answer": "Bien visto, la unión hace la fuerza 😉 Al combinar servicios — logo + sitio, o sitio + bot — el paquete se calcula a tu favor por presupuesto. ¿Qué combinación tienes en mente?"
+  },
+  {
+   "question": "cómo empezamos un proyecto con ustedes",
+   "answer": "Simple como un hola 🚀 1) Me describes tu necesidad. 2) El equipo envía un presupuesto claro. 3) Al validarlo, la producción arranca con avances en cada etapa. 4) Entrega, ajustes y a despegar. ¿Empezamos por sitio, logo, bot o visuales?"
+  },
+  {
+   "question": "me preparo para las ventas del eid o ramadán",
+   "answer": "Excelente reflejo — las fiestas son temporada alta 🎉 Carteles de Eid o Ramadán, visuales de promo, cuenta regresiva, publicaciones listas — preparamos tu campaña ANTES que todos. ¿Qué ofertas o productos este año?"
+  },
+  {
+   "question": "quiero que mis clientes compartan mis servicios con amigos",
+   "answer": "El boca a boca digital se construye 👥 Un sistema de referidos integrado: tus clientes comparten su código, sus cercanos reciben descuento y tú ganas clientes sin gastar un franco en publicidad. ¿El referido da descuento o un pequeño regalo?"
   }
  ]
 }
