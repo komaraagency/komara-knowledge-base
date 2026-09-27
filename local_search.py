@@ -266,6 +266,11 @@ def _score_bidirectional(
     if not msg_meaningful:
         # Message 100% stop-words ("je", "un", "c est") : aucun signal
         # sémantique, on ne peut pas deviner l'intention -> aucun match.
+        # EXCEPTION identité : si le message couvre quasi entièrement une
+        # question connue (ex: « qui es tu » ↔ « qui es tu »), c'est une
+        # vraie question identité, pas du bruit -> on autorise le match.
+        if keyword_coverage >= 0.8:
+            return keyword_coverage * 0.85
         return 0.0
 
     msg_total = sum(idf.get(t, 1.0) for t in msg_meaningful)
