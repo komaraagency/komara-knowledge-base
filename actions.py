@@ -118,7 +118,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
+ADMIN_COMMANDS = {"/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -175,6 +175,14 @@ SURVEY_ASK_VARIANTS_FR = [
 
 T = {
     "fr": {
+        "admin_panel": '🎛️ PANNEAU ADMIN — Komara Agency 🇬🇳\nTout le bot, depuis ton téléphone 👇\n\n💰 ARGENT & RAPPORTS\n📊 /stats — compteurs + argent (devis, mois, commandes)\n📈 /rapport — rapport complet\n🗓️ /hebdo — rapport hebdomadaire\n📤 /export — export des données\n\n👥 CLIENTS & VENTE\n📞 /prend — tes 10 derniers clients + numéros\n👤 /prend <nom> — fiche client complète\n✉️ /msg <id|numéro> <texte> — écrire à un client via le bot\n📢 /broadcast <texte> — promo à tous les clients\n🛒 /commandes — commandes du catalogue\n🧑\u200d🤝\u200d🧑 /clients — liste des clients\n📅 /rdvs — rendez-vous\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — liste des produits\n➕ /produit add <cat>|<nom>|<desc>|<prix>\n💱 /produit maj <id>|<prix> — changer un prix\n❌ /produit del <id> — retirer un produit\n🎟️ /promo CODE 20 [max] — créer un code (ex : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — désactiver un code\n📋 /promos — codes actifs\n\n🤖 PILOTAGE DU BOT\n🔒 /pause — fermer le bot (clients → message de fermeture)\n✅ /reprend — rouvrir le bot\n🔄 /maj — recharger la base de connaissances\n📄 /facture — facture PDF\n💾 /backup — sauvegarde Drive manuelle\n🔗 /google — connexion Google\n📥 /kb_import — importer des fiches\n\n💡 Combo gagnant : /prend pour voir un client, /msg pour lui écrire, /broadcast pour une promo générale. Seul ton ID peut exécuter tout ça 🔐',
+        "code_usage": '🎟️ Pour vérifier un code promo : /code TONCODE\nExemple : /code TABASKI20 😊',
+        "code_ok": "🎟️ Code {code} VALIDE : -{pct:g}% de réduction ! 🎉\nTape 'devis' ou 'commander' pour en profiter maintenant 🚀",
+        "code_bad": "❌ Code {code} invalide, expiré ou déjà trop utilisé.\nVérifie l'orthographe, ou demande un code à l'équipe 😊",
+        "msg_usage": '✉️ Écrire à un client via le bot :\n\n/msg <chat_id|numéro|nom> <message>\n\nExemples :\n/msg 123456 Bonjour, votre commande est prête ✅\n/msg Mariama Ton visuel Tabaski est prêt ! 🎨\n\nLes numéros et chat_id sont dans /prend 📞',
+        "msg_sent": '✅ Message livré à {target} 👍',
+        "msg_failed": "❌ Livraison impossible : ce client n'a peut-être jamais démarré le bot, ou il a bloqué les messages du bot.",
+        "msg_not_found": '❌ Aucun client trouvé pour « {q} ».\nTape /prend pour la liste de tes clients 📞',
         "cancelled": "OK, on annule 🚫\nTape 'commander' quand tu veux relancer 🚀",
         "invalid": "Je n'ai pas compris ça 😅 Réessaie, ou tape 'annuler'.",
         "invalid_rate": "Tape un chiffre entre 1 et 5 👇",
@@ -235,6 +243,14 @@ T = {
         "order_known_phone": "Je garde aussi ton numéro : {phone}\nTape 'ok' pour confirmer, ou écris le nouveau.",
     },
     "en": {
+        "admin_panel": '🎛️ ADMIN PANEL — Komara Agency 🇬🇳\nYour whole bot, from your phone 👇\n\n💰 MONEY & REPORTS\n📊 /stats — counters + money (quotes, month, orders)\n📈 /rapport — full report\n🗓️ /hebdo — weekly report\n📤 /export — data export\n\n👥 CLIENTS & SALES\n📞 /prend — your 10 latest clients + numbers\n👤 /prend <name> — full client card\n✉️ /msg <id|number> <text> — message a client via the bot\n📢 /broadcast <text> — promo to all clients\n🛒 /commandes — catalogue orders\n🧑\u200d🤝\u200d🧑 /clients — client list\n📅 /rdvs — appointments\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — product list\n➕ /produit add <cat>|<name>|<desc>|<price>\n💱 /produit maj <id>|<price> — change a price\n❌ /produit del <id> — remove a product\n🎟️ /promo CODE 20 [max] — create a code (e.g. /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — deactivate a code\n📋 /promos — active codes\n\n🤖 BOT CONTROL\n🔒 /pause — close the bot (clients get the closed message)\n✅ /reprend — reopen the bot\n🔄 /maj — reload the knowledge base\n📄 /facture — PDF invoice\n💾 /backup — manual Drive backup\n🔗 /google — Google connection\n📥 /kb_import — import entries\n\n💡 Winning combo: /prend to see a client, /msg to write to them, /broadcast for a general promo. Only your ID can run all of this 🔐',
+        "code_usage": '🎟️ To check a promo code: /code YOURCODE\nExample: /code TABASKI20 😊',
+        "code_ok": "🎟️ Code {code} VALID: -{pct:g}% off! 🎉\nType 'quote' or 'order' to use it now 🚀",
+        "code_bad": '❌ Code {code} invalid, expired or fully used.\nCheck the spelling, or ask the team for a code 😊',
+        "msg_usage": '✉️ Message a client via the bot:\n\n/msg <chat_id|number|name> <message>\n\nExamples:\n/msg 123456 Hello, your order is ready ✅\n/msg Mariama Your Tabaski visual is ready! 🎨\n\nNumbers and chat_id are in /prend 📞',
+        "msg_sent": '✅ Message delivered to {target} 👍',
+        "msg_failed": '❌ Delivery failed: this client may have never started the bot, or has blocked it.',
+        "msg_not_found": '❌ No client found for “{q}”.\nType /prend for your client list 📞',
         "cancelled": "OK, cancelled 🚫\nType 'order' whenever you're ready 🚀",
         "invalid": "I didn't get that 😅 Try again, or type 'cancel'.",
         "invalid_rate": "Type a number between 1 and 5 👇",
@@ -284,6 +300,14 @@ T = {
         "order_known_phone": "I also remember your number: {phone}\nType 'ok' to confirm, or write a new one.",
     },
     "es": {
+        "admin_panel": '🎛️ PANEL ADMIN — Komara Agency 🇬🇳\nTodo tu bot, desde tu teléfono 👇\n\n💰 DINERO & INFORMES\n📊 /stats — contadores + dinero (presupuestos, mes, pedidos)\n📈 /rapport — informe completo\n🗓️ /hebdo — informe semanal\n📤 /export — exportación de datos\n\n👥 CLIENTES & VENTAS\n📞 /prend — tus 10 últimos clientes + números\n👤 /prend <nombre> — ficha completa del cliente\n✉️ /msg <id|número> <texto> — escribir a un cliente por el bot\n📢 /broadcast <texto> — promo a todos los clientes\n🛒 /commandes — pedidos del catálogo\n🧑\u200d🤝\u200d🧑 /clients — lista de clientes\n📅 /rdvs — citas\n\n🛍️ CATÁLOGO & PROMOS\n📦 /produit — lista de productos\n➕ /produit add <cat>|<nombre>|<desc>|<precio>\n💱 /produit maj <id>|<precio> — cambiar un precio\n❌ /produit del <id> — quitar un producto\n🎟️ /promo CODE 20 [max] — crear un código (ej : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — desactivar un código\n📋 /promos — códigos activos\n\n🤖 CONTROL DEL BOT\n🔒 /pause — cerrar el bot (los clientes reciben el mensaje de cierre)\n✅ /reprend — reabrir el bot\n🔄 /maj — recargar la base de conocimientos\n📄 /facture — factura PDF\n💾 /backup — copia manual en Drive\n🔗 /google — conexión Google\n📥 /kb_import — importar fichas\n\n💡 Combo ganador: /prend para ver un cliente, /msg para escribirle, /broadcast para una promo general. Solo tu ID puede ejecutar todo esto 🔐',
+        "code_usage": '🎟️ Para verificar un código: /code TUCODIGO\nEjemplo: /code TABASKI20 😊',
+        "code_ok": "🎟️ Código {code} VÁLIDO: ¡-{pct:g}% de descuento! 🎉\nEscribe 'presupuesto' o 'pedir' para aprovecharlo 🚀",
+        "code_bad": '❌ Código {code} inválido, caducado o agotado.\nRevisa la ortografía o pide un código al equipo 😊',
+        "msg_usage": '✉️ Escribir a un cliente por el bot:\n\n/msg <chat_id|número|nombre> <mensaje>\n\nEjemplos:\n/msg 123456 Hola, tu pedido está listo ✅\n/msg Mariama ¡Tu visual Tabaski está listo! 🎨\n\nLos números están en /prend 📞',
+        "msg_sent": '✅ Mensaje entregado a {target} 👍',
+        "msg_failed": '❌ Entrega imposible: quizás este cliente nunca inició el bot o lo ha bloqueado.',
+        "msg_not_found": '❌ Ningún cliente encontrado para « {q} ».\nEscribe /prend para ver tu lista de clientes 📞',
         "cancelled": "OK, cancelado 🚫\nEscribe 'ordenar' cuando quieras 🚀",
         "invalid": "No entendí 😅 Intenta de nuevo, o escribe 'cancelar'.",
         "invalid_rate": "Escribe un número del 1 al 5 👇",
@@ -331,6 +355,16 @@ T = {
         "rdv_already": "📅 Ya tienes una cita: {slot}\n📝 Tema: {topic}\n\nPara otra, escribe 'nueva cita'.",
         "order_known_name": "Te conozco, {name} 😊\nEscribe 'ok' para confirmar, o el nombre correcto.",
         "order_known_phone": "También guardo tu número: {phone}\nEscribe 'ok' para confirmar, o el nuevo.",
+    },
+    "ar": {
+        "admin_panel": '🎛️ لوحة الأدمن — كومارا أجنسلي 🇬🇳\nالبوت كله من هاتفك 👇\n\n💰 المال والتقارير\n📊 /stats — الأرقام + المال\n📈 /rapport — تقرير كامل\n🗓️ /hebdo — تقرير أسبوعي\n📤 /export — تصدير البيانات\n\n👥 العملاء والمبيعات\n📞 /prend — آخر 10 عملاء + أرقام\n👤 /prend <اسم> — بطاقة العميل الكاملة\n✉️ /msg <معرف|رقم> <نص> — مراسلة عميل عبر البوت\n📢 /broadcast <نص> — عرض لكل العملاء\n🛒 /commandes — طلبات الكتالوج\n🧑\u200d🤝\u200d🧑 /clients — قائمة العملاء\n📅 /rdvs — المواعيد\n\n🛍️ الكتالوج والعروض\n📦 /produit — قائمة المنتجات\n➕ /produit add <فئة>|<اسم>|<وصف>|<سعر>\n💱 /produit maj <id>|<سعر> — تغيير سعر\n❌ /produit del <id> — حذف منتج\n🎟️ /promo CODE 20 [max] — إنشاء كود (مثال : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — تعطيل كود\n📋 /promos — الأكواد النشطة\n\n🤖 التحكم في البوت\n🔒 /pause — إغلاق البوت\n✅ /reprend — إعادة فتح البوت\n🔄 /maj — إعادة تحميل قاعدة المعرفة\n📄 /facture — فاتورة PDF\n💾 /backup — نسخ احتياطي يدوي\n🔗 /google — ربط Google\n📥 /kb_import — استيراد أجوبة\n\n💡 المزيج الرابح: /pend لرؤية العميل، /msg للمراسلة، /broadcast للعرض العام. فقط معرّفك يمكنه تنفيذ كل هذا 🔐',
+        "code_usage": '🎟️ للتحقق من كود الخصم: /code الكود\nمثال: /code TABASKI20 😊',
+        "code_ok": "🎟️ الكود {code} صالح: خصم {pct:g}%! 🎉\nاكتب 'devis' أو 'commander' للاستفادة الآن 🚀",
+        "code_bad": '❌ الكود {code} غير صالح أو منتهي أو مستهلك.\nتحقق من الكتابة أو اطلب كوداً من الفريق 😊',
+        "msg_usage": '✉️ مراسلة عميل عبر البوت:\n\n/msg <chat_id|رقم|اسم> <رسالة>\n\nأمثلة:\n/msg 123456 مرحباً، طلبك جاهز ✅\n/msg Mariama تصميمك جاهز! 🎨\n\nالأرقام في /prend 📞',
+        "msg_sent": '✅ تم تسليم الرسالة إلى {target} 👍',
+        "msg_failed": '❌ تعذّر التسليم: ربما لم يبدأ العميل المحادثة مع البوت أو حظره.',
+        "msg_not_found": '❌ لا يوجد عميل بهذا الاسم « {q} ».\nاكتب /prend لقائمة عملائك 📞',
     },
 }
 
@@ -595,6 +629,12 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if first_word in ADMIN_COMMANDS:
         args = text_clean.split(maxsplit=1)[1] if len(words) > 1 else ""
         return _admin_command(bot, chat_id, first_word, args, lang)
+
+    # 0quin. Code promo client : /code XXX, « code promo XXX », « promo code XXX »
+    if (low in {"/code", "code", "code promo", "promo code"}
+            or low.startswith("/code ") or low.startswith("code promo ")
+            or low.startswith("promo code ")):
+        return _promo_check(bot, chat_id, text_clean, lang)
 
     # 0ter. Suivi de commande (statut depuis la base locale)
     if low in TRACKING_TRIGGERS:
@@ -1273,6 +1313,64 @@ def _admin_prend(bot, chat_id: int, args: str, lang: str) -> bool:
     return True
 
 
+def _promo_check(bot, chat_id: int, text: str, lang: str) -> bool:
+    """Client : /code XXX → vérifie un code promo (catalogue/devis)."""
+    words = [w for w in text.split() if w.upper() not in {"CODE", "PROMO", "/CODE"}]
+    if not words:
+        bot.send_message(chat_id, t(lang, "code_usage"))
+        return True
+    code = words[-1].upper()
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT discount_pct, uses, max_uses FROM promo_codes "
+            "WHERE code = ? AND active = 1", (code,)).fetchone()
+    if row and (row[2] in (None, 0) or row[1] < row[2]):
+        bot.send_message(chat_id, t(lang, "code_ok", code=code, pct=row[0]))
+    else:
+        bot.send_message(chat_id, t(lang, "code_bad", code=code))
+    return True
+
+
+def _admin_msg(bot, chat_id: int, args: str, lang: str) -> bool:
+    """/msg <chat_id|numéro|nom> <texte> — écrire à un client via le bot."""
+    parts = args.strip().split(maxsplit=1)
+    if len(parts) < 2 or not parts[1].strip():
+        bot.send_message(chat_id, t(lang, "msg_usage"))
+        return True
+    target_q, message = parts[0].strip(), parts[1].strip()
+    if DB_CONN is None:
+        init_db()
+    target_id = None
+    label = target_q
+    with DB_LOCK:
+        row = None
+        if target_q.lstrip("-").isdigit():
+            row = DB_CONN.execute(
+                "SELECT chat_id, name, phone FROM clients WHERE chat_id = ?",
+                (target_q,)).fetchone()
+        if row is None:
+            row = DB_CONN.execute(
+                "SELECT chat_id, name, phone FROM clients "
+                "WHERE name LIKE ? OR phone LIKE ? "
+                "ORDER BY last_seen DESC LIMIT 1",
+                (f"%{target_q}%", f"%{target_q}%")).fetchone()
+    if row:
+        target_id, label = int(row[0]), (row[1] or row[0])
+    elif target_q.lstrip("-").isdigit():
+        target_id = int(target_q)  # chat_id direct hors table clients
+    else:
+        bot.send_message(chat_id, t(lang, "msg_not_found", q=target_q))
+        return True
+    try:
+        bot.send_message(target_id, message)
+        bot.send_message(chat_id, t(lang, "msg_sent", target=label))
+    except Exception:
+        bot.send_message(chat_id, t(lang, "msg_failed"))
+    return True
+
+
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     # Fail-closed : sans ADMIN_CHAT_ID configuré, personne n'a accès
     # (même le propriétaire) — jamais l'inverse.
@@ -1311,6 +1409,13 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
     if command in {"/produit", "/produits"}:
         catalogue.admin_product(bot, chat_id, args, lang)
         return True
+
+    if command == "/admin":
+        bot.send_message(chat_id, t(lang, "admin_panel"))
+        return True
+
+    if command == "/msg":
+        return _admin_msg(bot, chat_id, args, lang)
 
     if command == "/pause":
         set_paused(True)
