@@ -1,125 +1,4 @@
 {
- "version": "2.0.0",
- "brand": "Komara Agency",
- "slogan": "Votre Agent I.A. qui vend pour vous 24H/24",
- "lang": "fr",
- "contact": {
-  "whatsapp": "+212 701 986 219",
-  "adresse": "Safi, Région Doukkala-Abda, Maroc",
-  "tiktok": "https://www.tiktok.com/@Komara Agency 🇬🇳.komara",
-  "facebook": "https://www.facebook.com/Komara Agency 🇬🇳.komar"
- },
- "tone": "Chaleureux, pro et direct. Style Premium Tech Luxe Africain Moderne. Vouvoyer au début, tutoyer si client tutoie. Emojis modérés.",
- "colors": {
-  "noir": "#0A0A0A",
-  "or": "#D4AF37",
-  "or_clair": "#F5E6C4"
- },
- "services": [
-  {
-   "id": "bots_intelligents",
-   "categorie": "BOTS INTELLIGENTS",
-   "nom": "Bots WhatsApp, Telegram et TikTok",
-   "prix": "sur devis",
-   "description": "Bots conversationnels, service client automatisé 24h/24 et automatisation des tâches."
-  },
-  {
-   "id": "developpement_programmation",
-   "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
-   "nom": "Sites, applications et solutions sur mesure",
-   "prix": "sur devis",
-   "description": "Sites HTML, CSS et JavaScript, applications web et mobiles, scripts et automatisations."
-  },
-  {
-   "id": "creation_digitale",
-   "categorie": "CRÉATION DIGITALE",
-   "nom": "Design graphique et contenu digital",
-   "prix": "sur devis",
-   "description": "Logos, affiches, identité visuelle, cartes de visite, flyers et contenu pour réseaux sociaux."
-  },
-  {
-   "id": "agent_commercial",
-   "categorie": "BOTS INTELLIGENTS",
-   "nom": "Agent I.A. Commercial WhatsApp",
-   "prix": "à partir de 120€",
-   "description": "Vend et répond aux clients 24H/24. Cible : e-commerce et boutiques."
-  },
-  {
-   "id": "agent_rdv",
-   "categorie": "BOTS INTELLIGENTS",
-   "nom": "Agent I.A. Prise de rendez-vous",
-   "prix": "sur devis",
-   "description": "Automatise les rendez-vous, rappels et confirmations. Cible : cliniques, coiffeurs et agences."
-  },
-  {
-   "id": "agent_support",
-   "categorie": "BOTS INTELLIGENTS",
-   "nom": "Agent I.A. Support client",
-   "prix": "sur devis",
-   "description": "Gère les FAQ, réclamations et qualifications de prospects."
-  },
-  {
-   "id": "site_web",
-   "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
-   "nom": "Création de site web et formulaire de prospects",
-   "prix": "à partir de 120€",
-   "description": "Site vitrine ou landing page en HTML, CSS et JavaScript avec formulaire intégré."
-  },
-  {
-   "id": "applications",
-   "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
-   "nom": "Applications web et mobiles",
-   "prix": "sur devis",
-   "description": "Applications adaptées à votre activité, avec fonctionnalités et interface sur mesure."
-  },
-  {
-   "id": "scripts_automatisation",
-   "categorie": "DÉVELOPPEMENT & PROGRAMMATION",
-   "nom": "Scripts et automatisations",
-   "prix": "sur devis",
-   "description": "Automatisation des tâches répétitives et intégration de workflows adaptés à votre entreprise."
-  },
-  {
-   "id": "design_graphique",
-   "categorie": "CRÉATION DIGITALE",
-   "nom": "Design graphique et identité visuelle",
-   "prix": "sur devis",
-   "description": "Logos, affiches, cartes de visite, flyers et identité visuelle complète."
-  },
-  {
-   "id": "contenu_reseaux",
-   "categorie": "CRÉATION DIGITALE",
-   "nom": "Contenu pour réseaux sociaux",
-   "prix": "sur devis",
-   "description": "Création de visuels et contenus cohérents pour vos réseaux sociaux."
-  },
-  {
-   "id": "video_ugc",
-   "categorie": "CRÉATION DIGITALE",
-   "nom": "Vidéo UGC avec avatar IA",
-   "prix": "90€ / 1 vidéo 30s",
-   "description": "Un avatar présente votre produit sans que vous ayez besoin de vous filmer."
-  },
-  {
-   "id": "formation",
-   "categorie": "BOTS INTELLIGENTS",
-   "nom": "Formation automatisation et IA Business",
-   "prix": "250€",
-   "description": "Automatiser sa prospection, créer du contenu et vendre avec des outils numériques."
-  }
- ],
- "packs": [
-  {
-   "nom": "Pack Starter",
-   "prix": "120€",
-   "contenu": "5 visuels + 3 vidéos + Logo"
-  },
-  {
-   "nom": "Pack Business",
-   "prix": "350€",
-   "contenu": "15 visuels + 10 vidéos + 1 mois pub"
-  }
- ],
  "knowledge": [
   {
    "id": "accueil_01",
@@ -7607,8 +7486,6 @@
    "category": "vente",
    "questions": [
     "combien je peux gagner",
-    "roi",
-    "retour sur investissement",
     "plus de revenu",
     "rentabilité"
    ],
@@ -10325,18 +10202,6 @@
     "avez-vous un portfolio à montrer",
     "qu'est-ce qu'un portfolio",
     "notre portfolio"
-   ],
-   "answer": "__SHOW_PORTFOLIO__"
-  },
-  {
-   "questions": [
-    "vos exemples"
-   ],
-   "answer": "__SHOW_PORTFOLIO__"
-  },
-  {
-   "questions": [
-    "avez-vous des exemples"
    ],
    "answer": "__SHOW_PORTFOLIO__"
   },
@@ -17312,509 +17177,1319 @@
     "reviens",
     "lot3"
    ]
+  },
+  {
+   "id": "lot9_ia_001",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le deep learning",
+    "apprentissage profond"
+   ],
+   "answer": "Le deep learning, c'est du machine learning avec des réseaux de neurones profonds, inspirés du cerveau humain. C'est la technologie derrière la reconnaissance vocale, les voitures autonomes et les IA génératives 🧠"
+  },
+  {
+   "id": "lot9_ia_002",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un chatbot",
+    "comment marche un bot",
+    "les bots c est quoi"
+   ],
+   "answer": "Un chatbot est un programme qui discute avec les humains par message, 24h/24. Il répond aux questions, prend les commandes, qualifie les clients. Moi par exemple, je suis un chatbot professionnel 😄 Envie d'un bot pour ton business ? Tape 'devis' 👇"
+  },
+  {
+   "id": "lot9_ia_003",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un llm",
+    "large language model"
+   ],
+   "answer": "Un LLM (large language model) est une IA entraînée sur d'énormes quantités de texte pour comprendre et générer du langage humain. C'est le moteur derrière les chatbots intelligents comme moi 🤖"
+  },
+  {
+   "id": "lot9_ia_004",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi l ia generative",
+    "generative ai"
+   ],
+   "answer": "L'IA générative crée du contenu nouveau : textes, images, vidéos, musique, code. Tu lui décris ce que tu veux, elle le produit. C'est exactement ce qu'on exploite chez Komara Agency pour nos visuels 4K et vidéos 🎨"
+  },
+  {
+   "id": "lot9_ia_005",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le prompt engineering"
+   ],
+   "answer": "Le prompt engineering, c'est l'art de bien formuler ses demandes à une IA pour obtenir exactement le résultat voulu. Un bon prompt est précis, donne le contexte et le format attendu. C'est une compétence très demandée, et on l'enseigne dans notre formation IA 🔥"
+  },
+  {
+   "id": "lot9_ia_006",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un reseau de neurones",
+    "neural network"
+   ],
+   "answer": "Un réseau de neurones artificiels est un système de calcul inspiré du cerveau : des couches de « neurones » qui transforment des entrées en sorties en ajustant leurs connexions. Il apprend par répétition, comme un cerveau 🧠"
+  },
+  {
+   "id": "lot9_ia_007",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le nlp",
+    "traitement du langage naturel"
+   ],
+   "answer": "Le NLP (natural language processing) est la branche de l'IA qui permet aux machines de comprendre et manipuler le langage humain, écrit ou parlé. C'est grâce au NLP que je comprends tes messages, même avec des fautes 😊"
+  },
+  {
+   "id": "lot9_ia_008",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi la vision par ordinateur",
+    "computer vision"
+   ],
+   "answer": "La vision par ordinateur permet aux machines de « voir » et interpréter des images et vidéos : reconnaître des visages, détecter des objets, lire des documents. On l'utilise pour trier, inspecter, sécuriser 👁️"
+  },
+  {
+   "id": "lot9_ia_009",
+   "category": "lot9_ia",
+   "questions": [
+    "l ia va t elle remplacer les humains",
+    "l ia va prendre nos emplois"
+   ],
+   "answer": "L'IA transforme les métiers plus qu'elle ne les remplace : elle automatise les tâches répétitives et laisse aux humains la créativité, la stratégie et la relation. Ceux qui maîtrisent l'IA remplacent ceux qui l'ignorent. D'où notre formation IA 😊 tape 'formation'"
+  },
+  {
+   "id": "lot9_ia_010",
+   "category": "lot9_ia",
+   "questions": [
+    "comment l ia aide les entreprises en afrique"
+   ],
+   "answer": "En Afrique, l'IA aide déjà : chatbots pour répondre aux clients 24/7, visuels marketing sans studio photo, analyse des ventes, agriculture intelligente. Ça réduit les coûts et accélère la croissance. C'est exactement la mission de Komara Agency 🇬🇳🚀"
+  },
+  {
+   "id": "lot9_ia_011",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un biais dans l ia",
+    "l ia est elle biaisee"
+   ],
+   "answer": "Un biais d'IA apparaît quand les données d'entraînement contiennent des préjugés : l'IA reproduit alors des inégalités. La solution : des données diverses et des contrôles humains réguliers ⚖️"
+  },
+  {
+   "id": "lot9_ia_012",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi l ethique de l ia"
+   ],
+   "answer": "L'éthique de l'IA regroupe les règles pour utiliser l'IA de façon responsable : transparence, respect de la vie privée, absence de biais, responsabilité. Une IA doit servir les humains, pas les manipuler 🛡️"
+  },
+  {
+   "id": "lot9_ia_013",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi la data science",
+    "science des donnees"
+   ],
+   "answer": "La data science, c'est l'art d'extraire de la valeur des données : collecter, nettoyer, analyser, puis présenter des insights utilisables. C'est le carburant de l'IA et des décisions business modernes 📊"
+  },
+  {
+   "id": "lot9_ia_014",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le big data"
+   ],
+   "answer": "Le big data désigne des volumes de données tellement énormes qu'ils exigent des outils spéciaux pour être stockés et analysés. La valeur n'est pas dans le volume mais dans ce qu'on en déduit 💡"
+  },
+  {
+   "id": "lot9_ia_015",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un algorithme"
+   ],
+   "answer": "Un algorithme, c'est une suite d'instructions précises pour résoudre un problème, comme une recette de cuisine. Les programmes informatiques sont des algorithmes écrits dans un langage que la machine comprend 📋"
+  },
+  {
+   "id": "lot9_ia_016",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un token en ia",
+    "tokens ia"
+   ],
+   "answer": "Un token est un morceau de texte (souvent quelques caractères ou un mot) que l'IA traite comme unité de base. Les IA facturent et limitent leur usage en tokens. Comprendre ça aide à optimiser ses coûts IA 💰"
+  },
+  {
+   "id": "lot9_ia_017",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi une hallucination de l ia",
+    "pourquoi l ia invente des reponses"
+   ],
+   "answer": "Une hallucination d'IA, c'est quand le modèle invente une information fausse mais la présente avec assurance. Solution : vérifier les faits importants et donner à l'IA des sources fiables, comme notre base de connaissances locale ✅"
+  },
+  {
+   "id": "lot9_ia_018",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le rag",
+    "retrieval augmented generation"
+   ],
+   "answer": "Le RAG (retrieval augmented generation) consiste à connecter une IA à une base de documents fiables : elle cherche l'info d'abord, puis répond. Moi je fonctionne sur ce principe avec ma base de connaissances 100% locale 📚"
+  },
+  {
+   "id": "lot9_ia_019",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi le fine tuning",
+    "finetuning"
+   ],
+   "answer": "Le fine-tuning, c'est ré-entraîner un modèle d'IA existant sur tes propres données pour le spécialiser sur ton domaine. Plus léger qu'entraîner un modèle de zéro, très efficace pour un usage pro 🎯"
+  },
+  {
+   "id": "lot9_ia_020",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi une ia open source"
+   ],
+   "answer": "Une IA open source publie son code librement : tout le monde peut l'inspecter, l'utiliser et l'améliorer. Avantages : confidentialité, coût réduit, indépendance. C'est notre philosophie chez Komara Agency 💪"
+  },
+  {
+   "id": "lot9_ia_021",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi l agi",
+    "intelligence artificielle generale"
+   ],
+   "answer": "L'AGI (intelligence artificielle générale) serait une IA capable de comprendre et apprendre n'importe quelle tâche comme un humain. On n'y est pas encore : aujourd'hui les IA sont puissantes mais spécialisées 🤔"
+  },
+  {
+   "id": "lot9_ia_022",
+   "category": "lot9_ia",
+   "questions": [
+    "comment creer une ia",
+    "je veux creer mon ia"
+   ],
+   "answer": "Créer une IA, ça commence simple : définir un usage précis (chatbot client ? visuels ?), collecter des données, choisir un outil existant plutôt que tout construire. La plupart des businesses ont juste besoin de bien utiliser l'IA, pas d'en construire une. Notre formation t'explique tout 🔥 tape 'formation'"
+  },
+  {
+   "id": "lot9_ia_023",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi une startup"
+   ],
+   "answer": "Une startup est une jeune entreprise conçue pour croître très vite, souvent sur un marché nouveau avec beaucoup d'incertitude. Elle teste, ajuste, et cherche un modèle qui peut se multiplier 🚀"
+  },
+  {
+   "id": "lot9_ia_024",
+   "category": "lot9_ia",
+   "questions": [
+    "c est quoi un chatgpt"
+   ],
+   "answer": "ChatGPT est un chatbot à grande échelle lancé par OpenAI en 2022, le produit qui a rendu l'IA générative célèbre dans le monde entier. Depuis, de nombreux concurrents existent, dont des modèles open source très performants 🌍"
+  },
+  {
+   "id": "lot9_tech_025",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un site web",
+    "a quoi sert un site web"
+   ],
+   "answer": "Un site web est ta vitrine sur internet : accessible 24h/24, il présente ton business, rassure tes clients et vend même quand tu dors. Aujourd'hui, un business sans site perd des clients chaque jour. Komara Agency en crée à partir de 150 000 GNF — tape 'site' 🚀"
+  },
+  {
+   "id": "lot9_tech_026",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un nom de domaine",
+    "acheter un domaine"
+   ],
+   "answer": "Un nom de domaine, c'est l'adresse de ton site sur internet, comme komara-agency.com. On l'achète à l'année auprès d'un registrar. Choisir un nom court et mémorable, c'est déjà du branding 🏷️"
+  },
+  {
+   "id": "lot9_tech_027",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi le dns"
+   ],
+   "answer": "Le DNS (domain name system) est l'annuaire d'internet : il traduit les noms de domaine en adresses techniques que les machines comprennent. Sans DNS, il faudrait retenir des chiffres au lieu de noms 📖"
+  },
+  {
+   "id": "lot9_tech_028",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un hebergement web",
+    "hebergeur"
+   ],
+   "answer": "Un hébergeur stocke ton site sur ses serveurs et le rend accessible en permanence. Un bon hébergement garantit rapidité, sécurité et disponibilité 24/7. On gère tout ça pour nos clients 👍"
+  },
+  {
+   "id": "lot9_tech_029",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi le seo",
+    "referencement naturel"
+   ],
+   "answer": "Le SEO (référencement naturel), c'est optimiser ton site pour apparaître en haut des résultats Google sans payer de publicité : mots-clés pertinents, contenu de qualité, site rapide. C'est un investissement qui rapporte des mois 🎯"
+  },
+  {
+   "id": "lot9_tech_030",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi wordpress",
+    "site avec wordpress"
+   ],
+   "answer": "WordPress est le système de gestion de contenu le plus utilisé au monde : près de 40% des sites. Pratique pour créer vite, mais un site sur mesure reste plus rapide et plus unique ✨"
+  },
+  {
+   "id": "lot9_tech_031",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un site e commerce",
+    "vendre en ligne"
+   ],
+   "answer": "Un site e-commerce permet de vendre en ligne 24h/24 : catalogue produits, panier, paiement, suivi des commandes. En Afrique, couplé au mobile money et WhatsApp, c'est une machine de vente 🛒 tape 'devis' pour ton projet"
+  },
+  {
+   "id": "lot9_tech_032",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi html"
+   ],
+   "answer": "HTML est le langage qui structure les pages web : titres, paragraphes, images, liens. C'est le squelette de tout site internet 🏗️"
+  },
+  {
+   "id": "lot9_tech_033",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi css"
+   ],
+   "answer": "CSS est le langage qui met en forme les pages web : couleurs, tailles, mise en page, animations. C'est lui qui rend un site beau et agréable 🎨"
+  },
+  {
+   "id": "lot9_tech_034",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi python",
+    "langage python"
+   ],
+   "answer": "Python est un langage de programmation simple et puissant, le plus utilisé pour l'IA, l'analyse de données et l'automatisation. Sa syntaxe claire le rend parfait pour débuter 🐍"
+  },
+  {
+   "id": "lot9_tech_035",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi javascript"
+   ],
+   "answer": "JavaScript est le langage qui rend les pages web interactives : boutons qui réagissent, contenus qui s'actualisent, animations. C'est lui qui donne vie aux sites ✨"
+  },
+  {
+   "id": "lot9_tech_036",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi une application mobile"
+   ],
+   "answer": "Une application mobile est un logiciel installé sur téléphone, conçu pour une tâche précise avec une expérience fluide. Site mobile-first ou app ? Tout dépend de ton usage et de ton budget 📱"
+  },
+  {
+   "id": "lot9_tech_037",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi une api"
+   ],
+   "answer": "Une API est une interface qui permet à deux logiciels de communiquer automatiquement. Exemple : ton site qui vérifie un paiement Orange Money en temps réel. C'est la plomberie invisible du digital 🔌"
+  },
+  {
+   "id": "lot9_tech_038",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi une base de donnees"
+   ],
+   "answer": "Une base de données organise et stocke l'information pour la retrouver vite : clients, commandes, produits. C'est la mémoire structurée de tout système digital 🗄️"
+  },
+  {
+   "id": "lot9_tech_039",
+   "category": "lot9_tech",
+   "questions": [
+    "sql ou nosql",
+    "c est quoi sql"
+   ],
+   "answer": "SQL structure les données en tableaux rigoureux, parfait pour la comptabilité ou les commandes. NoSQL est plus flexible pour des données variées à grande échelle. Le bon choix dépend de tes données 📐"
+  },
+  {
+   "id": "lot9_tech_040",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi la cybersecurite",
+    "securite informatique"
+   ],
+   "answer": "La cybersécurité protège tes systèmes et données contre les attaques : mots de passe forts, double authentification, sauvegardes, mises à jour. En business, la négliger coûte très cher 🔐"
+  },
+  {
+   "id": "lot9_tech_041",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un vpn"
+   ],
+   "answer": "Un VPN (virtual private network) chiffre ta connexion internet et masque ton adresse IP : tes données voyagent protégées, même sur un wifi public. Utile pour la sécurité et l'accès à certains services 🛡️"
+  },
+  {
+   "id": "lot9_tech_042",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi la blockchain"
+   ],
+   "answer": "La blockchain est un registre partagé où chaque transaction est enregistrée de façon inviolable, sans autorité centrale. C'est la technologie derrière Bitcoin et de nombreuses applications de traçabilité ⛓️"
+  },
+  {
+   "id": "lot9_tech_043",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi le bitcoin",
+    "cryptomonnaie c est quoi"
+   ],
+   "answer": "Bitcoin est la première cryptomonnaie : de l'argent numérique créé et échangé sur blockchain, sans banque. Volatile, à n'utiliser qu'avec prudence et jamais avec l'argent dont tu as besoin 💡"
+  },
+  {
+   "id": "lot9_tech_044",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un qr code"
+   ],
+   "answer": "Un QR code est un code visuel que le téléphone photographie pour ouvrir un lien, un menu, un paiement ou une carte de visite. C'est le pont entre le monde physique et le digital, gratuit et universel 📲"
+  },
+  {
+   "id": "lot9_tech_045",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi la 5g"
+   ],
+   "answer": "La 5G est la 5e génération de réseaux mobiles : plus rapide, plus de capacité, quasiment sans délai. Elle rend possibles la vidéo HD partout, les objets connectés et les paiements instantanés 📶"
+  },
+  {
+   "id": "lot9_tech_046",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi github"
+   ],
+   "answer": "GitHub est la plateforme où les développeurs stockent et partagent leur code, collaborent et suivent les versions. Presque tout le logiciel moderne y a un morceau d'histoire 🧑‍💻"
+  },
+  {
+   "id": "lot9_tech_047",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi linux"
+   ],
+   "answer": "Linux est un système d'exploitation open source qui fait tourner la majorité des serveurs internet, les Android et les box. Gratuit, stable et sécurisé 🐧"
+  },
+  {
+   "id": "lot9_tech_048",
+   "category": "lot9_tech",
+   "questions": [
+    "mot de passe solide comment",
+    "comment creer un bon mot de passe"
+   ],
+   "answer": "Un bon mot de passe : long (12+ caractères), unique par compte, mélange de lettres, chiffres et symboles. Et active la double authentification partout où c'est possible 🔐"
+  },
+  {
+   "id": "lot9_tech_049",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi la double authentification",
+    "2fa c est quoi"
+   ],
+   "answer": "La double authentification (2FA) ajoute une seconde vérification après le mot de passe : un code SMS ou une application. Même si ton mot de passe est volé, ton compte reste protégé ✅"
+  },
+  {
+   "id": "lot9_tech_050",
+   "category": "lot9_tech",
+   "questions": [
+    "c est quoi un e mail professionnel",
+    "adresse mail pro"
+   ],
+   "answer": "Un e-mail professionnel utilise ton propre domaine (contact@tonbusiness.com) : ça crédibilise ton business dès le premier message, contrairement à une adresse Gmail générique. On configure ça avec ton site ✉️"
+  },
+  {
+   "id": "lot9_tech_051",
+   "category": "lot9_tech",
+   "questions": [
+    "comment creer un logo efficace",
+    "c est quoi un bon logo"
+   ],
+   "answer": "Un bon logo est simple, mémorable, lisible en petit et représente ton identité. 2-3 couleurs max, une forme reconnaissable. C'est la base de toute marque sérieuse — c'est notre spécialité 🎨 tape 'logo'"
+  },
+  {
+   "id": "lot9_business_052",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un business plan",
+    "comment faire un business plan"
+   ],
+   "answer": "Un business plan décrit ton projet : ce que tu vends, pour qui, comment tu touches tes clients, tes coûts et tes revenus prévisionnels. C'est ta feuille de route et l'outil pour convaincre un partenaire ou un financeur 📋"
+  },
+  {
+   "id": "lot9_business_053",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un pitch"
+   ],
+   "answer": "Un pitch, c'est la présentation courte et percutante de ton projet : le problème, ta solution, le marché, pourquoi toi. En 30 secondes, tout doit être clair. Le secret : être concret 🎤"
+  },
+  {
+   "id": "lot9_business_054",
+   "category": "lot9_business",
+   "questions": [
+    "comment trouver des clients",
+    "comment attirer des clients"
+   ],
+   "answer": "Pour trouver des clients : définis précisément qui tu vises, sois là où ils sont (WhatsApp, réseaux sociaux, terrain), propose de la valeur avant de vendre, et garde le contact. Un bot qui répond 24/7 multiplie tes chances — c'est notre métier 😊 tape 'bot'"
+  },
+  {
+   "id": "lot9_business_055",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi la marge",
+    "marge beneficiaire"
+   ],
+   "answer": "La marge, c'est la différence entre ton prix de vente et ton coût de revient. Marge brute = prix - coût. Si ta marge est trop faible, plus tu vends, plus tu perds. Calcule-la avant tout prix sur devis 📊"
+  },
+  {
+   "id": "lot9_business_056",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le cash flow",
+    "tresorerie"
+   ],
+   "answer": "Le cash flow (trésorerie), c'est l'argent qui entre et sort réellement de ta caisse. Une entreprise peut être rentable sur le papier et mourir d'un manque de trésorerie. Surveille tes entrées et sorties chaque semaine 💵"
+  },
+  {
+   "id": "lot9_business_057",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le branding",
+    "notoriete de marque"
+   ],
+   "answer": "Le branding, c'est l'image que les gens gardent de ton business : nom, logo, couleurs, ton de voix, expérience client. Une marque forte se fait recommander et vend plus cher. C'est le cœur de notre travail 🇬🇳"
+  },
+  {
+   "id": "lot9_business_058",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi l identite visuelle"
+   ],
+   "answer": "L'identité visuelle regroupe tous les éléments graphiques de ta marque : logo, couleurs, typographies, style des visuels. Cohérente partout, elle rend ton business reconnaissable entre mille ✨"
+  },
+  {
+   "id": "lot9_business_059",
+   "category": "lot9_business",
+   "questions": [
+    "pourquoi utiliser whatsapp business",
+    "whatsapp pour vendre"
+   ],
+   "answer": "WhatsApp Business permet un profil pro, un catalogue produits, des réponses automatiques et des statistiques. En Afrique, c'est LE canal de vente : tes clients y sont déjà. Un bot connecté transforme WhatsApp en machine de vente 💬 tape 'bot'"
+  },
+  {
+   "id": "lot9_business_060",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le community management"
+   ],
+   "answer": "Le community management anime tes réseaux sociaux : créer du contenu, répondre aux commentaires, modérer, fédérer une communauté. La régularité compte plus que la perfection 📲"
+  },
+  {
+   "id": "lot9_business_061",
+   "category": "lot9_business",
+   "questions": [
+    "comment bien vendre sur tiktok",
+    "vendre avec les videos"
+   ],
+   "answer": "Sur TikTok, vendent les vidéos qui accrochent dans les 3 premières secondes : une question, une surprise, un avant/après. Montre le résultat, raconte une histoire, appelle à l'action. Et publie régulièrement 🎬"
+  },
+  {
+   "id": "lot9_business_062",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le growth hacking"
+   ],
+   "answer": "Le growth hacking, c'est trouver des moyens créatifs et peu coûteux de croître vite : tester, mesurer, garder ce qui marche, jeter le reste. L'état d'esprit startup 📈"
+  },
+  {
+   "id": "lot9_business_063",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un funnel de vente",
+    "tunnel de vente"
+   ],
+   "answer": "Un funnel de vente, c'est le parcours qui mène un inconnu jusqu'à l'achat : attirer (visibilité), intéresser (contenu), convaincre (preuve), vendre, puis fidéliser. Un bot automatise les étapes intermédiaires 24/7 🔄"
+  },
+  {
+   "id": "lot9_business_064",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un lead",
+    "generer des leads"
+   ],
+   "answer": "Un lead est un prospect intéressé par ton offre : il a laissé un contact ou a montré un intérêt. Générer des leads, c'est remplir le haut de ton tunnel. Un bot Telegram ou WhatsApp capture les leads même la nuit 😴 tape 'bot'"
+  },
+  {
+   "id": "lot9_business_065",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un crm"
+   ],
+   "answer": "Un CRM (customer relationship management) centralise toutes les infos de tes clients : coordonnées, historique, échanges, achats. Résultat : un suivi parfait et aucun client oublié 📇"
+  },
+  {
+   "id": "lot9_business_066",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le taux de conversion"
+   ],
+   "answer": "Le taux de conversion mesure le pourcentage de visiteurs qui font l'action voulue (achat, contact). 100 visiteurs et 3 achats = 3%. Améliorer ce taux double tes ventes sans dépenser plus 🎯"
+  },
+  {
+   "id": "lot9_business_067",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un persona client"
+   ],
+   "answer": "Un persona client est le portrait type de ton client idéal : âge, métier, besoins, habitudes, budget. Plus tu le connais, plus ton message touche juste 🎭"
+  },
+  {
+   "id": "lot9_business_068",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi l usp",
+    "avantage concurrentiel"
+   ],
+   "answer": "L'USP (unique selling proposition) est ce qui te rend unique face à la concurrence : plus rapide, plus proche, plus adapté. Sans USP, tu es réduit à disputer les prix 🏆"
+  },
+  {
+   "id": "lot9_business_069",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le swot",
+    "analyse swot"
+   ],
+   "answer": "Le SWOT analyse ton projet : Forces, Faiblesses, Opportunités, Menaces. Un exercice honnête de 30 minutes qui évite bien des erreurs 🧭"
+  },
+  {
+   "id": "lot9_business_070",
+   "category": "lot9_business",
+   "questions": [
+    "comment fixer ses prix",
+    "strategie de prix"
+   ],
+   "answer": "Fixer ses prix : calcule tes coûts d'abord, regarde le marché ensuite, positionne-toi selon ta valeur réelle. Vendre trop bas attire les mauvais clients et tue ta marge. Chez nous, chaque prix est calculé sur devis selon ton besoin précis 📊"
+  },
+  {
+   "id": "lot9_business_071",
+   "category": "lot9_business",
+   "questions": [
+    "comment negocier avec un client",
+    "art de negocier"
+   ],
+   "answer": "Pour négocier : écoute d'abord, comprends le vrai besoin, défends ta valeur sans t'excuser, et cherche un accord gagnant-gagnant. Un client obtient une remise, il doit obtenir quelque chose aussi 🤝"
+  },
+  {
+   "id": "lot9_business_072",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi la prospection commerciale"
+   ],
+   "answer": "La prospection cherche activement des clients : contacts directs, recommandations, réseaux sociaux, partenariats. La règle : un effort régulier vaut mieux qu'un sprint 🎯"
+  },
+  {
+   "id": "lot9_business_073",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi une franchise"
+   ],
+   "answer": "La franchise, c'est exploiter une marque existante en payant des droits : tu bénéficies de sa notoriété et de ses méthodes, contre une commission. Ça réduit le risque mais limite ta liberté 🏪"
+  },
+  {
+   "id": "lot9_business_074",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi la microfinance"
+   ],
+   "answer": "La microfinance fournit de petits crédits aux entrepreneurs qui n'ont pas accès aux banques classiques. Elle a financé des millions de petits commerces en Afrique. Attention toutefois aux taux réels 💳"
+  },
+  {
+   "id": "lot9_business_075",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le mobile money",
+    "orange money wave"
+   ],
+   "answer": "Le mobile money permet d'envoyer et recevoir de l'argent par téléphone sans banque : Orange Money, MTN MoMo, Wave. C'est devenu le rail de paiement principal en Afrique de l'Ouest 📲"
+  },
+  {
+   "id": "lot9_business_076",
+   "category": "lot9_business",
+   "questions": [
+    "comment accepter les paiements en ligne",
+    "paiement pour mon business"
+   ],
+   "answer": "Pour encaisser en ligne : mobile money pour le local, PayPal ou carte pour l'international, et un site avec paiement intégré pour automatiser. On installe tout ça sur les sites qu'on crée 💳 tape 'devis'"
+  },
+  {
+   "id": "lot9_business_077",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un partenaire commercial"
+   ],
+   "answer": "Un partenaire commercial complète ton offre ou te fait accéder à son réseau : il apporte, tu apportes. Choisis-le pour ses valeurs autant que pour son carnet d'adresses 🤝"
+  },
+  {
+   "id": "lot9_business_078",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le dropshipping"
+   ],
+   "answer": "Le dropshipping, c'est vendre sans stock : le fournisseur expédie directement au client. Marge confortable à créer, mais concurrence rude : ta force sera le branding et le service 📦"
+  },
+  {
+   "id": "lot9_business_079",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un influenceur marketing"
+   ],
+   "answer": "Le marketing d'influence fait la promotion par des créateurs suivis par ta cible. Choisis l'engagement réel plutôt que le nombre d'abonnés, et mesure les résultats 🎤"
+  },
+  {
+   "id": "lot9_business_080",
+   "category": "lot9_business",
+   "questions": [
+    "comment reussir son business en afrique"
+   ],
+   "answer": "Réussir en Afrique : résous un vrai problème du quotidien, commence petit mais professionnel, maîtrise ton image de marque, utilise le digital (WhatsApp, réseaux, site) et réinvestis les gains. Le marché est immense pour les sérieux 🚀"
+  },
+  {
+   "id": "lot9_business_081",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi un kpi",
+    "indicateur de performance"
+   ],
+   "answer": "Un KPI mesure ce qui compte vraiment dans ton activité : ventes, nouveaux clients, marge. En régle générale, suis-en 3 ou 4 maximum, mais chaque semaine 📏"
+  },
+  {
+   "id": "lot9_business_082",
+   "category": "lot9_business",
+   "questions": [
+    "c est quoi le b to b et b to c"
+   ],
+   "answer": "B2B (business to business), c'est vendre aux entreprises : cycles plus longs, paniers plus gros. B2C (business to consumer), c'est vendre aux particuliers : volume, réactivité, émotion 🏬"
+  },
+  {
+   "id": "lot9_business_083",
+   "category": "lot9_business",
+   "questions": [
+    "comment presenter son business en 30 secondes",
+    "elevator pitch"
+   ],
+   "answer": "En 30 secondes : « J'aide [qui] à [résultat] grâce à [ton offre] ». Simple, concret, mémorable. Exemple : Komara Agency aide les entreprises africaines à vendre plus grâce à l'IA 🇬🇳"
+  },
+  {
+   "id": "lot9_finance_084",
+   "category": "lot9_finance",
+   "questions": [
+    "comment faire un budget",
+    "gerer son budget"
+   ],
+   "answer": "Pour budgéter : note tes revenus, liste tes dépenses fixes puis variables, fixe une limite d'épargne automatique, et garde une marge pour les imprévus. Revois-le chaque mois 📒"
+  },
+  {
+   "id": "lot9_finance_085",
+   "category": "lot9_finance",
+   "questions": [
+    "pourquoi epargner",
+    "comment epargner"
+   ],
+   "answer": "Épargner te protège des imprévus et finance tes projets. Méthode simple : paie-toi d'abord, mets 10-20% de côté dès que l'argent entre, avant toute dépense 💰"
+  },
+  {
+   "id": "lot9_finance_086",
+   "category": "lot9_finance",
+   "questions": [
+    "comment investir son argent",
+    "ou investir"
+   ],
+   "answer": "Avant d'investir : couvre tes urgences (épargne de sécurité), rembourse tes dettes chères, puis diversifie : ton business, de l'immobilier si possible, des placements sûrs. Méfiance envers tout ce qui promet des gains rapides ⚠️"
+  },
+  {
+   "id": "lot9_finance_087",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi la diversification"
+   ],
+   "answer": "La diversification, c'est ne pas mettre tous ses œufs dans le même panier : répartir son argent entre plusieurs placements pour qu'un échec ne t'emporte pas 🥚"
+  },
+  {
+   "id": "lot9_finance_088",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi l interet compose",
+    "interets composes"
+   ],
+   "answer": "L'intérêt composé, c'est quand tes gains génèrent eux-mêmes des gains. 100 000 à 10% par an donnent plus que le double en 10 ans, sans rien faire. Le temps est ton meilleur allié ⏳"
+  },
+  {
+   "id": "lot9_finance_089",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi l inflation"
+   ],
+   "answer": "L'inflation est la hausse générale des prix : ton argent perd du pouvoir d'achat chaque année. Conséquence : garder tout son argent sans rien faire, c'est en perdre. Il faut le faire travailler 📈"
+  },
+  {
+   "id": "lot9_finance_090",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi un credit",
+    "prendre un credit"
+   ],
+   "answer": "Un crédit te prête de l'argent contre remboursement avec intérêts. Règle de survie : n'emprunte que pour investir (pas pour conssumer), vérifie le taux réel total et tes capacités de remboursement 🏦"
+  },
+  {
+   "id": "lot9_finance_091",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi le pib"
+   ],
+   "answer": "Le PIB (produit intérieur brut) mesure la richesse totale produée par un pays en un an. Il indique la taille de l'économie et sa croissance 🌏"
+  },
+  {
+   "id": "lot9_finance_092",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi une fintech"
+   ],
+   "answer": "Une fintech utilise la technologie pour améliorer les services financiers : paiements mobiles, transferts, crédits rapides. L'Afrique est un des laboratoires mondiaux de la fintech 📲"
+  },
+  {
+   "id": "lot9_finance_093",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi un releve bancaire",
+    "suivre ses comptes"
+   ],
+   "answer": "Un relevé bancaire liste les mouvements de ton compte : entrées, sorties, dates, frais. Le vérifier chaque mois t'évite les prélèvements injustifiés 🔎"
+  },
+  {
+   "id": "lot9_finance_094",
+   "category": "lot9_finance",
+   "questions": [
+    "comment envoyer de l argent a l etranger",
+    "transfert d argent"
+   ],
+   "answer": "Pour l'international : Western Union, MoneyGram, Ria, ou mieux, les services en ligne et cryptomonnaies stables selon les pays. Compare toujours les frais ET le taux de change, c'est là que se cachent les coûts 💸"
+  },
+  {
+   "id": "lot9_finance_095",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi la comptabilite"
+   ],
+   "answer": "La comptabilité enregistre toutes les opérations de ton business : ventes, achats, charges. Indispensable pour connaître tes vrais chiffres, payer ce qu'il faut et convaincre un financeur 🧾"
+  },
+  {
+   "id": "lot9_finance_096",
+   "category": "lot9_finance",
+   "questions": [
+    "c est quoi le seuil de rentabilite"
+   ],
+   "answer": "Le seuil de rentabilité, c'est le chiffre d'affaires minimum où tu commences à gagner de l'argent : tous tes coûts couverts. Calcule-le avant de te lancer ⚖️"
+  },
+  {
+   "id": "lot9_finance_097",
+   "category": "lot9_finance",
+   "questions": [
+    "comment calculer un benefice"
+   ],
+   "answer": "Bénéfice = chiffre d'affaires (ce que tu vends) - toutes tes charges (ce que ça te coûte). Positif, tu gagnes. Négatif, tu perds. Simple sur le papier, mais tout y doit figurer 🧮"
+  },
+  {
+   "id": "lot9_science_098",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi la gravite",
+    "pourquoi on tombe"
+   ],
+   "answer": "La gravité est la force qui attire les objets entre eux : la Terre nous retient au sol, la Lune tourne autour de nous. Elle diminue avec la distance, mais ne s'annule jamais 🍎"
+  },
+  {
+   "id": "lot9_science_099",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi l evolution",
+    "darwin c est quoi"
+   ],
+   "answer": "L'évolution explique comment les espèces changent lentement : les individus les mieux adaptés survivent et se reproduisent davantage. C'est Darwin qui a formalisé cette sélection naturelle 🐒"
+  },
+  {
+   "id": "lot9_science_100",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi l adn"
+   ],
+   "answer": "L'ADN est la molécule qui porte le plan de construction de tout être vivant : couleur des yeux, taille, fonctions du corps. Unique à chacun, sauf pour les vrais jumeaux 🧬"
+  },
+  {
+   "id": "lot9_science_101",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi une cellule"
+   ],
+   "answer": "La cellule est l'unité de base de la vie : ton corps en contient environ 30 000 milliards. Chacune est une mini-usine avec un rôle précis 🔬"
+  },
+  {
+   "id": "lot9_science_102",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi la photosynthese"
+   ],
+   "answer": "La photosynthèse permet aux plantes de transformer la lumière du soleil, l'eau et le CO2 en énergie et en oxygène. C'est elle qui nous nourrit et remplit nos poumons 🌱"
+  },
+  {
+   "id": "lot9_science_103",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi l energie solaire",
+    "panneaux solaires"
+   ],
+   "answer": "L'énergie solaire capte la lumière du soleil via des panneaux photovoltaïques et la transforme en électricité. En Afrique, c'est une des solutions majeures : le soleil ne manque pas ☀️"
+  },
+  {
+   "id": "lot9_science_104",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi l energie eolienne"
+   ],
+   "answer": "L'énergie éolienne utilise la force du vent pour faire tourner des turbines et produire de l'électricité, propre et renouvelable. Idéale en zone côtière 🌬️"
+  },
+  {
+   "id": "lot9_science_105",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi l electricite"
+   ],
+   "answer": "L'électricité est un flux d'électrons qui circule dans un conducteur. Créée par des générateurs, transportée par des lignes, elle alimente tout, de l'ampoule au data center ⚡"
+  },
+  {
+   "id": "lot9_science_106",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi un atome"
+   ],
+   "answer": "L'atome est la brique de base de la matière : un noyau (protons et neutrons) entouré d'électrons. Tout ce que tu touches est fait d'atomes 🔬"
+  },
+  {
+   "id": "lot9_science_107",
+   "category": "lot9_science",
+   "questions": [
+    "pourquoi l eau est h2o",
+    "formule de l eau"
+   ],
+   "answer": "L'eau, H2O, c'est 2 atomes d'hydrogène pour 1 d'oxygène. Indispensable à la vie : environ 60% de ton corps en est fait 💧"
+  },
+  {
+   "id": "lot9_science_108",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi le big bang"
+   ],
+   "answer": "Le Big Bang est le début de notre univers il y a environ 13,8 milliards d'années : tout l'espace, la matière et l'énergie étaient concentrés en un point ultra dense qui s'est brusquement étendu 🌌"
+  },
+  {
+   "id": "lot9_science_109",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi un trou noir"
+   ],
+   "answer": "Un trou noir est une zone où la gravité est si forte que rien ne s'échappe, pas même la lumière. Formé par l'effondrement d'étoiles massives. Les images réelles prises par télescopes existent depuis 2019 🕳️"
+  },
+  {
+   "id": "lot9_science_110",
+   "category": "lot9_science",
+   "questions": [
+    "pourquoi la lune change de forme",
+    "phases de la lune"
+   ],
+   "answer": "La Lune ne change pas de forme : c'est notre point de vue qui change. Elle est éclairée en permanence par le soleil, et nous voyons plus ou moins sa partie éclairée selon sa position 🌙"
+  },
+  {
+   "id": "lot9_science_111",
+   "category": "lot9_science",
+   "questions": [
+    "pourquoi il fait chaud le jour et froid la nuit"
+   ],
+   "answer": "Le jour, le soleil chauffe le sol et l'air. La nuit, sans soleil, la chaleur s'échappe vers le ciel, surtout quand il n'y a pas de nuages pour la retenir 🌡️"
+  },
+  {
+   "id": "lot9_science_112",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi un satellite"
+   ],
+   "answer": "Un satellite est un objet en orbite autour d'une planète. Naturel comme la Lune, ou artificiel : télécommunications, GPS, météo, observation de la Terre 🛰️"
+  },
+  {
+   "id": "lot9_science_113",
+   "category": "lot9_science",
+   "questions": [
+    "comment fonctionne le gps"
+   ],
+   "answer": "Le GPS utilise une constellation de satellites qui émettent leur position et l'heure en permanence. Ton téléphone compare les signaux de plusieurs satellites et calcule ta position exacte. C'est gratuit 📍"
+  },
+  {
+   "id": "lot9_science_114",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi le changement climatique",
+    "rechauffement climatique"
+   ],
+   "answer": "Le changement climatique est le réchauffement de la planète causé par nos émissions de gaz à effet de serre (CO2 surtout). Conséquences : sécheresses, inondations, saisons perturbées. Chaque action compte 🌍"
+  },
+  {
+   "id": "lot9_science_115",
+   "category": "lot9_science",
+   "questions": [
+    "pourquoi recycler",
+    "c est quoi le recyclage"
+   ],
+   "answer": "Recycler transforme les déchets en nouvelles matières premières : moins de ressources extraites, moins de pollution. Papier, plastique, métal, verre ont chacun leur filière ♻️"
+  },
+  {
+   "id": "lot9_science_116",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi une eclipse"
+   ],
+   "answer": "Une éclipse solaire arrive quand la Lune passe devant le soleil ; une éclipse lunaire quand la Terre s'intercale entre le soleil et la Lune. Toujours observer une éclipse solaire avec des protections spéciales 🌒"
+  },
+  {
+   "id": "lot9_science_117",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi la foudre",
+    "pourquoi le tonnerre"
+   ],
+   "answer": "La foudre est une décharge électrique géante entre les nuages et le sol ; le tonnerre est le bruit produit par l'air brutalement chauffé à 30 000°C qui se dilue. On voit l'éclair avant d'entendre le tonnerre car la lumière va plus vite ⚡"
+  },
+  {
+   "id": "lot9_science_118",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi la theorie de la relativite"
+   ],
+   "answer": "La relativité d'Einstein montre que le temps et l'espace ne sont pas absolus : le temps ralentit à grande vitesse ou près d'une masse énorme. Sans elle, le GPS serait faux de plusieurs kilomètres 🧠"
+  },
+  {
+   "id": "lot9_science_119",
+   "category": "lot9_science",
+   "questions": [
+    "combien d os dans le corps humain"
+   ],
+   "answer": "Le corps humain adulte compte 206 os. Les bébés naissent avec environ 270, dont beaucoup fusionnent en grandissant 🦴"
+  },
+  {
+   "id": "lot9_science_120",
+   "category": "lot9_science",
+   "questions": [
+    "pourquoi on dort",
+    "a quoi sert le sommeil"
+   ],
+   "answer": "Le sommeil répare le corps, consolide la mémoire et nettoie le cerveau. Un adulte a besoin de 7 à 9 heures. Dormir est aussi important que manger 🛌"
+  },
+  {
+   "id": "lot9_science_121",
+   "category": "lot9_science",
+   "questions": [
+    "c est quoi un systeme immunitaire"
+   ],
+   "answer": "Le système immunitaire est l'armée du corps : globules blancs, anticorps, barrières comme la peau. Il repère et détruit les intrus. Vaccins et bonne hygiène l'entraînent 🛡️"
+  },
+  {
+   "id": "lot9_geo_122",
+   "category": "lot9_geo",
+   "questions": [
+    "quel est le plus grand pays du monde",
+    "plus grand pays"
+   ],
+   "answer": "Le plus grand pays du monde est la Russie, environ 17 millions de km², suivie du Canada, des États-Unis, de la Chine et du Brésil 🇷🇺"
+  },
+  {
+   "id": "lot9_geo_123",
+   "category": "lot9_geo",
+   "questions": [
+    "c est quoi le sahara",
+    "desert du sahara"
+   ],
+   "answer": "Le Sahara est le plus grand désert chaud du monde : environ 9 millions de km², du Maroc à la mer Rouge. Il abrite des villes millénaires comme Tombouctou et s'étend sur 11 pays 🏜️"
+  },
+  {
+   "id": "lot9_geo_124",
+   "category": "lot9_geo",
+   "questions": [
+    "quelle est la plus haute montagne du monde",
+    "mont everest"
+   ],
+   "answer": "L'Everest, dans l'Himalaya, est le plus haut sommet du monde : 8 849 mètres. Les Guinéens le connaissent bien : le Mont Nimba, point culminant de la Guinée, culmine à 1 752 m 🏔️"
+  },
+  {
+   "id": "lot9_geo_125",
+   "category": "lot9_geo",
+   "questions": [
+    "combien d ocean dans le monde",
+    "les oceans"
+   ],
+   "answer": "Il y a 5 océans : Pacifique (le plus grand), Atlantique, Indien, Austral et Arctique. Ils couvrent plus de 70% de la planète 🌊"
+  },
+  {
+   "id": "lot9_geo_126",
+   "category": "lot9_geo",
+   "questions": [
+    "combien de continents",
+    "les continents"
+   ],
+   "answer": "La Terre compte 7 continents : Afrique, Amérique du Nord, Amérique du Sud, Antarctique, Asie, Europe et Océanie. L'Afrique est la seconde par la population et la première par sa jeunesse 🌍"
+  },
+  {
+   "id": "lot9_geo_127",
+   "category": "lot9_geo",
+   "questions": [
+    "quelle est la capitale de la guinee",
+    "capitale guinee"
+   ],
+   "answer": "La capitale de la Guinée est Conakry, la plus grande ville du pays, située sur la côte atlantique. C'est là que bat le cœur économique du pays 🇬🇳"
+  },
+  {
+   "id": "lot9_geo_128",
+   "category": "lot9_geo",
+   "questions": [
+    "c est quoi la cedeao",
+    "communaute economique afrique de l ouest"
+   ],
+   "answer": "La CEDEAO regroupe 15 pays d'Afrique de l'Ouest pour favoriser les échanges, la libre circulation et la paix. Avec l'UEMOA (monnaie CFA pour certains), c'est un pilier de l'intégration régionale 🤝"
+  },
+  {
+   "id": "lot9_geo_129",
+   "category": "lot9_geo",
+   "questions": [
+    "combien de personnes en afrique",
+    "population africaine"
+   ],
+   "answer": "L'Afrique compte environ 1,4 milliard d'habitants, le continent le plus jeune du monde : plus de 60% a moins de 25 ans. C'est le plus grand réservoir de talents et de consommateurs des décennies à venir 🌍"
+  },
+  {
+   "id": "lot9_geo_130",
+   "category": "lot9_geo",
+   "questions": [
+    "c est quoi l afrique de l ouest"
+   ],
+   "answer": "L'Afrique de l'Ouest regroupe 17 pays dont la Guinée, le Sénégal, le Mali, la Côte d'Ivoire, le Nigeria et le Ghana. Plus de 400 millions d'habitants, des marchés en pleine croissance et des hubs comme Lagos, Abidjan et Dakar 🌍"
+  },
+  {
+   "id": "lot9_geo_131",
+   "category": "lot9_geo",
+   "questions": [
+    "quelle est la langue la plus parle au monde"
+   ],
+   "answer": "Le mandarin est la langue la plus parlée en locuteurs natifs ; l'anglais est la plus répandue au total et la langue des affaires. Le français, lui, est en forte croissance en Afrique 🗣️"
+  },
+  {
+   "id": "lot9_geo_132",
+   "category": "lot9_geo",
+   "questions": [
+    "quel est le plus grand pays d afrique"
+   ],
+   "answer": "L'Algérie est le plus grand pays d'Afrique par la superficie ; le Nigeria est le plus peuplé avec plus de 220 millions d'habitants 🌍"
+  },
+  {
+   "id": "lot9_geo_133",
+   "category": "lot9_geo",
+   "questions": [
+    "c est quoi l union africaine"
+   ],
+   "answer": "L'Union africaine regroupe les 55 États du continent pour coordonner la paix, l'économie et l'intégration, avec des projets comme la zone de libre-échange continentale (ZLECAf) 🤝"
+  },
+  {
+   "id": "lot9_geo_134",
+   "category": "lot9_geo",
+   "questions": [
+    "pourquoi l afrique est riche",
+    "richesses de l afrique"
+   ],
+   "answer": "L'Afrique possède d'immenses richesses : minerais (bauxite, or, lithium), terres agricoles, pétrole, la plus grande réserve de jeunesse au monde, et des marchés en création permanente. Le défi : transformer localement et garder la valeur sur place 💎"
+  },
+  {
+   "id": "lot9_culture_135",
+   "category": "lot9_culture",
+   "questions": [
+    "comment apprendre l anglais",
+    "ameliorer son anglais"
+   ],
+   "answer": "Pour l'anglais : 15 minutes par jour valent mieux que 3 heures le dimanche. Regarde des séries en VO avec sous-titres, apprends des phrases entières plutôt que des mots isolés, et parle sans peur de faire des erreurs 🇬🇧"
+  },
+  {
+   "id": "lot9_culture_136",
+   "category": "lot9_culture",
+   "questions": [
+    "comment apprendre plus vite",
+    "technique d apprentissage"
+   ],
+   "answer": "Pour apprendre vite : espace tes révisions (répétition espacée), explique ce que tu apprends à quelqu'un, pratique dans le réel le plus tôt possible. La théorie sans pratique s'évapore 📚"
+  },
+  {
+   "id": "lot9_culture_137",
+   "category": "lot9_culture",
+   "questions": [
+    "pourquoi lire des livres",
+    "benefices de la lecture"
+   ],
+   "answer": "Lire élargit le vocabulaire, améliore la concentration, réduit le stress et fait voyager sans bouger. 15 minutes par jour, environ 15 livres par an 📖"
+  },
+  {
+   "id": "lot9_culture_138",
+   "category": "lot9_culture",
+   "questions": [
+    "pourquoi faire du sport",
+    "benefices du sport"
+   ],
+   "answer": "Le sport renforce le cœur, entretient les muscles, réduit le stress et améliore le sommeil. 30 minutes de marche rapide par jour changent déjà tout 🏃"
+  },
+  {
+   "id": "lot9_culture_139",
+   "category": "lot9_culture",
+   "questions": [
+    "combien d eau boire par jour"
+   ],
+   "answer": "Environ 1,5 à 2 litres d'eau par jour pour un adulte, plus s'il fait chaud ou que tu es actif. Ton corps est fait à 60% d'eau : chaque fonction en dépend 💧"
+  },
+  {
+   "id": "lot9_culture_140",
+   "category": "lot9_culture",
+   "questions": [
+    "comment bien dormir",
+    "ameliorer son sommeil"
+   ],
+   "answer": "Pour bien dormir : heures régulières, écrans coupés 30 minutes avant, chambre sombre et fraîche, pas de gros repas tardifs, café avant 15h. Le sommeil se prépare le jour 😴"
+  },
+  {
+   "id": "lot9_culture_141",
+   "category": "lot9_culture",
+   "questions": [
+    "comment economiser son telephone",
+    "batterie qui dure"
+   ],
+   "answer": "Pour économiser la batterie : baisse la luminosité, ferme les apps en arrière-plan, désactive le Bluetooth et le GPS quand inutiles, mets à jour tes apps et évite la chaleur ☀️"
+  },
+  {
+   "id": "lot9_culture_142",
+   "category": "lot9_culture",
+   "questions": [
+    "comment proteger son compte whatsapp",
+    "securiser whatsapp"
+   ],
+   "answer": "Pour sécuriser WhatsApp : active la double authentification, ne partage jamais tes codes, méfie-toi des liens inconnus, et jamais de codes reçus par téléphone même si on te promet de l'argent 🔐"
+  },
+  {
+   "id": "lot9_culture_143",
+   "category": "lot9_culture",
+   "questions": [
+    "comment reconnaitre une arnaque en ligne",
+    "arnaque internet"
+   ],
+   "answer": "Signes d'arnaque : promesses de gains rapides, urgence artificielle, paiement par carte cadeau, fausses célébrités, fausses loteries. Règle d'or : si c'est trop beau pour être vrai, c'est faux ⚠️"
+  },
+  {
+   "id": "lot9_culture_144",
+   "category": "lot9_culture",
+   "questions": [
+    "comment faire un cv",
+    "rediger un cv"
+   ],
+   "answer": "Un bon CV : 1 page, claire et honnête, expériences les plus récentes d'abord, résultats concrets avec des chiffres, sans fautes. Adapte-le à chaque offre et fais-le relire 📄"
+  },
+  {
+   "id": "lot9_culture_145",
+   "category": "lot9_culture",
+   "questions": [
+    "comment reussir un entretien d embauche"
+   ],
+   "answer": "Pour un entretien : renseigne-toi sur l'entreprise, prépare tes exemples concrets (méthode STAR), arrive à l'heure, habille proprement, pose de vraies questions, puis relance poliment après ✅"
+  },
+  {
+   "id": "lot9_culture_146",
+   "category": "lot9_culture",
+   "questions": [
+    "comment reussir ses etudes",
+    "etudier efficacement"
+   ],
+   "answer": "Pour réussir tes études : un endroit calme, un planning réaliste, des résumés écrits à la main, des tests réguliers, du sommeil. Le secret n'est pas la durée mais la constance 🎓"
+  },
+  {
+   "id": "lot9_culture_147",
+   "category": "lot9_culture",
+   "questions": [
+    "c est quoi la pierre de touche du succes",
+    "secret du succes"
+   ],
+   "answer": "Le vrai secret du succès n'existe pas : c'est un mélange de clarté d'objectif, de constance, d'adaptation et de relations sincères. Ceux qui durent travaillent quand les autres regardent 🌟"
+  },
+  {
+   "id": "lot9_culture_148",
+   "category": "lot9_culture",
+   "questions": [
+    "comment gagner de l argent en ligne",
+    "argent sur internet"
+   ],
+   "answer": "Gagner en ligne honnêtement : vendre un savoir-faire (design, rédaction, code), des produits (boutique, dropshipping), ou de la formation. Méfie-toi de quiconque promet de l'argent sans travail. Nous on t'apprends à utiliser l'IA pour ça 🔥 tape 'formation'"
+  },
+  {
+   "id": "lot9_culture_149",
+   "category": "lot9_culture",
+   "questions": [
+    "c est quoi uneCompetence digitale",
+    "competences numeriques"
+   ],
+   "answer": "Les compétences digitales les plus demandées : maîtrise des réseaux sociaux, création de contenu, IA et prompt engineering, gestion de site, analyse de données, automatisation. Toutes s'apprennent, et on forme là-dessus 🇬🇳 tape 'formation'"
+  },
+  {
+   "id": "lot9_culture_150",
+   "category": "lot9_culture",
+   "questions": [
+    "comment rester motive",
+    "trouver la motivation"
+   ],
+   "answer": "La motivation suit l'action, pas l'inverse : commence petit, fixe-toi des objectifs clairs et mesurables, entoure-toi de gens sérieux, célèbre tes petites victoires. La discipline prend le relais quand l'envui passe 💪"
+  },
+  {
+   "id": "lot9_culture_151",
+   "category": "lot9_culture",
+   "questions": [
+    "pourquoi voyager",
+    "benefices du voyage"
+   ],
+   "answer": "Voyager ouvre l'esprit, enseigne l'adaptation, crée des souvenirs et des rencontres uniques. Voyager intelligemment : préparer un budget, la météo, les formalités, et garder les copies des documents 🌍"
+  },
+  {
+   "id": "lot9_culture_152",
+   "category": "lot9_culture",
+   "questions": [
+    "c est quoi la culture generale"
+   ],
+   "answer": "La culture générale est la somme de connaissances sur le monde : histoire, science, arts, actualité. Elle se construit en lisant, en écoutant, en discutant. Un esprit curieux est un atout dans tout business 🧠"
+  },
+  {
+   "id": "lot9_culture_153",
+   "category": "lot9_culture",
+   "questions": [
+    "comment gerer le stress",
+    "reduire le stress"
+   ],
+   "answer": "Pour gérer le stress : identifie les causes, respire profondément, bouge ton corps, dors assez, parle-en, et apprends à dire non. Le stress non géré détruit la santé et le business 🧘"
   }
- ],
- "conversations": [
-  {
-   "user": "Bonjour, je découvre Komara",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Salut, vous êtes disponibles ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Bonsoir, je voudrais un renseignement",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Salam, j’ai une question",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Hello, que faites-vous ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Coucou, je peux vous parler d’un projet ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Yo, vous travaillez avec les entreprises ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Bonjour bro, tu peux m’aider ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Ça roule chez Komara ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Je suis là, on peut commencer ?",
-   "assistant": "Bonjour, bienvenue chez Komara Agency. Dites-moi votre activité et ce que vous souhaitez améliorer, et je vous orienterai.",
-   "theme": "accueil"
-  },
-  {
-   "user": "Je cherche un service pour mon entreprise",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je ne sais pas quelle offre choisir",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "J’ai besoin d’une solution numérique",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je veux moderniser mon activité",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je voudrais automatiser une partie de mon travail",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je cherche quelqu’un pour mon projet digital",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Pouvez-vous m’aider à choisir ?",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Mon entreprise a besoin de visibilité",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je veux mieux gérer mes clients",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je veux développer ma présence en ligne",
-   "assistant": "Nous pouvons commencer par votre objectif. Voulez-vous surtout vendre, répondre aux clients, automatiser, créer un site ou améliorer votre image ?",
-   "theme": "services"
-  },
-  {
-   "user": "Je voudrais un bot pour mes clients",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Mon équipe reçoit trop de questions",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Je veux répondre même la nuit",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Puis-je vendre avec un chatbot ?",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Je veux un assistant pour WhatsApp",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "J’ai besoin d’un bot Telegram",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Je veux qualifier mes prospects automatiquement",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Mon bot doit parler comme mon entreprise",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Je veux transférer les cas importants à un humain",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Un bot peut-il présenter mes services ?",
-   "assistant": "Oui, nous pouvons étudier un bot adapté à votre activité. Indiquez le canal, les questions fréquentes et l’action attendue après chaque demande.",
-   "theme": "bots"
-  },
-  {
-   "user": "Je veux créer un site simple",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "J’ai besoin d’une landing page",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je veux un site pour présenter mes services",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Mon ancien site doit être amélioré",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je veux un formulaire de prospects",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Pouvez-vous créer une page de vente ?",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je veux être visible en ligne",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je cherche un site pour une boutique",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je veux une interface web pour mon équipe",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "J’ai une idée de plateforme",
-   "assistant": "Nous pouvons définir le type de site, ses pages, son objectif et les fonctionnalités nécessaires avant de préparer une estimation.",
-   "theme": "web"
-  },
-  {
-   "user": "Je veux un logo moderne",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "J’ai besoin d’un flyer",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Je voudrais une identité visuelle",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Mes réseaux sociaux manquent de cohérence",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Je veux une affiche pour mon offre",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Pouvez-vous créer mes cartes de visite ?",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Je cherche des visuels professionnels",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Je veux refaire mon branding",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "J’ai besoin de contenus pour publier",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Je veux une image de marque plus sérieuse",
-   "assistant": "Nous pouvons vous accompagner avec du design graphique, une identité visuelle et des contenus adaptés à vos supports et à votre public.",
-   "theme": "creation"
-  },
-  {
-   "user": "Quel budget prévoir pour un bot ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Combien coûte un site vitrine ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Votre prix comprend quoi ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Je trouve le tarif élevé",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Je dois respecter un petit budget",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Pouvez-vous faire une estimation ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Y a-t-il un paiement par étapes ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Je compare plusieurs prestataires",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Comment éviter les frais imprévus ?",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Je veux commencer avec une petite offre",
-   "assistant": "Le prix dépend du périmètre. Nous pouvons commencer par une version prioritaire et détailler les livrables, les échéances et les conditions dans un devis.",
-   "theme": "tarif"
-  },
-  {
-   "user": "Je veux lancer mon projet",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Quelles informations vous envoyer ?",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je peux vous expliquer mon idée ?",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Comment se passe la première discussion ?",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je veux demander un devis",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je suis prêt à commencer",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je dois préparer un cahier des charges ?",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Pouvez-vous m’aider à cadrer mon besoin ?",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je ne sais pas par où commencer",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Je veux parler à quelqu’un",
-   "assistant": "Envoyez votre activité, votre objectif, le service souhaité, votre délai et votre budget indicatif. Nous clarifierons ensuite le périmètre.",
-   "theme": "commande"
-  },
-  {
-   "user": "Merci pour les informations",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "D’accord, je vais réfléchir",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Je dois en parler à mon associé",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Je veux plus de détails",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Pouvez-vous expliquer simplement ?",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Je n’ai pas compris la différence",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Je veux voir des exemples",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Je reviendrai plus tard",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Parfait, continuons",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Cela m’intéresse",
-   "assistant": "Avec plaisir. Je peux préciser le service, le prix, le processus ou vous aider à formuler votre besoin avant la prochaine étape.",
-   "theme": "suivi"
-  },
-  {
-   "user": "Quels paiements acceptez-vous ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Puis-je payer par Orange Money ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Le paiement se fait quand ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Je préfère payer par PayPal",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Est-ce possible par virement ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Faut-il payer tout de suite ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Puis-je payer par tranche ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Quelles sont les conditions ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Comment sécuriser le paiement ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Le solde se paie quand ?",
-   "assistant": "Les moyens et échéances sont confirmés dans le devis. Un acompte et un solde peuvent être prévus selon la nature du projet.",
-   "theme": "paiement"
-  },
-  {
-   "user": "Donnez-moi votre WhatsApp",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Je veux parler à Komara Agency 🇬🇳",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Comment vous joindre ?",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Puis-je envoyer un message privé ?",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Je préfère un conseiller humain",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Quel est votre numéro ?",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Je veux prendre rendez-vous",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Je peux vous appeler ?",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Où envoyer mon besoin ?",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  },
-  {
-   "user": "Je veux un contact direct",
-   "assistant": "Vous pouvez écrire au +212 701 986 219 sur WhatsApp ou décrire votre besoin ici pour être orienté.",
-   "theme": "contact"
-  }
- ],
- "brain_version": "3.3"
+ ]
 }

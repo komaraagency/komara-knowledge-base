@@ -444,7 +444,11 @@ def trouver_meilleure_reponse(
     else:
         pick = random.choice(pool)
         if pick == _LAST_ANSWER:
-            pick = random.choice([a for a in pool if a != _LAST_ANSWER])
+            # on évite de répéter la phrase d'avant, SAUF si le pool
+            # ne contient qu'elle (entrées en double au texte identique)
+            others = [a for a in pool if a != _LAST_ANSWER]
+            if others:
+                pick = random.choice(others)
     _LAST_ANSWER = pick
     return pick
 
