@@ -476,10 +476,23 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    if detected_lang != DEFAULT_LANGUAGE:
-        fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
+    # Balayage complet : la réponse peut exister dans une autre langue
+    # (question FR dont la fiche n'existe qu'en EN, mélange de langues...)
+    # Recherche 100% locale = quelques millisecondes par base : le délai
+    # reste très inférieur à 3 secondes.
+    tried = {detected_lang}
+    fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
+    result = trouver_meilleure_reponse(
+        message, fallback["kb"], fallback["faq"], fallback["dialogues"]
+    )
+    if result:
+        return result
+    tried.add(DEFAULT_LANGUAGE)
+    for lang_code, res in LANG_RESOURCES.items():
+        if lang_code in tried:
+            continue
         result = trouver_meilleure_reponse(
-            message, fallback["kb"], fallback["faq"], fallback["dialogues"]
+            message, res["kb"], res["faq"], res["dialogues"]
         )
         if result:
             return result
@@ -801,10 +814,13 @@ def handle_message(message: telebot.types.Message) -> None:
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
     _LAST_LANG[chat_id] = detected_lang
+    # 💬 Indicateur « tape… » affiché AVANT toute réponse, dans 100% des cas
+    # (commandes, boutons, portfolio, KB, images) — le client voit toujours
+    # que le bot est en train de lui répondre.
+    safe_typing(chat_id)
     # Livraison : "livraison <adresse>" → OpenStreetMap (gratuit, sans clé)
     delivery_addr = osm_maps.is_delivery_intent(user_text)
     if delivery_addr:
-        safe_typing(chat_id)
         osm_maps.handle_text(bot, chat_id, delivery_addr, detected_lang)
         return
 

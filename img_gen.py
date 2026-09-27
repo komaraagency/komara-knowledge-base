@@ -87,8 +87,20 @@ def _prune_images() -> None:
         pass
 
 
+def _typing_keeper(bot, chat_id: int, stop: "threading.Event") -> None:
+    """Garde l'indicateur « tape… » vivant pendant une génération longue
+    (l'indicateur Telegram expire au bout de ~5 secondes)."""
+    while not stop.wait(4.0):
+        try:
+            bot.send_chat_action(chat_id, "typing")
+        except Exception:
+            pass
+
+
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
     """Thread worker : télécharge l'image puis l'envoie."""
+    stop = threading.Event()
+    threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
     try:
         url = POLLINATIONS.format(p=quote(prompt), s=random.randint(1, 10**6))
         resp = requests.get(url, timeout=TIMEOUT)
@@ -107,6 +119,8 @@ def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
             bot.send_message(chat_id, _m(lang, "error"))
         except Exception:
             pass
+    finally:
+        stop.set()
 
 
 def handle_image_request(bot, chat_id: int, text: str, lang: str) -> bool:

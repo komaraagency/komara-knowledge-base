@@ -229,6 +229,7 @@ def _score_bidirectional(
     idf: dict[str, float],
     msg_intent: str | None,
     kw_intent: str | None,
+    kw_tokens: set[str] | None = None,
 ) -> float:
     """Score sémantique bidirectionnel avec IDF + boost d'intention + fuzzy matching.
 
@@ -239,7 +240,8 @@ def _score_bidirectional(
     - FUZZY MATCHING: tolérance aux fautes d'orthographe
       → "bonjor" matche "bonjour", "whatsap" matche "whatsapp"
     """
-    kw_tokens = _tokenize(keyword)
+    if kw_tokens is None:
+        kw_tokens = _tokenize(keyword)
     if not kw_tokens or not msg_tokens:
         return 0.0
 
@@ -302,6 +304,54 @@ def _score_bidirectional(
     return base_score
 
 
+_RESOURCE_CACHE: dict[tuple, tuple[dict[str, float], list, list, list]] = {}
+
+
+def _prepare_resources(knowledge_base, local_faq, local_dialogues):
+    """Prépare (et met en cache) IDF + questions pré-tokenisées.
+
+    L'empreinte = les longueurs des listes : /kb_import ajoute des fiches,
+    les longueurs changent, le cache s'invalide tout seul. Un changement
+    de contenu sans changement de longueur n'arrive qu'au redéploiement
+    (le cache repart de zéro à chaque démarrage).
+    """
+    fp = (len(knowledge_base), len(local_faq), len(local_dialogues))
+    cached = _RESOURCE_CACHE.get(fp)
+    if cached is not None:
+        return cached
+
+    all_questions: list[list[str]] = []
+    kb_entries: list[tuple[list[tuple[str, set[str]]], str, str | None]] = []
+    for item in knowledge_base:
+        questions = _get_questions(item)
+        all_questions.append(questions)
+        combined = ' '.join(questions)
+        kw_intent = _detect_intent(_tokenize(combined))
+        qtok = [(q, _tokenize(q)) for q in questions]
+        kb_entries.append((qtok, item.get("answer", ""), kw_intent))
+
+    faq_entries: list[tuple[str, set[str], str, str | None]] = []
+    for item in local_faq:
+        q = item.get("question", "")
+        all_questions.append([q])
+        kw_intent = _detect_intent(_tokenize(q))
+        faq_entries.append((q, _tokenize(q), item.get("answer", ""), kw_intent))
+
+    dialogue_entries: list[tuple[str, set[str], str, str | None]] = []
+    for item in local_dialogues:
+        q = item.get("question", "")
+        all_questions.append([q])
+        kw_intent = _detect_intent(_tokenize(q))
+        dialogue_entries.append((q, _tokenize(q), item.get("answer", ""), kw_intent))
+
+    idf = _compute_idf(all_questions)
+    prepared = (idf, kb_entries, faq_entries, dialogue_entries)
+    if len(_RESOURCE_CACHE) > 12:
+        _RESOURCE_CACHE.clear()
+    _RESOURCE_CACHE[fp] = prepared
+    return prepared
+
+
 def trouver_meilleure_reponse(
     message: str,
     knowledge_base: List[dict[str, Any]],
@@ -325,36 +375,12 @@ def trouver_meilleure_reponse(
 
     msg_intent = _detect_intent(msg_tokens)
 
-    # Collecter toutes les questions pour calculer l'IDF
-    all_questions: list[list[str]] = []
-
-    # Préparer les entrées KB avec leurs intentions
-    kb_entries: list[tuple[list[str], str, str | None]] = []
-    for item in knowledge_base:
-        questions = _get_questions(item)
-        all_questions.append(questions)
-        combined = ' '.join(questions)
-        kw_intent = _detect_intent(_tokenize(combined))
-        kb_entries.append((questions, item.get("answer", ""), kw_intent))
-
-    # FAQ
-    faq_entries: list[tuple[str, str, str | None]] = []
-    for item in local_faq:
-        q = item.get("question", "")
-        all_questions.append([q])
-        kw_intent = _detect_intent(_tokenize(q))
-        faq_entries.append((q, item.get("answer", ""), kw_intent))
-
-    # Dialogues
-    dialogue_entries: list[tuple[str, str, str | None]] = []
-    for item in local_dialogues:
-        q = item.get("question", "")
-        all_questions.append([q])
-        kw_intent = _detect_intent(_tokenize(q))
-        dialogue_entries.append((q, item.get("answer", ""), kw_intent))
-
-    # Calculer IDF global
-    idf = _compute_idf(all_questions)
+    # Ressources préparées en cache (IDF + questions pré-tokenisées) :
+    # réponse en quelques dizaines de millisecondes même en balayant les
+    # 4 langues — largement sous la barre des 3 secondes.
+    idf, kb_entries, faq_entries, dialogue_entries = _prepare_resources(
+        knowledge_base, local_faq, local_dialogues
+    )
 
     # Scoring de tous les candidats
     candidates: List[Tuple[float, str]] = []
@@ -366,19 +392,20 @@ def trouver_meilleure_reponse(
         # une intention mixte qui ne correspond a aucune question prise seule.
         best_score = max(
             (_score_bidirectional(msg_tokens, q, idf, msg_intent,
-                                   _detect_intent(_tokenize(q))) for q in questions),
+                                   _detect_intent(qtok), kw_tokens=qtok)
+             for q, qtok in questions),
             default=0.0
         )
         if best_score >= 0.22:
             candidates.append((best_score, answer))
 
-    for q, answer, kw_intent in faq_entries:
-        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent)
+    for q, qtok, answer, kw_intent in faq_entries:
+        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
             candidates.append((score, answer))
 
-    for q, answer, kw_intent in dialogue_entries:
-        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent)
+    for q, qtok, answer, kw_intent in dialogue_entries:
+        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
             candidates.append((score, answer))
 
