@@ -859,6 +859,22 @@ def handle_message(message: telebot.types.Message) -> None:
                          getattr(getattr(message, "chat", None), "id", "?"), fatal)
 
 
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
+    """Clics sur les boutons inline (catalogue). ANTI-SILENCE : le spinner
+    Telegram est toujours levé, même en cas d'erreur."""
+    chat_id = call.message.chat.id if call.message else None
+    lang = _LAST_LANG.get(chat_id, "fr") if chat_id else "fr"
+    try:
+        catalogue.handle_callback(bot, call, lang)
+    except Exception as e:
+        logger.error("CRASH géré dans handle_callback_query : %s", e, exc_info=True)
+        try:
+            bot.answer_callback_query(call.id, "⚠️ " + msg(lang, "crash_fallback")[:180])
+        except Exception as fatal:
+            logger.error("Fallback callback impossible (chat=%s) : %s", chat_id, fatal)
+
+
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
     _LAST_LANG[chat_id] = detected_lang
@@ -1161,7 +1177,7 @@ def run() -> None:
                 timeout=POLL_TIMEOUT,
                 long_polling_timeout=LONG_POLLING_TIMEOUT,
                 skip_pending=DROP_PENDING_UPDATES,
-                allowed_updates=["message"],
+                allowed_updates=["message", "callback_query"],
             )
             retry_count = 0
             if not _shutdown_requested:

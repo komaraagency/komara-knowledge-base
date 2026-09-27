@@ -8,8 +8,15 @@ import sqlite3
 import threading
 from datetime import datetime, timezone
 
+from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 DB_CONN = None
 DB_LOCK = threading.Lock()
+
+CATALOGUE_BANNER_URL = (
+    "https://media.base44.com/images/public/6a46fe47a5c0862cd5d4cba9/9e5fcf015_generated_image.png"
+)
+
 
 
 def init_catalogue_db(conn: sqlite3.Connection) -> None:
@@ -41,22 +48,57 @@ def init_catalogue_db(conn: sqlite3.Connection) -> None:
             conn.executemany(
                 "INSERT INTO products (category, name, description, price, active, created_at)"
                 " VALUES (?,?,?,?,1,?)",
-                [
-                    (cat, name, desc, price, now)
-                    for cat, name, desc, price in [
-                        ("Logo", "Logo professionnel", "Identité visuelle unique, 2 propositions, fichiers HD", 80.0),
-                        ("Logo", "Logo + charte graphique", "Logo complet + couleurs + polices + carte de visite", 150.0),
-                        ("Site web", "Site vitrine", "Site responsive 5 pages, SEO de base, formulaire", 300.0),
-                        ("Site web", "Site e-commerce", "Boutique avec panier et paiement en ligne", 500.0),
-                        ("Agent IA", "Agent WhatsApp", "Assistant qui répond, qualifie et vend 24/7", 300.0),
-                        ("Agent IA", "Agent multi-canal", "WhatsApp + Instagram + Telegram connectés", 450.0),
-                        ("Visuels", "Pack visuels (10)", "10 visuels réseaux sociaux prêts à publier", 30.0),
-                        ("Visuels", "Vidéo animée IA", "Courte vidéo marketing pour tes campagnes", 80.0),
-                        ("Formation", "Formation IA (2h)", "Prise en main des outils IA pour ton business", 50.0),
-                    ]
-                ],
+                [(cat, name, desc, price, now) for cat, name, desc, price in OFFICIAL_SERVICES_2026],
             )
             conn.commit()
+        _migrate_official_prices_2026(conn)
+
+
+# Catalogue officiel 2026 — mêmes tarifs que la grille PayPal de l'agence.
+# Chatbot et Visuel ont un second tarif (récurrent / pack) précisé dans la
+# description : le champ price reste le montant d'appel (setup / unité).
+OFFICIAL_SERVICES_2026 = [
+    ("Logo", "Logo Pro", "Identité visuelle complète, fichiers HD", 25.0),
+    ("Visuels", "Visuel / Affiche", "1 visuel prêt à poster (pack de 5 : 40€, tape 'devis')", 15.0),
+    ("Site web", "Site Vitrine", "Site pro + intégration WhatsApp", 50.0),
+    ("Site web", "Site E-commerce", "Boutique en ligne complète", 150.0),
+    ("Agent IA", "Chatbot IA", "Bot vendeur 24/7 (+ 50€/mois maintenance)", 100.0),
+    ("Visuels", "Vidéo IA", "Vidéo publicitaire IA (Tabaski, promo...)", 20.0),
+    ("Formation", "Formation IA", "Maîtrise l'IA pour ton business", 50.0),
+]
+
+
+def _migrate_official_prices_2026(conn: sqlite3.Connection) -> None:
+    """Migration one-shot : remplace l'ancien catalogue par défaut par les
+    prix officiels 2026, SANS toucher aux produits déjà personnalisés par
+    l'admin (/produit add|maj) ni aux paniers/commandes en cours — les
+    anciens produits sont juste désactivés (les id restent valides pour les
+    commandes déjà passées)."""
+    done = conn.execute(
+        "SELECT value FROM bot_state WHERE key = 'catalogue_v2026_migrated'"
+    ).fetchone()
+    if done:
+        return
+    old_default_names = {
+        "Logo professionnel", "Logo + charte graphique", "Site vitrine",
+        "Site e-commerce", "Agent WhatsApp", "Agent multi-canal",
+        "Pack visuels (10)", "Vidéo animée IA", "Formation IA (2h)",
+    }
+    rows = conn.execute("SELECT id, name FROM products WHERE active = 1").fetchall()
+    untouched = all(name in old_default_names for _pid, name in rows) if rows else True
+    if untouched:
+        conn.execute("UPDATE products SET active = 0 WHERE name IN ({})".format(
+            ",".join("?" for _ in old_default_names)), tuple(old_default_names))
+        now = _now()
+        conn.executemany(
+            "INSERT INTO products (category, name, description, price, active, created_at)"
+            " VALUES (?,?,?,?,1,?)",
+            [(cat, name, desc, price, now) for cat, name, desc, price in OFFICIAL_SERVICES_2026],
+        )
+    conn.execute(
+        "INSERT OR REPLACE INTO bot_state (key, value) VALUES ('catalogue_v2026_migrated', '1')"
+    )
+    conn.commit()
 
 
 def _now() -> str:
@@ -69,6 +111,14 @@ def _now() -> str:
 
 TT: dict[str, dict[str, str]] = {
     "fr": {
+        "catalogue_caption": '💎 KOMARA AGENCY 🇬🇳 — CATALOGUE OFFICIEL 2026\nUn clic pour choisir 👇',
+        "btn_choose": '🛒 {name} — {price:g}€',
+        "btn_order": '🚀 Commander',
+        "btn_quote": '📄 Devis gratuit',
+        "btn_finalize": '✅ Finaliser ma commande',
+        "chosen": '✅ Tu as choisi : {name}\n💰 {price:g}€\n🛒 Ajouté au panier ({count} article(s) — {total:g}€)\n\nContinue de choisir, ou finalise ta commande 👇',
+        "cta_after_choice": "Envie d'un autre service, ou on finalise ?",
+        "order_from_empty": "🛒 Ton panier est vide pour l'instant.\nChoisis un service dans le catalogue ci-dessus 👆",
         "catalogue_head": "🛍️ Catalogue Komara Agency 🇬🇳\n\n{items}\n\n➕ Ajouter au panier : tape 'ajouter <numéro>'\n🛒 Voir le panier : tape 'panier'",
         "catalogue_item": "{n}. {name} — {price:g}€\n   {desc}",
         "catalogue_empty": "🛍️ Le catalogue arrive très bientôt. En attendant, tape 'devis' pour un projet sur mesure 👇",
@@ -90,6 +140,14 @@ TT: dict[str, dict[str, str]] = {
         "prod_usage": "Usage : /produit add <catégorie>|<nom>|<description>|<prix>\n/produit del <id> • /produit maj <id>|<prix> • /produits",
     },
     "en": {
+        "catalogue_caption": '💎 KOMARA AGENCY 🇬🇳 — OFFICIAL 2026 CATALOGUE\nOne tap to choose 👇',
+        "btn_choose": '🛒 {name} — {price:g}€',
+        "btn_order": '🚀 Order now',
+        "btn_quote": '📄 Free quote',
+        "btn_finalize": '✅ Finalize my order',
+        "chosen": '✅ You picked: {name}\n💰 {price:g}€\n🛒 Added to cart ({count} item(s) — {total:g}€)\n\nKeep choosing, or finalize your order 👇',
+        "cta_after_choice": 'Want another service, or shall we finalize?',
+        "order_from_empty": '🛒 Your cart is empty for now.\nPick a service from the catalogue above 👆',
         "catalogue_head": "🛍️ Komara Agency Catalogue 🇬🇳\n\n{items}\n\n➕ Add to cart: type 'add <number>'\n🛒 View cart: type 'cart'",
         "catalogue_item": "{n}. {name} — {price:g}€\n   {desc}",
         "catalogue_empty": "🛍️ The catalogue is coming very soon. Meanwhile, type 'quote' for a custom project 👇",
@@ -111,6 +169,14 @@ TT: dict[str, dict[str, str]] = {
         "prod_usage": "Usage: /produit add <category>|<name>|<description>|<price>\n/produit del <id> • /produit maj <id>|<price> • /produits",
     },
     "es": {
+        "catalogue_caption": '💎 KOMARA AGENCY 🇬🇳 — CATÁLOGO OFICIAL 2026\nUn clic para elegir 👇',
+        "btn_choose": '🛒 {name} — {price:g}€',
+        "btn_order": '🚀 Pedir ahora',
+        "btn_quote": '📄 Presupuesto gratis',
+        "btn_finalize": '✅ Finalizar mi pedido',
+        "chosen": '✅ Elegiste: {name}\n💰 {price:g}€\n🛒 Añadido al carrito ({count} artículo(s) — {total:g}€)\n\nSigue eligiendo o finaliza tu pedido 👇',
+        "cta_after_choice": '¿Otro servicio, o finalizamos?',
+        "order_from_empty": '🛒 Tu carrito está vacío por ahora.\nElige un servicio del catálogo arriba 👆',
         "catalogue_head": "🛍️ Catálogo Komara Agency 🇬🇳\n\n{items}\n\n➕ Añadir: escribe 'añadir <número>'\n🛒 Ver carrito: 'carrito'",
         "catalogue_item": "{n}. {name} — {price:g}€\n   {desc}",
         "catalogue_empty": "🛍️ El catálogo llega muy pronto. Mientras tanto, escribe 'presupuesto' para un proyecto a medida 👇",
@@ -132,6 +198,14 @@ TT: dict[str, dict[str, str]] = {
         "prod_usage": "Uso: /produit add <categoría>|<nombre>|<descripción>|<precio>\n/produit del <id> • /produit maj <id>|<precio> • /produits",
     },
     "ar": {
+        "catalogue_caption": '💎 كومارا أجنسِي 🇬🇳 — الكتالوج الرسمي 2026\nنقرة واحدة للاختيار 👇',
+        "btn_choose": '🛒 {name} — {price:g}€',
+        "btn_order": '🚀 اطلب الآن',
+        "btn_quote": '📄 عرض سعر مجاني',
+        "btn_finalize": '✅ إنهاء طلبي',
+        "chosen": '✅ اخترت: {name}\n💰 {price:g}€\n🛒 أضيف إلى السلة ({count} عنصر — {total:g}€)\n\nتابع الاختيار أو أنهِ طلبك 👇',
+        "cta_after_choice": 'خدمة أخرى، أم ننهي؟',
+        "order_from_empty": '🛒 سلتك فارغة الآن.\nاختر خدمة من الكتالوج أعلاه 👆',
         "catalogue_head": "🛍️ كتالوج Komara Agency 🇬🇳\n\n{items}\n\n➕ للإضافة: اكتب 'أضف <رقم>'\n🛒 للسلة: 'سلة'",
         "catalogue_item": "{n}. {name} — {price:g}€\n   {desc}",
         "catalogue_empty": "🛍️ الكتالوج قادم قريبا. في انتظاره اكتب 'عرض سعر' لمشروع خاص 👇",
@@ -271,11 +345,91 @@ def show_cart(bot, chat_id: int, lang: str) -> None:
     )
 
 
+def show_catalogue_inline(bot, chat_id: int, lang: str) -> None:
+    """Catalogue avec boutons cliquables (1 par service, boucle sur N produits)."""
+    products = active_products()
+    if not products:
+        bot.send_message(chat_id, tt(lang, "catalogue_empty"))
+        return
+
+    rows = [
+        [InlineKeyboardButton(
+            tt(lang, "btn_choose", name=name, price=price),
+            callback_data=f"kmr_add_{pid}",
+        )]
+        for pid, name, _desc, price in products
+    ]
+    rows.append([
+        InlineKeyboardButton(tt(lang, "btn_order"), callback_data="kmr_order"),
+        InlineKeyboardButton(tt(lang, "btn_quote"), callback_data="kmr_quote"),
+    ])
+    keyboard = InlineKeyboardMarkup(rows)
+
+    caption = tt(lang, "catalogue_caption")
+    try:
+        bot.send_photo(chat_id, CATALOGUE_BANNER_URL, caption=caption, reply_markup=keyboard)
+    except Exception:
+        bot.send_message(chat_id, caption, reply_markup=keyboard)
+
+
+def handle_callback(bot, call, lang: str) -> None:
+    """Traite un clic sur un bouton du catalogue inline (kmr_add_<id>, kmr_order, kmr_quote)."""
+    import actions
+    chat_id = call.message.chat.id
+    data = call.data or ""
+
+    if data.startswith("kmr_add_"):
+        try:
+            pid = int(data.removeprefix("kmr_add_"))
+        except ValueError:
+            bot.answer_callback_query(call.id)
+            return
+        with DB_LOCK:
+            row = DB_CONN.execute(
+                "SELECT name, price FROM products WHERE id = ? AND active = 1", (pid,)
+            ).fetchone()
+        if not row:
+            bot.answer_callback_query(call.id, tt(lang, "not_found"), show_alert=True)
+            return
+        name, price = row
+        with DB_LOCK:
+            DB_CONN.execute(
+                "INSERT INTO cart (chat_id, product_id, qty, added_at) VALUES (?,?,1,?)"
+                " ON CONFLICT(chat_id, product_id) DO UPDATE SET qty = qty + 1",
+                (str(chat_id), pid, _now()),
+            )
+            DB_CONN.commit()
+        bot.answer_callback_query(call.id, f"✅ {name}")
+        finalize_kb = InlineKeyboardMarkup([[
+            InlineKeyboardButton(tt(lang, "btn_finalize"), callback_data="kmr_order")
+        ]])
+        bot.send_message(
+            chat_id,
+            tt(lang, "chosen", name=name, price=price,
+               count=cart_count(chat_id), total=cart_total(chat_id)),
+            reply_markup=finalize_kb,
+        )
+        return
+
+    if data == "kmr_order":
+        bot.answer_callback_query(call.id)
+        if not start_checkout(bot, chat_id, lang):
+            bot.send_message(chat_id, tt(lang, "order_from_empty"))
+        return
+
+    if data == "kmr_quote":
+        bot.answer_callback_query(call.id)
+        actions.start_flow(bot, chat_id, "devis", lang)
+        return
+
+    bot.answer_callback_query(call.id)
+
+
 def handle_client(bot, chat_id: int, text: str, lang: str) -> bool:
     """Route les commandes catalogue/panier. True si le message est consommé."""
     low = text.strip().lower()
     if low in CATALOGUE_TRIGGERS:
-        show_catalogue(bot, chat_id, lang)
+        show_catalogue_inline(bot, chat_id, lang)
         return True
     if low in CART_TRIGGERS:
         show_cart(bot, chat_id, lang)
