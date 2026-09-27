@@ -33,6 +33,7 @@ import backup_drive
 import weekly_report
 import tts
 import img_gen
+import skills
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -878,6 +879,11 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
 
     # 1bis. Flux exécutables (commande, RDV, devis, lead, sondage) — 100% local
     if actions.handle(bot, chat_id, user_text, detected_lang):
+        return
+
+    # 1ter. Compétences locales 100% offline : calculatrice express,
+    # date/heure — avant la recherche KB pour une réponse instantanée.
+    if skills.handle(bot, chat_id, user_text, detected_lang):
         return
 
     # 2. Gestion des boutons rapides (FIX : test sur le set aplati BUTTON_LABELS)

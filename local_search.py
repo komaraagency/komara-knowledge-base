@@ -306,7 +306,7 @@ def _score_bidirectional(
 
 
 _RESOURCE_CACHE: dict[tuple, tuple[dict[str, float], list, list, list]] = {}
-_LAST_PICK: dict[str, str] = {}
+_LAST_ANSWER: str = ""
 
 
 def _prepare_resources(knowledge_base, local_faq, local_dialogues):
@@ -422,22 +422,31 @@ def trouver_meilleure_reponse(
     if not candidates:
         return None
 
-    best_score, raw, qkey = max(candidates, key=lambda x: x[0])
-
-    # Variantes : random.choice pour ne jamais dire deux fois la même
-    # phrase — avec anti-répétition immédiate (on ne retombe pas sur la
-    # version tirée juste avant pour cette même question).
-    if isinstance(raw, list):
-        if not raw:
-            return None
-        pick = random.choice(raw)
-        if len(raw) > 1 and pick == _LAST_PICK.get(qkey):
-            pick = random.choice([a for a in raw if a != _LAST_PICK[qkey]])
-        if len(_LAST_PICK) > 1000:
-            _LAST_PICK.clear()
-        _LAST_PICK[qkey] = pick
-        return pick
-    return raw
+    # ── Sélection aléatoire anti-répétition ──
+    # 1. toutes les entrées ex æquo (ex : familles de salutations à 1.0)
+    #    participent au tirage, pas seulement la première arrivée ;
+    # 2. chaque entrée apporte TOUTES ses variantes au pool ;
+    # 3. random.choice dans le pool, et on ne retombe jamais sur la
+    #    phrase exacte renvoyée au tirage précédent.
+    global _LAST_ANSWER
+    best_score = max(candidates, key=lambda x: x[0])[0]
+    tied = [c for c in candidates if c[0] >= best_score - 1e-9]
+    pool: list[str] = []
+    for _s, raw, _q in tied:
+        if isinstance(raw, list):
+            pool.extend(a for a in raw if a)
+        elif raw:
+            pool.append(raw)
+    if not pool:
+        return None
+    if len(pool) == 1:
+        pick = pool[0]
+    else:
+        pick = random.choice(pool)
+        if pick == _LAST_ANSWER:
+            pick = random.choice([a for a in pool if a != _LAST_ANSWER])
+    _LAST_ANSWER = pick
+    return pick
 
 
 # Compatibilité: garder score_match pour les imports existants (ancien format)

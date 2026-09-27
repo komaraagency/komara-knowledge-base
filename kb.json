@@ -141,10 +141,13 @@
    "questions": [
     "salut"
    ],
-   "answer": "Salut toi 👋\nTu vends quoi déjà ? Comme ça je te dis si je peux t'aider ou pas.",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Salut toi 👋 Moi c'est Aya, l'assistante de Komara Agency 🇬🇳 Tu vends quoi ? Je te dis direct comment on peut t'aider 😊",
+    "Salut 😄 Bienvenue ! Formation IA, visuels, bots : dis-moi ce que tu cherches, je m'occupe de tout."
    ]
   },
   {
@@ -153,10 +156,13 @@
    "questions": [
     "coucou"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Coucou 😄 Moi c'est Aya, l'assistante de Komara Agency 🇬🇳 Tu as un projet à booster ?",
+    "Cc ! 😊 Je suis là 24h/24. Tu veux commencer par quoi : site, logo, bot ou formation ?"
    ]
   },
   {
@@ -165,10 +171,13 @@
    "questions": [
     "hello"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Hello 😊 Bienvenue chez Komara Agency 🇬🇳 ! Moi c'est Aya, ton assistante 24h/24. Ton business, on en parle ?",
+    "Hello ! 👋 Heureuse de te lire. Dis-moi ce que tu cherches : visuels, bots, formation… je te guide 😊"
    ]
   },
   {
@@ -177,10 +186,13 @@
    "questions": [
     "hi"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Hi 😊 Welcome ! Moi c'est Aya de Komara Agency 🇬🇳. Qu'est-ce qui t'amène aujourd'hui ?",
+    "Hi 👋 Toujours en ligne pour toi 😄 Un projet à lancer, une question ? Je t'écoute."
    ]
   },
   {
@@ -189,10 +201,13 @@
    "questions": [
     "bonsoir"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Bonsoir 🌙 Les humains dorment peut-être, mais moi je bosse 24h/24 😄 Ton projet, on en parle ?",
+    "Bonsoir à toi 😊 Bienvenue chez Komara Agency 🇬🇳 Qu'est-ce qui t'amène ce soir ?"
    ]
   },
   {
@@ -201,10 +216,13 @@
    "questions": [
     "salam"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Wa alaykoum salam 🙏 Bienvenue chez Komara Agency 🇬🇳 Moi c'est Aya, ton assistante 24h/24. Tu cherches quoi aujourd'hui ?",
+    "Salam 🙏 Ça fait plaisir ! Formation IA, visuels, bots : dis-moi ton besoin, je te réponds tout de suite 😊"
    ]
   },
   {
@@ -213,10 +231,12 @@
    "questions": [
     "salam waaleykum"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Wa alaykoum salam 🙏 Bienvenue ! C'est Aya de Komara Agency 🇬🇳. On lance quoi aujourd'hui ?"
    ]
   },
   {
@@ -225,10 +245,12 @@
    "questions": [
     "yo"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Yo 😄 Ça va la team ? Moi c'est Aya, l'assistante de Komara Agency 🇬🇳. Ton business, on le booste quand ?"
    ]
   },
   {
@@ -237,10 +259,12 @@
    "questions": [
     "ça roule"
    ],
-   "answer": "Bonjour 👋 Bienvenue chez KOMARA AGENCY !\nJe suis Komara Agency 🇬🇳, ton vendeur IA. Bots, sites, apps, logos — on transforme ton business.\nTu viens pour quel projet ?",
    "tags": [
     "accueil",
     "local"
+   ],
+   "answers": [
+    "Ça roule nickel 😄 Et toi ? Dis-moi, tu cherches quoi pour ton business aujourd'hui ?"
    ]
   },
   {
