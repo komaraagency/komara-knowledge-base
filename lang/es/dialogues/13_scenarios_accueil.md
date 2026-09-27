@@ -4,7 +4,7 @@ Objetivo: ahorrarte tiempo y no perder ninguna venta.
 ¿En qué sector estás?
 
 ### Hola precio bot?
-Hey! Empieza desde 300€ + 50€/mes según lo que automatizamos.
+Hey! Empieza desde 100€ + 50€/mes según lo que automatizamos.
 Lo más simple: te hago una demo gratuita de 5min con tu negocio.
 ¿Cuándo te va bien?
 
@@ -27,7 +27,7 @@ Responde a los DM, reserva citas y envía tu catálogo automáticamente.
 Te entiendo.
 Un empleado cuesta 2500€/mes y hace pausas.
 El bot trabaja 24/7. La mayoría de nuestros clientes son rentables en 21 días.
-Podemos empezar pequeño con 300€ si quieres probar.
+Podemos empezar pequeño con 100€ si quieres probar.
 
 ### Puedo pagar en 2 veces?
 Sí sin problema.
@@ -42,14 +42,14 @@ Y sobre todo lo hacemos todo llave en mano. No tocas nada.
 
 ### Solo tengo 500€ de presupuesto
 Podemos hacer algo con eso 👌
-Empezamos con la Fórmula Descubrimiento a 300€.
+Empezamos con la Fórmula Descubrimiento a 100€.
 Solo FAQ + reserva de citas para empezar.
 Ampliamos cuando tengas ROI. ¿Te parece bien?
 
 ### Cómo voy a rentabilizarlo?
 Ejemplo: si 1 cliente te aporta 300€.
 Y el bot te trae 10 clientes/mes extra = 3000€.
-El bot cuesta 300€ + 50€/mes. Beneficio neto desde el mes 1.
+El bot cuesta 100€ + 50€/mes. Beneficio neto desde el mes 1.
 ¿Te hago el cálculo exacto con tus cifras?
 
 ### No entiendo de tecnología

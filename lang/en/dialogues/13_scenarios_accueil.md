@@ -4,7 +4,7 @@ Goal: save you time and never lose a sale again.
 What sector are you in?
 
 ### Salut price bot?
-Hey! It starts from 300€ setup + 50€/month depending on what we automate.
+Hey! It starts from 100€ setup + 50€/month depending on what we automate.
 Simplest option: I'll build you a free 5-min demo with your own business.
 When works for you?
 
@@ -27,7 +27,7 @@ Want me to show you on a demo account?
 I understand.
 An employee costs 2500€/month and takes breaks.
 The bot works 24/7. Most of our clients break even in 21 days.
-We can start small at 300€ if you want to test.
+We can start small at 100€ if you want to test.
 
 ### Can I pay in 2 installments?
 Yes no problem.
@@ -42,14 +42,14 @@ Demo?
 
 ### I only have a 500€ budget
 We can work with that 👌
-We start with the Discovery Plan at 300€.
+We start with the Discovery Plan at 100€.
 Just FAQ + appointment booking to start.
 We upgrade once you see ROI. Deal?
 
 ### How will I break even?
 Example: if 1 client brings you 300€.
 And the bot brings you 10 extra clients/month = 3000€.
-The bot costs 300€ + 50€/month. Net profit from month 1.
+The bot costs 100€ + 50€/month. Net profit from month 1.
 Want me to run the exact math with your numbers?
 
 ### I'm not tech-savvy

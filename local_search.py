@@ -1,3 +1,4 @@
+import logging
 """Moteur de recherche locale avec compréhension sémantique (100% local, zéro API externe).
 
 Améliorations:
@@ -430,6 +431,14 @@ def trouver_meilleure_reponse(
     #    phrase exacte renvoyée au tirage précédent.
     global _LAST_ANSWER
     best_score = max(candidates, key=lambda x: x[0])[0]
+    try:
+        logging.getLogger("komara.rag").info(
+            "[RAG-GEN] Query=%s | Retrieved=%s",
+            message[:80],
+            max(candidates, key=lambda x: x[0])[2][:60],
+        )
+    except Exception:
+        pass
     tied = [c for c in candidates if c[0] >= best_score - 1e-9]
     pool: list[str] = []
     for _s, raw, _q in tied:

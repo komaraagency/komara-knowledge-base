@@ -9935,7 +9935,7 @@
     "je peux changer le site apres",
     "modif site apres"
    ],
-   "answer": "1 mois de modifications gratuites inclus.\nAprès, 1€ la modif.\nEt vous restez propriétaire à 100% de votre site."
+   "answer": "1 mois de modifications gratuites inclus.\nAprès, les modifs sont à petit prix, sur devis.\nEt vous restez propriétaire à 100% de votre site."
   },
   {
    "id": "pro_25",
@@ -19034,6 +19034,75 @@
     "ameliorer sa prononciation"
    ],
    "answer": "Perdre son accent : écoute et répète à voix haute (shadowing), enregistre-toi et compare, ralentis pour bien articuler. Un accent léger n'est pas un défaut : être compris est le seul objectif 🎧"
+  },
+  {
+   "id": "knogen_info_01",
+   "category": "connaissances_generales",
+   "questions": [
+    "mon systeme affiche une erreur",
+    "comment diagnostiquer une erreur informatique",
+    "diagnostiquer un probleme etape par etape",
+    "mon ordinateur bug que faire",
+    "comment debugger un probleme informatique"
+   ],
+   "answer": "Pour diagnostiquer un problème informatique, méthode simple 🔧\n1️⃣ Reproduis le bug (note les étapes exactes)\n2️⃣ Écris le message d'erreur complet + la date\n3️⃣ Change UNE seule chose à la fois, puis reteste\n4️⃣ Ta sauvegarde ne vaut que si tu as déjà réussi à la restaurer une fois — sinon teste-la maintenant 📦\nSi ça bloque encore, décris-moi le message d'erreur et on regarde ensemble 👍"
+  },
+  {
+   "id": "knogen_data_02",
+   "category": "connaissances_generales",
+   "questions": [
+    "comment comparer deux chiffres de ventes",
+    "verifier des donnees avant de les comparer",
+    "mes chiffres ne correspondent pas",
+    "comment verifier si des donnees sont fiables",
+    "comment analyser des donnees de vente"
+   ],
+   "answer": "Avant de comparer deux chiffres de ventes, vérifie 4 choses 📊\n• L'unité (€, GNF, unités vendues ?)\n• Le périmètre (même période ? même boutique ? mêmes produits ?)\n• Les valeurs manquantes et les doublons\n• La source et la date\nSinon tu compares des pommes et des oranges 🍊 Une question précise ? Décris tes chiffres 👇"
+  },
+  {
+   "id": "knogen_data_03",
+   "category": "connaissances_generales",
+   "questions": [
+    "correlation n est pas causalite",
+    "difference entre correlation et causalite",
+    "c est quoi une correlation",
+    "deux choses vont ensemble pourquoi"
+   ],
+   "answer": "Corrélation ≠ causalité 🧠\nDeux chiffres qui bougent ensemble ne prouvent pas que l'un cause l'autre. Les glaces et les noyades montent ensemble en été : c'est la chaleur qui cause les deux ☀️\nAvant de conclure, cherche une 3e variable ou fais un test. Le doute t'évite de mauvaises décisions business 💡"
+  },
+  {
+   "id": "knogen_bio_04",
+   "category": "connaissances_generales",
+   "questions": [
+    "c est quoi l arn",
+    "difference entre adn et arn",
+    "adn vs arn",
+    "c est quoi la transcription traduction"
+   ],
+   "answer": "L'ADN est le plan d'information génétique (la bibliothèque 📚), l'ARN est l'intermédiaire qui copie une page et sert à produire les protéines (transcription puis traduction) 🧬\nAttention : un résultat expérimental dépend de la méthode, des contrôles et de la qualité de l'échantillon — une image ou une séquence isolée ne suffit pas à conclure ✅"
+  },
+  {
+   "id": "knogen_med_05",
+   "category": "connaissances_generales",
+   "questions": [
+    "comment lire une analyse medicale",
+    "comprendre mes resultats d analyse",
+    "resultats de laboratoire que faire",
+    "mes analyses sont normales",
+    "c est quoi une valeur de reference biologique"
+   ],
+   "answer": "Une analyse de biologie médicale se lit selon la méthode du laboratoire et ses valeurs de référence, qui dépendent de ton âge, symptômes, traitements et du moment du prélèvement 🧪\n⚠️ Info générale : je ne peux pas interpréter un résultat personnel ni poser un diagnostic — seul un médecin ou le laboratoire peut le faire. En cas de symptôme inquiétant ou urgent, contacte un professionnel de santé immédiatement 🚑"
+  },
+  {
+   "id": "knogen_geo_06",
+   "category": "connaissances_generales",
+   "questions": [
+    "comment decrire une localisation",
+    "coordonnees geographiques c est quoi",
+    "frontieres et noms de lieux fiables",
+    "comment verifier une adresse"
+   ],
+   "answer": "Décrire un lieu : nom, adresse, coordonnées GPS ou zone administrative — 4 formes différentes qui ne sont pas interchangeables 🗺️\nLes frontières, noms de lieux et découpages peuvent changer selon la source et la date. Pour une décision concrète, précise toujours la date, la source et le niveau de précision, et vérifie sur place plutôt que de faire confiance à une carte ancienne ✅"
   }
  ]
 }

@@ -14,7 +14,7 @@ DB_CONN = None
 DB_LOCK = threading.Lock()
 
 CATALOGUE_BANNER_URL = (
-    "https://media.base44.com/images/public/6a46fe47a5c0862cd5d4cba9/9e5fcf015_generated_image.png"
+    "https://media.base44.com/images/public/6a46fe47a5c0862cd5d4cba9/1b47143d3_generated_image.png"
 )
 
 

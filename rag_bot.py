@@ -183,6 +183,12 @@ def _parse_markdown_sections(content: str) -> list[dict[str, str]]:
             question = sections[i].strip()
             answer = sections[i+1].strip()
             if question and answer:
+                # ANTI-FUITE : un "dialogue" qui contient des marqueurs de
+                # transcript (🗣️/👤/🤖 en alternance) est un script terrain
+                # ou un scénario d'entraînement, pas une réponse à montrer
+                # à un client. On ne le charge JAMAIS dans le moteur.
+                if "🗣️" in answer or ("🤖" in answer and "👤" in answer):
+                    continue
                 items.append({"question": question, "answer": answer})
     return items
 
