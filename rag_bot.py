@@ -31,6 +31,7 @@ import osm_maps
 import backup_drive
 import weekly_report
 import tts
+import img_gen
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -344,6 +345,8 @@ MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
 # Transcription vocale 100% locale (faster-whisper, aucune IA externe)
 # ---------------------------------------------------------------------------
 VOICE_ENABLED = os.getenv("VOICE_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+VOCALS_DIR = Path(os.getenv("VOCALS_DIR", BASE_DIR / "data" / "vocals"))
+KEEP_VOCALS = 100        # derniers vocaux reçus conservés sur disque
 WHISPER_MODEL_NAME = os.getenv("WHISPER_MODEL", "base")  # tiny/base/small selon RAM
 WHISPER_MODEL_OBJ = None
 WHISPER_LOCK = threading.Lock()
@@ -362,6 +365,16 @@ def get_whisper_model():
             logger.info("Whisper local prêt (modèle %s)", WHISPER_MODEL_NAME)
     return WHISPER_MODEL_OBJ
 
+def _prune_vocals() -> None:
+    """Ne garde que les KEEP_VOCALS derniers vocaux reçus."""
+    try:
+        files = sorted(VOCALS_DIR.glob("vocal_*"), key=lambda p: p.name, reverse=True)
+        for old_file in files[KEEP_VOCALS:]:
+            old_file.unlink(missing_ok=True)
+    except Exception:
+        pass
+
+
 def transcribe_voice(bot, message) -> str | None:
     """Transcrit un vocal/audio Telegram en local. Retourne le texte ou None."""
     chat_id = message.chat.id
@@ -370,16 +383,30 @@ def transcribe_voice(bot, message) -> str | None:
         file_info = bot.get_file(voice.file_id)
         file_data = bot.download_file(file_info.file_path)
         suffix = ".ogg" if message.voice else ".mp3"
-        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
-            tmp.write(file_data)
-            tmp_path = tmp.name
+        # Stockage durable : un dossier dédié garde les vocaux reçus
+        stored_in_dir = False
+        try:
+            VOCALS_DIR.mkdir(parents=True, exist_ok=True)
+            ts = time.strftime("%Y%m%d-%H%M%S")
+            tmp_path = str(VOCALS_DIR / f"vocal_{chat_id}_{ts}{suffix}")
+            Path(tmp_path).write_bytes(file_data)
+            _prune_vocals()
+            stored_in_dir = True
+        except Exception as e:
+            logger.warning("Stockage vocal impossible, repli temporaire : %s", e)
+            with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                tmp.write(file_data)
+                tmp_path = tmp.name
         try:
             model = get_whisper_model()
             segments, _info = model.transcribe(tmp_path, beam_size=2)
             text = " ".join(seg.text.strip() for seg in segments).strip()
             return text if text else None
         finally:
-            Path(tmp_path).unlink(missing_ok=True)
+            # le vocal archivé dans VOCALS_DIR est CONSERVÉ ;
+            # seul le repli temporaire est effacé.
+            if not stored_in_dir:
+                Path(tmp_path).unlink(missing_ok=True)
     except ImportError:
         logger.warning("faster-whisper non installé : vocaux indisponibles")
         return None
@@ -862,6 +889,10 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
 
     # 5. Recherche locale uniquement (DeepSeek retiré définitivement) :
     # kb.json + FAQ + dialogues multilingues, mémoire SQLite pour le contexte.
+    # Génération d'images simple (/image ou « génère une image de … »)
+    if img_gen.handle_image_request(bot, chat_id, user_text, detected_lang):
+        return
+
     # Garde anti-divulgation : jamais de clés, IDs, algorithme ou conception
     if is_secret_probe(user_text, detected_lang):
         secret_reply(bot, chat_id, detected_lang)
