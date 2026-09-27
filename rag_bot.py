@@ -202,17 +202,27 @@ def load_dialogues() -> list[dict[str, str]]:
                     dialogues.extend(_parse_markdown_sections(content))
                 except Exception as e:
                     logger.error("Erreur lors de la lecture de %s : %s", file_path.name, e)
-    dialogues.extend(load_aya2_dialogues())
+    # NB : le pack Aya2 est chargé par langue dans load_language_resources()
     logger.info("Dialogues chargés : %s questions", len(dialogues))
     return dialogues
 
-def load_aya2_dialogues() -> list[dict[str, str]]:
-    """Dialogues 'ton africain pro' (Pack Aya2) au format JSON."""
-    if not AYA2_DIALOGUES_PATH.is_file():
-        logger.warning("Fichier dialogues aya2 absent : %s", AYA2_DIALOGUES_PATH)
+def load_aya2_dialogues(lang_code: str = "fr") -> list[dict[str, str]]:
+    """Dialogues 'ton africain pro' (Pack Aya2) au format JSON, par langue.
+
+    FR = pack maître ; en/es/ar = packs traduits (docs/aya2/dialogues_<lg>.json).
+    Repli automatique sur le pack FR si le fichier de la langue est absent.
+    """
+    path = AYA2_DIALOGUES_PATH
+    if lang_code and lang_code != "fr":
+        translated = AYA2_DIALOGUES_PATH.with_name(
+            AYA2_DIALOGUES_PATH.name.replace("dialogues", f"dialogues_{lang_code}"))
+        if translated.is_file():
+            path = translated
+    if not path.is_file():
+        logger.warning("Fichier dialogues aya2 absent : %s", path)
         return []
     try:
-        with AYA2_DIALOGUES_PATH.open("r", encoding="utf-8") as f:
+        with path.open("r", encoding="utf-8") as f:
             data = json.load(f)
         items = data.get("dialogues", data) if isinstance(data, dict) else data
         dialogues = [
@@ -229,6 +239,8 @@ def load_aya2_dialogues() -> list[dict[str, str]]:
 def load_language_resources(lang_code: str) -> dict[str, Any]:
     lang_path = LANG_DIR / lang_code
     resources: dict[str, Any] = {"kb": [], "faq": [], "dialogues": []}
+    # Pack Aya2 (ton africain pro) propre à chaque langue
+    resources["dialogues"].extend(load_aya2_dialogues(lang_code))
 
     kb_path = lang_path / "kb.json"
     if kb_path.is_file():
@@ -516,6 +528,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "welcome_back": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\n\nChoisis une option 👇 ou décris ton besoin.",
         "promo": "🎟️ Nos codes promo s'appliquent automatiquement au moment du devis.\n\n1. Tape 'devis'\n2. Décris ton besoin\n3. Entre ton code à l'étape demandée\n\nLes codes actifs sont annoncés ici par l'équipe 🇬🇳",
         "voice_received": "🎤 Ton vocal : «{text}»\n\nJe m'occupe de ta demande 👇",
+"crash_fallback": "🛠️ Petit raté technique de mon côté — ta demande n'est pas perdue.\n\nRenvoie ton message, ou écris juste : site, logo, bot, visuel ou formation. Aya revient tout de suite 💪",
         "voice_unavailable": "🎤 Je n'ai pas pu écouter ce vocal pour l'instant. Écris-moi ton message 🙏",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
@@ -531,6 +544,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "welcome_back": "Hello again {name} 👋 Great to see you back at Komara Agency 🇬🇳!\n\nPick an option 👇 or describe your need.",
         "promo": "🎟️ Our promo codes apply automatically at quote time.\n\n1. Type 'quote'\n2. Describe your need\n3. Enter your code when asked\n\nActive codes are announced here by the team 🇬🇳",
         "voice_received": "🎤 Your voice: '{text}'\n\nTaking care of your request 👇",
+"crash_fallback": "🛠️ Small technical hiccup on my side — your request is not lost.\n\nSend your message again, or just type: site, logo, bot, visual or training. Aya is right back 💪",
         "voice_unavailable": "🎤 I couldn't listen to this voice note yet. Please type your message 🙏",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
     },
@@ -546,6 +560,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "welcome_back": "مرحبا بك مجددا {name} 👋 سعداء بعودتك إلى Komara Agency 🇬🇳!\n\nاختر خيارا 👇 أو صف احتياجك.",
         "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'devis'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
         "voice_received": "🎤 رسالتك الصوتية: «{text}»\n\nأتولى طلبك 👇",
+        "crash_fallback": "🛠️ عطل تقني بسيط من جهتي — طلبك لم يفقد.\n\nأعد إرسال رسالتك، أو اكتب فقط: موقع، شعار، بوت، تصميم أو تكوين. آيا تعود حالاً 💪",
         "voice_unavailable": "🎤 لم أستطع الاستماع لهذه الرسالة الصوتية الآن. اكتب لي رسالتك 🙏",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
     },
@@ -561,6 +576,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "welcome_back": "Hola de nuevo {name} 👋 ¡Qué gusto verte otra vez en Komara Agency 🇬🇳!\n\nElige una opción 👇 o describe tu necesidad.",
         "promo": "🎟️ Nuestros códigos promo se aplican automáticamente en el presupuesto.\n\n1. Escribe 'presupuesto'\n2. Describe tu necesidad\n3. Introduce tu código cuando te lo pida\n\nLos códigos activos los anuncia aquí el equipo 🇬🇳",
         "voice_received": "🎤 Tu voz: '{text}'\n\nMe encargo de tu solicitud 👇",
+"crash_fallback": "🛠️ Pequeño fallo técnico de mi parte — tu solicitud no se perdió.\n\nReenvía tu mensaje, o escribe: sitio, logo, bot, visual o formación. Aya vuelve enseguida 💪",
         "voice_unavailable": "🎤 No pude escuchar esta nota de voz. Escríbeme tu mensaje 🙏",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
     },
@@ -692,8 +708,7 @@ def safe_typing(chat_id: int) -> None:
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
-@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location'])
-def handle_message(message: telebot.types.Message) -> None:
+def _handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
 
     # Position partagée → infos de livraison (OpenStreetMap, sans clé)
@@ -733,6 +748,27 @@ def handle_message(message: telebot.types.Message) -> None:
 
 
 _LAST_LANG: dict[int, str] = {}
+
+
+@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location'])
+def handle_message(message: telebot.types.Message) -> None:
+    """Point d'entrée enregistré. ANTI-SILENCE : aucune exception ne sort
+    jamais d'ici sans que le client reçoive une réponse de secours."""
+    try:
+        return _handle_message(message)
+    except Exception as e:  # filet de sécurité absolu
+        logger.error("CRASH géré dans handle_message : %s", e, exc_info=True)
+        try:
+            chat_id = message.chat.id
+            lang = detect_language(getattr(message, "text", "") or "")
+            remember(chat_id, "assistant", msg(lang, "crash_fallback"))
+            bot.send_message(chat_id, msg(lang, "crash_fallback"),
+                             reply_markup=menu_for_lang(lang))
+        except Exception as fatal:
+            # le fallback lui-même a échoué (réseau ?) : on log, le polling
+            # continue de tourner — jamais de silence définitif.
+            logger.error("Fallback final impossible (chat=%s) : %s",
+                         getattr(getattr(message, "chat", None), "id", "?"), fatal)
 
 
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
@@ -826,6 +862,11 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
 
     # 5. Recherche locale uniquement (DeepSeek retiré définitivement) :
     # kb.json + FAQ + dialogues multilingues, mémoire SQLite pour le contexte.
+    # Garde anti-divulgation : jamais de clés, IDs, algorithme ou conception
+    if is_secret_probe(user_text, detected_lang):
+        secret_reply(bot, chat_id, detected_lang)
+        return
+
     local_response = local_contextual_response(chat_id, user_text, detected_lang)
     if local_response is None:
         record_unrecognized(user_text, source="telegram")
@@ -856,6 +897,93 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # Réponse parlée si le client a écrit en vocal (synthèse vocale locale)
     if reply_voice:
         tts.reply_with_voice(bot, chat_id, response, detected_lang)
+
+# ---------------------------------------------------------------------------
+# Garde anti-divulgation : jamais de clés, IDs, algorithme ou conception
+# ---------------------------------------------------------------------------
+SECRET_TRIGGERS: dict[str, set[str]] = {
+    "fr": {
+        "code source", "ton code source", "montre ton code", "montre moi ton code",
+        "le code du bot", "code du bot", "ton algorithme", "ton prompt",
+        "prompt système", "system prompt", "clé api", "api key", "ta clé api",
+        "tes instructions", "tes instructions internes", "qui t'a programmé",
+        "qui t'a créé", "qui t'a developpé", "t es programmé", "tu es programmé",
+        "comment tu es programmé", "comment tu fonctionnes", "comment tu marches",
+        "ton github", "github", "railway", "ton architecture", "ton back end",
+        "ton backend", "ta base de données", "ton serveur", "ton modèle de langage",
+        "tu utilises chatgpt", "tu utilises gemini", "tu utilises openai",
+        "tu utilises gpt", "quelle ia tu utilises", "ton ia c est quoi",
+    },
+    "en": {
+        "source code", "your source code", "show me your code", "the bot's code",
+        "your algorithm", "your prompt", "system prompt", "api key",
+        "your instructions", "who programmed you", "who built you",
+        "how are you programmed", "how do you function", "how do you work internally",
+        "your github", "github", "railway", "your architecture", "your backend",
+        "your database", "your server", "your language model",
+        "do you use chatgpt", "do you use gemini", "do you use openai",
+        "which ai do you use",
+    },
+    "es": {
+        "código fuente", "tu código fuente", "muéstrame tu código", "código del bot",
+        "tu algoritmo", "tu prompt", "prompt del sistema", "clave api",
+        "tus instrucciones", "quién te programó", "quién te creó",
+        "cómo estás programado", "cómo funcionas por dentro", "cómo funcionas",
+        "tu github", "github", "railway", "tu arquitectura", "tu backend",
+        "tu base de datos", "tu servidor", "tu modelo de lenguaje",
+        "usas chatgpt", "usas gemini", "usas openai", "qué ia usas",
+    },
+    "ar": {
+        "الكود المصدري", "أرني كودك", "كود البوت", "خوارزميتك", "برمجتك",
+        "من برمجك", "من صنعك", "مفتاح api", "تعليماتك الداخلية",
+        "كيف تعمل داخليا", "كيف تمت برمجتك", "سيرفرك", "قاعدة بياناتك",
+        "جيت هاب", "هل تستخدم شات جي بي تي", "أي ذكاء اصطناعي تستخدم",
+    },
+}
+
+SECRET_REPLIES: dict[str, str] = {
+    "fr": ("😄 Je suis Aya, l'assistante digitale de Komara Agency 🇬🇳\n\n"
+           "Les coulisses techniques, c'est le secret de la maison — comme la "
+           "recette d'un bon riz sauce 🍲\n\nCe que je peux faire pour toi, "
+           "en revanche : sites, logos, visuels, chatbots, formation. "
+           "Tu as un projet en tête ?"),
+    "en": ("😄 I'm Aya, Komara Agency's digital assistant 🇬🇳\n\n"
+           "The technical backstage is the house's secret — like a chef's "
+           "signature recipe 🍲\n\nWhat I can do for you though: websites, "
+           "logos, visuals, chatbots, training. Do you have a project in mind?"),
+    "es": ("😄 Soy Aya, la asistente digital de Komara Agency 🇬🇳\n\n"
+           "Los bastidores técnicos son el secreto de la casa — como la receta "
+           "de un buen arroz con salsa 🍲\n\nLo que sí puedo hacer por ti: "
+           "sitios, logos, visuales, chatbots, formación. ¿Tienes un proyecto en mente?"),
+    "ar": ("😄 أنا آيا، المساعدة الرقمية لوكالة كومارا 🇬🇳\n\n"
+           "التفاصيل التقنية سر البيت — مثل وصفة أرز بالصلصة اللذيذة 🍲\n\n"
+           "لكن ما أستطيع فعله من أجلك: مواقع، شعارات، تصاميم، بوتات، تكوين. "
+           "هل لديك مشروع في ذهنك؟"),
+}
+
+
+def is_secret_probe(text: str, lang: str) -> bool:
+    """Vrai si le message cherche à extraire des internes techniques."""
+    low = " ".join((text or "").lower().split())
+    if not low:
+        return False
+    triggers = SECRET_TRIGGERS.get(lang, SECRET_TRIGGERS["fr"])
+    # aussi les déclencheurs des autres langues (client peut mélanger)
+    for trigs in SECRET_TRIGGERS.values():
+        if any(t in low for t in trigs):
+            return True
+    return False
+
+
+def secret_reply(bot_, chat_id: int, lang: str) -> None:
+    """Réponse de marque, chaleureuse, sans rien divulguer."""
+    remember(chat_id, "assistant", SECRET_REPLIES.get(lang, SECRET_REPLIES["fr"]))
+    bot_.send_message(
+        chat_id,
+        SECRET_REPLIES.get(lang, SECRET_REPLIES["fr"]),
+        reply_markup=menu_for_lang(lang),
+    )
+
 
 # ---------------------------------------------------------------------------
 # Monitoring et Cycle de vie
