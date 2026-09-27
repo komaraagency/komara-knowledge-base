@@ -578,6 +578,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "promo": "🎟️ Nos codes promo s'appliquent automatiquement au moment du devis.\n\n1. Tape 'devis'\n2. Décris ton besoin\n3. Entre ton code à l'étape demandée\n\nLes codes actifs sont annoncés ici par l'équipe 🇬🇳",
         "voice_received": "🎤 Ton vocal : «{text}»\n\nJe m'occupe de ta demande 👇",
 "crash_fallback": "🛠️ Petit raté technique de mon côté — ta demande n'est pas perdue.\n\nRenvoie ton message, ou écris juste : site, logo, bot, visuel ou formation. Aya revient tout de suite 💪",
+        "bot_closed": "🌙 Komara Agency 🇬🇳 est fermée pour le moment.\nMais pas de stress : laisse ton message ici, on te répond à l'ouverture 🙏\n\nEn attendant, découvre nos réalisations : /menu 😊",
         "voice_unavailable": "🎤 Je n'ai pas pu écouter ce vocal pour l'instant. Écris-moi ton message 🙏",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
     },
@@ -594,6 +595,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "promo": "🎟️ Our promo codes apply automatically at quote time.\n\n1. Type 'quote'\n2. Describe your need\n3. Enter your code when asked\n\nActive codes are announced here by the team 🇬🇳",
         "voice_received": "🎤 Your voice: '{text}'\n\nTaking care of your request 👇",
 "crash_fallback": "🛠️ Small technical hiccup on my side — your request is not lost.\n\nSend your message again, or just type: site, logo, bot, visual or training. Aya is right back 💪",
+        "bot_closed": "🌙 Komara Agency 🇬🇳 is closed right now.\nNo stress: leave your message here, we reply at opening 🙏\n\nMeanwhile, check our work: /menu 😊",
         "voice_unavailable": "🎤 I couldn't listen to this voice note yet. Please type your message 🙏",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
     },
@@ -610,6 +612,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'devis'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
         "voice_received": "🎤 رسالتك الصوتية: «{text}»\n\nأتولى طلبك 👇",
         "crash_fallback": "🛠️ عطل تقني بسيط من جهتي — طلبك لم يفقد.\n\nأعد إرسال رسالتك، أو اكتب فقط: موقع، شعار، بوت، تصميم أو تكوين. آيا تعود حالاً 💪",
+        "bot_closed": "🌙 كومارا أجنسلي 🇬🇳 مغلقة حاليا.\nلا تقلق: اترك رسالتك هنا، نرد عند الفتح 🙏\n\nفي الانتظار، اكتشف أعمالنا: /menu 😊",
         "voice_unavailable": "🎤 لم أستطع الاستماع لهذه الرسالة الصوتية الآن. اكتب لي رسالتك 🙏",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
     },
@@ -626,6 +629,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "promo": "🎟️ Nuestros códigos promo se aplican automáticamente en el presupuesto.\n\n1. Escribe 'presupuesto'\n2. Describe tu necesidad\n3. Introduce tu código cuando te lo pida\n\nLos códigos activos los anuncia aquí el equipo 🇬🇳",
         "voice_received": "🎤 Tu voz: '{text}'\n\nMe encargo de tu solicitud 👇",
 "crash_fallback": "🛠️ Pequeño fallo técnico de mi parte — tu solicitud no se perdió.\n\nReenvía tu mensaje, o escribe: sitio, logo, bot, visual o formación. Aya vuelve enseguida 💪",
+        "bot_closed": "🌙 Komara Agency 🇬🇳 está cerrada ahora.\nTranquilo: deja tu mensaje aquí, respondemos a la apertura 🙏\n\nMientras tanto, descubre nuestros trabajos: /menu 😊",
         "voice_unavailable": "🎤 No pude escuchar esta nota de voz. Escríbeme tu mensaje 🙏",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
     },
@@ -781,6 +785,19 @@ def safe_typing(chat_id: int) -> None:
 
 def _handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
+
+    # 🔒 Pause admin (/pause) : le bot est fermé — seul l'admin passe
+    # (pour /reprend ou toute commande de gestion). Les clients
+    # reçoivent le message de fermeture, texte, vocal, doc : tout.
+    if actions.is_paused() and chat_id != actions.ADMIN_CHAT_ID:
+        try:
+            lang = detect_language(getattr(message, "text", "") or "")
+        except Exception:
+            lang = "fr"
+        safe_typing(chat_id)
+        bot.send_message(chat_id, msg(lang, "bot_closed"),
+                         reply_markup=menu_for_lang(lang))
+        return
 
     # Position partagée → infos de livraison (OpenStreetMap, sans clé)
     if message.location:

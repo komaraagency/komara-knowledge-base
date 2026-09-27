@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import random
 import sqlite3
 import threading
@@ -117,7 +118,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
+ADMIN_COMMANDS = {"/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -204,6 +205,17 @@ T = {
         "admin_stats": "📊 Stats Komara Agency\n\n🛒 Commandes : {orders}\n📅 RDV : {rdv}\n📞 Leads : {leads}\n📄 Devis : {quotes}\n⭐ Sondages : {surveys}\n😀 Satisfaction moyenne : {satisfaction}/5\n👍 Recommandent : {reco}%\n\n❓ Questions non reconnues : {unrecognized}",
         "admin_report": "📋 Rapport questions sans réponse (top {limit}) :\n\n{items}\n\n→ À intégrer dans kb.json pour améliorer le bot.",
         "admin_only": "🔒 Commande réservée à l'administration.",
+        "bot_closed": "🌙 Komara Agency 🇬🇳 est fermée pour le moment.\nMais pas de stress : laisse ton message ici, on te répond à l'ouverture 🙏\n\nEn attendant, découvre nos réalisations : /menu 😊",
+        "pause_on": "🔒 Bot FERMÉ !\n\nLes clients reçoivent maintenant le message de fermeture.\nTape /reprend pour rouvrir quand tu veux.",
+        "pause_off": "✅ Bot RÉOUVERT ! 🚀\n\nTous les clients peuvent à nouveau discuter avec moi.",
+        "broadcast_usage": "📢 Pour envoyer une promo à TOUS tes clients :\n\n/broadcast Ton message ici\n\nExemple :\n/broadcast 🔥 Promo week-end : -20% sur tous les logos ! Écris-moi pour en profiter 👇",
+        "broadcast_done": "📢 Promo envoyée !\n\n✅ Envoyée : {sent} client(s)\n❌ Échecs : {failed}",
+        "broadcast_none": "😅 Aucun client enregistré pour le moment.\nDès que des clients discutent avec le bot, ils seront ici.",
+        "prend_usage": "📞 Pour voir les numéros de tes clients :\n\n/prend → liste des 10 derniers clients\n/prend <nom, numéro ou chat_id> → fiche complète du client",
+        "prend_none": "😅 Aucun client trouvé pour « {q} ».",
+        "prend_card": "👤 {name}\n📞 {phone}\n🆔 {chat_id}\n💼 {activity}\n🛒 {orders} commande(s)\n📅 Dernière visite : {last_seen}\n\n👉 Écris-lui directement, ou tape /broadcast pour une promo générale.",
+        "prend_list": "📞 Tes 10 derniers clients :\n\n{lines}\n\nPour la fiche complète : /prend <nom ou numéro>",
+        "admin_money": "💰 *L'argent — Komara Agency 🇬🇳*\n\n📄 Devis émis : {n} (total ~{total}€)\n📅 Ce mois-ci : {mn} devis (~{mtot}€)\n🛒 Commandes en attente : {pending}\n\nLes devis sont générés par le module et confirmés par l'équipe.",
         "off_hours": "🌙 Komara Agency 🇬🇳 est fermée en ce moment.\nBureau ouvert : {hours} (lun-ven).\n\nPas de stress : je prends ta commande et tes questions 24/7, un humain te répond à l'ouverture 👍",
         "export_sent": "📤 Export en cours...",
         "devis_promo": "🎟️ Tu as un code promo ?\nTape le code, ou 'passer' si tu n'en as pas.",
@@ -389,6 +401,10 @@ def init_db() -> None:
                 events TEXT DEFAULT '[]',
                 first_seen TEXT NOT NULL,
                 last_seen TEXT NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS bot_state (
+                key TEXT PRIMARY KEY,
+                value TEXT
             );
             CREATE TABLE IF NOT EXISTS promo_codes (
                 code TEXT PRIMARY KEY,
@@ -1121,6 +1137,142 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 # Commandes admin : /stats et /rapport
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Pause (/pause, /reprend), argent (/stats) et fiche client (/prend)
+# ---------------------------------------------------------------------------
+
+def is_paused() -> bool:
+    """Le bot est-il fermé (/pause) ? En cas d'erreur : False (ouvert)."""
+    try:
+        if DB_CONN is None:
+            init_db()
+        with DB_LOCK:
+            row = DB_CONN.execute(
+                "SELECT value FROM bot_state WHERE key='paused'").fetchone()
+        return bool(row and str(row[0]) == "1")
+    except Exception:
+        return False
+
+
+def set_paused(value: bool) -> None:
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO bot_state (key, value) VALUES ('paused', ?)",
+            ("1" if value else "0",))
+        DB_CONN.commit()
+
+
+def _parse_price(raw) -> float:
+    """« 250€ » / « 1 250,50€ » → 250.0 / 1250.5"""
+    digits = re.sub(r"[^\d.,]", "", str(raw or ""))
+    digits = re.sub(r"(\d)\s+(\d{3})", r"\1\2", digits)
+    digits = digits.replace(",", ".")
+    try:
+        return float(digits) if digits else 0.0
+    except ValueError:
+        return 0.0
+
+
+def _money_summary() -> str:
+    """Vue argent : devis émis (pipeline) + commandes en attente."""
+    if DB_CONN is None:
+        init_db()
+    month_prefix = datetime.now().strftime("%Y-%m")
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT price, created_at FROM quotes").fetchall()
+        pending = DB_CONN.execute(
+            "SELECT COUNT(*) FROM orders WHERE status='en attente'").fetchone()
+    prices = [(_parse_price(r[0]), str(r[1] or "")) for r in rows]
+    total = sum(p for p, _ in prices)
+    month_prices = [p for p, d in prices if d.startswith(month_prefix)]
+    mtot = sum(month_prices)
+    return t("fr", "admin_money", n=len(prices),
+             total=f"{total:,.0f}".replace(",", " "),
+             mn=len(month_prices),
+             mtot=f"{mtot:,.0f}".replace(",", " "),
+             pending=pending[0] if pending else 0)
+
+
+def _admin_broadcast(bot, chat_id: int, args: str, lang: str) -> bool:
+    text = args.strip()
+    if not text:
+        bot.send_message(chat_id, t(lang, "broadcast_usage"))
+        return True
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        rows = DB_CONN.execute(
+            "SELECT chat_id, name FROM clients").fetchall()
+    if not rows:
+        bot.send_message(chat_id, t(lang, "broadcast_none"))
+        return True
+    sent = failed = 0
+    for cid, name in rows:
+        try:
+            body = f"Salut {name} 👋\n\n{text}" if name else text
+            bot.send_message(int(cid), body)
+            sent += 1
+            time.sleep(0.06)  # limite anti-flood Telegram
+        except Exception:
+            failed += 1
+    bot.send_message(chat_id, t(lang, "broadcast_done", sent=sent, failed=failed))
+    return True
+
+
+def _admin_prend(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Fiche client (nom, téléphone, chat_id) pour parler au client en direct."""
+    q = args.strip()
+    if DB_CONN is None:
+        init_db()
+    if not q:
+        with DB_LOCK:
+            rows = DB_CONN.execute(
+                "SELECT chat_id, name, phone FROM clients "
+                "ORDER BY last_seen DESC LIMIT 10").fetchall()
+        if not rows:
+            bot.send_message(chat_id, t(lang, "broadcast_none"))
+            return True
+        lines = "\n".join(
+            f"• {(name or 'Sans nom')} — {phone or '📱 non connu'} (id {cid})"
+            for cid, name, phone in rows)
+        bot.send_message(chat_id, t(lang, "prend_list", lines=lines))
+        return True
+    with DB_LOCK:
+        row = None
+        if q.isdigit():
+            row = DB_CONN.execute(
+                "SELECT chat_id, name, phone, activity, last_seen FROM clients "
+                "WHERE chat_id = ?", (q,)).fetchone()
+        if row is None:
+            row = DB_CONN.execute(
+                "SELECT chat_id, name, phone, activity, last_seen FROM clients "
+                "WHERE name LIKE ? OR phone LIKE ? "
+                "ORDER BY last_seen DESC LIMIT 1",
+                (f"%{q}%", f"%{q}%")).fetchone()
+        if row is None:
+            bot.send_message(chat_id, t(lang, "prend_none", q=q))
+            return True
+        orders = DB_CONN.execute(
+            "SELECT COUNT(*) FROM orders WHERE chat_id = ?",
+            (str(row[0]),)).fetchone()
+        phone = row[2]
+        if not phone:
+            o = DB_CONN.execute(
+                "SELECT phone FROM orders WHERE chat_id = ? AND phone != '' "
+                "ORDER BY id DESC LIMIT 1", (str(row[0]),)).fetchone()
+            phone = o[0] if o else ""
+    bot.send_message(chat_id, t(lang, "prend_card",
+                                 name=row[1] or "Sans nom",
+                                 phone=phone or "📱 non connu (demande-le-lui)",
+                                 chat_id=row[0], activity=row[3] or "—",
+                                 orders=orders[0] if orders else 0,
+                                 last_seen=row[4]))
+    return True
+
+
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     # Fail-closed : sans ADMIN_CHAT_ID configuré, personne n'a accès
     # (même le propriétaire) — jamais l'inverse.
@@ -1160,6 +1312,22 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         catalogue.admin_product(bot, chat_id, args, lang)
         return True
 
+    if command == "/pause":
+        set_paused(True)
+        bot.send_message(chat_id, t(lang, "pause_on"))
+        return True
+
+    if command == "/reprend":
+        set_paused(False)
+        bot.send_message(chat_id, t(lang, "pause_off"))
+        return True
+
+    if command == "/broadcast":
+        return _admin_broadcast(bot, chat_id, args, lang)
+
+    if command == "/prend":
+        return _admin_prend(bot, chat_id, args, lang)
+
     if command == "/stats":
         with DB_LOCK:
             sat_rows = DB_CONN.execute(
@@ -1183,6 +1351,8 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
                 reco=reco_pct, unrecognized=unrecognized,
             ),
         )
+        # 💰 Vue argent (devis = pipeline) : /stats montre aussi l'argent
+        bot.send_message(chat_id, _money_summary())
         return True
 
     if command in {"/maj", "/update"}:
