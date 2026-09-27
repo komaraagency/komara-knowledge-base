@@ -1095,7 +1095,16 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
 # ---------------------------------------------------------------------------
 
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
-    if ADMIN_CHAT_ID and chat_id != ADMIN_CHAT_ID:
+    # Fail-closed : sans ADMIN_CHAT_ID configuré, personne n'a accès
+    # (même le propriétaire) — jamais l'inverse.
+    if not ADMIN_CHAT_ID:
+        logger.warning(
+            "ADMIN_CHAT_ID non configuré — commande admin refusée : %s (chat %s)",
+            command, chat_id,
+        )
+        bot.send_message(chat_id, t(lang, "admin_only"))
+        return True
+    if chat_id != ADMIN_CHAT_ID:
         bot.send_message(chat_id, t(lang, "admin_only"))
         return True
 
