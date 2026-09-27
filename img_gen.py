@@ -97,12 +97,33 @@ def _typing_keeper(bot, chat_id: int, stop: "threading.Event") -> None:
             pass
 
 
+# Protocole 8K — knowledge.txt (identité KOMARA IA, Luxury African)
+PROTOCOL_8K = (
+    ", shot on Sony A7R V, 85mm lens, f/1.8, shallow depth of field, "
+    "deep black and prestige gold #D4AF37 color palette, luxury african "
+    "aesthetic, real skin texture, visible pores, natural reflections, "
+    "no artificial smoothing, ultra detailed, 8K quality"
+)
+
+
+def _with_8k_protocol(prompt: str) -> str:
+    """Colle le protocole 8K de knowledge.txt au prompt client.
+    Le 9:16 vertical s'applique aux visuels réseaux (pas aux logos)."""
+    if not prompt:
+        return prompt
+    out = prompt + PROTOCOL_8K
+    low = prompt.lower()
+    if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
+        out += ", vertical 9:16 format"
+    return out
+
+
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
     """Thread worker : télécharge l'image puis l'envoie."""
     stop = threading.Event()
     threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
     try:
-        url = POLLINATIONS.format(p=quote(prompt), s=random.randint(1, 10**6))
+        url = POLLINATIONS.format(p=quote(_with_8k_protocol(prompt)), s=random.randint(1, 10**6))
         resp = requests.get(url, timeout=TIMEOUT)
         if resp.status_code == 200 and resp.content[:2] == b"\xff\xd8":
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)

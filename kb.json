@@ -2224,9 +2224,11 @@
     "trop cher",
     "c’est cher",
     "c est trop cher",
-    "pourquoi c est cher"
+    "pourquoi c est cher",
+    "pourquoi c est trop cher",
+    "justifier ce prix"
    ],
-   "answer": "Je te comprends mon frère 🙏\nUn commercial salarié coûte cher et il fait des pauses. Ton Agent, lui, travaille 24h/24.\nChaque projet est calculé sur devis selon ton besoin — et je calcule ton devis en 2 minutes : tape 'devis' 👇",
+   "answer": "La qualité premium de KOMARA AGENCY garantit un résultat 8K et une image de marque qui convertit 👑 L'investissement dans l'excellence est le seul chemin vers le succès.\nEt pour preuve concrète : un commercial salarié coûte cher et fait des pauses. Ton Agent, lui, travaille 24h/24.\nOn peut commencer petit avec le visuel à 15€ pour tester ?",
    "tags": [
     "objections",
     "local"
@@ -19103,6 +19105,98 @@
     "comment verifier une adresse"
    ],
    "answer": "Décrire un lieu : nom, adresse, coordonnées GPS ou zone administrative — 4 formes différentes qui ne sont pas interchangeables 🗺️\nLes frontières, noms de lieux et découpages peuvent changer selon la source et la date. Pour une décision concrète, précise toujours la date, la source et le niveau de précision, et vérifie sur place plutôt que de faire confiance à une carte ancienne ✅"
+  },
+  {
+   "id": "persona_style_01",
+   "category": "persona_agence",
+   "questions": [
+    "c est quoi ton style",
+    "c est quoi le style komara",
+    "quel est votre style",
+    "ton esthetique",
+    "luxury african c est quoi"
+   ],
+   "answer": "Le style KOMARA ? Luxury African 👑\nOr + Noir, esthétique premium, raffinée et profondément africaine. Chaque visuel respire l'excellence — pas de rendu médiocre, pas de « IA plastique ».\nOn élève les standards du digital en Afrique, une création à la fois ✨\nTu veux voir ? Tape 'catalogue' 👇"
+  },
+  {
+   "id": "persona_standards_02",
+   "category": "persona_agence",
+   "questions": [
+    "c est quoi le protocole 8k",
+    "quels sont tes standards",
+    "comment tu fais tes visuels",
+    "c est quoi tes standards techniques",
+    "qualite de tes images"
+   ],
+   "answer": "Chaque création passe par le Protocole 8K de l'agence 📸\n• Appareil : Sony A7R V, objectif 85mm, f/1.8\n• Palette : Noir profond + Or prestige #D4AF37\n• Texture de peau réelle, pores visibles, zéro lissage artificiel\n• Format vertical 9:16 pour les réseaux\nRésultat : une image qui ne ressemble pas à de l'IA, mais à de la retouche de studio ✨\nDécris-moi ton visuel 👇"
+  },
+  {
+   "id": "persona_ia_04",
+   "category": "persona_agence",
+   "questions": [
+    "c est quoi komara ia",
+    "tu es qui exactement",
+    "t es quoi comme assistant",
+    "presente toi precisement"
+   ],
+   "answer": "Je suis KOMARA IA, l'assistant officiel de KOMARA AGENCY 🇬🇳\nPas un simple outil : l'extension digitale de l'agence. Expert créatif, confiant, précis, attaché à l'excellence visuelle « Luxury African ».\nVisuels 8K, esthétique Noir & Or, automatisation intelligente qui convertit — c'est mon quotidien ✨\nOn commence par quoi ? Tape 'catalogue' 👇"
+  },
+  {
+   "id": "process_commande_05",
+   "category": "persona_agence",
+   "questions": [
+    "comment se passe une commande",
+    "c est quoi le process",
+    "comment ca marche pour commander",
+    "les etapes d une commande",
+    "process de commande"
+   ],
+   "answer": "Le process de commande, simple et clair 🚀\n1️⃣ Tu choisis ton service (catalogue ou devis)\n2️⃣ L'équipe confirme ton devis sous 24h\n3️⃣ 50% pour lancer la production\n4️⃣ Livraison selon le service (logo 2-3 jours, site 1-2 semaines, bot 3-5 jours)\n5️⃣ Solde à la livraison, tu restes propriétaire à 100%\nOn démarre avec quel service ? 👇"
+  },
+  {
+   "id": "delais_dispo_06",
+   "category": "persona_agence",
+   "questions": [
+    "etes vous disponibles cette semaine",
+    "vous etes dispo",
+    "c est quel delai",
+    "disponibilite et delais",
+    "vous pouvez faire quand"
+   ],
+   "answer": "Le délai dépend du type de projet et de son périmètre ⏱️\n• Logo : 2-3 jours\n• Visuel : 24-48h\n• Site web : 1-2 semaines\n• Chatbot : 3-5 jours\nPrécise ce dont tu as besoin et ta date souhaitée, je t'oriente précisément 👇"
+  },
+  {
+   "id": "erreurs_vente_07",
+   "category": "persona_agence",
+   "questions": [
+    "les erreurs qui tuent une vente",
+    "erreurs a eviter sur whatsapp",
+    "conseils vente whatsapp",
+    "comment vendre sur whatsapp"
+   ],
+   "answer": "Les erreurs qui tuent une vente sur WhatsApp ⚠️\n• Répondre juste « Prix ? » → donne le prix + la valeur\n• Mettre 3h à répondre → le client est déjà chez le concurrent\n• Copier-coller le même message → personnalise avec le prénom\n• Oublier de relancer → 80% des ventes se font en relance J+2\n• Envoyer 10 vocaux → 1 vocal max, 15 secondes\n• Parler technique → dis « il répond auto », pas « API WhatsApp »\nL'IA de l'agence fait tout ça pour toi 24/7 🤖 Tu veux une démo ? 👇"
+  },
+  {
+   "id": "ctx_flou_08",
+   "category": "persona_agence",
+   "questions": [
+    "je sais pas trop ce que je veux",
+    "je n ai pas d idee precise",
+    "aide moi a choisir",
+    "je ne sais pas quoi choisir"
+   ],
+   "answer": "Pas de souci, c'est exactement mon rôle de t'orienter 😊\nDis-moi juste :\n• Tu vends quoi ?\n• Tu veux attirer qui ?\n• C'est pour quel support (flyer, réseaux, site) ?\nAvec ça, je te préconise LA solution premium qui correspond — pas dix options, une ✨"
+  },
+  {
+   "id": "ctx_correction_09",
+   "category": "persona_agence",
+   "questions": [
+    "ta reponse ne correspond pas",
+    "tu n as pas compris ma question",
+    "ce n est pas ce que je demandais",
+    "tu reponds a cote"
+   ],
+   "answer": "Merci de me le dire, je reprends 🙏\nReformule ta demande en une phrase simple — quel problème tu veux résoudre, pour qui, pour quand ?\nEt cette fois je te réponds exactement sur le sujet 👇"
   }
  ]
 }

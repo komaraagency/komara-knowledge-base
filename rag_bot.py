@@ -192,6 +192,30 @@ def _parse_markdown_sections(content: str) -> list[dict[str, str]]:
                 items.append({"question": question, "answer": answer})
     return items
 
+KNOWLEDGE_TXT_PATH = BASE_DIR / "knowledge.txt"
+
+
+def load_knowledge_txt() -> str:
+    """Lit le persona KOMARA IA (knowledge.txt). Le moteur est un moteur
+    de recherche locale : le persona est loggé au démarrage (visible
+    Railway) et ses points clés vivent dans la KB (fiches persona_*)."""
+    if not KNOWLEDGE_TXT_PATH.is_file():
+        logger.warning("knowledge.txt absent — persona KOMARA IA non chargée")
+        return ""
+    try:
+        content = KNOWLEDGE_TXT_PATH.read_text(encoding="utf-8")
+        sections = [ln.strip() for ln in content.splitlines()
+                    if ln.startswith("###")]
+        logger.info(
+            "Persona KOMARA IA chargée (knowledge.txt) : %s directives [%s]",
+            len(sections), " ; ".join(s.lstrip('# ')[:40] for s in sections[:4]),
+        )
+        return content
+    except Exception as e:
+        logger.error("Erreur lecture knowledge.txt : %s", e)
+        return ""
+
+
 def load_local_faq() -> list[dict[str, str]]:
     if not FAQ_PATH.is_file():
         logger.warning("FAQ locale absente : %s", FAQ_PATH)
@@ -251,6 +275,11 @@ def load_aya2_dialogues(lang_code: str = "fr") -> list[dict[str, str]]:
     except Exception as e:
         logger.error("Erreur de lecture des dialogues Aya2 : %s", e)
         return []
+
+def _boot_knowledge_sources() -> None:
+    """Appelé au démarrage : trace TOUTES les sources de connaissances."""
+    load_knowledge_txt()
+
 
 def load_language_resources(lang_code: str) -> dict[str, Any]:
     lang_path = LANG_DIR / lang_code
@@ -432,6 +461,10 @@ DB_LOCK = threading.Lock()
 DB_CONN: sqlite3.Connection | None = None
 
 def init_memory_db() -> None:
+    try:
+        _boot_knowledge_sources()
+    except Exception as e:
+        logger.error("Chargement des sources knowledge impossible : %s", e)
     global DB_CONN
     MEMORY_DIR.mkdir(parents=True, exist_ok=True)
     DB_CONN = sqlite3.connect(MEMORY_FILE, check_same_thread=False)

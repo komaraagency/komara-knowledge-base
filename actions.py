@@ -193,6 +193,7 @@ SURVEY_ASK_VARIANTS_FR = [
 
 T = {
     "fr": {
+        "complaint_ack": "Merci pour ton message, il a été transmis à l'équipe dirigeante qui examine personnellement ton dossier. Tu seras contacté sous 24h 🙏",
         "human_ask": '🤝 Pas de souci, un expert KOMARA te contacte sous 5 min ⚡\nLaisse-moi ton numéro WhatsApp 👇',
         "human_done": "✅ C'est noté ! L'équipe KOMARA te contacte sur WhatsApp sous 5 min ⚡\nEn attendant, je reste dispo ici 24/7 😊",
         "admin_panel": '🎛️ PANNEAU ADMIN — Komara Agency 🇬🇳\nTout le bot, depuis ton téléphone 👇\n\n💰 ARGENT & RAPPORTS\n📊 /stats — compteurs + argent (devis, mois, commandes)\n📈 /rapport — rapport complet\n🗓️ /hebdo — rapport hebdomadaire\n📤 /export — export des données\n\n👥 CLIENTS & VENTE\n📞 /prend — tes 10 derniers clients + numéros\n👤 /prend <nom> — fiche client complète\n✉️ /msg <id|numéro> <texte> — écrire à un client via le bot\n📢 /broadcast <texte> — promo à tous les clients\n🛒 /commandes — commandes du catalogue\n🧑\u200d🤝\u200d🧑 /clients — liste des clients\n📅 /rdvs — rendez-vous\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — liste des produits\n➕ /produit add <cat>|<nom>|<desc>|<prix>\n💱 /produit maj <id>|<prix> — changer un prix\n❌ /produit del <id> — retirer un produit\n🎟️ /promo CODE 20 [max] — créer un code (ex : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — désactiver un code\n📋 /promos — codes actifs\n\n🤖 PILOTAGE DU BOT\n🔒 /pause — fermer le bot (clients → message de fermeture)\n✅ /reprend — rouvrir le bot\n🔄 /maj — recharger la base de connaissances\n📄 /facture — facture PDF\n💾 /backup — sauvegarde Drive manuelle\n🔗 /google — connexion Google\n📥 /kb_import — importer des fiches\n\n💡 Combo gagnant : /prend pour voir un client, /msg pour lui écrire, /broadcast pour une promo générale. Seul ton ID peut exécuter tout ça 🔐',
@@ -263,6 +264,7 @@ T = {
         "order_known_phone": "Je garde aussi ton numéro : {phone}\nTape 'ok' pour confirmer, ou écris le nouveau.",
     },
     "en": {
+        "complaint_ack": 'Thank you for your message — it has been forwarded to the leadership team, who will personally review your case. You will be contacted within 24h 🙏',
         "human_ask": '🤝 No problem, a KOMARA expert will contact you within 5 min ⚡\nDrop your WhatsApp number 👇',
         "human_done": "✅ Noted! The KOMARA team will reach you on WhatsApp within 5 min ⚡\nMeanwhile, I'm still here 24/7 😊",
         "admin_panel": '🎛️ ADMIN PANEL — Komara Agency 🇬🇳\nYour whole bot, from your phone 👇\n\n💰 MONEY & REPORTS\n📊 /stats — counters + money (quotes, month, orders)\n📈 /rapport — full report\n🗓️ /hebdo — weekly report\n📤 /export — data export\n\n👥 CLIENTS & SALES\n📞 /prend — your 10 latest clients + numbers\n👤 /prend <name> — full client card\n✉️ /msg <id|number> <text> — message a client via the bot\n📢 /broadcast <text> — promo to all clients\n🛒 /commandes — catalogue orders\n🧑\u200d🤝\u200d🧑 /clients — client list\n📅 /rdvs — appointments\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — product list\n➕ /produit add <cat>|<name>|<desc>|<price>\n💱 /produit maj <id>|<price> — change a price\n❌ /produit del <id> — remove a product\n🎟️ /promo CODE 20 [max] — create a code (e.g. /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — deactivate a code\n📋 /promos — active codes\n\n🤖 BOT CONTROL\n🔒 /pause — close the bot (clients get the closed message)\n✅ /reprend — reopen the bot\n🔄 /maj — reload the knowledge base\n📄 /facture — PDF invoice\n💾 /backup — manual Drive backup\n🔗 /google — Google connection\n📥 /kb_import — import entries\n\n💡 Winning combo: /prend to see a client, /msg to write to them, /broadcast for a general promo. Only your ID can run all of this 🔐',
@@ -322,6 +324,7 @@ T = {
         "order_known_phone": "I also remember your number: {phone}\nType 'ok' to confirm, or write a new one.",
     },
     "es": {
+        "complaint_ack": 'Gracias por tu mensaje — ha sido enviado al equipo directivo, que revisará personalmente tu caso. Te contactarán en 24h 🙏',
         "human_ask": '🤝 Sin problema, un experto KOMARA te contacta en 5 min ⚡\nDéjame tu número de WhatsApp 👇',
         "human_done": '✅ ¡Anotado! El equipo KOMARA te contacta por WhatsApp en 5 min ⚡\nMientras tanto, sigo aquí 24/7 😊',
         "admin_panel": '🎛️ PANEL ADMIN — Komara Agency 🇬🇳\nTodo tu bot, desde tu teléfono 👇\n\n💰 DINERO & INFORMES\n📊 /stats — contadores + dinero (presupuestos, mes, pedidos)\n📈 /rapport — informe completo\n🗓️ /hebdo — informe semanal\n📤 /export — exportación de datos\n\n👥 CLIENTES & VENTAS\n📞 /prend — tus 10 últimos clientes + números\n👤 /prend <nombre> — ficha completa del cliente\n✉️ /msg <id|número> <texto> — escribir a un cliente por el bot\n📢 /broadcast <texto> — promo a todos los clientes\n🛒 /commandes — pedidos del catálogo\n🧑\u200d🤝\u200d🧑 /clients — lista de clientes\n📅 /rdvs — citas\n\n🛍️ CATÁLOGO & PROMOS\n📦 /produit — lista de productos\n➕ /produit add <cat>|<nombre>|<desc>|<precio>\n💱 /produit maj <id>|<precio> — cambiar un precio\n❌ /produit del <id> — quitar un producto\n🎟️ /promo CODE 20 [max] — crear un código (ej : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — desactivar un código\n📋 /promos — códigos activos\n\n🤖 CONTROL DEL BOT\n🔒 /pause — cerrar el bot (los clientes reciben el mensaje de cierre)\n✅ /reprend — reabrir el bot\n🔄 /maj — recargar la base de conocimientos\n📄 /facture — factura PDF\n💾 /backup — copia manual en Drive\n🔗 /google — conexión Google\n📥 /kb_import — importar fichas\n\n💡 Combo ganador: /prend para ver un cliente, /msg para escribirle, /broadcast para una promo general. Solo tu ID puede ejecutar todo esto 🔐',
@@ -381,6 +384,7 @@ T = {
         "order_known_phone": "También guardo tu número: {phone}\nEscribe 'ok' para confirmar, o el nuevo.",
     },
     "ar": {
+        "complaint_ack": 'شكرا على رسالتك — تم تحويلها إلى الفريق الإداري الذي سيراجع حالتك شخصيا. سيتم التواصل معك خلال 24 ساعة 🙏',
         "human_ask": '🤝 لا مشكلة، خبير كومارا سيتصل بك خلال 5 دقائق ⚡\nاترك رقم واتساب 👇',
         "human_done": '✅ تم التسجيل! فريق كومارا سيتصل بك على واتساب خلال 5 دقائق ⚡\nوأنا هنا 24/7 في انتظارك 😊',
         "admin_panel": '🎛️ لوحة الأدمن — كومارا أجنسلي 🇬🇳\nالبوت كله من هاتفك 👇\n\n💰 المال والتقارير\n📊 /stats — الأرقام + المال\n📈 /rapport — تقرير كامل\n🗓️ /hebdo — تقرير أسبوعي\n📤 /export — تصدير البيانات\n\n👥 العملاء والمبيعات\n📞 /prend — آخر 10 عملاء + أرقام\n👤 /prend <اسم> — بطاقة العميل الكاملة\n✉️ /msg <معرف|رقم> <نص> — مراسلة عميل عبر البوت\n📢 /broadcast <نص> — عرض لكل العملاء\n🛒 /commandes — طلبات الكتالوج\n🧑\u200d🤝\u200d🧑 /clients — قائمة العملاء\n📅 /rdvs — المواعيد\n\n🛍️ الكتالوج والعروض\n📦 /produit — قائمة المنتجات\n➕ /produit add <فئة>|<اسم>|<وصف>|<سعر>\n💱 /produit maj <id>|<سعر> — تغيير سعر\n❌ /produit del <id> — حذف منتج\n🎟️ /promo CODE 20 [max] — إنشاء كود (مثال : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — تعطيل كود\n📋 /promos — الأكواد النشطة\n\n🤖 التحكم في البوت\n🔒 /pause — إغلاق البوت\n✅ /reprend — إعادة فتح البوت\n🔄 /maj — إعادة تحميل قاعدة المعرفة\n📄 /facture — فاتورة PDF\n💾 /backup — نسخ احتياطي يدوي\n🔗 /google — ربط Google\n📥 /kb_import — استيراد أجوبة\n\n💡 المزيج الرابح: /pend لرؤية العميل، /msg للمراسلة، /broadcast للعرض العام. فقط معرّفك يمكنه تنفيذ كل هذا 🔐',
@@ -668,6 +672,22 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if first_word in ADMIN_COMMANDS:
         args = text_clean.split(maxsplit=1)[1] if len(words) > 1 else ""
         return _admin_command(bot, chat_id, first_word, args, lang)
+
+    # 0quin-quater. Réclamation / arnaque / sujet sensible : règle
+    # docs/dialogues-frequents.md — aucune réponse automatique de vente,
+    # l'équipe révise manuellement. On accuse réception sobrement et
+    # on notifie l'admin immédiatement.
+    if _is_complaint(low):
+        client = get_client(chat_id)
+        notify_admin(
+            bot,
+            "🚨 RÉCLAMATION / SUJET SENSIBLE\n"
+            f"👤 {(client or {}).get('name') or '(inconnu)'} — chat_id {chat_id}\n"
+            f"💬 « {text_clean[:180]} »\n"
+            "→ Revue manuelle requise, NE PAS répondre en automatique.",
+        )
+        bot.send_message(chat_id, t(lang, "complaint_ack"))
+        return True
 
     # 0quin-ter. « Parler à un humain » : interrompt TOUT flow actif
     # (devis, panier, commande) — le client ne doit jamais rester coincé.
@@ -1391,6 +1411,24 @@ def _admin_prend(bot, chat_id: int, args: str, lang: str) -> bool:
                                  orders=orders[0] if orders else 0,
                                  last_seen=row[4]))
     return True
+
+
+COMPLAINT_WORDS = [
+    "arnaque", "arnaqué", "porter plainte", "plainte", "escroc", "voleur",
+    "je me fais avoir", "rembourse", "scandal", "honteux", "trahi",
+    "fraude", "c est du vol",
+    # EN
+    "scam", "scammed", "rip-off", "ripoff", "fraud", "file a complaint",
+    "complaint", "i want a refund", "sue you",
+    # ES
+    "estafa", "estafado", "denuncia", "quiero mi reembolso", "ladron",
+    # AR
+    "احتيال", "نصب", "شكوى", "اشكو", "استرجاع",
+]
+
+
+def _is_complaint(low: str) -> bool:
+    return any(w in low for w in COMPLAINT_WORDS)
 
 
 HUMAN_PHRASES = [
