@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import random
 import sqlite3
 import threading
 import time
@@ -157,6 +158,19 @@ ORDER_STATUSES: dict[str, str] = {
 # ---------------------------------------------------------------------------
 # Textes des flux (fr complet, en/es essentiels, ar → fr)
 # ---------------------------------------------------------------------------
+
+# Variantes de confirmation (random.choice : jamais 2 fois la même phrase)
+
+RDV_DONE_VARIANTS_FR = [
+    "C'est noté {nom} ✅\nRDV pour {sujet} — {slot}.\nJe t'envoie un vocal de confirmation et un rappel la veille 🙏",
+    "Parfait {nom}, on a bloqué {slot} pour {sujet} ✅\nTu recevras un rappel la veille, insh'Allah 🙏",
+    "Alhamdulilah, c'est calé {nom} ✅\n{slot} pour {sujet}.\nÀ tout à l'heure ! 🔥",
+]
+
+SURVEY_ASK_VARIANTS_FR = [
+    "Ton avis compte beaucoup pour nous ⭐ Tu nous mets combien : 1 à 5 ?",
+    "Si tu as aimé le service, laisse-nous ta note de 1 à 5 ⭐ Ça nous aide à grandir 🙏",
+]
 
 T = {
     "fr": {
@@ -643,7 +657,11 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False) -> 
         bot.send_message(chat_id, t(lang, "lead_start"))
     elif flow == "survey":
         _save_flow(chat_id, "survey", "0", {})
-        bot.send_message(chat_id, t(lang, "survey_start", question=SURVEY_QUESTIONS[0]["fr"]))
+        if lang == "fr":
+            # random.choice : jamais 2 fois la même demande d'avis
+            bot.send_message(chat_id, random.choice(SURVEY_ASK_VARIANTS_FR))
+        else:
+            bot.send_message(chat_id, t(lang, "survey_start", question=SURVEY_QUESTIONS[0]["fr"]))
     else:
         return False
     return True
@@ -814,10 +832,19 @@ def _step_rdv(bot, chat_id: int, step: str, data: dict, text: str, lang: str) ->
             chat_id, name=data.get("name", ""),
             event=f"RDV pris : {label} ({data.get('topic', '')})",
         )
-        bot.send_message(
-            chat_id,
-            t(lang, "rdv_done", name=data.get("name", ""), topic=data.get("topic", ""), slot=label),
-        )
+        if lang == "fr":
+            # random.choice : jamais 2 fois la même confirmation
+            rdv_txt = random.choice(RDV_DONE_VARIANTS_FR).format(
+                nom=data.get("name") or "toi",
+                sujet=data.get("topic", ""),
+                slot=label,
+            )
+            bot.send_message(chat_id, rdv_txt)
+        else:
+            bot.send_message(
+                chat_id,
+                t(lang, "rdv_done", name=data.get("name", ""), topic=data.get("topic", ""), slot=label),
+            )
         notify_admin(
             bot,
             f"📅 NOUVEAU RDV\n👤 {data.get('name','')}\n📝 {data.get('topic','')}\n"

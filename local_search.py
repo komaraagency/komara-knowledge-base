@@ -13,6 +13,7 @@ Améliorations:
 """
 
 from typing import Any, List, Tuple, Set
+import random
 import re
 import math
 from collections import Counter
@@ -305,6 +306,7 @@ def _score_bidirectional(
 
 
 _RESOURCE_CACHE: dict[tuple, tuple[dict[str, float], list, list, list]] = {}
+_LAST_PICK: dict[str, str] = {}
 
 
 def _prepare_resources(knowledge_base, local_faq, local_dialogues):
@@ -321,14 +323,19 @@ def _prepare_resources(knowledge_base, local_faq, local_dialogues):
         return cached
 
     all_questions: list[list[str]] = []
-    kb_entries: list[tuple[list[tuple[str, set[str]]], str, str | None]] = []
+    kb_entries: list[tuple[list[tuple[str, set[str]]], Any, str | None]] = []
     for item in knowledge_base:
         questions = _get_questions(item)
         all_questions.append(questions)
         combined = ' '.join(questions)
         kw_intent = _detect_intent(_tokenize(combined))
         qtok = [(q, _tokenize(q)) for q in questions]
-        kb_entries.append((qtok, item.get("answer", ""), kw_intent))
+        # réponse brute : str, ou liste de variantes (« answers ») →
+        # le tirage au sort se fait AU moment de répondre.
+        raw = item.get("answers")
+        if not isinstance(raw, list) or not raw:
+            raw = item.get("answer", "")
+        kb_entries.append((qtok, raw, kw_intent))
 
     faq_entries: list[tuple[str, set[str], str, str | None]] = []
     for item in local_faq:
@@ -337,12 +344,15 @@ def _prepare_resources(knowledge_base, local_faq, local_dialogues):
         kw_intent = _detect_intent(_tokenize(q))
         faq_entries.append((q, _tokenize(q), item.get("answer", ""), kw_intent))
 
-    dialogue_entries: list[tuple[str, set[str], str, str | None]] = []
+    dialogue_entries: list[tuple[str, set[str], Any, str | None]] = []
     for item in local_dialogues:
         q = item.get("question", "")
         all_questions.append([q])
         kw_intent = _detect_intent(_tokenize(q))
-        dialogue_entries.append((q, _tokenize(q), item.get("answer", ""), kw_intent))
+        raw = item.get("answers")
+        if not isinstance(raw, list) or not raw:
+            raw = item.get("answer", "")
+        dialogue_entries.append((q, _tokenize(q), raw, kw_intent))
 
     idf = _compute_idf(all_questions)
     prepared = (idf, kb_entries, faq_entries, dialogue_entries)
@@ -397,22 +407,37 @@ def trouver_meilleure_reponse(
             default=0.0
         )
         if best_score >= 0.22:
-            candidates.append((best_score, answer))
+            candidates.append((best_score, answer, questions[0][0] if questions else ""))
 
     for q, qtok, answer, kw_intent in faq_entries:
         score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
-            candidates.append((score, answer))
+            candidates.append((score, answer, q))
 
     for q, qtok, answer, kw_intent in dialogue_entries:
         score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
-            candidates.append((score, answer))
+            candidates.append((score, answer, q))
 
-    if candidates:
-        return max(candidates, key=lambda x: x[0])[1]
+    if not candidates:
+        return None
 
-    return None
+    best_score, raw, qkey = max(candidates, key=lambda x: x[0])
+
+    # Variantes : random.choice pour ne jamais dire deux fois la même
+    # phrase — avec anti-répétition immédiate (on ne retombe pas sur la
+    # version tirée juste avant pour cette même question).
+    if isinstance(raw, list):
+        if not raw:
+            return None
+        pick = random.choice(raw)
+        if len(raw) > 1 and pick == _LAST_PICK.get(qkey):
+            pick = random.choice([a for a in raw if a != _LAST_PICK[qkey]])
+        if len(_LAST_PICK) > 1000:
+            _LAST_PICK.clear()
+        _LAST_PICK[qkey] = pick
+        return pick
+    return raw
 
 
 # Compatibilité: garder score_match pour les imports existants (ancien format)

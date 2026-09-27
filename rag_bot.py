@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import random
 import re
 import signal
 import sqlite3
@@ -226,11 +227,18 @@ def load_aya2_dialogues(lang_code: str = "fr") -> list[dict[str, str]]:
         with path.open("r", encoding="utf-8") as f:
             data = json.load(f)
         items = data.get("dialogues", data) if isinstance(data, dict) else data
-        dialogues = [
-            {"question": item["question"], "answer": item["answer"]}
-            for item in items
-            if item.get("question") and item.get("answer")
-        ]
+        dialogues = []
+        for item in items:
+            if not item.get("question"):
+                continue
+            # variantes (« answers » : liste tirée au hasard au moment de
+            # répondre) ou réponse unique (« answer »)
+            if isinstance(item.get("answers"), list) and item["answers"]:
+                dialogues.append(
+                    {"question": item["question"], "answers": item["answers"]})
+            elif item.get("answer"):
+                dialogues.append(
+                    {"question": item["question"], "answer": item["answer"]})
         logger.info("Dialogues Aya2 (ton africain pro) chargés : %s questions", len(dialogues))
         return dialogues
     except Exception as e:
@@ -622,6 +630,28 @@ MESSAGES: dict[str, dict[str, str]] = {
     },
 }
 
+# ---------------------------------------------------------------------------
+# Variantes de messages (random.choice : jamais 2 fois la même phrase)
+# ---------------------------------------------------------------------------
+
+WELCOME_VARIANTS_FR = [
+    "Salam {nom} 🙏 Bienvenue chez Komara Agency 🇬🇳 On est là pour booster ton business. Tu cherches quoi aujourd'hui ?",
+    "Ah {nom} ! Ça fait plaisir 😊 Ici c'est Komara Agency 🇬🇳 Dis-moi, comment je peux t'aider ?",
+    "Bienvenue {nom} ! Tu es au bon endroit 🔥 Formation IA, création de visuels, ou création de bot ?",
+]
+
+WELCOME_BACK_VARIANTS_FR = [
+    "Re-bonjour {nom} 👋 Content de te revoir chez Komara Agency 🇬🇳 Qu'est-ce qu'on fait aujourd'hui ?",
+    "Ah, {nom} de retour 😊 Ton business attend. Nouveau projet, suivi, ou devis ?",
+    "Ça faisait longtemps {nom} 👋 Prêt·e à booster ton business ? Formation, visuels, bot : dis-moi tout.",
+]
+
+FALLBACK_VARIANTS_FR = [
+    "Hmm j'ai pas bien saisi 😅 Tu peux reformuler ? Ou clique sur un bouton ci-dessous 👇",
+    "Désolé, je suis encore un petit robot, j'apprends 🙏 Tu voulais parler de quel service ?",
+    "Aïe, je me suis perdu 😅 Envoie un message vocal si tu veux, ce sera plus simple pour moi.",
+]
+
 def menu_for_lang(lang: str) -> ReplyKeyboardMarkup:
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     for row in KEYBOARDS.get(lang, KEYBOARDS["fr"]):
@@ -828,7 +858,12 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # 0. Commandes de démarrage/assistance (/start, /menu, /help)
     if user_text.lower() in START_COMMANDS:
         client = actions.get_client(chat_id)
-        if client and client["name"]:
+        name = (client or {}).get("name") or ""
+        if detected_lang == "fr":
+            # random.choice : jamais 2 fois le même accueil
+            pool = WELCOME_BACK_VARIANTS_FR if name else WELCOME_VARIANTS_FR
+            welcome = random.choice(pool).replace("{nom}", name or "toi")
+        elif client and client["name"]:
             welcome = msg(detected_lang, "welcome_back").replace("{name}", client["name"])
         else:
             welcome = msg(detected_lang, "start")
@@ -928,7 +963,13 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
         send_portfolio(chat_id, detected_lang)
         return
 
-    response = local_response or msg(detected_lang, "fallback")
+    if local_response:
+        response = local_response
+    elif detected_lang == "fr":
+        # random.choice : jamais 2 fois le même « je n'ai pas compris »
+        response = random.choice(FALLBACK_VARIANTS_FR)
+    else:
+        response = msg(detected_lang, "fallback")
 
     # 6. Sauvegarde et envoi
     remember(chat_id, "assistant", response)

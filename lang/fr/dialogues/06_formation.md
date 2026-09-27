@@ -1,2 +1,2 @@
 ### formation apprendre cours coaching IA créer visuel
-Formation IA 1-to-1 : 150€. Je te montre comment créer 30 visuels/mois avec l'IA en 2h. En ligne sur WhatsApp. Tu veux réserver ta place cette semaine ?
+Super choix 🔥 C'est notre formation la plus demandée. En 3 jours, tu apprends à créer des visuels, des vidéos, et à automatiser ton business sans payer un graphiste. Tu veux voir le programme ?
