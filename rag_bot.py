@@ -30,6 +30,7 @@ import google_link
 import osm_maps
 import backup_drive
 import weekly_report
+import tts
 from normalize_text import normalize_text
 
 # ---------------------------------------------------------------------------
@@ -722,7 +723,7 @@ def handle_message(message: telebot.types.Message) -> None:
             chat_id,
             msg(detected_lang, "voice_received").replace("{text}", text[:200]),
         )
-        _process_text(chat_id, text, detected_lang)
+        _process_text(chat_id, text, detected_lang, reply_voice=True)
         return
 
     if not message.text:
@@ -734,7 +735,8 @@ def handle_message(message: telebot.types.Message) -> None:
 _LAST_LANG: dict[int, str] = {}
 
 
-def _process_text(chat_id: int, user_text: str, detected_lang: str) -> None:
+def _process_text(chat_id: int, user_text: str, detected_lang: str,
+                    reply_voice: bool = False) -> None:
     _LAST_LANG[chat_id] = detected_lang
     # Livraison : "livraison <adresse>" → OpenStreetMap (gratuit, sans clé)
     delivery_addr = osm_maps.is_delivery_intent(user_text)
@@ -850,6 +852,10 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str) -> None:
             bot.send_message(chat_id, chunk, reply_markup=menu_for_lang(detected_lang) if is_last else None)
     else:
         bot.send_message(chat_id, response, reply_markup=menu_for_lang(detected_lang))
+
+    # Réponse parlée si le client a écrit en vocal (synthèse vocale locale)
+    if reply_voice:
+        tts.reply_with_voice(bot, chat_id, response, detected_lang)
 
 # ---------------------------------------------------------------------------
 # Monitoring et Cycle de vie
