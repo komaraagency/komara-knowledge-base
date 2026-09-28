@@ -63,7 +63,8 @@ def init_commercial_db() -> None:
                 status TEXT DEFAULT 'pending',
                 reminder_stage INTEGER DEFAULT 0,
                 created_at TEXT NOT NULL,
-                last_reminder_at TEXT
+                last_reminder_at TEXT,
+                winback_done INTEGER DEFAULT 0
             )""")
         conn.execute("""
             CREATE TABLE IF NOT EXISTS payments (
@@ -116,6 +117,9 @@ def init_commercial_db() -> None:
                 tranche2_payee INTEGER DEFAULT 0,
                 status TEXT DEFAULT 'livre',
                 delivered_at TEXT,
+                parrain_notified INTEGER DEFAULT 0,
+                recouv_stage INTEGER DEFAULT 0,
+                upsell_done INTEGER DEFAULT 0,
                 created_at TEXT NOT NULL
             )""")
         _add_column(conn, "clients", "client_step",
@@ -201,9 +205,15 @@ def set_step(chat_id, step: str) -> None:
 
 def set_auto_messaged(chat_id, date: str) -> None:
     conn, lock = _conn()
+    now = _now()
     with lock:
-        conn.execute("UPDATE clients SET last_auto_message_date=? WHERE chat_id=?",
-                     (date, str(chat_id)))
+        # upsert : la fiche peut ne pas exister encore (achat admin/cron)
+        conn.execute(
+            """INSERT INTO clients (chat_id, first_seen, last_seen,
+               last_auto_message_date) VALUES (?,?,?,?)
+               ON CONFLICT(chat_id) DO UPDATE SET
+                   last_auto_message_date=excluded.last_auto_message_date""",
+            (str(chat_id), now, now, date))
         conn.commit()
 
 
