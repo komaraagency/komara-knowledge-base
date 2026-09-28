@@ -288,14 +288,17 @@ def process(bot, now=None) -> dict:
     """Un passage complet (cron 6h). Jamais d'exception vers le cron."""
     ensure_columns()
     out = {"parrainage": 0, "recouvrement": 0, "upsell": 0, "winback": 0}
-    try:
-        out["parrainage"] = process_parrainage(bot, now)
-    except Exception as e:
-        logger.error("parrainage : %s", e)
+    # PRIORITÉ ARGENT : le recouvrement passe AVANT le parrainage
+    # pour ne jamais laisser un impayé masqué par un message promo
+    # (anti-spam : 1 message/client/jour → le plus urgent gagne)
     try:
         out["recouvrement"] = process_recouvrement(bot, now)
     except Exception as e:
         logger.error("recouvrement : %s", e)
+    try:
+        out["parrainage"] = process_parrainage(bot, now)
+    except Exception as e:
+        logger.error("parrainage : %s", e)
     try:
         out["upsell"] = process_upsell(bot, now)
     except Exception as e:

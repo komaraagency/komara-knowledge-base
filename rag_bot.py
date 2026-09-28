@@ -1244,7 +1244,7 @@ def _handle_message(message: telebot.types.Message) -> None:
     # RÈGLE ANTI-CONFLIT : le TYPE du message décide. Une photo ne
     # génère JAMAIS un QR, elle est TOUJOURS scannée (et inversement
     # pour 'payer' en texte). Les 2 ne tournent jamais ensemble.
-    if message.photo:
+    if getattr(message, "photo", None):
         safe_typing(chat_id)
         try:
             _f = bot.get_file(message.photo[-1].file_id)
