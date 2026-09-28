@@ -25,6 +25,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import catalogue
+import devis_engine
 import google_link
 import invoices
 import osm_maps
@@ -523,6 +524,12 @@ def init_db() -> None:
     logger.info("Base actions SQLite initialisée : %s", ACTIONS_DB)
 
 
+    # Lot 22 (F1-F6) : tables commerciales — pending_quotes, payments,
+    # parrainage, abonnements, purchases, client_step…
+    import commercial_db
+    commercial_db.init_commercial_db()
+
+
 def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
@@ -893,8 +900,12 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if low in TRACKING_TRIGGERS:
         return order_tracking(bot, chat_id, lang)
 
-    # 0ter-bis. Catalogue, panier, ajouter/vider
-    if catalogue.handle_client(bot, chat_id, text_clean, lang):
+    # 0ter-bis. Catalogue, panier, ajouter/vider.
+    # Lot 22 : UNIQUEMENT hors flux actif — un client qui répond
+    # « boutique » à l'étape activité du devis ne doit pas déclencher le
+    # catalogue : sa réponse alimente le flux en cours (le hijack du
+    # catalogue cassait l'étape 4/5 du devis).
+    if not _fetch_flow(chat_id) and catalogue.handle_client(bot, chat_id, text_clean, lang):
         return True
 
     # 0bis. Message hors horaires (1x/jour, n'interrompt rien)
@@ -1267,6 +1278,22 @@ def calc_devis(data: dict) -> tuple[list[str], float]:
     return lines, round(total, 2)
 
 
+def _devis_country_step(bot, chat_id: int, data: dict, lang: str) -> bool:
+    """Feature #1 — détection auto de la localité :
+    (1a) n° de tél du client → (1b) langue du chat → (2) on demande."""
+    client = get_client(chat_id) or {}
+    phone = client.get("phone") or ""
+    cc, source = devis_engine.detect_locality(phone, lang)
+    if source in ("phone", "lang"):
+        data["country"] = cc
+        _save_flow(chat_id, "devis", "activity", data)
+        bot.send_message(chat_id, t(lang, "devis_activity"))
+    else:
+        _save_flow(chat_id, "devis", "country", data)
+        bot.send_message(chat_id, devis_engine.t(lang, "country_ask"))
+    return True
+
+
 def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
     if step == "service":
         digits = text.strip()
@@ -1282,6 +1309,25 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
 
     if step == "details":
         data["details"] = text[:500]
+        # Feature #1 : collecte nom + pays_code avant de continuer.
+        client = get_client(chat_id) or {}
+        if client.get("name"):
+            data["name"] = client["name"]
+            return _devis_country_step(bot, chat_id, data, lang)
+        _save_flow(chat_id, "devis", "name", data)
+        bot.send_message(chat_id, devis_engine.t(lang, "name_ask"))
+        return True
+
+    if step == "name":
+        data["name"] = text.strip()[:80] or "cher client"
+        return _devis_country_step(bot, chat_id, data, lang)
+
+    if step == "country":
+        cc = devis_engine.detect_country(text)
+        if not cc:
+            bot.send_message(chat_id, devis_engine.t(lang, "country_ask"))
+            return True
+        data["country"] = cc
         _save_flow(chat_id, "devis", "activity", data)
         bot.send_message(chat_id, t(lang, "devis_activity"))
         return True
@@ -1332,6 +1378,29 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
     calc_lines, total = calc_devis(data)
     calc_display = "\n".join("• " + ln for ln in calc_lines)
 
+    # ── Feature #1 : conversion en monnaie locale du client ──
+    import commercial_db as cdb
+    cc = data.get("country") or "GN"
+    conv = devis_engine.convert_devis(cc, total)
+    convert_line = devis_engine.t(
+        lang, "convert_line",
+        country=conv["country"],
+        price_local=devis_engine.format_price(conv),
+        price_base=f"{total:g}", base="€",
+    )
+    client = get_client(chat_id) or {}
+    client_name = data.get("name") or client.get("name") or "cher client"
+    # ── Feature #2 : le devis part en relance auto J+1/J+3/J+7 ──
+    cdb.insert_pending_quote(
+        chat_id=chat_id, client_name=client_name,
+        phone=client.get("phone") or "",
+        country_code=conv["country_code"], currency=conv["currency"],
+        price_local=conv["price_local"], price_eur=total,
+        project_desc=data.get("details", "") or data.get("service", ""),
+        service=data.get("service", ""),
+    )
+    cdb.set_step(chat_id, "quoted")
+
     _insert("quotes", {
         "chat_id": str(chat_id), "service": data.get("service", ""),
         "price": f"{total:g}€", "delay": data.get("deadline", ""),
@@ -1345,7 +1414,9 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
             service=data.get("service", ""), calc=calc_display,
             total=f"{total:g}", delay=data.get("deadline", ""),
             whatsapp=WHATSAPP_FALLBACK,
-        ),
+        )
+        + "\n\n" + convert_line
+        + "\n\n" + devis_engine.t(lang, "paid_hint", whatsapp=WHATSAPP_FALLBACK),
     )
     upsert_client(
         chat_id,
@@ -1356,7 +1427,9 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
     notify_admin(
         bot,
         f"📄 DEVIS EXPRESS{admin_note}\n🛠️ {data.get('service','')}\n"
-        f"💰 {total:g}€\n📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
+        f"💰 {total:g}€ → {devis_engine.format_price(conv)} ({conv['country']})\n"
+        f"🌍 Client : {client_name} ({conv['country_code']})\n"
+        f"📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
     )
     return True
 
@@ -1931,11 +2004,14 @@ def upsert_client(chat_id: int, name: str = "", phone: str = "",
     now = _now()
     with DB_LOCK:
         row = DB_CONN.execute(
-            "SELECT name, phone, activity, events, first_seen FROM clients WHERE chat_id =?",
+            """SELECT name, phone, activity, events, first_seen,
+                      client_step, last_auto_message_date, assurance_refusee
+               FROM clients WHERE chat_id =?""",
             (key,),
         ).fetchone()
         if row:
-            old_name, old_phone, old_activity, old_events, first_seen = row
+            (old_name, old_phone, old_activity, old_events, first_seen,
+             old_step, old_last_auto, old_assur) = row
             name = name or old_name
             phone = phone or old_phone
             activity = activity or old_activity
@@ -1943,15 +2019,18 @@ def upsert_client(chat_id: int, name: str = "", phone: str = "",
         else:
             events = []
             first_seen = now
+            old_step, old_last_auto, old_assur = "new", "", 0
         if event:
             events.append(f"{now[:10]} : {event}")
             events = events[-50:]  # 50 derniers évènements max
         DB_CONN.execute(
             "INSERT OR REPLACE INTO clients "
-            "(chat_id, name, phone, activity, events, first_seen, last_seen) "
-            "VALUES (?,?,?,?,?,?,?)",
+            "(chat_id, name, phone, activity, events, first_seen, last_seen, "
+            " client_step, last_auto_message_date, assurance_refusee) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?)",
             (key, name[:100], phone[:50], activity[:150],
-             json.dumps(events, ensure_ascii=False), first_seen, now),
+             json.dumps(events, ensure_ascii=False), first_seen, now,
+             old_step, old_last_auto, old_assur),
         )
         DB_CONN.commit()
 
