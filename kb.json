@@ -1745,7 +1745,18 @@
    "id": "portfolio_02",
    "category": "portfolio",
    "questions": [
-    "réalisations"
+    "réalisations",
+    "vos réalisations",
+    "quelles sont vos réalisations",
+    "quel sont vos realisations",
+    "vos projets",
+    "quels sont vos projets",
+    "montre moi vos réalisations",
+    "montre moi tes réalisations",
+    "vous avez déjà fait quoi",
+    "qu'avez vous déjà réalisé",
+    "des exemples de vos travaux",
+    "vos anciens projets"
    ],
    "answer": "On a déjà livré des bots, sites, apps, logos et bien plus 🔥\nJe peux te montrer des exemples dans TON domaine.\nTu fais quoi comme business ?",
    "tags": [

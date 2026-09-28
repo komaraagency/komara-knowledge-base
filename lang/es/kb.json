@@ -6633,6 +6633,27 @@
     "website",
     "closing"
    ]
+  },
+  {
+   "id": "portfolio_es_01",
+   "category": "portfolio",
+   "questions": [
+    "portafolio",
+    "su portafolio",
+    "puedo ver su portafolio",
+    "qué han hecho antes",
+    "sus proyectos anteriores",
+    "muéstreme ejemplos",
+    "muéstreme sus trabajos",
+    "sus logros",
+    "cuáles son sus logros",
+    "tienen ejemplos"
+   ],
+   "answer": "Ya hemos entregado bots, sitios web, apps, logos y más 🔥\nPuedo mostrarle ejemplos en SU sector.\n¿Cuál es su negocio?",
+   "tags": [
+    "portfolio",
+    "local"
+   ]
   }
  ],
  "packs": [

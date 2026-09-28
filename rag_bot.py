@@ -714,27 +714,47 @@ def msg(lang: str, key: str) -> str:
 # Recherche contextuelle sécurisée
 # ---------------------------------------------------------------------------
 
+# Mots courts de confirmation/refus : sur ces mots-là, un match direct
+# "au hasard" (ex : "oui" matchant à tort la fiche "oui j en ai") est un
+# vrai risque de boucle. La RÈGLE D'OR (contexte de la question du bot)
+# passe donc AVANT le matching direct pour ces mots précis.
+_CONFIRM_WORDS: set[str] = {
+    "oui", "ouais", "oui merci", "d'accord", "daccord", "ok", "okay", "yes",
+    "yeah", "sure", "sí", "si", "vale", "claro", "نعم", "أكيد", "تمام",
+    "non", "no", "nope", "لا",
+}
+
 def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) -> str | None:
     user_text = user_text[:4000].strip()
     if not user_text:
         return None
 
-    # 1. Recherche sémantique directe
-    direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
-    if direct_answer:
-        return direct_answer
-
-    # 2. RÈGLE D'OR : comprendre la réponse du client AVANT toute chose.
-    # Si le bot vient de terminer par une question, la réponse du client
-    # suit presque TOUJOURS cette question. On cherche donc avec
-    # (question du bot + réponse du client) → réponse cohérente et
-    # contextuelle, pas une réponse hors-sujet.
     history = context_for(chat_id)
     last_bot_msg = next(
         (h.get("content", "") for h in reversed(history)
          if h.get("role") == "assistant" and h.get("content")),
         "")
 
+    # RÈGLE D'OR EN PRIORITÉ : mot court de confirmation + question du
+    # bot en attente → on répond DANS CE CONTEXTE avant tout autre
+    # matching (fini la boucle "Oui" → réponse d'une fiche sans rapport).
+    is_confirm_word = user_text.strip().lower() in _CONFIRM_WORDS
+    if is_confirm_word and "?" in last_bot_msg:
+        qa_combined = f"{last_bot_msg} {user_text}"
+        qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
+        if qa_answer and qa_answer != last_bot_msg:
+            return qa_answer
+
+    # 1. Recherche sémantique directe
+    direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
+    if direct_answer:
+        return direct_answer
+
+    # 2. RÈGLE D'OR (repli) : comprendre la réponse du client si le
+    # direct match n'a rien donné. Si le bot vient de terminer par une
+    # question, la réponse du client suit presque TOUJOURS cette
+    # question. On cherche donc avec (question du bot + réponse du
+    # client) → réponse cohérente et contextuelle, pas hors-sujet.
     if significant_token_count(user_text) < 2:
         if "?" in last_bot_msg:
             qa_combined = f"{last_bot_msg} {user_text}"

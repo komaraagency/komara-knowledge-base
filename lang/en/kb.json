@@ -6814,6 +6814,27 @@
     "website",
     "closing"
    ]
+  },
+  {
+   "id": "portfolio_en_01",
+   "category": "portfolio",
+   "questions": [
+    "portfolio",
+    "your portfolio",
+    "can i see your portfolio",
+    "what have you done before",
+    "your past projects",
+    "show me examples",
+    "show me your work",
+    "your achievements",
+    "what are your achievements",
+    "do you have examples"
+   ],
+   "answer": "We've already delivered bots, websites, apps, logos and more 🔥\nI can show you examples in YOUR field.\nWhat's your business?",
+   "tags": [
+    "portfolio",
+    "local"
+   ]
   }
  ],
  "packs": [
