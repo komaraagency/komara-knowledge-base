@@ -26,7 +26,7 @@ from datetime import datetime, timezone
 
 import actions
 
-STEPS = ("new", "qualifying", "quoted", "downsell_offered",
+STEPS = ("new", "qualifying", "qualified", "quoted", "downsell_offered",
          "bump_offered", "paid", "low_budget")
 
 

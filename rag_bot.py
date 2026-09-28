@@ -1420,6 +1420,12 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
         if qr_module.handle_pay_request(bot, chat_id, detected_lang):
             return
 
+    # 1sex. Feature #4 : machine commerciale — ordre strict
+    # qualification > devis > downsell > bump > docs, pilotée par client_step
+    import commercial_pack
+    if commercial_pack.handle(bot, chat_id, user_text, detected_lang):
+        return
+
     # 1ter. Compétences locales 100% offline : calculatrice express,
     # date/heure — avant la recherche KB pour une réponse instantanée.
     if skills.handle(bot, chat_id, user_text, detected_lang):

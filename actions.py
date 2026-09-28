@@ -970,6 +970,15 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False) -> 
         grid = "\n".join(
             f"{n}️⃣ {name} — {price}" for n, name, price, _ in PRICE_GRID
         )
+        # Feature #4 — ordre strict : qualification > devis. Un client
+        # dont client_step est 'new' répond d'abord à la question budget.
+        try:
+            import commercial_db as _cdb
+            import commercial_pack as _cp
+            if _cdb.get_step(chat_id) == "new":
+                return _cp.start_qualification(bot, chat_id, lang, grid)
+        except Exception:
+            pass  # module absent → comportement historique inchangé
         _save_flow(chat_id, "devis", "service", {})
         bot.send_message(chat_id, t(lang, "devis_start", grid=grid))
     elif flow == "lead":

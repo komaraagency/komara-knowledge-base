@@ -165,9 +165,21 @@ def handle_receipt_scan(bot, chat_id: int, image_path: str,
         cdb.insert_payment(chat_id, tx_id, amount or 0, "", method="qr_scan")
         cdb.mark_quote_paid(chat_id)
         cdb.set_step(chat_id, "paid")
+        # F4 : status paid → contrat + facture PDF automatiques
+        try:
+            import commercial_pack
+            commercial_pack.generate_docs(bot, chat_id, lang)
+        except Exception as e:
+            logger.error("Génération PDF après paiement : %s", e)
+        # F6 : produits 1/4/5 → offre assurance MRR
+        try:
+            import pack_patron
+            pack_patron.maybe_offer_assurance(bot, chat_id, lang)
+        except Exception as e:
+            logger.debug("pack_patron pas encore branché : %s", e)
         ok = {
             "fr": f"Paiement reçu ✅ Merci Chef ! Transaction {tx_id} validée.\n"
-                  f"Je prépare tes documents tout de suite 📄🔥",
+                  f"Tes documents arrivent tout de suite 📄🔥",
             "en": f"Payment received ✅ Thanks boss! Transaction {tx_id} validated.\n"
                   f"Preparing your documents right away 📄🔥",
             "es": f"Pago recibido ✅ ¡Gracias jefe! Transacción {tx_id} validada.\n"
