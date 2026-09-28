@@ -113,7 +113,10 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
         "words": {
             "el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del",
             "y", "es", "son", "yo", "tú", "él", "nosotros", "ustedes", "ellos",
-            "mi", "tu", "su", "nuestro", "este", "esta", "estos", "que", "qué",
+            # Lot 21 : "tu" SANS accent retiré — mot français identique
+            # (« tu es humain ? ») qui faisait basculer en espagnol par
+            # erreur. "tú" (accentué) reste un marqueur ES fiable.
+            "mi", "su", "nuestro", "este", "esta", "estos", "que", "qué",
             "quien", "cómo", "por", "cuándo", "dónde", "con", "sin", "para",
             "pero", "sí", "no", "gracias", "hola", "precio", "costo", "cuánto",
             "quiero", "puede", "hacen", "servicio", "bot", "sitio", "aplicación",
@@ -124,6 +127,37 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
 
 DEFAULT_LANGUAGE = "fr"
 MIN_CONFIDENCE = 2
+
+# Lot 21 : question PERSONNELLE vers le bot (« comment tu vas », « ça
+# va ? », « how are you »...) — jamais mélangée au contexte : elle parle
+# du bot/client, pas du sujet en cours. On la laisse au match direct
+# (la KB a ses fiches) ; sans fiche → fallback honnête, pas un match
+# hasardeux sur le message précédent (bug « Comment tu vas » répondait
+# une fiche bot WhatsApp sans aucun rapport).
+PERSONAL_QUESTION_RE = re.compile(
+    r"comment\s+tu\s+vas|vas[- ]tu|tu\s+vas\s+(bien|aujourd|ce)|"
+    r"\bça\s+va\b|\bca\s+va\b|\bcv\b|tu\s+dors|tu\s+manges|"
+    r"tu\s+fais\s+quoi|ton\s+(nom|prénom|âge)|"
+    r"how\s+are\s+you|how\s+ru|hru\b|what\s+s\s+your\s+name|"
+    r"c[oó]mo\s+est[aá]s|qu[eé]\s+tal|"
+    r"كيف\s+حالك|أخبارك|شو\s+أخبارك|عامل\s+إيه",
+    re.IGNORECASE,
+)
+
+
+# Lot 21 : caractères invisibles fréquents dans le texte copié-collé
+# depuis WhatsApp/iOS (marqueurs de direction, espaces zéro-largeur, BOM).
+# Sans nettoyage ils cassent la reconnaissance des commandes (« /apprends »
+# devient « \u200e/apprends », plus jamais reconnu) et corrompent le
+# scoring KB. Retiré au tout premier point d'entrée du texte utilisateur.
+_INVISIBLE_CHARS_RE = re.compile(
+    "[\u200b\u200c\u200d\u200e\u200f\u202a\u202b\u202c\u202d\u202e\ufeff\u2060]")
+
+def strip_invisible_chars(text: str) -> str:
+    if not text:
+        return text
+    return _INVISIBLE_CHARS_RE.sub("", text)
+
 
 def detect_language(text: str) -> str:
     if not text or not text.strip():
@@ -869,6 +903,83 @@ _CONFIRM_WORDS: set[str] = {
     "non", "no", "nope", "لا",
 }
 
+# Mots interrogatifs : « où ? », « quand ? », « combien ? »… un suivi
+# court qui DEMANDE une précision sur le sujet en cours (fil rouge).
+_QUESTION_WORD_RE = re.compile(
+    r"^\s*(o[uù]|quand|comment|pourquoi|qui|quel(?:le)?s?|combien|"
+    r"where|when|how|why|who|which|"
+    r"c[oó]mo|d[oó]nde|cu[aá]ndo|cu[aá]l|cu[aá]nto|"
+    r"لماذا|كيف|متى|أين|من)\b|\?\s*$",
+    re.IGNORECASE,
+)
+
+
+def _user_word_in_fiche(qa_answer: str, user_text: str, lang: str) -> bool:
+    """Le message court du client contient-il un mot LIÉ à la fiche
+    matchée ? (« autonome » après la F1 → la fiche inscription contient
+    « autonome » ; « à dakar » → la fiche livraison contient « dakar ».)
+    Un mot hors sujet (« sante », « te ») ne se retrouve pas dans la
+    fiche → le match était porté uniquement par le message du bot."""
+    from normalize_text import normalize_text as _norm
+    tokens = re.findall(r"\b\w{3,}\b", _norm(user_text or ""))
+    if not tokens:
+        return False
+    for _lang in ({lang, DEFAULT_LANGUAGE} if lang != DEFAULT_LANGUAGE else {lang}):
+        resources = LANG_RESOURCES.get(_lang) or {}
+        for src in ("kb", "faq", "dialogues"):
+            for fiche in resources.get(src) or []:
+                if fiche.get("answer") != qa_answer:
+                    continue
+                _qs = fiche.get("questions", [])
+                if isinstance(_qs, str):
+                    _qs = [_qs]
+                # dialogues aya2 : entrées plates {question, answer}
+                _q = fiche.get("question")
+                if isinstance(_q, str):
+                    _qs = list(_qs) + [_q]
+                hay = _norm(
+                    " ".join(_qs)
+                    + " " + " ".join(fiche.get("tags", []) or [])
+                    + " " + " ".join(fiche.get("keywords", []) or [])
+                    # la réponse elle-même compte (« à dakar » → la fiche
+                    # livraison répond « beaucoup de clients à Dakar »)
+                    + " " + str(fiche.get("answer", ""))
+                )
+                if any(f" {tok} " in f" {hay} " for tok in tokens):
+                    return True
+    return False
+
+
+def _ghost_free_blend(last_bot_msg: str, user_text: str, detected_lang: str) -> str | None:
+    """Combine le dernier message du bot + le texte du client, MAIS avec
+    un filtre anti-fantôme (lot 21) : si le message du bot SEUL produit
+    déjà la même réponse, le mot du client n'a rien apporté au match —
+    c'est le bot qui se re-matche lui-même (bug « sante », « te »
+    répondaient des fiches sans rapport). ON ACCEPTE pourtant l'égalité
+    dans les deux seuls cas légitimes :
+    • le client pose un SUIVI interrogatif (« où ? », « à dakar » après
+      une réponse livraison) — le sujet vient du contexte, c'est le fil
+      rouge voulu ;
+    • un mot du client figure dans la fiche matchée (« autonome » →
+      fiche inscription) — le mot a réellement guidé le match.
+    Sinon : fallback honnête plutôt qu'une réponse hasardeuse."""
+    if not last_bot_msg:
+        return None
+    qa_combined = f"{last_bot_msg} {user_text}"
+    qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
+    if not qa_answer or qa_answer == last_bot_msg:
+        return None
+    ghost_answer = trouver_meilleure_reponse_multilingue(last_bot_msg, detected_lang)
+    if qa_answer != ghost_answer:
+        return qa_answer
+    low = user_text.strip().lower()
+    if low.endswith("?") or _QUESTION_WORD_RE.match(low):
+        return qa_answer
+    if _user_word_in_fiche(qa_answer, user_text, detected_lang):
+        return qa_answer
+    return None
+
+
 def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) -> str | None:
     user_text = user_text[:4000].strip()
     if not user_text:
@@ -893,6 +1004,13 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
                    "non", "no", "nope", "لا")
         and significant_token_count(user_text) <= 3)
     if is_confirm_word and "?" in last_bot_msg:
+        # Lot 21 : pour une CONFIRMATION (« oui » à une question du bot),
+        # le self-match est LÉGITIME — la question du bot vient de sa
+        # propre fiche, donc « Oui » doit retourner la fiche suivante de
+        # cette même question (« tu veux voir un exemple ? » → portfolio).
+        # Le filtre fantôme (conçu pour « sante »/« te ») ne doit donc
+        # PAS s'appliquer ici ; la seule protection nécessaire reste
+        # l'anti-écho (ne pas renvoyer mot pour mot le dernier message).
         qa_combined = f"{last_bot_msg} {user_text}"
         qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
         if qa_answer and qa_answer != last_bot_msg:
@@ -904,10 +1022,10 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     # souvient du sujet et répond sur la LOCALISATION, jamais au hasard.
     # On combine donc avec le dernier message du bot, question ou pas.
     is_short = significant_token_count(user_text) < 2
-    if is_short and last_bot_msg and not is_confirm_word:
-        qa_combined = f"{last_bot_msg} {user_text}"
-        qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
-        if qa_answer and qa_answer != last_bot_msg:
+    _is_personal = bool(PERSONAL_QUESTION_RE.search(_low))
+    if is_short and last_bot_msg and not is_confirm_word and not _is_personal:
+        qa_answer = _ghost_free_blend(last_bot_msg, user_text, detected_lang)
+        if qa_answer:
             return qa_answer
 
     # PRÉCISION OBLIGATOIRE : un mot court AMBIGU (« bot », « chatbot »,
@@ -921,7 +1039,10 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
             return clarif(_grp, detected_lang)
 
     # 1. Recherche sémantique directe (l'intention de la PHRASE ENTIÈRE,
-    # pas un mot isolé — le scoring bidirectionnel lit toute la question)
+    # pas un mot isolé — le scoring bidirectionnel lit toute la question).
+    # Une phrase complète qui a déjà une bonne réponse toute seule
+    # (« Comment tu vas ? », « Tu es humain ? ») ne doit JAMAIS être
+    # mélangée avec un message précédent sans rapport.
     direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
     if direct_answer:
         return direct_answer
@@ -948,9 +1069,21 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     if last_bot_msg:
         combined_text = f"{combined_text} {last_bot_msg}".strip()
 
+    # Test d'exclusion (lot 21) : on calcule le match SANS le nouveau
+    # message du client (contexte seul). Si le contexte seul produit déjà
+    # la même réponse, le nouveau message n'a RIEN apporté — le match
+    # vient uniquement des messages précédents. On refuse alors de
+    # répondre à côté (bug signalé : « il me faut un visuel pour demain
+    # matin » renvoyait la réponse « réservation resto » du message
+    # précédent). Fallback honnête plutôt qu'une réponse sans rapport.
     contextual_answer = trouver_meilleure_reponse_multilingue(combined_text, detected_lang)
     if contextual_answer:
-        return contextual_answer
+        base_text = f"{recent_context} {last_bot_msg}".strip()
+        base_answer = (trouver_meilleure_reponse_multilingue(base_text, detected_lang)
+                       if base_text else None)
+        if contextual_answer != base_answer:
+            return contextual_answer
+        return None
 
     return None
 
@@ -1106,7 +1239,8 @@ def _handle_message(message: telebot.types.Message) -> None:
 
     # Document (admin) → /kb_import : enrichissement de la base de connaissances
     if message.document:
-        detected_lang = detect_language(message.caption or "") if message.caption else "fr"
+        _caption = strip_invisible_chars(message.caption or "") if message.caption else ""
+        detected_lang = detect_language(_caption) if _caption else "fr"
         safe_typing(chat_id)
         kb_import.handle_document(bot, message, detected_lang)
         return
@@ -1115,6 +1249,7 @@ def _handle_message(message: telebot.types.Message) -> None:
     if not message.text and (message.voice or message.audio):
         safe_typing(chat_id)
         text = transcribe_voice(bot, message) if VOICE_ENABLED else None
+        text = strip_invisible_chars(text) if text else text
         if not text:
             bot.send_message(chat_id, msg(detect_language("fr"), "voice_unavailable"))
             return
@@ -1128,7 +1263,13 @@ def _handle_message(message: telebot.types.Message) -> None:
 
     if not message.text:
         return
-    user_text = message.text.strip()
+    # Lot 21 : nettoyage des caractères invisibles (LRM/RLM \u200e-\u200f,
+    # zero-width \u200b, BOM \ufeff...) copiés-collés depuis WhatsApp/iOS.
+    # Sans ça, "/apprends" devient "\u200e/apprends" : la commande n'est
+    # plus reconnue et le message tombe dans la recherche KB normale, qui
+    # répond n'importe quoi (bug signalé : "j'ajoute une connaissance et
+    # le bot envoie n'importe quoi").
+    user_text = strip_invisible_chars(message.text).strip()
     # 🧠 MÉMOIRE CLIENT : le bot apprend qui parle (nom Telegram) dès le
     # premier message et le garde en base → il « se souvient du client ».
     try:

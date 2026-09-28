@@ -829,7 +829,10 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if DB_CONN is None:
         init_db()
 
-    text_clean = text.strip()
+    # Lot 21 : filet de sécurité — même si l'appelant n'a pas nettoyé les
+    # caractères invisibles WhatsApp/iOS (\u200e etc.), une commande
+    # collée avec ces marqueurs reste reconnue ici.
+    text_clean = re.sub(r"[\u200b\u200c\u200d\u200e\u200f\u202a-\u202e\ufeff\u2060]", "", text or "").strip()
 
     # 0pré. Mémoire légère : « je vends dans une boutique » → fiche client
     try:
@@ -1644,7 +1647,25 @@ COMPLAINT_WORDS = [
 ]
 
 
+# Lot 21 : une question de CONFIANCE avant achat (« comment je sais que
+# t'es pas un arnaqueur ? ») contient un mot de la liste COMPLAINT_WORDS
+# ("arnaque" est un sous-texte de "arnaqueur") mais n'est PAS une
+# réclamation — c'est une question légitime que la KB sait très bien
+# traiter (fiche persona : "Très bonne question, je suis une IA
+# officielle..."). On ne déclenche JAMAIS l'accusé de réception générique
+# pour ces formulations.
+TRUST_QUESTION_RE = re.compile(
+    r"comment\s+(?:je\s+)?(?:sais|savoir)|"
+    r"pas\s+(?:un|une|des)?\s*(?:arnaqu\w*|escroc\w*|voleur\w*|fraud\w*|scam\w*)|"
+    r"not\s+a\s+scam|is\s+this\s+(?:legit|real)|"
+    r"c[oó]mo\s+s[eé]\s+que\s+no|no\s+es\s+una?\s+estafa|"
+    r"كيف\s+أعرف|لست\s+محتال",
+    re.IGNORECASE,
+)
+
 def _is_complaint(low: str) -> bool:
+    if TRUST_QUESTION_RE.search(low):
+        return False
     return any(w in low for w in COMPLAINT_WORDS)
 
 
