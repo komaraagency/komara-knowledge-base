@@ -6,3 +6,7 @@ faster-whisper==1.2.1
 reportlab
 gTTS
 edge-tts
+qrcode==8.0
+pillow==10.4.0
+opencv-python-headless==4.10.0.84
+fpdf2==2.8.1

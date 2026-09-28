@@ -1884,6 +1884,13 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         return True
 
     if command == "/admin":
+        # Feature #6 : Dashboard Patron — 5 cartes KPI en € (lecture DB
+        # locale uniquement), puis rappel des commandes du panneau.
+        try:
+            import pack_patron
+            bot.send_message(chat_id, pack_patron.dashboard(lang))
+        except Exception as e:
+            logger.error("Dashboard patron : %s", e)
         bot.send_message(chat_id, t(lang, "admin_panel"))
         return True
 

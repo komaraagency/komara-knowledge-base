@@ -395,6 +395,13 @@ def handle(bot, chat_id: int, text: str, lang: str = "fr") -> bool:
         low = text.strip().lower()
         step = cdb.get_step(chat_id)
 
+        # F6 : réponse assurance (OUI ASSURANCE / NON) — prioritaire,
+        # posée juste après un paiement produit 1/4/5
+        if step == "paid":
+            import pack_patron
+            if pack_patron.handle_assurance_reply(bot, chat_id, text, lang):
+                return True
+
         # qualification en cours : la réponse A/B/C/montant est consommée
         if step == "qualifying":
             if handle_qualification_answer(bot, chat_id, text, lang):
