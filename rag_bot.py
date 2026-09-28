@@ -25,6 +25,9 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
+import qr_module
+import relances
+import commercial_cron
 import catalogue
 import kb_import
 import google_link
@@ -1237,6 +1240,25 @@ def _handle_message(message: telebot.types.Message) -> None:
                                  _LAST_LANG.get(chat_id, "fr"))
         return
 
+    # ── Feature #3 : photo reçue → scan du QR de paiement.
+    # RÈGLE ANTI-CONFLIT : le TYPE du message décide. Une photo ne
+    # génère JAMAIS un QR, elle est TOUJOURS scannée (et inversement
+    # pour 'payer' en texte). Les 2 ne tournent jamais ensemble.
+    if message.photo:
+        safe_typing(chat_id)
+        try:
+            _f = bot.get_file(message.photo[-1].file_id)
+            _data = bot.download_file(_f.file_path)
+            _path = f"/tmp/komara_recu_{chat_id}.png"
+            with open(_path, "wb") as fh:
+                fh.write(_data)
+            lang = _LAST_LANG.get(chat_id, "fr")
+            qr_module.handle_receipt_scan(bot, chat_id, _path, lang)
+        except Exception as e:
+            logger.error("Scan reçu impossible : %s", e)
+            bot.send_message(chat_id, msg("fr", "crash_fallback"))
+        return
+
     # Document (admin) → /kb_import : enrichissement de la base de connaissances
     if message.document:
         _caption = strip_invisible_chars(message.caption or "") if message.caption else ""
@@ -1289,7 +1311,7 @@ def _handle_message(message: telebot.types.Message) -> None:
 _LAST_LANG: dict[int, str] = {}
 
 
-@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location'])
+@bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location', 'photo'])
 def handle_message(message: telebot.types.Message) -> None:
     """Point d'entrée enregistré. ANTI-SILENCE : aucune exception ne sort
     jamais d'ici sans que le client reçoive une réponse de secours."""
@@ -1390,6 +1412,13 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # 1bis. Flux exécutables (commande, RDV, devis, lead, sondage) — 100% local
     if actions.handle(bot, chat_id, user_text, detected_lang):
         return
+
+    # 1quin. Feature #3 : « payer » / « qr » / « paiement » → QR de
+    # paiement du devis en attente (règle anti-conflit : texte = génération)
+    if user_text.strip().lower() in qr_module.PAY_TRIGGERS:
+        safe_typing(chat_id)
+        if qr_module.handle_pay_request(bot, chat_id, detected_lang):
+            return
 
     # 1ter. Compétences locales 100% offline : calculatrice express,
     # date/heure — avant la recherche KB pour une réponse instantanée.
@@ -1741,4 +1770,7 @@ if __name__ == "__main__":
     # Sauvegarde automatique de la base → Google Drive chaque nuit 03h00
     threading.Thread(target=backup_drive.scheduler_loop,
                      name="drive-backup", daemon=True).start()
+    # Lot 22 (F2/F5/F6) : crons commerciaux locaux — relances J+1/J+3/J+7,
+    # parrainage/recouvrement/upsell/winback, assurance MRR mensuelle.
+    commercial_cron.start_all(bot)
     run()
