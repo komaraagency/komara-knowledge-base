@@ -48,9 +48,9 @@ MSG = {
                     "August", "September", "October", "November", "December"],
     },
     "es": {
-        "calc": "🧮 {expr} = *{res}*\n\n¿Quieres un presupuesto para tu proyecto? Escribe *presupuesto* 👇",
+        "calc": "🧮 {expr} = *{res}*\n\n¿Quiere un presupuesto para su proyecto? Escriba *presupuesto* 👇",
         "calc_err": "Hmm, ese cálculo me escapó 😅\nInténtalo de nuevo con números y + - x ÷ %\nEj.: *800 - 15%* o *250 x 3*",
-        "time": "🕒 Son las *{h}* (hora de Guinea 🇬🇳, GMT)\n📅 Hoy es *{d}*\n\n¿Hablamos de tu negocio? 😊",
+        "time": "🕒 Son las *{h}* (hora de Guinea 🇬🇳, GMT)\n📅 Hoy es *{d}*\n\n¿Hablamos de su negocio? 😊",
         "days": ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"],
         "months": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
                     "agosto", "septiembre", "octubre", "noviembre", "diciembre"],

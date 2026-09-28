@@ -1,5 +1,5 @@
-### Puedes crear imágenes para mis redes
-¡Claro que sí 😄! Dime el estilo, el tema o tu objetivo. Te genero visuales limpios, modernos y adaptados a tu audiencia.
+### Puede crear imágenes para mis redes
+¡Claro que sí 😄! Dígame el estilo, el tema o su objetivo. Le genero visuales limpios, modernos y adaptados a su audiencia.
 
 ### Quiero algo profesional
-Perfecto, me encargo. ¿Quieres formato cuadrado, story o paisaje?
+Perfecto, me encargo. ¿Quiere formato cuadrado, story o paisaje?
