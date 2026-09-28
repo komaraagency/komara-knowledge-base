@@ -365,6 +365,7 @@ LANG_RESOURCES["fr"] = {
 logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr"]["kb"]))
 
 
+
 def refresh_resources(lang_code: str) -> None:
     """Recharge une langue (après /kb_import) en réappliquant la fusion fr."""
     lang_res = load_language_resources(lang_code)
@@ -960,6 +961,42 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
 PORTFOLIO_DIR = BASE_DIR / "portfolio"
 PORTFOLIO_BUTTON_PREFIX = "📷 "
 PORTFOLIO_SENTINEL = "__SHOW_PORTFOLIO__"
+
+# Lot 20 : invitation à s'inscrire à la Formation IA. Le texte réel part de
+# actions.FORMATION_MSGS (4 langues) et le bot mémorise que le prochain
+# message du client = infos d'inscription → notification admin.
+FORMATION_SENTINEL = "__FORMATION_INSCRIPTION__"
+
+
+def add_custom_kb_entry(question: str, answer: str, lang: str = "fr") -> bool:
+    """Ajoute une fiche apprise par l'admin (/apprends) au runtime.
+    La fiche sert toutes les langues (le FR est le repli par défaut)."""
+    fiche = {
+        "id": f"custom_{int(time.time())}",
+        "category": "custom",
+        "questions": [question],
+        "answer": answer,
+        "tags": ["custom", "admin"],
+    }
+    target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
+    if not target or "kb" not in target:
+        return False
+    target["kb"].append(fiche)
+    return True
+
+# Lot 20 : connaissances ajoutées par l'admin via /apprends (fichier
+# kb_custom.json sur le volume /data) rechargées au démarrage.
+try:
+    _kb_custom_path = Path(os.getenv("ACTIONS_DIR", "data")) / "kb_custom.json"
+    if _kb_custom_path.exists():
+        _custom = json.loads(_kb_custom_path.read_text(encoding="utf-8"))
+        for _e in _custom:
+            if _e.get("question") and _e.get("answer"):
+                add_custom_kb_entry(_e["question"], _e["answer"])
+        if _custom:
+            logger.info("KB custom (admin) rechargée : %s fiche(s)", len(_custom))
+except Exception:
+    logger.exception("kb_custom.json illisible — ignoré")
 PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
 def portfolio_images() -> list[tuple[str, Path]]:
@@ -1290,6 +1327,12 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     local_response = local_contextual_response(chat_id, user_text, detected_lang)
     if local_response is None:
         record_unrecognized(user_text, source="telegram")
+        # Lot 20 : chaque question sans réponse est stockée dans le
+        # fichier unanswered_questions.json ET notifiée à l'admin.
+        try:
+            actions.notify_unanswered(bot, chat_id, user_text, detected_lang)
+        except Exception:
+            logger.exception("notify_unanswered a échoué")
 
     # BUG corrigé : un client qui tape "Portfolio"/"vos exemples" au clavier
     # (au lieu de cliquer le bouton "📂 Portfolio") recevait une réponse
@@ -1299,6 +1342,15 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # exemple de bot") décide, puis on redirige ici vers le vrai portfolio.
     if local_response == PORTFOLIO_SENTINEL:
         send_portfolio(chat_id, detected_lang)
+        return
+
+    # Lot 20 : invitation Formation IA → texte réel + le prochain message
+    # du client est capturé comme infos d'inscription (notif admin).
+    if local_response == FORMATION_SENTINEL:
+        _msg = actions.FORMATION_MSGS.get(detected_lang, actions.FORMATION_MSGS["fr"])
+        bot.send_message(chat_id, _msg)
+        remember(chat_id, "assistant", _msg)
+        actions.set_pending_formation(chat_id)
         return
 
     if local_response:

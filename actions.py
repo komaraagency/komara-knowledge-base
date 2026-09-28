@@ -21,7 +21,7 @@ import random
 import sqlite3
 import threading
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import catalogue
@@ -137,7 +137,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo"}
+ADMIN_COMMANDS = {"/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -471,6 +471,12 @@ def init_db() -> None:
                 key TEXT PRIMARY KEY,
                 value TEXT
             );
+            CREATE TABLE IF NOT EXISTS global_promo (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                pct REAL NOT NULL,
+                label TEXT,
+                created_at TEXT NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS promo_codes (
                 code TEXT PRIMARY KEY,
                 discount_pct REAL NOT NULL,
@@ -588,6 +594,176 @@ def schedule_followup(chat_id: int, message: str, due_at: datetime) -> None:
 # Notifications admin (local, Telegram direct)
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Promotions globales (catalogue entier) — lot 20
+# ---------------------------------------------------------------------------
+
+def get_global_promo() -> tuple[float, str | None]:
+    """Pourcentage promo globale active (0 = aucune) + son label."""
+    if DB_CONN is None:
+        return (0.0, None)
+    try:
+        with DB_LOCK:
+            row = DB_CONN.execute(
+                "SELECT pct, label FROM global_promo WHERE id = 1").fetchone()
+        return (float(row[0]), row[1] or "PROMO") if row else (0.0, None)
+    except sqlite3.OperationalError:
+        return (0.0, None)
+
+
+def _broadcast_clients(bot, text: str) -> tuple[int, int]:
+    """Envoie un message à tous les clients connus. Retourne (ok, échecs)."""
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        rows = DB_CONN.execute("SELECT chat_id, name FROM clients").fetchall()
+    sent = failed = 0
+    for cid, name in rows:
+        try:
+            bot.send_message(int(cid), text)
+            sent += 1
+            time.sleep(0.06)  # limite anti-flood Telegram
+        except Exception:
+            failed += 1
+    return sent, failed
+
+
+def set_global_promo(bot, pct: float, label: str) -> bool:
+    """Active une promo globale sur TOUT le catalogue et notifie les clients."""
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        DB_CONN.execute(
+            "INSERT OR REPLACE INTO global_promo (id, pct, label, created_at) VALUES (1,?,?,?)",
+            (float(pct), label, _now()),
+        )
+        DB_CONN.commit()
+    sent, failed = _broadcast_clients(
+        bot,
+        f"🔥 {label} : -{pct:g}% sur TOUT le catalogue Komara Agency 🇬🇳 !\n"
+        f"Tape 'catalogue' pour voir les nouveaux prix 🔥")
+    bot.send_message(
+        ADMIN_CHAT_ID,
+        f"✅ {label} -{pct:g}% activée sur tout le catalogue.\n"
+        f"clients notifiés : {sent} ({failed} échec(s))")
+    return True
+
+
+def clear_global_promo(bot) -> bool:
+    """Arrête la promo globale (sans spammer les clients)."""
+    if DB_CONN is None:
+        init_db()
+    with DB_LOCK:
+        DB_CONN.execute("DELETE FROM global_promo WHERE id = 1")
+        DB_CONN.commit()
+    bot.send_message(ADMIN_CHAT_ID, "✅ Promo globale désactivée. Les prix catalogue reviennent à la normale.")
+    return True
+
+
+# ---------------------------------------------------------------------------
+# Questions non répondues : fichier persistant + notification admin — lot 20
+# ---------------------------------------------------------------------------
+
+UNANSWERED_FILE = ACTIONS_DIR / "unanswered_questions.json"
+_notified_unanswered: set[str] = set()
+
+def notify_unanswered(bot, chat_id: int, text: str, lang: str) -> None:
+    """Stocke la question non répondue dans le fichier du repo/volume et
+    prévient l'admin par Telegram (une seule notif par question)."""
+    q = (text or "").strip()
+    if not q or q.startswith("/"):
+        return
+    import unicodedata as _ud
+    _fold = _ud.normalize("NFKD", q.lower().replace("'", " ").replace("’", " "))
+    key = " ".join("".join(ch for ch in _fold if not _ud.combining(ch)).split())
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    # 1. fichier persistant (volume /data sur Railway)
+    try:
+        ACTIONS_DIR.mkdir(parents=True, exist_ok=True)
+        data = {"items": []}
+        if UNANSWERED_FILE.exists():
+            try:
+                data = json.loads(UNANSWERED_FILE.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                data = {"items": []}
+        items = data.setdefault("items", [])
+        entry = next((e for e in items if e.get("question", "").lower() == key), None)
+        if entry:
+            entry["count"] = int(entry.get("count", 0)) + 1
+            entry["last_seen"] = now
+            entry["last_chat"] = chat_id
+        else:
+            items.append({"question": q, "count": 1, "lang": lang,
+                          "chat": chat_id, "first_seen": now, "last_seen": now})
+        if len(items) > 2000:  # cap : les plus anciennes sortent
+            items.sort(key=lambda e: e.get("last_seen", ""))
+            del items[: len(items) - 2000]
+        data["updated_at"] = now
+        UNANSWERED_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception:
+        logger.exception("écriture unanswered_questions.json impossible")
+    # 2. notification admin — une seule fois par question
+    if key not in _notified_unanswered:
+        _notified_unanswered.add(key)
+        notify_admin(
+            bot,
+            f"❓ QUESTION NON RÉPONDUE\n"
+            f"« {q[:300]} »\n"
+            f"🗣 langue : {lang} • 👤 chat : {chat_id}\n"
+            f"→ enrichis la base : /apprends {q[:80]} || ta réponse")
+
+
+# ---------------------------------------------------------------------------
+# Inscription Formation IA : capture + notification admin — lot 20
+# ---------------------------------------------------------------------------
+
+FORMATION_MSGS = {
+    "fr": "Parfait 🔥 Pour t'inscrire à la Formation IA (50€, tarif catalogue), envoie :\n1) Ton nom\n2) Ton business (ce que tu vends)\n3) Ton numéro\n\nJe t'envoie ton accès direct et on démarre 🚀",
+    "en": "Perfect 🔥 To sign up for the AI Training (50€, catalogue price), send:\n1) Your name\n2) Your business (what you sell)\n3) Your number\n\nI'll send you direct access and we start 🚀",
+    "es": "Perfecto 🔥 Para inscribirse en la Formación IA (50€, precio de catálogo), envíe:\n1) Su nombre\n2) Su negocio (qué vende)\n3) Su número\n\nLe envío el acceso directo y empezamos 🚀",
+    "ar": "ممتاز 🔥 للتسجيل في تكوين الذكاء الاصطناعي (50€، سعر الكتالوج)، أرسل:\n1) اسمك\n2) عملك (ماذا تبيع)\n3) رقمك\n\nأرسل لك الوصول المباشر وننطلق 🚀",
+}
+FORMATION_OK = {
+    "fr": "Noté 🔥 Ton inscription est enregistrée ! L'équipe Komara t'envoie ton accès direct dans quelques minutes. Bienvenue dans la formation 🎓",
+    "en": "Noted 🔥 Your registration is recorded! The Komara team sends you direct access in a few minutes. Welcome aboard 🎓",
+    "es": "Anotado 🔥 ¡Su inscripción está registrada! El equipo Komara le envía el acceso directo en unos minutos. Bienvenido 🎓",
+    "ar": "تم 🔥 تسجيلك محفوظ! يرسل لك فريق كومارا الوصول المباشر خلال دقائق. أهلاً بك 🎓",
+}
+
+def set_pending_formation(chat_id: int) -> None:
+    """Le client vient de recevoir l'invitation à s'inscrire : le prochain
+    message sera capturé comme infos d'inscription."""
+    _save_flow(chat_id, "formation_inscription", "infos", {})
+
+def formation_capture(bot, chat_id: int, text: str, lang: str) -> bool:
+    """Capture les infos d'inscription et notifie l'admin (pour l'ajouter
+    au groupe Telegram)."""
+    low = text.strip().lower()
+    if low in {"annuler", "cancel", "stop", "إلغاء"}:
+        _clear_flow(chat_id)
+        if lang == "fr":
+            bot.send_message(chat_id, "OK, on annule pour l'instant 😊 Tape 'formation' quand tu veux 🚀")
+        else:
+            bot.send_message(chat_id, "OK, cancelled for now 😊 Type 'training' whenever you want 🚀")
+        return True
+    _clear_flow(chat_id)
+    info = text.strip()[:600]
+    uname = ""
+    try:
+        c = get_client(chat_id)
+        if c and c.get("name"):
+            uname = f" ({c['name']})"
+    except Exception:
+        pass
+    notify_admin(
+        bot,
+        f"🎓 NOUVELLE INSCRIPTION — FORMATION IA\n"
+        f"👤 Client{uname} (chat_id {chat_id})\n"
+        f"📋 Infos : « {info} »\n"
+        f"→ ajoute-le au groupe Telegram de la formation 👥")
+    bot.send_message(chat_id, FORMATION_OK.get(lang, FORMATION_OK["fr"]))
+    return True
+
 def notify_admin(bot, text: str) -> None:
     """Prévient le propriétaire (ADMIN_CHAT_ID) d'un lead/commande/RDV."""
     if not ADMIN_CHAT_ID:
@@ -673,6 +849,12 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if first_word in ADMIN_COMMANDS:
         args = text_clean.split(maxsplit=1)[1] if len(words) > 1 else ""
         return _admin_command(bot, chat_id, first_word, args, lang)
+
+    # 0s. Flux inscription Formation IA : le message suivant l'invitation
+    # est capturé comme infos d'inscription et notifié à l'admin.
+    _flow = _fetch_flow(chat_id)
+    if _flow and _flow[0] == "formation_inscription" and not text_clean.startswith("/"):
+        return formation_capture(bot, chat_id, text_clean, lang)
 
     # 0quin-quater. Réclamation / arnaque / sujet sensible : règle
     # docs/dialogues-frequents.md — aucune réponse automatique de vente,
@@ -1337,6 +1519,40 @@ def _money_summary() -> str:
              pending=pending[0] if pending else 0)
 
 
+def _admin_apprends(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /apprends <question> || <réponse> → enrichit la base (runtime
+    + fichier kb_custom.json persistant). Réservé à l'admin (garde en amont)."""
+    parts = args.split("||", 1)
+    if len(parts) != 2 or not parts[0].strip() or not parts[1].strip():
+        bot.send_message(
+            chat_id,
+            "Usage : /apprends <question> || <réponse>\n"
+            "Exemple : /apprends vous livrez à Kindia || Oui, partout en Guinée 🇬🇳 livraison offerte !")
+        return True
+    question = parts[0].strip()
+    answer = parts[1].strip()
+    # runtime : la fiche est utilisable immédiatement
+    import rag_bot
+    rag_bot.add_custom_kb_entry(question, answer)
+    # persistant : rechargé au démarrage suivant
+    try:
+        ACTIONS_DIR.mkdir(parents=True, exist_ok=True)
+        path = ACTIONS_DIR / "kb_custom.json"
+        data = []
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                data = []
+        data.append({"question": question, "answer": answer, "date": _now()})
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception:
+        logger.exception("écriture kb_custom.json impossible")
+    bot.send_message(
+        chat_id,
+        f"✅ Connaissance ajoutée à la base :\n❓ {question[:120]}\n💬 {answer[:120]}")
+    return True
+
 def _admin_broadcast(bot, chat_id: int, args: str, lang: str) -> bool:
     text = args.strip()
     if not text:
@@ -1586,6 +1802,17 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
 
     if command == "/prend":
         return _admin_prend(bot, chat_id, args, lang)
+
+    # Lot 20 — promos globales : /solde -20%, /promo -30%, /KA -40%,
+    # /bonnus -35% : appliquées au catalogue + clients notifiés.
+    if command == "/solde":
+        return set_global_promo(bot, 20.0, "SOLDE")
+    if command == "/ka":
+        return set_global_promo(bot, 40.0, "KA")
+    if command == "/bonnus":
+        return set_global_promo(bot, 35.0, "BONNUS")
+    if command == "/apprends":
+        return _admin_apprends(bot, chat_id, args, lang)
 
     if command == "/stats":
         with DB_LOCK:
@@ -1886,14 +2113,20 @@ def admin_list_orders(bot, chat_id: int, lang: str) -> bool:
 def admin_promo(bot, chat_id: int, args: str, lang: str) -> bool:
     """Admin : /promo CODE 10 [max_uses] | /promo off CODE | /promos."""
     parts = args.split()
+    # Lot 20 : /promo seul → promo GLOBALE -30% (catalogue + notification
+    # clients). /promo -25% ou /promo 25 → globale -25%. /promo off (sans
+    # code) → arrête la promo globale.
     if not parts:
-        bot.send_message(
-            chat_id,
-            "Usage :\n/promo CODE 10 → crée CODE (-10%)\n"
-            "/promo CODE 20 50 → -20%, max 50 utilisations\n"
-            "/promo off CODE → désactive\n/promos → liste",
-        )
-        return True
+        return set_global_promo(bot, 30.0, "PROMO")
+    if parts[0].lower() in {"off", "stop"} and len(parts) == 1:
+        return clear_global_promo(bot)
+    _p0 = parts[0].replace("%", "").replace(",", ".")
+    try:
+        _pct = abs(float(_p0))  # « -25% » ou « 25 » → -25%
+        if 0 < _pct <= 90:
+            return set_global_promo(bot, _pct, "PROMO")
+    except ValueError:
+        pass  # → création de code promotionnel (comportement historique)
 
     if parts[0].lower() == "off" and len(parts) >= 2:
         code = parts[1].upper()

@@ -258,6 +258,19 @@ def active_products() -> list:
             "SELECT id, name, description, price FROM products"
             " WHERE active = 1 ORDER BY category, price"
         ).fetchall()
+        promo = 0.0
+        try:
+            _p = DB_CONN.execute(
+                "SELECT pct FROM global_promo WHERE id = 1").fetchone()
+            if _p:
+                promo = float(_p[0])
+        except sqlite3.OperationalError:
+            pass
+    # Lot 20 : promo globale (via /solde, /promo, /KA, /bonnus) appliquée
+    # à TOUT le catalogue — les paniers et totaux suivent automatiquement.
+    if promo > 0:
+        rows = [(pid, name, desc, round(price * (1 - promo / 100), 2))
+                for pid, name, desc, price in rows]
     return rows
 
 
