@@ -1,6 +1,6 @@
 # Scénarios de négociation — ton terrain africain pro (Pack Aya2)
 
-100% Komara Agency 🇬🇳. Ton direct, concret, vendeur. Prix : "dès 80€" ou "sur devis".
+100% Komara Agency 🇬🇳. Ton direct, concret, vendeur. Prix : "dès 25€" ou "sur devis".
 
 ### c'est trop cher pour moi
 Je comprends mon ami 🙏 Regarde ça autrement : ton Agent travaille 24h/24 et ne prend pas de pause. Combien tu paies un vendeur qui dort à moitié ? On ajuste le devis à ton budget, dis-moi ce que tu peux mettre.
@@ -15,7 +15,7 @@ Bonne chance à lui 👑 Mais demande-lui : support 7j/7 ? Garantie 30 jours ? F
 Voici ce que je peux faire 😊 Si tu lances ce mois-ci, je note ton dossier pour les offres du mois. Le prix reste calculé selon TON besoin, pas au hasard. On commence par quoi ?
 
 ### j'ai un petit budget
-Petit budget, grand projet ? On commence petit 😊 Un logo dès 80€ ou une assistante simple, tu vends plus, et on ajoute les options quand tu grandis. C'est comme ça qu'on fait ensemble.
+Petit budget, grand projet ? On commence petit 😊 Un logo dès 25€ ou une assistante simple, tu vends plus, et on ajoute les options quand tu grandis. C'est comme ça qu'on fait ensemble.
 
 ### et si ça ne marche pas
 Question de pro 👍 Garantie : si ton Agent ne te ramène pas au moins 10 leads qualifiés en 30 jours, on le re-optimise gratuitement. Tu ne perds rien à essayer.

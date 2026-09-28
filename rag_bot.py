@@ -524,26 +524,17 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    # Balayage complet : la réponse peut exister dans une autre langue
-    # (question FR dont la fiche n'existe qu'en EN, mélange de langues...)
-    # Recherche 100% locale = quelques millisecondes par base : le délai
-    # reste très inférieur à 3 secondes.
-    tried = {detected_lang}
+    # ANTI-MÉLANGE : on ne balaie JAMAIS les autres langues. Avant, un
+    # client EN sans fiche EN pouvait recevoir une réponse ES ou AR —
+    # « le bot mélange les réponses ». Désormais : langue détectée →
+    # repli FR (langue de la marque) → message générique DANS LA LANGUE
+    # du client. Une absence de fiche vaut mieux qu'une réponse à côté.
     fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
     result = trouver_meilleure_reponse(
         message, fallback["kb"], fallback["faq"], fallback["dialogues"]
     )
     if result:
         return result
-    tried.add(DEFAULT_LANGUAGE)
-    for lang_code, res in LANG_RESOURCES.items():
-        if lang_code in tried:
-            continue
-        result = trouver_meilleure_reponse(
-            message, res["kb"], res["faq"], res["dialogues"]
-        )
-        if result:
-            return result
     return None
 
 # ---------------------------------------------------------------------------
@@ -570,7 +561,7 @@ KEYBOARDS: dict[str, list[tuple[str, ...]]] = {
     "ar": [
         ("💎 الأسعار", "📂 المعرض"),
         ("🚀 طلب", "🤖 مساعد ذكي"),
-        ("📅 Rendez-vous", "📄 Devis", "⭐ Avis"),
+        ("📅 حجز موعد", "📄 تسعيرة", "⭐ تقييم"),
         ("📦 تتبع الطلب", "🎟️ كود الخصم"),
         ("🛍️ كتالوج", "🛒 سلة"),
         ("👑 التحدث مع مستشار",),
@@ -648,7 +639,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "chatbot": "🤖 تريد بوت ذكي لعملك؟\n\nننشئ بوتات واتساب وتيليجرام وتيك توك مخصصة.\n\nأي قناة تهمك؟",
         "start": "مرحبا 👋 أهلا بك في Komara Agency 🇬🇳!\n\nأنشئ حلولا رقمية: بوتات ذكية، مواقع، شعارات، صور بالذكاء الاصطناعي.\n\nاختر خيارا 👇 أو صف احتياجك.",
         "welcome_back": "مرحبا بك مجددا {name} 👋 سعداء بعودتك إلى Komara Agency 🇬🇳!\n\nاختر خيارا 👇 أو صف احتياجك.",
-        "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'devis'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
+        "promo": "🎟️ أكواد الخصم تُطبق تلقائيا عند الطلب التقديري.\n\n1. اكتب 'تسعيرة'\n2. صف احتياجك\n3. أدخل الكود في الخطوة المطلوبة\n\nالأكواد النشطة تُعلن هنا من الفريق 🇬🇳",
         "voice_received": "🎤 رسالتك الصوتية: «{text}»\n\nأتولى طلبك 👇",
         "crash_fallback": "🛠️ عطل تقني بسيط من جهتي — طلبك لم يفقد.\n\nأعد إرسال رسالتك، أو اكتب فقط: موقع، شعار، بوت، تصميم أو تكوين. آيا تعود حالاً 💪",
         "bot_closed": "🌙 كومارا أجنسلي 🇬🇳 مغلقة حاليا.\nلا تقلق: اترك رسالتك هنا، نرد عند الفتح 🙏\n\nفي الانتظار، اكتشف أعمالنا: /menu 😊",

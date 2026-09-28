@@ -32,7 +32,7 @@ Oui. Nous pouvons construire une identité cohérente avec logo, couleurs, typog
 Le prix dépend du service, du niveau de personnalisation et du nombre de livrables. Les offres connues commencent notamment à 120€ pour certains packs ou sites, tandis que les bots, applications et identités complètes sont généralement établis sur devis.
 
 ### Avez-vous des packs ?
-Oui. Le Pack Starter est proposé à 120€ et comprend 5 visuels, 3 vidéos et un logo. Le Pack Business est proposé à 350€ et comprend 15 visuels, 10 vidéos et 1 mois de publicité.
+Oui. Le Pack Visuels (40€) comprend 5 visuels prêts à poster. Le Pack Business (sur devis) comprend 15 visuels, 10 vidéos et 1 mois de publicité. À l'unité : visuel 15€, logo 25€, vidéo IA 20€, site vitrine 50€, site e-commerce 150€, chatbot IA 100€ + 50€/mois.
 
 ### Comment obtenir un devis précis ?
 Indiquez votre activité, votre objectif, le service souhaité, le canal concerné et votre délai. Nous pourrons ensuite vous orienter vers la bonne solution et établir une estimation adaptée.
@@ -97,7 +97,7 @@ Décrivez-la. Nous étudierons la possibilité de proposer une solution sur mesu
 ## VI. Questions complémentaires issues des dialogues fréquents
 
 ### Avez-vous des packs ?
-Oui. Le Pack Starter est proposé à 120€ et comprend 5 visuels, 3 vidéos et un logo. Le Pack Business est proposé à 350€ et comprend 15 visuels, 10 vidéos et 1 mois de publicité.
+Oui. Le Pack Visuels (40€) comprend 5 visuels prêts à poster. Le Pack Business (sur devis) comprend 15 visuels, 10 vidéos et 1 mois de publicité. À l'unité : visuel 15€, logo 25€, vidéo IA 20€, site vitrine 50€, site e-commerce 150€, chatbot IA 100€ + 50€/mois.
 
 ### Vos services sont-ils adaptés aux petites entreprises ?
 Oui. Nous pouvons commencer avec une solution simple et évolutive, puis ajouter des fonctionnalités lorsque votre activité se développe.

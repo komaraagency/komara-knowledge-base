@@ -33,7 +33,7 @@
     "cuánto",
     "paquetes"
    ],
-   "answer": "Nuestros precios varían según el proyecto. Aquí están nuestros paquetes estándar:\n\n🚀 **Pack Starter**: 150€ - Bot simple o sitio web\n💼 **Pack Business**: 450€ - Bot avanzado + sitio web\n🏆 **Pack Premium**: 900€ - Solución complete personalizada\n\nCada proyecto es único, ¡contáctanos para un presupuesto personalizado!"
+   "answer": "Nuestras tarifas oficiales 🇬🇳 :\n• Visual / Cartel : 15€ (pack de 5 : 40€)\n• Logo Pro : 25€\n• Vídeo IA : 20€\n• Sitio Vitrina : 50€ • Sitio E-commerce : 150€\n• Chatbot IA : 100€ + 50€/mes de mantenimiento\n• Formación IA : 50€\nEscriba 'presupuesto' para un presupuesto instantáneo 👇"
   },
   {
    "id": 4,
@@ -320,7 +320,7 @@
     "déjeme pensarlo",
     "estoy pensando"
    ],
-   "answer": "Le entiendo 👍 Tómate su tiempo.\nSolo para que sepas: me queda 1 lugar a 99€ este mes. Después vuelve a 250€.\n¿Le escribo mañana?"
+   "answer": "Le entiendo 👍 Tómate su tiempo.\nSolo para que sepas: me queda 1 lugar a 100€ este mes. Después vuelve a 150€.\n¿Le escribo mañana?"
   },
   {
    "id": "conv_23",
@@ -360,7 +360,7 @@
     "soy estudiante",
     "presupuesto ajustado"
    ],
-   "answer": "Le entiendo 🙏 Tenemos el pack \"Starter\" a 99€ para empezar.\nYa hace el 80% del trabajo. Cuando vendas, subimos de nivel."
+   "answer": "Le entiendo 🙏 Tenemos el pack \"Starter\" a 100€ para empezar.\nYa hace el 80% del trabajo. Cuando vendas, subimos de nivel."
   },
   {
    "id": "conv_27",
@@ -400,7 +400,7 @@
     "sus packs",
     "los paquetes"
    ],
-   "answer": "Aquí están nuestros 3 packs KOMARA AGENCY 👇\nSTARTER 99€: FAQ + respuestas auto\nBUSINESS 150€: Toma de pedidos + Pago\nPREMIUM 250€: Bot completo + CRM + Estadísticas\n¿Qué está buscando exactamente?"
+   "answer": "Aquí están nuestros 3 packs KOMARA AGENCY 👇\nSTARTER 100€: FAQ + respuestas auto\nBUSINESS 150€: Toma de pedidos + Pago\nPREMIUM 150€: Bot completo + CRM + Estadísticas\n¿Qué está buscando exactamente?"
   },
   {
    "id": "conv_31",
@@ -420,7 +420,7 @@
     "mucho texto",
     "hágalo corto"
    ],
-   "answer": "Resumen exprés: un bot de WhatsApp que vende por usted 24/7.\nDesde 99€. Entregado en 48h.\n¿Empezamos?"
+   "answer": "Resumen exprés: un bot de WhatsApp que vende por usted 24/7.\ndesde 100€ (+ 50€/mes de mantenimiento). Entregado en 48h.\n¿Empezamos?"
   },
   {
    "id": "conv_33",
@@ -430,7 +430,7 @@
     "por que ese precio",
     "justifica el precio"
    ],
-   "answer": "Porque le entrego un vendedor 24/7 durante un año por 99€.\nUn vendedor real cuesta 300€/mes. Aquí gana usted.\n¿Empezamos?"
+   "answer": "Porque le entrego un vendedor 24/7 durante un año desde 100€ (+ 50€/mes de mantenimiento).\nUn vendedor real cuesta 300€/mes. Aquí gana usted.\n¿Empezamos?"
   },
   {
    "id": "conv_34",
@@ -450,7 +450,7 @@
     "estoy muy ocupado esta semana",
     "no disponible esta semana"
    ],
-   "answer": "Sin problema. Reserva su lugar a 99€ ahora y empezamos cuando quieras.\nDespués del 30 el precio vuelve a 250€. ¿Le guardo el lugar?"
+   "answer": "Sin problema. Reserva su lugar a 100€ ahora y empezamos cuando quieras.\nDespués del 30 el precio vuelve a 150€. ¿Le guardo el lugar?"
   },
   {
    "id": "conv_36",
@@ -468,7 +468,7 @@
     "le respondo mañana",
     "mañana le digo"
    ],
-   "answer": "Perfecto 👍 Anotado.\nLe escribo mañana a las 10. Mientras tanto le guardo la tarifa de 99€."
+   "answer": "Perfecto 👍 Anotado.\nLe escribo mañana a las 10. Mientras tanto le guardo la tarifa desde 100€ (+ 50€/mes de mantenimiento)."
   },
   {
    "id": "conv_38",
@@ -487,7 +487,7 @@
     "factura proforma",
     "necesito factura"
    ],
-   "answer": "Aquí su factura proforma KOMARA AGENCY 👇\nMonto: 99€\nDetalle: Creación Bot WhatsApp + 1 mes de soporte\nConfirmas y empezamos."
+   "answer": "Aquí su factura proforma KOMARA AGENCY 👇\nMonto: 100€\nDetalle: Creación Bot WhatsApp + 1 mes de soporte\nConfirmas y empezamos."
   },
   {
    "id": "conv_40",
@@ -497,7 +497,7 @@
     "cupos restantes",
     "expira"
    ],
-   "answer": "Info: me queda solo 1 lugar a 99€ este mes.\nLos otros 2 ya están tomados. ¿Lo quiere?"
+   "answer": "Info: me queda solo 1 lugar a 100€ este mes.\nLos otros 2 ya están tomados. ¿Lo quiere?"
   },
   {
    "id": "conv_41",
@@ -589,7 +589,7 @@
     "vale la pena",
     "propuesta de valor"
    ],
-   "answer": "Resumen: paga 99€ una vez.\nRecuperas 3h/día + clientes extra cada día.\nSe paga solo en una semana."
+   "answer": "Resumen: paga 100€ una vez.\nRecuperas 3h/día + clientes extra cada día.\nSe paga solo en una semana."
   },
   {
    "id": "conv_51",
@@ -599,7 +599,7 @@
     "por que no contratas",
     "vendedor humano"
    ],
-   "answer": "Contratar = 200€/mes.\nBot = 99€ de por vida.\n¿Cuál eliges?"
+   "answer": "Contratar = 200€/mes.\nBot = 100€ de por vida.\n¿Cuál eliges?"
   },
   {
    "id": "conv_52",
@@ -703,7 +703,7 @@
     "estoy perdido",
     "por donde empiezo"
    ],
-   "answer": "Respira 😊 Empezamos pequeño. Pack Starter 99€.\nLe guío paso a paso. En 48h tiene su bot."
+   "answer": "Respira 😊 Empezamos pequeño. Pack Starter 100€.\nLe guío paso a paso. En 48h tiene su bot."
   },
   {
    "id": "conv_63",
@@ -994,7 +994,7 @@
     "presupuesto pequeno",
     "poco a poco"
    ],
-   "answer": "Perfecto. Empezamos con el pack Starter 99€.\n1 producto, 5 preguntas. Cuando funcione, subimos."
+   "answer": "Perfecto. Empezamos con el pack Starter 100€.\n1 producto, 5 preguntas. Cuando funcione, subimos."
   },
   {
    "id": "conv_93",
@@ -1022,7 +1022,7 @@
     "es su ultima palabra",
     "puede bajar el precio"
    ],
-   "answer": "99€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Va?"
+   "answer": "100€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Va?"
   },
   {
    "id": "conv_96",
@@ -1321,7 +1321,7 @@
     "se puede confiar",
     "cual es el precio y es confiable"
    ],
-   "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 99€ una sola vez. Sin suscripción.\nEn confiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo. + Garantía de 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes si quiere.\n¿Prefiere la ficha técnica PDF o un video demo?"
+   "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 100€ una sola vez. Sin suscripción.\nEn confiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo. + Garantía de 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes si quiere.\n¿Prefiere la ficha técnica PDF o un video demo?"
   },
   {
    "id": "pro_09",
@@ -1332,7 +1332,7 @@
     "ofertas de bots",
     "pack starter y pack pro"
    ],
-   "answer": "Tenemos 2 ofertas:\n*Pack Starter - 99€*\nBot completo personalizado a su marca, 10 productos/servicios configurados, respuestas automáticas + pago integrado, capacitación en video + 1 mes de soporte\n*Pack Pro - 250€*\nTodo el Starter + tienda complete + estadísticas + seguimientos automáticos\nEl Starter está a 99€ hasta el domingo.\n¿Cuál oferta le conviene más?"
+   "answer": "Tenemos 2 ofertas:\n*Pack Starter - 100€*\nBot completo personalizado a su marca, 10 productos/servicios configurados, respuestas automáticas + pago integrado, capacitación en video + 1 mes de soporte\n*Pack Pro - 150€*\nTodo el Starter + tienda complete + estadísticas + seguimientos automáticos\nEl Starter está a 100€ hasta el domingo.\n¿Cuál oferta le conviene más?"
   },
   {
    "id": "pro_10",
@@ -1387,7 +1387,7 @@
     "cuanto por los visuales",
     "packs de fotos"
    ],
-   "answer": "Tenemos 3 packs:\n*Pack Starter - 5€*\n5 visuales pro + texto gancho + formato estado + feed\n*Pack Business - 12€*\n15 visuales + 3 videos cortos + calendario de publicaciones 1 mes\n*Pack Premium - 25€*\n30 visuales + branding completo + gestión de estados 1 mes\nEntrega 48h en toda Guinea. Modificaciones incluidas.\n¿Qué pack le interesa más?"
+   "answer": "Nuestros packs visuales 🎨\n• Visual único: 15€ — 1 visual pro + texto atractivo\n• Pack de 5: 40€ — 5 visuales + textos + estados + formatos feed\n• Pack Business: según presupuesto — 15 visuales + 3 mini-vídeos + 1 mes de seguimiento\n¿Cuál elige? 👇"
   },
   {
    "id": "pro_15",
@@ -1398,7 +1398,7 @@
     "5€ es caro",
     "visuales muy caros"
    ],
-   "answer": "Lo entiendo. 5€ es un presupuesto.\nPero piénsalo: 1 sola venta de 20€ gracias a un buen visual y ya se pagó.\nPodemos empezar con el Starter para probar.\n¿Tiene fotos de sus productos para enviar?"
+   "answer": "Lo entiendo. 15€.\nPero piénsalo: 1 sola venta de 20€ gracias a un buen visual y ya se pagó.\nPodemos empezar con el Starter para probar.\n¿Tiene fotos de sus productos para enviar?"
   },
   {
    "id": "pro_16",
@@ -1566,7 +1566,7 @@
     "tarifas de socios",
     "tarifas marca blanca"
    ],
-   "answer": "Para agencias aliadas, tarifas preferenciales:\nSitio Vitrina: 90€ en vez de 150€\nSitio E-commerce: 350€ en vez de 550€\nVisuales: -30% en todos los packs\nA cambio: mínimo 2 proyectos/mes.\n¿Le envío el dossier de socio PDF + 3 sitios de ejemplo?"
+   "answer": "Para agencias aliadas, tarifas preferenciales 🤝\n• Sitio Vitrina: 40€ en vez de 50€\n• Sitio E-commerce: 120€ en vez de 150€\n• Visuales: -30% en todos los packs\nA cambio: exclusividad en su mercado + derechos de marca blanca (según presupuesto). ¿Firmamos?"
   },
   {
    "id": "pro_32",
@@ -1661,1728 +1661,6 @@
    "answer": "Genial, podemos hacer ambas 👍\n¿Qué vende exactamente? ¿Y cuántos mensajes al día más o menos?"
   },
   {
-   "id": "es_science_astro_01",
-   "category": "science",
-   "questions": [
-    "qué es una estrella fugaz",
-    "por qué se venga estrellas fugaces"
-   ],
-   "keywords": [
-    "estrella",
-    "cielo",
-    "espacio"
-   ],
-   "answer": "Es un granito de polvo espacial que se quema al entrar en nuestra atmósfera 😊\nResultado: una luz hermosa que cruza el cielo.\n¿Alguna vez le has pedido un deseo a una?"
-  },
-  {
-   "id": "es_science_astro_02",
-   "category": "science",
-   "questions": [
-    "por qué el cielo es azul"
-   ],
-   "keywords": [
-    "cielo",
-    "azul",
-    "luz"
-   ],
-   "answer": "El aire dispersa la luz del sol.\nEl azul es el color que más se dispersa, por eso todo el cielo parece azul.\nAl atardecer gana el rojo 🌅 ¿Bonito, no?"
-  },
-  {
-   "id": "es_science_astro_03",
-   "category": "science",
-   "questions": [
-    "qué es un agujero negro"
-   ],
-   "keywords": [
-    "agujero negro",
-    "espacio",
-    "gravedad"
-   ],
-   "answer": "Una zona donde la gravedad es tan fuerte que ni la luz escapa 🕳️\nImagine una aspiradora cósmica gigante.\n¿Quiere saber cómo los detectamos si son invisibles?"
-  },
-  {
-   "id": "es_science_astro_04",
-   "category": "science",
-   "questions": [
-    "cuántas estrellas hay en el universo"
-   ],
-   "keywords": [
-    "estrellas",
-    "universo"
-   ],
-   "answer": "Imposible contarlas exactamente 😅\nLos científicos estiman unos 200 mil millones de mil millones de estrellas.\nMás que granos de arena en la Tierra. ¿Pone las cosas en perspectiva, no?"
-  },
-  {
-   "id": "es_science_astro_05",
-   "category": "science",
-   "questions": [
-    "se puede vivir en marte",
-    "vida en marte"
-   ],
-   "keywords": [
-    "marte",
-    "vivir",
-    "planeta"
-   ],
-   "answer": "Todavía no. Sin oxígeno, muy frío y sin agua líquida en la superficie 🟥\nPero existen proyectos, como las misiones de SpaceX.\n¿Usted irías a Marte si pudieras?"
-  },
-  {
-   "id": "es_science_astro_06",
-   "category": "science",
-   "questions": [
-    "qué es una galaxia"
-   ],
-   "keywords": [
-    "galaxia",
-    "espacio",
-    "estrellas"
-   ],
-   "answer": "Un enorme grupo de estrellas, gas y polvo que giran juntos 🌌\nNuestra galaxia es la Vía Láctea con ~200 mil millones de estrellas.\nY el universo contiene miles de millones de galaxias. Vertiginoso, ¿no?"
-  },
-  {
-   "id": "es_science_astro_07",
-   "category": "science",
-   "questions": [
-    "cuántos planetas hay en el sistema solar"
-   ],
-   "keywords": [
-    "planetas",
-    "sistema solar"
-   ],
-   "answer": "8 planetas: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno 🪐\n¿Cuál es su favorito?"
-  },
-  {
-   "id": "es_science_astro_08",
-   "category": "science",
-   "questions": [
-    "qué es la estación espacial internacional",
-    "la eei"
-   ],
-   "keywords": [
-    "estación espacial",
-    "astronautas"
-   ],
-   "answer": "Un laboratorio gigante que orbita la Tierra a 28.000 km/h 🛰️\nLos astronautas viven allí 6 meses haciendo experimentos.\n¡Da la vuelta a la Tierra en 90 minutos: 16 atardeceres al día!"
-  },
-  {
-   "id": "es_science_astro_09",
-   "category": "science",
-   "questions": [
-    "el sol explotará algún día",
-    "el sol morirá"
-   ],
-   "keywords": [
-    "sol",
-    "explotar"
-   ],
-   "answer": "Sí, pero sin pánico 😄\nEl Sol todavía tiene ~5 mil millones de años por delante.\nTiempo de sobra, créeme."
-  },
-  {
-   "id": "es_science_astro_10",
-   "category": "science",
-   "questions": [
-    "qué es un eclipse"
-   ],
-   "keywords": [
-    "eclipse",
-    "sol",
-    "luna"
-   ],
-   "answer": "Cuando un astro se esconde delante de otro 🌑\nEclipse solar: la Luna tapa el Sol. Lunar: la sombra de la Tierra cubre la Luna.\n¿Quiere que busque cuándo será el próximo en su zona?"
-  },
-  {
-   "id": "es_science_phys_01",
-   "category": "science",
-   "questions": [
-    "qué es la gravedad",
-    "por qué caen los objetos"
-   ],
-   "keywords": [
-    "gravedad",
-    "caer",
-    "tierra"
-   ],
-   "answer": "La fuerza que atrae todo hacia el suelo 🌍\nHace caer la manzana y mantiene la Luna en órbita.\nSin ella flotaríamos todos. Divertido 2 minutos 😄"
-  },
-  {
-   "id": "es_science_phys_02",
-   "category": "science",
-   "questions": [
-    "cuál es la velocidad de la luz"
-   ],
-   "keywords": [
-    "luz",
-    "velocidad",
-    "física"
-   ],
-   "answer": "300.000 km por segundo ⚡\nEn 1 segundo, la luz da 7 vueltas a la Tierra.\nNada va más rápido en el universo. La regla de oro de la física."
-  },
-  {
-   "id": "es_science_phys_03",
-   "category": "science",
-   "questions": [
-    "por qué el trueno llega después del relámpago"
-   ],
-   "keywords": [
-    "trueno",
-    "relámpago",
-    "tormenta"
-   ],
-   "answer": "Porque la luz viaja mucho más rápido que el sonido ⚡\nEl relámpago muestra el golpe, el trueno llega tarde.\nTruco: cuenta los segundos entre ambos, divide entre 3 = distancia en km."
-  },
-  {
-   "id": "es_science_phys_04",
-   "category": "science",
-   "questions": [
-    "qué es un átomo"
-   ],
-   "keywords": [
-    "átomo",
-    "materia",
-    "ciencia"
-   ],
-   "answer": "El ladrillo básico de toda la materia 🔬\nTodo lo que ve — usted, su móvil, el aire — está hecho de átomos.\nY un átomo es 99,99% vacío. Alucinante 😅"
-  },
-  {
-   "id": "es_science_phys_05",
-   "category": "science",
-   "questions": [
-    "por qué el agua hierve a 100 grados"
-   ],
-   "keywords": [
-    "agua",
-    "hervir",
-    "temperatura"
-   ],
-   "answer": "A 100°C a nivel del mar 💧\nEs el momento en que el agua se convierte en vapor.\nEn la montaña hierve antes — a 3000m sobre 90°C. ¡La pasta tarda más allí!"
-  },
-  {
-   "id": "es_science_phys_06",
-   "category": "science",
-   "questions": [
-    "qué es la energía"
-   ],
-   "keywords": [
-    "energía",
-    "física",
-    "poder"
-   ],
-   "answer": "Lo que hace mover o calentar las cosas ⚡\nSe transforma pero nunca desaparece — la famosa ley de conservación.\nSol, viento, su comida: todo es energía en movimiento."
-  },
-  {
-   "id": "es_science_phys_07",
-   "category": "science",
-   "questions": [
-    "los tres estados del agua"
-   ],
-   "keywords": [
-    "agua",
-    "hielo",
-    "vapor"
-   ],
-   "answer": "Hielo (sólido), agua (líquido), vapor (gas) 💧\nLa misma molécula, tres trajes según la temperatura.\nLa única sustancia que vemos fácilmente en sus 3 estados en la naturaleza."
-  },
-  {
-   "id": "es_science_chim_01",
-   "category": "science",
-   "questions": [
-    "por qué se oxida el hierro"
-   ],
-   "keywords": [
-    "hierro",
-    "óxido",
-    "metal"
-   ],
-   "answer": "Una reacción entre el hierro, el oxígeno y el agua 🔩\nEl hierro se oxida y forma esa capa naranja llamada óxido.\nSolución: pintar o aceitar el metal para protegerlo de la humedad."
-  },
-  {
-   "id": "es_science_chim_02",
-   "category": "science",
-   "questions": [
-    "por qué la cebolla hace llorar"
-   ],
-   "keywords": [
-    "cebolla",
-    "llorar",
-    "lágrimas"
-   ],
-   "answer": "Al cortarla libera un gas irritante 🧅\nSus ojos producen lágrimas para defenderse.\nTruco de la abuela: enfría la cebolla 15 min antes, o corta bajo el agua."
-  },
-  {
-   "id": "es_science_chim_03",
-   "category": "science",
-   "questions": [
-    "qué es una reacción química"
-   ],
-   "keywords": [
-    "química",
-    "reacción",
-    "transformación"
-   ],
-   "answer": "Cuando unas sustancias se transforman en otras 🧪\nEjemplo: vinagre + bicarbonato = espuma (¡gas!)\nUna vez transformadas, no hay vuelta atrás. ¡La cocina está llene de ellas!"
-  },
-  {
-   "id": "es_science_chim_04",
-   "category": "science",
-   "questions": [
-    "qué es el oxígeno"
-   ],
-   "keywords": [
-    "oxígeno",
-    "aire",
-    "respirar"
-   ],
-   "answer": "El gas que respiramos para vivir 🌬️\nNuestras células queman su combustible gracias a él.\n¿Y quién fabrica más? Los océanos con el fitoplancton — ¡no solo los árboles!"
-  },
-  {
-   "id": "es_science_bio_01",
-   "category": "science",
-   "questions": [
-    "qué es el adn"
-   ],
-   "keywords": [
-    "adn",
-    "genética",
-    "biología"
-   ],
-   "answer": "El manual de instrucciones de todo ser vivo 🧬\nContiene las instrucciones que le hacen ser usted — color de ojos, altura, todo.\nSi desenrollas el ADN de una sola célula: 2 metros. Increíble, ¿no?"
-  },
-  {
-   "id": "es_science_bio_02",
-   "category": "science",
-   "questions": [
-    "cómo fabrican oxígeno las plantas",
-    "qué es la fotosíntesis"
-   ],
-   "keywords": [
-    "fotosíntesis",
-    "plantas",
-    "oxígeno"
-   ],
-   "answer": "Gracias a la fotosíntesis 🌱\nLas plantas capturan la luz del sol, beben CO2 y liberan oxígeno.\nNos hacen vivir, literalmente. Buena razón para regarlas 😄"
-  },
-  {
-   "id": "es_science_bio_03",
-   "category": "science",
-   "questions": [
-    "por qué las hojas son verdes",
-    "qué es la clorofila"
-   ],
-   "keywords": [
-    "hojas",
-    "verde",
-    "clorofila"
-   ],
-   "answer": "Por la clorofila 🍃\nEs la molécula que captura la luz del sol para alimentar la planta.\nEn otoño se esconde y dejan ver los amarillos y naranjas. La naturaleza hace el espectáculo."
-  },
-  {
-   "id": "es_science_bio_04",
-   "category": "science",
-   "questions": [
-    "por qué bostezamos",
-    "el bostezo es contagioso"
-   ],
-   "keywords": [
-    "bostezo",
-    "sueño",
-    "contagioso"
-   ],
-   "answer": "Para oxigenar el cerebro cuando está en reposo 😴\nY sí, el bostezo es contagioso — hasta leer la palabra da gana ;)\n¿Acabas de bostezar leyendo esto? Confiesa 😄"
-  },
-  {
-   "id": "es_science_bio_05",
-   "category": "science",
-   "questions": [
-    "por qué ronronean los gatos"
-   ],
-   "keywords": [
-    "gatos",
-    "ronroneo",
-    "animales"
-   ],
-   "answer": "Para comunicar bienestar y a veces calmarse 🐈\nEl ronroneo vibra entre 25 y 150 Hz, una frecuencia que favorece la curación de huesos.\nUn gato es casi un médico de bolsillo con bigotes."
-  },
-  {
-   "id": "es_science_bio_06",
-   "category": "science",
-   "questions": [
-    "qué es la evolución",
-    "la teoría de la evolución"
-   ],
-   "keywords": [
-    "evolución",
-    "darwin",
-    "especies"
-   ],
-   "answer": "La idea de que las especies cambian lentamente con las generaciones 🐒\nLos que mejor se adaptan sobreviven y transmiten sus rasgos.\nDarwin lo explicó con los picos de los pinzones de Galápagos. Simple y genial."
-  },
-  {
-   "id": "es_science_bio_07",
-   "category": "science",
-   "questions": [
-    "cuántas especies hay en la tierra"
-   ],
-   "keywords": [
-    "especies",
-    "animales",
-    "biodiversidad"
-   ],
-   "answer": "~8,7 millones estimadas, y solo hemos descubierto una cuarta parte 🌍\nCada año se encuentran miles nuevas.\n¡Conocemos mejor la superficie de Marte que el fondo del mar!"
-  },
-  {
-   "id": "es_science_sante_01",
-   "category": "science",
-   "questions": [
-    "por qué late el corazón"
-   ],
-   "keywords": [
-    "corazón",
-    "sangre",
-    "latido"
-   ],
-   "answer": "Es su motor bombeando sangre por todo el cuerpo ❤️\n~100.000 latidos al día sin que lo pienses.\nCuídalo: muévete, duerme, come bien. Trabaja para usted."
-  },
-  {
-   "id": "es_science_sante_02",
-   "category": "science",
-   "questions": [
-    "qué es el sistema inmunológico"
-   ],
-   "keywords": [
-    "sistema inmunológico",
-    "defensas",
-    "salud"
-   ],
-   "answer": "Su ejército interior contra los microbios 🛡️\nPiel, glóbulos blancos, anticuerpos: varias líneas de defensa.\nPara entrenarlo: sueño, frutas, verduras y buen humor. En serio."
-  },
-  {
-   "id": "es_science_sante_03",
-   "category": "science",
-   "questions": [
-    "por qué estornudamos"
-   ],
-   "keywords": [
-    "estornudo",
-    "nariz",
-    "reflejo"
-   ],
-   "answer": "Una defensa: el cuerpo expulsa un intruso a 160 km/h 💨\nNo se puede estornudar con los ojos abiertos — el reflejo los cierra.\n¡Salud! 😄"
-  },
-  {
-   "id": "es_science_sante_04",
-   "category": "science",
-   "questions": [
-    "cuántos huesos tiene el cuerpo humano"
-   ],
-   "keywords": [
-    "huesos",
-    "esqueleto",
-    "cuerpo"
-   ],
-   "answer": "206 en un adulto 🦴\n¡Pero un bebé tiene ~300! Algunos se fusionan al crecer.\nEl más pequeño: el estribo del oído, 3mm. El más grande: el fémur."
-  },
-  {
-   "id": "es_science_sante_05",
-   "category": "science",
-   "questions": [
-    "por qué la sangre es roja"
-   ],
-   "keywords": [
-    "sangre",
-    "roja",
-    "hemoglobina"
-   ],
-   "answer": "Por el hierro de la hemoglobina 🩸\nLa sangre pobre en oxígeno es más oscura, la oxigenada más roja viva.\n¿La famosa 'sangre azul' de las venas? Mito — solo está menos iluminada 😄"
-  },
-  {
-   "id": "es_science_sante_06",
-   "category": "science",
-   "questions": [
-    "por qué hay que dormir",
-    "es importante dormir"
-   ],
-   "keywords": [
-    "dormir",
-    "descanso",
-    "noche"
-   ],
-   "answer": "El sueño es el mantenimiento del cerebro 😴\nConsolida la memoria, repara el cuerpo y limpia los desechos cerebrales.\n7-9 horas es lo ideal. Una buena noche vale más que 3 cafés."
-  },
-  {
-   "id": "es_science_sante_07",
-   "category": "science",
-   "questions": [
-    "qué es una vacuna",
-    "cómo funcionan las vacunas"
-   ],
-   "keywords": [
-    "vacuna",
-    "inmunidad",
-    "medicina"
-   ],
-   "answer": "Un entrenamiento para su sistema inmunológico 💉\nLe mostramos un trozo inofensivo del microbio para que aprenda a combatirlo.\nComo un sparring antes del combate real."
-  },
-  {
-   "id": "es_science_sante_08",
-   "category": "science",
-   "questions": [
-    "cuánta agua beber al día"
-   ],
-   "keywords": [
-    "agua",
-    "beber",
-    "hidratación"
-   ],
-   "answer": "Unos 1,5 a 2 litros al día 💧\nSu cuerpo es 60% agua — el cerebro 75%.\nNo hace falta contar vasos: la sed es una buena guía."
-  },
-  {
-   "id": "es_science_psy_01",
-   "category": "science",
-   "questions": [
-    "por qué procrastinamos",
-    "qué es la procrastinación"
-   ],
-   "keywords": [
-    "procrastinación",
-    "retraso",
-    "hábitos"
-   ],
-   "answer": "Nuestro cerebro prefiere la recompensa inmediata 😅\nScrollear TikTok = placer ahora, la tarea = placer después.\nTruco anti-procrastinación: la regla de los 2 minutos. Empiece solo 2 minutos. El resto suele venir solo."
-  },
-  {
-   "id": "es_science_psy_02",
-   "category": "science",
-   "questions": [
-    "qué es el estrés",
-    "cómo gestionar el estrés"
-   ],
-   "keywords": [
-    "estrés",
-    "ansiedad",
-    "calma"
-   ],
-   "answer": "La alarma natural del cuerpo 🚨\nÚtil en dosis pequeñas, agotador en grandes.\nLo más simple: inhala 4 segundos, aguantA 4, exhala 6. Repite 5 veces. Funciona de verdad."
-  },
-  {
-   "id": "es_science_psy_03",
-   "category": "science",
-   "questions": [
-    "por qué la música nos hace felices"
-   ],
-   "keywords": [
-    "música",
-    "felicidad",
-    "dopamina"
-   ],
-   "answer": "La música libera dopamina, la hormona del placer 🎵\nToca la memoria y las emociones a la vez.\nPor eso una canción le devuelve 10 años atrás en 3 segundos."
-  },
-  {
-   "id": "es_science_psy_04",
-   "category": "science",
-   "questions": [
-    "cómo aprender mejor y recordar",
-    "técnicas de memorización"
-   ],
-   "keywords": [
-    "aprender",
-    "memoria",
-    "estudio"
-   ],
-   "answer": "La repetición espaciada: repasar a D+1, D+3, D+7, D+21 📚\nEl cerebro retiene lo que vuelve, no lo que estudias 4 horas seguidas.\nY explicar en voz alta lo que aprendes — efecto profe instantáneo 😄"
-  },
-  {
-   "id": "es_science_psy_05",
-   "category": "science",
-   "questions": [
-    "qué es la inteligencia emocional"
-   ],
-   "keywords": [
-    "inteligencia emocional",
-    "eq",
-    "emociones"
-   ],
-   "answer": "La capacidad de entender y gestionar sus emociones — y las de los demás 🧠\nA menudo pesa más que el IQ en el trabajo.\nConcretamente: reconocer su enfado antes de enviar el mensaje."
-  },
-  {
-   "id": "es_science_math_01",
-   "category": "science",
-   "questions": [
-    "qué es pi",
-    "el número pi"
-   ],
-   "keywords": [
-    "pi",
-    "círculo",
-    "mates"
-   ],
-   "answer": "El número secreto de los círculos: π ≈ 3,14159 🔵\nCircunferencia ÷ diámetro = siempre π, cualquier círculo.\nSe conocen miles de millones de decimales. Los primeros 10 sirven para casi todo 😄"
-  },
-  {
-   "id": "es_science_math_02",
-   "category": "science",
-   "questions": [
-    "por qué el cero es importante",
-    "quién inventó el cero"
-   ],
-   "keywords": [
-    "cero",
-    "mates",
-    "india"
-   ],
-   "answer": "El cero se inventó en India y viajó por el mundo árabe 🔄\nSin él: no hay cálculo moderno, ni informática, nada.\nUna 'nada' que cambió el mundo. Buena lección, ¿no?"
-  },
-  {
-   "id": "es_science_math_03",
-   "category": "science",
-   "questions": [
-    "qué es un número primo"
-   ],
-   "keywords": [
-    "números primos",
-    "mates",
-    "divisores"
-   ],
-   "answer": "Un número divisible solo entre 1 y sí mismo 🔢\n2, 3, 5, 7, 11, 13...\nSon los átomos de las mates — ¡el cifrado de su banco se basa en ellos!"
-  },
-  {
-   "id": "es_science_math_04",
-   "category": "science",
-   "questions": [
-    "para qué sirven las mates en la vida diaria"
-   ],
-   "keywords": [
-    "mates",
-    "vida diaria",
-    "lógica"
-   ],
-   "answer": "En todas partes: calcular un precio, cocinar una receta, gestionar un presupuesto 🧮\nIncluso la música y los videojuegos están llenos.\nLas mates son el idioma de la lógica. Y la lógica sirve a diario."
-  },
-  {
-   "id": "es_science_ia_01",
-   "category": "science",
-   "questions": [
-    "qué es la inteligencia artificial en general",
-    "cómo funciona la ia"
-   ],
-   "keywords": [
-    "ia",
-    "inteligencia artificial",
-    "aprendizaje"
-   ],
-   "answer": "Programas que aprenden de ejemplos 🤖\nEn vez de programar todas las reglas, mostramos miles de ejemplos y la máquina detecta patrones.\nPor cierto, creamos IA para empresas en KOMARA — pero aquí le cuento la ciencia 😄"
-  },
-  {
-   "id": "es_science_ia_02",
-   "category": "science",
-   "questions": [
-    "qué es el machine learning"
-   ],
-   "keywords": [
-    "machine learning",
-    "datos",
-    "entrenamiento"
-   ],
-   "answer": "La rama de la IA donde la máquina aprende de los datos 📊\nLe enseñas 1000 gatos y acaba reconociendo gatos sola.\nExactamente lo que hacemos con nuestros bots: aprenden sus respuestas para sonar como usted 😊"
-  },
-  {
-   "id": "es_science_ia_03",
-   "category": "science",
-   "questions": [
-    "cómo funciona internet"
-   ],
-   "keywords": [
-    "internet",
-    "red",
-    "cables"
-   ],
-   "answer": "Una red de cables, servidores y protocolos 🌐\nSu petición viaja a veces miles de km en milisegundos.\n¿El cable que une Europa con África Occidental? Pasa bajo el océano. De verdad."
-  },
-  {
-   "id": "es_science_ia_04",
-   "category": "science",
-   "questions": [
-    "qué es un algoritmo"
-   ],
-   "keywords": [
-    "algoritmo",
-    "instrucciones",
-    "pasos"
-   ],
-   "answer": "Una secuencia de instrucciones para resolver un problema ⚙️\nUna receta de cocina es un algoritmo: pasos en orden, resultado garantizado.\nEstán en todas partes: GPS, recomendaciones de YouTube, filtros de correo."
-  },
-  {
-   "id": "es_science_ia_05",
-   "category": "science",
-   "questions": [
-    "qué es la nube",
-    "el cloud"
-   ],
-   "keywords": [
-    "nube",
-    "almacenamiento",
-    "servidores"
-   ],
-   "answer": "Guardar y procesar datos en servidores remotos ☁️\nSus fotos de WhatsApp viven en centros de datos.\nVentaja: acceso desde cualquier lugar. También es lo que mantiene nuestros bots 24/7 😊"
-  },
-  {
-   "id": "es_science_ia_06",
-   "category": "science",
-   "questions": [
-    "qué es la ciberseguridad",
-    "cómo protegerse de los piratas"
-   ],
-   "keywords": [
-    "ciberseguridad",
-    "contraseña",
-    "hackers"
-   ],
-   "answer": "El arte de proteger sus datos y sistemas 🔐\nRegla 1: contraseñas distintas y largas en todas partes.\nRegla 2: desconfía de los enlaces demasiado bonitos. El pirata usa la curiosidad, no la técnica."
-  },
-  {
-   "id": "es_science_ia_07",
-   "category": "science",
-   "questions": [
-    "la ia reemplazará a los humanos",
-    "es la ia un peligro para el empleo"
-   ],
-   "keywords": [
-    "ia",
-    "empleo",
-    "futuro"
-   ],
-   "answer": "Reemplaza tareas, no personas 🤝\nQuienes la usan reemplazan a quienes la ignoran.\nNuestro enfoque en KOMARA: la IA hace lo repetitivo, el humano guarda la relación. Lo mejor de ambos mundos."
-  },
-  {
-   "id": "es_science_ia_08",
-   "category": "science",
-   "questions": [
-    "qué es el 5g"
-   ],
-   "keywords": [
-    "5g",
-    "red",
-    "móvil"
-   ],
-   "answer": "La 5ª generación de red móvil: más rápida y fluida 📶\nLatencia casi nula: perfecta para videollamadas, juegos y objetos conectados.\nUna película HD descargada en segundos. ¡El futuro llega rápido!"
-  },
-  {
-   "id": "es_science_hist_01",
-   "category": "science",
-   "questions": [
-    "quién construyó las pirámides de egipto"
-   ],
-   "keywords": [
-    "pirámides",
-    "egipto",
-    "faraones"
-   ],
-   "answer": "Los egipcios antiguos, hace más de 4500 años 🔺\nLa gran pirámide de Guiza: 2,3 millones de bloques, 20 años de obra.\nY no, no esclavos: trabajadores pagados y alojados, lo confirmaron los arqueólogos."
-  },
-  {
-   "id": "es_science_hist_02",
-   "category": "science",
-   "questions": [
-    "qué era el imperio de mali",
-    "soundiata keita"
-   ],
-   "keywords": [
-    "imperio de mali",
-    "soundiata",
-    "áfrica occidental"
-   ],
-   "answer": "Uno de los mayores imperios de África Occidental (siglos 13-16) 🏛️\nFundado por Soundiata Keïta, héroe de la batalla de Kirina.\nTambién nos dio la Carta del Mandén, uno de los primeros textos sobre derechos humanos. Orgullo heredado."
-  },
-  {
-   "id": "es_science_hist_03",
-   "category": "science",
-   "questions": [
-    "quién era mansa musa",
-    "el hombre más rico de la historia"
-   ],
-   "keywords": [
-    "mansa musa",
-    "mali",
-    "oro"
-   ],
-   "answer": "Emperador de Mali en el siglo 14, citado a menudo como el hombre más rico de la historia 👑\nSu peregrinación a La Meca fue tan fastuosa que hundió el precio del oro en Egipto durante años.\nEl oro de Mali iluminó el mundo — literalmente."
-  },
-  {
-   "id": "es_science_hist_04",
-   "category": "science",
-   "questions": [
-    "quién era samory touré"
-   ],
-   "keywords": [
-    "samory touré",
-    "guinea",
-    "resistencia"
-   ],
-   "answer": "El gran resistente guineano frente a la colonización (1830-1900) 🛡️\nConstruyó un imperio y un ejército moderno, y resistió a los franceses 16 años.\nUn símbolo de dignidad para toda Guinea."
-  },
-  {
-   "id": "es_science_hist_05",
-   "category": "science",
-   "questions": [
-    "qué era el imperio de ghana",
-    "el imperio wagadu"
-   ],
-   "keywords": [
-    "imperio de ghana",
-    "wagadu",
-    "soninké"
-   ],
-   "answer": "El primer gran imperio de África Occidental (siglos 8-11), el Wagadu 🏜️\nSu riqueza: el oro y la sal, controlados por los soninké.\nEl Ghana actual tomó el nombre en homenaje — pero estaba en el actual Mali/Mauritania."
-  },
-  {
-   "id": "es_science_hist_06",
-   "category": "science",
-   "questions": [
-    "cuándo caminó el hombre en la luna",
-    "apollo 11"
-   ],
-   "keywords": [
-    "luna",
-    "apollo",
-    "armstrong"
-   ],
-   "answer": "El 20 de julio de 1969 🌕\nNeil Armstrong y Buzz Aldrin, misión Apolo 11.\n'Un pequeño paso para el hombre, un gran salto para la humanidad.' ¿La teoría del estudio? 400.000 ingenieros se reirían 😄"
-  },
-  {
-   "id": "es_science_hist_07",
-   "category": "science",
-   "questions": [
-    "quién inventó la escritura",
-    "la primera escritura"
-   ],
-   "keywords": [
-    "escritura",
-    "mesopotamia",
-    "cuneiforme"
-   ],
-   "answer": "En Mesopotamia hace ~5400 años — la escritura cuneiforme ✍️\nAl principio era para contar cosechas y ganado. La contabilidad antes que la poesía 😄\nLos jeroglífos egipcios llegaron casi al mismo tiempo."
-  },
-  {
-   "id": "es_science_hist_08",
-   "category": "science",
-   "questions": [
-    "quién era nelson mandela",
-    "mandela 27 años en prisión"
-   ],
-   "keywords": [
-    "mandela",
-    "sudáfrica",
-    "apartheid"
-   ],
-   "answer": "El líder sudafricano que luchó contra el apartheid 🕊️\n27 años en prisión, luego presidente y símbolo de reconciliación.\nSu arma más fuerte: el perdón sin debilidad. 'Nadie nace odiando.'"
-  },
-  {
-   "id": "es_science_hist_09",
-   "category": "science",
-   "questions": [
-    "qué era la ruta del oro",
-    "las rutas comerciales transaharianas"
-   ],
-   "keywords": [
-    "ruta del oro",
-    "caravanas",
-    "tombuctú"
-   ],
-   "answer": "Las rutas de caravanas que unían África Occidental con el Magreb 🐪\nOro del Níger a cambio de sal, libros y telas.\nTombuctú, Gao, Ualata: metrópolis del saber y el comercio. África comerciaba con el mundo antes que nadie."
-  },
-  {
-   "id": "es_science_geo_01",
-   "category": "science",
-   "questions": [
-    "cuál es el océano más grande del mundo",
-    "el océano pacífico"
-   ],
-   "keywords": [
-    "pacífico",
-    "océano",
-    "grande"
-   ],
-   "answer": "El Pacífico 🌊\nÉl solo cubre ~30% de la superficie de la Tierra.\nMás grande que todas las tierras emergidas juntas. Un océano fiel a su nombre."
-  },
-  {
-   "id": "es_science_geo_02",
-   "category": "science",
-   "questions": [
-    "cuál es el desierto más grande del mundo",
-    "el desierto del sahara"
-   ],
-   "keywords": [
-    "desierto",
-    "sahara",
-    "antártida"
-   ],
-   "answer": "La Antártida, técnicamente — un desierto polar ❄️\nEl desierto caliente más grande: el Sáhara, 9 millones de km².\nHace 10.000 años el Sáhara era verde con lagos. El clima baila con el tiempo."
-  },
-  {
-   "id": "es_science_geo_03",
-   "category": "science",
-   "questions": [
-    "cuántos países hay en áfrica"
-   ],
-   "keywords": [
-    "áfrica",
-    "países",
-    "54"
-   ],
-   "answer": "54 países reconocidos 🌍\nMás de 2000 lenguas y miles de culturas.\nÁfrica no es un país, es un mundo. Y el más joven: ¡mediana de edad ~19 años!"
-  },
-  {
-   "id": "es_science_geo_04",
-   "category": "science",
-   "questions": [
-    "cuál es el río más largo del mundo",
-    "el nilo o el amazonas"
-   ],
-   "keywords": [
-    "nilo",
-    "amazonas",
-    "río"
-   ],
-   "answer": "Debate clásico 😄\nEl Amazonas gana en volumen (rey indiscutible) y según algunas mediciones en longitud.\nEl Nilo mantiene ~6650 km en los libros. Los dos son majestuosos."
-  },
-  {
-   "id": "es_science_geo_05",
-   "category": "science",
-   "questions": [
-    "qué es un volcán",
-    "cómo funciona un volcán"
-   ],
-   "keywords": [
-    "volcán",
-    "magma",
-    "erupción"
-   ],
-   "answer": "Una chimenea hacia el magma de la Tierra 🌋\nCuando la presión sube, la erupción fluye.\nSorprendente: las cenizas volcánicas enriquecen los suelos. Los viñedos del Etna no existirían sin él."
-  },
-  {
-   "id": "es_science_geo_06",
-   "category": "science",
-   "questions": [
-    "por qué hay estaciones",
-    "las estaciones de la tierra"
-   ],
-   "keywords": [
-    "estaciones",
-    "tierra",
-    "inclinación"
-   ],
-   "answer": "Por la inclinación de la Tierra (23,5°) 🌞\nCuando su hemisferio se inclina hacia el Sol: verano. Lejos: invierno.\nNo es la distancia al Sol — es la inclinación. ¿Sorprendente, no?"
-  },
-  {
-   "id": "es_science_ecolo_01",
-   "category": "science",
-   "questions": [
-    "qué es el calentamiento global",
-    "el cambio climático explicado"
-   ],
-   "keywords": [
-    "clima",
-    "calentamiento",
-    "co2"
-   ],
-   "answer": "La Tierra se calienta por nuestros gases de efecto invernadero 🌡️\n+1,2°C desde la era industrial — suficiente para desregular las estaciones.\nCada grado cuenta: pequeños gestos × 8 mil millones hacen olas reales."
-  },
-  {
-   "id": "es_science_ecolo_02",
-   "category": "science",
-   "questions": [
-    "qué es el efecto invernadero",
-    "el efecto invernadero explicado"
-   ],
-   "keywords": [
-    "efecto invernadero",
-    "atmósfera"
-   ],
-   "answer": "Un fenómeno natural: la atmósfera retiene parte del calor ☀️\nSin él: -18°C de media en la Tierra, hielo por todas partes.\nEl problema es el exceso — demasiado CO2 = manta demasiado gruesa. Queremos una manta, no un sauna."
-  },
-  {
-   "id": "es_science_ecolo_03",
-   "category": "science",
-   "questions": [
-    "por qué son importantes las abejas",
-    "las abejas y la polinización"
-   ],
-   "keywords": [
-    "abejas",
-    "polinización",
-    "miel"
-   ],
-   "answer": "Polinizan un tercio de lo que comemos 🐝\nManzanas, mangos, café — detrás de cada uno, una abeja trabajando.\nEinstein decía: sin ellas, la humanidad duraría 4 años. Una razón más para protegerlas."
-  },
-  {
-   "id": "es_science_ecolo_04",
-   "category": "science",
-   "questions": [
-    "qué es la biodiversidad",
-    "por qué proteger la biodiversidad"
-   ],
-   "keywords": [
-    "biodiversidad",
-    "especies",
-    "ecosistema"
-   ],
-   "answer": "Toda la variedad de lo vivo: animales, plantas, insectos, microbios 🌿\nUn ecosistema diversificado resiste mejor los golpes — como un equipo con talentos variados.\nCada especie extinta es un hilo que se desteje."
-  },
-  {
-   "id": "es_science_ecolo_05",
-   "category": "science",
-   "questions": [
-    "cómo ahorrar agua a diario",
-    "ahorrar agua"
-   ],
-   "keywords": [
-    "agua",
-    "ahorro",
-    "hábitos"
-   ],
-   "answer": "Duchas cortas (1 min menos = 12L), grifo cerrado al cepillarte 💧\nRepara las fugas: un grifo que gotea = 4L/día perdidos.\nEl agua dulce es el 3% del agua del planeta. Cada gota vale."
-  },
-  {
-   "id": "es_science_culture_01",
-   "category": "science",
-   "questions": [
-    "qué es un griot",
-    "el griot africano"
-   ],
-   "keywords": [
-    "griot",
-    "memoria",
-    "tradición"
-   ],
-   "answer": "El guardián de la memoria en las sociedades de África Occidental 🎶\nGenealogista, músico, portavoz: conserva la historia de familias y reinos.\nEn Guinea, el griot es la voz del pasado hablando al presente."
-  },
-  {
-   "id": "es_science_culture_02",
-   "category": "science",
-   "questions": [
-    "qué es ubuntu",
-    "la filosofía ubuntu"
-   ],
-   "keywords": [
-    "ubuntu",
-    "filosofía",
-    "humanidad"
-   ],
-   "answer": "«Soy porque somos» 🤝\nUna filosofía del sur de África: el individuo existe a través de los otros.\nDesmond Tutu y Mandela la dieron a conocer al mundo. Simple y poderosa."
-  },
-  {
-   "id": "es_science_culture_03",
-   "category": "science",
-   "questions": [
-    "cuántas lenguas hay en áfrica",
-    "las lenguas africanas"
-   ],
-   "keywords": [
-    "lenguas",
-    "áfrica",
-    "suajili"
-   ],
-   "answer": "Más de 2000 lenguas 🗣️\nSusu, Malinké, Peul, Yoruba, Suajili, Haussa... cada una con su visión del mundo.\n¡Solo el suajili lo hablan más de 150 millones!"
-  },
-  {
-   "id": "es_science_culture_04",
-   "category": "science",
-   "questions": [
-    "por qué son fuertes los proverbios africanos",
-    "un proverbio africano"
-   ],
-   "keywords": [
-    "proverbios",
-    "sabiduría",
-    "áfrica"
-   ],
-   "answer": "Condensan la sabiduría en una imagen 🌍\n«Si quiere ir rápido, ve solo. Si quiere llegar lejos, ve acompañado.»\nCada proverbio es un curso de vida en una frase."
-  },
-  {
-   "id": "es_science_culture_05",
-   "category": "science",
-   "questions": [
-    "por qué son importantes las fiestas tradicionales",
-    "las fiestas en áfrica occidental"
-   ],
-   "keywords": [
-    "fiesta",
-    "tradición",
-    "comunidad"
-   ],
-   "answer": "Conectan a las generaciones 🥁\nBodas, bautizos, cosechas: cada fiesta transmite historia y valores.\nCuanto más celebra junto una comunidad, más unida se mantiene."
-  },
-  {
-   "id": "es_science_eco_01",
-   "category": "science",
-   "questions": [
-    "qué es la inflación",
-    "la inflación explicada"
-   ],
-   "keywords": [
-    "inflación",
-    "precios",
-    "economía"
-   ],
-   "answer": "Cuando los precios suben y el poder de compra baja 📈\nUn poco es sano, demasiado rompe la economía.\nSeñal de alerta: su cesta del mercado cuesta más por la misma lista."
-  },
-  {
-   "id": "es_science_eco_02",
-   "category": "science",
-   "questions": [
-    "por qué ahorrar dinero",
-    "la importancia de ahorrar"
-   ],
-   "keywords": [
-    "ahorro",
-    "dinero",
-    "seguridad"
-   ],
-   "answer": "El ahorro es su tranquilidad mañana 💰\nAunque sea poco: 10% de cada entrada, automático.\nLa regla de los 3 meses: apunta a un colchón que cubra 3 meses de gastos. Después, invierte."
-  },
-  {
-   "id": "es_science_eco_03",
-   "category": "science",
-   "questions": [
-    "qué es el pib",
-    "el pib explicado"
-   ],
-   "keywords": [
-    "pib",
-    "economía",
-    "indicador"
-   ],
-   "answer": "El Producto Interior Bruto: la riqueza que produce un país en un año 📊\nEs el termómetro de la economía, no la felicidad de la gente.\nEl PIB no cuenta la cocina de su madre ni las risas — para eso hay otros indicadores 😄"
-  },
-  {
-   "id": "es_science_eco_04",
-   "category": "science",
-   "questions": [
-    "qué es un emprendedor",
-    "el espíritu emprendedor"
-   ],
-   "keywords": [
-    "emprendedor",
-    "negocio",
-    "mentalidad"
-   ],
-   "answer": "Alguien que transforma una idea en valor para los demás 💡\nNo hace falta ser Bill Gates: la vendedora que innova en su barrio es emprendedora.\nLa audacia de empezar + la disciplina de continuar. Eso es todo."
-  },
-  {
-   "id": "es_science_philo_01",
-   "category": "science",
-   "questions": [
-    "qué es la filosofía",
-    "qué significa filosofar"
-   ],
-   "keywords": [
-    "filosofía",
-    "sabiduría",
-    "preguntas"
-   ],
-   "answer": "«El amor a la sabiduría» — el sentido griego 🤔\nHacer preguntas simples sobre cosas profundas: ¿quién soy, qué importa?\nNo hace falta un título: pensar dos veces antes de actuar ya es filosofar."
-  },
-  {
-   "id": "es_science_philo_02",
-   "category": "science",
-   "questions": [
-    "quién era sócrates",
-    "la duda socrática"
-   ],
-   "keywords": [
-    "sócrates",
-    "griego",
-    "preguntas"
-   ],
-   "answer": "El filósofo griego que cuestionaba a todos en el ágora 🏛️\n«Solo sé que no sé nada» — la duda como punto de partida.\nSu método: preguntar hasta que aparece la verdadera respuesta. El Sócrates antiguo, el coach de hoy 😄"
-  },
-  {
-   "id": "es_science_philo_03",
-   "category": "science",
-   "questions": [
-    "qué es la felicidad",
-    "cómo ser feliz"
-   ],
-   "keywords": [
-    "felicidad",
-    "alegría",
-    "vida"
-   ],
-   "answer": "La pregunta del millón 😊\nLa investigación dice: relaciones humanas sólidas primero, luego sentido en lo que hace.\nEl dinero ayuda hasta el confort — después, es la calidad de sus vínculos lo que cuenta."
-  },
-  {
-   "id": "es_science_nutri_01",
-   "category": "science",
-   "questions": [
-    "por qué es importante el desayuno",
-    "el desayuno saludable"
-   ],
-   "keywords": [
-    "desayuno",
-    "mañana",
-    "energía"
-   ],
-   "answer": "Reinicia el cuerpo tras 8 horas de ayuno 🌅\nEl cerebro necesita combustible para funcionar por la mañana.\nIdeal: un féculento + una fruta + una proteína. Rápido de hacer, duradero."
-  },
-  {
-   "id": "es_science_nutri_02",
-   "category": "science",
-   "questions": [
-    "qué son las proteínas",
-    "por qué comer proteínas"
-   ],
-   "keywords": [
-    "proteínas",
-    "músculos",
-    "comida"
-   ],
-   "answer": "Los ladrillos del cuerpo: músculos, pelo, defensas inmunes 🍗\nPescado, huevos, lentejas, carne, cacahuetes — África Occidental sabe mucho de esto.\nRepartir durante el día mejor que una gran cena sola."
-  },
-  {
-   "id": "es_science_nutri_03",
-   "category": "science",
-   "questions": [
-    "por qué comer verduras",
-    "los beneficios de las verduras"
-   ],
-   "keywords": [
-    "verduras",
-    "fibra",
-    "vitaminas"
-   ],
-   "answer": "Fibra, vitaminas, agua — el kit completo del cuerpo 🥬\nTambién alimentan las bacterias buenas del intestino (¡sí, tenemos inquilinos útiles!).\nObjetivo simple: color en el plato en cada comida."
-  },
-  {
-   "id": "es_science_ocean_01",
-   "category": "science",
-   "questions": [
-    "por qué el mar es salado",
-    "la sal del mar"
-   ],
-   "keywords": [
-    "mar",
-    "sal",
-    "océano"
-   ],
-   "answer": "Los ríos disuelven minerales de las rochas desde hace millones de años 🧂\nTodo acaba en el océano, que guarda la sal y evapora el agua.\nSi repartiéramos esa sal sobre la tierra: una capa de 150 metros."
-  },
-  {
-   "id": "es_science_ocean_02",
-   "category": "science",
-   "questions": [
-    "qué son las mareas",
-    "por qué sube y baja el mar"
-   ],
-   "keywords": [
-    "mareas",
-    "luna",
-    "mar"
-   ],
-   "answer": "La Luna tira del océano 🌙\nDos mareas al día: el agua siga la atracción lunar.\nLos pescadores lo saben mejor que nadie — el mar cumple su horario."
-  },
-  {
-   "id": "es_science_ocean_03",
-   "category": "science",
-   "questions": [
-    "por qué son importantes los árboles",
-    "los beneficios de los árboles"
-   ],
-   "keywords": [
-    "árboles",
-    "oxígeno",
-    "sombra"
-   ],
-   "answer": "Sombra, oxígeno, frutas, suelos sujetados, aire fresco 🌳\nUn árbol adulto absorbe ~20kg de CO2 al año.\nY bajo cada árbol, un micromundo de vida. Plantar es sembrar frescura."
-  },
-  {
-   "id": "es_science_tech_01",
-   "category": "science",
-   "questions": [
-    "por qué vuelan los aviones",
-    "cómo se mantiene un avión en el aire"
-   ],
-   "keywords": [
-    "avión",
-    "vuelo",
-    "alas"
-   ],
-   "answer": "Las alas empujan el aire hacia abajo, el aire empuja el avión hacia arriba ✈️\nEs la sustentación — la 3ª ley de Newton en acción.\nUn avión de 400 toneladas a 900 km/h y 10.000m. La física es magia explicada."
-  },
-  {
-   "id": "es_science_tech_02",
-   "category": "science",
-   "questions": [
-    "qué es el gps",
-    "cómo funciona el gps"
-   ],
-   "keywords": [
-    "gps",
-    "satélite",
-    "posición"
-   ],
-   "answer": "Su teléfono escuche satélites que le dan la hora y la posición 🛰️\nCon 4 satélites triangula su posición al metro.\n¡La relatividad de Einstein se corrige dentro — sin ella, el GPS se equivocaría 10km al día!"
-  },
-  {
-   "id": "es_science_tech_03",
-   "category": "science",
-   "questions": [
-    "cómo funciona una batería",
-    "el litio-ion"
-   ],
-   "keywords": [
-    "batería",
-    "litio",
-    "energía"
-   ],
-   "answer": "Iones que viajan de un electrodo a otro 🔋\nCargar = mandarlos a casa. Descargar = dejarlos salir a trabajar.\nSu móvil funciona con la energía de... unos gramos de litio."
-  },
-  {
-   "id": "es_science_lang_01",
-   "category": "science",
-   "questions": [
-    "de dónde viene la palabra robot",
-    "el origen de la palabra robot"
-   ],
-   "keywords": [
-    "robot",
-    "checo",
-    "origen"
-   ],
-   "answer": "Del checo «robota» = trabajo forzado 🤖\nApareció en una obra de teatro de 1920 — ciencia ficción antes de hora.\nIronía: la palabra nació de una historia donde los robots se rebelan. Ojalá los nuestros sigan simpáticos 😄"
-  },
-  {
-   "id": "es_science_lang_02",
-   "category": "science",
-   "questions": [
-    "cuántas lenguas hay en el mundo",
-    "las 7000 lenguas"
-   ],
-   "keywords": [
-    "lenguas",
-    "mundo",
-    "multilingüe"
-   ],
-   "answer": "~7000 lenguas vivas 🗣️\nUna muere cada 2 semanas — y con ella, una forma de ver el mundo.\nEl multilingüismo es riqueza: piensa distinto en cada lengua."
-  },
-  {
-   "id": "es_science_ecolo_06",
-   "category": "science",
-   "questions": [
-    "qué es la energía solar",
-    "los paneles solares"
-   ],
-   "keywords": [
-    "solar",
-    "paneles",
-    "energía"
-   ],
-   "answer": "Transformar la luz del sol en electricidad ☀️\nÁfrica tiene el mejor sol del planeta — una oportunidad enorme.\nEl sol regala; el panel transforma. El futuro es luminoso 😄"
-  },
-  {
-   "id": "es_tech_04",
-   "category": "technology",
-   "questions": [
-    "qué es un código qr",
-    "para qué sirve un qr"
-   ],
-   "keywords": [
-    "qr",
-    "código",
-    "escanear"
-   ],
-   "answer": "Un código de barras 2D que escaneas con la cámara 📱\nMenús, pagos, enlaces: todo puede esconderse dentro.\nConsejo: pon uno en sus flyers hacia su WhatsApp. Un escaneo vale 10 toques."
-  },
-  {
-   "id": "es_tech_05",
-   "category": "technology",
-   "questions": [
-    "qué es el bluetooth"
-   ],
-   "keywords": [
-    "bluetooth",
-    "inalámbrico"
-   ],
-   "answer": "Una conexión inalámbrica de corto alcance 📡\nAuriculares, altavoces, relojes: todos hablan bluetooth.\nAlcance: ~10 metros. Perfecto para la oficina 😄"
-  },
-  {
-   "id": "es_tech_06",
-   "category": "technology",
-   "questions": [
-    "qué es el wifi"
-   ],
-   "keywords": [
-    "wifi",
-    "inalámbrico",
-    "internet"
-   ],
-   "answer": "La red inalámbrica de su casa 📶\nSu router convierte Internet en ondas de radio.\nDe ahí el consejo clásico: reinicia el router. Arregla el 90% de los problemas 😄"
-  },
-  {
-   "id": "es_tech_07",
-   "category": "technology",
-   "questions": [
-    "qué es la fibra óptica"
-   ],
-   "keywords": [
-    "fibra",
-    "óptica",
-    "internet"
-   ],
-   "answer": "Hilos de cristal que transportan luz... e Internet dentro ⚡\nEs lo que da las conexiones ultrarrápidas.\nSi el cable de cobre es una carretera, la fibra es una autopista de 10 carriles."
-  },
-  {
-   "id": "es_tech_08",
-   "category": "technology",
-   "questions": [
-    "qué es el bitcoin",
-    "qué es la criptomoneda"
-   ],
-   "keywords": [
-    "bitcoin",
-    "cripto",
-    "dinero"
-   ],
-   "answer": "Dinero 100% digital, sin banco central 🪙\nLas transacciones las verifican miles de ordenadores en el mundo.\nVolátil: puede subir mucho, y bajar mucho. Nunca metas lo que no puedas perder."
-  },
-  {
-   "id": "es_tech_09",
-   "category": "technology",
-   "questions": [
-    "qué es un nft"
-   ],
-   "keywords": [
-    "nft",
-    "arte digital",
-    "token"
-   ],
-   "answer": "Un certificado digital de propiedad único 🖼️\nComo la firma de un artista... pero en la blockchain.\nHizo mucho ruido y una burbuja enorme. La tecnología es interesante, el hype menos 😄"
-  },
-  {
-   "id": "es_tech_10",
-   "category": "technology",
-   "questions": [
-    "qué es el metaverso"
-   ],
-   "keywords": [
-    "metaverso",
-    "virtual"
-   ],
-   "answer": "Mundos virtuales donde le encuentra como avatar 🥽\nTrabajar, jugar, comprar: todo es posible dentro.\nAún en construcción — entre videojuego gigante e Internet en 3D."
-  },
-  {
-   "id": "es_tech_11",
-   "category": "technology",
-   "questions": [
-    "realidad virtual vs realidad aumentada",
-    "qué es la vr y la ar"
-   ],
-   "keywords": [
-    "vr",
-    "ar",
-    "casco"
-   ],
-   "answer": "VR = entras en un mundo virtual (casco cerrado) 🥽\nAR = lo virtual se superpone a lo real (filtros Snapchat).\nYa se usa en formación, medicina, gaming e inmobiliaria."
-  },
-  {
-   "id": "es_tech_12",
-   "category": "technology",
-   "questions": [
-    "qué es el internet de las cosas",
-    "los objetos conectados"
-   ],
-   "keywords": [
-    "iot",
-    "conectados",
-    "casa"
-   ],
-   "answer": "Objetos cotidianos conectados a Internet 💡\nNevera, cerradura, bombilla, reloj: se comunican y se automatizan.\nSu lámpara que se enciende sola a las 19h: eso es IoT."
-  },
-  {
-   "id": "es_tech_13",
-   "category": "technology",
-   "questions": [
-    "qué es el big data"
-   ],
-   "keywords": [
-    "big data",
-    "datos",
-    "análisis"
-   ],
-   "answer": "Cantidades masivas de datos analizadas para ver tendencias 📊\nNetflix sabe lo que ve, Amazon sabe lo que busca.\nLos datos son el petróleo del siglo XXI — falta una buena refinería."
-  },
-  {
-   "id": "es_tech_14",
-   "category": "technology",
-   "questions": [
-    "qué es el ordenador cuántico",
-    "la computación cuántica"
-   ],
-   "keywords": [
-    "cuántico",
-    "computación",
-    "física"
-   ],
-   "answer": "Un ordenador que usa las leyes de la física cuántica ⚛️\nEn vez de 0 o 1, explora ambos a la vez (por simplificar).\nCálculos en minutos que tardarían 10.000 años. Estamos al principio."
-  },
-  {
-   "id": "es_tech_15",
-   "category": "technology",
-   "questions": [
-    "diferencia front-end back-end",
-    "qué es un desarrollador front-end"
-   ],
-   "keywords": [
-    "frontend",
-    "backend",
-    "dev"
-   ],
-   "answer": "Front-end = lo que ve (botones, colores) 🎨\nBack-end = lo que trabaja en la sombra (cálculos, base de datos) ⚙️\nComo un restaurante: sala y cocina. Ambos imprescindibles."
-  },
-  {
-   "id": "es_tech_16",
-   "category": "technology",
-   "questions": [
-    "qué es una api"
-   ],
-   "keywords": [
-    "api",
-    "interfaz",
-    "servicios"
-   ],
-   "answer": "Un menú de servicios entre dos programas 🤝\nCuando una app muestra el tiempo, no lo calcula: lo pide por API.\nComo pedir en el mostrador: pide, la cocina responde, no entras detrás."
-  },
-  {
-   "id": "es_tech_17",
-   "category": "technology",
-   "questions": [
-    "qué es una base de datos"
-   ],
-   "keywords": [
-    "base de datos",
-    "almacenamiento"
-   ],
-   "answer": "El desván organizado de una aplicación 🗄️\nClientes, pedidos, mensajes: guardados y localizables al instante.\nLa diferencia entre una pila de papeles y un archivador con pestañas 😄"
-  },
-  {
-   "id": "es_tech_18",
-   "category": "technology",
-   "questions": [
-    "qué es un bug informático",
-    "por qué fallan las apps"
-   ],
-   "keywords": [
-    "bug",
-    "error",
-    "código"
-   ],
-   "answer": "Un error en el código 🐛\nEl programa hace algo que el desarrollador no previó.\nHasta los gigantes tienen cada semana. Es la vida del software — de ahí las actualizaciones."
-  },
-  {
-   "id": "es_tech_19",
-   "category": "technology",
-   "questions": [
-    "qué es el open source",
-    "el software libre"
-   ],
-   "keywords": [
-    "open source",
-    "libre",
-    "comunidad"
-   ],
-   "answer": "Código que todos pueden ver, usar y mejorar 🌍\nFirefox, Linux, Signal: herramientas gratuitas hechas por comunidades.\nEl espíritu: compartir como una receta — cada quien mejora el plato."
-  },
-  {
-   "id": "es_tech_20",
-   "category": "technology",
-   "questions": [
-    "por qué mi teléfono va lento",
-    "teléfono lento que se traba"
-   ],
-   "keywords": [
-    "teléfono",
-    "lento",
-    "memoria"
-   ],
-   "answer": "Demasiadas apps abiertas, memoria llene, caché saturado 🐌\nPrimeros gestos: cierra apps en segundo plano, borra las que no usa.\n¿Siga lento? Reinícialo. La medicina ancestral de la informática 😄"
-  },
-  {
-   "id": "es_tech_21",
-   "category": "technology",
-   "questions": [
-    "cómo liberar espacio en el teléfono",
-    "almacenamiento lleno"
-   ],
-   "keywords": [
-    "espacio",
-    "limpiar",
-    "teléfono"
-   ],
-   "answer": "Borra primero vídeos de WhatsApp y capturas 📸\nEllas se comen el 80% del espacio, prometo.\nTruco: cópialas a Drive, luego limpia. Su teléfono respira."
-  },
-  {
-   "id": "es_tech_22",
-   "category": "technology",
-   "questions": [
-    "qué es el phishing",
-    "mensaje fraudulento del banco"
-   ],
-   "keywords": [
-    "phishing",
-    "estafa",
-    "fraude"
-   ],
-   "answer": "El falso mensaje que se hace pasar por su banco 🎣\n«Su cuenta será bloqueada, pulse aquí» = trampa al 99%.\nRegla de oro: un banco NUNCA pide su código por mensaje. Nunca."
-  },
-  {
-   "id": "es_tech_23",
-   "category": "technology",
-   "questions": [
-    "qué es un vpn"
-   ],
-   "keywords": [
-    "vpn",
-    "privacidad",
-    "túnel"
-   ],
-   "answer": "Un túnel privado para su conexión 🕵️\nOculta su IP y cifra su tráfico: más discreción.\nÚtil en wifi públicos — aeropuertos y cafés."
-  },
-  {
-   "id": "es_tech_24",
-   "category": "technology",
-   "questions": [
-    "qué es la autenticación de dos factores",
-    "qué es el 2fa"
-   ],
-   "keywords": [
-    "2fa",
-    "seguridad",
-    "código"
-   ],
-   "answer": "Un segundo cerrojo además de la contraseña 🔐\nCódigo por SMS o app: con la contraseña robada, sin código no entran.\nActívalo en todo: email, banco, redes. 2 minutos que protegen años."
-  },
-  {
-   "id": "es_tech_25",
-   "category": "technology",
-   "questions": [
-    "qué es el streaming"
-   ],
-   "keywords": [
-    "streaming",
-    "netflix",
-    "vídeo"
-   ],
-   "answer": "Ver o escuchar en directo, sin descargar 🎬\nYouTube, Netflix, Spotify: el archivo llega a trozos según lo ve.\nPor eso la calidad baja con conexión débil — se adapta en vivo."
-  },
-  {
-   "id": "es_tech_26",
-   "category": "technology",
-   "questions": [
-    "qué es el teletrabajo",
-    "trabajar desde casa"
-   ],
-   "keywords": [
-    "teletrabajo",
-    "remoto",
-    "casa"
-   ],
-   "answer": "Trabajar sin ir a la oficina 🏠\nZoom, Slack, WhatsApp Business: los equipos se coordinan en línea.\nBien hecho, ahorra 1-2h de trayecto al día 😄"
-  },
-  {
-   "id": "es_tech_27",
-   "category": "technology",
-   "questions": [
-    "qué es la impresión 3d"
-   ],
-   "keywords": [
-    "3d",
-    "impresión",
-    "prototipo"
-   ],
-   "answer": "Fabricar un objeto capa por capa con una máquina 🖨️\nPieza de repuesto, prototipo, juguete: se imprime en plástico.\nUn artesano modela por la mañana y lo tiene en la mano por la tarde. Revolucionario."
-  },
-  {
-   "id": "es_tech_28",
-   "category": "technology",
-   "questions": [
-    "qué es un dron"
-   ],
-   "keywords": [
-    "dron",
-    "vuelo",
-    "cámara"
-   ],
-   "answer": "Un aparato volante pilotado a distancia 🛸\nEntregas, fotos aéreas, agricultura: los usos explotan.\nUna cámara voladora por 100€: el sueño de ayer en el pasillo de juguetes 😄"
-  },
-  {
-   "id": "es_tech_29",
-   "category": "technology",
-   "questions": [
-    "qué es un coche eléctrico",
-    "valen la pena los coches eléctricos"
-   ],
-   "keywords": [
-    "eléctrico",
-    "coche",
-    "batería"
-   ],
-   "answer": "Un coche de batería en vez de gasolina 🔌\nMenos averías (menos piezas móviles), coste por km bajísimo.\nEl reto: cargar donde no hay estaciones. Pero avanza rápido, también en África."
-  },
-  {
-   "id": "es_tech_30",
-   "category": "technology",
-   "questions": [
-    "qué es la domótica",
-    "la casa conectada"
-   ],
-   "keywords": [
-    "domótica",
-    "casa",
-    "automatización"
-   ],
-   "answer": "Una casa que se automatiza 🏡\nLuces, aire acondicionado, cámaras: todo desde el teléfono.\nEncender el aire antes de llegar con 40°C: el verdadero lujo 😄"
-  },
-  {
-   "id": "es_tech_31",
-   "category": "technology",
-   "questions": [
-    "diferencia app nativa y web",
-    "app móvil o sitio"
-   ],
-   "keywords": [
-    "app",
-    "nativa",
-    "sitio"
-   ],
-   "answer": "App = instalada en el teléfono, más rápida, notificaciones 📱\nSitio = accesible en todas partes, nada que instalar 🌐\nPara negocios: empiece donde ya están sus clientes. En África Occidental: web ligera + WhatsApp."
-  },
-  {
-   "id": "es_tech_32",
-   "category": "technology",
-   "questions": [
-    "qué son los megapíxeles",
-    "los píxeles de cámara"
-   ],
-   "keywords": [
-    "megapíxeles",
-    "cámara",
-    "foto"
-   ],
-   "answer": "Los puntitos que componen una foto 📸\nMás = ampliar sin desenfoque.\nOjo: 12 Mpx con buen objetivo ganan a 50 Mpx con uno mediocre. El sensor importa más que el marketing."
-  },
-  {
-   "id": "es_tech_33",
-   "category": "technology",
-   "questions": [
-    "qué es la compresión de archivos",
-    "zip y rar"
-   ],
-   "keywords": [
-    "compresión",
-    "zip",
-    "archivos"
-   ],
-   "answer": "Guardar el mismo contenido en una caja más pequeña 🗜️\nZip, MP3, JPEG: sus archivos ya están comprimidos.\nTexto: ~80% de ganancia. Fotos y vídeos: menos, ya optimizados."
-  },
-  {
    "id": "es_tech_34",
    "category": "technology",
    "questions": [
@@ -3423,20 +1701,6 @@
     "ecommerce"
    ],
    "answer": "3 pasos: fotos limpias + plataforma + pago 🛍️\nEmpiece simple: catálogo de WhatsApp Business o una página Shopify.\nPrueba primero: si vende en WhatsApp, la web acelera. Si no vende, la web no lo salvará 😄"
-  },
-  {
-   "id": "es_tech_37",
-   "category": "technology",
-   "questions": [
-    "cómo proteger mi cuenta de instagram",
-    "asegurar mi facebook"
-   ],
-   "keywords": [
-    "instagram",
-    "facebook",
-    "seguridad"
-   ],
-   "answer": "Contraseña única + doble factor, sin excepción 🔐\nLuego: email de recuperación al día, y ojo con «ganaste un iPhone».\nUna cuenta hackeada = 3 años de comunidad en 1 clic. Protégela."
   },
   {
    "id": "es_biz_01",
@@ -3914,162 +2178,6 @@
    "answer": "Recordatorio suave: «Hola, espero que estés bien, la factura del [fecha] venció» 📨\nPasos: 1º amable, 2º firme, 3º con penalización acordada.\nCobrar también es servicio al cliente — firme, pero siempre respetuoso."
   },
   {
-   "id": "es_guinee_07",
-   "category": "guinea",
-   "questions": [
-    "dónde está guinea",
-    "dónde está guinea conakry",
-    "la situación de guinea"
-   ],
-   "keywords": [
-    "guinea",
-    "ubicación",
-    "áfrica"
-   ],
-   "answer": "En África Occidental, frente al océano Atlántico 🇬🇳\nVecinos: Malí, Senegal, Guinea-Bisáu, Sierra Leona, Costa de Marfil, Liberia.\nApodada «la cisterna de África Occidental» — ya verás por qué 😊"
-  },
-  {
-   "id": "es_guinee_08",
-   "category": "guinea",
-   "questions": [
-    "las 4 regiones naturales de guinea",
-    "baja media alta guinea"
-   ],
-   "keywords": [
-    "regiones",
-    "guinea",
-    "bosque"
-   ],
-   "answer": "4 regiones, 4 caracteres:\n🌊 Baja Guinea (costa, Conakry) — ⛰️ Media Guinea (Fouta Djallon) — 🌾 Alta Guinea (sabana, Kankan) — 🌳 Guinea Forestal (N'Zérékoré).\nUn país, cuatro mundos. Esa es la riqueza de Guinea."
-  },
-  {
-   "id": "es_guinee_09",
-   "category": "guinea",
-   "questions": [
-    "qué es el fouta djallon",
-    "el macizo del fouta"
-   ],
-   "keywords": [
-    "fouta",
-    "djallon",
-    "meseta"
-   ],
-   "answer": "El techo de Guinea, en la Media Guinea ⛰️\nUna meseta verde donde nacen el Níger, el Senegal y el Gambia — de ahí «la cisterna».\nClima fresco, paisajes espectaculares, ciudades como Labé, Mamou, Pita."
-  },
-  {
-   "id": "es_guinee_10",
-   "category": "guinea",
-   "questions": [
-    "dónde nace el río níger",
-    "la fuente del níger"
-   ],
-   "keywords": [
-    "níger",
-    "río",
-    "fuente"
-   ],
-   "answer": "¡En Guinea! Nace en el Fouta Djallon, con el nombre de Bafing 💧\nLuego cruza Malí, Níger y Nigeria hasta el océano.\nUno de los grandes ríos de África es guineano en su origen. Orgullo 🇬🇳"
-  },
-  {
-   "id": "es_guinee_11",
-   "category": "guinea",
-   "questions": [
-    "qué es el monte nimba",
-    "el punto más alto de guinea"
-   ],
-   "keywords": [
-    "nimba",
-    "montaña",
-    "unesco"
-   ],
-   "answer": "El techo de Guinea: ~1.752 metros, patrimonio de la UNESCO 🏔️\nEn la frontera con Costa de Marfil y Liberia, reserva natural única.\nAlberga especies que no existen en ningún otro lugar. Una joya que proteger."
-  },
-  {
-   "id": "es_guinee_12",
-   "category": "guinea",
-   "questions": [
-    "las islas de los",
-    "las playas cerca de conakry"
-   ],
-   "keywords": [
-    "islas",
-    "playa",
-    "los"
-   ],
-   "answer": "Un pequeño archipiélago paradisíaco a 30 minutos en barca de Conakry 🏝️\nKassa, Roume, Tamara, Fotoba: playas de arena, cocoteros, agua turquesa.\nEl plan de los conakrykas el fin de semana. Un trozo de paraíso."
-  },
-  {
-   "id": "es_guinee_13",
-   "category": "guinea",
-   "questions": [
-    "qué visitar en conakry",
-    "lugares para ver en conakry"
-   ],
-   "keywords": [
-    "conakry",
-    "visitar",
-    "lugares"
-   ],
-   "answer": "¡Conakry está en marcha! 🌆\nLa Gran Mezquita Fayçal, el Mercado Madina, el Mercado de Níger, la cornisa al atardecer, el Museo Nacional.\nY de noche, el ambiente de los maquis con música y parrillas 😄"
-  },
-  {
-   "id": "es_guinee_14",
-   "category": "guinea",
-   "questions": [
-    "la gran mezquita de conakry",
-    "la mezquita fayçal"
-   ],
-   "keywords": [
-    "mezquita",
-    "fayçal",
-    "conakry"
-   ],
-   "answer": "La Gran Mezquita Fayçal de Conakry, una de las mayores de África Occidental 🕌\nCapacidad ~25.000 fieles, estilo marroquí suntuoso.\nOrgullo nacional y punto de referencia de la ciudad."
-  },
-  {
-   "id": "es_guinee_15",
-   "category": "guinea",
-   "questions": [
-    "las grandes ciudades de guinea",
-    "kankan kindia labe nzerekore"
-   ],
-   "keywords": [
-    "ciudades",
-    "kankan",
-    "labe"
-   ],
-   "answer": "Conakry la capital, claro 🇬🇳\nLuego: Kankan (Alta Guinea), Labé y Mamou (Fouta), Kindia (el jardín de Guinea), N'Zérékoré (forestal), Boké y Kamsar (minería).\nCada ciudad tiene su carácter — por eso viajar dentro del país apasiona."
-  },
-  {
-   "id": "es_guinee_16",
-   "category": "guinea",
-   "questions": [
-    "el clima de guinea",
-    "cuándo viajar a guinée",
-    "estación seca y lluvias en guinea"
-   ],
-   "keywords": [
-    "clima",
-    "estación",
-    "tiempo"
-   ],
-   "answer": "Dos grandes estaciones:\n☀️ Seca: noviembre a mayo, cielo azul, harmattan fresco.\n🌧️ Lluvias: junio a octubre, generosas sobre todo en la costa y el Fouta.\nPara visitar: diciembre-febrero. Para ver la Guinea verde: tras las lluvias 🌿"
-  },
-  {
-   "id": "es_guinee_17",
-   "category": "guinea",
-   "questions": [
-    "las lenguas nacionales de guinea",
-    "susu malinké peul kissi"
-   ],
-   "keywords": [
-    "lenguas",
-    "susu",
-    "malinké"
-   ],
-   "answer": "El francés es oficial, pero la riqueza son las lenguas nacionales 🗣️\nSusu (costa), Malinké (Alta Guinea), Pular/Peul (Fouta), Kissi, Toma, Kpèlè (forestal).\nLa mayoría de los guineanos hablan 2-3. ¡Guinea es naturalmente multilingüe!"
-  },
-  {
    "id": "es_guinee_18",
    "category": "guinea",
    "questions": [
@@ -4082,147 +2190,6 @@
     "franco"
    ],
    "answer": "El franco guineano (GNF) 💵\n1€ ≈ 11.000 GNF — los precios se cuentan a menudo en miles.\nY en todas partes: Orange Money y MTN MoMo ya resuelven casi todo, hasta en el mercado."
-  },
-  {
-   "id": "es_guinee_19",
-   "category": "guinea",
-   "questions": [
-    "la independencia de guinea 1958",
-    "sekou touré el no"
-   ],
-   "keywords": [
-    "independencia",
-    "1958",
-    "historia"
-   ],
-   "answer": "El 2 de octubre de 1958, Guinea dijo «NO» al general De Gaulle 🇬🇳\nPrimera colonia francesa de África en elegir la independencia inmediata, con Sékou Touré.\n«Preferimos la pobreza en la libertad a la riqueza en la servidumbre.» Una frase que dio la vuelta al mundo."
-  },
-  {
-   "id": "es_guinee_20",
-   "category": "guinea",
-   "questions": [
-    "la economía de guinea",
-    "la bauxita de guinea"
-   ],
-   "keywords": [
-    "economía",
-    "bauxita",
-    "minería"
-   ],
-   "answer": "Guinea se sienta sobre un tesoro: la bauxita 🪙\n¡Primera reserva mundial! El aluminio del mundo suele empezar en Guinea.\nAñade el hierro de Simandou, el oro de Siguiri, la agricultura del Fouta — potencial inmenso."
-  },
-  {
-   "id": "es_guinee_21",
-   "category": "guinea",
-   "questions": [
-    "qué es simandou",
-    "el yacimiento de hierro de simandou"
-   ],
-   "keywords": [
-    "simandou",
-    "hierro",
-    "mina"
-   ],
-   "answer": "El mayor yacimiento de hierro sin explotar del mundo 🏗️\nEn el sureste de Guinea, con un proyecto de tren de +600 km hacia la costa.\nA plena capacidad podría transformar la economía guineana. El mundo entero mire a Guinea."
-  },
-  {
-   "id": "es_guinee_22",
-   "category": "guinea",
-   "questions": [
-    "qué comer en guinea",
-    "el fouté y el riz gras",
-    "platos guineanos"
-   ],
-   "keywords": [
-    "comida",
-    "cocina",
-    "guineana"
-   ],
-   "answer": "Prepara el apetito 😋\nEl riz gras del domingo, la sauce graine, el fouté de plátano, el pollo bicyclette a la leña.\nY los maquis de Conakry de noche: pescado braseado, attiéké, música en directo."
-  },
-  {
-   "id": "es_guinee_23",
-   "category": "guinea",
-   "questions": [
-    "la música guineana",
-    "bembeya jazz mory kanté"
-   ],
-   "keywords": [
-    "música",
-    "bembeya",
-    "grioto"
-   ],
-   "answer": "Guinea es una potencia musical 🎶\nBembeya Jazz National, Mory Kanté (¡el famoso «Yé ké yé ké»!), Sekouba Bambino, Sory Kandia — la escuela del griot guineano es legendaria.\nKora, balafón, yembé: toda África reconoce el toque guineano."
-  },
-  {
-   "id": "es_guinee_24",
-   "category": "guinea",
-   "questions": [
-    "el mercado madina",
-    "los mercados de conakry"
-   ],
-   "keywords": [
-    "madina",
-    "mercado",
-    "compras"
-   ],
-   "answer": "Madina es el corazón que late de Conakry 🛍️\nUn laberinto gigante donde encuentra TODO: telas, especias, teléfonos, hasta repuestos.\nMercado de Níger para lo elegante, Madina para lo auténtico. Regateo obligatorio 😄"
-  },
-  {
-   "id": "es_guinee_25",
-   "category": "guinea",
-   "questions": [
-    "las cascadas de guinea",
-    "kambadaga kinkon saala"
-   ],
-   "keywords": [
-    "cascadas",
-    "saltos",
-    "fouta"
-   ],
-   "answer": "Guinea rebosa de cascadas 💦\nKambadaga, Kinkon, Saala... el Fouta Djallon está sembrado de ellas.\nPiscinas naturales al pie de saltos, entre montañas verdes. Un paraíso aún preservado."
-  },
-  {
-   "id": "es_guinee_26",
-   "category": "guinea",
-   "questions": [
-    "la bandera de guinea",
-    "rojo amarillo verde significado"
-   ],
-   "keywords": [
-    "bandera",
-    "colores",
-    "guinea"
-   ],
-   "answer": "Rojo, Amarillo, Verde 🇬🇳\nRojo: la sangre de los mártires. Amarillo: el oro y el sol. Verde: la vegetación y la prosperidad.\nY el lema: «Trabajo, Justicia, Solidaridad». Orgullo en tres colores."
-  },
-  {
-   "id": "es_guinee_27",
-   "category": "guinea",
-   "questions": [
-    "cuántos habitantes tiene guinea",
-    "la población de guinea"
-   ],
-   "keywords": [
-    "población",
-    "habitantes",
-    "demografía"
-   ],
-   "answer": "~14 millones de habitantes, más de 1,7 en Conakry 🌍\nPoblación muy joven: la mayoría menos de 25 años.\nUna juventud conectada, emprendedora y multilingüe — el futuro empuja fuerte."
-  },
-  {
-   "id": "es_guinee_28",
-   "category": "guinea",
-   "questions": [
-    "la religión en guinea",
-    "el islam en guinea"
-   ],
-   "keywords": [
-    "religión",
-    "islam",
-    "musulmana"
-   ],
-   "answer": "Guinea es mayoritariamente musulmana (~85%) 🕌\nCon comunidades cristianas y animistas viviendo juntas en paz.\nRamadán, Tabaski, Navidad: las fiestas marcan el año y unen a todos. La tolerancia guineana es una lección."
   },
   {
    "id": "es_digital_01",
@@ -4525,61 +2492,6 @@
    "answer": "Hacer sentir antes de hacer leer 📖\nUna secuencia: problema → emoción → solución → prueba. Sus imágenes guían al cliente como una película.\nCuando el cliente se reconoce en el visual, compra la historia — el producto viene de regalo 😊"
   },
   {
-   "id": "es_info_01",
-   "category": "it",
-   "questions": [
-    "qué es un sistema operativo",
-    "qué son windows android ios"
-   ],
-   "keywords": [
-    "sistema",
-    "windows",
-    "android"
-   ],
-   "answer": "El director de orquesta de su aparato 🎼\nWindows, Android, iOS: hacen hablar al hardware y las apps.\nSin sistema operativo, su teléfono es un bonito pisapapeles 😄"
-  },
-  {
-   "id": "es_info_02",
-   "category": "it",
-   "questions": [
-    "qué es la ram",
-    "para qué sirve la memoria ram"
-   ],
-   "keywords": [
-    "ram",
-    "memoria"
-   ],
-   "answer": "La mesa de trabajo de su aparato 🛠️\nMás RAM = más cosas abiertas a la vez sin ahogarse.\n8 GB = comodidad, 4 GB = cuenta sus pestañas 😄"
-  },
-  {
-   "id": "es_info_03",
-   "category": "it",
-   "questions": [
-    "qué es un procesador",
-    "qué es la cpu"
-   ],
-   "keywords": [
-    "cpu",
-    "procesador",
-    "chip"
-   ],
-   "answer": "El cerebro que lo calcula todo 🧠\nCada toque, foto, vídeo: él trabaja.\nCuanto más rápido, más responde todo. El músculo de la máquina."
-  },
-  {
-   "id": "es_info_04",
-   "category": "it",
-   "questions": [
-    "diferencia ssd y hdd",
-    "qué es un disco ssd"
-   ],
-   "keywords": [
-    "ssd",
-    "hdd",
-    "almacenamiento"
-   ],
-   "answer": "SSD = chips, sin piezas móviles, ultrarrápido ⚡\nHDD = platos giratorios, más barato, más lento.\nPoner un SSD en un PC viejo = regalarle 5 años de juventud. La mejor actualización que existe."
-  },
-  {
    "id": "es_info_05",
    "category": "it",
    "questions": [
@@ -4606,20 +2518,6 @@
     "lenguaje"
    ],
    "answer": "El lenguaje de programación más querido del mundo 🐍\nFácil de leer, potente, usado en todo: IA, webs, automatización.\n¿Primer lenguaje? Python, sin dudar 😄"
-  },
-  {
-   "id": "es_info_07",
-   "category": "it",
-   "questions": [
-    "qué son git y github",
-    "versionar su código"
-   ],
-   "keywords": [
-    "git",
-    "github",
-    "versión"
-   ],
-   "answer": "Git = la máquina del tiempo del código ⏪\nGitHub = la red social de los desarrolladores.\nCada versión guardada: adiós \"archivo_final_v2_OK.py\" 😄"
   },
   {
    "id": "es_info_08",
@@ -4650,20 +2548,6 @@
    "answer": "El terreno donde se construye su web 🏗️\nSin hosting, su sitio solo existe en su ordenador.\nUnos euros al mes para estar visible 24/7 en todo el mundo. El alquiler más rentable del negocio."
   },
   {
-   "id": "es_info_10",
-   "category": "it",
-   "questions": [
-    "qué son el https y el ssl",
-    "el candadito de la web"
-   ],
-   "keywords": [
-    "https",
-    "ssl",
-    "candado"
-   ],
-   "answer": "El candado 🔒 = conexión cifrada entre usted y la web.\nNadie puede espiar lo que pasa: contraseñas, pagos.\nUna web sin https en 2026 = una tienda sin puerta. Huye."
-  },
-  {
    "id": "es_info_11",
    "category": "it",
    "questions": [
@@ -4678,412 +2562,6 @@
    "answer": "Una web que se adapta a todas las pantallas 📱💻\nMóvil, tablet, ordenador: misma web, maquetación inteligente.\nEl 70% de sus visitantes llegan desde el móvil — una web no responsive los espanta en 3 segundos."
   },
   {
-   "id": "es_info_12",
-   "category": "it",
-   "questions": [
-    "qué es una cookie informática",
-    "las cookies del navegador"
-   ],
-   "keywords": [
-    "cookies",
-    "navegador",
-    "web"
-   ],
-   "answer": "Un pequeño recuerdo que la web guarda de usted 🍪\nCarrito, sesión, preferencias: lo que hace fluida la navegación.\nDe ahí el banner «aceptar cookies» — la ley solo pide su permiso 😄"
-  },
-  {
-   "id": "es_info_13",
-   "category": "it",
-   "questions": [
-    "qué es la caché",
-    "vaciar la caché del navegador"
-   ],
-   "keywords": [
-    "caché",
-    "navegador",
-    "memoria"
-   ],
-   "answer": "La memoria de atajos del navegador 💾\nGuarda copia de las imágenes para recargar más rápido.\n¿Una web se ve rara? Vacía la caché. La solución mágica n1 del soporte 😄"
-  },
-  {
-   "id": "es_info_14",
-   "category": "it",
-   "questions": [
-    "por qué hacer copias de seguridad",
-    "backup y nube"
-   ],
-   "keywords": [
-    "backup",
-    "datos",
-    "nube"
-   ],
-   "answer": "Una avería llega siempre el día que no hiciste copia 😅\nRegla 3-2-1: 3 copias, 2 soportes, 1 fuera de casa (nube).\nSu negocio vive en sus archivos. 10 minutos de copia valen 10 días de reconstrucción."
-  },
-  {
-   "id": "es_info_15",
-   "category": "it",
-   "questions": [
-    "qué es un virus informático",
-    "cómo se pilla un virus"
-   ],
-   "keywords": [
-    "virus",
-    "malware",
-    "infección"
-   ],
-   "answer": "Un programa malicioso que se instala y hace travesuras 🦠\nAdjuntos dudosos, webs piratas, USB infectados.\nVacuna = antivirus al día + actualizaciones + sentido común: no cliques «has ganado» 😄"
-  },
-  {
-   "id": "es_info_16",
-   "category": "it",
-   "questions": [
-    "qué es un navegador web",
-    "chrome firefox safari"
-   ],
-   "keywords": [
-    "navegador",
-    "chrome",
-    "firefox"
-   ],
-   "answer": "El vehículo que le lleva por Internet 🚗\nChrome, Firefox, Safari, Edge: muestran las webs.\nTodos gratis, todos rápidos — elija el que mejor respete su privacidad 😉"
-  },
-  {
-   "id": "es_info_17",
-   "category": "it",
-   "questions": [
-    "qué es el código binario",
-    "los 0 y 1 de los ordenadores"
-   ],
-   "keywords": [
-    "binario",
-    "bits",
-    "código"
-   ],
-   "answer": "La lengua materna de las máquinas: 0 y 1 🔢\nCada foto, canción, vídeo = millones de 0 y 1 bien ordenados.\n¿Sorprendente? La tecnología más avanzada descansa en la lógica más simple."
-  },
-  {
-   "id": "es_info_18",
-   "category": "it",
-   "questions": [
-    "por qué actualizar las apps",
-    "para qué sirven las actualizaciones"
-   ],
-   "keywords": [
-    "actualizar",
-    "apps",
-    "mejoras"
-   ],
-   "answer": "3 razones: seguridad, funciones nuevas, correcciones 🔧\nLos piratas explotan versiones viejas — cada actualización tapa un agujero.\nEse botón de «recuérdamelo luego» es el agujero por donde entran los problemas 😄"
-  },
-  {
-   "id": "es_info_19",
-   "category": "it",
-   "questions": [
-    "en qué consiste ser desarrollador",
-    "qué significa trabajar en informática"
-   ],
-   "keywords": [
-    "desarrollador",
-    "carrera",
-    "código"
-   ],
-   "answer": "Traducir necesidades humanas al lenguaje de la máquina 💻\nUn desarrollador = traductor + solucionador de problemas.\nY no, no hace falta ser un genio: lógica, paciencia y mucho café 😄"
-  },
-  {
-   "id": "es_info_20",
-   "category": "it",
-   "questions": [
-    "qué es un data analyst",
-    "la carrera de los datos"
-   ],
-   "keywords": [
-    "data",
-    "analista",
-    "carrera"
-   ],
-   "answer": "El detective de los números 🕵️\nConvierte datos brutos en decisiones de negocio.\n«Los clientes compran los martes a las 19h» — lo descubra él, y eso es oro puro."
-  },
-  {
-   "id": "es_cult_01",
-   "category": "culture",
-   "questions": [
-    "nollywood el cine nigeriano",
-    "el cine africano"
-   ],
-   "keywords": [
-    "nollywood",
-    "cine",
-    "nigeria"
-   ],
-   "answer": "Nollywood produce más de 2.000 películas al año — más que Hollywood 🎬\nEl cine nigeriano habla a los africanos con historias africanas.\nPrueba: nuestras historias fascinan al mundo entero. África ya no espere permiso."
-  },
-  {
-   "id": "es_cult_02",
-   "category": "culture",
-   "questions": [
-    "la literatura africana",
-    "achebe kourouma libros africanos"
-   ],
-   "keywords": [
-    "literatura",
-    "libros",
-    "africanos"
-   ],
-   "answer": "Tesoros que debes leer 📚\nChinua Achebe, Ahmadou Kourouma, Mariama Bâ.\nEsos libros cuentan África desde dentro — orgullo, dolor, humor, sabiduría. Empiece con uno, le va a encantar."
-  },
-  {
-   "id": "es_cult_03",
-   "category": "culture",
-   "questions": [
-    "la mitología griega",
-    "zeus y los dioses griegos"
-   ],
-   "keywords": [
-    "mitología",
-    "zeus",
-    "dioses"
-   ],
-   "answer": "Dioses con todo lo humano: celos, amor, ira ⚡\nZeus, Afrodita, Poseidón — sus historias aún inspiran películas y libros.\nLa mitología griega = la primera superproducción de la humanidad 😄"
-  },
-  {
-   "id": "es_cult_04",
-   "category": "culture",
-   "questions": [
-    "el egipto de los faraones",
-    "los faraones y las pirámides"
-   ],
-   "keywords": [
-    "egipto",
-    "faraones",
-    "pirámides"
-   ],
-   "answer": "3.000 años de civilización a orillas del Nilo 🏺\nFaraones, jeroglíficos, momias: un mundo fascinante aún sin explicar del todo.\nKeops, Nefertiti, Tutankamón: sus nombres cruzan los milenios. Respeto."
-  },
-  {
-   "id": "es_cult_05",
-   "category": "culture",
-   "questions": [
-    "el museo del louvre",
-    "los museos más grandes del mundo"
-   ],
-   "keywords": [
-    "louvre",
-    "museo",
-    "parís"
-   ],
-   "answer": "El Louvre de París: el museo más visitado del mundo 🖼️\nLa Gioconda atrae a millones de visitantes — muchos desde África.\nUn museo es la memoria del mundo abierta a todos. Ve una vez en la vida — cambia a una persona."
-  },
-  {
-   "id": "es_cult_06",
-   "category": "culture",
-   "questions": [
-    "las maravillas del mundo",
-    "las 7 maravillas antiguas y modernas"
-   ],
-   "keywords": [
-    "maravillas",
-    "mundo",
-    "monumentos"
-   ],
-   "answer": "Las antiguas: pirámides, jardines de Babilonia... casi todas desaparecidas 🏛️\nLas nuevas (2007): Gran Muralla, Taj Mahal, Machu Picchu, Cristo de Río...\nMeta de viaje: una al año. La vida es corta para esperar 😄"
-  },
-  {
-   "id": "es_cult_07",
-   "category": "culture",
-   "questions": [
-    "cómo se celebra la navidad en el mundo",
-    "las tradiciones navideñas"
-   ],
-   "keywords": [
-    "navidad",
-    "tradiciones",
-    "mundo"
-   ],
-   "answer": "Al Norte: árbol, nieve y regalos 🎄\nEn Guinea: misa del gallo, comida en familia, niños con ropa nueva.\nEl mismo corazón en todas partes: dar, reunir, celebrar. La navidad cambia de decorado, nunca de espíritu."
-  },
-  {
-   "id": "es_cult_08",
-   "category": "culture",
-   "questions": [
-    "cómo es el ramadán",
-    "el ayuno del mes de ramadán"
-   ],
-   "keywords": [
-    "ramadán",
-    "ayuno",
-    "mes"
-   ],
-   "answer": "Un mes de ayuno del alba al atardecer 🌙\nPero es mucho más: compartir, orar, familia — y las cenas que reúnen a todos.\nAl final: la fiesta del Aid, los niños, los bubús nuevos. El mes más cálido del año para muchos."
-  },
-  {
-   "id": "es_cult_09",
-   "category": "culture",
-   "questions": [
-    "qué es la tabaski",
-    "la fiesta del cordero"
-   ],
-   "keywords": [
-    "tabaski",
-    "aid",
-    "cordero"
-   ],
-   "answer": "La fiesta del cordero 🐑 — la mayor celebración musulmana.\nCada familia sacrifica un cordero y comparte en tres: familia, cercanos, pobres.\nEn África Occidental, la Tabaski es bubús, niños arreglados y generosidad total."
-  },
-  {
-   "id": "es_cult_10",
-   "category": "culture",
-   "questions": [
-    "el año nuevo chino",
-    "la fiesta de la primavera en china"
-   ],
-   "keywords": [
-    "chino",
-    "año nuevo",
-    "china"
-   ],
-   "answer": "La mayor migración humana anual: miles de millones de viajes 🐉\nRojo por todas partes (suerte), bailes del león, sobres rojos con dinero.\nCada año lleva un animal del zodiaco. ¿Sabías que la fiesta dura 15 días?"
-  },
-  {
-   "id": "es_cult_11",
-   "category": "culture",
-   "questions": [
-    "la ceremonia del té en marruecos",
-    "la tradición del té a la menta"
-   ],
-   "keywords": [
-    "té",
-    "marruecos",
-    "hospitalidad"
-   ],
-   "answer": "Mucho más que una bebida: un ritual de hospitalidad 🫖\nTé verde, menta fresca, azúcar — servido desde arriba para la espuma, todo un arte.\nRechazar un té en Marruecos es rechazar la amistad. Espere al 3er vaso: es tradición 😄"
-  },
-  {
-   "id": "es_cult_12",
-   "category": "culture",
-   "questions": [
-    "las grandes religiones del mundo",
-    "cristianismo islam hinduismo budismo"
-   ],
-   "keywords": [
-    "religiones",
-    "mundo",
-    "fe"
-   ],
-   "answer": "Cuatro grandes familias espirituales 🌍\nCristianismo (~2.400 M), Islam (~2.000 M), Hinduismo (~1.200 M), Budismo (~500 M).\nTodas enseñan la misma lección al final: amar, compartir, respetar. Las culturas cambian, el corazón queda."
-  },
-  {
-   "id": "es_cult_13",
-   "category": "culture",
-   "questions": [
-    "el paño africano",
-    "el kente y los tejidos africanos"
-   ],
-   "keywords": [
-    "paño",
-    "wax",
-    "kente"
-   ],
-   "answer": "El tejido que habla 🧵\nWax, bogolan, kente ghanés: cada motivo y color cuenta estatus, proverbio, alegría.\nLlevar el paño es llevar historia. Y el sábado en las bodas, es la alfombra roja africana 😄"
-  },
-  {
-   "id": "es_cult_14",
-   "category": "culture",
-   "questions": [
-    "la danza tradicional africana",
-    "las danzas de áfrica"
-   ],
-   "keywords": [
-    "danza",
-    "áfrica",
-    "tradición"
-   ],
-   "answer": "El cuerpo que cuenta 💃\nDanzas de siembra, máscaras, ceremonias: cada gesto tiene sentido.\nDel sabar senegalés a los ballets de Guinea — África baila su vida. Y el mundo nos copia, francamente 😄"
-  },
-  {
-   "id": "es_cult_15",
-   "category": "culture",
-   "questions": [
-    "la boda tradicional en áfrica occidental",
-    "la dote en áfrica"
-   ],
-   "keywords": [
-    "boda",
-    "dote",
-    "familia"
-   ],
-   "answer": "Un asunto de familias, no solo de dos personas 💍\nLa dote sella la alianza entre dos familias: ceremonia, colas, cabezas de familia, testigos.\nPuede durar días — y acabar en una fiesta memorable. Una boda africana es una experiencia."
-  },
-  {
-   "id": "es_cult_16",
-   "category": "culture",
-   "questions": [
-    "la familia extensa africana",
-    "tíos y primos en áfrica"
-   ],
-   "keywords": [
-    "familia",
-    "áfrica",
-    "pueblo"
-   ],
-   "answer": "En África, la familia no termina en los padres 🌳\nTíos, tías, primos: todos «papá» y «mamá», todos responsables del niño.\nSu vecino puede regañarte como su padre. Se necesita un pueblo — la fórmula existía antes que el proverbio 😄"
-  },
-  {
-   "id": "es_cult_17",
-   "category": "culture",
-   "questions": [
-    "el patrimonio mundial de la unesco",
-    "los sitios clasificados por la unesco"
-   ],
-   "keywords": [
-    "unesco",
-    "patrimonio",
-    "sitios"
-   ],
-   "answer": "La etiqueta que protege los tesoros de la humanidad 🏛️\nMás de 1.200 sitios: del Monte Nimba 🇬🇳 a la Gran Muralla.\nClasificado = protegido para siempre. Guinea está ahí — nuestras maravillas rivalizan con las del mundo."
-  },
-  {
-   "id": "es_cult_18",
-   "category": "culture",
-   "questions": [
-    "cómo se saluda en el mundo",
-    "los saludos por el mundo"
-   ],
-   "keywords": [
-    "saludo",
-    "mundo",
-    "hola"
-   ],
-   "answer": "Apretón firme en Occidente, «Salam alaykum» en casa 🤝\nNamasté en India, reverencia en Japón, nariz con nariz entre los maoríes.\nPero igual en todas partes: sonrisa + respeto = puerta abierta. El saludo universal es la bienvenida."
-  },
-  {
-   "id": "es_cult_19",
-   "category": "culture",
-   "questions": [
-    "la moda africana",
-    "los creadores africanos"
-   ],
-   "keywords": [
-    "moda",
-    "áfrica",
-    "diseñadores"
-   ],
-   "answer": "África es la nueva capital de la moda ✨\nWax revisitado, trajes a medida, creadores de Lagos a Dakar inundando las pasarelas mundiales.\nLa moda africana ya no imita — inspira. Nuestros estilistas llevan siglos de textil en la sangre."
-  },
-  {
-   "id": "es_cult_20",
-   "category": "culture",
-   "questions": [
-    "la lucha senegalesa y los deportes africanos",
-    "los deportes tradicionales en áfrica"
-   ],
-   "keywords": [
-    "lucha",
-    "deporte",
-    "senegal"
-   ],
-   "answer": "La lucha en Senegal llene estadios enteros 🤼\nMás que un deporte: ritos, cantos, griots y apuestas — el fútbol está celoso.\nY el maratón etíope, el boxeo Dambe nigeriano: África siempre ha criado campeones."
-  },
-  {
    "id": "es_tarifs_01",
    "category": "pricing",
    "questions": [
@@ -5096,7 +2574,7 @@
     "coste",
     "presupuesto"
    ],
-   "answer": "Depende de lo que quieras que haga el bot 😊\nNuestros packs empiezan en 99€. El más vendido: bot de pedidos + FAQ por 150€.\n¿Quiere el detalle de los 3 packs?"
+   "answer": "Depende de lo que quieras que haga el bot 😊\nNuestros packs empiezan en 100€. El más vendido: bot de pedidos + FAQ por 150€.\n¿Quiere el detalle de los 3 packs?"
   },
   {
    "id": "es_tarifs_02",
@@ -5108,7 +2586,7 @@
     "tarifas",
     "precios"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_03",
@@ -5119,7 +2597,7 @@
    "keywords": [
     "coste"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_04",
@@ -5133,7 +2611,7 @@
     "cuánto",
     "coste"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_05",
@@ -5144,7 +2622,7 @@
    "keywords": [
     "presupuesto"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_06",
@@ -5158,7 +2636,7 @@
     "bot",
     "precio"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_07",
@@ -5199,7 +2677,7 @@
     "app",
     "precio"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_10",
@@ -5212,7 +2690,7 @@
     "presupuesto",
     "cotización"
    ],
-   "answer": "Depende de su proyecto 😊\nPara darte una idea: packs desde 120€, Pack Business a 350€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
+   "answer": "Depende de su proyecto 😊\nPara darte una idea: desde 100€, Pack Business 150€, y a medida con presupuesto.\n¿Quiere un presupuesto exacto para su proyecto?"
   },
   {
    "id": "es_tarifs_82",
@@ -5290,7 +2768,7 @@
     "incluida",
     "pack"
    ],
-   "answer": "En el Pack Máquina de Ventas sí. Si no, son 500€ por una web vitrina que convierte."
+   "answer": "En el Pack Máquina de Ventas sí. Si no, son 50€ por una web vitrina que convierte."
   },
   {
    "id": "es_tarifs_88",
@@ -5492,7 +2970,7 @@
     "empezar",
     "guía"
    ],
-   "answer": "Respira 😊 Empezamos pequeño. Pack Starter 99€.\nLe guío paso a paso. En 48h tiene su bot y respiras."
+   "answer": "Respira 😊 Empezamos pequeño. Pack Starter 100€.\nLe guío paso a paso. En 48h tiene su bot y respiras."
   },
   {
    "id": "es_obj_conv_63",
@@ -5608,7 +3086,7 @@
     "presupuesto",
     "empezar"
    ],
-   "answer": "Perfecto. Empezamos con el Pack Starter 99€.\n1 producto, 5 preguntas. Cuando funcione, subimos de nivel."
+   "answer": "Perfecto. Empezamos con el Pack Starter 100€.\n1 producto, 5 preguntas. Cuando funcione, subimos de nivel."
   },
   {
    "id": "es_obj_conv_93",
@@ -5637,7 +3115,7 @@
     "precio",
     "bajar"
    ],
-   "answer": "99€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Le sirve?"
+   "answer": "100€ ya es el precio rebajado del mes 😅\nPero puedo regalarte 2 semanas extra de soporte. ¿Le sirve?"
   },
   {
    "id": "es_obj_conv_99",
@@ -5762,7 +3240,7 @@
     "fiable",
     "confianza"
    ],
-   "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 99€ una sola vez. Sin suscripción.\nEn fiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo + garantía 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes.\n¿Prefiere la ficha técnica en PDF o un vídeo demo?"
+   "answer": "Muy buenas preguntas.\nEn precio: Pack Starter a 100€ una sola vez. Sin suscripción.\nEn fiabilidad: API oficial de WhatsApp de Meta, 0 riesgo de bloqueo + garantía 7 días satisfecho o modificado.\nPuedo enviarte 2 testimonios de clientes.\n¿Prefiere la ficha técnica en PDF o un vídeo demo?"
   },
   {
    "id": "es_obj_pro_15",
@@ -5877,7 +3355,7 @@
     "qué pasa si el bot falla",
     "el mantenimiento es obligatorio?"
    ],
-   "answer": "Buena pregunta 😊\nEl mantenimiento de 90€/mes cubre correcciones, actualizaciones y pequeñas mejoras: su bot nunca se queda caído mucho tiempo.\n¿Se lo añado para el lanzamiento?",
+   "answer": "Buena pregunta 😊\nEl mantenimiento desde 100€ (+ 50€/mes de mantenimiento)/mes cubre correcciones, actualizaciones y pequeñas mejoras: su bot nunca se queda caído mucho tiempo.\n¿Se lo añado para el lanzamiento?",
    "tags": [
     "scenarios",
     "translation"
@@ -6355,7 +3833,7 @@
     "cero fallos al lanzar es importante",
     "no podemos permitirnos una caída"
    ],
-   "answer": "Entonces está en el sitio correcto 😊\nNuestro precio incluye esa tranquilidad: prueba, monitorización y mantenimiento de 90€/mes.\n¿Repasamos los detalles juntos?",
+   "answer": "Entonces está en el sitio correcto 😊\nNuestro precio incluye esa tranquilidad: prueba, monitorización y mantenimiento desde 100€ (+ 50€/mes de mantenimiento)/mes.\n¿Repasamos los detalles juntos?",
    "tags": [
     "scenarios",
     "translation"
@@ -8187,7 +5665,7 @@
     "para",
     "mi"
    ],
-   "answer": "¿Qué vende su tienda? Por 1000 € Komara le hace una asistente que responde sobre precio, talla, envío y que cierra ventas. ¿Arrancamos?"
+   "answer": "¿Qué vende su tienda? desde 100€ (+ 50€/mes de mantenimiento) Komara le hace una asistente que responde sobre precio, talla, envío y que cierra ventas. ¿Arrancamos?"
   },
   {
    "id": "es_terrain_03",
@@ -8201,7 +5679,7 @@
     "venda",
     "mi"
    ],
-   "answer": "¿Qué vende exactamente? Por 1000 € Komara le crea una vendedora automática que solo le pasa a los clientes listos para pagar. ¿Le conecto?"
+   "answer": "¿Qué vende exactamente? desde 100€ (+ 50€/mes de mantenimiento) Komara le crea una vendedora automática que solo le pasa a los clientes listos para pagar. ¿Le conecto?"
   },
   {
    "id": "es_terrain_04",
@@ -8215,7 +5693,7 @@
     "para",
     "messenger"
    ],
-   "answer": "¿Messenger de Facebook? Por 1000 € Komara le conecta una asistente en su página 24/7. ¿Validamos?"
+   "answer": "¿Messenger de Facebook? desde 100€ (+ 50€/mes de mantenimiento) Komara le conecta una asistente en su página 24/7. ¿Validamos?"
   },
   {
    "id": "es_terrain_05",
@@ -8229,7 +5707,7 @@
     "para",
     "mi"
    ],
-   "answer": "Perfecto para un restaurante. Por 1000 € Komara le hace una asistente que toma los pedidos por WhatsApp en automático. ¿Vamos con eso?"
+   "answer": "Perfecto para un restaurante. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace una asistente que toma los pedidos por WhatsApp en automático. ¿Vamos con eso?"
   },
   {
    "id": "es_terrain_06",
@@ -8243,7 +5721,7 @@
     "para",
     "mi"
    ],
-   "answer": "Perfecto. ¿A qué se dedica su negocio? Con 1000 € Komara lanza su asistente. ¿Le conecto con el equipo?"
+   "answer": "Perfecto. ¿A qué se dedica su negocio? desde 100€ (+ 50€/mes de mantenimiento) Komara lanza su asistente. ¿Le conecto con el equipo?"
   },
   {
    "id": "es_terrain_07",
@@ -8257,7 +5735,7 @@
     "para",
     "insta"
    ],
-   "answer": "Los dos, súper profesional. Por 1000 € Komara le arma el pack de 2 canales: la misma asistente en todas partes. ¿Empezamos?"
+   "answer": "Los dos, súper profesional. desde 100€ (+ 50€/mes de mantenimiento) Komara le arma el pack de 2 canales: la misma asistente en todas partes. ¿Empezamos?"
   },
   {
    "id": "es_terrain_08",
@@ -8271,7 +5749,7 @@
     "responda",
     "noche"
    ],
-   "answer": "Es nuestra especialidad, nunca dormimos. Por 1000 € Komara le pone una asistente nocturna que mantiene enganchados a sus clientes. ¿Se la lanzo?"
+   "answer": "Es nuestra especialidad, nunca dormimos. desde 100€ (+ 50€/mes de mantenimiento) Komara le pone una asistente nocturna que mantiene enganchados a sus clientes. ¿Se la lanzo?"
   },
   {
    "id": "es_terrain_09",
@@ -8285,7 +5763,7 @@
     "para",
     "agencia"
    ],
-   "answer": "Perfecto. ¿Gestionas pasajes, visas? Por 1000 € Komara automatiza todo eso y le deja solo a los compradores reales. ¿Vamos?"
+   "answer": "Perfecto. ¿Gestionas pasajes, visas? desde 100€ (+ 50€/mes de mantenimiento) Komara automatiza todo eso y le deja solo a los compradores reales. ¿Vamos?"
   },
   {
    "id": "es_terrain_10",
@@ -8299,7 +5777,7 @@
     "demo",
     "antes"
    ],
-   "answer": "Entendido. Komara le muestra una demo sobre su propio negocio antes de pagar. Con 1000 € está más que cubierto. ¿Le parece bien?"
+   "answer": "Entendido. Komara le muestra una demo sobre su propio negocio antes de pagar. desde 100€ (+ 50€/mes de mantenimiento) está más que cubierto. ¿Le parece bien?"
   },
   {
    "id": "es_terrain_11",
@@ -8313,7 +5791,7 @@
     "atención",
     "al"
    ],
-   "answer": "Atención al cliente, excelente elección. Por 1000 € Komara le hace una asistente de soporte que responde ¿dónde está mi pedido? por sí sola. ¿Lanzamos?"
+   "answer": "Atención al cliente, excelente elección. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace una asistente de soporte que responde ¿dónde está mi pedido? por sí sola. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_12",
@@ -8341,7 +5819,7 @@
     "francés",
     "inglés"
    ],
-   "answer": "Sí, hacemos bots multilingües. Por 1000 € Komara le arma una asistente bilingüe FR/EN. ¿Validamos?"
+   "answer": "Sí, hacemos bots multilingües. desde 100€ (+ 50€/mes de mantenimiento) Komara le arma una asistente bilingüe FR/EN. ¿Validamos?"
   },
   {
    "id": "es_terrain_14",
@@ -8355,7 +5833,7 @@
     "para",
     "call"
    ],
-   "answer": "¿Cuántos agentes tiene? Por 1000 € Komara le lanza un agente de prueba que reemplaza a 2-3 personas. Escalamos después. ¿Le parece?"
+   "answer": "¿Cuántos agentes tiene? desde 100€ (+ 50€/mes de mantenimiento) Komara le lanza un agente de prueba que reemplaza a 2-3 personas. Escalamos después. ¿Le parece?"
   },
   {
    "id": "es_terrain_15",
@@ -8383,7 +5861,7 @@
     "cierre",
     "ventas"
    ],
-   "answer": "Un closer automático, nuestra especialidad. Por 1000 € Komara le hace un cerrador que lleva al cliente hasta el pago. ¿Vamos?"
+   "answer": "Un closer automático, nuestra especialidad. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace un cerrador que lleva al cliente hasta el pago. ¿Vamos?"
   },
   {
    "id": "es_terrain_17",
@@ -8397,7 +5875,7 @@
     "para",
     "mi"
    ],
-   "answer": "Cosméticos, perfecto. Por 1000 € Komara le hace una asesora de belleza automática que vende 24/7. ¿Empezamos?"
+   "answer": "Cosméticos, perfecto. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace una asesora de belleza automática que vende 24/7. ¿Empezamos?"
   },
   {
    "id": "es_terrain_18",
@@ -8410,7 +5888,7 @@
     "bot",
     "rápido"
    ],
-   "answer": "Directo al grano, me gusta. Por 1000 € Komara le lanza su bot en 48 horas. ¿Listo para empezar?"
+   "answer": "Directo al grano, me gusta. desde 100€ (+ 50€/mes de mantenimiento) Komara le lanza su bot en 48 horas. ¿Listo para empezar?"
   },
   {
    "id": "es_terrain_19",
@@ -8424,7 +5902,7 @@
     "para",
     "mi"
    ],
-   "answer": "Con 50k necesita algo sólido. Por 1000 € Komara le pone una asistente que gestiona comentarios y mensajes privados. ¿Lanzamos?"
+   "answer": "Con 50k necesita algo sólido. desde 100€ (+ 50€/mes de mantenimiento) Komara le pone una asistente que gestiona comentarios y mensajes privados. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_20",
@@ -8438,7 +5916,7 @@
     "quiero",
     "bot"
    ],
-   "answer": "Para eso existimos, mi amigo. Por 1000 € Komara le quita ese problema definitivamente. ¿Firmamos?"
+   "answer": "Para eso existimos, mi amigo. desde 100€ (+ 50€/mes de mantenimiento) Komara le quita ese problema definitivamente. ¿Firmamos?"
   },
   {
    "id": "es_terrain_21",
@@ -8450,7 +5928,7 @@
     "demasiado",
     "caro"
    ],
-   "answer": "Lo entiendo, mi amigo. ¿Cuánto es demasiado caro para usted? Dígame su presupuesto y Komara se adapta. 1000 € es nuestro pack de inicio, le lanzamos todo con eso. ¿Vamos?"
+   "answer": "Lo entiendo, mi amigo. ¿Cuánto es demasiado caro para usted? Dígame su presupuesto y Komara se adapta. 100€ es nuestro pack de inicio, le lanzamos todo con eso. ¿Vamos?"
   },
   {
    "id": "es_terrain_22",
@@ -8464,7 +5942,7 @@
     "tiempo",
     "gestionar"
    ],
-   "answer": "Justamente, mi amigo, Komara lo hace todo por usted. Usted solo nos dices qué hace su negocio, nosotros nos encargamos del resto. Por 900 € no vuelve a tocar los mensajes. ¿Lanzamos?"
+   "answer": "Justamente, mi amigo, Komara lo hace todo por usted. Usted solo nos dices qué hace su negocio, nosotros nos encargamos del resto. desde 100€ (+ 50€/mes de mantenimiento) no vuelve a tocar los mensajes. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_23",
@@ -8477,7 +5955,7 @@
     "no",
     "otro"
    ],
-   "answer": "Buena pregunta. En Komara tenemos un verdadero equipo humano detrás del bot, no solo un software que le abandona después. Por 900 € tiene el bot + el acompañamiento de Komara. Los demás solo venden una herramienta."
+   "answer": "Buena pregunta. En Komara tenemos un verdadero equipo humano detrás del bot, no solo un software que le abandona después. desde 100€ (+ 50€/mes de mantenimiento) tiene el bot + el acompañamiento de Komara. Los demás solo venden una herramienta."
   },
   {
    "id": "es_terrain_24",
@@ -8491,7 +5969,7 @@
     "estafado",
     "antes"
    ],
-   "answer": "Le entiendo, mi hermano. En Komara le mostramos una demo sobre Su negocio antes de pagar. Primero lo ve usted mismo. Con 1000 € le hacemos la demo, si le encanta, lanzamos. ¿Le parece bien?"
+   "answer": "Le entiendo, mi hermano. En Komara le mostramos una demo sobre Su negocio antes de pagar. Primero lo ve usted mismo. desde 100€ (+ 50€/mes de mantenimiento) le hacemos la demo, si le encanta, lanzamos. ¿Le parece bien?"
   },
   {
    "id": "es_terrain_25",
@@ -8505,7 +5983,7 @@
     "responder",
     "varios"
    ],
-   "answer": "Sí, mi amigo: francés, inglés, árabe, español. Komara lo hace como nativo. Con 1000 $ le armamos un bot multilingüe que responde a todos sus clientes. ¿Empezamos?"
+   "answer": "Sí, mi amigo: francés, inglés, árabe, español. Komara lo hace como nativo. desde 100€ (+ 50€/mes de mantenimiento) le armamos un bot multilingüe que responde a todos sus clientes. ¿Empezamos?"
   },
   {
    "id": "es_terrain_26",
@@ -8519,7 +5997,7 @@
     "mi",
     "whatsapp"
    ],
-   "answer": "Sí, es nuestra especialidad en Komara. WhatsApp Business, página de Facebook, Insta, todo. Por 1000 € Komara le conecta todo en 48h. ¿Empezamos?"
+   "answer": "Sí, es nuestra especialidad en Komara. WhatsApp Business, página de Facebook, Insta, todo. desde 100€ (+ 50€/mes de mantenimiento) Komara le conecta todo en 48h. ¿Empezamos?"
   },
   {
    "id": "es_terrain_27",
@@ -8533,7 +6011,7 @@
     "vender",
     "mí"
    ],
-   "answer": "Sí, mi amigo. Es un closer. Responde, genera confianza y lleva la venta hasta el pago. Por 1500 € Komara le pone un vendedor automático de verdad. ¿Lanzamos?"
+   "answer": "Sí, mi amigo. Es un closer. Responde, genera confianza y lleva la venta hasta el pago. desde 100€ (+ 50€/mes de mantenimiento) Komara le pone un vendedor automático de verdad. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_28",
@@ -8547,7 +6025,7 @@
     "mensajes",
     "al"
    ],
-   "answer": "Eso es lo que agota. Komara automatiza el 100% de eso. Por 750 € ya no tiene que responder a eso, Komara se encarga."
+   "answer": "Eso es lo que agota. Komara automatiza el 100% de eso. desde 100€ (+ 50€/mes de mantenimiento) ya no tiene que responder a eso, Komara se encarga."
   },
   {
    "id": "es_terrain_29",
@@ -8561,7 +6039,7 @@
     "escriben",
     "noche"
    ],
-   "answer": "Komara nunca duerme, mi amigo. Su bot responde a las 2 a.m. y mantiene enganchado al cliente. Por 800 € tiene su agente nocturno de Komara. ¿Validamos?"
+   "answer": "Komara nunca duerme, mi amigo. Su bot responde a las 2 a.m. y mantiene enganchado al cliente. desde 100€ (+ 50€/mes de mantenimiento) tiene su agente nocturno de Komara. ¿Validamos?"
   },
   {
    "id": "es_terrain_30",
@@ -8574,7 +6052,7 @@
     "sistema",
     "completo"
    ],
-   "answer": "El sistema completo en Komara es WhatsApp + Messenger + Insta + CRM. Por 5000 € le hacemos el nivel superior de Komara. ¿Firmamos?"
+   "answer": "El sistema completo en Komara es WhatsApp + Messenger + Insta + CRM. según presupuesto (escriba 'presupuesto') le hacemos el nivel superior de Komara. ¿Firmamos?"
   },
   {
    "id": "es_terrain_31",
@@ -8587,7 +6065,7 @@
     "poco",
     "presupuesto"
    ],
-   "answer": "Sin problema, mi amigo, Komara tiene un pack de prueba para arrancar pequeño y crecer después. Con 300 $ le lanzamos la versión de prueba de Komara. ¿Le parece bien?"
+   "answer": "Sin problema, mi amigo, Komara tiene un pack de prueba para arrancar pequeño y crecer después. desde 100€ (+ 50€/mes de mantenimiento) le lanzamos la versión de prueba de Komara. ¿Le parece bien?"
   },
   {
    "id": "es_terrain_32",
@@ -8601,7 +6079,7 @@
     "tiene",
     "50k"
    ],
-   "answer": "Normal, mi hermano. Komara está hecha para eso, gestiona comentarios y mensajes privados automáticamente. Por 1000 € Komara toma el control de su página. ¿Lanzamos?"
+   "answer": "Normal, mi hermano. Komara está hecha para eso, gestiona comentarios y mensajes privados automáticamente. desde 100€ (+ 50€/mes de mantenimiento) Komara toma el control de su página. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_33",
@@ -8615,7 +6093,7 @@
     "quiero",
     "ofrecer"
    ],
-   "answer": "Buenísimo negocio. Komara se lo hace en marca blanca para que vendas con su propio nombre. Con 1200 $ Komara le lanza su oferta en marca blanca. ¿Vamos?"
+   "answer": "Buenísimo negocio. Komara se lo hace en marca blanca para que vendas con su propio nombre. desde 100€ (+ 50€/mes de mantenimiento) Komara le lanza su oferta en marca blanca. ¿Vamos?"
   },
   {
    "id": "es_terrain_34",
@@ -8629,7 +6107,7 @@
     "tome",
     "los"
    ],
-   "answer": "Toma el pedido, da la cuenta, se lo envía al repartidor. Komara lo hace todo. Por 900 € Komara automatiza su restaurante. ¿Empezamos?"
+   "answer": "Toma el pedido, da la cuenta, se lo envía al repartidor. Komara lo hace todo. desde 100€ (+ 50€/mes de mantenimiento) Komara automatiza su restaurante. ¿Empezamos?"
   },
   {
    "id": "es_terrain_35",
@@ -8642,7 +6120,7 @@
     "abandona",
     "carrito"
    ],
-   "answer": "Komara les hace seguimiento automático hasta que pagan. Es nuestra especialidad. Por 1000 € Komara le recupera sus ventas perdidas. ¿Lanzamos?"
+   "answer": "Komara les hace seguimiento automático hasta que pagan. Es nuestra especialidad. desde 100€ (+ 50€/mes de mantenimiento) Komara le recupera sus ventas perdidas. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_36",
@@ -8656,7 +6134,7 @@
     "pocos",
     "compradores"
    ],
-   "answer": "Komara los filtra, mi amigo. Solo le pasa a la gente que quiere visitar y pagar. Por 1000 € Komara le crea su filtro inmobiliario. ¿Validamos?"
+   "answer": "Komara los filtra, mi amigo. Solo le pasa a la gente que quiere visitar y pagar. desde 100€ (+ 50€/mes de mantenimiento) Komara le crea su filtro inmobiliario. ¿Validamos?"
   },
   {
    "id": "es_terrain_37",
@@ -8668,7 +6146,7 @@
     "vendo",
     "formación"
    ],
-   "answer": "Perfecto. Komara califica y le deja solo a las personas listas para comprar su curso. Por 900 € Komara le arma su cerrador de ventas. ¿Vamos?"
+   "answer": "Perfecto. Komara califica y le deja solo a las personas listas para comprar su curso. desde 100€ (+ 50€/mes de mantenimiento) Komara le arma su cerrador de ventas. ¿Vamos?"
   },
   {
    "id": "es_terrain_38",
@@ -8682,7 +6160,7 @@
     "varias",
     "cuotas"
    ],
-   "answer": "Sí, mi amigo, Komara se adapta. Paga en 2 o 3 cuotas si quiere. Con 1000 € en 2 pagos Komara le lanza. ¿Empezamos?"
+   "answer": "Sí, mi amigo, Komara se adapta. Paga en 2 o 3 cuotas si quiere. desde 100€ (+ 50€/mes de mantenimiento) en 2 pagos Komara le lanza. ¿Empezamos?"
   },
   {
    "id": "es_terrain_39",
@@ -8696,7 +6174,7 @@
     "demo",
     "primero"
    ],
-   "answer": "Es normal, mi amigo. Dígame su negocio y Komara le hace una demo directa aplicada a su caso. Para e-commerce con 1000 $ le hacemos la demo de Komara ahora mismo. ¿Vamos?"
+   "answer": "Es normal, mi amigo. Dígame su negocio y Komara le hace una demo directa aplicada a su caso. Para e-commerce desde 100€ (+ 50€/mes de mantenimiento) le hacemos la demo de Komara ahora mismo. ¿Vamos?"
   },
   {
    "id": "es_terrain_40",
@@ -8724,7 +6202,7 @@
     "recibo",
     "demasiados"
    ],
-   "answer": "Le entiendo, mi amigo. Le levantas en la mañana con 87 mensajes de WhatsApp, en la noche otros 50. Ya no tiene vida. Para eso existe Komara: nos encargamos de todo eso por usted. Por 1000 € le quitamos ese cansancio definitivamente, Komara responde 24/7. ¿Lanzamos y duermes tranquilo?"
+   "answer": "Le entiendo, mi amigo. Le levantas en la mañana con 87 mensajes de WhatsApp, en la noche otros 50. Ya no tiene vida. Para eso existe Komara: nos encargamos de todo eso por usted. desde 100€ (+ 50€/mes de mantenimiento) le quitamos ese cansancio definitivamente, Komara responde 24/7. ¿Lanzamos y duermes tranquilo?"
   },
   {
    "id": "es_terrain_42",
@@ -8738,7 +6216,7 @@
     "no",
     "parecer"
    ],
-   "answer": "Normal, mi amiga, todos empiezan así. Pero ¿sabe qué le hace ver pro? Una respuesta rápida y bien hecha. Aunque estés empezando, sus clientes van a pensar que tiene un gran equipo detrás. Por 750 € Komara le hace ver profesional desde el primer día. ¿Le lanzamos como una grande?"
+   "answer": "Normal, mi amiga, todos empiezan así. Pero ¿sabe qué le hace ver pro? Una respuesta rápida y bien hecha. Aunque estés empezando, sus clientes van a pensar que tiene un gran equipo detrás. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace ver profesional desde el primer día. ¿Le lanzamos como una grande?"
   },
   {
    "id": "es_terrain_43",
@@ -8752,7 +6230,7 @@
     "responder",
     "tarde"
    ],
-   "answer": "Eso duele, mi amigo. 3 clientes, ¿cuánto representa esa pérdida? Ya ve: en un solo día perdiste lo de su inversión con Komara. Con nosotros nunca más pierdes una venta por tardanza. Por 900 € Komara asegura todas sus próximas ventas. ¿No dejamos pasar más esto?"
+   "answer": "Eso duele, mi amigo. 3 clientes, ¿cuánto representa esa pérdida? Ya ve: en un solo día perdiste lo de su inversión con Komara. Con nosotros nunca más pierdes una venta por tardanza. desde 100€ (+ 50€/mes de mantenimiento) Komara asegura todas sus próximas ventas. ¿No dejamos pasar más esto?"
   },
   {
    "id": "es_terrain_44",
@@ -8766,7 +6244,7 @@
     "mis",
     "ingresos"
    ],
-   "answer": "He ahí el verdadero problema de crecimiento, mi amigo. Quiere escalar pero su WhatsApp le frena. Komara rompe ese límite: puede recibir 10, 100, 1000 mensajes y nosotros nos encargamos. Por 1500 € Komara le arma su sistema escalable. ¿Está listo para duplicar?"
+   "answer": "He ahí el verdadero problema de crecimiento, mi amigo. Quiere escalar pero su WhatsApp le frena. Komara rompe ese límite: puede recibir 10, 100, 1000 mensajes y nosotros nos encargamos. desde 100€ (+ 50€/mes de mantenimiento) Komara le arma su sistema escalable. ¿Está listo para duplicar?"
   },
   {
    "id": "es_terrain_45",
@@ -8780,7 +6258,7 @@
     "demasiados",
     "pedidos"
    ],
-   "answer": "Me imagino la escena, mi amigo. 8 p.m., su teléfono explota, los clientes se impacientan y pierdes pedidos. Komara atiende todo al mismo tiempo, sin estrés, sin errores y envía directo a cocina. Por 900 € Komara le salva las noches. ¿Le instalamos esto?"
+   "answer": "Me imagino la escena, mi amigo. 8 p.m., su teléfono explota, los clientes se impacientan y pierdes pedidos. Komara atiende todo al mismo tiempo, sin estrés, sin errores y envía directo a cocina. desde 100€ (+ 50€/mes de mantenimiento) Komara le salva las noches. ¿Le instalamos esto?"
   },
   {
    "id": "es_terrain_46",
@@ -8794,7 +6272,7 @@
     "mi",
     "dinero"
    ],
-   "answer": "Respeto mucho eso, mi amigo. Es su proyecto de vida. Por eso le hablo de frente. No le vamos a vender un sueño, le vamos a instalar un sistema que proteja su inversión. Por 1000 € rentabilizamos su proyecto y Komara no le suelta. ¿Vamos juntos?"
+   "answer": "Respeto mucho eso, mi amigo. Es su proyecto de vida. Por eso le hablo de frente. No le vamos a vender un sueño, le vamos a instalar un sistema que proteja su inversión. desde 100€ (+ 50€/mes de mantenimiento) rentabilizamos su proyecto y Komara no le suelta. ¿Vamos juntos?"
   },
   {
    "id": "es_terrain_47",
@@ -8808,7 +6286,7 @@
     "bot",
     "gratuito"
    ],
-   "answer": "Muy buena pregunta, mi amigo. El gratuito responde hola. Komara responde, entiende, da confianza y vende. Es un vendedor, no un contestador automático. ¿Quiere un contestador que diga hola o un vendedor que cobre por usted? Con 1000 $ Komara le pone su vendedor. ¿Lanzamos?"
+   "answer": "Muy buena pregunta, mi amigo. El gratuito responde hola. Komara responde, entiende, da confianza y vende. Es un vendedor, no un contestador automático. ¿Quiere un contestador que diga hola o un vendedor que cobre por usted? desde 100€ (+ 50€/mes de mantenimiento) Komara le pone su vendedor. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_48",
@@ -8822,7 +6300,7 @@
     "rápido",
     "no"
    ],
-   "answer": "Somos iguales, mi amigo, nos gusta ir rápido. En Komara son 48h máximo. Nos da su negocio hoy y en 48h su bot está hablando con sus clientes. Por 1200 € le lanzamos en 48h cronometradas. ¿Empezamos hoy?"
+   "answer": "Somos iguales, mi amigo, nos gusta ir rápido. En Komara son 48h máximo. Nos da su negocio hoy y en 48h su bot está hablando con sus clientes. desde 100€ (+ 50€/mes de mantenimiento) le lanzamos en 48h cronometradas. ¿Empezamos hoy?"
   },
   {
    "id": "es_terrain_49",
@@ -8836,7 +6314,7 @@
     "esto",
     "mis"
    ],
-   "answer": "Muy rentable, mi amigo. Compras en Komara y lo revendes al triple. Muchos hacen eso. Con 1200 $ Komara le lanza su oferta en marca blanca. Le conviertes en agencia de IA. ¿Vamos?"
+   "answer": "Muy rentable, mi amigo. Compras en Komara y lo revendes al triple. Muchos hacen eso. desde 100€ (+ 50€/mes de mantenimiento) Komara le lanza su oferta en marca blanca. Le conviertes en agencia de IA. ¿Vamos?"
   },
   {
    "id": "es_terrain_50",
@@ -8849,7 +6327,7 @@
     "confiar",
     "usted"
    ],
-   "answer": "Porque, mi amigo, no le pido que confíes a ciegas. Le pido que pruebes Komara en su negocio. Si no le hace ganar tiempo o dinero, no continuamos. Sencillo, Komara trabaja por resultados. Con 1000 € probamos juntos, sin riesgo. ¿Nos lanzamos?"
+   "answer": "Porque, mi amigo, no le pido que confíes a ciegas. Le pido que pruebes Komara en su negocio. Si no le hace ganar tiempo o dinero, no continuamos. Sencillo, Komara trabaja por resultados. desde 100€ (+ 50€/mes de mantenimiento) probamos juntos, sin riesgo. ¿Nos lanzamos?"
   },
   {
    "id": "es_terrain_51",
@@ -8863,7 +6341,7 @@
     "mi",
     "negocio"
    ],
-   "answer": "Para eso está Komara. Transformamos su pequeño negocio en una verdadera empresa que funciona sin usted. Ya no vende su tiempo. Por 1000 € Komara le da el sistema de los grandes. Claro que puede, mi hermano. ¿Vamos?"
+   "answer": "Para eso está Komara. Transformamos su pequeño negocio en una verdadera empresa que funciona sin usted. Ya no vende su tiempo. desde 100€ (+ 50€/mes de mantenimiento) Komara le da el sistema de los grandes. Claro que puede, mi hermano. ¿Vamos?"
   },
   {
    "id": "es_terrain_52",
@@ -8877,7 +6355,7 @@
     "fracasar",
     "otra"
    ],
-   "answer": "Entiendo, mi amigo. Ya has fallado y eso duele. Pero quedarte estancado respondiendo mensajes es un riesgo aún mayor. Komara es su red de seguridad: automatizamos para que no se le escape ni una sola venta. Por 900 € Komara asegura su negocio. ¿No dejamos ir nada más juntos?"
+   "answer": "Entiendo, mi amigo. Ya has fallado y eso duele. Pero quedarte estancado respondiendo mensajes es un riesgo aún mayor. Komara es su red de seguridad: automatizamos para que no se le escape ni una sola venta. desde 100€ (+ 50€/mes de mantenimiento) Komara asegura su negocio. ¿No dejamos ir nada más juntos?"
   },
   {
    "id": "es_terrain_53",
@@ -8891,7 +6369,7 @@
     "mi",
     "familia"
    ],
-   "answer": "Respeto mucho eso, mi amigo. Trabaja duro por ellos. Así que deja de perder tiempo respondiendo ¿precio?. Deja que Komara se encargue de eso y pasa tiempo con su familia mientras su negocio produce. Por 900 € Komara le devuelve tiempo para su familia y dinero. ¿Lanzamos?"
+   "answer": "Respeto mucho eso, mi amigo. Trabaja duro por ellos. Así que deja de perder tiempo respondiendo ¿precio?. Deja que Komara se encargue de eso y pasa tiempo con su familia mientras su negocio produce. desde 100€ (+ 50€/mes de mantenimiento) Komara le devuelve tiempo para su familia y dinero. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_54",
@@ -8905,7 +6383,7 @@
     "gestionando",
     "todo"
    ],
-   "answer": "Es duro estar solo, mi amigo. Hace todo, está en todas partes, está agotado. Ahora ya no está solo. Komara es su equipo que nunca duerme, estamos con usted. Por 1000 € tiene un equipo completo de Komara respaldándote. Ya no estamos solos, ¿vamos?"
+   "answer": "Es duro estar solo, mi amigo. Hace todo, está en todas partes, está agotado. Ahora ya no está solo. Komara es su equipo que nunca duerme, estamos con usted. desde 100€ (+ 50€/mes de mantenimiento) tiene un equipo completo de Komara respaldándote. Ya no estamos solos, ¿vamos?"
   },
   {
    "id": "es_terrain_55",
@@ -8919,7 +6397,7 @@
     "mejor",
     "mi"
    ],
-   "answer": "Me gusta esa actitud, mi hermano. Los mejores tienen un equipo y un sistema. Nadie llega a ser el mejor solo. Komara es el sistema de los mejores: su competencia responde en 3 horas, usted en 3 segundos, usted gana. Por 1500 € Komara le posiciona como el número 1. ¿Aplastamos a la competencia?"
+   "answer": "Me gusta esa actitud, mi hermano. Los mejores tienen un equipo y un sistema. Nadie llega a ser el mejor solo. Komara es el sistema de los mejores: su competencia responde en 3 horas, usted en 3 segundos, usted gana. desde 100€ (+ 50€/mes de mantenimiento) Komara le posiciona como el número 1. ¿Aplastamos a la competencia?"
   },
   {
    "id": "es_terrain_56",
@@ -8933,7 +6411,7 @@
     "responder",
     "da"
    ],
-   "answer": "No le preocupes, mi amigo, le pasa a cualquiera, somos humanos. Pero su cliente se va con la competencia. Komara nunca olvide: responde directo, profesional y amable. Nunca más pasarás vergüenza. Por 1000 € sus clientes dirán wow service rápido. ¿Lanzamos?"
+   "answer": "No le preocupes, mi amigo, le pasa a cualquiera, somos humanos. Pero su cliente se va con la competencia. Komara nunca olvide: responde directo, profesional y amable. Nunca más pasarás vergüenza. desde 100€ (+ 50€/mes de mantenimiento) sus clientes dirán wow service rápido. ¿Lanzamos?"
   },
   {
    "id": "es_terrain_57",
@@ -8947,7 +6425,7 @@
     "todos",
     "los"
    ],
-   "answer": "Ese es el clic que necesitabas, mi amigo. Cada día sin Komara es dinero que se va con su competencia. Así que dejamos de perder hoy, no mañana. Con 1000 $ detenemos la fuga de ventas hoy mismo y Komara queda activo esta noche. ¿Validamos?"
+   "answer": "Ese es el clic que necesitabas, mi amigo. Cada día sin Komara es dinero que se va con su competencia. Así que dejamos de perder hoy, no mañana. desde 100€ (+ 50€/mes de mantenimiento) detenemos la fuga de ventas hoy mismo y Komara queda activo esta noche. ¿Validamos?"
   },
   {
    "id": "es_terrain_58",
@@ -8961,7 +6439,7 @@
     "clientes",
     "respeten"
    ],
-   "answer": "Y le van a respetar, mi amigo. Cuando venga una respuesta instantánea, profesional, que los guía hasta el pago, dicen este negocio es serio. Komara le da esa imagen: ya no es el vendedor pequeño, es una marca. Por 1200 € Komara le transforma en marca. ¿Nos convertimos en marca?"
+   "answer": "Y le van a respetar, mi amigo. Cuando venga una respuesta instantánea, profesional, que los guía hasta el pago, dicen este negocio es serio. Komara le da esa imagen: ya no es el vendedor pequeño, es una marca. desde 100€ (+ 50€/mes de mantenimiento) Komara le transforma en marca. ¿Nos convertimos en marca?"
   },
   {
    "id": "es_terrain_59",
@@ -8975,7 +6453,7 @@
     "viajar",
     "negocio"
    ],
-   "answer": "Esa es la verdadera libertad, mi amigo. Su negocio funcionando mientras está en Dakar, en París o en la playa. Komara es su pasaje a eso: su bot vende mientras usted disfrutas la vida. Con 1200 $ Komara le da su libertad. ¿Compramos su libertad?"
+   "answer": "Esa es la verdadera libertad, mi amigo. Su negocio funcionando mientras está en Dakar, en París o en la playa. Komara es su pasaje a eso: su bot vende mientras usted disfrutas la vida. desde 100€ (+ 50€/mes de mantenimiento) Komara le da su libertad. ¿Compramos su libertad?"
   },
   {
    "id": "es_terrain_60",
@@ -8987,7 +6465,7 @@
     "voy",
     "pensarlo"
    ],
-   "answer": "Entiendo, mi amigo. ¿Sabe algo? Las personas con éxito piensan rápido y actúan rápido. Las demás lo piensan demasiado y venga a otros triunfar. Por 1000 € Komara le pone del lado de los que toman acción. ¿Actuamos ahora o seguimos mirando?"
+   "answer": "Entiendo, mi amigo. ¿Sabe algo? Las personas con éxito piensan rápido y actúan rápido. Las demás lo piensan demasiado y venga a otros triunfar. desde 100€ (+ 50€/mes de mantenimiento) Komara le pone del lado de los que toman acción. ¿Actuamos ahora o seguimos mirando?"
   },
   {
    "id": "es_terrain_61",
@@ -9001,7 +6479,7 @@
     "estancado",
     "ya"
    ],
-   "answer": "Normal, mi amigo, alcanzaste su límite humano. No puede responder a más de 50 mensajes usted solo. Komara rompe ese techo: mañana puede recibir 200 mensajes sin trabajar de más. Por 1000 € Komara le desbloquea. ¿Rompemos ese techo juntos?"
+   "answer": "Normal, mi amigo, alcanzaste su límite humano. No puede responder a más de 50 mensajes usted solo. Komara rompe ese techo: mañana puede recibir 200 mensajes sin trabajar de más. desde 100€ (+ 50€/mes de mantenimiento) Komara le desbloquea. ¿Rompemos ese techo juntos?"
   },
   {
    "id": "es_terrain_62",
@@ -9015,7 +6493,7 @@
     "marcas",
     "responden"
    ],
-   "answer": "Porque tienen un equipo como el nuestro, mi amigo. Ahora usted también vas a responder como una gran marca. Por 900 € Komara le hace hablar como una gran marca, sus clientes no notarán la diferencia."
+   "answer": "Porque tienen un equipo como el nuestro, mi amigo. Ahora usted también vas a responder como una gran marca. desde 100€ (+ 50€/mes de mantenimiento) Komara le hace hablar como una gran marca, sus clientes no notarán la diferencia."
   },
   {
    "id": "es_terrain_63",
@@ -9029,7 +6507,7 @@
     "hacen",
     "20"
    ],
-   "answer": "Los peores, mi amigo, le quitan 30 minutos para nada. Komara los filtra: responde a las 20 preguntas por usted y solo le pasa a los que quieren pagar. Gana 30 minutos cada vez. Por 900 € Komara le libra de los curiosos. ¿Nos quedamos solo con los compradores?"
+   "answer": "Los peores, mi amigo, le quitan 30 minutos para nada. Komara los filtra: responde a las 20 preguntas por usted y solo le pasa a los que quieren pagar. Gana 30 minutos cada vez. desde 100€ (+ 50€/mes de mantenimiento) Komara le libra de los curiosos. ¿Nos quedamos solo con los compradores?"
   },
   {
    "id": "es_terrain_64",
@@ -9043,7 +6521,7 @@
     "esta",
     "semana"
    ],
-   "answer": "Para eso estamos, mi amigo. En Komara no le hacemos esperar 1 mes: esta semana ya es demasiado tiempo, le lanzamos en 48h. Con 1000 $ Komara está con usted en 48h. ¿Empezamos hoy?"
+   "answer": "Para eso estamos, mi amigo. En Komara no le hacemos esperar 1 mes: esta semana ya es demasiado tiempo, le lanzamos en 48h. desde 100€ (+ 50€/mes de mantenimiento) Komara está con usted en 48h. ¿Empezamos hoy?"
   },
   {
    "id": "es_terrain_65",
@@ -9055,7 +6533,7 @@
     "cuesta",
     "confiar"
    ],
-   "answer": "Le entiendo, mi amigo, le han quedado mal antes. Yo no le pido una confianza a ciegas: le hacemos una demo en vivo con sus mensajes reales, lo ve con sus propios ojos. Por 1000 € Komara le demuestra primero y paga después. ¿Le mostramos?"
+   "answer": "Le entiendo, mi amigo, le han quedado mal antes. Yo no le pido una confianza a ciegas: le hacemos una demo en vivo con sus mensajes reales, lo ve con sus propios ojos. desde 100€ (+ 50€/mes de mantenimiento) Komara le demuestra primero y paga después. ¿Le mostramos?"
   },
   {
    "id": "es_terrain_66",
@@ -9067,7 +6545,7 @@
     "llaman",
     "komara"
    ],
-   "answer": "Komara es nuestra tierra, mi amigo, Guinea, pero nuestra visión es internacional. Ayudamos a los negocios de África y del mundo a tener las mismas herramientas que las grandes empresas. Por 1500 € entras en la familia Komara y creces con nosotros. ¿Vamos?"
+   "answer": "Komara es nuestra tierra, mi amigo, Guinea, pero nuestra visión es internacional. Ayudamos a los negocios de África y del mundo a tener las mismas herramientas que las grandes empresas. desde 100€ (+ 50€/mes de mantenimiento) entras en la familia Komara y creces con nosotros. ¿Vamos?"
   },
   {
    "id": "es_terrain_67",
@@ -9081,7 +6559,7 @@
     "tomo",
     "decisión"
    ],
-   "answer": "Si no tomas la decisión, mi amigo, mañana tendrás otros 100 mensajes, más ventas perdidas y más cansancio. Nada cambia. Con Komara mañana todo cambia, usted eliges. Con 1000 € vamos adelante: mañana le levantas renovado."
+   "answer": "Si no tomas la decisión, mi amigo, mañana tendrás otros 100 mensajes, más ventas perdidas y más cansancio. Nada cambia. Con Komara mañana todo cambia, usted eliges. desde 100€ (+ 50€/mes de mantenimiento) vamos adelante: mañana le levantas renovado."
   },
   {
    "id": "es_terrain_68",
@@ -9095,7 +6573,7 @@
     "socio",
     "no"
    ],
-   "answer": "Eso es exactamente lo que es Komara, mi amigo. No somos un software que le vendemos y desaparece. Somos su socio: nos quedamos con usted, mejoramos su bot cada semana. Por 1000 € Komara se convierte en su socio a largo plazo. ¿Crecemos juntos?"
+   "answer": "Eso es exactamente lo que es Komara, mi amigo. No somos un software que le vendemos y desaparece. Somos su socio: nos quedamos con usted, mejoramos su bot cada semana. desde 100€ (+ 50€/mes de mantenimiento) Komara se convierte en su socio a largo plazo. ¿Crecemos juntos?"
   },
   {
    "id": "es_terrain_69",
@@ -9109,7 +6587,7 @@
     "van",
     "decir"
    ],
-   "answer": "No, mi amigo, van a decir que le volviste inteligente. El flojo trabaja duro sin pensar. El inteligente pone a Komara a trabajar para él. ¿Quiere trabajar duro o de forma inteligente? Con 1000 $ Komara le hace trabajar de forma inteligente. ¿Lanzamos la inteligencia?"
+   "answer": "No, mi amigo, van a decir que le volviste inteligente. El flojo trabaja duro sin pensar. El inteligente pone a Komara a trabajar para él. ¿Quiere trabajar duro o de forma inteligente? desde 100€ (+ 50€/mes de mantenimiento) Komara le hace trabajar de forma inteligente. ¿Lanzamos la inteligencia?"
   },
   {
    "id": "es_terrain_70",
@@ -9123,7 +6601,7 @@
     "voy",
     "ver"
    ],
-   "answer": "Mi amigo, voy a ser franco con usted. El le aviso es lo que dice el 90% de la gente que nunca vuelve y se queda estancada. Usted no es así, usted es de los que toman acción. Dudar es normal, pero con 1000 € Komara le quita todos los riesgos: le lanzamos, le acompañamos, no está solo. ¿Vamos adelante?"
+   "answer": "Mi amigo, voy a ser franco con usted. El le aviso es lo que dice el 90% de la gente que nunca vuelve y se queda estancada. Usted no es así, usted es de los que toman acción. Dudar es normal, pero desde 100€ (+ 50€/mes de mantenimiento) Komara le quita todos los riesgos: le lanzamos, le acompañamos, no está solo. ¿Vamos adelante?"
   },
   {
    "id": "intent_logo_es",
@@ -9159,19 +6637,34 @@
  ],
  "packs": [
   {
-   "nom": "Pack Starter",
+   "nom": "Visuel / Cartel",
+   "prix": "15€",
+   "contenu": "1 visual listo para publicar (pack de 5 : 40€)"
+  },
+  {
+   "nom": "Logo Pro",
+   "prix": "25€",
+   "contenu": "Identidad visual completa, archivos HD"
+  },
+  {
+   "nom": "Sitio Vitrina",
+   "prix": "50€",
+   "contenu": "Sitio pro + integración WhatsApp"
+  },
+  {
+   "nom": "Sitio E-commerce",
    "prix": "150€",
-   "contenu": "Bot simple ou site vitrine, 1 langue, support 1 mois"
+   "contenu": "Tienda en línea completa"
   },
   {
-   "nom": "Pack Business",
-   "prix": "450€",
-   "contenu": "Bot avancé + site web, multilingue, support 3 mois"
+   "nom": "Chatbot IA",
+   "prix": "100€ + 50€/mes",
+   "contenido": "Bot vendedor 24/7 con mantenimiento mensual"
   },
   {
-   "nom": "Pack Premium",
-   "prix": "900€",
-   "contenu": "Solution complète sur mesure, support 6 mois, formation incluse"
+   "nom": "Formación IA",
+   "prix": "50€",
+   "contenido": "Domine la IA para su negocio"
   }
  ],
  "conversations": []

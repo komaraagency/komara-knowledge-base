@@ -13,7 +13,7 @@ Mucha suerte 👑 Pero pregúntales: ¿soporte 7/7? ¿garantía de 30 días? ¿f
 Esto es lo que puedo hacer 😊 Si lanza este mes, anoto su expediente para las ofertas del mes. El precio se calcula según Su necesidad, no al azar. ¿Por dónde empezamos?
 
 ### tengo poco presupuesto
-¿Poco presupuesto, gran proyecto? Empezamos pequeño 😊 Un logo desde 80€ o una asistente simple, vende más, y añadimos opciones cuando crezcas. Así construimos juntos.
+¿Poco presupuesto, gran proyecto? Empezamos pequeño 😊 Un logo desde 25€ o una asistente simple, vende más, y añadimos opciones cuando crezcas. Así construimos juntos.
 
 ### y si no funciona
 Pregunta de profesional 👍 Garantía: si su Agente no le trae al menos 10 leads calificados en 30 días, lo re-optimizamos gratis. No pierdes nada por probar.

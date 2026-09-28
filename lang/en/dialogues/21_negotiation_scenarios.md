@@ -13,7 +13,7 @@ Good luck with that 👑 But ask them: 7/7 support? 30-day guarantee? Team train
 Here's what I can do 😊 If you launch this month, I'll note your file for this month's offers. The price stays calculated for YOUR need, not random. What do we start with?
 
 ### I have a small budget
-Small budget, big project? Let's start small 😊 A logo from 80€ or a simple assistant, you sell more, and we add options as you grow. That's how we build together.
+Small budget, big project? Let's start small 😊 A logo from 25€ or a simple assistant, you sell more, and we add options as you grow. That's how we build together.
 
 ### what if it doesn't work
 Pro question 👍 Guarantee: if your Agent doesn't bring you at least 10 qualified leads in 30 days, we re-optimize it for free. You lose nothing by trying.

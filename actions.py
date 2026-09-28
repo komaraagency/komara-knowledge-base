@@ -114,13 +114,14 @@ TRIGGERS: dict[str, set[str]] = {
         "i want to order",
     },
     "rdv": {
-        "📅 Rendez-vous", "📅 Book a call", "📅 Reservar",
+        "📅 Rendez-vous", "📅 Book a call", "📅 Reservar", "📅 حجز موعد", "حجز موعد", "موعدي",
         "/rdv", "rdv", "rendez-vous", "prendre rendez", "réserver un appel", "réserver un rendez",
         "book a call", "reservar",
     },
     "devis": {
         "📄 Devis", "📄 Quote", "📄 Presupuesto",
         "/devis", "devis", "avoir un devis", "demander un devis", "un devis", "quote", "presupuesto",
+        "📄 تسعيرة", "تسعيرة", "عرض سعر", "التسعيرة",
     },
     "lead": {
         "📞 Être rappelé", "être rappelé", "etre rappelé", "être rappelé(e)",
@@ -131,7 +132,7 @@ TRIGGERS: dict[str, set[str]] = {
         "referral", "parraine", "je parraine",
     },
     "survey": {
-        "⭐ Avis", "⭐ Feedback", "⭐ Opinión",
+        "⭐ Avis", "⭐ Feedback", "⭐ Opinión", "⭐ تقييم", "تقييمي", "قيّمني",
         "/sondage", "sondage", "donner mon avis", "laisser un avis", "mon avis",
     },
 }

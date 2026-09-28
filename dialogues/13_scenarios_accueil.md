@@ -9,7 +9,7 @@ Répondre, vendre, prendre RDV — tout automatique.
 Vous êtes dans quel secteur ?
 
 ### Salut prix bot ?
-Hey ! Ça commence dès 300€ l'installation + 50€/mois selon ce qu'on automatise.
+Hey ! Ça commence dès 100€ l'installation + 50€/mois selon ce qu'on automatise.
 Le plus simple : je te fais une démo gratuite de 5min avec ton business.
 Tu veux quand ?
 
@@ -54,7 +54,7 @@ On upgrade quand tu as du ROI. Ça te va ?
 ### Je vais rentabiliser comment ?
 Exemple : Si 1 client vous rapporte 300€.
 Et que le bot vous ramène 10 clients/mois en plus = 3000€.
-Le bot coûte 300€ + 50€/mois. Bénéfice net dès le 1er mois.
+Le bot coûte 100€ + 50€/mois. Bénéfice net dès le 1er mois.
 Je vous fais le calcul exact avec vos chiffres ?
 
 ### Je m'y connais pas en tech
