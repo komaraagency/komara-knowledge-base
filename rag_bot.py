@@ -611,7 +611,7 @@ RESET_COMMANDS: dict[str, set[str]] = {
 MESSAGES: dict[str, dict[str, str]] = {
     "fr": {
         "reset": "D'accord, j'ai effacé le contexte de cette conversation. Que souhaitez-vous faire?",
-        "fallback": "Je n'ai pas bien compris votre demande. 🤔\n\nNous proposons : bots WhatsApp/Telegram, sites web, applications, logos et création digitale.\n\nTapez 'prix' pour les tarifs, 'services' pour nos offres, ou décrivez votre projet.",
+        "fallback": "Je n'ai pas encore cette connaissance dans ma base de données 🙏\n\nJe note votre question pour l'équipe Komara.\n\nTapez 'menu' pour voir nos services : bots WhatsApp/Telegram, sites web, applications, logos et création digitale.\n\nTapez 'prix' pour les tarifs, 'services' pour nos offres, ou décrivez votre projet.",
         "human": f"Expert KOMARA vous contacte sur *{WHATSAPP}* sous 5 minutes.",
         "portfolio": "Tu veux des exemples pour quel domaine?",
         "pricing_intro": "Voici nos offres :",
@@ -628,7 +628,7 @@ MESSAGES: dict[str, dict[str, str]] = {
     },
     "en": {
         "reset": "Done, I've cleared the context. What would you like to do?",
-        "fallback": "I didn't quite catch that. 🤔\n\nWe offer: WhatsApp/Telegram bots, websites, apps, logos and digital creation.\n\nType 'pricing' for rates, 'services' for our offers, or describe your project.",
+        "fallback": "I don't have that knowledge in my database yet 🙏\n\nI'm noting your question for the Komara team.\n\nType 'menu' to see our services: WhatsApp/Telegram bots, websites, apps, logos and digital creation.\n\nType 'pricing' for rates, 'services' for our offers, or describe your project.",
         "human": f"A KOMARA expert will contact you on *{WHATSAPP}* within 5 minutes.",
         "portfolio": "What kind of examples are you looking for?",
         "pricing_intro": "Here are our offers:",
@@ -645,7 +645,7 @@ MESSAGES: dict[str, dict[str, str]] = {
     },
     "ar": {
         "reset": "تم مسح السياق. ماذا تريد أن تفعل؟",
-        "fallback": "لم أفهم طلبك تماماً. 🤔\n\nنقدم: بوتات واتساب/تيليجرام، مواقع، تطبيقات، شعارات وإنشاء رقمي.\n\nاكتب 'السعر' للأسعار، 'الخدمات' لعروضنا، أو صف مشروعك.",
+        "fallback": "لا أملك هذه المعلومة بعد في قاعدتي 🙏\n\nسأدوّن سؤالك لفريق كومارا.\n\nاكتب 'menu' لرؤية خدماتنا: بوتات واتساب/تيليجرام، مواقع، تطبيقات، شعارات وإنشاء رقمي.\n\nاكتب 'السعر' للأسعار، 'الخدمات' لعروضنا، أو صف مشروعك.",
         "human": f"سيتواصل معك خبير KOMARA على *{WHATSAPP}* خلال 5 دقائق.",
         "portfolio": "ما نوع الأمثلة التي تبحث عنها؟",
         "pricing_intro": "إليك عروضنا:",
@@ -662,7 +662,7 @@ MESSAGES: dict[str, dict[str, str]] = {
     },
     "es": {
         "reset": "Listo, he borrado el contexto. ¿Qué quieres hacer?",
-        "fallback": "No entendí bien tu solicitud. 🤔\n\nOfrecemos: bots de WhatsApp/Telegram, sitios web, aplicaciones, logos y creación digital.\n\nEscribe 'precio' para tarifas, 'servicios' para nuestras ofertas, o describe tu proyecto.",
+        "fallback": "Aún no tengo ese conocimiento en mi base de datos 🙏\n\nAnoto su pregunta para el equipo Komara.\n\nEscriba 'menu' para ver nuestros servicios: bots de WhatsApp/Telegram, sitios web, aplicaciones, logos y creación digital.\n\nEscribe 'precio' para tarifas, 'servicios' para nuestras ofertas, o describe tu proyecto.",
         "human": f"Un experto de KOMARA te contactará en *{WHATSAPP}* en menos de 5 minutos.",
         "portfolio": "¿Qué tipo de ejemplos estás buscando?",
         "pricing_intro": "Aquí están nuestras ofertas:",
@@ -695,10 +695,14 @@ WELCOME_BACK_VARIANTS_FR = [
     "Ça faisait longtemps {nom} 👋 Prêt·e à booster ton business ? Formation, visuels, bot : dis-moi tout.",
 ]
 
+# FALLBACK HONNÊTE : après avoir consulté toute la base (kb.json, FAQ,
+# dialogues, portfolio, 4 langues), si la réponse n'y est pas, on le dit
+# avec politesse au lieu d'inventer un coq-à-l'âne. La question est
+# journalisée (record_unrecognized) pour enrichir la base plus tard.
 FALLBACK_VARIANTS_FR = [
-    "Hmm j'ai pas bien saisi 😅 Tu peux reformuler ? Ou clique sur un bouton ci-dessous 👇",
-    "Désolé, je suis encore un petit robot, j'apprends 🙏 Tu voulais parler de quel service ?",
-    "Aïe, je me suis perdu 😅 Envoie un message vocal si tu veux, ce sera plus simple pour moi.",
+    "Je n'ai pas encore cette connaissance dans ma base de données 🙏 Je note ta question pour l'équipe Komara. En attendant, tape 'menu' pour voir tout ce que je peux faire pour toi.",
+    "Bonne question, mais elle dépasse mes connaissances actuelles 😅 Je l'ai notée pour m'améliorer. Tu peux décrire ton projet, ou cliquer sur un bouton ci-dessous 👇",
+    "Je ne connais pas encore ce sujet 🙏 Ma base est spécialisée Komara Agency : bots, sites, logos, visuels, vidéo IA. Tape 'menu' pour explorer mes services.",
 ]
 
 def menu_for_lang(lang: str) -> ReplyKeyboardMarkup:
@@ -713,6 +717,146 @@ def msg(lang: str, key: str) -> str:
 # ---------------------------------------------------------------------------
 # Recherche contextuelle sécurisée
 # ---------------------------------------------------------------------------
+
+# PRÉCISION OBLIGATOIRE : mots courts ambigus qui, seuls, ne disent pas
+# l'intention du client. Le bot demande une précision au lieu de répondre
+# au hasard (règle d'or anti coq-à-l'âne).
+AMBIGUOUS_WORDS: dict[str, str] = {
+    # fr
+    "bot": "bot", "chatbot": "bot", "robot": "bot", "bots": "bot",
+    "automatique": "auto", "automatisation": "auto", "automatiser": "auto",
+    "automatise": "auto", "auto": "auto",
+    "ia": "ia", "intelligence": "ia",
+    "site": "site", "web": "site", "site web": "site",
+    "app": "app", "application": "app", "appli": "app",
+    "logo": "logo", "logos": "logo",
+    "video": "video", "vidéo": "video", "videos": "video",
+    "visuel": "visuel", "visuels": "visuel", "affiche": "visuel",
+    "design": "visuel", "graphique": "visuel",
+    "marketing": "marketing", "pub": "marketing", "publicite": "marketing",
+    "formation": "formation", "formations": "formation",
+    # en
+    "automatic": "auto", "automation": "auto", "ai": "ia",
+    "website": "site", "visual": "visuel", "visuals": "visuel",
+    "video2": "video", "training": "formation", "apps": "app",
+    # es
+    "sitio": "site", "vídeo": "video", "diseño": "visuel",
+    "formación": "formation", "automatización": "auto", "automático": "auto",
+    # ar
+    "بوت": "bot", "روبوت": "bot", "ذكاء": "ia", "موقع": "site",
+    "شعار": "logo", "فيديو": "video", "تصميم": "visuel", "تسويق": "marketing",
+    "تكوين": "formation", "تطبيق": "app", "أتمتة": "auto", "تطبيقات": "app",
+}
+
+_AMBIGUOUS_CLARIFY: dict[str, dict[str, list[str]]] = {
+    "bot": {
+        "fr": ["Bot ? Dis-moi tout 😊 Tu penses à un bot WhatsApp, un bot Telegram, ou tu veux qu'on crée un bot pour ton business ?",
+               "Bot ? Précise-moi un peu 😄 Tu veux commander un bot, voir une démo, ou tu demandes comment ça marche ?"],
+        "en": ["A bot? Tell me more 😊 Do you mean a WhatsApp bot, a Telegram bot, or do you want us to create a bot for your business?",
+               "A bot? A bit more detail 😄 Do you want to order a bot, see a demo, or ask how it works?"],
+        "es": ["¿Un bot? Cuénteme 😊 ¿Se refiere a un bot de WhatsApp, un bot de Telegram, o quiere que creemos un bot para su negocio?",
+               "¿Un bot? Un poco más de detalle 😄 ¿Quiere pedir un bot, ver una demo o preguntar cómo funciona?"],
+        "ar": ["بوت؟ أخبرني أكثر 😊 هل تقصد بوت واتساب، بوت تيليغرام، أم تريد أن نخلق بوتاً لعملك؟",
+               "بوت؟ مزيداً من التفصيل 😄 أتريد طلب بوت، رؤية عرض، أم تسأل كيف يعمل؟"],
+    },
+    "site": {
+        "fr": ["Un site ? Précise-moi 😊 Tu veux un site vitrine pour te présenter, ou une boutique en ligne pour vendre ?",
+               "Site web ? Dis-moi ton objectif 😄 Présenter ton business ou vendre tes produits en ligne ?"],
+        "en": ["A website? Tell me 😊 Do you want a showcase site to present yourself, or an online shop to sell?",
+               "Website? What's your goal 😄 Presenting your business or selling your products online?"],
+        "es": ["¿Una web? Dígame 😊 ¿Quiere un sitio vitrina para presentarse, o una tienda online para vender?",
+               "¿Web? ¿Cuál es su objetivo 😄 Presentar su negocio o vender sus productos online?"],
+        "ar": ["موقع؟ أخبرني 😊 أتريد موقعاً تعريفياً لتقديم نفسك أم متجراً إلكترونياً للبيع؟",
+               "موقع؟ ما هدفك 😄 تقديم عملك أم بيع منتجاتك أونلاين؟"],
+    },
+    "logo": {
+        "fr": ["Un logo ? Avec plaisir 🎨 C'est pour une nouvelle marque, un relooking, ou un logo pour ton business ?",
+               "Logo ? Dis-moi 😊 Tu pars de zéro ou tu modernises un logo existant ?"],
+        "en": ["A logo? With pleasure 🎨 Is it for a new brand, a refresh, or a logo for your business?",
+               "Logo? Tell me 😊 Starting from scratch or modernizing an existing logo?"],
+        "es": ["¿Un logo? Con gusto 🎨 ¿Es para una marca nueva, un rediseño, o un logo para su negocio?",
+               "¿Logo? Cuénteme 😊 ¿Parte de cero o moderniza un logo existente?"],
+        "ar": ["شعار؟ بكل سرور 🎨 هل هو لعلامة جديدة، تجديد، أم شعار لعملك؟",
+               "شعار؟ أخبرني 😊 تبدأ من الصفر أم تحدّث شعاراً موجوداً؟"],
+    },
+    "video": {
+        "fr": ["Vidéo ? Précise 😊 Une vidéo publicitaire pour tes réseaux, ou une vidéo pour présenter ton business ?",
+               "Vidéo ? Dis-moi 😄 C'est pour une promo, une présentation, ou les vœux de fin d'année ?"],
+        "en": ["Video? Tell me 😊 An ad video for your networks, or a video presenting your business?",
+               "Video? More detail 😄 Is it for a promo, a presentation, or end-of-year greetings?"],
+        "es": ["¿Vídeo? Precise 😊 ¿Un vídeo publicitario para sus redes, o un vídeo para presentar su negocio?",
+               "¿Vídeo? Dígame 😄 ¿Es para una promo, una presentación o felicitaciones de fin de año?"],
+        "ar": ["فيديو؟ وضّح 😊 فيديو إعلاني لشبكاتك أم فيديو لتقديم عملك؟",
+               "فيديو؟ أخبرني 😄 هل هو لعرض ترويجي، تقديم، أم تهاني نهاية السنة؟"],
+    },
+    "visuel": {
+        "fr": ["Design ? Dis-moi 😊 Un visuel pour tes réseaux, une affiche promo, ou une identité complète ?",
+               "Visuel ? Précise 🎨 Une affiche pour une promo, tes statuts WhatsApp, ou un pack complet ?"],
+        "en": ["Design? Tell me 😊 A visual for your networks, a promo poster, or a full identity?",
+               "Visual? More detail 🎨 A promo poster, your WhatsApp status, or a full pack?"],
+        "es": ["¿Diseño? Dígame 😊 ¿Un visual para sus redes, un cartel promo, o una identidad completa?",
+               "¿Visual? Precise 🎨 ¿Un cartel para una promo, sus estados de WhatsApp, o un pack completo?"],
+        "ar": ["تصميم؟ أخبرني 😊 تصميم لشبكاتك، منشور ترويجي، أم هوية كاملة؟",
+               "تصميم؟ وضّح 🎨 منشور لعرض، حالاتك على الواتساب، أم حزمة كاملة؟"],
+    },
+    "marketing": {
+        "fr": ["Marketing ? Précisons 😊 Tu veux vendre sur WhatsApp, faire des pubs Facebook, ou organiser tes réseaux ?",
+               "Marketing ? Dis-moi ton objectif 😄 Trouver plus de clients ou vendre plus aux clients actuels ?"],
+        "en": ["Marketing? Let's clarify 😊 Do you want to sell on WhatsApp, run Facebook ads, or organize your networks?",
+               "Marketing? What's your goal 😄 Finding more clients or selling more to current ones?"],
+        "es": ["¿Marketing? Concretemos 😊 ¿Quiere vender por WhatsApp, hacer anuncios de Facebook, u organizar sus redes?",
+               "¿Marketing? ¿Su objetivo 😄 Conseguir más clientes o vender más a los actuales?"],
+        "ar": ["تسويق؟ لنوضح 😊 أتريد البيع على الواتساب، إعلانات فيسبوك، أم تنظيم شبكاتك؟",
+               "تسويق؟ ما هدفك 😄 إيجاد زبائن أكثر أم البيع أكثر للزبائن الحاليين؟"],
+    },
+    "auto": {
+        "fr": ["Automatisation ? Bonne piste ⚙️ Tu veux automatiser tes réponses clients, tes relances, ou tes commandes ?",
+               "Automatique ? Précise 😊 Tu parles d'un bot qui répond tout seul, ou d'automatiser tes ventes ?"],
+        "en": ["Automation? Good lead ⚙️ Do you want to automate client replies, follow-ups, or your orders?",
+               "Automatic? Clarify 😊 Do you mean a bot that answers by itself, or automating your sales?"],
+        "es": ["¿Automatización? Buena pista ⚙️ ¿Quiere automatizar sus respuestas a clientes, sus seguimientos o sus pedidos?",
+               "¿Automático? Precise 😊 ¿Habla de un bot que responde solo, o de automatizar sus ventas?"],
+        "ar": ["أتمتة؟ مسار جيد ⚙️ أتريد أتمتة الردود على الزبائن، المتابعات، أم الطلبات؟",
+               "تلقائي؟ وضّح 😊 هل تقصد بوتاً يرد بنفسه أم أتمتة مبيعاتك؟"],
+    },
+    "ia": {
+        "fr": ["L'IA ? 😊 Tu veux un chatbot IA, une formation IA, ou créer des images avec l'IA ?",
+               "IA ? Précise 😄 Un bot intelligent pour ton business, ou apprendre à utiliser l'IA ?"],
+        "en": ["AI? 😊 Do you want an AI chatbot, AI training, or creating images with AI?",
+               "AI? Clarify 😄 A smart bot for your business, or learning to use AI?"],
+        "es": ["¿IA? 😊 ¿Quiere un chatbot IA, formación IA, o crear imágenes con IA?",
+               "¿IA? Precise 😄 ¿Un bot inteligente para su negocio, o aprender a usar la IA?"],
+        "ar": ["الذكاء الاصطناعي؟ 😊 أتريد بوتاً ذكياً، تكويناً في الذكاء، أم إنشاء صور بالذكاء؟",
+               "الذكاء؟ وضّح 😄 بوت ذكي لعملك أم تعلم استخدام الذكاء الاصطناعي؟"],
+    },
+    "app": {
+        "fr": ["Une app ? Précise 😊 Une application web pour tes clients, ou un bot qui remplace une app ?",
+               "App ? Dis-moi 😄 Tu veux vendre dans une app, ou gérer ton business depuis ton téléphone ?"],
+        "en": ["An app? Clarify 😊 A web app for your clients, or a bot that works like an app?",
+               "App? Tell me 😄 Do you want to sell in an app, or manage your business from your phone?"],
+        "es": ["¿Una app? Precise 😊 ¿Una aplicación web para sus clientes, o un bot que hace de app?",
+               "¿App? Dígame 😄 ¿Quiere vender en una app, o gestionar su negocio desde su móvil?"],
+        "ar": ["تطبيق؟ وضّح 😊 تطبيق ويب لزبائنك أم بوت يقوم مقام التطبيق؟",
+               "تطبيق؟ أخبرني 😄 أتريد البيع في تطبيق أم تدبير عملك من هاتفك؟"],
+    },
+    "formation": {
+        "fr": ["Formation ? 😊 Tu veux apprendre l'IA pour ton business, ou former ton équipe ?",
+               "Formation ? Précise 😄 C'est pour toi ou pour ton équipe ?"],
+        "en": ["Training? 😊 Do you want to learn AI for your business, or train your team?",
+               "Training? Clarify 😄 Is it for you or for your team?"],
+        "es": ["¿Formación? 😊 ¿Quiere aprender IA para su negocio, o formar a su equipo?",
+               "¿Formación? Precise 😄 ¿Es para usted o para su equipo?"],
+        "ar": ["تكوين؟ 😊 أتريد تعلم الذكاء لعملك أم تكوين فريقك؟",
+               "تكوين؟ وضّح 😄 هل هو لك أم لفريقك؟"],
+    },
+}
+
+def clarif(group: str, lang: str) -> str:
+    """Message de demande de précision, dans la langue du client."""
+    pool = (_AMBIGUOUS_CLARIFY.get(group) or {}).get(lang) \
+        or (_AMBIGUOUS_CLARIFY.get(group) or {}).get("fr") \
+        or ["Peux-tu préciser ta demande 😊"]
+    return random.choice(pool)
 
 # Mots courts de confirmation/refus : sur ces mots-là, un match direct
 # "au hasard" (ex : "oui" matchant à tort la fiche "oui j en ai") est un
@@ -735,46 +879,72 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
          if h.get("role") == "assistant" and h.get("content")),
         "")
 
-    # RÈGLE D'OR EN PRIORITÉ : mot court de confirmation + question du
+    # RÈGLE D'OR EN PRIORITÉ : mot de confirmation + question du
     # bot en attente → on répond DANS CE CONTEXTE avant tout autre
     # matching (fini la boucle "Oui" → réponse d'une fiche sans rapport).
-    is_confirm_word = user_text.strip().lower() in _CONFIRM_WORDS
+    # « oui » mais aussi « oui exactement », « oui explique », « non pas
+    # de logo » : toute réponse courte qui COMMENCE par oui/non est une
+    # réponse à la question du bot, pas une question autonome.
+    _low = user_text.strip().lower()
+    _first = _low.split(" ", 1)[0].strip(" .?!…'’")
+    is_confirm_word = (_low in _CONFIRM_WORDS) or (
+        _first in ("oui", "ouais", "yes", "yeah", "sí", "si", "نعم", "أكيد", "تمام",
+                   "non", "no", "nope", "لا")
+        and significant_token_count(user_text) <= 3)
     if is_confirm_word and "?" in last_bot_msg:
         qa_combined = f"{last_bot_msg} {user_text}"
         qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
         if qa_answer and qa_answer != last_bot_msg:
             return qa_answer
 
-    # 1. Recherche sémantique directe
+    # RÈGLE D'OR (message court) : un mot court (« où ? », « femme »,
+    # « le prix »...) se comprend DANS LE FIL de la conversation, pas
+    # seul. Le client dit « quel délai ? » puis « où ? » : le bot se
+    # souvient du sujet et répond sur la LOCALISATION, jamais au hasard.
+    # On combine donc avec le dernier message du bot, question ou pas.
+    is_short = significant_token_count(user_text) < 2
+    if is_short and last_bot_msg and not is_confirm_word:
+        qa_combined = f"{last_bot_msg} {user_text}"
+        qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
+        if qa_answer and qa_answer != last_bot_msg:
+            return qa_answer
+
+    # PRÉCISION OBLIGATOIRE : un mot court AMBIGU (« bot », « chatbot »,
+    # « automatique »...) ne reçoit JAMAIS de réponse au hasard. Le
+    # contexte a été essayé juste au-dessus ; s'il n'a rien donné, le
+    # bot demande de préciser l'intention du client.
+    if is_short:
+        _norm = user_text.strip().lower().strip(" .?!…")
+        _grp = AMBIGUOUS_WORDS.get(_norm)
+        if _grp:
+            return clarif(_grp, detected_lang)
+
+    # 1. Recherche sémantique directe (l'intention de la PHRASE ENTIÈRE,
+    # pas un mot isolé — le scoring bidirectionnel lit toute la question)
     direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
     if direct_answer:
         return direct_answer
 
-    # 2. RÈGLE D'OR (repli) : comprendre la réponse du client si le
-    # direct match n'a rien donné. Si le bot vient de terminer par une
-    # question, la réponse du client suit presque TOUJOURS cette
-    # question. On cherche donc avec (question du bot + réponse du
-    # client) → réponse cohérente et contextuelle, pas hors-sujet.
-    if significant_token_count(user_text) < 2:
-        if "?" in last_bot_msg:
-            qa_combined = f"{last_bot_msg} {user_text}"
-            qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
-            if qa_answer and qa_answer != last_bot_msg:
-                return qa_answer
-        # message court/ambigu sans question en attente : aucun
-        # re-match hasardeux (bug boucle accueil corrigé précédemment)
+    # 2. Message court sans contexte exploitable : aucun re-match
+    # hasardeux (bug boucle accueil corrigé précédemment)
+    if is_short:
         return None
 
-    # 3. Recherche avec contexte de conversation (si assez de contenu propre)
+    # 2bis. Confirmation longue (≤3 tokens) sans match contextuel : on
+    # ne laisse JAMAIS un « oui... » tomber sur une fiche au hasard.
+    if is_confirm_word:
+        return None
+
+    # 3. Recherche avec contexte de conversation complet : le dernier
+    # message du bot alimente TOUJOURS la recherche (question ou pas),
+    # pour que la réponse du client s'interprète dans son contexte.
     previous_user_messages = [
         item["content"] for item in history
         if item.get("role") == "user" and item.get("content")
     ]
     recent_context = " ".join(previous_user_messages[-3:])
     combined_text = f"{recent_context} {user_text}".strip()
-    # RÈGLE D'OR : si le bot vient de poser une question, la réponse du
-    # client s'interprète DANS CE CONTEXTE (même si elle est complète).
-    if "?" in last_bot_msg:
+    if last_bot_msg:
         combined_text = f"{combined_text} {last_bot_msg}".strip()
 
     contextual_answer = trouver_meilleure_reponse_multilingue(combined_text, detected_lang)

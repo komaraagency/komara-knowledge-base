@@ -903,6 +903,122 @@
   {
    "question": "Soy Komara Agency 🇬🇳, el agente de ventas IA de KOMARA AGENCY 🤖 Mi misión: ayudarle a tener un bot que venda por usted. ¿Quiere ver un ejemplo? sí",
    "answer": "Con gusto 👉 Vea el portafolio, encontrará bots de WhatsApp/Telegram, sitios web y visuales ya entregados a nuestros clientes. ¿Cuál es su negocio, para mostrarle un ejemplo en SU sector?"
+  },
+  {
+   "question": "hola",
+   "answer": "¡Hola! 👋 Bienvenido a Komara Agency 🇬🇳 ¿Acaba de descubrir nuestra agencia?"
+  },
+  {
+   "question": "¡Hola! 👋 Bienvenido a Komara Agency 🇬🇳 ¿Acaba de descubrir nuestra agencia? sí qué es komara",
+   "answer": "Somos una agencia digital que ayuda a los negocios africanos a vender más con sitios web, bots de WhatsApp, diseño y vídeo IA. ¿Qué tipo de negocio tiene usted?"
+  },
+  {
+   "question": "Somos una agencia digital que ayuda a los negocios africanos a vender más con sitios web, bots de WhatsApp, diseño y vídeo IA. ¿Qué tipo de negocio tiene usted? tengo una tienda de ropa",
+   "answer": "¡Perfecto! Trabajamos mucho con tiendas. ¿Es una tienda física en Conakry o vende online por WhatsApp?"
+  },
+  {
+   "question": "tengo una tienda de ropa",
+   "answer": "¡Perfecto! Trabajamos mucho con tiendas. ¿Es una tienda física en Conakry o vende online por WhatsApp?"
+  },
+  {
+   "question": "¡Perfecto! Trabajamos mucho con tiendas. ¿Es una tienda física en Conakry o vende online por WhatsApp? vendo por whatsapp",
+   "answer": "Entonces seguramente pierde tiempo respondiendo las mismas preguntas: precio, talla, entrega. ¿Es así?"
+  },
+  {
+   "question": "vendo por whatsapp",
+   "answer": "Entonces seguramente pierde tiempo respondiendo las mismas preguntas: precio, talla, entrega. ¿Es así?"
+  },
+  {
+   "question": "Entonces seguramente pierde tiempo respondiendo las mismas preguntas: precio, talla, entrega. ¿Es así? sí exactamente",
+   "answer": "Ahí intervenimos nosotros. Nuestro bot de WhatsApp responde por usted 24/7, muestra su catálogo y toma los pedidos incluso mientras duerme. ¿Quiere que le explique cómo funciona?"
+  },
+  {
+   "question": "Ahí intervenimos nosotros. Nuestro bot de WhatsApp responde por usted 24/7, muestra su catálogo y toma los pedidos incluso mientras duerme. ¿Quiere que le explique cómo funciona? sí explique",
+   "answer": "Simple: el cliente escribe «hola», el bot le muestra sus modelos, tallas disponibles, precios y le pide la dirección de entrega. Usted solo recibe «Nuevo pedido: Fatou, vestido azul talla M». ¿Ve el ahorro de tiempo?"
+  },
+  {
+   "question": "Simple: el cliente escribe «hola», el bot le muestra sus modelos, tallas disponibles, precios y le pide la dirección de entrega. Usted solo recibe «Nuevo pedido: Fatou, vestido azul talla M». ¿Ve el ahorro de tiempo? sí ¿y el precio?",
+   "answer": "Para una tienda como la suya, el bot de WhatsApp completo (catálogo + pedidos + pago) empieza en 100€ (+ 50€/mes de mantenimiento). Y si no tiene logo o visuales, le hacemos un pack. ¿Cuál es su presupuesto aproximado?"
+  },
+  {
+   "question": "Para una tienda como la suya, el bot de WhatsApp completo (catálogo + pedidos + pago) empieza en 100€ (+ 50€/mes de mantenimiento). Y si no tiene logo o visuales, le hacemos un pack. ¿Cuál es su presupuesto aproximado? es caro",
+   "answer": "Le entiendo. Por eso hacemos 60% para empezar y 40% a la entrega. Y el bot se paga solo en 2-3 ventas porque ya no pierde ningún cliente de noche. ¿Prefiere empezar pequeño solo con el bot o con un pack bot + logo?"
+  },
+  {
+   "question": "es caro",
+   "answer": "Le entiendo. Por eso hacemos 60% para empezar y 40% a la entrega. Y el bot se paga solo en 2-3 ventas porque ya no pierde ningún cliente de noche. ¿Prefiere empezar pequeño solo con el bot o con un pack bot + logo?"
+  },
+  {
+   "question": "Le entiendo. Por eso hacemos 60% para empezar y 40% a la entrega. Y el bot se paga solo en 2-3 ventas porque ya no pierde ningún cliente de noche. ¿Prefiere empezar pequeño solo con el bot o con un pack bot + logo? ¿cuánto tarda?",
+   "answer": "Para su bot de tienda, entregamos en 3 a 5 días máximo. Logo en 48h si lo toma junto."
+  },
+  {
+   "question": "¿cuánto tarda?",
+   "answer": "Para su bot de tienda, entregamos en 3 a 5 días máximo. Logo en 48h si lo toma junto."
+  },
+  {
+   "question": "Para su bot de tienda, entregamos en 3 a 5 días máximo. Logo en 48h si lo toma junto. ¿dónde?",
+   "answer": "Estamos en Guinea 🇬🇳 pero todo se hace online. Le entregamos su bot directo a su número de WhatsApp, sin necesidad de desplazarse. ¿Y usted dónde está?"
+  },
+  {
+   "question": "Estamos en Guinea 🇬🇳 pero todo se hace online. Le entregamos su bot directo a su número de WhatsApp, sin necesidad de desplazarse. ¿Y usted dónde está? en dakar",
+   "answer": "Genial, tenemos muchos clientes en Dakar 🇸🇳 Ya trabajamos con 2 tiendas allí. Todo pasa por WhatsApp, como ahora."
+  },
+  {
+   "question": "Genial, tenemos muchos clientes en Dakar 🇸🇳 Ya trabajamos con 2 tiendas allí. Todo pasa por WhatsApp, como ahora. ¿tienen ejemplos?",
+   "answer": "¡Sí! Puedo enviarle 2 ejemplos de bots de tiendas que hicimos para negocios como el suyo. ¿Quiere verlos por WhatsApp o en vídeo?"
+  },
+  {
+   "question": "¿tienen ejemplos?",
+   "answer": "¡Sí! Puedo enviarle 2 ejemplos de bots de tiendas que hicimos para negocios como el suyo. ¿Quiere verlos por WhatsApp o en vídeo?"
+  },
+  {
+   "question": "¡Sí! Puedo enviarle 2 ejemplos de bots de tiendas que hicimos para negocios como el suyo. ¿Quiere verlos por WhatsApp o en vídeo? por whatsapp",
+   "answer": "Perfecto. Dígame su sector exacto (¿ropa de mujer, hombre, niños?) para enviarle el ejemplo correcto."
+  },
+  {
+   "question": "Perfecto. Dígame su sector exacto (¿ropa de mujer, hombre, niños?) para enviarle el ejemplo correcto. mujer",
+   "answer": "Anotado. Además del bot, ¿ya tiene un logo pro y visuales para sus estados? Porque un buen visual vende 3 veces más."
+  },
+  {
+   "question": "Anotado. Además del bot, ¿ya tiene un logo pro y visuales para sus estados? Porque un buen visual vende 3 veces más. no tengo logo",
+   "answer": "Podemos hacerle un pack Bot + Logo + 3 carteles promo para su lanzamiento. Es nuestro pack más pedido para tiendas. ¿Le interesa?"
+  },
+  {
+   "question": "Podemos hacerle un pack Bot + Logo + 3 carteles promo para su lanzamiento. Es nuestro pack más pedido para tiendas. ¿Le interesa? ¿cómo pago?",
+   "answer": "Pago por Wave, Orange Money, MTN o transferencia. 60% al inicio para lanzar el trabajo, 40% cuando haya validado todo. Simple y seguro, con factura."
+  },
+  {
+   "question": "¿cómo pago?",
+   "answer": "Pago por Wave, Orange Money, MTN o transferencia. 60% al inicio para lanzar el trabajo, 40% cuando haya validado todo. Simple y seguro, con factura."
+  },
+  {
+   "question": "Pago por Wave, Orange Money, MTN o transferencia. 60% al inicio para lanzar el trabajo, 40% cuando haya validado todo. Simple y seguro, con factura. lo voy a pensar",
+   "answer": "Sin problema, es normal. ¿Le hace dudar el precio o prefiere ver primero los ejemplos?"
+  },
+  {
+   "question": "lo voy a pensar",
+   "answer": "Sin problema, es normal. ¿Le hace dudar el precio o prefiere ver primero los ejemplos?"
+  },
+  {
+   "question": "Sin problema, es normal. ¿Le hace dudar el precio o prefiere ver primero los ejemplos? el precio",
+   "answer": "Ok. Si le hacemos solo el bot básico sin logo para empezar, podemos bajar a 60€ para arrancar, el resto a la entrega. Empezamos con eso y usted añade el logo más tarde cuando tenga más ventas. ¿Le parece?"
+  },
+  {
+   "question": "Ok. Si le hacemos solo el bot básico sin logo para empezar, podemos bajar a 60€ para arrancar, el resto a la entrega. Empezamos con eso y usted añade el logo más tarde cuando tenga más ventas. ¿Le parece? ok quiero pedir",
+   "answer": "Perfecto 🔥 ¡Lanzamos! Envíeme: 1) El nombre de su tienda 2) 3 fotos de sus mejores artículos 3) Su número Wave/OM para la factura. Se lo preparo ahora mismo."
+  },
+  {
+   "question": "ok quiero pedir",
+   "answer": "Perfecto 🔥 ¡Lanzamos! Envíeme: 1) El nombre de su tienda 2) 3 fotos de sus mejores artículos 3) Su número Wave/OM para la factura. Se lo preparo ahora mismo."
+  },
+  {
+   "question": "Perfecto 🔥 ¡Lanzamos! Envíeme: 1) El nombre de su tienda 2) 3 fotos de sus mejores artículos 3) Su número Wave/OM para la factura. Se lo preparo ahora mismo. gracias",
+   "answer": "Gracias por su confianza 🙏 Le preparo su presupuesto oficial y le respondo en 10 minutos. Bienvenido a Komara Agency 🇬🇳"
+  },
+  {
+   "question": "gracias",
+   "answer": "Gracias por su confianza 🙏 Le preparo su presupuesto oficial y le respondo en 10 minutos. Bienvenido a Komara Agency 🇬🇳"
   }
  ]
 }

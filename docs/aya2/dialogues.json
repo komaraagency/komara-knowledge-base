@@ -1411,6 +1411,122 @@
   {
    "question": "Je suis Komara Agency 🇬🇳, l'agent vendeur IA de KOMARA AGENCY 🤖 Ma mission : t'aider à avoir un bot qui vend pour toi. Tu veux voir un exemple ? oui",
    "answer": "Avec plaisir 👉 Regarde le portfolio, tu y verras des bots WhatsApp/Telegram, des sites et des visuels déjà livrés à nos clients. Tu fais quoi comme business, pour que je te montre un exemple dans TON domaine ?"
+  },
+  {
+   "question": "salut",
+   "answer": "Salut ! 👋 Bienvenue chez Komara Agency 🇬🇳 Tu viens de découvrir notre agence ?"
+  },
+  {
+   "question": "Salut ! 👋 Bienvenue chez Komara Agency 🇬🇳 Tu viens de découvrir notre agence ? oui c'est quoi komara",
+   "answer": "On est une agence digitale qui aide les business africains à vendre plus grâce au site web, bot WhatsApp, design et vidéo IA. Tu as quel type de business toi ?"
+  },
+  {
+   "question": "On est une agence digitale qui aide les business africains à vendre plus grâce au site web, bot WhatsApp, design et vidéo IA. Tu as quel type de business toi ? j'ai une boutique de vêtements",
+   "answer": "Parfait ! On travaille beaucoup avec les boutiques. C'est une boutique physique à Conakry ou tu vends en ligne sur WhatsApp ?"
+  },
+  {
+   "question": "j'ai une boutique de vêtements",
+   "answer": "Parfait ! On travaille beaucoup avec les boutiques. C'est une boutique physique à Conakry ou tu vends en ligne sur WhatsApp ?"
+  },
+  {
+   "question": "Parfait ! On travaille beaucoup avec les boutiques. C'est une boutique physique à Conakry ou tu vends en ligne sur WhatsApp ? je vends sur whatsapp",
+   "answer": "Donc tu perds sûrement du temps à répondre aux mêmes questions : prix, taille, livraison. C'est ça ?"
+  },
+  {
+   "question": "je vends sur whatsapp",
+   "answer": "Donc tu perds sûrement du temps à répondre aux mêmes questions : prix, taille, livraison. C'est ça ?"
+  },
+  {
+   "question": "Donc tu perds sûrement du temps à répondre aux mêmes questions : prix, taille, livraison. C'est ça ? oui exactement",
+   "answer": "C'est là qu'on intervient. Notre bot WhatsApp répond à ta place 24h/24, montre ton catalogue et prend les commandes même quand tu dors. Tu veux que je t'explique comment il marche ?"
+  },
+  {
+   "question": "C'est là qu'on intervient. Notre bot WhatsApp répond à ta place 24h/24, montre ton catalogue et prend les commandes même quand tu dors. Tu veux que je t'explique comment il marche ? oui explique",
+   "answer": "Simple : le client écrit \"bonjour\", le bot lui montre tes modèles, les tailles dispo, les prix, et lui demande son adresse pour livrer. Toi tu reçois juste \"Nouvelle commande : Fatou, robe bleue taille M\". Tu vois le gain de temps ?"
+  },
+  {
+   "question": "Simple : le client écrit \"bonjour\", le bot lui montre tes modèles, les tailles dispo, les prix, et lui demande son adresse pour livrer. Toi tu reçois juste \"Nouvelle commande : Fatou, robe bleue taille M\". Tu vois le gain de temps ? oui et le prix ?",
+   "answer": "Pour une boutique comme la tienne, le bot WhatsApp complet (catalogue + commandes + paiement) est à partir de 100€ (+ 50€/mois de maintenance). Et si tu n'as pas de logo ou de visuels, on te fait un pack. Quel est ton budget approximatif ?"
+  },
+  {
+   "question": "Pour une boutique comme la tienne, le bot WhatsApp complet (catalogue + commandes + paiement) est à partir de 100€ (+ 50€/mois de maintenance). Et si tu n'as pas de logo ou de visuels, on te fait un pack. Quel est ton budget approximatif ? c'est cher",
+   "answer": "Je comprends. C'est pour ça qu'on fait 60% pour démarrer et 40% à la livraison. Et le bot se rembourse en 2-3 ventes car tu ne rates plus aucun client la nuit. Tu préfères qu'on commence petit avec juste le bot ou avec un pack bot + logo ?"
+  },
+  {
+   "question": "c'est cher",
+   "answer": "Je comprends. C'est pour ça qu'on fait 60% pour démarrer et 40% à la livraison. Et le bot se rembourse en 2-3 ventes car tu ne rates plus aucun client la nuit. Tu préfères qu'on commence petit avec juste le bot ou avec un pack bot + logo ?"
+  },
+  {
+   "question": "Je comprends. C'est pour ça qu'on fait 60% pour démarrer et 40% à la livraison. Et le bot se rembourse en 2-3 ventes car tu ne rates plus aucun client la nuit. Tu préfères qu'on commence petit avec juste le bot ou avec un pack bot + logo ? quel délai ?",
+   "answer": "Pour ton bot boutique, on livre en 3 à 5 jours max. Logo en 48h si tu le prends avec."
+  },
+  {
+   "question": "quel délai ?",
+   "answer": "Pour ton bot boutique, on livre en 3 à 5 jours max. Logo en 48h si tu le prends avec."
+  },
+  {
+   "question": "Pour ton bot boutique, on livre en 3 à 5 jours max. Logo en 48h si tu le prends avec. où ?",
+   "answer": "On est basés en Guinée 🇬🇳 mais tout se fait en ligne. On te livre ton bot direct sur ton numéro WhatsApp, pas besoin de te déplacer. Toi tu es basé où ?"
+  },
+  {
+   "question": "On est basés en Guinée 🇬🇳 mais tout se fait en ligne. On te livre ton bot direct sur ton numéro WhatsApp, pas besoin de te déplacer. Toi tu es basé où ? à dakar",
+   "answer": "Top, on a beaucoup de clients à Dakar 🇸🇳 On travaille déjà avec 2 boutiques là-bas. Tout se passe sur WhatsApp, comme maintenant."
+  },
+  {
+   "question": "Top, on a beaucoup de clients à Dakar 🇸🇳 On travaille déjà avec 2 boutiques là-bas. Tout se passe sur WhatsApp, comme maintenant. vous avez des exemples ?",
+   "answer": "Oui ! Je peux t'envoyer 2 exemples de bots boutiques qu'on a faits pour des boutiques comme la tienne. Tu veux les voir sur WhatsApp ou en vidéo ?"
+  },
+  {
+   "question": "vous avez des exemples ?",
+   "answer": "Oui ! Je peux t'envoyer 2 exemples de bots boutiques qu'on a faits pour des boutiques comme la tienne. Tu veux les voir sur WhatsApp ou en vidéo ?"
+  },
+  {
+   "question": "Oui ! Je peux t'envoyer 2 exemples de bots boutiques qu'on a faits pour des boutiques comme la tienne. Tu veux les voir sur WhatsApp ou en vidéo ? sur whatsapp",
+   "answer": "Parfait. Donne-moi ton secteur exact (vêtements femme, homme, enfants ?) pour que je t'envoie le bon exemple."
+  },
+  {
+   "question": "Parfait. Donne-moi ton secteur exact (vêtements femme, homme, enfants ?) pour que je t'envoie le bon exemple. femme",
+   "answer": "Noté. En plus du bot, tu as déjà un logo pro et des visuels pour tes statuts ? Parce qu'un bon visuel fait vendre 3x plus."
+  },
+  {
+   "question": "Noté. En plus du bot, tu as déjà un logo pro et des visuels pour tes statuts ? Parce qu'un bon visuel fait vendre 3x plus. non j'ai pas de logo",
+   "answer": "On peut te faire un pack Bot + Logo + 3 affiches promo pour ton lancement. C'est notre pack le plus demandé pour les boutiques. Ça t'intéresse ?"
+  },
+  {
+   "question": "On peut te faire un pack Bot + Logo + 3 affiches promo pour ton lancement. C'est notre pack le plus demandé pour les boutiques. Ça t'intéresse ? paiement comment ?",
+   "answer": "Paiement par Wave, Orange Money, MTN ou virement. 60% au début pour lancer le travail, 40% quand tu as tout validé. Simple et sécurisé avec facture."
+  },
+  {
+   "question": "paiement comment ?",
+   "answer": "Paiement par Wave, Orange Money, MTN ou virement. 60% au début pour lancer le travail, 40% quand tu as tout validé. Simple et sécurisé avec facture."
+  },
+  {
+   "question": "Paiement par Wave, Orange Money, MTN ou virement. 60% au début pour lancer le travail, 40% quand tu as tout validé. Simple et sécurisé avec facture. je vais réfléchir",
+   "answer": "Pas de souci, c'est normal. C'est le prix qui te fait hésiter ou tu veux d'abord voir les exemples ?"
+  },
+  {
+   "question": "je vais réfléchir",
+   "answer": "Pas de souci, c'est normal. C'est le prix qui te fait hésiter ou tu veux d'abord voir les exemples ?"
+  },
+  {
+   "question": "Pas de souci, c'est normal. C'est le prix qui te fait hésiter ou tu veux d'abord voir les exemples ? le prix",
+   "answer": "Ok. Si on te fait juste le bot de base sans le logo pour commencer, on peut baisser à 60€ pour démarrer, le reste à la livraison. On démarre avec ça et tu ajouteras le logo plus tard quand tu auras plus de ventes. On fait comme ça ?"
+  },
+  {
+   "question": "Ok. Si on te fait juste le bot de base sans le logo pour commencer, on peut baisser à 60€ pour démarrer, le reste à la livraison. On démarre avec ça et tu ajouteras le logo plus tard quand tu auras plus de ventes. On fait comme ça ? ok je veux commander",
+   "answer": "Parfait 🔥 On lance ! Envoie-moi : 1) Le nom de ta boutique 2) 3 photos de tes meilleurs articles 3) Ton numéro Wave/OM pour la facture. Je te prépare ça tout de suite."
+  },
+  {
+   "question": "ok je veux commander",
+   "answer": "Parfait 🔥 On lance ! Envoie-moi : 1) Le nom de ta boutique 2) 3 photos de tes meilleurs articles 3) Ton numéro Wave/OM pour la facture. Je te prépare ça tout de suite."
+  },
+  {
+   "question": "Parfait 🔥 On lance ! Envoie-moi : 1) Le nom de ta boutique 2) 3 photos de tes meilleurs articles 3) Ton numéro Wave/OM pour la facture. Je te prépare ça tout de suite. merci",
+   "answer": "Merci à toi pour ta confiance 🙏 Je te prépare ton devis officiel et je te reviens dans 10 minutes. Bienvenue chez Komara Agency 🇬🇳"
+  },
+  {
+   "question": "merci",
+   "answer": "Merci à toi pour ta confiance 🙏 Je te prépare ton devis officiel et je te reviens dans 10 minutes. Bienvenue chez Komara Agency 🇬🇳"
   }
  ]
 }
