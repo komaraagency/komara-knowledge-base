@@ -371,6 +371,534 @@
   {
    "question": "quiero crear un bot",
    "answer": "Lo entendiste todo 💡 Es exactamente como el bot con el que habla ahora. Trabaja 24/7, nunca duerme, y responde a sus clientes por usted. ¿Para qué negocio quiere un bot?"
+  },
+  {
+   "question": "¿creáis bots de whatsapp?",
+   "answer": "Sí, es nuestra especialidad 😎 Su bot de WhatsApp responde a clientes 24/7, toma pedidos y le envía los leads directamente. ¿Para qué tipo de negocio es?"
+  },
+  {
+   "question": "cuánto tardáis un bot de whatsapp",
+   "answer": "Normalmente de 3 a 5 días laborables, pruebas incluidas 👍 Usted me envía sus productos, preguntas frecuentes y tono, y yo me encargo del resto. ¿Cuándo empezamos?"
+  },
+  {
+   "question": "cuánto cuesta un bot de whatsapp",
+   "answer": "El bot IA empieza en 100€ con 50€/mes de mantenimiento (actualizaciones + soporte). Luego le doy un presupuesto exacto según sus opciones. ¿Quiere el presupuesto en 2 minutos?"
+  },
+  {
+   "question": "un bot de whatsapp puede responder solo a los clientes",
+   "answer": "Sí, y mucho más 😊 Responde, envía su catálogo, toma pedidos, gestiona el carrito y le avisa en cada venta. Usted duerme, él vende. ¿Quiere una demo?"
+  },
+  {
+   "question": "tengo una tienda de ropa en whatsapp",
+   "answer": "Perfecto, es el caso de uso número uno 👌 El bot envía fotos, precios, gestiona tallas y entregas, y no pierde ni un mensaje. Sus clientas compran incluso de noche. ¿Empezamos?"
+  },
+  {
+   "question": "tengo un restaurante ¿el bot puede tomar los pedidos?",
+   "answer": "¡Sí! El cliente escribe su pedido, el bot lo confirma, calcula el total y le envía el comanda a cocina 🍽️ Cero llamadas perdidas en horas punta. ¿Para delivery o en local?"
+  },
+  {
+   "question": "un bot de whatsapp es caro para mi negocio pequeño",
+   "answer": "Le entiendo 😊 Pero calcule: 100€ una vez es menos que una semana de vendedor. Y nunca duerme, no toma vacaciones y no pierde ninguna venta. Se paga solo rápido, ¿verdad?"
+  },
+  {
+   "question": "no soy bueno con la tecnología, un bot es complicado",
+   "answer": "Cero tecnología para usted 😄 Me envía sus datos una sola vez y luego gestiona todo desde su móvil con comandos simples. Más fácil que WhatsApp Business. ¿Probamos?"
+  },
+  {
+   "question": "¿el bot puede enviar promos a todos mis clientes de whatsapp?",
+   "answer": "Sí, difusión 🔥 Usted escribe una promo y el bot la envía a toda su lista en un clic, con seguimiento de aperturas. Imagine en temporada de fiestas. ¿Cuántos contactos tiene?"
+  },
+  {
+   "question": "soy médico, ¿el bot puede gestionar las citas?",
+   "answer": "Sí 📅 El bot propone horarios, confirma la cita, envía el recordatorio la víspera y reduce las ausencias. Su secretaria se centra en lo esencial. ¿Quiere la demo del módulo de citas?"
+  },
+  {
+   "question": "¿para qué sirve un bot de whatsapp en una escuela?",
+   "answer": "Para todo: inscripciones, cuotas, horarios, avisos a los padres 🎓 Sin colgar 50 mensajes en un grupo. ¿Escuela primaria o formación profesional?"
+  },
+  {
+   "question": "soy agente inmobiliario, ¿el bot puede cualificar a los compradores?",
+   "answer": "Exacto 🏠 El bot hace las preguntas correctas: presupuesto, zona, tipo de inmueble, plazos. Deja de perder tiempo con curiosos y llama solo a compradores reales. ¿Cuántas consultas por semana?"
+  },
+  {
+   "question": "ahora respondo yo mismo en whatsapp",
+   "answer": "Y así no puede crecer 😅 Cada hora respondiendo es una hora de crecimiento perdida. El bot gestiona el 80% de preguntas repetitivas, usted queda con el 20% de alto valor. ¿Listo para recuperar su tiempo?"
+  },
+  {
+   "question": "mis clientes hablan francés e inglés, ¿el bot gestiona ambos?",
+   "answer": "Sí, detecta el idioma automáticamente: FR, EN, ES y AR 😊 Un cliente escribe en inglés y recibe respuesta en inglés. Sin configuración. ¿De dónde son sus clientes?"
+  },
+  {
+   "question": "¿el bot puede gestionar pagos con dinero móvil?",
+   "answer": "Sí 📲 El cliente elige un servicio, el bot da los datos de pago móvil, confirma la recepción e inicia el pedido. Todo queda por escrito. ¿Qué método usa usted?"
+  },
+  {
+   "question": "para mi servicio de reparto, ¿el bot puede seguir los pedidos?",
+   "answer": "Sí 🛵 El cliente escribe «dónde está mi pedido» y el bot responde con el estado en vivo: preparado, en camino, entregado. Menos llamadas, más calma. ¿Cuántas entregas hace al día?"
+  },
+  {
+   "question": "soy peluquera, ¿el bot puede llenar mi agenda?",
+   "answer": "Sí 💇 El bot muestra los huecos libres, la clienta reserva y recibe confirmación y recordatorio. Su agenda se llena sola. ¿Cuántas clientas atiende al día?"
+  },
+  {
+   "question": "¿tenéis ejemplos de bots de whatsapp que funcionan?",
+   "answer": "Sí, para eso está el portafolio 👉 Bots de tiendas, restaurantes, clínicas: un cliente medio ahorra 3h al día y no pierde ni un mensaje. ¿Quiere ver las capturas?"
+  },
+  {
+   "question": "vale, quiero un bot de whatsapp, ¿cómo empezamos?",
+   "answer": "Simple 🚀 Usted me envía: sus productos/servicios, sus 10 preguntas más frecuentes y el número que recibirá las ventas. Entrego en 3-5 días. ¿Lo lanzamos hoy?"
+  },
+  {
+   "question": "y tras la entrega, ¿y si tengo un problema con el bot?",
+   "answer": "No le dejamos solo 😤 El mantenimiento de 50€/mes cubre correcciones, actualizaciones y añadir productos. Usted me contacta directo y le respondo. ¿Cuántos productos vende al principio?"
+  },
+  {
+   "question": "¿creáis bots de telegram?",
+   "answer": "Sí 👍 Bot de Telegram llave en mano: bienvenida, catálogo, pedidos, administración desde su móvil. Usted controla todo con comandos simples. ¿Cuál es el proyecto?"
+  },
+  {
+   "question": "¿un bot de telegram puede vender mis productos?",
+   "answer": "Sí, con botones clicables 🛍️ El cliente escribe «catálogo», elige producto, añade al carrito y pide. Todo dentro del chat. ¿Qué vende exactamente?"
+  },
+  {
+   "question": "¿puedo gestionar un bot de telegram desde mi móvil?",
+   "answer": "Sí, está pensado para eso 📱 Comandos admin: estadísticas, clientes, promos, pausa y reanudar. Su móvil se vuelve su panel de control. ¿Ya gestiona una cuenta de Telegram?"
+  },
+  {
+   "question": "¿cuánto cuesta un bot de telegram?",
+   "answer": "Desde 100€ + 50€/mes de mantenimiento, presupuesto gratis según sus opciones 📄 Cada proyecto es único: tienda, citas, soporte... ¿Quiere el presupuesto en 2 minutos?"
+  },
+  {
+   "question": "¿en cuánto tiempo entregáis un bot de telegram?",
+   "answer": "De 3 a 5 días laborables normalmente ⏱️ Necesidades más complejas (pagos, multi-tienda): 1 semana máximo. ¿Tiene una fecha de lanzamiento en mente?"
+  },
+  {
+   "question": "¿el bot funciona en grupos de telegram?",
+   "answer": "Sí 😊 En privado vende, en grupos modera: responde preguntas, borra spam y fija sus anuncios. Su comunidad se gestiona sola. ¿Cuántos miembros tiene?"
+  },
+  {
+   "question": "quiero leads para mi negocio, ¿me ayuda un bot de telegram?",
+   "answer": "Sí 🎯 El bot cualifica cada contacto: nombre, necesidad, presupuesto, WhatsApp. Usted recibe cada lead en su móvil, listo para llamar. ¿Qué servicio vende?"
+  },
+  {
+   "question": "doy formaciones, ¿el bot puede gestionar las inscripciones?",
+   "answer": "Sí 🎓 El bot presenta su programa, muestra fechas, recoge nombre + WhatsApp + pago y envía la confirmación. Usted llena sus sesiones sin esfuerzo. ¿Cuánto cuestan sus formaciones?"
+  },
+  {
+   "question": "nadie usa telegram en áfrica, ¿por qué no whatsapp?",
+   "answer": "Telegram está justamente explotando en África 📈 Comunidades, criptos, tiendas: millones de usuarios activos. Y un bot de Telegram cuesta menos de mantener. ¿Dónde está su público, en qué apps?"
+  },
+  {
+   "question": "¿el bot de telegram puede dar soporte 24/7?",
+   "answer": "Sí, esa es su fuerza 💪 FAQ automáticas, seguimiento de pedidos, reclamaciones escaladas a usted. El cliente recibe respuesta a las 3am, no un «le contestaremos». ¿Cuántos mensajes recibe al día?"
+  },
+  {
+   "question": "tengo un medio digital, ¿el bot puede difundir mis artículos?",
+   "answer": "Sí 📰 Cada artículo sale automáticamente en su canal, con botón «leer más». Sin publicar a mano. ¿De qué trata su medio?"
+  },
+  {
+   "question": "para una tienda online, ¿un bot de telegram reemplaza una web?",
+   "answer": "La complementa 😊 El bot vende en el chat, la web lo agrupa todo. Muchos clientes nuestros venden 100% por el bot. ¿Ya tiene web o empezamos de cero?"
+  },
+  {
+   "question": "¿el bot de telegram acepta pago con dinero móvil?",
+   "answer": "Sí 📲 El cliente paga con Orange Money, MoMo o PayPal según su clientela, el bot confirma y dispara la entrega. Todo es rastreable. ¿Su clientela es local o internacional?"
+  },
+  {
+   "question": "¿mi equipo puede gestionar el bot entre varios?",
+   "answer": "Sí, cada miembro tiene acceso admin desde su móvil 👥 Estadísticas compartidas, mensajes de clientes, pedidos. Incluso a distancia. ¿Cuántos son en el equipo?"
+  },
+  {
+   "question": "¿es seguro un bot de telegram para los datos de mis clientes?",
+   "answer": "Sí 🔒 Cada cliente solo ve sus datos, su panel admin está bloqueado a su ID. Sin fugas ni compartición. ¿Gestiona datos sensibles, salud o finanzas?"
+  },
+  {
+   "question": "¿por qué un bot de telegram y no un community manager?",
+   "answer": "El bot trabaja 24/7 y no cuesta un sueldo 😄 Su community manager crea, el bot responde. Juntos son imparables. ¿Ya tiene a alguien para el contenido?"
+  },
+  {
+   "question": "para una ong, ¿el bot puede recoger donaciones?",
+   "answer": "Sí 🤲 El bot cuenta su misión, muestra el impacto y recoge donaciones con recibo automático. Cada donante recibe su agradecimiento. ¿Para qué causa es?"
+  },
+  {
+   "question": "¿puedo ver una demo de un bot de telegram?",
+   "answer": "Por supuesto 👉 Le envío capturas de bots en producción: tienda, citas, soporte. Hasta puede probar un bot demo. ¿Qué prefiere ver primero?"
+  },
+  {
+   "question": "vale, tomo un bot de telegram, ¿cuál es el procedimiento?",
+   "answer": "Genial 🚀 1) Usted me envía sus datos (productos, FAQ, contactos). 2) Yo construyo y pruebo. 3) Entrega en 3-5 días, paga y le formo. ¿Lo lanzamos este fin de semana?"
+  },
+  {
+   "question": "¿qué incluye el mantenimiento del bot de telegram?",
+   "answer": "50€/mes: correcciones, actualizaciones IA, nuevos productos, copia semanal de sus datos 💾 Sin compromiso. ¿Con o sin la opción de copia?"
+  },
+  {
+   "question": "¿hacéis bots para facebook?",
+   "answer": "Sí 👍 Bot de Messenger llave en mano: responde los mensajes de su página de Facebook 24/7, cualifica y convierte a sus fans en clientes. ¿Cuántos seguidores tiene su página?"
+  },
+  {
+   "question": "mi página de facebook recibe demasiados mensajes y no llego",
+   "answer": "Es señal de que su negocio crece 😅 El bot toma el relevo: respuesta inmediata a cada mensaje y usted solo conserva las conversaciones calientes. ¿Cuántos mensajes al día?"
+  },
+  {
+   "question": "¿el bot de messenger puede responder también a los comentarios?",
+   "answer": "Sí 😎 Responde a los mensajes privados Y sugiere respuestas a los comentarios frecuentes. Su página se ve viva y el algoritmo lo premia. ¿Cuántas veces publica por semana?"
+  },
+  {
+   "question": "¿cuánto cuesta un bot para mi página de facebook?",
+   "answer": "Desde 100€ + 50€/mes de mantenimiento 📄 El presupuesto exacto depende del volumen de mensajes y las opciones. ¿Quiere que le prepare el presupuesto en 2 minutos?"
+  },
+  {
+   "question": "uso anuncios de facebook, ¿el bot puede capturar los contactos?",
+   "answer": "Exacto 🎯 Se acabaron los mensajes perdidos tras sus anuncios: el bot recibe a cada contacto nuevo, cualifica su necesidad y le envía el lead con su WhatsApp. ¿Cuántos anuncios al mes?"
+  },
+  {
+   "question": "para un restaurante, ¿el bot de facebook puede reservar mesas?",
+   "answer": "Sí 🍽️ El cliente pulsa «Reservar» en Messenger, elige fecha + número de personas y listo. Su agenda de mesas se llena sola. ¿Cuántos cubiertos tiene?"
+  },
+  {
+   "question": "tengo una tienda de moda en facebook, ¿el bot puede vender?",
+   "answer": "Sí 🛍️ El bot envía el catálogo con fotos y precios, gestiona tallas y pedidos, todo en Messenger. A sus clientas les encanta. ¿Vende online o en tienda física?"
+  },
+  {
+   "question": "¿el bot funciona cuando estoy desconectado?",
+   "answer": "Justo ahí brilla 😴 Responde a las 3am, los fines de semana, en sus vacaciones. Cada mensaje = una venta potencial capturada. ¿A qué hora suele responder, por la noche?"
+  },
+  {
+   "question": "mis clientes escriben en francés e inglés en facebook",
+   "answer": "Sin problema 😊 El bot detecta el idioma automáticamente y responde en el idioma del cliente. Una página, todos sus mercados. ¿A qué países apunta?"
+  },
+  {
+   "question": "¿es complicado instalar un bot en mi página de facebook?",
+   "answer": "Para nada 🤗 Usted da acceso una vez, yo configuro todo y luego gestiona desde su móvil. Cero técnica. ¿Su página es de empresa o tienda?"
+  },
+  {
+   "question": "¿el bot puede enviar mis promos en masa?",
+   "answer": "Sí 📢 Su promo sale a todos sus suscriptores de Messenger de golpe, con el enlace de pedido. Cada temporada se vuelve una máquina de ventas. ¿Cuándo es su próxima promo?"
+  },
+  {
+   "question": "inmobiliaria: ¿el bot puede cualificar a los compradores?",
+   "answer": "Sí 🏠 Cada mensaje se vuelve una ficha: presupuesto, ciudad, tipo de inmueble, plazos. Los curiosos se van, los compradores serios se quedan en su lista. ¿Vende o alquila?"
+  },
+  {
+   "question": "¿puedo ver las estadísticas del bot de facebook?",
+   "answer": "Sí 📊 Mensajes recibidos, respuestas enviadas, leads captados, ventas: todo llega a su móvil con un comando. Nada se escapa. ¿Le gusta seguir sus cifras?"
+  },
+  {
+   "question": "¿los bots de facebook e instagram pueden funcionar juntos?",
+   "answer": "Sí, mismo buzón 😍 Sus MD de Instagram y mensajes de Facebook gestionados por el mismo cerebro. Cero mensajes perdidos en ambas redes. ¿Tiene un Instagram activo?"
+  },
+  {
+   "question": "asociación: ¿el bot puede gestionar las inscripciones?",
+   "answer": "Sí 🤝 El bot explica sus acciones, recoge inscripciones y donaciones y agradece a cada miembro. Su comunidad crece sola. ¿Para qué tipo de asociación es?"
+  },
+  {
+   "question": "¿por qué no pagar solo un anuncio de facebook?",
+   "answer": "El anuncio atrae, el bot convierte 💡 Sin bot, usted paga por mensajes que pierde. Con el bot, cada anuncio trabaja 24/7. ¿Ya hace publicidad?"
+  },
+  {
+   "question": "gimnasio: ¿el bot puede llenar los huecos de clases?",
+   "answer": "Sí 💪 Reservas de clases, abonos, recordatorios para los ausentes. Sus entrenadores entrenan, el bot administra. ¿Cuántos miembros tiene su gimnasio?"
+  },
+  {
+   "question": "¿un bot de messenger no es frío para los clientes?",
+   "answer": "¿Frío? Es cálido, justamente 😄 Bienvenida personal, respuestas rápidas, el tono que usted elija. Los clientes prefieren respuesta instantánea a esperar 2 días. ¿No está de acuerdo?"
+  },
+  {
+   "question": "vale, quiero un bot de messenger, ¿cómo procedemos?",
+   "answer": "Genial 🚀 1) Acceso a su página. 2) Usted me envía FAQ + productos. 3) Yo configuro y pruebo en 3-5 días. ¿Lanzamos?"
+  },
+  {
+   "question": "y si facebook bloquea mi bot, ¿qué hago?",
+   "answer": "Cumplimos sus reglas, así que no hay bloqueo 👌 Además, sus datos se respaldan cada semana y puedo migrar su bot a WhatsApp o Telegram cuando quiera. ¿Ha tenido algún problema con Meta?"
+  },
+  {
+   "question": "¿hacéis bots para tiktok?",
+   "answer": "Sí 🎬 Bot de TikTok: responde a los comentarios y MD de sus vídeos 24/7 y convierte sus vistas en ventas. ¿Cuántas vistas hacen sus vídeos?"
+  },
+  {
+   "question": "mis vídeos de tiktok tienen vistas pero no vendo",
+   "answer": "El problema clásico: la gente comenta, usted no responde y se van 😅 El bot responde a cada comentario y MD al instante, con su enlace de pedido. ¿Qué vende?"
+  },
+  {
+   "question": "¿el bot puede responder a los comentarios de tiktok automáticamente?",
+   "answer": "Sí 😎 Detecta los «¿cuánto cuesta?», «¿dónde pido?» y responde con su precio y su enlace. Cada comentario se vuelve una oportunidad de venta. ¿Cuántos comentarios al día?"
+  },
+  {
+   "question": "¿cuánto cuesta un bot de tiktok?",
+   "answer": "Desde 100€ + 50€/mes de mantenimiento 📄 El presupuesto depende del volumen de comentarios y opciones. ¿Quiere el presupuesto gratis en 2 minutos?"
+  },
+  {
+   "question": "soy coach, ¿el bot puede capturar a mis seguidores?",
+   "answer": "Sí 🧑‍🏫 Cada curioso se vuelve contacto: el bot presenta su programa, recoge nombre + WhatsApp y le envía el lead. Su comunidad se vuelve su archivo de clientes. ¿Qué programa ofrece?"
+  },
+  {
+   "question": "restaurante: ¿el bot puede convertir vistas en clientes?",
+   "answer": "Sí 🍔 Un clip viral + un bot que responde = mesas llenas. El bot envía el menú, la ubicación y toma reservas. ¿Cómo le fue a su último vídeo?"
+  },
+  {
+   "question": "¿el bot de tiktok envía mensajes privados a los fans?",
+   "answer": "Sí, con mesura y respetando las reglas de TikTok 💌 Nuevo seguidor = MD de bienvenida con su oferta. Sin spam, solo valor. ¿Cuántos seguidores tiene su cuenta?"
+  },
+  {
+   "question": "moda y belleza: ¿el bot puede vender mis productos?",
+   "answer": "Sí 👗 Prueba, precio, entrega: el bot responde a todo por MD. Sus clientas pasan de «me encanta» a «lo pido». ¿Con qué pago vende online?"
+  },
+  {
+   "question": "publico vídeos pero no sé gestionar los MD",
+   "answer": "El bot lo hace mejor que usted 😄 Respuestas instantáneas 24/7, cualificación de prospectos, seguimiento a indecisos. Usted crea los vídeos. ¿Cuántos MD quedó sin responder esta semana?"
+  },
+  {
+   "question": "¿el bot funciona en varias cuentas de tiktok?",
+   "answer": "Sí, cada cuenta tiene su bot, su tono y su catálogo 👯 Uno para su marca, otro para su tienda. ¿Cuántas cuentas gestiona?"
+  },
+  {
+   "question": "artista musical: ¿el bot puede vender mis canciones?",
+   "answer": "Sí 🎵 El bot responde a los fans, comparte sus enlaces de streaming, fechas de concierto, merch. Su música se vuelve negocio. ¿Cuál es su plataforma principal?"
+  },
+  {
+   "question": "¿un bot de tiktok está permitido por la plataforma?",
+   "answer": "Sí, seguimos las reglas de TikTok al 100% ✅ Sin spam ni vistas falsas. El bot responde y cualifica, eso es todo. ¿Su cuenta está en buen estado?"
+  },
+  {
+   "question": "influencer: ¿el bot puede gestionar mis peticiones de colaboración?",
+   "answer": "Sí 🤝 El bot ordena: peticiones de collab, preguntas de fans, spam. Usted solo ve propuestas serias. ¿Cuántos seguidores tiene?"
+  },
+  {
+   "question": "ecommerce: ¿el bot de tiktok reemplaza mi tienda web?",
+   "answer": "La complementa 🛒 Vistas de TikTok + bot que pide = ventas sin web. Muchos venden 100% por el bot desde el inicio. ¿Ya tiene web o aún no?"
+  },
+  {
+   "question": "¿el bot de tiktok entiende francés e inglés?",
+   "answer": "FR, EN, ES, AR 😊 Detecta el idioma del comentarista y responde igual. ¿Audiencia internacional? Se adapta. ¿De qué países es su comunidad?"
+  },
+  {
+   "question": "suelto un vídeo viral cada semana, ¿el bot aguanta el ritmo?",
+   "answer": "Ahí es donde un humano colapsa y el bot aguanta 🔥 ¿1000 comentarios en una noche? Cero pánico, cada pregunta recibe respuesta. ¿Cuánto hizo su vídeo más grande?"
+  },
+  {
+   "question": "¿el bot puede poner los enlaces de mis productos en las respuestas?",
+   "answer": "Sí, donde TikTok lo permite 👍 Enlace del catálogo en la bio, respuesta MD instantánea con el enlace del producto. Circuito corto, conversión máxima. ¿A qué precio medio vende sus productos?"
+  },
+  {
+   "question": "inmobiliaria: ¿el bot capta los prospectos de las visitas?",
+   "answer": "Sí 🏠 Vídeo viral de piso + bot = visitas reservadas. Cualifica presupuesto y plazos y le envía cada prospecto serio. ¿Publica sus inmuebles a menudo?"
+  },
+  {
+   "question": "vale, quiero el bot de tiktok, ¿cómo se hace?",
+   "answer": "Simple 🚀 1) Usted me envía su cuenta y productos. 2) Yo configuro las respuestas automáticas. 3) En línea en 3-5 días. ¿Vamos?"
+  },
+  {
+   "question": "¿y si el bot de tiktok responde algo raro?",
+   "answer": "Imposible 😄 Cada respuesta la valida usted antes de salir. Usted controla el tono, los precios, las ofertas. Y puede cambiarlo todo cuando quiera. ¿Con qué preguntas frecuentes empezamos?"
+  },
+  {
+   "question": "quiero un logo para mi marca",
+   "answer": "Perfecto, es nuestro oficio central 🎨 Logo pro desde 25€: 3 propuestas, archivos HD, todos los formatos. ¿Cómo se llama su marca?"
+  },
+  {
+   "question": "por qué pagar por un logo",
+   "answer": "Porque su logo es su primer vendedor 😎 Es lo que el cliente recuerda, comparte y reconoce. Un logo amateur le cuesta clientes. ¿Existe su marca desde hace mucho?"
+  },
+  {
+   "question": "¿cuántas propuestas de logo recibo?",
+   "answer": "3 propuestas distintas, y afinamos su favorita hasta que esté satisfecho ✅ Archivos HD incluidos. ¿Ya tiene un estilo en mente?"
+  },
+  {
+   "question": "¿en cuánto tiempo está listo un logo?",
+   "answer": "De 2 a 3 días laborables ⚡ Rápido pero no apresurado: cada propuesta está trabajada. ¿Es urgente para un lanzamiento?"
+  },
+  {
+   "question": "¿puedo pedir cambios en el logo?",
+   "answer": "Sí, los retoques están incluidos hasta la validación 👍 Trabajamos hasta que USTED esté orgulloso del resultado. ¿Tiene colores en mente?"
+  },
+  {
+   "question": "¿qué formatos de archivo recibo del logo?",
+   "answer": "Todos: PNG con fondo transparente, JPEG, PDF vectorial para impresión y versión marca de agua 📁 Listo para redes e impresión. ¿Dónde lo usará primero?"
+  },
+  {
+   "question": "¿podéis hacer un logo para un restaurante?",
+   "answer": "Sí 🍽️ Un logo que da hambre: colores cálidos, tipografía apetitosa, versiones para cartas y rótulos. ¿Qué estilo de cocina es?"
+  },
+  {
+   "question": "mi logo actual es viejo, ¿podéis modernizarlo?",
+   "answer": "Sí, el refresh de logo 🔄 Mantenemos lo que sus clientes reconocen y modernizamos el resto. Mejor que un cambio radical. ¿Me enseña lo que tiene?"
+  },
+  {
+   "question": "logo + tarjeta + membrete, ¿lo hacéis todo?",
+   "answer": "Sí, identidad completa 😍 Logo + tarjeta + membrete + fondo para redes, todo a juego. Logo desde 25€, presupuesto del pack justo después. ¿Quiere el pack completo?"
+  },
+  {
+   "question": "¿lo dibuja usted o es un software?",
+   "answer": "Ambos: un diseñador dirigiendo IA generativa para un resultado único ✨ Sin clipart reciclado, cada logo se hace para SU marca. ¿Quiere ver ejemplos?"
+  },
+  {
+   "question": "quiero una web para mi empresa",
+   "answer": "Elección excelente 🚀 Sitio vitrina desde 50€: moderno, rápido, WhatsApp integrado. Sus clientes le encuentran 24/7. ¿Para qué sector?"
+  },
+  {
+   "question": "¿por qué mi negocio necesita una web?",
+   "answer": "Porque el cliente le busca en Google antes de comprar 📱 Sin web, compra a su competencia. Con web, usted existe oficialmente. ¿Es visible en Google hoy?"
+  },
+  {
+   "question": "¿sitio vitrina o tienda online, qué elijo?",
+   "answer": "Depende de su objetivo 😊 Vitrina = presentarse y captar contactos. Tienda = vender online 24/7. Muchos empiezan con vitrina y luego pasan a tienda. ¿Piensa vender online?"
+  },
+  {
+   "question": "¿cuánto tardáis en crear una web?",
+   "answer": "Sitio vitrina: 1 a 2 semanas ⚡ Tienda online: 2 a 3 semanas, pago incluido. Cada día sin web son clientes perdidos. ¿Tiene fecha objetivo?"
+  },
+  {
+   "question": "¿la web funciona en el móvil?",
+   "answer": "Sí, 100% responsive 📱 La mayoría de sus clientes vienen del móvil: la web es mobile-first. Menú, botones, WhatsApp: todo al pulgar. ¿Qué red usan más sus clientes?"
+  },
+  {
+   "question": "¿puedo modificar mi web yo mismo después?",
+   "answer": "Sí 😊 Se la entregamos con mini-formación: cambiar textos, fotos, precios. Y el mantenimiento cubre los cambios grandes si prefiere. ¿Se maneja con la tecnología?"
+  },
+  {
+   "question": "¿mi web puede tener botón de whatsapp?",
+   "answer": "Sí, es incluso imprescindible para nosotros 📲 El cliente pulsa y se abre su chat de WhatsApp. En el mercado africano, WhatsApp convierte mejor que un formulario. ¿Responde rápido por WhatsApp?"
+  },
+  {
+   "question": "¿la web puede mostrar mis trabajos y testimonios?",
+   "answer": "Sí, la prueba social vende 😍 Galería de fotos, vídeos, reseñas: lo estructuramos todo para tranquilizar al visitante. ¿Ya tiene reseñas de clientes?"
+  },
+  {
+   "question": "¿qué diferencia hay entre la web de 50 y la de 150 euros?",
+   "answer": "Buena pregunta 👍 50€ = vitrina: inicio, servicios, contacto, WhatsApp. 150€ = tienda completa: catálogo, carrito, pago, pedidos. El presupuesto exacto depende de sus páginas. ¿Vitrina o tienda?"
+  },
+  {
+   "question": "¿cuánto cuesta el alojamiento de la web?",
+   "answer": "El alojamiento está gestionado, cero preocupaciones técnicas para usted ☁️ Opciones de mantenimiento para actualizaciones. ¿Quiere el presupuesto completo detallado?"
+  },
+  {
+   "question": "¿mi web será visible en google?",
+   "answer": "Sí, SEO básico incluido: títulos, descripciones, velocidad, Google Business 📈 Aparecer localmente = más llamadas. ¿A clientes de qué ciudad apunta?"
+  },
+  {
+   "question": "¿hacéis visuales para redes sociales?",
+   "answer": "Sí, una de nuestras fortalezas 🎨 Visual pro desde 15€, pack de 5 a 40€: carteles, promos, flyers listos para publicar. ¿Para qué red, Facebook o Instagram?"
+  },
+  {
+   "question": "¿podéis hacer un cartel para la fiesta?",
+   "answer": "Sí, la temporada de fiestas es EL momento 🔥 Carteles de fiesta, promos, felicitaciones: visuales que venden, entregados en 24-48h. ¿Para qué negocio?"
+  },
+  {
+   "question": "¿qué diferencia hay con canva gratis?",
+   "answer": "Canva gratis = plantilla que otros 5000 usan 😅 Nosotros = visual único, su marca, su mensaje, su color. El cliente nota la diferencia. ¿Ya probó Canva?"
+  },
+  {
+   "question": "quiero fotos de producto profesionales",
+   "answer": "Hacemos algo mejor: imágenes IA 4K 📸 Producto en escena, fondo de estudio, luz perfecta, sin sesión costosa. ¿Qué productos vende?"
+  },
+  {
+   "question": "¿cómo hacéis imágenes con ia?",
+   "answer": "Generación IA 4K dirigida por un profesional ✨ Usted describe su idea, la afinamos y recibe visuales únicos en horas. Sin bancos de imágenes. ¿Tiene una idea concreta en mente?"
+  },
+  {
+   "question": "necesito un visual por semana, ¿podéis seguir?",
+   "answer": "Sí, existe la suscripción visual 😊 Pack mensual: 4 visuales/mes listos para publicar, tono constante, entrega semanal. ¿Cuál es su actividad?"
+  },
+  {
+   "question": "¿hacéis visuales para anuncios de facebook?",
+   "answer": "Sí, y un buen visual de anuncio lo cambia todo 🎯 Texto legible, oferta clara, CTA que empuja el clic. Sus clics suben y su coste por clic baja. ¿Qué tipo de anuncios hace?"
+  },
+  {
+   "question": "¿podéis diseñar una carta de restaurante?",
+   "answer": "Sí 🍽️ Una carta que da hambre: fotos apetitosas, precios legibles, versión papel + versión QR para la mesa. ¿Qué tipo de restaurante es?"
+  },
+  {
+   "question": "¿las imágenes ia tienen uso comercial?",
+   "answer": "Sí, recibe todos los derechos de uso comercial ✅ Publicidad, packaging, cartelería: sus visuales son suyos. ¿Para qué los usará principalmente?"
+  },
+  {
+   "question": "quiero visuales para las fiestas de fin de año",
+   "answer": "La temporada que más vende 🎄 Visuales de fin de año: promos, regalos, agradecimientos a clientes. Entregados en 48h para estar listo antes de la avalancha. ¿Qué regalos vende?"
+  },
+  {
+   "question": "¿hacéis vídeos para redes?",
+   "answer": "Sí 🎬 Vídeo IA corto desde 20€: animado, subtitulado, listo para TikTok, Estados de WhatsApp y Reels. ¿Qué quiere promocionar?"
+  },
+  {
+   "question": "¿cuánto cuesta un vídeo?",
+   "answer": "Vídeo IA corto: desde 20€ 📄 Vídeo completo con rodaje: según presupuesto. ¿Qué formato prefiere, vertical para TikTok?"
+  },
+  {
+   "question": "¿podéis hacer un vídeo para presentar mi negocio?",
+   "answer": "Sí, el vídeo pitch 😎 30 segundos que lo resumen: quién es, qué vende, cómo contactarle. Perfecto para bio y estados. ¿Tiene logo y fotos?"
+  },
+  {
+   "question": "¿los vídeos ia son realmente profesionales?",
+   "answer": "Sí, cuando están bien dirigidos ✨ Nosotros escribimos el guion, elegimos el estilo, subtitulamos. Resultado: un vídeo de marca de verdad. ¿Quiere ver un ejemplo?"
+  },
+  {
+   "question": "quiero un vídeo para las fiestas",
+   "answer": "Timing perfecto 🔥 Vídeo de felicitación: animación, mensaje cálido, su logo. Sus clientes le recuerdan en la fiesta. ¿Para enviar a su lista de WhatsApp?"
+  },
+  {
+   "question": "¿en cuánto tiempo está listo un vídeo?",
+   "answer": "Vídeo IA: 48 a 72h ⏱️ Guion validado, subtítulos incluidos. También recibe la versión sin subtítulos. ¿Cuál es el soporte final?"
+  },
+  {
+   "question": "¿podéis animar mi logo en vídeo?",
+   "answer": "Sí, animación de logo 🔥 Intro de 5 segundos para sus vídeos: su logo apareciendo con efecto pro. Ideal para su canal. ¿Qué estilo, moderno o clásico?"
+  },
+  {
+   "question": "¿hacéis vídeos promocionales de productos?",
+   "answer": "Sí 🎯 Vídeo de producto: demostración, beneficios, precio, llamada a la acción. 15-30 segundos que convierten en TikTok y Facebook. ¿Cuál es el producto?"
+  },
+  {
+   "question": "¿puedo tener varios formatos del mismo vídeo?",
+   "answer": "Sí 📐 Vertical 9:16 para TikTok/Estados, cuadrado 1:1 para Facebook, 16:9 para YouTube. Una toma, todos los formatos. ¿En cuántas redes publica?"
+  },
+  {
+   "question": "¿es posible vídeo con locución?",
+   "answer": "Sí 🎙️ Voz IA natural, FR, EN o AR, o su propia voz si prefiere. El tono que va con su marca. ¿Voz masculina o femenina?"
+  },
+  {
+   "question": "¿hacéis pack mensual de vídeo?",
+   "answer": "Sí 😊 Pack mensual: 4 vídeos cortos/mes para sus redes, estilo constante, calendario de publicación sugerido. Su contenido nunca se detiene. ¿Cuántas veces publica ahora?"
+  },
+  {
+   "question": "¿también formáis en ia?",
+   "answer": "Sí, formación IA a 50€ 💡 En una sesión aprende a usar la IA para su negocio: visuales, textos, respuestas a clientes. Herramienta por herramienta. ¿Es principiante o ya va bien?"
+  },
+  {
+   "question": "mi equipo pierde tiempo en tareas repetitivas",
+   "answer": "La automatización es la solución ⚙️ Mapeamos sus tareas repetitivas y las automatizamos: seguimientos, facturas, confirmaciones. Su equipo pasa al trabajo que importa. ¿Qué tipo de tareas?"
+  },
+  {
+   "question": "pierdo clientes por no hacer seguimiento",
+   "answer": "Lo clásico 😓 El 80% de las ventas cierran tras el 5º seguimiento. Montamos seguimientos automáticos: mensajes al día 1, 3 y 7. Cero clientes olvidados. ¿Cómo hace seguimiento hoy?"
+  },
+  {
+   "question": "¿qué es la automatización para un negocio pequeño?",
+   "answer": "Que las máquinas hagan lo repetitivo y usted quede libre para lo importante ⚙️ Ejemplo: confirmación de pedido, recordatorio de cita, mensaje de bienvenida. Todo sale solo. ¿A qué se dedica?"
+  },
+  {
+   "question": "¿chatgpt puede ayudar a mi negocio?",
+   "answer": "Sí, si lo usa bien 💡 Le formamos: prompts eficaces para sus anuncios, respuestas y presupuestos. La diferencia es enorme. ¿Ya lo usa o para nada?"
+  },
+  {
+   "question": "mi atención al cliente está desbordada",
+   "answer": "Bot IA + proceso claro = su atención respira 😊 Respuestas automáticas a preguntas frecuentes, humano para casos complejos. Cada cliente atendido en segundos. ¿Cuántas reclamaciones al día?"
+  },
+  {
+   "question": "marketing digital, ¿por dónde empiezo?",
+   "answer": "Por la base 😊 1) Ser localizable (web + WhatsApp). 2) Existir (visuales pro). 3) Vender (bot + seguimientos). Le armamos el plan a medida. ¿Dónde está hoy?"
+  },
+  {
+   "question": "¿podéis gestionar mis redes a distancia?",
+   "answer": "Sí, todo a distancia 😊 Visuales, calendario de publicación, respuestas a comentarios. Usted valida, ejecutamos. ¿Qué redes usa más?"
+  },
+  {
+   "question": "quiero vender por whatsapp pero no me organizo",
+   "answer": "Se lo estructuramos todo 📋 Catálogo claro, mensajes tipo, proceso de pedido, seguimientos. Su WhatsApp se vuelve una tienda de verdad. ¿Cuántos productos tiene?"
+  },
+  {
+   "question": "¿es posible formación para mi equipo?",
+   "answer": "Sí, en grupo o uno a uno 🎓 Sesión práctica: IA diaria, respuestas a clientes, herramientas gratis. Su equipo sube de nivel en un día. ¿Cuántos son?"
   }
  ]
 }

@@ -381,8 +381,22 @@ def refresh_resources(lang_code: str) -> None:
 # Mémoire conversationnelle locale (SQLite avec connexion persistante)
 # ---------------------------------------------------------------------------
 
-MEMORY_DIR = Path(os.getenv("MEMORY_DIR", BASE_DIR / "data"))
+# 💾 Persistance : sur Railway, si un volume est monté sur /data, la mémoire
+# SURVIT aux redéploiements (sinon le conteneur reconstruit l'efface →
+# « le bot ne se souvient de rien »). Migration auto de l'ancienne base.
+_PERSIST_ROOT = Path("/data")
+_DEFAULT_MEM_DIR = _PERSIST_ROOT if _PERSIST_ROOT.is_dir() else BASE_DIR / "data"
+MEMORY_DIR = Path(os.getenv("MEMORY_DIR", _DEFAULT_MEM_DIR))
 MEMORY_FILE = MEMORY_DIR / "memory.db"
+if MEMORY_DIR != BASE_DIR / "data":
+    try:
+        import shutil as _shutil
+        MEMORY_DIR.mkdir(parents=True, exist_ok=True)
+        if not MEMORY_FILE.exists() and (BASE_DIR / "data" / "memory.db").exists():
+            _shutil.copy2(BASE_DIR / "data" / "memory.db", MEMORY_FILE)
+            logger.info("Mémoire migrée vers le volume persistant : %s", MEMORY_FILE)
+    except Exception:
+        logger.warning("Migration mémoire impossible", exc_info=True)
 MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
 
 # ---------------------------------------------------------------------------
@@ -710,19 +724,38 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     if direct_answer:
         return direct_answer
 
-    # BUG CORRIGÉ : un message court/ambigu ("Pour l'info", "oui") combiné à
-    # l'historique re-matchait à tort une ancienne question (boucle accueil).
+    # 2. RÈGLE D'OR : comprendre la réponse du client AVANT toute chose.
+    # Si le bot vient de terminer par une question, la réponse du client
+    # suit presque TOUJOURS cette question. On cherche donc avec
+    # (question du bot + réponse du client) → réponse cohérente et
+    # contextuelle, pas une réponse hors-sujet.
+    history = context_for(chat_id)
+    last_bot_msg = next(
+        (h.get("content", "") for h in reversed(history)
+         if h.get("role") == "assistant" and h.get("content")),
+        "")
+
     if significant_token_count(user_text) < 2:
+        if "?" in last_bot_msg:
+            qa_combined = f"{last_bot_msg} {user_text}"
+            qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
+            if qa_answer and qa_answer != last_bot_msg:
+                return qa_answer
+        # message court/ambigu sans question en attente : aucun
+        # re-match hasardeux (bug boucle accueil corrigé précédemment)
         return None
 
-    # 2. Recherche avec contexte de conversation (si assez de contenu propre)
-    history = context_for(chat_id)
+    # 3. Recherche avec contexte de conversation (si assez de contenu propre)
     previous_user_messages = [
         item["content"] for item in history
         if item.get("role") == "user" and item.get("content")
     ]
     recent_context = " ".join(previous_user_messages[-3:])
     combined_text = f"{recent_context} {user_text}".strip()
+    # RÈGLE D'OR : si le bot vient de poser une question, la réponse du
+    # client s'interprète DANS CE CONTEXTE (même si elle est complète).
+    if "?" in last_bot_msg:
+        combined_text = f"{combined_text} {last_bot_msg}".strip()
 
     contextual_answer = trouver_meilleure_reponse_multilingue(combined_text, detected_lang)
     if contextual_answer:
@@ -813,6 +846,13 @@ def safe_typing(chat_id: int) -> None:
     except Exception:
         logger.debug("Impossible d'envoyer l'indicateur typing.", exc_info=True)
 
+# ⏱️ PAUSE HUMAINE : un vrai vendeur ne répond pas à la microseconde.
+# Indicateur « tape… » visible + réflexion aléatoire de 2 à 3,5 s →
+# réponse totale toujours < 4 s. Le bot paraît naturel, pas machine.
+def human_pause(chat_id: int) -> None:
+    safe_typing(chat_id)
+    time.sleep(random.uniform(2.0, 3.5))
+
 def _handle_message(message: telebot.types.Message) -> None:
     chat_id = message.chat.id
 
@@ -862,6 +902,19 @@ def _handle_message(message: telebot.types.Message) -> None:
     if not message.text:
         return
     user_text = message.text.strip()
+    # 🧠 MÉMOIRE CLIENT : le bot apprend qui parle (nom Telegram) dès le
+    # premier message et le garde en base → il « se souvient du client ».
+    try:
+        _fu = getattr(message, "from_user", None)
+        if _fu is not None and chat_id != actions.ADMIN_CHAT_ID:
+            _known = actions.get_client(chat_id)
+            if not (_known and _known.get("name")):
+                actions.upsert_client(
+                    chat_id,
+                    name=(getattr(_fu, "first_name", "") or "")[:100],
+                    event="première visite (auto)")
+    except Exception:
+        logger.debug("Enregistrement client impossible", exc_info=True)
     _process_text(chat_id, user_text, detect_language(user_text))
 
 
@@ -905,13 +958,39 @@ def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
             logger.error("Fallback callback impossible (chat=%s) : %s", chat_id, fatal)
 
 
+# 🧠 Clients déjà salués depuis ce redémarrage (une salutation perso par session)
+_GREETED_SESSION: set[int] = set()
+
+_RETURN_GREETING = {
+    "fr": "Re-bonjour {name} 👋 Content de te revoir ! On parlait de quoi déjà ? Tape /menu si tu veux tout revoir.",
+    "en": "Hello again {name} 👋 Great to see you back! What were we working on? Type /menu to see everything.",
+    "es": "¡Hola de nuevo, {name} 👋 Me alegra verle otra vez! ¿En qué nos quedamos? Escriba /menu para ver todo.",
+    "ar": "مرحباً بعودتك {name} 👋 سعيد برؤيتك مجدداً! على ماذا توقفنا؟ اكتب /menu لرؤية كل شيء.",
+}
+
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
     _LAST_LANG[chat_id] = detected_lang
-    # 💬 Indicateur « tape… » affiché AVANT toute réponse, dans 100% des cas
-    # (commandes, boutons, portfolio, KB, images) — le client voit toujours
-    # que le bot est en train de lui répondre.
-    safe_typing(chat_id)
+    # 🧠 MÉMOIRE CLIENT : un client connu qui salue reçoit une salutation
+    # PERSONNALISÉE avec son prénom — le bot se souvient de lui.
+    low_txt = user_text.lower().strip()
+    if (chat_id not in _GREETED_SESSION
+            and low_txt in actions.GREETING_WORDS):
+        _GREETED_SESSION.add(chat_id)
+        _client = actions.get_client(chat_id)
+        if _client and _client.get("name"):
+            remember(chat_id, "user", user_text)
+            _greet = (_RETURN_GREETING.get(detected_lang)
+                      or _RETURN_GREETING["fr"]).replace("{name}", _client["name"])
+            remember(chat_id, "assistant", _greet)
+            human_pause(chat_id)
+            bot.send_message(chat_id, _greet,
+                             reply_markup=menu_for_lang(detected_lang))
+            return
+    # 💬 Indicateur « tape… » + pause humaine 2-3,5 s AVANT toute réponse
+    # (commandes, boutons, portfolio, KB, images) : le client voit le bot
+    # « réfléchir » comme un vrai conseiller, et reçoit sa réponse < 4 s.
+    human_pause(chat_id)
     # Livraison : "livraison <adresse>" → OpenStreetMap (gratuit, sans clé)
     delivery_addr = osm_maps.is_delivery_intent(user_text)
     if delivery_addr:

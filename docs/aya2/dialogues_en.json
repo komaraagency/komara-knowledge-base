@@ -389,6 +389,534 @@
     "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
     "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
    ]
+  },
+  {
+   "question": "do you create whatsapp bots ?",
+   "answer": "Yes, that's our specialty 😎 Your WhatsApp bot answers customers 24/7, takes orders and sends you leads directly. What kind of business is it for?"
+  },
+  {
+   "question": "how long for a whatsapp bot",
+   "answer": "Usually 3 to 5 business days, testing included 👍 You send me your products, FAQs and tone, I handle the rest. When do we start?"
+  },
+  {
+   "question": "how much is a whatsapp bot",
+   "answer": "The AI bot starts at 100€ with 50€/month maintenance (updates + support). Then I give you an exact quote based on your options. Want the quote in 2 minutes?"
+  },
+  {
+   "question": "can a whatsapp bot answer customers by itself",
+   "answer": "Yes, and much more 😊 It replies, sends your catalogue, takes orders, manages the cart and notifies you at every sale. You sleep, it sells. Want a demo?"
+  },
+  {
+   "question": "i have a clothing shop on whatsapp",
+   "answer": "Perfect, that's use case number one 👌 The bot sends photos, prices, handles sizes and delivery, and never misses a message. Your customers order even at night. Shall we go?"
+  },
+  {
+   "question": "i run a restaurant can the bot take orders",
+   "answer": "Yes! The customer types the order, the bot confirms, totals it and sends you the ticket in the kitchen 🍽️ Zero missed calls at rush hour. For delivery or on-site?"
+  },
+  {
+   "question": "a whatsapp bot is expensive for my small business",
+   "answer": "I get it 😊 But do the math: 100€ once is less than a week of a salesperson. And it never sleeps, takes no holidays, misses no sale. It pays for itself fast, right?"
+  },
+  {
+   "question": "i'm not tech savvy, a bot sounds complicated",
+   "answer": "Zero tech for you 😄 You send me your info once, then you manage everything from your phone with simple commands. Easier than WhatsApp Business. Shall we test?"
+  },
+  {
+   "question": "can the bot send promos to all my whatsapp contacts",
+   "answer": "Yes, broadcast 🔥 You type a promo, the bot sends it to your whole list in one click, with open tracking. Imagine during Eid season. How many contacts do you have?"
+  },
+  {
+   "question": "i'm a doctor, can the bot handle appointments",
+   "answer": "Yes 📅 The bot offers slots, confirms the appointment, sends the reminder the day before and reduces no-shows. Your secretary focuses on what matters. Want the appointment module demo?"
+  },
+  {
+   "question": "what's a whatsapp bot useful for in a school",
+   "answer": "Everything: registrations, tuition fees, schedules, announcements to parents 🎓 No more posting 50 messages in a group. Primary school or professional training?"
+  },
+  {
+   "question": "i'm a real estate agent, can the bot qualify buyers",
+   "answer": "Exactly 🏠 The bot asks the right questions: budget, area, property type, timeline. You stop wasting time on the curious and call back only real buyers. How many enquiries per week?"
+  },
+  {
+   "question": "right now i answer whatsapp myself",
+   "answer": "And you can't scale 😅 Every hour spent replying is an hour of growth lost. The bot handles the 80% repetitive questions, you keep the 20% high-value ones. Ready to get your time back?"
+  },
+  {
+   "question": "my clients speak french and english, does the bot handle both",
+   "answer": "Yes, it detects the language automatically: FR, EN, ES and AR 😊 A client writes in English, gets answered in English. No setup needed. Where are your clients from?"
+  },
+  {
+   "question": "can the whatsapp bot handle mobile money payments",
+   "answer": "Yes 📲 The client picks a service, the bot gives the mobile money payment details, confirms receipt and starts the order. Everything stays written down. Which one do you use?"
+  },
+  {
+   "question": "for my delivery service can the bot track orders",
+   "answer": "Yes 🛵 The client types \"where is my order\", the bot answers with live status: prepared, on the way, delivered. Fewer calls, more peace. How many deliveries per day?"
+  },
+  {
+   "question": "i'm a hairdresser, can the whatsapp bot fill my calendar",
+   "answer": "Yes 💇 The bot shows free slots, the client books, gets confirmation and the reminder. Your calendar fills itself. How many clients do you take per day?"
+  },
+  {
+   "question": "do you have examples of whatsapp bots that work",
+   "answer": "Yes, that's what the portfolio is for 👉 Shop, restaurant, clinic bots: an average client saves 3h a day and misses zero messages. Want to see the screenshots?"
+  },
+  {
+   "question": "ok i want a whatsapp bot, how do we start",
+   "answer": "Simple 🚀 Send me: your products/services, your 10 most frequent questions, and the number that receives sales. I deliver in 3-5 days. Launch today?"
+  },
+  {
+   "question": "and after delivery, what if i have a problem with the bot",
+   "answer": "You're not left alone 😤 The 50€/month maintenance covers fixes, updates and adding products. You contact me directly, I answer. How many products do you sell at first?"
+  },
+  {
+   "question": "do you create telegram bots ?",
+   "answer": "Yes 👍 Turnkey Telegram bot: welcome, catalogue, orders, admin from your phone. You control everything with simple commands. What's the project?"
+  },
+  {
+   "question": "can a telegram bot sell my products",
+   "answer": "Yes, with clickable buttons 🛍️ The client types \"catalogue\", picks a product, adds to cart and orders. All inside the chat. What exactly do you sell?"
+  },
+  {
+   "question": "can i manage a telegram bot from my phone",
+   "answer": "Yes, it's designed for that 📱 Admin commands: stats, clients, promos, pause, resume. Your phone becomes your dashboard. Do you already run a Telegram account?"
+  },
+  {
+   "question": "how much is a telegram bot",
+   "answer": "From 100€ + 50€/month maintenance, free quote based on your options 📄 Every project is unique: shop, appointments, support... Want the quote in 2 minutes?"
+  },
+  {
+   "question": "how fast do you deliver a telegram bot",
+   "answer": "3 to 5 business days usually ⏱️ More complex needs (payments, multi-shop): 1 week max. Do you have a launch date in mind?"
+  },
+  {
+   "question": "does the bot work in telegram groups",
+   "answer": "Yes 😊 In private it sells, in groups it moderates: it answers questions, removes spam and pins your announcements. Your community runs itself. How many members?"
+  },
+  {
+   "question": "i want leads for my business, can a telegram bot help",
+   "answer": "Yes 🎯 The bot qualifies each contact: name, need, budget, WhatsApp. You receive every lead on your phone, ready to call. What service do you sell?"
+  },
+  {
+   "question": "i run trainings, can the bot handle sign-ups",
+   "answer": "Yes 🎓 The bot presents your program, shows dates, collects name + WhatsApp + payment and sends confirmation. You fill your sessions effortlessly. How much are your trainings?"
+  },
+  {
+   "question": "nobody uses telegram in africa, why not whatsapp",
+   "answer": "Telegram is actually booming in Africa 📈 Communities, shops, crypto: millions of active users. And a Telegram bot costs less to run. Where's your audience, on which apps?"
+  },
+  {
+   "question": "can a telegram bot do 24/7 customer support",
+   "answer": "Yes, that's its strength 💪 Automatic FAQs, order tracking, complaints escalated to you. The client gets an answer at 3am, not \"we'll get back to you\". How many messages a day do you get?"
+  },
+  {
+   "question": "i run an online media, can the bot publish my articles",
+   "answer": "Yes 📰 Each article goes out automatically on your channel, with a \"read more\" button. No more manual posting. What's your media about?"
+  },
+  {
+   "question": "for an online shop does a telegram bot replace a website",
+   "answer": "It complements it 😊 The bot sells in chat, the site holds everything. Many of our clients sell 100% through the bot. Do you already have a site or do we start from zero?"
+  },
+  {
+   "question": "does the telegram bot accept mobile money",
+   "answer": "Yes 📲 The client pays via Orange Money, MoMo or PayPal depending on your audience, the bot confirms and triggers delivery. Everything is traceable. Local or international clients?"
+  },
+  {
+   "question": "can my team manage the bot together",
+   "answer": "Yes, each member has admin access on their own phone 👥 Shared stats, client messages, orders. Even remotely. How big is the team?"
+  },
+  {
+   "question": "is a telegram bot secure for my customer data",
+   "answer": "Yes 🔒 Each client only sees their own data, your admin panel is locked to your ID. No leaks, no sharing. Do you handle sensitive data, health or finance?"
+  },
+  {
+   "question": "why a telegram bot instead of a community manager",
+   "answer": "The bot works 24/7 and doesn't cost a salary 😄 Your community manager creates, the bot answers. Together they're unbeatable. Do you already have someone for content?"
+  },
+  {
+   "question": "for an ngo, can the telegram bot collect donations",
+   "answer": "Yes 🤲 The bot tells your mission, shows impact and collects donations with automatic receipts. Every donor is properly thanked. What's the cause?"
+  },
+  {
+   "question": "can i see a demo of a telegram bot",
+   "answer": "Of course 👉 I'll send you screenshots of live bots: shop, appointments, support. You can even test a demo bot. What do you want to see first?"
+  },
+  {
+   "question": "ok i'm taking a telegram bot, what's the procedure",
+   "answer": "Great 🚀 1) You send me your info (products, FAQs, contacts). 2) I build and test. 3) Delivery in 3-5 days, you pay and I train you. Launch this weekend?"
+  },
+  {
+   "question": "what does the telegram bot maintenance include",
+   "answer": "50€/month: fixes, AI updates, new products, weekly data backup 💾 No commitment. With or without the backup option?"
+  },
+  {
+   "question": "do you make bots for facebook ?",
+   "answer": "Yes 👍 Turnkey Messenger bot: it answers your Facebook page messages 24/7, qualifies and turns your fans into clients. How many followers does your page have?"
+  },
+  {
+   "question": "my facebook page gets too many messages, i can't keep up",
+   "answer": "That's a sign your business is growing 😅 The bot takes over: instant reply to every message, and you keep only the hot conversations. How many messages a day?"
+  },
+  {
+   "question": "can the messenger bot answer comments too",
+   "answer": "Yes 😎 It answers private messages AND suggests replies to frequent comments. Your page feels alive, the algorithm loves it. How often do you post per week?"
+  },
+  {
+   "question": "how much does a bot for my facebook page cost",
+   "answer": "From 100€ + 50€/month maintenance 📄 The exact quote depends on message volume and options. Want me to prepare the quote in 2 minutes?"
+  },
+  {
+   "question": "i run facebook ads, can the bot capture the contacts",
+   "answer": "Exactly 🎯 No more messages lost after your ads: the bot welcomes every new contact, qualifies their need and sends you the lead with their WhatsApp. How many ads a month?"
+  },
+  {
+   "question": "for a restaurant, can the facebook bot book tables",
+   "answer": "Yes 🍽️ The client taps \"Book\" in Messenger, picks date + party size, done. Your table schedule fills itself. How many covers do you have?"
+  },
+  {
+   "question": "i have a fashion page on facebook, can the bot sell",
+   "answer": "Yes 🛍️ The bot sends the catalogue with photos and prices, handles sizes and orders, all in Messenger. Your clients love tapping. Do you sell online or in a physical shop?"
+  },
+  {
+   "question": "does the messenger bot work when i'm offline",
+   "answer": "That's exactly when it shines 😴 It answers at 3am, on weekends, during your holidays. Every message = a potential sale captured. What time do you usually reply, evenings?"
+  },
+  {
+   "question": "my clients write in french and english on facebook",
+   "answer": "No problem 😊 The bot detects the language automatically and answers in the client's language. One page, all your markets. Which countries do you target?"
+  },
+  {
+   "question": "is it complicated to install a bot on my facebook page",
+   "answer": "Not at all 🤗 You give access once, I set up everything, then you manage from your phone. Zero technical skills. Is your page a pro page or a shop?"
+  },
+  {
+   "question": "can the facebook bot mass-send my promos",
+   "answer": "Yes 📢 Your promo goes to all your Messenger subscribers at once, with the order link. Back-to-school, Eid, Christmas: every season becomes a sales machine. When's your next promo?"
+  },
+  {
+   "question": "real estate: can the facebook bot qualify buyers",
+   "answer": "Yes 🏠 Every message becomes a file: budget, city, property type, timeline. Sunday window-shoppers leave, serious buyers stay on your list. Do you sell or rent?"
+  },
+  {
+   "question": "can i see the facebook bot's statistics",
+   "answer": "Yes 📊 Messages received, replies sent, leads captured, sales: everything lands on your phone in one command. Nothing escapes. Do you like tracking your numbers?"
+  },
+  {
+   "question": "can the facebook and instagram bots work together",
+   "answer": "Yes, same inbox 😍 Your Instagram DMs and Facebook messages handled by the same brain. Zero lost messages on both networks. Do you have an active Instagram?"
+  },
+  {
+   "question": "nonprofit: can the facebook bot handle sign-ups",
+   "answer": "Yes 🤝 The bot explains your actions, collects sign-ups and donations, thanks every member. Your community grows on its own. What type of nonprofit is it?"
+  },
+  {
+   "question": "why not just pay for a facebook ad",
+   "answer": "Ads attract people, the bot converts 💡 Without a bot, you pay for messages you miss. With the bot, every ad works 24/7. Are you already running ads?"
+  },
+  {
+   "question": "gym: can the facebook bot fill the slots",
+   "answer": "Yes 💪 Class bookings, memberships, reminders for absentees. Your coaches coach, the bot administers. How many members does your gym have?"
+  },
+  {
+   "question": "isn't a messenger bot cold for clients",
+   "answer": "Cold? It's warm, actually 😄 Personal welcome, fast answers, the tone you choose. Clients prefer an instant reply to a 2-day wait. Don't you agree?"
+  },
+  {
+   "question": "ok i want a messenger bot, how do we proceed",
+   "answer": "Great 🚀 1) Access to your page. 2) You send me FAQs + products. 3) I configure and test in 3-5 days. Shall we launch?"
+  },
+  {
+   "question": "what if facebook blocks my bot",
+   "answer": "We play by their rules, so no blocking 👌 Plus, your data is backed up weekly, and I can migrate your bot to WhatsApp or Telegram anytime. Ever had an issue with Meta?"
+  },
+  {
+   "question": "do you make bots for tiktok ?",
+   "answer": "Yes 🎬 TikTok bot: it answers your videos' comments and DMs 24/7 and turns your views into sales. How many views do your videos get?"
+  },
+  {
+   "question": "my tiktok videos get views but i don't sell",
+   "answer": "The classic problem: people comment, you don't reply, they leave 😅 The bot answers every comment and DM instantly, with your order link. What do you sell?"
+  },
+  {
+   "question": "can the bot answer tiktok comments automatically",
+   "answer": "Yes 😎 It spots \"how much?\", \"where do I order?\" questions and answers with your price and link. Every comment becomes a sales chance. How many comments a day?"
+  },
+  {
+   "question": "how much does a tiktok bot cost",
+   "answer": "From 100€ + 50€/month maintenance 📄 The quote depends on comment volume and options. Want the free quote in 2 minutes?"
+  },
+  {
+   "question": "i'm a coach, can the tiktok bot capture my followers",
+   "answer": "Yes 🧑‍🏫 Every curious viewer becomes a contact: the bot pitches your program, collects name + WhatsApp and sends you the lead. Your community becomes your client file. What program do you offer?"
+  },
+  {
+   "question": "restaurant: can the tiktok bot turn views into customers",
+   "answer": "Yes 🍔 A viral clip + a bot that answers = full tables. The bot sends the menu, location and takes bookings. How did your last video do?"
+  },
+  {
+   "question": "does the tiktok bot send private messages to fans",
+   "answer": "Yes, sparingly and by TikTok's rules 💌 New follower = welcome DM with your offer. No spam, just value. How many followers does your account have?"
+  },
+  {
+   "question": "fashion and beauty: can the tiktok bot sell my products",
+   "answer": "Yes 👗 Try-on, price, delivery: the bot answers everything in DMs. Your clients go from \"love it\" to \"ordering now\". What payment do you sell with online?"
+  },
+  {
+   "question": "i post videos but i can't manage my dms",
+   "answer": "The bot does that better than you 😄 Instant 24/7 replies, lead qualification, follow-ups for the undecided. You focus on creating videos. How many DMs went unanswered this week?"
+  },
+  {
+   "question": "does the tiktok bot work across several accounts",
+   "answer": "Yes, each account has its own bot, tone and catalogue 👯 One for your brand, one for your shop. How many accounts do you run?"
+  },
+  {
+   "question": "music artist: can the tiktok bot sell my tracks",
+   "answer": "Yes 🎵 The bot answers fans, shares your streaming links, concert dates, merch. Your music becomes business. What's your main platform?"
+  },
+  {
+   "question": "is a tiktok bot allowed by the platform",
+   "answer": "Yes, we follow TikTok's rules 100% ✅ No spam, no fake views. The bot answers and qualifies, that's it. Is your account in good standing?"
+  },
+  {
+   "question": "influencer: can the bot manage my partnership requests",
+   "answer": "Yes 🤝 The bot sorts: collab requests, fan questions, spam. You only see serious proposals. How many followers do you have?"
+  },
+  {
+   "question": "ecommerce: does the tiktok bot replace my shop site",
+   "answer": "It complements it 🛒 TikTok views + ordering bot = sales without a site. Many sell 100% through the bot from day one. Do you already have a site or not yet?"
+  },
+  {
+   "question": "does the tiktok bot understand french and english",
+   "answer": "FR, EN, ES, AR 😊 It detects the commenter's language and answers the same. International audience? It adapts. Which countries is your community from?"
+  },
+  {
+   "question": "i drop a viral video every week, can the bot keep up",
+   "answer": "That's where a human cracks and the bot holds 🔥 1000 comments overnight? Zero panic, every question gets its answer. What's your biggest video done?"
+  },
+  {
+   "question": "can the bot put my product links in the replies",
+   "answer": "Yes, where TikTok allows it 👍 Catalogue link in bio, instant DM reply with the product link. Short path, max conversion. What's your average product price?"
+  },
+  {
+   "question": "real estate agency: can the tiktok bot capture viewing leads",
+   "answer": "Yes 🏠 Viral apartment video + bot = booked viewings. It qualifies budget and timeline, and sends you every serious prospect. Do you post your listings often?"
+  },
+  {
+   "question": "ok i want the tiktok bot, how does it work",
+   "answer": "Simple 🚀 1) You send me your account and products. 2) I configure the auto-replies. 3) Live in 3-5 days. Shall we?"
+  },
+  {
+   "question": "what if the tiktok bot says something weird",
+   "answer": "Not possible 😄 Every reply is validated by you before going live. You control the tone, prices, offers. And you can change everything anytime. Which frequent questions should we start with?"
+  },
+  {
+   "question": "i want a logo for my brand",
+   "answer": "Perfect, that's our core craft 🎨 Pro logo from 25€: 3 proposals, HD files, all formats. What's the brand called?"
+  },
+  {
+   "question": "why pay for a logo",
+   "answer": "Because your logo is your first salesperson 😎 It's what clients remember, share and recognize. An amateur logo costs you clients. Has your brand been around long?"
+  },
+  {
+   "question": "how many logo proposals do i get",
+   "answer": "3 distinct proposals, and we refine your favourite until you're satisfied ✅ HD files included. Do you already have a style in mind?"
+  },
+  {
+   "question": "how fast can a logo be ready",
+   "answer": "2 to 3 business days ⚡ Fast but not rushed: every proposal is crafted. Is it urgent for a launch?"
+  },
+  {
+   "question": "can i ask for changes on the logo",
+   "answer": "Yes, revisions are included until validation 👍 We work until YOU're proud of the result. Do you have colors in mind?"
+  },
+  {
+   "question": "which file formats do i get for the logo",
+   "answer": "All of them: transparent PNG, JPEG, vector PDF for printing, and a watermark version 📁 Ready for social media AND signage. Where will you use it first?"
+  },
+  {
+   "question": "can you do a logo for a restaurant",
+   "answer": "Yes 🍽️ A logo that makes you hungry: warm colors, tasty typography, versions for menus and signage. What cuisine style is it?"
+  },
+  {
+   "question": "my current logo is old, can you modernize it",
+   "answer": "Yes, the logo refresh 🔄 We keep what your clients recognize, modernize the rest. Better than a radical change. Show me what you have?"
+  },
+  {
+   "question": "logo + business card + letterhead, do you do it all",
+   "answer": "Yes, full identity 😍 Logo + business card + letterhead + social media background, all matching. Logo from 25€, pack quote right after. Want the full pack?"
+  },
+  {
+   "question": "do you draw it or is it software",
+   "answer": "Both: a designer directing generative AI for a unique result ✨ No recycled clipart, every logo is made for YOUR brand. Want to see examples?"
+  },
+  {
+   "question": "i want a website for my business",
+   "answer": "Excellent choice 🚀 Showcase site from 50€: modern, fast, WhatsApp integrated. Clients find you 24/7. What sector is it?"
+  },
+  {
+   "question": "why does my business need a website",
+   "answer": "Because clients Google you before buying 📱 Without a site, they buy from your competitor. With a site, you officially exist. Are you visible on Google today?"
+  },
+  {
+   "question": "showcase site or online shop, which should i choose",
+   "answer": "Depends on your goal 😊 Showcase = present yourself and capture leads. Shop = sell online 24/7. Many start with showcase then upgrade. Do you plan to sell online?"
+  },
+  {
+   "question": "how long to build a website",
+   "answer": "Showcase site: 1 to 2 weeks ⚡ Online shop: 2 to 3 weeks, payments included. Every day without a site is lost clients. Do you have a target date?"
+  },
+  {
+   "question": "will the site work on phones",
+   "answer": "Yes, 100% responsive 📱 Most of your clients come from phones: the site is mobile-first. Menu, buttons, WhatsApp: all thumb-friendly. Which network do your clients use most?"
+  },
+  {
+   "question": "can i edit my site myself afterwards",
+   "answer": "Yes 😊 We deliver with a mini-training: changing texts, photos, prices. And maintenance covers big changes if you prefer. Are you comfortable with tech?"
+  },
+  {
+   "question": "can my site have a whatsapp button",
+   "answer": "Yes, it's even essential for us 📲 The client taps, your WhatsApp chat opens directly. In the African market, WhatsApp converts better than a form. Do you reply fast on WhatsApp?"
+  },
+  {
+   "question": "can the site show my work and testimonials",
+   "answer": "Yes, social proof sells 😍 Photo gallery, videos, client reviews: we structure it all to reassure visitors. Do you already have client reviews?"
+  },
+  {
+   "question": "what's the difference between the 50 and 150 euro site",
+   "answer": "Good question 👍 50€ = showcase: home, services, contact, WhatsApp. 150€ = full shop: catalogue, cart, payment, orders. The exact quote depends on your pages. Showcase or shop?"
+  },
+  {
+   "question": "how much does hosting cost",
+   "answer": "Hosting is handled, zero tech worries for you ☁️ Maintenance options for updates. Want me to prepare the full detailed quote?"
+  },
+  {
+   "question": "will my site be visible on google",
+   "answer": "Yes, basic SEO included: titles, descriptions, speed, Google Business 📈 Being found locally = more calls. Which city's clients are you after?"
+  },
+  {
+   "question": "do you make visuals for social media",
+   "answer": "Yes, one of our strengths 🎨 Pro visual from 15€, pack of 5 at 40€: posters, promos, flyers ready to post. Which network, Facebook or Instagram?"
+  },
+  {
+   "question": "can you make an eid poster",
+   "answer": "Yes, holiday season is THE moment 🔥 Eid poster, Ramadan promos, greetings: visuals that sell, delivered in 24-48h. What's the business?"
+  },
+  {
+   "question": "what's the difference from free canva",
+   "answer": "Free Canva = a template 5000 others use 😅 Us = unique visual, your brand, your message, your color. Clients see the difference. Have you tried Canva already?"
+  },
+  {
+   "question": "i want professional product photos",
+   "answer": "We do better: 4K AI images 📸 Staged product, studio background, perfect lighting, no costly shoot. What products do you sell?"
+  },
+  {
+   "question": "how do you make images with ai",
+   "answer": "4K AI generation directed by a pro ✨ You describe your idea, we refine it, you get unique visuals within hours. No stock, no image banks. Do you have a precise idea in mind?"
+  },
+  {
+   "question": "i need one visual per week, can you keep up",
+   "answer": "Yes, the visual subscription exists 😊 Monthly pack: 4 visuals/month ready to post, consistent style, delivered weekly. What's your business?"
+  },
+  {
+   "question": "do you do facebook ad visuals",
+   "answer": "Yes, and a good ad visual changes everything 🎯 Readable text, clear offer, a CTA that pushes clicks. Your clicks rise, your cost per click drops. What kind of ads do you run?"
+  },
+  {
+   "question": "can you design a restaurant menu",
+   "answer": "Yes 🍽️ A menu that makes you hungry: appetizing photos, readable prices, paper version + QR scan version for tables. What kind of restaurant is it?"
+  },
+  {
+   "question": "do the ai images come with commercial rights",
+   "answer": "Yes, you get full commercial usage rights ✅ Ads, packaging, signage: your visuals belong to you. What will you mainly use them for?"
+  },
+  {
+   "question": "i want visuals for the end-of-year holidays",
+   "answer": "The best-selling period 🎄 End-of-year visuals: promos, gifts, client thank-yous. Delivered in 48h so you're ready before the rush. What gifts do you sell?"
+  },
+  {
+   "question": "do you make videos for social media",
+   "answer": "Yes 🎬 Short AI video from 20€: animated, subtitled, ready for TikTok, WhatsApp Status and Reels. What do you want to promote?"
+  },
+  {
+   "question": "how much does a video cost",
+   "answer": "Short AI video: from 20€ 📄 Full video with shooting: on quote. Which format do you want, vertical for TikTok?"
+  },
+  {
+   "question": "can you make a video presenting my business",
+   "answer": "Yes, the pitch video 😎 30 seconds that say it all: who you are, what you sell, how to reach you. Perfect for bio and status. Do you have a logo and photos?"
+  },
+  {
+   "question": "are ai videos really professional",
+   "answer": "Yes, when well directed ✨ We write the script, pick the style, add subtitles. Result: a real brand video, not a gadget. Want to see an example?"
+  },
+  {
+   "question": "i want an eid video",
+   "answer": "Perfect timing 🔥 Eid wishes video: animation, warm message, your logo. Clients remember you during the holiday. To send to your WhatsApp list?"
+  },
+  {
+   "question": "how fast can a video be ready",
+   "answer": "AI video: 48 to 72h ⏱️ Script validated, subtitles included. You also get the no-subtitles version if you want. What's the final channel?"
+  },
+  {
+   "question": "can you animate my logo in a video",
+   "answer": "Yes, logo animation 🔥 A 5-second intro for your videos: your logo appearing with a pro effect. Ideal for your channel. Which style, modern or classic?"
+  },
+  {
+   "question": "do you make promo videos for products",
+   "answer": "Yes 🎯 Product video: demo, benefits, price, call to action. 15-30 seconds that convert on TikTok and Facebook. What's the product?"
+  },
+  {
+   "question": "can i get several formats of the same video",
+   "answer": "Yes 📐 Vertical 9:16 for TikTok/Status, square 1:1 for Facebook, 16:9 for YouTube. One shoot, every format. How many networks do you post on?"
+  },
+  {
+   "question": "is a voiceover video possible",
+   "answer": "Yes 🎙️ Natural AI voice, FR, EN or AR, or your own voice if you prefer. The tone that fits your brand. Male or female voice?"
+  },
+  {
+   "question": "do you do a monthly video pack",
+   "answer": "Yes 😊 Monthly pack: 4 short videos/month for your networks, consistent style, suggested posting calendar. Your content never stops. How often do you post now?"
+  },
+  {
+   "question": "do you also do ai training",
+   "answer": "Yes, AI training at 50€ 💡 In one session you learn to use AI for your business: visuals, texts, client replies. Tool by tool. Are you a beginner or already comfortable?"
+  },
+  {
+   "question": "my team wastes time on repetitive tasks",
+   "answer": "Automation is the answer ⚙️ We map your repetitive tasks and automate them: follow-ups, invoices, confirmations. Your team moves to work that matters. What kind of tasks?"
+  },
+  {
+   "question": "i lose clients because i don't follow up",
+   "answer": "Classic 😓 80% of sales close after the 5th follow-up. We set up automatic follow-ups: day 1, day 3, day 7 messages. Zero forgotten clients. How do you follow up today?"
+  },
+  {
+   "question": "what is automation for a small business",
+   "answer": "Making machines handle the repetitive so you're free for what matters ⚙️ Concrete example: order confirmation, appointment reminder, welcome message. All sent by themselves. What's your trade?"
+  },
+  {
+   "question": "can chatgpt help my business",
+   "answer": "Yes, if you use it right 💡 We train you: effective prompts for your ads, client replies, quotes. The difference is huge. Do you already use it or not at all?"
+  },
+  {
+   "question": "my customer service is drowning",
+   "answer": "AI bot + a clear process = your customer service breathes 😊 Automatic answers to frequent questions, human for complex cases. Every client served in seconds. How many complaints a day?"
+  },
+  {
+   "question": "digital marketing, where do i start",
+   "answer": "With the basics 😊 1) Be reachable (site + WhatsApp). 2) Exist (pro visuals). 3) Sell (bot + follow-ups). We build the plan for you. Where are you today?"
+  },
+  {
+   "question": "can you manage my social media remotely",
+   "answer": "Yes, everything is done remotely 😊 Visuals, posting calendar, comment replies. You validate, we execute. Which networks do you use most?"
+  },
+  {
+   "question": "i want to sell on whatsapp but i'm unorganized",
+   "answer": "We structure everything for you 📋 Clear catalogue, message templates, order process, follow-ups. Your WhatsApp becomes a real shop. How many products?"
+  },
+  {
+   "question": "is training for my team possible",
+   "answer": "Yes, as a group or one by one 🎓 Practical session: everyday AI, client replies, free tools. Your team levels up in a day. How many are they?"
   }
  ]
 }
