@@ -31,9 +31,10 @@ HOURS = {
     3: timedelta(days=7),       # J+7 : 7 jours après le 2e rappel
 }
 
-# Messages EXACTS de la lettre #2 — {name} {project} {price_local} {currency}
-MSG_J1 = ("Salam {name} ! Ton devis pour {project} de {price_local} {currency} "
-          "est toujours valable jusqu'à ce soir. On te lance ?")
+# Messages de la lettre #2, mis au format lettre finale : PRIX FIXE €
+# en premier, monnaie locale en info indicative entre parenthèses.
+MSG_J1 = ("Salam {name} ! Ton devis pour {project} à *{price_eur}€* "
+          "{local_part}est toujours valable jusqu'à ce soir. On te lance ?")
 MSG_J3 = ("Dernière chance {name}. Ton devis expire demain et repasse à prix "
           "normal. Si tu confirmes aujourd'hui, domaine offert.")
 MSG_J7 = "On archive ton dossier {name}. Tape 'devis' quand tu es prêt à reprendre."
@@ -59,13 +60,20 @@ def process_due_reminders(bot, now: datetime | None = None) -> dict:
             cid = q["chat_id"]
             name = q["client_name"] or "cher client"
             project = q["project_desc"] or q["service"] or "ton projet"
-            price = q["price_local"] or 0
-            currency = q["currency"] or "USD"
+            price_eur = q["price_eur"] or 0
+            # info locale recalculée à la base EUR (jamais prix de vente)
+            import devis_engine
+            conv = devis_engine.convert_devis(q["country_code"] or "GN",
+                                               price_eur or 0)
+            local_part = ""
+            if conv["currency"] != "EUR" and price_eur:
+                local_part = f"(~{devis_engine.format_price(conv)} chez toi) "
 
             if stage == 0 and created and now - created >= HOURS[1]:
-                _send(bot, cid, MSG_J1.format(name=name, project=project,
-                                              price_local=_fmt(price),
-                                              currency=currency))
+                _send(bot, cid, MSG_J1.format(
+                    name=name, project=project,
+                    price_eur=f"{price_eur:g}",
+                    local_part=local_part), parse_mode="Markdown")
                 cdb.update_quote(q["id"], last_reminder_at=now.isoformat(timespec="seconds"),
                                  reminder_stage=1)
                 sent["j1"] += 1
@@ -87,11 +95,14 @@ def process_due_reminders(bot, now: datetime | None = None) -> dict:
     return sent
 
 
-def _send(bot, chat_id: str, text: str) -> None:
+def _send(bot, chat_id: str, text: str, parse_mode: str | None = None) -> None:
     if bot is None:
         logger.info("[SIMU] relance → %s : %s", chat_id, text[:60])
         return
     try:
-        bot.send_message(int(chat_id), text)
+        if parse_mode:
+            bot.send_message(int(chat_id), text, parse_mode=parse_mode)
+        else:
+            bot.send_message(int(chat_id), text)
     except Exception as e:
         logger.error("Envoi relance impossible (%s) : %s", chat_id, e)

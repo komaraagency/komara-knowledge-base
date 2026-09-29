@@ -302,6 +302,11 @@ def clear_cart(chat_id: int) -> None:
     with DB_LOCK:
         DB_CONN.execute("DELETE FROM cart WHERE chat_id = ?", (str(chat_id),))
         DB_CONN.commit()
+    try:
+        import cart_nudge
+        cart_nudge._clear(str(chat_id))
+    except Exception:
+        pass
 
 
 def _cart_lines(chat_id: int, lang: str) -> str:
@@ -348,6 +353,9 @@ def cmd_add(bot, chat_id: int, num: int, lang: str) -> None:
 
 
 def show_cart(bot, chat_id: int, lang: str) -> None:
+    import cart_nudge
+    if cart_count(chat_id):
+        cart_nudge.mark_seen(chat_id, lang, cart_total(chat_id))
     if cart_count(chat_id) == 0:
         bot.send_message(chat_id, tt(lang, "cart_empty"))
         return
@@ -467,6 +475,8 @@ def start_checkout(bot, chat_id: int, lang: str) -> bool:
     if cart_count(chat_id) == 0:
         return False
     import actions
+    import cart_nudge
+    cart_nudge.mark_seen(chat_id, lang, cart_total(chat_id))  # relance 10 min
     actions._save_flow(chat_id, "checkout", "adresse", {})
     bot.send_message(
         chat_id,

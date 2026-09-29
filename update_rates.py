@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("update_rates")
 
 RATES_FILE = Path(__file__).resolve().parent / "data" / "rates.json"
-API_URL = "https://open.er-api.com/v6/latest/USD"  # gratuit, sans clé
+API_URL = "https://open.er-api.com/v6/latest/EUR"  # RÈGLE D'OR : base EUR (lettre finale)
 
 
 def update_rates() -> bool:
@@ -47,7 +47,7 @@ def update_rates() -> bool:
             old = {}
 
     payload = {
-        "base": "USD",
+        "base": "EUR",
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": "open.er-api.com (hebdo)",
         "rates": {k: float(v) for k, v in sorted(data["rates"].items())},
@@ -55,7 +55,7 @@ def update_rates() -> bool:
     RATES_FILE.parent.mkdir(parents=True, exist_ok=True)
     RATES_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     n = len(payload["rates"])
-    log.info("✅ %s monnaies mises à jour (base USD)", n)
+    log.info("✅ %s monnaies mises à jour (base EUR, prix fixe international)", n)
     if old.get("rates"):
         log.info("Ancien snapshot : %s", old.get("updated_at", "?"))
     return True

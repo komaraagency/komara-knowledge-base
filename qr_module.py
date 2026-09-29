@@ -227,25 +227,74 @@ def handle_pay_request(bot, chat_id: int, lang: str = "fr") -> bool:
     (ou demande du montant). Retour True si consommé."""
     import commercial_db as cdb
 
+    import devis_engine
     pending = [q for q in cdb.pending_quotes() if q["chat_id"] == str(chat_id)]
     if pending:
         q = pending[-1]
-        amount, currency = q["price_local"], q["currency"] or "USD"
-    else:
-        # pas de devis : on invite au devis, pas de QR au hasard
-        ask = {
-            "fr": "Tu veux payer quoi exactement Chef ? Tape 'devis' d'abord et "
-                  "je te fais le QR du bon montant 👌",
-            "en": "What do you want to pay exactly boss? Type 'quote' first and "
-                  "I'll make the QR with the right amount 👌",
-            "es": "¿Qué quiere pagar exactamente jefe? Escriba 'presupuesto' "
-                  "primero y le hago el QR con el monto correcto 👌",
-            "ar": "ماذا تريد أن تدفع بالضبط زعيم؟ اكتب 'devis' أولاً وسأصنع لك "
-                  "رمز QR بالمبلغ الصحيح 👌",
+        # RÈGLE D'OR (lettre finale) : le PRIX DE VENTE est TOUJOURS
+        # le montant € fixe. La monnaie locale n'est qu'une info indicatif,
+        # recalculée à la base EUR (jamais USD comme base, jamais prix).
+        price_eur = float(q["price_eur"] or 0) or float(q["price_local"] or 0)
+        cc = q["country_code"] or "GN"
+        conv = devis_engine.convert_devis(cc, price_eur)
+        # PRICES_FIXED (lettre finale) : acompte TOUJOURS 30€ fixe
+        acompte_eur = 30.0
+        conv_acc = devis_engine.convert_devis(cc, acompte_eur)
+        local_line = ""
+        if conv["currency"] != "EUR":
+            local_line = devis_engine.t(
+                lang, "convert_line", country=conv["country"],
+                price_local=devis_engine.format_price(conv))
+        acc_local = ""
+        if conv_acc["currency"] != "EUR":
+            acc_local = f" (~{devis_engine.format_price(conv_acc)})"
+        msg = {
+            "fr": "📄 *Devis {service}* — Komara Agency 🇬🇳\n"
+                  "➡️ Total : *{prix}€ (fixe international)*\n"
+                  "{local}💱 Acompte : {acompte}€{acc_local}\n\n"
+                  "🔧 Paiement en ligne € bientôt dispo\n"
+                  "Pour bloquer ta place : *JE COMMENCE* au {wa}",
+            "en": "📄 *Quote {service}* — Komara Agency 🇬🇳\n"
+                  "➡️ Total: *{prix}€ (fixed international)*\n"
+                  "{local}💱 Deposit: {acompte}€{acc_local}\n\n"
+                  "🔧 Online € payment coming soon\n"
+                  "To secure your spot: *I START* to {wa}",
+            "es": "📄 *Presupuesto {service}* — Komara Agency 🇬🇳\n"
+                  "➡️ Total: *{prix}€ (fijo internacional)*\n"
+                  "{local}💱 Anticipo: {acompte}€{acc_local}\n\n"
+                  "🔧 Pago online en € próximamente\n"
+                  "Para reservar su lugar: *EMPIEZO* al {wa}",
+            "ar": "📄 *عرض {service}* — كومارا أجنسلي 🇬🇳\n"
+                  "➡️ المجموع: *{prix}€ (سعر دولي ثابت)*\n"
+                  "{local}💱 العربون: {acompte}€{acc_local}\n\n"
+                  "🔧 الدفع باليورو قريباً\n"
+                  "لحجز مكانك: *أبدأ* إلى {wa}",
         }.get(lang, "fr")
-        bot.send_message(chat_id, ask)
+        import actions
+        bot.send_message(chat_id, msg.format(
+            service=q["service"] or q["project_desc"] or "projet",
+            prix=f"{price_eur:g}", local=local_line + "\n" if local_line else "",
+            acompte=f"{acompte_eur:g}", acc_local=acc_local,
+            wa=actions.WHATSAPP_FALLBACK), parse_mode="Markdown")
+        # trace admin : intention de paiement + relance panier 10 min
+        try:
+            import cart_nudge
+            cart_nudge.mark_seen(chat_id, lang, price_eur)
+        except Exception:
+            pass
+        logger.info("Modalités paiement envoyées (chat %s, %g€ fixe)",
+                    chat_id, price_eur)
         return True
-
-    method = "Orange Money / Wave" if q["country_code"] in {"GN", "SN", "CI", "ML", "BF"} else "Carte / Mobile Money"
-    generate_payment_qr(bot, chat_id, amount, currency, method, lang)
+    # pas de devis : on invite au devis, pas de QR au hasard
+    ask = {
+        "fr": "Tu veux payer quoi exactement Chef ? Tape 'devis' d'abord et "
+              "je te prépare les modalités de paiement 👌",
+        "en": "What do you want to pay exactly boss? Type 'quote' first and "
+              "I'll prepare the payment details 👌",
+        "es": "¿Qué quiere pagar exactamente jefe? Escriba 'presupuesto' "
+              "primero y le preparo las modalidades de pago 👌",
+        "ar": "ماذا تريد أن تدفع بالضبط زعيم؟ اكتب 'devis' أولاً وسأجهز لك "
+              "تفاصيل الدفع 👌",
+    }.get(lang, "fr")
+    bot.send_message(chat_id, ask)
     return True

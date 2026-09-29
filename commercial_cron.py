@@ -38,6 +38,12 @@ def _loop(name: str, interval_s: int, fn, bot) -> None:
 
 
 def start_all(bot) -> dict:
+    # Lettre finale Partie 2.4 : relance panier abandonné (10 min)
+    try:
+        import cart_nudge
+        cart_nudge.start(bot)
+    except Exception as e:
+        logger.error("Relance panier : %s", e)
     """Démarre tous les crons commerciaux. Idempotent."""
     import relances
     import update_rates

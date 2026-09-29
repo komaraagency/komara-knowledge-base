@@ -1409,15 +1409,19 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
         bot.send_message(chat_id, msg(detected_lang, "reset"), reply_markup=menu_for_lang(detected_lang))
         return
 
-    # 1bis. Flux exécutables (commande, RDV, devis, lead, sondage) — 100% local
-    if actions.handle(bot, chat_id, user_text, detected_lang):
-        return
+    # 1a. FIX PRIORITÉ PANIER (lettre finale — Screen 1) : les commandes
+    # panier ne sont JAMAIS avalées par un flux en cours.
+    low_text = user_text.strip().lower()
+    if (catalogue.ADD_RE.match(low_text)
+            or low_text in catalogue.CART_TRIGGERS
+            or low_text in catalogue.CLEAR_TRIGGERS):
+        if catalogue.handle_client(bot, chat_id, user_text, detected_lang):
+            return
 
-    # 1quin. Feature #3 : « payer » / « qr » / « paiement » → QR de
-    # paiement du devis en attente (règle anti-conflit : texte = génération)
-    # Lot 23 : boutons PayPal/Stripe/Support (multi-mode) prioritaires
-    # si l'admin les a activés via /paiement ; sinon ancien flux QR.
-    if user_text.strip().lower() in qr_module.PAY_TRIGGERS:
+    # 1ab. « payer » : boutons PayPal/Stripe si activés (/paiement on),
+    # sinon message config € fixe + acompte 30€ + JE COMMENCE (lettre,
+    # Screen 7). Toujours AVANT les flux : jamais avalé.
+    if low_text in qr_module.PAY_TRIGGERS:
         safe_typing(chat_id)
         try:
             import payment_links
@@ -1427,6 +1431,18 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             logger.error("Carte paiement multi-mode : %s", e)
         if qr_module.handle_pay_request(bot, chat_id, detected_lang):
             return
+
+    # 1abb. « devis » / « je commence » avec un PANIER NON VIDE → tunnel
+    # panier prioritaire (lettre : Priorité panier). Sans panier, le flux
+    # devis normal prend le relais plus bas.
+    if low_text in ("devis", "quote", "presupuesto", "عرض سعر",
+                   "je commence", "j'achète"):
+        if catalogue.start_checkout(bot, chat_id, detected_lang):
+            return
+
+    # 1bis. Flux exécutables (commande, RDV, devis, lead, sondage) — 100% local
+    if actions.handle(bot, chat_id, user_text, detected_lang):
+        return
 
     # 1sex. Feature #4 : machine commerciale — ordre strict
     # qualification > devis > downsell > bump > docs, pilotée par client_step

@@ -113,8 +113,11 @@ check("J+1 : message FR (Aya, Chef)", "Chef" in bot.last() or "logo" in bot.last
 # ═══════════════════════════════════════════════════════════════════
 print("── F3 : module QR double sens ──")
 cdb.insert_pending_quote(1002, "Ali", "", "GN", "GNF", 234239, 25, "logo", "Logo Pro")
-check("«payer» → QR avec devis en attente",
-      qr.handle_pay_request(bot, 1002, "fr") and "[QR]" in bot.last())
+# Lettre finale (Screen 7) : «payer» n'envoie PLUS de QR texte —
+# c'est le message config € fixe + acompte 30€ + JE COMMENCE.
+check("«payer» → message config € fixe (Screen 7)",
+      qr.handle_pay_request(bot, 1002, "fr") and "fixe international" in bot.last()
+      and "30€" in bot.last(), bot.last()[:60])
 path = qr.generate_payment_qr(None, 1002, 234239, "GNF", "Orange Money", "fr")
 check("QR généré (PNG)", path and os.path.exists(path))
 text = qr.scan_receipt_qr(path)

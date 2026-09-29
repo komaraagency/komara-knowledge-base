@@ -4,7 +4,8 @@ devis_engine.py — Feature #1 : Convertisseur de Devis Multi-Devises
 Komara Agency 🇬🇳 — 100 % local, zéro API payante à chaque requête.
 
 - data/all_currencies.json : 220 pays → monnaie (ISO 4217) + symbole
-- data/rates.json          : taux de change base USD, rafraîchis
+- data/rates.json          : taux de change base EUR (règle d'or : jamais
+  USD comme base — l'€ est la base de vente internationale fixe)
                              1×/semaine par update_rates.py (API gratuite)
 - convert_devis(pays_code, prix_base) : prix local + monnaie, fallback USD
 - Détection localité : n° WhatsApp (+224 = GN…) → language_code → demander
@@ -23,7 +24,8 @@ CURRENCIES_FILE = BASE_DIR / "data" / "all_currencies.json"
 RATES_FILE = BASE_DIR / "data" / "rates.json"
 
 BASE_CURRENCY = "EUR"  # le catalogue Komara est en € (règle d'or)
-USD_PER_EUR_FALLBACK = 1.09  # si rates.json indisponible
+USD_PER_EUR_FALLBACK = 1.09  # secours si rates.json indisponible
+EUR_RATE_FALLBACK = 1.09  # 1 EUR = 1.09 USD si rates.json indisponible
 
 # ---------------------------------------------------------------------------
 # Chargement (mis en cache, rechargé si le fichier change)
@@ -61,12 +63,36 @@ def _load_rates() -> dict:
 
 
 def usd_per_unit(currency: str) -> float | None:
-    """Combien de vaut 1 unité de `currency` en USD. None si inconnu."""
+    """Combien de vaut 1 unité de `currency` en USD. None si inconnu.
+    (Compat : conservé pour les modules existants.)"""
     rates = _load_rates().get("rates", {})
     if currency == "USD":
         return 1.0
     r = rates.get(currency)
     return float(r) if r else None
+
+
+def eur_per_unit(currency: str) -> float | None:
+    """RÈGLE D'OR : combien d'unités de `currency` vaut 1 EUR.
+    Base EUR — jamais USD comme base de conversion."""
+    if currency == "EUR":
+        return 1.0
+    data = _load_rates()
+    rates = data.get("rates", {})
+    r = rates.get(currency)
+    if not r:
+        return EUR_RATE_FALLBACK if currency == "USD" else None
+    if str(data.get("base", "EUR")).upper() == "USD":
+        # fichier ancien format base USD → normalisation EUR
+        eur = rates.get("EUR") or (1.0 / USD_PER_EUR_FALLBACK)
+        return float(r) / float(eur)
+    return float(r)
+
+
+def eur_price_local(prix_eur: float, currency: str) -> float | None:
+    """Prix fixe € → équivalent local indicatif (info uniquement)."""
+    r = eur_per_unit(currency)
+    return None if r is None else round(float(prix_eur) * r, 2)
 
 
 def convert(amount: float, from_cur: str, to_cur: str) -> float | None:
@@ -91,43 +117,44 @@ def convert_devis(pays_code: str, prix_base: float, base_currency: str = BASE_CU
     Retour : {country, country_code, currency, symbol, price_local,
               price_base, base_currency, fallback_usd}
     Fallback USD si le pays ou la monnaie n'est pas dans rates.json."""
+    prix_eur = round(float(prix_base), 2)
     cc = (pays_code or "").strip().upper()[:2]
     info = _load_currencies().get(cc)
-    if info:
-        currency, country = info["currency"], info["name"]
-    else:
-        # pays inconnu → fallback USD (règle spec)
-        currency, country = "USD", (pays_code or "").strip() or "—"
+    if not info:
+        # RÈGLE D'OR (lettre finale) : pays inconnu → PRIX FIXE €
+        # affiché tel quel. Jamais de fallback USD comme prix.
         return {
-            "country": country, "country_code": cc or "--", "currency": "USD",
-            "symbol": "$",
-            "price_local": round(convert(float(prix_base), base_currency, "USD")
-                                 or float(prix_base) * USD_PER_EUR_FALLBACK, 2),
-            "price_base": round(float(prix_base), 2),
-            "base_currency": base_currency, "fallback_usd": True,
+            "country": (pays_code or "").strip() or "—", "country_code": cc or "--",
+            "currency": "EUR", "symbol": "€",
+            "price_local": prix_eur,
+            "price_base": prix_eur,
+            "base_currency": "EUR", "fallback_eur": True, "fallback_usd": False,
         }
+    currency, country = info["currency"], info["name"]
 
-    price_local = convert(float(prix_base), base_currency, currency)
-    fallback_usd = False
+    # conversion via base EUR (info locale uniquement)
+    if base_currency.upper() != "EUR":
+        # on ramène toujours le prix de vente en € fixe international
+        to_eur = eur_per_unit(base_currency.upper())
+        prix_eur = round(float(prix_base) / to_eur, 2) if to_eur else prix_eur
+    price_local = eur_price_local(prix_eur, currency)
+    fallback_eur = False
     if price_local is None:
-        # Règle : pays/monnaie hors rates.json → devis en USD
-        currency, country = "USD", info["name"] + " (devise non disponible)" if info else country
-        price_local = convert(float(prix_base), base_currency, "USD")
-        fallback_usd = True  # pays inconnu OU monnaie absente → USD
-        if price_local is None:
-            price_local = round(float(prix_base) * USD_PER_EUR_FALLBACK, 2)
-        price_local = round(price_local, 2)
+        # monnaie hors rates.json → on reste en € fixe (info absente)
+        currency, price_local = "EUR", prix_eur
+        fallback_eur = True
 
+    sym = info.get("symbol", "€") if currency != "EUR" else "€"
     return {
         "country": country,
         "country_code": cc or "--",
         "currency": currency,
-        "symbol": _load_currencies().get(cc, {}).get("symbol", "$")
-        if currency != "USD" else "$",
+        "symbol": sym,
         "price_local": price_local,
-        "price_base": round(float(prix_base), 2),
-        "base_currency": base_currency,
-        "fallback_usd": fallback_usd,
+        "price_base": prix_eur,
+        "base_currency": "EUR",
+        "fallback_eur": fallback_eur,
+        "fallback_usd": False,
     }
 
 
@@ -268,17 +295,34 @@ NAME_ASK = {
     "ar": "ما اسمك زعيم؟ 😊",
 }
 CONVERT_LINE = {
-    "fr": "🌍 Chez toi en {country} : *{price_local}* (soit {price_base} {base})",
-    "en": "🌍 In your {country}: *{price_local}* (that's {price_base} {base})",
-    "es": "🌍 En {country}: *{price_local}* (es decir {price_base} {base})",
-    "ar": "🌍 في {country}: *{price_local}* (أي {price_base} {base})",
+    "fr": "💱 Chez toi : ~{price_local} ({country}, taux indicatif du jour)\n"
+          "*Seul le prix en € fait foi*",
+    "en": "💱 At home: ~{price_local} ({country}, indicative rate today)\n"
+          "*Only the € price applies*",
+    "es": "💱 En tu país: ~{price_local} ({country}, tasa indicativa de hoy)\n"
+          "*Solo el precio en € hace fe*",
+    "ar": "💱 عندك: ~{price_local} ({country}، سعر إرشادي لليوم)\n"
+          "*السعر باليورو فقط هو المعتمد*",
 }
 PAID_HINT = {
-    "fr": "Tape 'payer' pour le QR de paiement ou *JE COMMENCE* au {whatsapp} 🚀",
-    "en": "Type 'pay' for the payment QR or *I START* to {whatsapp} 🚀",
-    "es": "Escriba 'pagar' para el QR de pago o *EMPIEZO* al {whatsapp} 🚀",
-    "ar": "اكتب 'دفع' للحصول على رمز QR للدفع أو *أبدأ* إلى {whatsapp} 🚀",
+    "fr": "Tape 'payer' pour les modalités de paiement ou *JE COMMENCE* au "
+          "{whatsapp} 🚀",
+    "en": "Type 'pay' for payment details or *I START* to {whatsapp} 🚀",
+    "es": "Escriba 'pagar' para los detalles de pago o *EMPIEZO* al "
+          "{whatsapp} 🚀",
+    "ar": "اكتب 'دفع' لتفاصيل الدفع أو *أبدأ* إلى {whatsapp} 🚀",
 }
+
+
+def local_info_line(pays_code: str, prix_eur: float, lang: str) -> str:
+    """Ligne « Chez toi : ~X DEV » — info locale uniquement.
+    Vide si le client est en zone € (pas de conversion inutile :
+    « Client France : 100€ »)."""
+    conv = convert_devis(pays_code, prix_eur)
+    if conv["currency"] == "EUR":
+        return ""
+    return t(lang, "convert_line", country=conv["country"],
+             price_local=format_price(conv))
 
 
 def t(lang: str, key: str, **kw) -> str:
