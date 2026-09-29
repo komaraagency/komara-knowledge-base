@@ -2427,8 +2427,15 @@ def is_off_hours() -> bool:
     return current < WORK_START or current >= WORK_END
 
 
+# 🚫 Règle d'or (29/09) : jamais 2 messages à la fois. La notice « bureau
+# fermé » n'est donc plus envoyée seule : elle est mise en attente ici puis
+# FUSIONNÉE dans le TOUT PROCHAIN message envoyé à ce chat (voir le wrapper
+# bot.send_message posé dans rag_bot.py juste après la création du bot).
+_PENDING_OFFHOURS: dict[str, str] = {}
+
 def maybe_off_hours_notice(bot, chat_id: int, lang: str) -> None:
-    """Prévient le client (1x/jour) que le bureau est fermé, sans bloquer."""
+    """Prépare (1x/jour) la notice 'bureau fermé', fusionnée au prochain
+    message — jamais envoyée comme message séparé."""
     if not is_off_hours():
         return
     today = _agency_now().strftime("%Y-%m-%d")
@@ -2445,7 +2452,7 @@ def maybe_off_hours_notice(bot, chat_id: int, lang: str) -> None:
         )
         DB_CONN.commit()
     hours = f"{_fmt_hour(WORK_START)}-{_fmt_hour(WORK_END)}"
-    bot.send_message(chat_id, t(lang, "off_hours", hours=hours))
+    _PENDING_OFFHOURS[str(chat_id)] = t(lang, "off_hours", hours=hours)
 
 
 def export_csv(bot, chat_id: int, lang: str) -> bool:

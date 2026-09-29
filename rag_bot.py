@@ -9,6 +9,7 @@ import random
 import re
 import signal
 import sqlite3
+import string
 import tempfile
 import sys
 import threading
@@ -68,6 +69,25 @@ if not TOKEN:
     raise RuntimeError("La variable d'environnement TELEGRAM_TOKEN est absente.")
 
 bot = telebot.TeleBot(TOKEN)
+
+# 🚫 RÈGLE D'OR (29/09) : le bot n'envoie jamais 2 messages à la fois.
+# La notice « bureau fermé » (1x/jour, actions.maybe_off_hours_notice) ne
+# doit donc jamais partir seule : ce wrapper la FUSIONNE automatiquement
+# dans le TOUT PROCHAIN texte envoyé à ce chat, quel que soit le module
+# (actions.py, catalogue.py, rag_bot.py...) qui appelle bot.send_message —
+# un seul point de passage, donc une seule protection suffit pour tous.
+_ORIGINAL_SEND_MESSAGE = bot.send_message
+
+def _send_message_merge_offhours(chat_id, text=None, *args, **kwargs):
+    try:
+        notice = actions._PENDING_OFFHOURS.pop(str(chat_id), None)
+    except Exception:
+        notice = None
+    if notice and isinstance(text, str) and text:
+        text = f"{notice}\n\n{text}"
+    return _ORIGINAL_SEND_MESSAGE(chat_id, text, *args, **kwargs)
+
+bot.send_message = _send_message_merge_offhours
 
 # ---------------------------------------------------------------------------
 # Détecteur de langue local (Optimisé avec intersections de sets)
@@ -527,8 +547,57 @@ def init_memory_db() -> None:
                 history TEXT NOT NULL
             )
         """)
+        # 🛡️ ANTI-DOUBLON (règle d'or : jamais 2 messages à la fois) :
+        # un même update Telegram (message ou clic bouton) ne doit JAMAIS
+        # être traité deux fois. Cas réel observé : lors d'un redéploiement
+        # Railway, l'ancien worker peut encore répondre à un message pendant
+        # que le nouveau worker démarre et reçoit CE MÊME message via
+        # getUpdates (Telegram ne "consomme" un update qu'au getUpdates
+        # SUIVANT avec un offset supérieur — pas au moment de la réception).
+        # Résultat observé : 2 réponses différentes (ou identiques) envoyées
+        # pour UN SEUL message client. Cette table persiste la clé unique de
+        # chaque événement déjà traité, même à travers un redémarrage.
+        DB_CONN.execute("""
+            CREATE TABLE IF NOT EXISTS processed_events (
+                event_key TEXT PRIMARY KEY,
+                ts REAL NOT NULL
+            )
+        """)
         DB_CONN.commit()
     logger.info("Base de mémoire SQLite initialisée : %s", MEMORY_FILE)
+
+
+def _mark_processed_or_duplicate(event_key: str) -> bool:
+    """Enregistre event_key comme traité et renvoie True s'il l'était DÉJÀ
+    (doublon à ignorer silencieusement), False s'il est nouveau (à traiter).
+    Anti-doublon persistant : protège même contre un chevauchement de deux
+    process (ex. redéploiement) qui recevraient le même update Telegram."""
+    global DB_CONN
+    if DB_CONN is None:
+        return False  # DB pas encore prête (ne doit jamais bloquer une réponse)
+    now = time.time()
+    with DB_LOCK:
+        try:
+            row = DB_CONN.execute(
+                "SELECT 1 FROM processed_events WHERE event_key = ?", (event_key,)
+            ).fetchone()
+            if row:
+                return True
+            DB_CONN.execute(
+                "INSERT INTO processed_events (event_key, ts) VALUES (?, ?)",
+                (event_key, now),
+            )
+            # Purge légère (≈1% des appels) : on ne garde que 48h d'historique
+            if random.random() < 0.01:
+                DB_CONN.execute(
+                    "DELETE FROM processed_events WHERE ts < ?", (now - 172800,)
+                )
+            DB_CONN.commit()
+        except sqlite3.IntegrityError:
+            # Course entre deux threads sur la même clé : la clé existe déjà
+            # → c'est bien un doublon.
+            return True
+    return False
 
 def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
     global DB_CONN
@@ -1314,7 +1383,14 @@ _LAST_LANG: dict[int, str] = {}
 @bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location', 'photo'])
 def handle_message(message: telebot.types.Message) -> None:
     """Point d'entrée enregistré. ANTI-SILENCE : aucune exception ne sort
-    jamais d'ici sans que le client reçoive une réponse de secours."""
+    jamais d'ici sans que le client reçoive une réponse de secours.
+    ANTI-DOUBLON : règle d'or — jamais 2 messages pour un seul événement,
+    même si Telegram (ou un chevauchement de redéploiement) délivre le
+    même update deux fois."""
+    _event_key = f"msg:{message.chat.id}:{message.message_id}"
+    if _mark_processed_or_duplicate(_event_key):
+        logger.warning("Doublon ignoré (anti-double-envoi) : %s", _event_key)
+        return
     try:
         return _handle_message(message)
     except Exception as e:  # filet de sécurité absolu
@@ -1335,8 +1411,16 @@ def handle_message(message: telebot.types.Message) -> None:
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
     """Clics sur les boutons inline (catalogue). ANTI-SILENCE : le spinner
-    Telegram est toujours levé, même en cas d'erreur."""
+    Telegram est toujours levé, même en cas d'erreur.
+    ANTI-DOUBLON : même garde que handle_message, sur call.id."""
     chat_id = call.message.chat.id if call.message else None
+    if _mark_processed_or_duplicate(f"cb:{call.id}"):
+        logger.warning("Doublon de clic ignoré (anti-double-envoi) : cb:%s", call.id)
+        try:
+            bot.answer_callback_query(call.id)
+        except Exception:
+            pass
+        return
     lang = _LAST_LANG.get(chat_id, "fr") if chat_id else "fr"
     try:
         catalogue.handle_callback(bot, call, lang)
@@ -1358,9 +1442,46 @@ _RETURN_GREETING = {
     "ar": "مرحباً بعودتك {name} 👋 سعيد برؤيتك مجدداً! على ماذا توقفنا؟ اكتب /menu لرؤية كل شيء.",
 }
 
+# 🚫 Message « juste de la ponctuation » (règle d'or du 29/09) : « [[ », « / »,
+# « . », « '», « // », « ... » etc. — pas un mot, pas une phrase. Le bot ne
+# tente PAS de deviner : il répond une seule fois et propose les boutons.
+_PUNCT_CHARS = set(string.punctuation) | {"…", "«", "»", "‘", "’", "“", "”", "–", "—", "،", "؛", "؟"}
+
+def _is_punctuation_only(text: str) -> bool:
+    stripped = text.strip()
+    if not stripped:
+        return False
+    has_punct = False
+    for ch in stripped:
+        if ch.isspace():
+            continue
+        if ch in _PUNCT_CHARS:
+            has_punct = True
+            continue
+        return False  # lettre, chiffre ou emoji -> pas "ponctuation seule"
+    return has_punct
+
+_PUNCT_ONLY_REPLY = {
+    "fr": "J'ai pas compris votre demande boss!! Ou cliquez sur un bouton ci-dessous 👇🏾👇🏾",
+    "en": "I didn't get your request boss!! Or tap a button below 👇🏾👇🏾",
+    "es": "No entendí su solicitud jefe!! O toque un botón abajo 👇🏾👇🏾",
+    "ar": "لم أفهم طلبك يا رئيس!! أو اضغط على زر أدناه 👇🏾👇🏾",
+}
+
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
     _LAST_LANG[chat_id] = detected_lang
+
+    # 0. RÈGLE D'OR : message composé UNIQUEMENT de ponctuation (pas un mot,
+    # pas une phrase) → une seule réponse fixe + boutons. Priorité absolue,
+    # avant même la salutation personnalisée, pour ne jamais empiler 2 msg.
+    if _is_punctuation_only(user_text):
+        reply = _PUNCT_ONLY_REPLY.get(detected_lang, _PUNCT_ONLY_REPLY["fr"])
+        remember(chat_id, "user", user_text)
+        remember(chat_id, "assistant", reply)
+        human_pause(chat_id)
+        bot.send_message(chat_id, reply, reply_markup=menu_for_lang(detected_lang))
+        return
     # 🧠 MÉMOIRE CLIENT : un client connu qui salue reçoit une salutation
     # PERSONNALISÉE avec son prénom — le bot se souvient de lui.
     low_txt = user_text.lower().strip()
