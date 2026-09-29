@@ -138,17 +138,29 @@ def route(cid, txt, lang="fr"):
     cp.handle(bot2, cid, txt, lang)
 
 
+# LETTRE MASTER (29/09) : plus d'interrogatoire budget au démarrage du
+# devis (3 questions qui faisaient fuir 80% des clients). Le devis
+# démarre DIRECT par la grille de services.
 route(1003, "devis")
-check("qualification posée d'abord", "Ton budget" in bot2.last())
+check("grille devis DIRECT (anti-fuite, lettre master)",
+      "Quel service" in bot2.last() and "budget" not in bot2.last().lower(),
+      bot2.last()[:60])
+# La machinerie qualification reste intacte (déclenchement manuel) :
+# (le flux devis ouvert par « devis » est refermé pour ne pas avaler le « A »)
+actions._clear_flow(1003)
+cp.start_qualification(bot2, 1003, "fr", "grid")
+check("qualification : machinerie intacte", "Ton budget" in bot2.last())
 route(1003, "A")
 check("budget A → templates + STOP", "templates" in bot2.last().lower()
       and cdb.get_step(1003) == "low_budget")
-route(1004, "devis")
+# Budget B → grille devis (machinerie)
+cp.start_qualification(bot2, 1004, "fr", "grid")
 route(1004, "B")
 check("budget B → grille devis", "Quel service" in bot2.last())
-for t in ["3", "logo moderne", "Binta", "mode", "2 jours", "passer"]:
+# Nouveau tunnel devis (2 échanges max) : service puis activité
+for t in ["3", "logo moderne"]:
     route(1004, t)
-check("devis terminé → quoted", cdb.get_step(1004) == "quoted")
+check("devis 2 échanges → quoted (anti-fuite)", cdb.get_step(1004) == "quoted")
 before = cdb.pending_quotes()[-1]["price_local"]
 route(1004, "c'est trop cher")
 check("downsell -50%", "Starter" in bot2.last() and "50%" in bot2.last())

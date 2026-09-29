@@ -28,6 +28,9 @@ sys.path.insert(0, str(ROOT))
 os.chdir(ROOT)
 os.environ.setdefault("TELEGRAM_TOKEN", "123:TEST")
 os.environ["ACTIONS_DIR"] = str(ROOT / "data_lot26")
+os.environ.setdefault("MEMORY_DIR", str(ROOT / "data_lot26"))
+import shutil as _sh
+_sh.rmtree(str(ROOT / "data_lot26"), ignore_errors=True)
 os.environ["MEMORY_DIR"] = str(ROOT / "data_lot26")
 
 import logging  # noqa: E402

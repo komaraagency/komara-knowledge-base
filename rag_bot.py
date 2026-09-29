@@ -105,8 +105,16 @@ LANGUAGE_MARKERS: dict[str, dict[str, Any]] = {
             "combien", "voulez", "pouvez", "faites", "proposez", "agence",
             "bot", "service", "créez", "développement", "site", "application",
             "salut", "salam", "coucou",
+            # LETTRE MASTER (29/09) — fix détection : « J'ai plusieurs
+            # articles a vendre » partait en EN (« a » = mot anglais x2).
+            # Mots français ultra-courants + contractions apostrophe.
+            "ai", "suis", "est", "plusieurs", "besoin", "vendre", "vends",
+            "souhaite", "voudrais", "veux", "peux", "article", "articles",
+            "produit", "produits", "commander", "acheter", "fais", "fait",
         },
-        "patterns": ["'", "œ", "à", "é", "è", "ê", "ë", "î", "ï", "ô", "ù", "û", "ü", "ç"],
+        "patterns": ["'", "œ", "à", "é", "è", "ê", "ë", "î", "ï", "ô", "ù", "û", "ü", "ç",
+                      # contractions typiquement françaises (j'ai, n', qu'...)
+                      "j'", "n'", "qu'", "l'", "d'", "c'", "s'", "t'", "m'"],
     },
     "en": {
         "words": {
@@ -182,9 +190,13 @@ def strip_invisible_chars(text: str) -> str:
     return _INVISIBLE_CHARS_RE.sub("", text)
 
 
-def detect_language(text: str) -> str:
+def detect_language_confident(text: str) -> str | None:
+    """Détection avec signal réel. Retourne None si le message ne porte
+    AUCUN marqueur fiable (émoji seul, « ok », ponctuation...) : l'appelant
+    réutilise alors la dernière langue du chat au lieu de repartir en FR
+    (LETTRE MASTER : la langue choisie par le client PERSISTE)."""
     if not text or not text.strip():
-        return DEFAULT_LANGUAGE
+        return None
 
     text_lower = text.lower()
     words_in_text = set(re.findall(r'\b\w+\b', text_lower))
@@ -205,10 +217,52 @@ def detect_language(text: str) -> str:
             scores[lang] = score
 
     if not scores:
-        return DEFAULT_LANGUAGE
+        return None
 
     best_lang = max(scores, key=scores.get)
-    return best_lang if scores[best_lang] >= MIN_CONFIDENCE else DEFAULT_LANGUAGE
+    return best_lang if scores[best_lang] >= MIN_CONFIDENCE else None
+
+
+def detect_language(text: str) -> str:
+    """API historique : FR par défaut si aucun signal (comportement
+    inchangé pour les 344 tests existants)."""
+    return detect_language_confident(text) or DEFAULT_LANGUAGE
+
+
+# LETTRE MASTER — moteur langue (29/09) : marqueurs darija « salam /
+# khoya » → arabe, « hola / quiero » → espagnol — MAIS sans casser les
+# clients francophones qui saluent en « Salam » : le basculement AR ne
+# se fait que si le message ne contient AUCUN mot français à part
+# « salam/khoya » eux-mêmes (« Salam » seul → ar ; « Salam, je veux un
+# site » → reste fr).
+_DARIJA_MARKERS = {"khoya", "salam", "nta", "siri", "wlah", "walid", "bghit"}
+
+
+def detect_language_session(text: str, fallback: str | None = None) -> str:
+    """Détection pour la conversation : priorise le message, sinon garde
+    la langue persistée du chat (fallback), sinon FR.
+
+    Darija PRIORITAIRE (lettre : « salam/khoya » -> arabe) mais sans casser
+    les clients francophones qui saluent en « Salam » : le basculement AR
+    ne se fait que si le message ne contient AUCUN mot français réel à part
+    les marqueurs darija et les emprunts internationaux (bot, site...).
+    « Salam » seul -> ar ; « Salam, je veux un site web » -> reste fr."""
+    low_words = set(re.findall(r"\b\w+\b", text.lower()))
+    fr_words = LANGUAGE_MARKERS["fr"].get("words", set())
+    # emprunts internationaux : présents dans toutes les langues, ils ne
+    # comptent ni comme signal FR ni comme signal darija
+    loan_words = {"bot", "site", "app", "service", "whatsapp", "telegram",
+                  "logo", "menu", "web"}
+    darija_hit = bool(low_words & _DARIJA_MARKERS)
+    strong_fr = len((low_words & fr_words) - loan_words - _DARIJA_MARKERS)
+    if darija_hit and strong_fr == 0:
+        return "ar"
+    detected = detect_language_confident(text)
+    if detected is not None:
+        return detected
+    if "hola" in low_words or "quiero" in low_words:
+        return "es"
+    return fallback or DEFAULT_LANGUAGE
 
 def get_supported_languages() -> list[str]:
     return list(LANGUAGE_MARKERS.keys())
@@ -599,6 +653,21 @@ def _mark_processed_or_duplicate(event_key: str) -> bool:
             return True
     return False
 
+def has_prior_history(chat_id: int) -> bool:
+    """True si ce chat a déjà un historique en base (client REVENANT).
+    Sert à ne PAS dire « Re-bonjour, content de te revoir » à un client
+    qui vient d'arriver : son prénom Telegram est mémorisé dès le 1er
+    message, mais il n'a encore rien dit avant (LETTRE MASTER)."""
+    global DB_CONN
+    if DB_CONN is None:
+        return False
+    with DB_LOCK:
+        row = DB_CONN.execute(
+            "SELECT history FROM memory WHERE chat_id =?", (str(chat_id),)
+        ).fetchone()
+        return bool(row and json.loads(row[0]))
+
+
 def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
     global DB_CONN
     key = str(chat_id)
@@ -732,7 +801,9 @@ MESSAGES: dict[str, dict[str, str]] = {
         "bot_closed": "🌙 Komara Agency 🇬🇳 est fermée pour le moment.\nMais pas de stress : laisse ton message ici, on te répond à l'ouverture 🙏\n\nEn attendant, découvre nos réalisations : /menu 😊",
         "voice_unavailable": "🎤 Je n'ai pas pu écouter ce vocal pour l'instant. Écris-moi ton message 🙏",
         "error": "Désolé, une erreur temporaire est survenue. Un expert KOMARA vous contacte.",
+        "lang_switched": "✅ Parfait, on continue en français 🇫🇷",
     },
+
     "en": {
         "reset": "Done, I've cleared the context. What would you like to do?",
         "fallback": "I don't have that knowledge in my database yet 🙏\n\nI'm noting your question for the Komara team.\n\nType 'menu' to see our services: WhatsApp/Telegram bots, websites, apps, logos and digital creation.\n\nType 'pricing' for rates, 'services' for our offers, or describe your project.",
@@ -749,6 +820,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "bot_closed": "🌙 Komara Agency 🇬🇳 is closed right now.\nNo stress: leave your message here, we reply at opening 🙏\n\nMeanwhile, check our work: /menu 😊",
         "voice_unavailable": "🎤 I couldn't listen to this voice note yet. Please type your message 🙏",
         "error": "Sorry, a temporary error occurred. A KOMARA expert will contact you.",
+        "lang_switched": "✅ Great, let us continue in English 🇬🇧",
     },
     "ar": {
         "reset": "تم مسح السياق. ماذا تريد أن تفعل؟",
@@ -766,6 +838,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "bot_closed": "🌙 كومارا أجنسلي 🇬🇳 مغلقة حاليا.\nلا تقلق: اترك رسالتك هنا، نرد عند الفتح 🙏\n\nفي الانتظار، اكتشف أعمالنا: /menu 😊",
         "voice_unavailable": "🎤 لم أستطع الاستماع لهذه الرسالة الصوتية الآن. اكتب لي رسالتك 🙏",
         "error": "عذراً، حدث خطأ مؤقت. سيتواصل معك خبير من KOMARA.",
+        "lang_switched": "✅ ممتاز، نكمل بالعربية 🇸🇦",
     },
     "es": {
         "reset": "Listo, he borrado el contexto. ¿Qué quieres hacer?",
@@ -783,6 +856,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "bot_closed": "🌙 Komara Agency 🇬🇳 está cerrada ahora.\nTranquilo: deja tu mensaje aquí, respondemos a la apertura 🙏\n\nMientras tanto, descubre nuestros trabajos: /menu 😊",
         "voice_unavailable": "🎤 No pude escuchar esta nota de voz. Escríbeme tu mensaje 🙏",
         "error": "Lo siento, ocurrió un error temporal. Un experto de KOMARA te contactará.",
+        "lang_switched": "✅ Perfecto, seguimos en español 🇪🇸",
     },
 }
 
@@ -1173,21 +1247,106 @@ PORTFOLIO_SENTINEL = "__SHOW_PORTFOLIO__"
 FORMATION_SENTINEL = "__FORMATION_INSCRIPTION__"
 
 
+_CUSTOM_SEQ = [0]
+
+
+# Mots-outils (FR/EN/ES/AR) : ils ne portent PAS de sens de sujet.
+# « vous faites des sites » vs « vous faites juste des bots » partagent
+# vous/faites/des → ce ne sont PAS des doublons. Seuls les mots PORTEURS
+# (kindia, livrez, canva...) comptent pour la similarité.
+_STOP_TOKENS = {
+    "est", "quoi", "qui", "quand", "comment", "pourquoi", "combien",
+    "quel", "quelle", "quels", "quelles", "cest", "vous", "votre",
+    "vos", "tu", "toi", "je", "il", "elle", "nous", "ils", "elles",
+    "des", "une", "les", "leur", "leurs", "est-ce", "faire", "fait",
+    "faites", "avez", "avezvous", "as", "peut", "peux", "pour", "avec",
+    "sans", "sur", "dans", "chez", "aussi", "bien", "tres", "peu",
+    "the", "what", "how", "why", "who", "where", "when", "which",
+    "your", "you", "does", "are", "can", "have", "has", "and", "for",
+    "que", "cual", "donde", "como", "cuando", "cuanto", "suyo", "suya",
+    "usted", "ustedes", "hace", "hacen", "para", "con", "por", "que",
+    "ما", "ماذا", "كيف", "متى", "أين", "من", "هل", "مع", "على",
+}
+
+
+def _content_tokens(text_norm: str) -> set:
+    """Tokens porteurs de sens (mots-outils retirés)."""
+    return {w for w in re.findall(r"\b\w{3,}\b", text_norm)
+            if w not in _STOP_TOKENS}
+
+
+def similar_question_exists(question: str, lang: str = "fr") -> str | None:
+    """Renvoie la question existante SIMILAIRE, ou None.
+
+    RÈGLE BOSS (29/09) : si l'admin apprend au bot une connaissance qui
+    existe déjà, le bot refuse avec « désolé j'ai déjà une réponse
+    similaire ». Similaire = question identique après normalisation OU
+    recouvrement de mots PORTEURS de sens >= 80% (paraphrase
+    « livrez vous a kindia » vs « vous livrez a kindia »). Les mots-outils
+    (vous, faites, quoi...) ne comptent pas : ils créent de faux
+    doublons entre sujets différents."""
+    from normalize_text import normalize_text as _norm
+    q_norm = _norm(question or "").strip()
+    if not q_norm:
+        return None
+    q_content = _content_tokens(q_norm)
+    for _lang in ("fr", "en", "es", "ar"):
+        resources = LANG_RESOURCES.get(_lang) or {}
+        for src in ("kb", "faq", "dialogues"):
+            for fiche in resources.get(src) or []:
+                qs = fiche.get("questions", [])
+                if isinstance(qs, str):
+                    qs = [qs]
+                _q = fiche.get("question")
+                if isinstance(_q, str):
+                    qs = list(qs) + [_q]
+                for cand in qs:
+                    c_norm = _norm(str(cand or "")).strip()
+                    if not c_norm:
+                        continue
+                    if c_norm == q_norm:
+                        return str(cand)
+                    c_content = _content_tokens(c_norm)
+                    if not q_content or not c_content:
+                        continue
+                    inter = len(q_content & c_content)
+                    # la NOUVELLE question doit être couverte à >= 80% par
+                    # les mots porteurs de l'existante : une fiche courte
+                    # (« logo ») ne doit pas absorber une question plus
+                    # riche (« vous faites des logos pro »).
+                    if inter and inter / len(q_content) >= 0.8:
+                        return str(cand)
+    return None
+
+
 def add_custom_kb_entry(question: str, answer: str, lang: str = "fr") -> bool:
     """Ajoute une fiche apprise par l'admin (/apprends) au runtime.
-    La fiche sert toutes les langues (le FR est le repli par défaut)."""
-    fiche = {
-        "id": f"custom_{int(time.time())}",
-        "category": "custom",
-        "questions": [question],
-        "answer": answer,
-        "tags": ["custom", "admin"],
-    }
-    target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
-    if not target or "kb" not in target:
+    La fiche sert toutes les langues (le FR est le repli par défaut).
+
+    Anti-crash (règle boss) : aucune entrée invalide ne doit jamais faire
+    tomber le bot — question/réponse tronquées aux tailles sûres, id
+    unique même si 2 ajouts dans la même seconde, erreurs avalées."""
+    try:
+        question = str(question or "").strip()[:200]
+        answer = str(answer or "").strip()[:1500]
+        if not question or not answer:
+            return False
+        _CUSTOM_SEQ[0] += 1
+        fiche = {
+            "id": f"custom_{int(time.time())}_{_CUSTOM_SEQ[0]}",
+            "category": "custom",
+            "questions": [question],
+            "answer": answer,
+            "tags": ["custom", "admin"],
+        }
+        target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
+        if not target or "kb" not in target:
+            return False
+        target["kb"].append(fiche)
+        return True
+    except Exception:
+        logger.exception("ajout fiche custom impossible (ignoré)")
         return False
-    target["kb"].append(fiche)
-    return True
 
 # Lot 20 : connaissances ajoutées par l'admin via /apprends (fichier
 # kb_custom.json sur le volume /data) rechargées au démarrage.
@@ -1374,7 +1533,12 @@ def _handle_message(message: telebot.types.Message) -> None:
                     event="première visite (auto)")
     except Exception:
         logger.debug("Enregistrement client impossible", exc_info=True)
-    _process_text(chat_id, user_text, detect_language(user_text))
+    # LETTRE MASTER — la langue PERSISTE : un message sans signal clair
+    # (émoji, « ok »...) garde la langue de la conversation ; sinon le
+    # moteur (darija salam/khoya → ar, hola/quiero → es) décide.
+    _LAST_LANG[chat_id] = detect_language_session(
+        user_text, _LAST_LANG.get(chat_id, DEFAULT_LANGUAGE))
+    _process_text(chat_id, user_text, _LAST_LANG[chat_id])
 
 
 _LAST_LANG: dict[int, str] = {}
@@ -1461,6 +1625,14 @@ def _is_punctuation_only(text: str) -> bool:
         return False  # lettre, chiffre ou emoji -> pas "ponctuation seule"
     return has_punct
 
+# LETTRE MASTER — mots qui changent la langue de la conversation.
+LANG_SWITCH_WORDS: dict[str, str] = {
+    "english": "en", "en": "en",
+    "espanol": "es", "español": "es", "es": "es",
+    "arabe": "ar", "ar": "ar", "العربية": "ar",
+    "francais": "fr", "français": "fr", "fr": "fr",
+}
+
 _PUNCT_ONLY_REPLY = {
     "fr": "J'ai pas compris votre demande boss!! Ou cliquez sur un bouton ci-dessous 👇🏾👇🏾",
     "en": "I didn't get your request boss!! Or tap a button below 👇🏾👇🏾",
@@ -1489,7 +1661,10 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             and low_txt in actions.GREETING_WORDS):
         _GREETED_SESSION.add(chat_id)
         _client = actions.get_client(chat_id)
-        if _client and _client.get("name"):
+        # LETTRE MASTER : « Re-bonjour, content de te revoir » est réservé
+        # aux clients REVENANTS (historique en base). Un NOUVEAU client,
+        # même avec un prénom Telegram, continue vers l'accueil normal.
+        if _client and _client.get("name") and has_prior_history(chat_id):
             remember(chat_id, "user", user_text)
             _greet = (_RETURN_GREETING.get(detected_lang)
                       or _RETURN_GREETING["fr"]).replace("{name}", _client["name"])
@@ -1498,6 +1673,19 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             bot.send_message(chat_id, _greet,
                              reply_markup=menu_for_lang(detected_lang))
             return
+    # 0b. LETTRE MASTER — moteur langue : le client change de langue
+    # d'un mot (« english », « espanol », « العربية », « francais »...).
+    # La langue persiste ensuite pour toute la conversation (les messages
+    # courts sans signal clair ne repartent plus en FR par défaut).
+    lang_switch = LANG_SWITCH_WORDS.get(low_txt)
+    if lang_switch:
+        _LAST_LANG[chat_id] = lang_switch
+        remember(chat_id, "user", user_text)
+        confirm = msg(lang_switch, "lang_switched")
+        remember(chat_id, "assistant", confirm)
+        bot.send_message(chat_id, confirm, reply_markup=menu_for_lang(lang_switch))
+        return
+
     # 💬 Indicateur « tape… » + pause humaine 2-3,5 s AVANT toute réponse
     # (commandes, boutons, portfolio, KB, images) : le client voit le bot
     # « réfléchir » comme un vrai conseiller, et reçoit sa réponse < 4 s.

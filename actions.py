@@ -138,7 +138,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -193,213 +193,15 @@ SURVEY_ASK_VARIANTS_FR = [
     "Si tu as aimé le service, laisse-nous ta note de 1 à 5 ⭐ Ça nous aide à grandir 🙏",
 ]
 
-T = {
-    "fr": {
-        "complaint_ack": "Merci pour ton message, il a été transmis à l'équipe dirigeante qui examine personnellement ton dossier. Tu seras contacté sous 24h 🙏",
-        "human_ask": '🤝 Pas de souci, un expert KOMARA te contacte sous 5 min ⚡\nLaisse-moi ton numéro WhatsApp 👇',
-        "human_done": "✅ C'est noté ! L'équipe KOMARA te contacte sur WhatsApp sous 5 min ⚡\nEn attendant, je reste dispo ici 24/7 😊",
-        "admin_panel": '🎛️ PANNEAU ADMIN — Komara Agency 🇬🇳\nTout le bot, depuis ton téléphone 👇\n\n💰 ARGENT & RAPPORTS\n📊 /stats — compteurs + argent (devis, mois, commandes)\n📈 /rapport — rapport complet\n🗓️ /hebdo — rapport hebdomadaire\n📤 /export — export des données\n\n👥 CLIENTS & VENTE\n📞 /prend — tes 10 derniers clients + numéros\n👤 /prend <nom> — fiche client complète\n✉️ /msg <id|numéro> <texte> — écrire à un client via le bot\n📢 /broadcast <texte> — promo à tous les clients\n🛒 /commandes — commandes du catalogue\n🧑\u200d🤝\u200d🧑 /clients — liste des clients\n📅 /rdvs — rendez-vous\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — liste des produits\n➕ /produit add <cat>|<nom>|<desc>|<prix>\n💱 /produit maj <id>|<prix> — changer un prix\n❌ /produit del <id> — retirer un produit\n🎟️ /promo CODE 20 [max] — créer un code (ex : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — désactiver un code\n📋 /promos — codes actifs\n\n🤖 PILOTAGE DU BOT\n🔒 /pause — fermer le bot (clients → message de fermeture)\n✅ /reprend — rouvrir le bot\n🔄 /maj — recharger la base de connaissances\n📄 /facture — facture PDF\n💾 /backup — sauvegarde Drive manuelle\n🔗 /google — connexion Google\n📥 /kb_import — importer des fiches\n\n💡 Combo gagnant : /prend pour voir un client, /msg pour lui écrire, /broadcast pour une promo générale. Seul ton ID peut exécuter tout ça 🔐',
-        "code_usage": '🎟️ Pour vérifier un code promo : /code TONCODE\nExemple : /code TABASKI20 😊',
-        "code_ok": "🎟️ Code {code} VALIDE : -{pct:g}% de réduction ! 🎉\nTape 'devis' ou 'commander' pour en profiter maintenant 🚀",
-        "code_bad": "❌ Code {code} invalide, expiré ou déjà trop utilisé.\nVérifie l'orthographe, ou demande un code à l'équipe 😊",
-        "msg_usage": '✉️ Écrire à un client via le bot :\n\n/msg <chat_id|numéro|nom> <message>\n\nExemples :\n/msg 123456 Bonjour, votre commande est prête ✅\n/msg Mariama Ton visuel Tabaski est prêt ! 🎨\n\nLes numéros et chat_id sont dans /prend 📞',
-        "msg_sent": '✅ Message livré à {target} 👍',
-        "msg_failed": "❌ Livraison impossible : ce client n'a peut-être jamais démarré le bot, ou il a bloqué les messages du bot.",
-        "msg_not_found": '❌ Aucun client trouvé pour « {q} ».\nTape /prend pour la liste de tes clients 📞',
-        "cancelled": "OK, on annule 🚫\nTape 'commander' quand tu veux relancer 🚀",
-        "invalid": "Je n'ai pas compris ça 😅 Réessaie, ou tape 'annuler'.",
-        "invalid_rate": "Tape un chiffre entre 1 et 5 👇",
-        "invalid_bool": "Réponds 'oui' ou 'non' 👇",
-        "invalid_slot": "Tape le numéro du créneau (1 à 6) 👇",
-        "invalid_service": "Tape le numéro du service (1 à 5) 👇",
-        "order_start": "🛒 Commande express Komara Agency 🇬🇳\n\nQuel service veux-tu ?\n1️⃣ Agent IA WhatsApp/Telegram\n2️⃣ Site web vitrine\n3️⃣ Logo professionnel\n4️⃣ Application web\n5️⃣ Visuels & vidéo IA\n\nTape le numéro 👇",
-        "order_activity": "Parfait : {service} 🔥\nC'est quoi ton activité ? (restaurant, boutique, immo, clinique...)",
-        "order_deadline": "Nice 👌 Dans quel délai ? (ex: cette semaine, ce mois)",
-        "order_name": "Top 🎯 Ton nom ou prénom ?",
-        "order_phone": "Dernière étape 💪 Ton numéro WhatsApp ?",
-        "order_done": "✅ Commande enregistrée !\n\n{recap}\n\n🔥 Pour bloquer ton projet :\nÉcris *JE COMMENCE* au {whatsapp}\n\nKomara Agency 🇬🇳 te confirme tout sous 24h.",
-        "rdv_start": "📅 RDV avec Komara Agency 🇬🇳\n\nTon nom ou prénom ?",
-        "rdv_topic": "C'est pour quel sujet ? (ex: bot pour ma boutique)",
-        "rdv_slot": "Choisis ton créneau (appel 15 min) :\n{slots}\n\nTape le numéro 👇",
-        "rdv_done": "✅ RDV réservé !\n\n👤 {name}\n📝 {topic}\n📅 {slot}\n\nJe te rappelle 1h avant. Si tu dois changer, écris ici 👍",
-        "lead_start": "📞 OK, on t'appelle !\n\nTon nom ou prénom ?",
-        "lead_phone": "Ton numéro WhatsApp ?",
-        "lead_sector": "Ton secteur d'activité ? (resto, mode, immo, santé...)",
-        "lead_need": "Ton besoin principal ? (ex: vendre sur WhatsApp, site vitrine)",
-        "lead_done": "✅ Noté ! Komara Agency 🇬🇳 t'appelle sous 24h ouvrées 💪\nEn attendant : {whatsapp}",
-        "devis_start": "📄 Devis instantané Komara Agency 🇬🇳\n\nQuel service ?\n{grid}\n\nTape le numéro 👇",
-        "devis_details": "{service}\n💰 {price}\n⏱️ Livraison : {delay}\n\nDécris ton besoin en 1-2 phrases 👇",
-        "devis_done": "📄 Ton devis express :\n\n🛠️ Service : {service}\n💰 {price}\n⏱️ Livraison : {delay}\n📝 Détails : {details}\n\n✅ Pour lancer : écris *JE COMMENCE* au {whatsapp}\nUn humain confirme le devis final sous 24h.",
-        "survey_start": "⭐ Ton avis compte !\n\n{question}",
-        "survey_next": "Merci 👍\n\n{question}",
-        "survey_done": "Merci beaucoup 🙏 Ton avis est enregistré.\nTu veux lancer un projet ? Tape 'commander' 🚀",
-        "admin_stats": "📊 Stats Komara Agency\n\n🛒 Commandes : {orders}\n📅 RDV : {rdv}\n📞 Leads : {leads}\n📄 Devis : {quotes}\n⭐ Sondages : {surveys}\n😀 Satisfaction moyenne : {satisfaction}/5\n👍 Recommandent : {reco}%\n\n❓ Questions non reconnues : {unrecognized}",
-        "admin_report": "📋 Rapport questions sans réponse (top {limit}) :\n\n{items}\n\n→ À intégrer dans kb.json pour améliorer le bot.",
-        "admin_only": "🔒 Commande réservée à l'administration.",
-        "bot_closed": "🌙 Komara Agency 🇬🇳 est fermée pour le moment.\nMais pas de stress : laisse ton message ici, on te répond à l'ouverture 🙏\n\nEn attendant, découvre nos réalisations : /menu 😊",
-        "pause_on": "🔒 Bot FERMÉ !\n\nLes clients reçoivent maintenant le message de fermeture.\nTape /reprend pour rouvrir quand tu veux.",
-        "pause_off": "✅ Bot RÉOUVERT ! 🚀\n\nTous les clients peuvent à nouveau discuter avec moi.",
-        "broadcast_usage": "📢 Pour envoyer une promo à TOUS tes clients :\n\n/broadcast Ton message ici\n\nExemple :\n/broadcast 🔥 Promo week-end : -20% sur tous les logos ! Écris-moi pour en profiter 👇",
-        "broadcast_done": "📢 Promo envoyée !\n\n✅ Envoyée : {sent} client(s)\n❌ Échecs : {failed}",
-        "broadcast_none": "😅 Aucun client enregistré pour le moment.\nDès que des clients discutent avec le bot, ils seront ici.",
-        "prend_usage": "📞 Pour voir les numéros de tes clients :\n\n/prend → liste des 10 derniers clients\n/prend <nom, numéro ou chat_id> → fiche complète du client",
-        "prend_none": "😅 Aucun client trouvé pour « {q} ».",
-        "prend_card": "👤 {name}\n📞 {phone}\n🆔 {chat_id}\n💼 {activity}\n🛒 {orders} commande(s)\n📅 Dernière visite : {last_seen}\n\n👉 Écris-lui directement, ou tape /broadcast pour une promo générale.",
-        "prend_list": "📞 Tes 10 derniers clients :\n\n{lines}\n\nPour la fiche complète : /prend <nom ou numéro>",
-        "admin_money": "💰 *L'argent — Komara Agency 🇬🇳*\n\n📄 Devis émis : {n} (total ~{total}€)\n📅 Ce mois-ci : {mn} devis (~{mtot}€)\n🛒 Commandes en attente : {pending}\n\nLes devis sont générés par le module et confirmés par l'équipe.",
-        "off_hours": "🌙 Komara Agency 🇬🇳 est fermée en ce moment.\nBureau ouvert : {hours} (lun-ven).\n\nPas de stress : je prends ta commande et tes questions 24/7, un humain te répond à l'ouverture 👍",
-        "export_sent": "📤 Export en cours...",
-        "devis_promo": "🎟️ Tu as un code promo ?\nTape le code, ou 'passer' si tu n'en as pas.",
-        "promo_invalid": "❌ Code invalide ou expiré. Tape un code valide, ou 'passer'.",
-        "tracking_none": "📦 Pas encore de commande chez nous.\nTape 'commander' pour lancer ton projet 🚀",
-        "tracking_head": "📦 Suivi de ta commande :",
-        "tracking_order": "Commande",
-        "tracking_since": "depuis le",
-        "devis_activity": "Super 👍 C'est pour quel type d'activité ?\n(boutique, restaurant, immo, formation...)",
-        "devis_deadline": "Et ton délai souhaité ?\n(urgent, 2 semaines, flexible...)",
-        "devis_calc": "📄 *Devis {service}* — Komara Agency 🇬🇳\n\nCalcul de ton projet :\n{calc}\n\n➡️ Total estimé : *{total}€*\n⏱️ Délai : {delay}\n\n⚠️ Estimation : le prix final est confirmé par l'équipe avant de commencer.\nUne question ? Écris ici ou sur WhatsApp {whatsapp} 🚀",
-        "devis_promo_ok": "🎟️ Code *{code}* appliqué : -{pct:g}% !",
-        "known_greeting": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\nComment je peux t'aider aujourd'hui ?",
-        "rdv_known_start": "Re-bonjour {name} 👋\nSur quel sujet veux-tu un RDV ?",
-        "rdv_already": "📅 Tu as déjà un RDV : {slot}\n📝 Sujet : {topic}\n\nPour en prendre un autre, tape 'nouveau rdv'.",
-        "order_known_name": "Je te connais déjà, {name} 😊\nTape 'ok' pour garder ce nom, ou écris le bon.",
-        "order_known_phone": "Je garde aussi ton numéro : {phone}\nTape 'ok' pour confirmer, ou écris le nouveau.",
-    },
-    "en": {
-        "complaint_ack": 'Thank you for your message — it has been forwarded to the leadership team, who will personally review your case. You will be contacted within 24h 🙏',
-        "human_ask": '🤝 No problem, a KOMARA expert will contact you within 5 min ⚡\nDrop your WhatsApp number 👇',
-        "human_done": "✅ Noted! The KOMARA team will reach you on WhatsApp within 5 min ⚡\nMeanwhile, I'm still here 24/7 😊",
-        "admin_panel": '🎛️ ADMIN PANEL — Komara Agency 🇬🇳\nYour whole bot, from your phone 👇\n\n💰 MONEY & REPORTS\n📊 /stats — counters + money (quotes, month, orders)\n📈 /rapport — full report\n🗓️ /hebdo — weekly report\n📤 /export — data export\n\n👥 CLIENTS & SALES\n📞 /prend — your 10 latest clients + numbers\n👤 /prend <name> — full client card\n✉️ /msg <id|number> <text> — message a client via the bot\n📢 /broadcast <text> — promo to all clients\n🛒 /commandes — catalogue orders\n🧑\u200d🤝\u200d🧑 /clients — client list\n📅 /rdvs — appointments\n\n🛍️ CATALOGUE & PROMOS\n📦 /produit — product list\n➕ /produit add <cat>|<name>|<desc>|<price>\n💱 /produit maj <id>|<price> — change a price\n❌ /produit del <id> — remove a product\n🎟️ /promo CODE 20 [max] — create a code (e.g. /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — deactivate a code\n📋 /promos — active codes\n\n🤖 BOT CONTROL\n🔒 /pause — close the bot (clients get the closed message)\n✅ /reprend — reopen the bot\n🔄 /maj — reload the knowledge base\n📄 /facture — PDF invoice\n💾 /backup — manual Drive backup\n🔗 /google — Google connection\n📥 /kb_import — import entries\n\n💡 Winning combo: /prend to see a client, /msg to write to them, /broadcast for a general promo. Only your ID can run all of this 🔐',
-        "code_usage": '🎟️ To check a promo code: /code YOURCODE\nExample: /code TABASKI20 😊',
-        "code_ok": "🎟️ Code {code} VALID: -{pct:g}% off! 🎉\nType 'quote' or 'order' to use it now 🚀",
-        "code_bad": '❌ Code {code} invalid, expired or fully used.\nCheck the spelling, or ask the team for a code 😊',
-        "msg_usage": '✉️ Message a client via the bot:\n\n/msg <chat_id|number|name> <message>\n\nExamples:\n/msg 123456 Hello, your order is ready ✅\n/msg Mariama Your Tabaski visual is ready! 🎨\n\nNumbers and chat_id are in /prend 📞',
-        "msg_sent": '✅ Message delivered to {target} 👍',
-        "msg_failed": '❌ Delivery failed: this client may have never started the bot, or has blocked it.',
-        "msg_not_found": '❌ No client found for “{q}”.\nType /prend for your client list 📞',
-        "cancelled": "OK, cancelled 🚫\nType 'order' whenever you're ready 🚀",
-        "invalid": "I didn't get that 😅 Try again, or type 'cancel'.",
-        "invalid_rate": "Type a number between 1 and 5 👇",
-        "invalid_bool": "Answer 'yes' or 'no' 👇",
-        "invalid_slot": "Type the slot number (1 to 6) 👇",
-        "invalid_service": "Type the service number (1 to 5) 👇",
-        "order_start": "🛒 Express order — Komara Agency 🇬🇳\n\nWhich service?\n1️⃣ AI Agent WhatsApp/Telegram\n2️⃣ Website\n3️⃣ Logo\n4️⃣ Web app\n5️⃣ AI visuals & video\n\nType the number 👇",
-        "order_activity": "Great: {service} 🔥\nWhat's your business? (restaurant, shop, real estate...)",
-        "order_deadline": "Nice 👌 What's your timeline? (e.g. this week, this month)",
-        "order_name": "Perfect 🎯 Your name?",
-        "order_phone": "Last step 💪 Your WhatsApp number?",
-        "order_done": "✅ Order saved!\n\n{recap}\n\n🔥 To lock your project:\nWrite *I START* to {whatsapp}\n\nKomara Agency 🇬🇳 confirms everything within 24h.",
-        "rdv_start": "📅 Book a call — Komara Agency 🇬🇳\n\nYour name?",
-        "rdv_topic": "What's the topic? (e.g. bot for my shop)",
-        "rdv_slot": "Pick your slot (15-min call):\n{slots}\n\nType the number 👇",
-        "rdv_done": "✅ Call booked!\n\n👤 {name}\n📝 {topic}\n📅 {slot}\n\nI'll remind you 1h before 👍",
-        "lead_start": "📞 OK, we'll call you!\n\nYour name?",
-        "lead_phone": "Your WhatsApp number?",
-        "lead_sector": "Your sector? (food, fashion, real estate...)",
-        "lead_need": "Your main need? (e.g. sell on WhatsApp)",
-        "lead_done": "✅ Got it! Komara Agency 🇬🇳 calls you within 24h 💪\nMeanwhile: {whatsapp}",
-        "devis_start": "📄 Instant quote — Komara Agency 🇬🇳\n\nWhich service?\n{grid}\n\nType the number 👇",
-        "devis_details": "{service}\n💰 {price}\n⏱️ Delivery: {delay}\n\nDescribe your need in 1-2 sentences 👇",
-        "devis_done": "📄 Your express quote:\n\n🛠️ Service: {service}\n💰 {price}\n⏱️ Delivery: {delay}\n📝 Details: {details}\n\n✅ To start: write *I START* to {whatsapp}\nA human confirms the final quote within 24h.",
-        "survey_start": "⭐ Your feedback matters!\n\n{question}",
-        "survey_next": "Thanks 👍\n\n{question}",
-        "survey_done": "Thank you so much 🙏 Your feedback is saved.\nWant to start a project? Type 'order' 🚀",
-        "admin_stats": "📊 Komara Agency Stats\n\n🛒 Orders: {orders}\n📅 Calls: {rdv}\n📞 Leads: {leads}\n📄 Quotes: {quotes}\n⭐ Surveys: {surveys}\n😀 Avg satisfaction: {satisfaction}/5\n👍 Would recommend: {reco}%",
-        "admin_report": "📋 Unanswered questions report (top {limit}):\n\n{items}\n\n→ Add to kb.json to improve the bot.",
-        "admin_only": "🔒 Admin-only command.",
-        "off_hours": "🌙 Komara Agency 🇬🇳 is closed right now.\nOffice hours: {hours} (Mon-Fri).\n\nNo worries: I take your order and questions 24/7, a human replies at opening 👍",
-        "export_sent": "📤 Exporting...",
-        "devis_promo": "🎟️ Got a promo code?\nType the code, or 'pass' if you don't.",
-        "promo_invalid": "❌ Invalid or expired code. Type a valid one, or 'pass'.",
-        "tracking_none": "📦 No order with us yet.\nType 'order' to start your project 🚀",
-        "tracking_head": "📦 Your order tracking:",
-        "tracking_order": "Order",
-        "tracking_since": "since",
-        "devis_activity": "Great 👍 What type of business is it for?\n(shop, restaurant, real estate, training...)",
-        "devis_deadline": "And your preferred timeline?\n(urgent, 2 weeks, flexible...)",
-        "devis_calc": "📄 *Quote {service}* — Komara Agency 🇬🇳\n\nYour project calculation:\n{calc}\n\n➡️ Estimated total: *{total}€*\n⏱️ Timeline: {delay}\n\n⚠️ Estimate: the final price is confirmed by the team before we start.\nA question? Write here or on WhatsApp {whatsapp} 🚀",
-        "devis_promo_ok": "🎟️ Code *{code}* applied: -{pct:g}%!",
-        "known_greeting": "Hello again {name} 👋 Welcome back to Komara Agency 🇬🇳!\nHow can I help you today?",
-        "rdv_known_start": "Hello again {name} 👋\nWhat's the appointment about?",
-        "rdv_already": "📅 You already have an appointment: {slot}\n📝 Topic: {topic}\n\nTo book another one, type 'new appointment'.",
-        "order_known_name": "I remember you, {name} 😊\nType 'ok' to keep this name, or write the right one.",
-        "order_known_phone": "I also remember your number: {phone}\nType 'ok' to confirm, or write a new one.",
-    },
-    "es": {
-        "complaint_ack": 'Gracias por su mensaje — ha sido enviado al equipo directivo, que revisará personalmente su caso. Le contactarán en 24h 🙏',
-        "human_ask": '🤝 Sin problema, un experto KOMARA le contacta en 5 min ⚡\nDéjeme su número de WhatsApp 👇',
-        "human_done": '✅ ¡Anotado! El equipo KOMARA le contacta por WhatsApp en 5 min ⚡\nMientras tanto, sigo aquí 24/7 😊',
-        "admin_panel": '🎛️ PANEL ADMIN — Komara Agency 🇬🇳\nTodo su bot, desde su teléfono 👇\n\n💰 DINERO & INFORMES\n📊 /stats — contadores + dinero (presupuestos, mes, pedidos)\n📈 /rapport — informe completo\n🗓️ /hebdo — informe semanal\n📤 /export — exportación de datos\n\n👥 CLIENTES & VENTAS\n📞 /prend — sus 10 últimos clientes + números\n👤 /prend <nombre> — ficha complete del cliente\n✉️ /msg <id|número> <texto> — escribir a un cliente por el bot\n📢 /broadcast <texto> — promo a todos los clientes\n🛒 /commandes — pedidos del catálogo\n🧑\u200d🤝\u200d🧑 /clients — lista de clientes\n📅 /rdvs — citas\n\n🛍️ CATÁLOGO & PROMOS\n📦 /produit — lista de productos\n➕ /produit add <cat>|<nombre>|<desc>|<precio>\n💱 /produit maj <id>|<precio> — cambiar un precio\n❌ /produit del <id> — quitar un producto\n🎟️ /promo CODE 20 [max] — crear un código (ej : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — desactivar un código\n📋 /promos — códigos activos\n\n🤖 CONTROL DEL BOT\n🔒 /pause — cerrar el bot (los clientes reciben el mensaje de cierre)\n✅ /reprend — reabrir el bot\n🔄 /maj — recargar la base de conocimientos\n📄 /facture — factura PDF\n💾 /backup — copia manual en Drive\n🔗 /google — conexión Google\n📥 /kb_import — importar fichas\n\n💡 Combo ganador: /prend para ver un cliente, /msg para escribirle, /broadcast para una promo general. Solo su ID puede ejecutar todo esto 🔐',
-        "code_usage": '🎟️ Para verificar un código: /code TUCODIGO\nEjemplo: /code TABASKI20 😊',
-        "code_ok": "🎟️ Código {code} VÁLIDO: ¡-{pct:g}% de descuento! 🎉\nEscribe 'presupuesto' o 'pedir' para aprovecharlo 🚀",
-        "code_bad": '❌ Código {code} inválido, caducado o agotado.\nRevisa la ortografía o pide un código al equipo 😊',
-        "msg_usage": '✉️ Escribir a un cliente por el bot:\n\n/msg <chat_id|número|nombre> <mensaje>\n\nEjemplos:\n/msg 123456 Hola, su pedido está listo ✅\n/msg Mariama ¡Su visual Tabaski está listo! 🎨\n\nLos números están en /prend 📞',
-        "msg_sent": '✅ Mensaje entregado a {target} 👍',
-        "msg_failed": '❌ Entrega imposible: quizás este cliente nunca inició el bot o lo ha bloqueado.',
-        "msg_not_found": '❌ Ningún cliente encontrado para « {q} ».\nEscribe /prend para ver su lista de clientes 📞',
-        "cancelled": "OK, cancelado 🚫\nEscribe 'ordenar' cuando quieras 🚀",
-        "invalid": "No entendí 😅 Intenta de nuevo, o escriba 'cancelar'.",
-        "invalid_rate": "Escriba un número del 1 al 5 👇",
-        "invalid_bool": "Responde 'sí' o 'no' 👇",
-        "invalid_slot": "Escriba el número de la franja (1 a 6) 👇",
-        "invalid_service": "Escriba el número del servicio (1 a 5) 👇",
-        "order_start": "🛒 Pedido express — Komara Agency 🇬🇳\n\n¿Qué servicio?\n1️⃣ Agente IA WhatsApp/Telegram\n2️⃣ Sitio web\n3️⃣ Logo\n4️⃣ App web\n5️⃣ Visuales y video IA\n\nEscribe el número 👇",
-        "order_activity": "Perfecto: {service} 🔥\n¿Cuál es su negocio? (restaurante, tienda...)",
-        "order_deadline": "Bien 👌 ¿En qué plazo? (esta semana, este mes)",
-        "order_name": "Genial 🎯 ¿Su nombre?",
-        "order_phone": "Último paso 💪 ¿Su número de WhatsApp?",
-        "order_done": "✅ ¡Pedido guardado!\n\n{recap}\n\n🔥 Para bloquear su proyecto:\nEscribe *EMPIEZO* al {whatsapp}\n\nKomara Agency 🇬🇳 confirme todo en 24h.",
-        "rdv_start": "📅 Reservar llamada — Komara Agency 🇬🇳\n\n¿Su nombre?",
-        "rdv_topic": "¿Sobre qué tema? (ej: bot para mi tienda)",
-        "rdv_slot": "Elija su franja (llamada de 15 min):\n{slots}\n\nEscribe el número 👇",
-        "rdv_done": "✅ ¡Llamada reservada!\n\n👤 {name}\n📝 {topic}\n📅 {slot}\n\nTe recuerdo 1h antes 👍",
-        "lead_start": "📞 ¡Ok, le llamamos!\n\n¿Su nombre?",
-        "lead_phone": "¿Su número de WhatsApp?",
-        "lead_sector": "¿Su sector? (comida, moda, inmobiliaria...)",
-        "lead_need": "¿Su necesidad principal? (ej: vender por WhatsApp)",
-        "lead_done": "✅ ¡Anotado! Komara Agency 🇬🇳 le llama en 24h 💪\nMientras: {whatsapp}",
-        "devis_start": "📄 Presupuesto instantáneo — Komara Agency 🇬🇳\n\n¿Qué servicio?\n{grid}\n\nEscribe el número 👇",
-        "devis_details": "{service}\n💰 {price}\n⏱️ Entrega: {delay}\n\nDescribe su necesidad en 1-2 frases 👇",
-        "devis_done": "📄 Su presupuesto express:\n\n🛠️ Servicio: {service}\n💰 {price}\n⏱️ Entrega: {delay}\n📝 Detalles: {details}\n\n✅ Para empezar: escriba *EMPIEZO* al {whatsapp}\nUn humano confirme el presupuesto final en 24h.",
-        "survey_start": "⭐ ¡Su opinión cuenta!\n\n{question}",
-        "survey_next": "Gracias 👍\n\n{question}",
-        "survey_done": "Muchas gracias 🙏 Su opinión está guardada.\n¿Quiere empezar un proyecto? Escriba 'ordenar' 🚀",
-        "admin_stats": "📊 Estadísticas Komara Agency\n\n🛒 Pedidos: {orders}\n📅 Llamadas: {rdv}\n📞 Leads: {leads}\n📄 Presupuestos: {quotes}\n⭐ Encuestas: {surveys}\n😀 Satisfacción media: {satisfaction}/5\n👍 Recomendarían: {reco}%",
-        "admin_report": "📋 Informe de preguntas sin respuesta (top {limit}):\n\n{items}\n\n→ Añadir a kb.json para mejorar el bot.",
-        "admin_only": "🔒 Comando solo para administración.",
-        "off_hours": "🌙 Komara Agency 🇬🇳 está cerrada ahora.\nHorario: {hours} (lun-vie).\n\nTranquilo: tomo su pedido y preguntas 24/7, un humano responde a la apertura 👍",
-        "export_sent": "📤 Exportando...",
-        "devis_promo": "🎟️ ¿Tiene un código promo?\nEscribe el código, o 'pasar' si no tiene.",
-        "promo_invalid": "❌ Código inválido o expirado. Escriba uno válido, o 'pasar'.",
-        "tracking_none": "📦 Aún no tiene pedidos con nosotros.\nEscribe 'ordenar' para empezar su proyecto 🚀",
-        "tracking_head": "📦 Seguimiento de su pedido:",
-        "tracking_order": "Pedido",
-        "tracking_since": "desde el",
-        "devis_activity": "Genial 👍 ¿Para qué tipo de negocio?\n(tienda, restaurante, inmobiliaria, formación...)",
-        "devis_deadline": "¿Y su plazo preferido?\n(urgente, 2 semanas, flexible...)",
-        "devis_calc": "📄 *Presupuesto {service}* — Komara Agency 🇬🇳\n\nCálculo de su proyecto:\n{calc}\n\n➡️ Total estimado: *{total}€*\n⏱️ Plazo: {delay}\n\n⚠️ Estimación: el precio final lo confirme el equipo antes de empezar.\n¿Una pregunta? Escriba aquí o por WhatsApp {whatsapp} 🚀",
-        "devis_promo_ok": "🎟️ Código *{code}* aplicado: -{pct:g}%!",
-        "known_greeting": "¡Hola de nuevo {name} 👋 ¡Bienvenido otra vez a Komara Agency 🇬🇳!\n¿Cómo le ayudo hoy?",
-        "rdv_known_start": "¡Hola de nuevo {name} 👋\n¿Sobre qué tema es la cita?",
-        "rdv_already": "📅 Ya tiene una cita: {slot}\n📝 Tema: {topic}\n\nPara otra, escriba 'nueva cita'.",
-        "order_known_name": "Le conozco, {name} 😊\nEscribe 'ok' para confirmar, o el nombre correcto.",
-        "order_known_phone": "También guardo su número: {phone}\nEscribe 'ok' para confirmar, o el nuevo.",
-    },
-    "ar": {
-        "complaint_ack": 'شكرا على رسالتك — تم تحويلها إلى الفريق الإداري الذي سيراجع حالتك شخصيا. سيتم التواصل معك خلال 24 ساعة 🙏',
-        "human_ask": '🤝 لا مشكلة، خبير كومارا سيتصل بك خلال 5 دقائق ⚡\nاترك رقم واتساب 👇',
-        "human_done": '✅ تم التسجيل! فريق كومارا سيتصل بك على واتساب خلال 5 دقائق ⚡\nوأنا هنا 24/7 في انتظارك 😊',
-        "admin_panel": '🎛️ لوحة الأدمن — كومارا أجنسلي 🇬🇳\nالبوت كله من هاتفك 👇\n\n💰 المال والتقارير\n📊 /stats — الأرقام + المال\n📈 /rapport — تقرير كامل\n🗓️ /hebdo — تقرير أسبوعي\n📤 /export — تصدير البيانات\n\n👥 العملاء والمبيعات\n📞 /prend — آخر 10 عملاء + أرقام\n👤 /prend <اسم> — بطاقة العميل الكاملة\n✉️ /msg <معرف|رقم> <نص> — مراسلة عميل عبر البوت\n📢 /broadcast <نص> — عرض لكل العملاء\n🛒 /commandes — طلبات الكتالوج\n🧑\u200d🤝\u200d🧑 /clients — قائمة العملاء\n📅 /rdvs — المواعيد\n\n🛍️ الكتالوج والعروض\n📦 /produit — قائمة المنتجات\n➕ /produit add <فئة>|<اسم>|<وصف>|<سعر>\n💱 /produit maj <id>|<سعر> — تغيير سعر\n❌ /produit del <id> — حذف منتج\n🎟️ /promo CODE 20 [max] — إنشاء كود (مثال : /promo TABASKI20 20 = -20%)\n🚫 /promo off CODE — تعطيل كود\n📋 /promos — الأكواد النشطة\n\n🤖 التحكم في البوت\n🔒 /pause — إغلاق البوت\n✅ /reprend — إعادة فتح البوت\n🔄 /maj — إعادة تحميل قاعدة المعرفة\n📄 /facture — فاتورة PDF\n💾 /backup — نسخ احتياطي يدوي\n🔗 /google — ربط Google\n📥 /kb_import — استيراد أجوبة\n\n💡 المزيج الرابح: /pend لرؤية العميل، /msg للمراسلة، /broadcast للعرض العام. فقط معرّفك يمكنه تنفيذ كل هذا 🔐',
-        "code_usage": '🎟️ للتحقق من كود الخصم: /code الكود\nمثال: /code TABASKI20 😊',
-        "code_ok": "🎟️ الكود {code} صالح: خصم {pct:g}%! 🎉\nاكتب 'devis' أو 'commander' للاستفادة الآن 🚀",
-        "code_bad": '❌ الكود {code} غير صالح أو منتهي أو مستهلك.\nتحقق من الكتابة أو اطلب كوداً من الفريق 😊',
-        "msg_usage": '✉️ مراسلة عميل عبر البوت:\n\n/msg <chat_id|رقم|اسم> <رسالة>\n\nأمثلة:\n/msg 123456 مرحباً، طلبك جاهز ✅\n/msg Mariama تصميمك جاهز! 🎨\n\nالأرقام في /prend 📞',
-        "msg_sent": '✅ تم تسليم الرسالة إلى {target} 👍',
-        "msg_failed": '❌ تعذّر التسليم: ربما لم يبدأ العميل المحادثة مع البوت أو حظره.',
-        "msg_not_found": '❌ لا يوجد عميل بهذا الاسم « {q} ».\nاكتب /prend لقائمة عملائك 📞',
-    },
-}
-
+# ── LETTRE MASTER (29/09) — ÉTAPE 1 : les messages vivent dans
+# lang/{fr,en,es,ar}.json (source unique, éditables sans toucher au code).
+# ÉTAPE 2 : t() = get_text(key, lang) avec repli FR automatique, exactement
+# comme demandé : translations[lang].get(key) or translations["fr"].get(key).
+T: dict[str, dict[str, str]] = {}
+for _lg in ("fr", "en", "es", "ar"):
+    _p = BASE_DIR / "lang" / f"{_lg}.json"
+    with _p.open("r", encoding="utf-8") as _fh:
+        T[_lg] = json.load(_fh)
 
 def t(lang: str, key: str, **kwargs) -> str:
     """Texte du flux dans la langue (fr par défaut)."""
@@ -920,12 +722,26 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     # 2. Démarrage d'un flux (déclencheurs / boutons)
     for flow, words in TRIGGERS.items():
         if text_clean in words or low in words:
+            # (égalité exacte ci-dessus, contenu ci-dessous)
             # Panier non vide → tunnel catalogue au lieu du flux commande
             if flow == "parrainage":
                 return _parrainage_reply(bot, chat_id, lang)
             if flow == "order" and catalogue.start_checkout(bot, chat_id, lang):
                 return True
-            return start_flow(bot, chat_id, flow, lang)
+            return start_flow(bot, chat_id, flow, lang, trigger_text=text_clean)
+
+    # 2ter. LETTRE MASTER — le client parle en PHRASE : « je souhaite un
+    # devis », « je veux commander un logo ». Les déclencheurs devis/order
+    # sont recherchés par frontière de mot dans la phrase (pas seulement
+    # en égalité exacte), sinon la demande partait en réponse KB hors-sujet.
+    _phrase_intent = re.search(r"\b(devis|commander|quote|presupuesto)\b", low)
+    if _phrase_intent and not _fetch_flow(chat_id):
+        _w = _phrase_intent.group(1)
+        if _w in ("devis", "quote", "presupuesto"):
+            return start_flow(bot, chat_id, "devis", lang, trigger_text=text_clean)
+        if catalogue.start_checkout(bot, chat_id, lang):
+            return True
+        return start_flow(bot, chat_id, "order", lang, trigger_text=text_clean)
 
     # 2bis. 'nouveau rdv' force un RDV même si un existe déjà
     if low in NEW_RDV_WORDS:
@@ -944,7 +760,8 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     return False
 
 
-def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False) -> bool:
+def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
+                 trigger_text: str = "") -> bool:
     """Démarre un flux : premier message envoyé au client."""
     if flow == "order":
         _save_flow(chat_id, "order", "service", {})
@@ -970,16 +787,13 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False) -> 
         grid = "\n".join(
             f"{n}️⃣ {name} — {price}" for n, name, price, _ in PRICE_GRID
         )
-        # Feature #4 — ordre strict : qualification > devis. Un client
-        # dont client_step est 'new' répond d'abord à la question budget.
-        try:
-            import commercial_db as _cdb
-            import commercial_pack as _cp
-            if _cdb.get_step(chat_id) == "new":
-                return _cp.start_qualification(bot, chat_id, lang, grid)
-        except Exception:
-            pass  # module absent → comportement historique inchangé
-        _save_flow(chat_id, "devis", "service", {})
+        # LETTRE MASTER (29/09) — ANTI-FUITE : plus d'interrogatoire budget
+        # (3 questions qui faisaient fuir 80% des clients). Le devis
+        # démarre direct : grille de services PUIS UNE SEULE question
+        # (activité) puis devis complet avec prix € fixe.
+        # La demande d'origine du client sert de description (pour le
+        # calcul de complexité et le récap admin) : 0 question de plus.
+        _save_flow(chat_id, "devis", "service", {"details": (trigger_text or "")[:500]})
         bot.send_message(chat_id, t(lang, "devis_start", grid=grid))
     elif flow == "lead":
         _save_flow(chat_id, "lead", "name", {})
@@ -1051,8 +865,12 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             bot.send_message(chat_id, t(lang, "invalid_service"))
             return True
         data["service"] = service[1]
+        # LETTRE MASTER — ANTI-FUITE : le prix fixe s'affiche dès le choix
+        # du service (jamais de « commande = paiement » sans prix).
+        data["price"] = service[2] if len(service) > 2 else ""
         _save_flow(chat_id, "order", "activity", data)
-        bot.send_message(chat_id, t(lang, "order_activity", service=service[1]))
+        bot.send_message(chat_id, t(lang, "order_activity",
+                                   service=service[1], price=data["price"]))
         return True
 
     if step == "activity":
@@ -1122,10 +940,12 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             event=f"Commande n°{order_id} : {data.get('service','')}",
         )
 
+        price_line = f"💰 Prix : {data.get('price','')}\n" if data.get("price") else ""
         recap = (
             f"📌 Commande n°{order_id}\n"
             f"🛠️ Service : {data.get('service','')}\n"
             f"💼 Activité : {data.get('activity','')}\n"
+            f"{price_line}"
             f"⏱️ Délai : {data.get('deadline','')}\n"
             f"👤 Nom : {data.get('name','')}\n"
             f"📞 WhatsApp : {data.get('phone','')}"
@@ -1304,6 +1124,25 @@ def _devis_country_step(bot, chat_id: int, data: dict, lang: str) -> bool:
 
 
 def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
+    """LETTRE MASTER (29/09) — ANTI-FUITE : 2 échanges max avant le devis.
+
+    Ancien tunnel (interrogatoire qui faisait fuir 80% des clients) :
+      service → détails → nom → pays → activité → délai → code promo
+      = jusqu'à 6 questions avant le devis.
+
+    Nouveau tunnel :
+      service (grille catalogue avec prix €) → activité (1 SEULE question)
+      → DEVIS DIRECT avec prix € fixe + conversion locale indicative.
+
+    • Le délai n'est plus demandé : celui du service s'affiche dans le
+      devis (« 1-2 semaines »...).
+    • Le code promo n'est plus une question bloquante : le client le tape
+      via /code (indiqué dans le devis), il est appliqué automatiquement.
+    • Nom/pays : récupérés SANS question (nom Telegram mémorisé + pays
+      auto-détecté via téléphone/langue ; à défaut € fixe seul).
+    • Les 3 infos de production (nom, logo, 5 questions) seront
+      demandées PAR L'ÉQUIPE après l'acompte, pas par le bot.
+    """
     if step == "service":
         digits = text.strip()
         service = _service_by_num(digits)
@@ -1312,67 +1151,21 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             return True
         _, name, price, delay = service
         data.update({"service": name, "price": price, "delay": delay})
-        _save_flow(chat_id, "devis", "details", data)
-        bot.send_message(chat_id, t(lang, "devis_details", service=name, price=price, delay=delay))
-        return True
-
-    if step == "details":
-        data["details"] = text[:500]
-        # Feature #1 : collecte nom + pays_code avant de continuer.
-        client = get_client(chat_id) or {}
-        if client.get("name"):
-            data["name"] = client["name"]
-            return _devis_country_step(bot, chat_id, data, lang)
-        _save_flow(chat_id, "devis", "name", data)
-        bot.send_message(chat_id, devis_engine.t(lang, "name_ask"))
-        return True
-
-    if step == "name":
-        data["name"] = text.strip()[:80] or "cher client"
-        return _devis_country_step(bot, chat_id, data, lang)
-
-    if step == "country":
-        cc = devis_engine.detect_country(text)
-        if not cc:
-            bot.send_message(chat_id, devis_engine.t(lang, "country_ask"))
-            return True
-        data["country"] = cc
         _save_flow(chat_id, "devis", "activity", data)
         bot.send_message(chat_id, t(lang, "devis_activity"))
         return True
 
     if step == "activity":
         data["activity"] = text[:200]
-        _save_flow(chat_id, "devis", "deadline", data)
-        bot.send_message(chat_id, t(lang, "devis_deadline"))
-        return True
-
-    if step == "deadline":
-        data["deadline"] = text[:100]
-        _save_flow(chat_id, "devis", "promo", data)
-        bot.send_message(chat_id, t(lang, "devis_promo"))
-        return True
-
-    if step == "promo":
-        low_answer = text.strip().lower()
-        if low_answer in {"passer", "pass", "skip", "pasar", "نم"}:
-            data["promo"] = None
-        else:
-            result = check_promo_code(text)
-            if not result:
-                result = _referral_as_promo(bot, chat_id, text)
-            if not result:
-                bot.send_message(chat_id, t(lang, "promo_invalid"))
-                return True
-            code, pct = result
-            with DB_LOCK:
-                DB_CONN.execute(
-                    "UPDATE promo_codes SET uses = uses + 1 WHERE code =?", (code,)
-                )
-                DB_CONN.commit()
-            data["promo"] = {"code": code, "pct": pct}
-            bot.send_message(chat_id, t(lang, "devis_promo_ok", code=code, pct=pct),
-                            parse_mode="Markdown")
+        # Délai = celui du service catalogue (affiché dans le devis)
+        data["deadline"] = data.get("delay", "") or "selon projet"
+        # Nom : mémoire client (capturé automatiquement dès le 1er message)
+        client = get_client(chat_id) or {}
+        data["name"] = data.get("name") or client.get("name") or "cher client"
+        # Pays : auto-détection téléphone → langue ; si inconnu, le devis
+        # reste en € fixe (pas de question supplémentaire).
+        cc, _src = devis_engine.detect_locality(client.get("phone") or "", lang)
+        data["country"] = cc or "GN"
         return _finish_devis(bot, chat_id, data, lang)
 
     _clear_flow(chat_id)
@@ -1381,7 +1174,25 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
 
 def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
     _clear_flow(chat_id)
+    # 🎟️ Code promo validé plus tôt via /code → appliqué automatiquement,
+    # sans question bloquante (règle lettre master).
     promo = data.get("promo")
+    if not promo:
+        pending = _PENDING_PROMO.pop(chat_id, None)
+        if pending:
+            code, pct = pending
+            result = check_promo_code(code) or (code, pct)
+            if result:
+                code, pct = result
+                with DB_LOCK:
+                    DB_CONN.execute(
+                        "UPDATE promo_codes SET uses = uses + 1 WHERE code =?", (code,)
+                    )
+                    DB_CONN.commit()
+                data["promo"] = {"code": code, "pct": pct}
+                bot.send_message(chat_id, t(lang, "devis_promo_ok", code=code, pct=pct),
+                                parse_mode="Markdown")
+                promo = data["promo"]
 
     # Calcul complet : base + complexité + urgence - promo
     calc_lines, total = calc_devis(data)
@@ -1425,7 +1236,8 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
             whatsapp=WHATSAPP_FALLBACK,
         )
         + "\n\n" + convert_line
-        + "\n\n" + devis_engine.t(lang, "paid_hint", whatsapp=WHATSAPP_FALLBACK),
+        + "\n\n" + devis_engine.t(lang, "paid_hint", whatsapp=WHATSAPP_FALLBACK)
+        + "\n\n" + t(lang, "code_usage"),
     )
     # Lot 23 : multi-mode — carte PayPal/Stripe/Support en fin de devis
     # si l'admin a activé les boutons (/paiement on).
@@ -1439,13 +1251,20 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
         event=f"Devis express : {data.get('service','')}"
         + (f" (code {promo['code']} -{promo['pct']:g}%)" if promo else ""),
     )
-    admin_note = f" (code {promo['code']} -{promo['pct']:g}%)" if promo else ""
+    # LETTRE MASTER — format admin : TOUJOURS en français, lisible,
+    # avec prix € fixe, conversion locale, langue du client + demande
+    # d'origine (même si le client parle EN/ES/AR).
+    admin_note = f"\n🎟️ Code {promo['code']} : -{promo['pct']:g}%" if promo else ""
     notify_admin(
         bot,
-        f"📄 DEVIS EXPRESS{admin_note}\n🛠️ {data.get('service','')}\n"
-        f"💰 {total:g}€ → {devis_engine.format_price(conv)} ({conv['country']})\n"
-        f"🌍 Client : {client_name} ({conv['country_code']})\n"
-        f"📝 {data.get('details','')}\n👤 chat_id: {chat_id}",
+        f"📄 DEVIS EXPRESS\n"
+        f"🛒 Service : {data.get('service','')}\n"
+        f"💰 Prix FIXE : {total:g}€\n"
+        f"💱 Client {conv['country']} : ~{devis_engine.format_price(conv)} (indicatif)\n"
+        f"👤 Client : {client_name} ({conv['country_code']}) - Langue: {lang}\n"
+        f"💬 Demande : \"{data.get('details', '') or data.get('activity', '')}\"\n"
+        f"🆔 chat_id: {chat_id}"
+        + admin_note,
     )
     return True
 
@@ -1612,20 +1431,59 @@ def _money_summary() -> str:
 
 
 def _admin_apprends(bot, chat_id: int, args: str, lang: str) -> bool:
-    """Admin : /apprends <question> || <réponse> → enrichit la base (runtime
-    + fichier kb_custom.json persistant). Réservé à l'admin (garde en amont)."""
-    parts = args.split("||", 1)
+    """Admin : /apprends (alias /apprendre, /apprendres) — MODE FAQ via
+    chat admin (règle boss 29/09 : pas d'import CSV, le boss apprend au
+    bot en écrivant directement).
+
+    /apprends <question> || <réponse>
+    → enrichit la base (runtime + kb_custom.json persistant).
+
+    STABILITÉ (règle boss) : aucune erreur ne doit faire planter le bot.
+    DOUBLON : si une réponse similaire existe déjà → « désolé j'ai déjà
+    une réponse similaire !! » et RIEN n'est ajouté."""
+    try:
+        return _apprends_core(bot, chat_id, args, lang)
+    except Exception:
+        logger.exception("/apprends a échoué (anti-crash)")
+        try:
+            bot.send_message(
+                chat_id,
+                "⚠️ Oups, je n'ai pas pu enregistrer cette connaissance. "
+                "Réessaie avec : /apprends <question> || <réponse>")
+        except Exception:
+            pass
+        return True
+
+
+def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
+    import rag_bot
+    parts = (args or "").split("||", 1)
     if len(parts) != 2 or not parts[0].strip() or not parts[1].strip():
         bot.send_message(
             chat_id,
             "Usage : /apprends <question> || <réponse>\n"
             "Exemple : /apprends vous livrez à Kindia || Oui, partout en Guinée 🇬🇳 livraison offerte !")
         return True
-    question = parts[0].strip()
-    answer = parts[1].strip()
+    question = parts[0].strip()[:200]
+    answer = parts[1].strip()[:1500]
+    # RÈGLE BOSS : connaissance déjà existante → refus propre, rien ajouté
+    try:
+        existing = rag_bot.similar_question_exists(question)
+    except Exception:
+        existing = None
+    if existing:
+        bot.send_message(
+            chat_id,
+            "🙏 Désolé, j'ai déjà une réponse similaire !!\n"
+            f"❓ Déjà connu : {existing[:120]}\n"
+            "👉 Change la formulation ou demande /maj pour recharger la base.")
+        return True
     # runtime : la fiche est utilisable immédiatement
-    import rag_bot
-    rag_bot.add_custom_kb_entry(question, answer)
+    if not rag_bot.add_custom_kb_entry(question, answer):
+        bot.send_message(
+            chat_id,
+            "⚠️ Je n'ai pas pu ajouter cette connaissance (base non chargée ?).")
+        return True
     # persistant : rechargé au démarrage suivant
     try:
         ACTIONS_DIR.mkdir(parents=True, exist_ok=True)
@@ -1793,6 +1651,11 @@ def _maybe_remember_activity(chat_id: int, text: str) -> None:
     upsert_client(chat_id, activity=activity)
 
 
+# 🎟️ Codes promo validés via /code, en attente d'application automatique
+# au prochain devis du client (règle lettre : jamais de question bloquante).
+_PENDING_PROMO: dict[int, tuple[str, int]] = {}
+
+
 def _promo_check(bot, chat_id: int, text: str, lang: str, first_token: bool = False) -> bool:
     """Client : /code XXX → vérifie un code promo (catalogue/devis)."""
     words = [w for w in text.split() if w.upper() not in {"CODE", "PROMO", "/CODE", "/PROMO"}]
@@ -1807,6 +1670,9 @@ def _promo_check(bot, chat_id: int, text: str, lang: str, first_token: bool = Fa
             "SELECT discount_pct, uses, max_uses FROM promo_codes "
             "WHERE code = ? AND active = 1", (code,)).fetchone()
     if row and (row[2] in (None, 0) or row[1] < row[2]):
+        # LETTRE MASTER : le code validé est mis de côté et appliqué
+        # AUTOMATIQUEMENT au prochain devis (plus de question bloquante).
+        _PENDING_PROMO[chat_id] = (code, row[0])
         bot.send_message(chat_id, t(lang, "code_ok", code=code, pct=row[0]))
     else:
         bot.send_message(chat_id, t(lang, "code_bad", code=code))
@@ -1933,7 +1799,7 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         return set_global_promo(bot, 40.0, "KA")
     if command == "/bonnus":
         return set_global_promo(bot, 35.0, "BONNUS")
-    if command == "/apprends":
+    if command in ("/apprends", "/apprendre", "/apprendres"):
         return _admin_apprends(bot, chat_id, args, lang)
 
     if command == "/stats":
@@ -2095,9 +1961,17 @@ def upcoming_appointment(chat_id: int) -> tuple[str, str] | None:
 
 
 def client_greeting(bot, chat_id: int, lang: str) -> bool:
-    """Salutation personnalisée pour un client déjà connu."""
+    """Salutation personnalisée pour un client déjà connu.
+
+    LETTRE MASTER : « Re-bonjour, content de te revoir » est réservé aux
+    clients REVENANTS. Un NOUVEAU client a sa fiche créée dès son 1er
+    message (prénom Telegram capturé automatiquement) : il ne doit PAS
+    recevoir « Re-bonjour » — il continue vers l'accueil normal.
+    Discriminateur : au moins 2 évènements en base = il est déjà venu."""
     client = get_client(chat_id)
     if not client or not client["name"]:
+        return False
+    if len(client.get("events") or []) < 2:
         return False
     bot.send_message(
         chat_id,
