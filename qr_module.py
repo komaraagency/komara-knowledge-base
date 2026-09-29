@@ -144,6 +144,14 @@ def handle_receipt_scan(bot, chat_id: int, image_path: str,
 
     text = scan_receipt_qr(image_path)
     if not text:
+        # Lot 23 : pas de QR → capture d'écran PayPal ? Si le client a
+        # un paiement en attente, on transfère vers l'admin.
+        try:
+            import payment_links
+            if payment_links.maybe_forward_capture(bot, chat_id, image_path, lang):
+                return True
+        except Exception as e:
+            logger.error("Transfert capture : %s", e)
         msg = {
             "fr": "Merci pour la photo Chef 📸 Mais je n'arrive pas à lire de QR "
                   "dessus. Envoie le reçu avec le QR visible, ou tape 'payer' "

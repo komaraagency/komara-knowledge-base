@@ -1415,8 +1415,16 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
 
     # 1quin. Feature #3 : « payer » / « qr » / « paiement » → QR de
     # paiement du devis en attente (règle anti-conflit : texte = génération)
+    # Lot 23 : boutons PayPal/Stripe/Support (multi-mode) prioritaires
+    # si l'admin les a activés via /paiement ; sinon ancien flux QR.
     if user_text.strip().lower() in qr_module.PAY_TRIGGERS:
         safe_typing(chat_id)
+        try:
+            import payment_links
+            if payment_links.send_payment_card(bot, chat_id, detected_lang):
+                return
+        except Exception as e:
+            logger.error("Carte paiement multi-mode : %s", e)
         if qr_module.handle_pay_request(bot, chat_id, detected_lang):
             return
 

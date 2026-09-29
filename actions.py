@@ -138,7 +138,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -1427,6 +1427,13 @@ def _finish_devis(bot, chat_id: int, data: dict, lang: str) -> bool:
         + "\n\n" + convert_line
         + "\n\n" + devis_engine.t(lang, "paid_hint", whatsapp=WHATSAPP_FALLBACK),
     )
+    # Lot 23 : multi-mode — carte PayPal/Stripe/Support en fin de devis
+    # si l'admin a activé les boutons (/paiement on).
+    try:
+        import payment_links
+        payment_links.send_payment_card(bot, chat_id, lang)
+    except Exception:
+        pass  # désactivé ou sans panier/devis : comportement inchangé
     upsert_client(
         chat_id,
         event=f"Devis express : {data.get('service','')}"
@@ -1881,6 +1888,11 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
 
     if command in {"/produit", "/produits"}:
         catalogue.admin_product(bot, chat_id, args, lang)
+        return True
+
+    if command == "/paiement":
+        import payment_links
+        payment_links.cmd_paiement(bot, chat_id, args, lang)
         return True
 
     if command == "/admin":
