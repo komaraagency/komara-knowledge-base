@@ -1456,7 +1456,7 @@ def _admin_apprends(bot, chat_id: int, args: str, lang: str) -> bool:
 
 
 def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
-    import rag_bot
+    import knowledge_store
     parts = (args or "").split("||", 1)
     if len(parts) != 2 or not parts[0].strip() or not parts[1].strip():
         bot.send_message(
@@ -1464,44 +1464,19 @@ def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
             "Usage : /apprends <question> || <réponse>\n"
             "Exemple : /apprends vous livrez à Kindia || Oui, partout en Guinée 🇬🇳 livraison offerte !")
         return True
-    question = parts[0].strip()[:200]
-    answer = parts[1].strip()[:1500]
-    # RÈGLE BOSS : connaissance déjà existante → refus propre, rien ajouté
-    try:
-        existing = rag_bot.similar_question_exists(question)
-    except Exception:
-        existing = None
-    if existing:
+    result = knowledge_store.learn_entry(parts[0], parts[1], directory=ACTIONS_DIR)
+    if not result["added"]:
         bot.send_message(
             chat_id,
             "🙏 Désolé, j'ai déjà une réponse similaire !!\n"
-            f"❓ Déjà connu : {existing[:120]}\n"
-            "👉 Change la formulation ou demande /maj pour recharger la base.")
+            f"❓ Déjà connu : {result['existing'][:120]}\n"
+            "👉 Cette question est déjà couverte par la base.")
         return True
-    # runtime : la fiche est utilisable immédiatement
-    if not rag_bot.add_custom_kb_entry(question, answer):
-        bot.send_message(
-            chat_id,
-            "⚠️ Je n'ai pas pu ajouter cette connaissance (base non chargée ?).")
-        return True
-    # persistant : rechargé au démarrage suivant
-    try:
-        ACTIONS_DIR.mkdir(parents=True, exist_ok=True)
-        path = ACTIONS_DIR / "kb_custom.json"
-        data = []
-        if path.exists():
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except (json.JSONDecodeError, OSError):
-                data = []
-        data.append({"question": question, "answer": answer, "date": _now()})
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    except Exception:
-        logger.exception("écriture kb_custom.json impossible")
     bot.send_message(
         chat_id,
-        f"✅ Connaissance ajoutée à la base :\n❓ {question[:120]}\n💬 {answer[:120]}")
+        f"✅ Connaissance ajoutée à la base :\n❓ {result['question'][:120]}\n💬 {result['answer'][:120]}")
     return True
+
 
 def _admin_broadcast(bot, chat_id: int, args: str, lang: str) -> bool:
     text = args.strip()

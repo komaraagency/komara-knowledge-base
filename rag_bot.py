@@ -26,6 +26,7 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
+import knowledge_store
 import qr_module
 import relances
 import commercial_cron
@@ -477,8 +478,8 @@ logger.info("Ressources [fr] fusionnées : %s fiches KB", len(LANG_RESOURCES["fr
 
 
 
-def refresh_resources(lang_code: str) -> None:
-    """Recharge une langue (après /kb_import) en réappliquant la fusion fr."""
+def _load_merged_resources(lang_code: str) -> dict[str, Any]:
+    """Build a fresh language resource set for the shared knowledge store."""
     lang_res = load_language_resources(lang_code)
     if lang_code == "fr":
         lang_res = {
@@ -486,8 +487,14 @@ def refresh_resources(lang_code: str) -> None:
             "faq": lang_res.get("faq", []) + load_local_faq(),
             "dialogues": lang_res.get("dialogues", []) + load_dialogues(),
         }
-    LANG_RESOURCES[lang_code] = lang_res
-    logger.info("Ressources [%s] rechargées : %s fiches KB", lang_code, len(lang_res["kb"]))
+    return lang_res
+
+
+LANG_RESOURCES = knowledge_store.initialize_resources(LANG_RESOURCES, _load_merged_resources)
+
+
+def refresh_resources(lang_code: str) -> None:
+    knowledge_store.refresh_resources(lang_code)
 
 # ---------------------------------------------------------------------------
 # Mémoire conversationnelle locale (SQLite avec connexion persistante)
@@ -1247,120 +1254,10 @@ PORTFOLIO_SENTINEL = "__SHOW_PORTFOLIO__"
 FORMATION_SENTINEL = "__FORMATION_INSCRIPTION__"
 
 
-_CUSTOM_SEQ = [0]
+# Compatibility exports point to the same store used by admin actions.
+similar_question_exists = knowledge_store.similar_question_exists
+add_custom_kb_entry = knowledge_store.add_custom_kb_entry
 
-
-# Mots-outils (FR/EN/ES/AR) : ils ne portent PAS de sens de sujet.
-# « vous faites des sites » vs « vous faites juste des bots » partagent
-# vous/faites/des → ce ne sont PAS des doublons. Seuls les mots PORTEURS
-# (kindia, livrez, canva...) comptent pour la similarité.
-_STOP_TOKENS = {
-    "est", "quoi", "qui", "quand", "comment", "pourquoi", "combien",
-    "quel", "quelle", "quels", "quelles", "cest", "vous", "votre",
-    "vos", "tu", "toi", "je", "il", "elle", "nous", "ils", "elles",
-    "des", "une", "les", "leur", "leurs", "est-ce", "faire", "fait",
-    "faites", "avez", "avezvous", "as", "peut", "peux", "pour", "avec",
-    "sans", "sur", "dans", "chez", "aussi", "bien", "tres", "peu",
-    "the", "what", "how", "why", "who", "where", "when", "which",
-    "your", "you", "does", "are", "can", "have", "has", "and", "for",
-    "que", "cual", "donde", "como", "cuando", "cuanto", "suyo", "suya",
-    "usted", "ustedes", "hace", "hacen", "para", "con", "por", "que",
-    "ما", "ماذا", "كيف", "متى", "أين", "من", "هل", "مع", "على",
-}
-
-
-def _content_tokens(text_norm: str) -> set:
-    """Tokens porteurs de sens (mots-outils retirés)."""
-    return {w for w in re.findall(r"\b\w{3,}\b", text_norm)
-            if w not in _STOP_TOKENS}
-
-
-def similar_question_exists(question: str, lang: str = "fr") -> str | None:
-    """Renvoie la question existante SIMILAIRE, ou None.
-
-    RÈGLE BOSS (29/09) : si l'admin apprend au bot une connaissance qui
-    existe déjà, le bot refuse avec « désolé j'ai déjà une réponse
-    similaire ». Similaire = question identique après normalisation OU
-    recouvrement de mots PORTEURS de sens >= 80% (paraphrase
-    « livrez vous a kindia » vs « vous livrez a kindia »). Les mots-outils
-    (vous, faites, quoi...) ne comptent pas : ils créent de faux
-    doublons entre sujets différents."""
-    from normalize_text import normalize_text as _norm
-    q_norm = _norm(question or "").strip()
-    if not q_norm:
-        return None
-    q_content = _content_tokens(q_norm)
-    for _lang in ("fr", "en", "es", "ar"):
-        resources = LANG_RESOURCES.get(_lang) or {}
-        for src in ("kb", "faq", "dialogues"):
-            for fiche in resources.get(src) or []:
-                qs = fiche.get("questions", [])
-                if isinstance(qs, str):
-                    qs = [qs]
-                _q = fiche.get("question")
-                if isinstance(_q, str):
-                    qs = list(qs) + [_q]
-                for cand in qs:
-                    c_norm = _norm(str(cand or "")).strip()
-                    if not c_norm:
-                        continue
-                    if c_norm == q_norm:
-                        return str(cand)
-                    c_content = _content_tokens(c_norm)
-                    if not q_content or not c_content:
-                        continue
-                    inter = len(q_content & c_content)
-                    # la NOUVELLE question doit être couverte à >= 80% par
-                    # les mots porteurs de l'existante : une fiche courte
-                    # (« logo ») ne doit pas absorber une question plus
-                    # riche (« vous faites des logos pro »).
-                    if inter and inter / len(q_content) >= 0.8:
-                        return str(cand)
-    return None
-
-
-def add_custom_kb_entry(question: str, answer: str, lang: str = "fr") -> bool:
-    """Ajoute une fiche apprise par l'admin (/apprends) au runtime.
-    La fiche sert toutes les langues (le FR est le repli par défaut).
-
-    Anti-crash (règle boss) : aucune entrée invalide ne doit jamais faire
-    tomber le bot — question/réponse tronquées aux tailles sûres, id
-    unique même si 2 ajouts dans la même seconde, erreurs avalées."""
-    try:
-        question = str(question or "").strip()[:200]
-        answer = str(answer or "").strip()[:1500]
-        if not question or not answer:
-            return False
-        _CUSTOM_SEQ[0] += 1
-        fiche = {
-            "id": f"custom_{int(time.time())}_{_CUSTOM_SEQ[0]}",
-            "category": "custom",
-            "questions": [question],
-            "answer": answer,
-            "tags": ["custom", "admin"],
-        }
-        target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
-        if not target or "kb" not in target:
-            return False
-        target["kb"].append(fiche)
-        return True
-    except Exception:
-        logger.exception("ajout fiche custom impossible (ignoré)")
-        return False
-
-# Lot 20 : connaissances ajoutées par l'admin via /apprends (fichier
-# kb_custom.json sur le volume /data) rechargées au démarrage.
-try:
-    _kb_custom_path = Path(os.getenv("ACTIONS_DIR", "data")) / "kb_custom.json"
-    if _kb_custom_path.exists():
-        _custom = json.loads(_kb_custom_path.read_text(encoding="utf-8"))
-        for _e in _custom:
-            if _e.get("question") and _e.get("answer"):
-                add_custom_kb_entry(_e["question"], _e["answer"])
-        if _custom:
-            logger.info("KB custom (admin) rechargée : %s fiche(s)", len(_custom))
-except Exception:
-    logger.exception("kb_custom.json illisible — ignoré")
 PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
 def portfolio_images() -> list[tuple[str, Path]]:

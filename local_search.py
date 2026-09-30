@@ -15,6 +15,8 @@ Améliorations:
 
 from typing import Any, List, Tuple, Set
 import random
+import hashlib
+import json
 import re
 import math
 from collections import Counter
@@ -306,22 +308,26 @@ def _score_bidirectional(
     return base_score
 
 
-_RESOURCE_CACHE: dict[tuple, tuple[dict[str, float], list, list, list]] = {}
+_RESOURCE_CACHE: dict[bytes, tuple[dict[str, float], list, list, list]] = {}
 _LAST_ANSWER: str = ""
 
 
 def _prepare_resources(knowledge_base, local_faq, local_dialogues):
-    """Prépare (et met en cache) IDF + questions pré-tokenisées.
+    """Cache prepared questions by actual content, not just corpus lengths.
 
-    L'empreinte = les longueurs des listes : /kb_import ajoute des fiches,
-    les longueurs changent, le cache s'invalide tout seul. Un changement
-    de contenu sans changement de longueur n'arrive qu'au redéploiement
-    (le cache repart de zéro à chaque démarrage).
+    Different languages and equal-sized bases cannot share unrelated answers.
+    Edits to questions, answers or variants invalidate their previous cache key.
     """
-    fp = (len(knowledge_base), len(local_faq), len(local_dialogues))
+    payload = json.dumps([knowledge_base, local_faq, local_dialogues],
+                         ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    fp = hashlib.blake2b(payload.encode("utf-8"), digest_size=20).digest()
     cached = _RESOURCE_CACHE.get(fp)
     if cached is not None:
         return cached
+
+    # Build from the exact serialized snapshot used as cache key.
+    # Concurrent learning cannot associate new data with an old fingerprint.
+    knowledge_base, local_faq, local_dialogues = json.loads(payload)
 
     all_questions: list[list[str]] = []
     kb_entries: list[tuple[list[tuple[str, set[str]]], Any, str | None]] = []
@@ -357,7 +363,7 @@ def _prepare_resources(knowledge_base, local_faq, local_dialogues):
 
     idf = _compute_idf(all_questions)
     prepared = (idf, kb_entries, faq_entries, dialogue_entries)
-    if len(_RESOURCE_CACHE) > 12:
+    if len(_RESOURCE_CACHE) >= 12:
         _RESOURCE_CACHE.clear()
     _RESOURCE_CACHE[fp] = prepared
     return prepared

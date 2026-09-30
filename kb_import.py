@@ -225,8 +225,8 @@ def import_file(filename: str, data: bytes, lang: str = "fr") -> dict:
     path.write_text(json.dumps(kb, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # Rechargement à chaud (fusion fr réappliquée)
-    import rag_bot
-    rag_bot.refresh_resources(lang)
+    import knowledge_store
+    knowledge_store.refresh_resources(lang)
 
     # Persistance GitHub (optionnelle)
     pushed = False
