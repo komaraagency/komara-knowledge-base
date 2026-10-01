@@ -1,2 +1,2 @@
-### ugc vidéo tiktok reels
-UGC IA : Des vidéos de clients qui parlent de ton produit, générées par IA. 80€ / 3 vidéos. Parfait pour TikTok et Reels. Tu vends quoi comme produit ?
+### automatisation relances multicanal reels tiktok whatsapp
+Agent IA Multicanal Premium (150€) : Un agent IA intelligent qui capte tes leads TikTok, Instagram et WhatsApp, relance automatiquement et conclut les ventes 24/7. Tu vends quoi comme produits ou services ?

@@ -1,2 +1,2 @@
 ### chatbot bot whatsapp instagram agent ia
-Notre Chatbot IA vend pour toi 24h/24 sur WhatsApp et Instagram. Il répond aux clients, prend les commandes et envoie les liens de paiement. Prix : à partir de 350€. Tu veux une démo ?
+Notre Chatbot IA vendeur 24/7 vend pour toi sur WhatsApp, Telegram et Instagram. Il répond aux clients, présente le catalogue, prend les commandes et gère les paiements. Prix : 100€ (ou Agent IA multicanal premium à 150€). Tu veux voir une démo personnalisée ?

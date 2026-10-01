@@ -3,11 +3,9 @@
 pack_scale.py — Feature #5 : Pack Scale (parrainage + recouvrement +
 upsell J+30 + winback). Tout en €, catalogue 1 à 7, zéro API externe.
 
-CATALOGUE RÉEL (€) — source unique de la lettre #5/#6 :
-  1. Chatbot IA — 100€ (+50€/mois)     5. E-commerce — 150€
-  2. Formation IA — 50€                6. Visuel — 15€ (pack 5 = 40€)
-  3. Logo — 25€                        7. Vidéo IA — 20€
-  4. Site Vitrine — 50€
+CATALOGUE RÉEL (€) — source unique : catalogue bots & agents IA :
+  1. Bot Scripté — 50€                 3. Agent IA Premium — 150€
+  2. Chatbot IA Vendeur — 100€         4. Maintenance — 50€/mois (bot : 20€/mois)
 
 Fonctions (toutes par cron séparé, anti-conflit total, anti-spam
 1 message auto / client / jour via clients.last_auto_message_date) :
@@ -16,8 +14,9 @@ Fonctions (toutes par cron séparé, anti-conflit total, anti-spam
                          chatbot offert) — table parrainage
   6. RECOUVREMENT AUTO : paiement en 2x → J-1 rappel, Jour J QR
                          (generate_payment_qr), J+2 impayé → suspendu
-  7. UPSELL J+30       : achat 4 sans 5 → e-commerce +100€ ; 4/5 sans 1
-                         → chatbot 100€ ; 4/5 sans 3 → logo 25€
+  7. UPSELL J+30       : Bot sans Chatbot → chatbot +50€ ; Chatbot sans
+                         Agent IA → agent IA +50€ ; sans Maintenance →
+                         maintenance 50€/mois
   8. WINBACK           : devis expired depuis 60j → -20% (prix*0.8, local)
 """
 from __future__ import annotations
@@ -30,19 +29,18 @@ import commercial_db as cdb
 
 logger = logging.getLogger("komara")
 
+# Ids alignés sur l'ordre d'insertion du catalogue (catalogue.py) :
+# 1=Bot Scripté, 2=Chatbot IA Vendeur, 3=Agent IA Premium, 4=Maintenance.
 CATALOG = {
-    1: ("Chatbot IA", 100.0),
-    2: ("Formation IA", 50.0),
-    3: ("Logo", 25.0),
-    4: ("Site Vitrine", 50.0),
-    5: ("E-commerce", 150.0),
-    6: ("Visuel", 15.0),
-    7: ("Vidéo IA", 20.0),
+    1: ("Bot Scripté", 50.0),
+    2: ("Chatbot IA Vendeur", 100.0),
+    3: ("Agent IA Premium", 150.0),
+    4: ("Maintenance mensuelle", 50.0),
 }
-CHATBOT_PROD = 1
-SITE_PROD = 4
-ECOM_PROD = 5
-LOGO_PROD = 3
+BOT_PROD = 1
+CHATBOT_PROD = 2
+AGENT_PROD = 3
+MAINT_PROD = 4
 
 PARRAIN_PCT = 20.0        # 20% du prix
 WINBACK_PCT = 20.0        # -20% Tabaski
@@ -87,8 +85,8 @@ def process_parrainage(bot, now=None) -> int:
         lien = f"komara.agency/ref/{prenom}{d['id']}"
         cdb.insert_parrainage(d["chat_id"], prenom, commission)
         msg = (f"Ton {d['produit']} est en ligne 🔥 Ramène 1 client, on "
-               f"t'offre 20% soit {commission:g}€ ou 1 mois offert sur "
-               f"Chatbot (50€).\nTon lien perso : {lien}")
+               f"t'offre 20% soit {commission:g}€ ou 1 mois de Maintenance "
+               f"offert (50€).\nTon lien perso : {lien}")
         _safe_send(bot, d["chat_id"], msg)
         with actions.DB_LOCK:
             conn.execute("UPDATE purchases SET parrain_notified=1 WHERE id=?",
@@ -213,15 +211,15 @@ def process_upsell(bot, now=None) -> int:
         pid = d["produit_id"]
         has = _products_of(conn, d["chat_id"])
         # Règles de la lettre #7
-        if pid == SITE_PROD and ECOM_PROD not in has:
-            target, add = "E-commerce", 100.0   # 150-50
-        elif pid in (SITE_PROD, ECOM_PROD) and CHATBOT_PROD not in has:
-            target, add = "Chatbot vendeur 24/7", 100.0
-        elif pid in (SITE_PROD, ECOM_PROD) and LOGO_PROD not in has:
-            target, add = "Logo Pro", 25.0
+        if pid == BOT_PROD and CHATBOT_PROD not in has:
+            target, add = "Chatbot IA Vendeur", 50.0   # 100-50
+        elif pid in (BOT_PROD, CHATBOT_PROD) and AGENT_PROD not in has:
+            target, add = "Agent IA Premium", 100.0
+        elif pid in (BOT_PROD, CHATBOT_PROD, AGENT_PROD) and MAINT_PROD not in has:
+            target, add = "Maintenance mensuelle", 50.0
         else:
             _mark_upsell(conn, d["id"]); continue  # rien à proposer
-        msg = (f"Ça fait 30j que ton {d['produit']} tourne. 70% de nos "
+        msg = (f"Ça fait 30j que ton {d['produit']} tourne 🔥 70% de nos "
                f"clients ajoutent {target}. Tu veux qu'on te l'ajoute pour "
                f"{add:g}€ ?")
         _safe_send(bot, d["chat_id"], msg)

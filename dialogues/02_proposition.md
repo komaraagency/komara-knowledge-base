@@ -1,2 +1,7 @@
 ### services proposition offres pôles
-Voici nos 4 pôles 💎 1. Visuels IA 2. Branding & Logo 3. Chatbot Vendeur 24h/24 4. Formation IA. Les prix sont sur devis, selon ton projet.. Tu veux le détail de quel service ?
+Voici nos offres d'agents et bots IA 💎 :
+1. Bot scripté WhatsApp/Telegram (50€)
+2. Chatbot IA vendeur 24/7 (100€)
+3. Agent IA multicanal premium (150€)
+4. Maintenance mensuelle (20€/mois bot simple ou 50€/mois agent IA).
+Tu veux le détail de quelle offre pour ton activité ?

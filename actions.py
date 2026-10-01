@@ -76,11 +76,10 @@ WEEKEND_OFF = os.getenv("WEEKEND_OFF", "true").lower() in {"1", "true", "yes", "
 # Grille de prix alignée sur kb.json (monnaies 100% €)
 # Délais de référence par catégorie (affichés dans le devis instantané)
 SERVICE_DELAYS: dict[str, str] = {
-    "Logo": "2-3 jours",
-    "Visuels": "24-48h",
-    "Site web": "1-2 semaines",
-    "Agent IA": "3-5 jours",
-    "Formation": "selon planning",
+    "Bot": "48h",
+    "Chatbot": "3-5 jours",
+    "Agent IA": "5-7 jours",
+    "Maintenance": "immédiate",
 }
 
 def _catalogue_grid() -> list[tuple[str, str, str, str]]:
@@ -523,20 +522,20 @@ def notify_unanswered(bot, chat_id: int, text: str, lang: str) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Inscription Formation IA : capture + notification admin — lot 20
+# Démo Agent IA : capture + notification admin — lot 20 (ex-formation)
 # ---------------------------------------------------------------------------
 
 FORMATION_MSGS = {
-    "fr": "Parfait 🔥 Pour t'inscrire à la Formation IA (50€, tarif catalogue), envoie :\n1) Ton nom\n2) Ton business (ce que tu vends)\n3) Ton numéro\n\nJe t'envoie ton accès direct et on démarre 🚀",
-    "en": "Perfect 🔥 To sign up for the AI Training (50€, catalogue price), send:\n1) Your name\n2) Your business (what you sell)\n3) Your number\n\nI'll send you direct access and we start 🚀",
-    "es": "Perfecto 🔥 Para inscribirse en la Formación IA (50€, precio de catálogo), envíe:\n1) Su nombre\n2) Su negocio (qué vende)\n3) Su número\n\nLe envío el acceso directo y empezamos 🚀",
-    "ar": "ممتاز 🔥 للتسجيل في تكوين الذكاء الاصطناعي (50€، سعر الكتالوج)، أرسل:\n1) اسمك\n2) عملك (ماذا تبيع)\n3) رقمك\n\nأرسل لك الوصول المباشر وننطلق 🚀",
+    "fr": "Parfait 🔥 Pour réserver ta démo d'Agent IA (gratuite, 15 min), envoie :\n1) Ton nom\n2) Ton business (ce que tu vends)\n3) Ton numéro\n\nL'équipe te fixe un créneau et tu vois ton agent vendre en direct 🚀",
+    "en": "Perfect 🔥 To book your AI Agent demo (free, 15 min), send:\n1) Your name\n2) Your business (what you sell)\n3) Your number\n\nThe team schedules a slot and you watch your agent sell live 🚀",
+    "es": "Perfecto 🔥 Para reservar su demo de Agente IA (gratis, 15 min), envíe:\n1) Su nombre\n2) Su negocio (qué vende)\n3) Su número\n\nEl equipo fija un horario y ve a su agente vender en directo 🚀",
+    "ar": "ممتاز 🔥 لحجز عرض توضيحي لوكيل الذكاء الاصطناعي (مجاني، 15 دقيقة)، أرسل:\n1) اسمك\n2) عملك (ماذا تبيع)\n3) رقمك\n\nيحدد الفريق موعداً وترى وكيلك يبيع مباشرة 🚀",
 }
 FORMATION_OK = {
-    "fr": "Noté 🔥 Ton inscription est enregistrée ! L'équipe Komara t'envoie ton accès direct dans quelques minutes. Bienvenue dans la formation 🎓",
-    "en": "Noted 🔥 Your registration is recorded! The Komara team sends you direct access in a few minutes. Welcome aboard 🎓",
-    "es": "Anotado 🔥 ¡Su inscripción está registrada! El equipo Komara le envía el acceso directo en unos minutos. Bienvenido 🎓",
-    "ar": "تم 🔥 تسجيلك محفوظ! يرسل لك فريق كومارا الوصول المباشر خلال دقائق. أهلاً بك 🎓",
+    "fr": "Noté 🔥 Ta démo est réservée ! L'équipe Komara te fixe un créneau dans quelques minutes. Tu vas voir ton agent IA en action 🤖",
+    "en": "Noted 🔥 Your demo is booked! The Komara team schedules your slot in a few minutes. You'll see your AI agent in action 🤖",
+    "es": "Anotado 🔥 ¡Su demo está reservada! El equipo Komara le fija un horario en unos minutos. Verá su agente IA en acción 🤖",
+    "ar": "تم 🔥 حجز عرضك التوضيحي! يحدد لك فريق كومارا موعداً خلال دقائق. سترى وكيل الذكاء الاصطناعي في العمل 🤖",
 }
 
 def set_pending_formation(chat_id: int) -> None:
@@ -545,15 +544,15 @@ def set_pending_formation(chat_id: int) -> None:
     _save_flow(chat_id, "formation_inscription", "infos", {})
 
 def formation_capture(bot, chat_id: int, text: str, lang: str) -> bool:
-    """Capture les infos d'inscription et notifie l'admin (pour l'ajouter
-    au groupe Telegram)."""
+    """Capture les infos de réservation démo et notifie l'admin
+    (pour fixer un créneau de démo Agent IA)."""
     low = text.strip().lower()
     if low in {"annuler", "cancel", "stop", "إلغاء"}:
         _clear_flow(chat_id)
         if lang == "fr":
-            bot.send_message(chat_id, "OK, on annule pour l'instant 😊 Tape 'formation' quand tu veux 🚀")
+            bot.send_message(chat_id, "OK, on annule pour l'instant 😊 Tape 'démo' quand tu veux 🚀")
         else:
-            bot.send_message(chat_id, "OK, cancelled for now 😊 Type 'training' whenever you want 🚀")
+            bot.send_message(chat_id, "OK, cancelled for now 😊 Type 'demo' whenever you want 🚀")
         return True
     _clear_flow(chat_id)
     info = text.strip()[:600]
@@ -566,10 +565,10 @@ def formation_capture(bot, chat_id: int, text: str, lang: str) -> bool:
         pass
     notify_admin(
         bot,
-        f"🎓 NOUVELLE INSCRIPTION — FORMATION IA\n"
+        f"🤖 NOUVELLE DÉMO — AGENT IA\n"
         f"👤 Client{uname} (chat_id {chat_id})\n"
         f"📋 Infos : « {info} »\n"
-        f"→ ajoute-le au groupe Telegram de la formation 👥")
+        f"→ fixe-lui un créneau de démo 15 min 👥")
     bot.send_message(chat_id, FORMATION_OK.get(lang, FORMATION_OK["fr"]))
     return True
 
@@ -662,8 +661,8 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
         args = text_clean.split(maxsplit=1)[1] if len(words) > 1 else ""
         return _admin_command(bot, chat_id, first_word, args, lang)
 
-    # 0s. Flux inscription Formation IA : le message suivant l'invitation
-    # est capturé comme infos d'inscription et notifié à l'admin.
+    # 0s. Flux Démo Agent IA : le message suivant l'invitation est
+    # capturé comme infos de réservation et notifié à l'admin.
     _flow = _fetch_flow(chat_id)
     if _flow and _flow[0] == "formation_inscription" and not text_clean.startswith("/"):
         return formation_capture(bot, chat_id, text_clean, lang)
@@ -731,7 +730,7 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
             return start_flow(bot, chat_id, flow, lang, trigger_text=text_clean)
 
     # 2ter. LETTRE MASTER — le client parle en PHRASE : « je souhaite un
-    # devis », « je veux commander un logo ». Les déclencheurs devis/order
+    # devis », « je veux commander un chatbot ». Les déclencheurs devis/order
     # sont recherchés par frontière de mot dans la phrase (pas seulement
     # en égalité exacte), sinon la demande partait en réponse KB hors-sujet.
     _phrase_intent = re.search(r"\b(devis|commander|quote|presupuesto)\b", low)
@@ -1060,12 +1059,13 @@ def _devis_base_price(service: str) -> float:
     return 50.0
 
 DEVIS_COMPLEX_RULES: list[tuple[list[str], int, str]] = [
-    (["e-commerce", "ecommerce", "boutique en ligne", "panier", "paiement en ligne",
-      "orange money", "wave", "paypal"], 40, "Boutique/paiement en ligne"),
-    (["multilingue", "plusieurs langues", "anglais et", "en arabe", "en espagnol"], 20, "Version multilingue"),
-    (["crm", "google agenda", "notion", "google sheet", "formulaire"], 15, "Intégrations (agenda/CRM)"),
+    (["paiement", "orange money", "wave", "paypal", "encaisser"], 40, "Paiement intégré au bot"),
+    (["multilingue", "plusieurs langues", "anglais et", "en arabe", "en espagnol",
+      "soussou", "malinke", "malinké"], 20, "Version multilingue"),
+    (["crm", "google agenda", "notion", "google sheet", "formulaire",
+      "base de clients", "prospect"], 15, "Intégrations (agenda/CRM/prospects)"),
     (["messenger", "instagram", "tiktok", "multi-canal", "multi canal", "4 canaux"], 25, "Canaux supplémentaires"),
-    (["vidéo", "animation", "motion"], 30, "Contenu vidéo"),
+    (["mémoire", "memory", "apprendre", "relance auto", "relances auto"], 30, "Mémoire + relances automatiques"),
 ]
 
 DEVIS_URGENT_WORDS = ["urgent", "24h", "48h", "72h", "express", "rapidement",
@@ -1135,13 +1135,13 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
       → DEVIS DIRECT avec prix € fixe + conversion locale indicative.
 
     • Le délai n'est plus demandé : celui du service s'affiche dans le
-      devis (« 1-2 semaines »...).
+      devis (« 3-5 jours »...).
     • Le code promo n'est plus une question bloquante : le client le tape
       via /code (indiqué dans le devis), il est appliqué automatiquement.
     • Nom/pays : récupérés SANS question (nom Telegram mémorisé + pays
       auto-détecté via téléphone/langue ; à défaut € fixe seul).
-    • Les 3 infos de production (nom, logo, 5 questions) seront
-      demandées PAR L'ÉQUIPE après l'acompte, pas par le bot.
+    • Les 3 infos de production (nom du bot, canaux, 5 questions)
+      seront demandées PAR L'ÉQUIPE après l'acompte, pas par le bot.
     """
     if step == "service":
         digits = text.strip()
