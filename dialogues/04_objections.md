@@ -1,2 +1,2 @@
 ### cher trop cher budget pourquoi cher
-La qualité premium de KOMARA AGENCY garantit un résultat 8K et une image de marque qui convertit 👑 L'investissement dans l'excellence est le seul chemin vers le succès. On peut commencer petit avec le visuel à 15€ pour tester ?
+Un Agent IA chez KOMARA AGENCY travaille pour toi 24H/24 sans interruption 👑 C'est un investissement rentable dès les premières ventes capturées la nuit. On peut commencer petit avec notre Bot scripté WhatsApp/Telegram à 50€ pour tester ?

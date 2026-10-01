@@ -75,14 +75,14 @@ class FakeBot:
 print("── 1. Panier actuel conservé ──")
 bot = FakeBot()
 prods = catalogue.active_products()
-check("catalogue 1-7 en €", len(prods) >= 7 and all(
-    isinstance(p[3], (int, float)) for p in prods[:7]), len(prods))
-catalogue.cmd_add(bot, 2001, 1, "fr")   # produit 1
-catalogue.cmd_add(bot, 2001, 5, "fr")   # produit 5
+check("catalogue 4 offres bots/agents IA en €", len(prods) >= 4 and all(
+    isinstance(p[3], (int, float)) for p in prods[:4]), len(prods))
+catalogue.cmd_add(bot, 2001, 1, "fr")   # produit 1 : Bot Scripté
+catalogue.cmd_add(bot, 2001, 3, "fr")   # produit 3 : Agent IA Premium
 catalogue.cart_total
 total = catalogue.cart_total(2001)
-check("ajouter [num] → total panier €", total == prods[0][3] + prods[4][3],
-      (total, prods[0][3], prods[4][3]))
+check("ajouter [num] → total panier €", total == prods[0][3] + prods[2][3],
+      (total, prods[0][3], prods[2][3]))
 
 print("── 2. Inactif par défaut (règle d'or agrément) ──")
 cfg = pl.load_config()

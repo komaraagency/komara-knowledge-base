@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-pack_patron.py — Feature #6 : Pack Patron V2 (Dashboard + Assurance Revenu).
+pack_patron.py — Feature #6 : Pack Patron V2 (Dashboard + Maintenance).
 
 Fonction Avis/Preuve sociale #10 : NON CODÉE (supprimée à la demande
 du client — lettre #6).
@@ -12,10 +12,10 @@ du client — lettre #6).
    • Impayés (2èmes tranches en attente, €)
    • Abonnements actifs — MRR (€/mois)
 
-11. ASSURANCE REVENU (MRR) : après paiement des produits 1/4/5 →
-    offre assurance (Chatbot 50€/mois, Sites 20€/mois). OUI ASSURANCE
-    → table abonnements + facture J+30 (cron mensuel : QR + message).
-    NON → assurance_refusee=1, on ne re-demande jamais.
+11. MAINTENANCE (MRR) : après paiement Agent IA/Chatbot/Bot →
+    offre Maintenance (Agent IA & Chatbot 50€/mois, Bot 20€/mois).
+    OUI MAINTENANCE → table abonnements + facture J+30 (cron mensuel :
+    QR + message). NON → assurance_refusee=1, on ne re-demande jamais.
 """
 from __future__ import annotations
 
@@ -26,14 +26,13 @@ import commercial_db as cdb
 
 logger = logging.getLogger("komara")
 
-CATALOG = {1: ("Chatbot IA", 100.0), 2: ("Formation IA", 50.0),
-           3: ("Logo", 25.0), 4: ("Site Vitrine", 50.0),
-           5: ("E-commerce", 150.0), 6: ("Visuel", 15.0),
-           7: ("Vidéo IA", 20.0)}
-CHATBOT_PROD, SITE_PROD, ECOM_PROD = 1, 4, 5
-ASSUR_MONTH_CHATBOT = 50.0   # €/mois
-ASSUR_MONTH_SITE = 20.0      # €/mois
-ASSUR_INTERV = 50.0          # €/intervention sans assurance
+# Ids alignés sur catalogue.py : 1=Bot, 2=Chatbot, 3=Agent IA, 4=Maintenance.
+CATALOG = {1: ("Bot Scripté", 50.0), 2: ("Chatbot IA Vendeur", 100.0),
+           3: ("Agent IA Premium", 150.0), 4: ("Maintenance mensuelle", 50.0)}
+BOT_PROD, CHATBOT_PROD, AGENT_PROD, MAINT_PROD = 1, 2, 3, 4
+MAINT_MONTH_AGENT = 50.0     # €/mois (Agent IA ou Chatbot)
+MAINT_MONTH_BOT = 20.0       # €/mois (Bot scripté)
+MAINT_INTERV = 50.0          # €/intervention hors maintenance
 
 
 def _now():
@@ -137,47 +136,48 @@ def _to_eur(amount: float, currency: str) -> float:
 
 
 # ---------------------------------------------------------------------------
-# 11. ASSURANCE REVENU (MRR)
+# 11. MAINTENANCE (MRR)
 # ---------------------------------------------------------------------------
 
 ASSUR_OFFER = {
     "fr": ("🛡️ Ton {produit} est actif. Question rapide boss : Tu prends "
-           "l'assurance tranquillité ?\n\n"
-           "• Chatbot : 50€/mois, on répare tout en 2h + maj IA incluses. "
-           "Sans assurance : 50€ / intervention.\n"
-           "• Site Vitrine/E-commerce : 20€/mois, hébergement + bug + "
-           "sauvegarde. Sans assurance : 50€ / intervention.\n\n"
-           "Tu veux l'activer pour {prix}€/mois ? Réponds OUI ASSURANCE ou NON"),
+           "la Maintenance tranquillité ?\n\n"
+           "• Agent IA / Chatbot : 50€/mois, on répare tout en 2h + mises à "
+           "jour IA incluses. Sans maintenance : 50€ / intervention.\n"
+           "• Bot Scripté : 20€/mois, corrections + mises à jour incluses. "
+           "Sans maintenance : 50€ / intervention.\n\n"
+           "Tu l'actives pour {prix}€/mois ? Réponds OUI MAINTENANCE ou NON"),
     "en": ("🛡️ Your {produit} is live. Quick question boss: taking the "
-           "peace-of-mind insurance?\n\n"
-           "• Chatbot: €50/month, we fix everything within 2h + AI updates "
-           "included. Without: €50 / intervention.\n"
-           "• Showcase/E-commerce site: €20/month, hosting + bugs + backup. "
+           "peace-of-mind Maintenance?\n\n"
+           "• AI Agent / Chatbot: €50/month, we fix everything within 2h + "
+           "AI updates included. Without: €50 / intervention.\n"
+           "• Scripted Bot: €20/month, fixes + updates included. "
            "Without: €50 / intervention.\n\n"
-           "Activate it for {prix}€/month? Reply YES INSURANCE or NO"),
+           "Activate it for {prix}€/month? Reply YES MAINTENANCE or NO"),
     "es": ("🛡️ Su {produit} está activo. Pregunta rápida jefe: ¿toma el "
-           "seguro de tranquilidad?\n\n"
-           "• Chatbot: 50€/mes, reparamos todo en 2h + actualizaciones de IA "
-           "incluidas. Sin seguro: 50€ / intervención.\n"
-           "• Web Vitrina/E-commerce: 20€/mes, hosting + errores + copia de "
-           "seguridad. Sin seguro: 50€ / intervención.\n\n"
-           "¿Activarlo por {prix}€/mes? Responda SÍ SEGURO o NO"),
-    "ar": ("🛡️ {produit} الخاص بك مفعّل. سؤال سريع زعيم: هل تأخذ تأمين "
-           "الراحة؟\n\n"
-           "• شات بوت: 50€/شهرياً، نصلح كل شيء خلال ساعتين + تحديثات AI. "
-           "بدون تأمين: 50€ / تدخل.\n"
-           "• موقع/متجر: 20€/شهرياً، استضافة + إصلاح + نسخ احتياطي. بدون: "
+           "Mantenimiento de tranquilidad?\n\n"
+           "• Agente IA / Chatbot: 50€/mes, reparamos todo en 2h + "
+           "actualizaciones de IA incluidas. Sin mantenimiento: 50€ / "
+           "intervención.\n"
+           "• Bot programado: 20€/mes, correcciones + actualizaciones "
+           "incluidas. Sin mantenimiento: 50€ / intervención.\n\n"
+           "¿Activarlo por {prix}€/mes? Responda SÍ MANTENIMIENTO o NO"),
+    "ar": ("🛡️ {produit} الخاص بك مفعّل. سؤال سريع زعيم: هل تأخذ "
+           "الصيانة المريحة؟\n\n"
+           "• وكيل IA / شات بوت: 50€/شهرياً، نصلح كل شيء خلال ساعتين + "
+           "تحديثات AI. بدون صيانة: 50€ / تدخل.\n"
+           "• بوت برمجي: 20€/شهرياً، إصلاحات + تحديثات. بدون صيانة: "
            "50€ / تدخل.\n\n"
-           "تفعيله مقابل {prix}€/شهرياً؟ أجب نعم تأمين أو لا"),
+           "تفعيله مقابل {prix}€/شهرياً؟ أجب نعم صيانة أو لا"),
 }
 ASSUR_OK = {
-    "fr": "🛡️ Assurance activée Chef ! {prix}€/mois, première facture dans 30 "
-          "jours avec QR de paiement. On veille sur ton {produit} 🔥",
-    "en": "🛡️ Insurance activated boss! €{prix}/month, first invoice in 30 "
+    "fr": "🛡️ Maintenance activée Chef ! {prix}€/mois, première facture dans "
+          "30 jours avec QR de paiement. On veille sur ton {produit} 🔥",
+    "en": "🛡️ Maintenance activated boss! €{prix}/month, first invoice in 30 "
           "days with payment QR. We've got your {produit} covered 🔥",
-    "es": "🛡️ ¡Seguro activado jefe! {prix}€/mes, primera factura en 30 días "
-          "con QR de pago. Cuidamos su {produit} 🔥",
-    "ar": "🛡️ تم تفعيل التأمين زعيم! {prix}€/شهرياً، أول فاتورة بعد 30 يوماً "
+    "es": "🛡️ ¡Mantenimiento activado jefe! {prix}€/mes, primera factura en "
+          "30 días con QR de pago. Cuidamos su {produit} 🔥",
+    "ar": "🛡️ تم تفعيل الصيانة زعيم! {prix}€/شهرياً، أول فاتورة بعد 30 يوماً "
           "مع رمز الدفع. نعتني بـ {produit} الخاص بك 🔥",
 }
 
@@ -192,7 +192,7 @@ def _produit_id_of(chat_id) -> int:
 
 
 def maybe_offer_assurance(bot, chat_id: int, lang: str = "fr") -> bool:
-    """Après paiement d'un produit 1/4/5 → offre assurance. Les autres
+    """Après paiement Agent IA/Chatbot/Bot → offre Maintenance. Les autres
     produits : rien. Déjà refusée : jamais re-demandée."""
     import actions
     conn = actions.DB_CONN
@@ -201,12 +201,12 @@ def maybe_offer_assurance(bot, chat_id: int, lang: str = "fr") -> bool:
     if row and row[0]:
         return False
     pid = _produit_id_of(chat_id)
-    if pid == CHATBOT_PROD:
-        prix = ASSUR_MONTH_CHATBOT
-    elif pid in (SITE_PROD, ECOM_PROD):
-        prix = ASSUR_MONTH_SITE
+    if pid in (CHATBOT_PROD, AGENT_PROD):
+        prix = MAINT_MONTH_AGENT
+    elif pid == BOT_PROD:
+        prix = MAINT_MONTH_BOT
     else:
-        return False  # produits 2/3/6/7 : pas d'assurance
+        return False  # Maintenance déjà achetée : pas de double offre
     produit = CATALOG[pid][0]
     bot.send_message(chat_id, ASSUR_OFFER.get(lang, ASSUR_OFFER["fr"])
                      .format(produit=produit, prix=f"{prix:g}"))
@@ -214,12 +214,14 @@ def maybe_offer_assurance(bot, chat_id: int, lang: str = "fr") -> bool:
 
 
 def handle_assurance_reply(bot, chat_id: int, text: str, lang: str = "fr") -> bool:
-    """« OUI ASSURANCE » / « NON » après l'offre. True = consommé."""
+    """« OUI MAINTENANCE » / « NON » après l'offre. True = consommé."""
     import actions
     low = text.strip().lower()
     conn = actions.DB_CONN
-    oui_kw = {"oui assurance", "yes insurance", "sí seguro", "si seguro",
-              "نعم تأمين", "oui"}
+    oui_kw = {"oui assurance", "oui maintenance", "yes insurance",
+              "yes maintenance", "sí seguro", "si seguro",
+              "sí mantenimiento", "si mantenimiento", "نعم تأمين",
+              "نعم صيانة", "oui"}
     if lang and low in oui_kw:
         # éviter le double-abonnement
         row = conn.execute(
@@ -228,13 +230,16 @@ def handle_assurance_reply(bot, chat_id: int, text: str, lang: str = "fr") -> bo
         if row and row[0] and low == "oui":
             return False  # « oui » seul trop ambigu si déjà abonné
         pid = _produit_id_of(chat_id)
-        prix = ASSUR_MONTH_CHATBOT if pid == CHATBOT_PROD else ASSUR_MONTH_SITE
-        if pid not in (CHATBOT_PROD, SITE_PROD, ECOM_PROD):
+        if pid in (CHATBOT_PROD, AGENT_PROD):
+            prix = MAINT_MONTH_AGENT
+        elif pid == BOT_PROD:
+            prix = MAINT_MONTH_BOT
+        else:
             return False
         cdb.insert_abonnement(chat_id, pid, CATALOG[pid][0], prix)
         bot.send_message(chat_id, ASSUR_OK.get(lang, ASSUR_OK["fr"])
                          .format(prix=f"{prix:g}", produit=CATALOG[pid][0]))
-        logger.info("🛡️ Assurance activée (chat %s, %s€/mois)", chat_id, prix)
+        logger.info("🛡️ Maintenance activée (chat %s, %s€/mois)", chat_id, prix)
         return True
     if low in {"non", "no", "لا"}:
         with actions.DB_LOCK:
@@ -246,13 +251,13 @@ def handle_assurance_reply(bot, chat_id: int, text: str, lang: str = "fr") -> bo
                  _now().isoformat(timespec="seconds")))
             conn.commit()
         bot.send_message(chat_id, {
-            "fr": "Pas de souci Chef 😊 Sans assurance, chaque intervention "
+            "fr": "Pas de souci Chef 😊 Sans maintenance, chaque intervention "
                   "reste à 50€ si besoin. On reste dispo 🙌",
-            "en": "No problem boss 😊 Without insurance, each intervention "
+            "en": "No problem boss 😊 Without maintenance, each intervention "
                   "stays at €50 if needed. We're here 🙌",
-            "es": "Sin problema jefe 😊 Sin seguro, cada intervención queda "
-                  "en 50€ si hace falta. Aquí estamos 🙌",
-            "ar": "لا مشكلة زعيم 😊 بدون تأمين، كل تدخل يبقى 50€ عند الحاجة. "
+            "es": "Sin problema jefe 😊 Sin mantenimiento, cada intervención "
+                  "queda en 50€ si hace falta. Aquí estamos 🙌",
+            "ar": "لا مشكلة زعيم 😊 بدون صيانة، كل تدخل يبقى 50€ عند الحاجة. "
                   "نحن هنا 🙌",
         }.get(lang, ""))
         return True

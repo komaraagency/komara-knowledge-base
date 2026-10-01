@@ -36,7 +36,7 @@ _TRIGGERS_RE = [re.compile(p, re.IGNORECASE) for p in _TRIGGERS]
 MESSAGES = {
     "fr": {"working": "🎨 Je crée ton image, quelques secondes…",
            "ask": "🎨 Décris-moi l'image que tu veux : sujet, style, couleurs. Exemple : « image de un lion en costume, style affiche pro »",
-           "error": "😕 La génération a échoué cette fois. Renvoie ta demande, ou écris « visuels » : l'équipe Komara te fait des visuels pro sur devis.",
+           "error": "😕 La génération a échoué cette fois. Renvoie ta demande, ou écris « catalogue » : l'équipe Komara te construit un agent IA sur devis.",
            "done": "✨ Ton image est prête ! Tu veux une variante ou une version pro retouchée par l'équipe Komara ?"},
     "en": {"working": "🎨 Creating your image, a few seconds…",
            "ask": "🎨 Describe the image you want: subject, style, colors. Example: « image of a lion in a suit, pro poster style »",

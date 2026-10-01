@@ -55,7 +55,7 @@
   },
   {
    "question": "je peux voir des exemples de vos realisations",
-   "answer": "Avec plaisir 🔥 Appuie sur 📂 Portfolio et je te montre nos réalisations. Dis-moi aussi ton secteur d'activité, je te montre en premier ce qui ressemble le plus à ton projet.\nTu cherches quoi en priorité : site, logo ou visuels ?"
+   "answer": "Avec plaisir 🔥 Appuie sur 📂 Portfolio et je te montre nos agents IA en action. Dis-moi aussi ton secteur d'activité, je te montre en premier ce qui ressemble le plus à ton business. Tu vends quoi exactement ?"
   },
   {
    "question": "vous faites des prix pour les debutants",
@@ -355,7 +355,7 @@
   },
   {
    "question": "je lance ma startup il me faut un logo",
-   "answer": "Félicitations pour le lancement ! 🚀 Un logo, c'est la poignée de main de ta marque : simple, fort, mémorable. On te fait un logo unique avec toute l'identité (couleurs, polices, cartes). C'est quoi le nom de ta startup et son domaine ?"
+   "answer": "Félicitations pour le lancement ! 🚀 Komara crée maintenant des Bots et Agents IA vendeurs. Pour ta startup, un Agent IA WhatsApp présente ton offre et trouve tes premiers clients 24/7 (150€). C'est quoi le nom de ta startup ?"
   },
   {
    "question": "je veux un bot whatsapp pour mon business",
@@ -383,7 +383,7 @@
   },
   {
    "question": "notre ecole veut un site pour les inscriptions",
-   "answer": "Rien de mieux pour une école sérieuse 🏫 Site de présentation + inscriptions en ligne + notifications aux parents. Les familles voient tout : filières, frais, calendrier, et inscrivent sans se déplacer. C'est une école primaire, secondaire ou un centre de formation ?"
+   "answer": "Bonne nouvelle 🏫 Un Agent IA gère tout sur WhatsApp : les familles voient filières, frais, calendrier, et inscrivent leurs enfants sans se déplacer (150€). C'est une école primaire ou une formation pro ?"
   },
   {
    "question": "je suis agent immobilier je veux présenter mes biens",
@@ -407,7 +407,7 @@
   },
   {
    "question": "je vends des produits agricoles",
-   "answer": "Le terroir a de la valeur 🌾 Site vitrine avec catalogue : riz, huile de palme, mangues séchées... photos propres, prix, commande WhatsApp. Acheteurs de la ville et de l'étranger te trouvent facilement. Quels produits tu veux mettre en avant ?"
+   "answer": "Le terroir a de la valeur 🌾 Un Chatbot IA présente tes produits : riz, huile de palme, mangues séchées... photos propres, prix, commande WhatsApp directe, 24/7 (100€). Quels produits tu vends ?"
   },
   {
    "question": "je suis artiste musicien comment me promouvoir",
@@ -415,7 +415,7 @@
   },
   {
    "question": "j organise des evenements mariages seminaires",
-   "answer": "Chaque événement mérite son affiche magistrale 🎉 On te fait flyers, posters, badges, visuels countdown pour remplir la salle, plus une page d'inscription en ligne. Les gens s'inscrivent en un clic. C'est pour quel type d'événement ?"
+   "answer": "Chaque événement mérite sa salle pleine 🎉 Un bot WhatsApp gère inscriptions, RSVP, rappels automatiques et recettes. Les gens s'inscrivent en un message (50€). C'est quel type d'événement ?"
   },
   {
    "question": "j ai un budget limite mais je veux un site",
@@ -455,7 +455,7 @@
   },
   {
    "question": "je vends des cosmetiques naturels savon karite",
-   "answer": "Le karité made in Guinée, ça s'arrache quand c'est bien présenté 🧴 Photos propres, bienfaits expliqués, commandes directes avec livraison. On te fait une vitrine qui inspire confiance même aux clientes de l'étranger. Tu vends en Guinée seulement ou tu expédies aussi ?"
+   "answer": "Le karité made in Guinée, ça s'arrache quand c'est bien vendu 🧴 Un Chatbot IA vend pour toi : photos, bienfaits expliqués, prix, commande + livraison automatiques, même à 3h du matin (100€). Tu vends en ville ou à l'étranger ?"
   },
   {
    "question": "je suis coach sportif je veux plus d eleves",
@@ -491,7 +491,7 @@
   },
   {
    "question": "mon site ne m apporte aucun client",
-   "answer": "Un site sans visiteurs, c'est une belle affiche dans le désert 🏜️ On regarde deux choses : comment les gens te trouvent (référencement) et ce qu'ils font une fois arrivés (clarté, boutons d'achat). Souvent quelques corrections changent tout. Tu peux me dire l'adresse du site et ce que tu vends ?"
+   "answer": "Un site sans visiteurs, c'est une belle affiche dans le désert 🏜️ Nos Agents IA vont chercher les clients là où ils sont : ils répondent, conseillent et vendent sur WhatsApp 24/7 (150€). Tu vends quoi actuellement ?"
   },
   {
    "question": "je n ai pas le temps de repondre aux clients",
@@ -575,11 +575,11 @@
   },
   {
    "question": "vous faites des logos ?",
-   "answer": "Oui 🎨 Un logo unique qui reflète TON identité : ni copié, ni banal. On te livre aussi toute l'identité : couleurs, polices, cartes de visite, versions pour réseaux sociaux. C'est pour quelle marque ou quel business ?"
+   "answer": "On ne fait plus de logos 🎨 On crée des Bots et Agents IA qui vendent pour toi 24/7 : Bot scripté 50€, Chatbot IA vendeur 100€, Agent IA premium 150€. C'est pour quel business ?"
   },
   {
    "question": "vous faites des affiches et visuels ?",
-   "answer": "Tout à fait 🎨 Affiches publicitaires, flyers, visuels réseaux sociaux 4K, covers, cartes de visite — aux couleurs de ta marque et prêts à publier. Tu veux quoi comme visuel : pub, réseaux, événement ?"
+   "answer": "On ne fait plus d'affiches 🎨 Nos Chatbots IA vendent directement sur WhatsApp : catalogue, prix, promos et commandes automatiques 24/7 (100€). Tu veux vendre plus sans publier chaque jour ?"
   },
   {
    "question": "vous créez des chatbots ?",
@@ -1202,11 +1202,11 @@
   },
   {
    "question": "je veux un logo pour ma marque",
-   "answer": "Parfait, c'est notre cœur de métier 🎨 Logo pro à partir de 25€ : 3 propositions, fichiers HD, tous formats. C'est pour quelle marque ?"
+   "answer": "On est 100% Bots et Agents IA maintenant 🤖 Ton Agent IA porte ton image et vend pour toi, jour et nuit. Bot scripté 50€, Chatbot IA 100€, Agent IA premium 150€. C'est pour quelle marque ?"
   },
   {
    "question": "pourquoi payer pour un logo",
-   "answer": "Parce que ton logo est ton premier commercial 😎 C'est ce que le client retient, partage et reconnaît. Un logo amateur coûte des clients. Ta marque existe depuis longtemps ?"
+   "answer": "Ton premier commercial aujourd'hui, c'est un Agent IA 😎 Il répond, conseille et vend 24/7 pendant que tu gères ton business. À partir de 50€. Ta marque existe depuis longtemps ?"
   },
   {
    "question": "combien de propositions de logo je recois",
@@ -1226,23 +1226,23 @@
   },
   {
    "question": "logo pour un restaurant tu peux faire",
-   "answer": "Oui 🍽️ Logo qui met faim : couleurs chaudes, typographie appétissante, version pour menus et enseignes. C'est quel style de cuisine ?"
+   "answer": "On ne fait plus de logos, mais mieux 🍽️ Un Chatbot IA prend les commandes sur WhatsApp : menu, prix, livraison, paiement, sans humain (100€). C'est quel style de cuisine ?"
   },
   {
    "question": "mon logo actuel est vieux peux tu le moderniser",
-   "answer": "Oui, le refresh de logo 🔄 On garde ce que tes clients reconnaissent, on modernise le reste. Mieux qu'un changement radical. Montre-moi ce que tu as ?"
+   "answer": "On ne rafraîchit plus les logos, on rafraîchit les ventes 🔄 Un Agent IA modernise ta relation client : réponses instantanées, commandes automatiques, rappels. Tu veux voir une démo ?"
   },
   {
    "question": "logo + carte visites + en tete tu fais tout",
-   "answer": "Oui, identité complète 😍 Logo + carte de visite + en-tête + fond réseaux sociaux, tout assorti. À partir de 25€ le logo, devis pack juste après. Tu veux le pack complet ?"
+   "answer": "On ne vend plus de packs graphiques 😍 On livre des Agents IA clés en main : configuration complète, catalogue produits, maintenance incluse (à partir de 50€). Tu veux le pack complet ?"
   },
   {
    "question": "c est toi qui dessines ou un logiciel",
-   "answer": "Les deux : un designer qui dirige l'IA générative pour un résultat unique ✨ Pas de clipart recyclé, chaque logo est fait pour TA marque. Tu veux voir des exemples ?"
+   "answer": "Nos agents sont codés et dirigés par des pros de l'IA ✨ Chaque bot est fait pour TON business : ton ton, tes produits, tes prix. Tu veux voir des exemples ?"
   },
   {
    "question": "je veux un site web pour mon entreprise",
-   "answer": "Excellent choix 🚀 Site vitrine à partir de 50€ : moderne, rapide, WhatsApp intégré. Tes clients te trouvent 24h/24. C'est pour quel secteur ?"
+   "answer": "Plus besoin de site 🚀 Un Agent IA WhatsApp/Telegram présente ton offre et vend 24h/24 : Bot scripté 50€, Chatbot IA 100€, Agent IA premium 150€. C'est pour quel secteur ?"
   },
   {
    "question": "pourquoi mon business a besoin d un site",
@@ -1250,11 +1250,11 @@
   },
   {
    "question": "site vitrine ou boutique en ligne que choisir",
-   "answer": "Dépends de ton objectif 😊 Vitrine = te présenter et capter des contacts. Boutique = vendre en ligne 24/7. Beaucoup commencent vitrine puis passent boutique. Tu comptes vendre en ligne ?"
+   "answer": "Bonne nouvelle : plus besoin de choisir 😊 Nos Agents IA vendent directement sur WhatsApp : présentation, catalogue, paiement, commandes. Ta boutique, c'est ton numéro WhatsApp (100€). Tu comptes vendre en ligne ?"
   },
   {
    "question": "combien de temps pour creer un site",
-   "answer": "Site vitrine : 1 à 2 semaines ⚡ Boutique en ligne : 2 à 3 semaines, paiement inclus. Chaque jour sans site, c'est des clients perdus. Tu as une date cible ?"
+   "answer": "Encore plus rapide qu'un site ⚡ Bot scripté livré en 48-72h, Chatbot IA en 3-5 jours, Agent IA premium en 1 semaine. Chaque jour sans bot, c'est des clients perdus. Tu as une date cible ?"
   },
   {
    "question": "le site marche sur telephone",
@@ -1262,7 +1262,7 @@
   },
   {
    "question": "je peux modifier mon site moi meme apres",
-   "answer": "Oui 😊 On te livre avec une mini-formation : changer textes, photos, prix. Et la maintenance couvre les gros changements si tu préfères. Tu es à l'aise avec l'informatique ?"
+   "answer": "Zéro technique pour toi 😊 On gère tout : contenu, prix, mises à jour. La maintenance mensuelle (20€/mois bot, 50€/mois agent IA) couvre les changements. Tu préfères qu'on gère tout ?"
   },
   {
    "question": "mon site peut avoir le bouton whatsapp",
@@ -1274,7 +1274,7 @@
   },
   {
    "question": "c est quoi la difference site 50 euros et site 150",
-   "answer": "Bonne question 👍 50€ = vitrine : accueil, services, contact, WhatsApp. 150€ = boutique complète : catalogue, panier, paiement, commandes. Le devis exact dépend de tes pages. Tu pars sur vitrine ou boutique ?"
+   "answer": "Bonne question 👍 50€ = Bot scripté WhatsApp/Telegram : réponses automatiques simples. 150€ = Agent IA premium multicanal : catalogue, ventes, paiement, mémoire client. Tu pars sur quel besoin ?"
   },
   {
    "question": "et l hebergement du site ca coute combien",
@@ -1286,15 +1286,15 @@
   },
   {
    "question": "tu fais des visuels pour reseaux sociaux",
-   "answer": "Oui, c'est une de nos forces 🎨 Visuel pro à partir de 15€, pack de 5 à 40€ : affiches, promotions, flyers prêts à poster. Pour quel réseau, Facebook ou Instagram ?"
+   "answer": "On ne fait plus de visuels 🎨 Nos Chatbots IA vendent sur WhatsApp sans que tu publies chaque jour : catalogue, promos, commandes automatiques (100€). Tu vends déjà sur Facebook ou Instagram ?"
   },
   {
    "question": "affiche pour la tabaski tu peux faire",
-   "answer": "Oui, la saison des fêtes est LA période 🔥 Affiche Tabaski, promo Ramadan, vœux : visuels qui vendent, livrés en 24-48h. C'est pour quel business ?"
+   "answer": "Période chaude 🔥 Un bot WhatsApp envoie tes vœux ET tes promos à toute ta liste pendant la fête, en un clic. Tu prépares quoi comme promo pour la Tabaski ?"
   },
   {
    "question": "c est quoi la difference avec canva gratuit",
-   "answer": "Canva gratuit = template que 5000 autres utilisent 😅 Nous = visuel unique, ta marque, ton message, ta couleur. Le client voit la différence. Tu as testé Canva déjà ?"
+   "answer": "Canva, c'est le template que 5000 autres utilisent 😅 Un Agent IA, lui, répond à CHAQUE client personnellement, 24/7, avec tes prix et ton ton. Tu as déjà un canal WhatsApp actif ?"
   },
   {
    "question": "je veux des photos produits professionnelles",
@@ -1306,11 +1306,11 @@
   },
   {
    "question": "il me faut un visuel par semaine tu peux suivre",
-   "answer": "Oui, l'abonnement visuel existe 😊 Pack mensuel : 4 visuels/mois prêts à poster, ton respecté, livrés chaque semaine. Ton activité c'est quoi ?"
+   "answer": "Mieux que l'abonnement visuel 😊 Un Agent IA vend pour toi chaque semaine : promos, réponses aux clients, commandes automatiques. Maintenance mensuelle à partir de 20€. Ton activité c'est quoi ?"
   },
   {
    "question": "visuel pour pub facebook tu fais",
-   "answer": "Oui, et un bon visuel de pub change tout 🎯 Texte lisible, offre claire, CTA qui pousse au clic. Tes clics augmentent, ton coût par clic baisse. Tu fais quel type de pub ?"
+   "answer": "Un Agent IA fait mieux qu'une pub 🎯 Il répond à chaque prospect instantanément sur WhatsApp et transforme les clics en commandes. Tu fais quel type de pub ?"
   },
   {
    "question": "menu de restaurant tu peux designer",
@@ -1334,7 +1334,7 @@
   },
   {
    "question": "video pour presenter mon business tu peux",
-   "answer": "Oui, la vidéo pitch 😎 30 secondes qui résument : qui tu es, ce que tu vends, comment te contacter. Parfaite en bio et en statut. Tu as un logo et des photos ?"
+   "answer": "On ne fait plus de vidéos 😎 Mais on te livre un Agent IA qui présente ton business mieux qu'une vidéo : il répond, vend et prend les contacts 24/7 (150€). Tu as déjà des photos produits ?"
   },
   {
    "question": "les videos ia c est reellement pro",
@@ -1342,7 +1342,7 @@
   },
   {
    "question": "je veux une video pour la tabaski",
-   "answer": "Parfait timing 🔥 Vidéo vœux Tabaski : animation, message chaleureux, ton logo. Tes clients se souviennent de toi pendant la fête. Pour envoyer à ta liste WhatsApp ?"
+   "answer": "Pour la fête, pense vente 🔥 Un bot WhatsApp envoie tes vœux personnalisés à toute ta liste ET propose tes promos Tabaski. Tes clients pensent à toi pendant la fête. Pour ta liste WhatsApp ?"
   },
   {
    "question": "en combien de temps une video est prete",
@@ -1350,7 +1350,7 @@
   },
   {
    "question": "tu peux animer mon logo en video",
-   "answer": "Oui, l'animation de logo 🔥 Intro de 5 secondes pour tes vidéos : logo qui apparaît avec effet pro. Idéal pour ta chaîne. Tu veux quel style, moderne ou classique ?"
+   "answer": "On ne fait plus d'animations 🤖 On anime tes ventes : un Agent IA vend pour toi jour et nuit, avec un effet pro garanti 😄. Tu veux une démo de 15 min ?"
   },
   {
    "question": "video pub pour mon produit tu fais",
@@ -1370,7 +1370,7 @@
   },
   {
    "question": "vous formez a l ia aussi",
-   "answer": "Oui, formation IA à 50€ 💡 En 1 session tu apprends à utiliser l'IA pour ton business : visuels, textes, réponses clients. Outil par outil. Tu es plutôt débutant ou déjà à l'aise ?"
+   "answer": "On ne vend plus de formations, on livre des Agents IA clés en main 💡 Tu n'as rien à apprendre : on installe tout et la maintenance mensuelle (20-50€) couvre le reste. Tu veux qu'on s'occupe de tout ?"
   },
   {
    "question": "mon equipe perd du temps sur des taches repetitives",

@@ -179,7 +179,7 @@ check("contrat + facture PDF", len(paths) == 2 and all(
 # ═══════════════════════════════════════════════════════════════════
 print("── F5 : pack scale ──")
 bot3 = FakeBot()
-cdb.insert_purchase(1005, 4, "Site Vitrine", 50.0)
+cdb.insert_purchase(1005, 1, "Bot Scripté", 50.0)
 with _a.DB_LOCK:
     _a.DB_CONN.execute("UPDATE purchases SET delivered_at=? WHERE chat_id='1005'",
                        ((NOW - timedelta(days=4)).isoformat(timespec="seconds"),))
@@ -187,7 +187,7 @@ with _a.DB_LOCK:
 r = ps.process(bot3, now=NOW)
 check("parrainage J+3", r["parrainage"] == 1 and "20%" in bot3.last())
 check("lien ref unique", "komara.agency/ref/" in bot3.last())
-cdb.insert_purchase(1006, 5, "E-commerce", 150.0, paiement_en_2x=True)
+cdb.insert_purchase(1006, 3, "Agent IA Premium", 150.0, paiement_en_2x=True)
 J1 = NOW + timedelta(days=1)                      # échéance tranche 2
 with _a.DB_LOCK:
     _a.DB_CONN.execute(
@@ -209,9 +209,9 @@ with _a.DB_LOCK:
                        "WHERE chat_id='1005'")
     _a.DB_CONN.commit()
 r = ps.process(bot3, now=NOW + timedelta(days=3))
-check("upsell J+30 (4 sans 5 → e-commerce)",
-      r["upsell"] == 1 and "E-commerce" in bot3.last())
-cdb.insert_pending_quote(1007, "Mariama", "", "GN", "GNF", 234239, 25, "logo", "Logo Pro")
+check("upsell J+30 (Bot sans Chatbot → chatbot)",
+      r["upsell"] == 1 and "Chatbot IA Vendeur" in bot3.last())
+cdb.insert_pending_quote(1007, "Mariama", "", "GN", "GNF", 234239, 25, "bot", "Bot Scripté")
 with _a.DB_LOCK:
     _a.DB_CONN.execute("UPDATE pending_quotes SET status='expired', created_at=? "
                        "WHERE chat_id='1007'",
@@ -226,9 +226,9 @@ check("anti-spam 1 msg/jour", r["parrainage"] == 0 and r["upsell"] == 0)
 # ═══════════════════════════════════════════════════════════════════
 print("── F6 : pack patron (dashboard + assurance) ──")
 bot4 = FakeBot()
-cdb.insert_purchase(1008, 1, "Chatbot IA", 100.0)
+cdb.insert_purchase(1008, 2, "Chatbot IA Vendeur", 100.0)
 cdb.set_step(1008, "paid")
-check("produit 1 payé → offre assurance",
+check("chatbot payé → offre maintenance",
       pp.maybe_offer_assurance(bot4, 1008, "fr") and "50€/mois" in bot4.last())
 cp.handle(bot4, 1008, "oui assurance", "fr")
 abo = _a.DB_CONN.execute("SELECT produit, montant_mensuel_eur, status FROM "
@@ -236,8 +236,8 @@ abo = _a.DB_CONN.execute("SELECT produit, montant_mensuel_eur, status FROM "
 check("OUI ASSURANCE → abonnement actif 50€",
       abo and abo[2] == "actif" and abo[1] == 50.0, abo)
 cdb.set_step(1009, "paid")
-cdb.insert_purchase(1009, 3, "Logo", 25.0)
-check("produit 3 → pas d'assurance",
+cdb.insert_purchase(1009, 4, "Maintenance mensuelle", 50.0)
+check("maintenance achetée → pas de nouvelle offre",
       pp.maybe_offer_assurance(bot4, 1009, "fr") is False)
 cp.handle(bot4, 1009, "non", "fr")
 refused = _a.DB_CONN.execute("SELECT assurance_refusee FROM clients WHERE "

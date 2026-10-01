@@ -52,19 +52,18 @@ def init_catalogue_db(conn: sqlite3.Connection) -> None:
             )
             conn.commit()
         _migrate_official_prices_2026(conn)
+        _migrate_official_prices_2027_bots(conn)
 
 
-# Catalogue officiel 2026 — mêmes tarifs que la grille PayPal de l'agence.
-# Chatbot et Visuel ont un second tarif (récurrent / pack) précisé dans la
-# description : le champ price reste le montant d'appel (setup / unité).
+# Catalogue officiel — Komara conçoit des BOTS et AGENTS IA 🇬🇳
+# Mêmes tarifs que la grille officielle de l'agence. Agent IA et Bot ont un
+# tarif récurrent (maintenance) précisé dans la description : le champ price
+# reste le montant d'appel (setup / unité).
 OFFICIAL_SERVICES_2026 = [
-    ("Logo", "Logo Pro", "Identité visuelle complète, fichiers HD", 25.0),
-    ("Visuels", "Visuel / Affiche", "1 visuel prêt à poster (pack de 5 : 40€, tape 'devis')", 15.0),
-    ("Site web", "Site Vitrine", "Site pro + intégration WhatsApp", 50.0),
-    ("Site web", "Site E-commerce", "Boutique en ligne complète", 150.0),
-    ("Agent IA", "Chatbot IA", "Bot vendeur 24/7 (+ 50€/mois maintenance)", 100.0),
-    ("Visuels", "Vidéo IA", "Vidéo publicitaire IA (Tabaski, promo...)", 20.0),
-    ("Formation", "Formation IA", "Maîtrise l'IA pour ton business", 50.0),
+    ("Bot", "Bot Scripté", "Bot WhatsApp/Telegram : FAQ, menu, commandes simples — prêt en 48h", 50.0),
+    ("Chatbot", "Chatbot IA Vendeur", "Chatbot IA qui vend 24/7 : catalogue, panier et devis intégrés", 100.0),
+    ("Agent IA", "Agent IA Premium", "Agent IA multicanal : mémoire, relances, prise de commande (+50€/mois maintenance)", 150.0),
+    ("Maintenance", "Maintenance mensuelle", "Agent IA : 50€/mois — Bot : 20€/mois. Mises à jour et corrections incluses", 50.0),
 ]
 
 
@@ -97,6 +96,44 @@ def _migrate_official_prices_2026(conn: sqlite3.Connection) -> None:
         )
     conn.execute(
         "INSERT OR REPLACE INTO bot_state (key, value) VALUES ('catalogue_v2026_migrated', '1')"
+    )
+
+
+def _migrate_official_prices_2027_bots(conn: sqlite3.Connection) -> None:
+    """Migration one-shot : passage au catalogue 100% BOTS & AGENTS IA.
+    Désactive les anciens produits 2026 (logo, visuel, site...), insère les
+    nouvelles offres (Bot, Chatbot, Agent IA, Maintenance). Ne touche pas
+    aux produits personnalisés par l'admin ni aux commandes en cours — les
+    id des anciens produits restent valides pour l'historique."""
+    done = conn.execute(
+        "SELECT value FROM bot_state WHERE key = 'catalogue_v2027_bots_migrated'"
+    ).fetchone()
+    if done:
+        return
+    old_2026_names = {
+        "Logo Pro", "Visuel / Affiche", "Site Vitrine", "Site E-commerce",
+        "Chatbot IA", "Vidéo IA", "Formation IA",
+        "Logo professionnel", "Logo + charte graphique", "Site vitrine",
+        "Site e-commerce", "Agent WhatsApp", "Agent multi-canal",
+        "Pack visuels (10)", "Vidéo animée IA", "Formation IA (2h)",
+    }
+    # NB : appelée depuis init_catalogue_db déjà sous DB_LOCK — ne pas re-verrouiller.
+    new_names = {name for _cat, name, *_ in OFFICIAL_SERVICES_2026}
+    conn.execute("UPDATE products SET active = 0 WHERE name IN ({})".format(
+        ",".join("?" for _ in old_2026_names)), tuple(old_2026_names))
+    existing = {r[0] for r in conn.execute(
+        "SELECT name FROM products WHERE name IN ({})".format(
+            ",".join("?" for _ in new_names)), tuple(new_names)).fetchall()}
+    now = _now()
+    conn.executemany(
+        "INSERT INTO products (category, name, description, price, active, created_at)"
+        " VALUES (?,?,?,?,1,?)",
+        [(cat, name, desc, price, now) for cat, name, desc, price in OFFICIAL_SERVICES_2026
+         if name not in existing],
+    )
+    conn.execute(
+        "INSERT OR REPLACE INTO bot_state (key, value)"
+        " VALUES ('catalogue_v2027_bots_migrated', '1')"
     )
     conn.commit()
 
@@ -256,7 +293,7 @@ def active_products() -> list:
     with DB_LOCK:
         rows = DB_CONN.execute(
             "SELECT id, name, description, price FROM products"
-            " WHERE active = 1 ORDER BY category, price"
+            " WHERE active = 1 ORDER BY id"
         ).fetchall()
         promo = 0.0
         try:

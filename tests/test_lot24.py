@@ -154,7 +154,7 @@ check("config ES multilingue (presupuesto fijo)",
 
 print("── PARTIE 2.4 : relance panier abandonné 10 min ──")
 bot4 = FakeBot()
-catalogue.cmd_add(bot4, 4203, 1, "fr")
+catalogue.cmd_add(bot4, 4203, 2, "fr")
 catalogue.show_cart(bot4, 4203, "fr")          # vue du panier → mark_seen
 n = cart_nudge.process_nudges(bot4)
 check("avant 10 min : aucune relance", n == 0, n)

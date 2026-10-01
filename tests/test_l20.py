@@ -48,7 +48,7 @@ print("── 2. Promos globales : /solde /promo /KA /bonnus + catalogue ──"
 actions.init_db()
 catalogue.init_catalogue_db(actions.DB_CONN)
 price_before = [p[3] for p in catalogue.active_products()]
-check("catalogue initial chargé (7 services grille)", len(price_before) == 7, len(price_before))
+check("catalogue initial chargé (4 offres bots/agents IA)", len(price_before) == 4, len(price_before))
 check("chatbot à 100€ avant promo", 100.0 in price_before, str(price_before))
 actions.upsert_client(99998, name="Fatou")
 actions.upsert_client(99997, name="Mamadou")
@@ -115,10 +115,10 @@ check("état d'attente inscription posé", A._fetch_flow(810) is not None)
 b3.sent.clear()
 A.handle(b3, 810, "Fatou Diallo, je vends des pagnes, +224 622 55 44 33", "fr")
 admin_c = [t for cid, t in b3.sent if cid == 99999]
-check("admin notifié avec les infos d'inscription",
-      any("INSCRIPTION" in t and "Fatou" in t and "622" in t for t in admin_c), str(admin_c)[:100])
+check("admin notifié avec les infos de réservation",
+      any("DÉMO" in t and "Fatou" in t and "622" in t for t in admin_c), str(admin_c)[:100])
 check("client reçoit confirmation",
-      any(cid == 810 and "enregistrée" in t for cid, t in b3.sent))
+      any(cid == 810 and "réservée" in t for cid, t in b3.sent))
 check("état d'attente libéré", A._fetch_flow(810) is None)
 # annulation propre
 actions.set_pending_formation(811)
@@ -130,8 +130,9 @@ check("«annuler» sort du flux proprement", A._fetch_flow(811) is None and
 print("── 5. F6 : prix conforme au catalogue (50€, rien d'inventé) ──")
 for lang in ["fr", "en", "es", "ar"]:
     m = actions.FORMATION_MSGS[lang]
-    check(f"F6 {lang} : 50€ (tarif catalogue) uniquement",
-          "50€" in m and not re.search(r"(?<![\d.])\b(6[1-9]|7\d|8\d|9\d|1[1-9]\d|2\d\d)\s*€", m), m[:60])
+    _kw = {"fr": "gratuit", "en": "free", "es": "gratis", "ar": "مجاني"}[lang]
+    check(f"F6 {lang} : démo gratuite uniquement",
+          _kw in m.lower() and not re.search(r"\d+\s*€", m), m[:60])
 
 print("── 6. «plus d'infos» chatbots / logo / site ne partent pas en coq-à-l'âne ──")
 for q, kw in [("plus d infos sur les chatbots", "bot|whatsapp|telegram"),
