@@ -50,7 +50,11 @@ FOLLOWUP_LOOP_INTERVAL = max(30, int(os.getenv("FOLLOWUP_INTERVAL", "60")))
 
 # Horaires de bureau (heure locale de l'agence ; Guinée = UTC+0)
 # Formats acceptés: "9:30", "21:00", "9.5", "9"
-TIMEZONE_OFFSET = int(os.getenv("TIMEZONE_OFFSET", "0"))
+# RÈGLE BOSS (02/10) : défaut = Maroc (UTC+1, horaire permanent sauf
+       # Ramadan) car WORK_START/WORK_END (9h30-21h) sont pensés sur l'heure
+       # du patron (Essaouira). Variable Railway TIMEZONE_OFFSET absente ->
+       # fallback UTC+0 décalait "fermé/ouvert" d'1h (bug confirmé 02/10).
+TIMEZONE_OFFSET = int(os.getenv("TIMEZONE_OFFSET", "1"))
 
 
 def _parse_hour(value: str, default: float) -> float:
