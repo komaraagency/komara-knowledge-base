@@ -244,3 +244,12 @@ test_*.pyc
 # Fichiers de traduction automatique (si vous en générez)
 # translations_auto/
 # auto_translated/
+data/
+data*/
+
+# Generated debug, test runs and runtime caches (not source)
+/dbg*/
+/v2*/
+/qr_cache/
+/temp/
+/tmp/

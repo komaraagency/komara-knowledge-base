@@ -6,20 +6,6 @@
   },
   "knowledge": [
     {
-      "id": 1,
-      "answer": "Komara Agency is a digital agency specializing in creating intelligent bots, web and mobile development, and digital creation for businesses in Africa and internationally.",
-      "keywords": [
-        "agency",
-        "komara",
-        "digital",
-        "africa"
-      ],
-      "category": "general",
-      "questions": [
-        "What is Komara Agency?"
-      ]
-    },
-    {
       "id": 2,
       "answer": "We offer three service areas:\n\n💎 **Intelligent Bots**: WhatsApp, Telegram, TikTok bots, conversational chatbots\n\n💻 **Development**: Websites, mobile apps, custom scripts\n\n🎨 **Digital Creation**: Logos, visual identities, flyers, business cards",
       "keywords": [
@@ -35,7 +21,7 @@
     },
     {
       "id": 3,
-      "answer": "Our prices vary by project. Here are our standard packages:\n\n🚀 **Starter Pack**: €150 - Simple bot or showcase website\n💼 **Business Pack**: €450 - Advanced bot + website\n🏆 **Premium Pack**: €900 - Complete custom solution\n\nEach project is unique, contact us for a personalized quote!",
+      "answer": "Our official rates 🇬🇳 :\n• Visual / Poster : 15€ (pack of 5 : 40€)\n• Pro Logo : 25€\n• AI Video : 20€\n• Showcase site : 50€ • E-commerce site : 150€\n• AI Chatbot : 100€ + 50€/month maintenance\n• AI Training : 50€\nType 'quote' for an instant quote 👇",
       "keywords": [
         "price",
         "cost",
@@ -117,20 +103,6 @@
       "category": "support",
       "questions": [
         "Do you offer a guarantee?"
-      ]
-    },
-    {
-      "id": 9,
-      "answer": "Absolutely! We work with clients throughout Africa, Europe, the Middle East and beyond. Our team is experienced with international projects and we communicate in French, English, and Arabic.",
-      "keywords": [
-        "international",
-        "foreign",
-        "africa",
-        "europe"
-      ],
-      "category": "general",
-      "questions": [
-        "Do you work with international clients?"
       ]
     },
     {
@@ -322,7 +294,7 @@
         "$299",
         "$699"
       ],
-      "answer": "Komara Agency 🇬🇳 Pricing:\n\n*Starter* - $99/mo : Coaches, Freelancers\n*Pro* - $299/mo : Stores, Agencies\n*Scale* - $699/mo : E-commerce, 5+ Agents\n\n1 sale at $300 already pays for the whole month.",
+      "answer": "Komara Agency 🇬🇳 Pricing:\n\n*Starter* - 100€/mo : Coaches, Freelancers\n*Pro* - €299/mo : Stores, Agencies\n*Scale* - €699/mo : E-commerce, 5+ Agents\n\n1 sale at €300 already pays for the whole month.",
       "tags": [
         "pricing",
         "dollars",
@@ -342,7 +314,7 @@
         "good morning",
         "good evening"
       ],
-      "answer": "Hello 👋 Welcome to KOMARA AGENCY!\nI'm Ndine, your AI sales agent. We build WhatsApp & Telegram bots that sell for you 24/7.\nWhat's your project?"
+      "answer": "Hello 👋 Welcome to KOMARA AGENCY!\nI'm Komara Agency 🇬🇳, your AI sales agent. We build WhatsApp & Telegram bots that sell for you 24/7.\nWhat's your project?"
     },
     {
       "id": "en_conv_02",
@@ -369,15 +341,16 @@
         "i need a chatbot",
         "i am interested"
       ],
-      "answer": "Excellent choice! 🚀 A bot will save you time and make you sales.\nIs it for WhatsApp, Telegram, or a website? Tell me your goal."
+      "answers": [
+        "You got it 💡 It's exactly like the bot you're talking to right now. It works 24/7, never sleeps, and answers your clients for you. What business do you want a bot for?",
+        "Excellent choice. A bot is an employee who never asks for a salary 😅 Do you want one for Telegram, WhatsApp, or both?"
+      ]
     },
     {
       "id": "conv_01",
       "category": "conversation",
       "questions": [
-        "how are you",
-        "how are you doing",
-        "you good"
+        "how are you doing"
       ],
       "answer": "Doing great, thanks 🙏 And you?\nHow can I help with your project today?"
     },
@@ -405,11 +378,12 @@
       "id": "conv_04",
       "category": "conversation",
       "questions": [
-        "i want to create a bot",
-        "i want a bot",
         "create a bot"
       ],
-      "answer": "Excellent choice! 🚀 A bot will save you time and make you sales.\nWhatsApp, Telegram, or website? Tell me your goal."
+      "answers": [
+        "You got it 💡 It's exactly like the bot you're talking to right now. It works 24/7, never sleeps, and answers your clients for you. What business do you want a bot for?",
+        "Excellent choice. A bot is an employee who never asks for a salary 😅 Do you want one for Telegram, WhatsApp, or both?"
+      ]
     },
     {
       "id": "conv_05",
@@ -504,7 +478,6 @@
       "id": "conv_15",
       "category": "conversation",
       "questions": [
-        "i am interested",
         "sounds interesting",
         "i m interested"
       ],
@@ -579,7 +552,7 @@
         "let me think",
         "i m thinking"
       ],
-      "answer": "I get it 👍 Take your time.\nJust so you know: I have 1 spot left at $99 this month. After that it goes back to $250.\nShall I follow up tomorrow?"
+      "answer": "I get it 👍 Take your time.\nJust so you know: I have 1 spot left at 100€ this month. After that it goes back to 150€.\nShall I follow up tomorrow?"
     },
     {
       "id": "conv_23",
@@ -589,7 +562,7 @@
         "are you a robot",
         "am i talking to a human"
       ],
-      "answer": "Yes, I'm Ndine 😄 Assisted by KOMARA AGENCY's AI to reply faster.\nThe bot we'll build you is the same: human touch + speed."
+      "answer": "Yes, I'm Komara Agency 🇬🇳 😄 Assisted by KOMARA AGENCY's AI to reply faster.\nThe bot we'll build you is the same: human touch + speed."
     },
     {
       "id": "conv_24",
@@ -619,7 +592,7 @@
         "i m a student",
         "tight budget"
       ],
-      "answer": "I hear you 🙏 We have a \"Starter\" pack at $99 to begin.\nIt already does 80% of the work. When sales come in, we upgrade."
+      "answer": "I hear you 🙏 We have a \"Starter\" pack at 100€ to begin.\nIt already does 80% of the work. When sales come in, we upgrade."
     },
     {
       "id": "conv_27",
@@ -659,7 +632,7 @@
         "your packs",
         "the packages"
       ],
-      "answer": "Here are our 3 KOMARA AGENCY packs 👇\nSTARTER $99: FAQ + auto-replies\nBUSINESS $150: Order-taking + Payment\nPREMIUM $250: Full bot + CRM + Stats\nWhat exactly are you looking for?"
+      "answer": "Here are our 3 KOMARA AGENCY packs 👇\nSTARTER 100€: FAQ + auto-replies\nBUSINESS 100€: Order-taking + Payment\nPREMIUM 150€: Full bot + CRM + Stats\nWhat exactly are you looking for?"
     },
     {
       "id": "conv_31",
@@ -679,7 +652,7 @@
         "too much text",
         "make it short"
       ],
-      "answer": "Express summary: a WhatsApp bot that sells for you 24/7.\nFrom $99. Delivered in 48h.\nShall we start?"
+      "answer": "Express summary: a WhatsApp bot that sells for you 24/7.\nFrom 100€. Delivered in 48h.\nShall we start?"
     },
     {
       "id": "conv_33",
@@ -689,7 +662,7 @@
         "why this price",
         "justify the price"
       ],
-      "answer": "Because I hand you a 24/7 salesperson for a full year at $99.\nA real salesperson costs $300/month. You win.\nShall we start?"
+      "answer": "Because I hand you a 24/7 salesperson for a full year at 100€.\nA real salesperson costs €300/month. You win.\nShall we start?"
     },
     {
       "id": "conv_34",
@@ -709,7 +682,7 @@
         "i m too busy this week",
         "not available this week"
       ],
-      "answer": "No worries. Lock your $99 spot now, we start whenever you want.\nAfter the 30th the price goes back to $250. Shall I hold your spot?"
+      "answer": "No worries. Lock your 100€ spot now, we start whenever you want.\nAfter the 30th the price goes back to 150€. Shall I hold your spot?"
     },
     {
       "id": "conv_36",
@@ -728,7 +701,7 @@
         "i ll reply tomorrow",
         "answer tomorrow"
       ],
-      "answer": "Perfect 👍 Noted.\nI'll follow up tomorrow at 10. Meanwhile I keep the $99 rate for you."
+      "answer": "Perfect 👍 Noted.\nI'll follow up tomorrow at 10. Meanwhile I keep the 100€ rate for you."
     },
     {
       "id": "conv_38",
@@ -747,7 +720,7 @@
         "proforma invoice",
         "i need an invoice"
       ],
-      "answer": "Here's your KOMARA AGENCY proforma invoice 👇\nAmount: $99\nDetails: WhatsApp Bot creation + 1 month support\nConfirm and we start."
+      "answer": "Here's your KOMARA AGENCY proforma invoice 👇\nAmount: 100€\nDetails: WhatsApp Bot creation + 1 month support\nConfirm and we start."
     },
     {
       "id": "conv_40",
@@ -757,7 +730,7 @@
         "spots left",
         "does it expire"
       ],
-      "answer": "Heads up: only 1 spot left at $99 this month.\nThe other 2 are taken. Want it?"
+      "answer": "Heads up: only 1 spot left at 100€ this month.\nThe other 2 are taken. Want it?"
     },
     {
       "id": "conv_41",
@@ -851,7 +824,7 @@
         "is it worth it",
         "value proposition"
       ],
-      "answer": "Bottom line: you pay $99 once.\nYou get 3h/day back + extra clients every day.\nIt pays for itself in a week."
+      "answer": "Bottom line: you pay 100€ once.\nYou get 3h/day back + extra clients every day.\nIt pays for itself in a week."
     },
     {
       "id": "conv_51",
@@ -861,7 +834,7 @@
         "why not hire someone",
         "human salesperson"
       ],
-      "answer": "Hiring = $200/month.\nBot = $99 lifetime.\nWhich do you pick?"
+      "answer": "Hiring = €200/month.\nBot = 100€ lifetime.\nWhich do you pick?"
     },
     {
       "id": "conv_52",
@@ -966,7 +939,7 @@
         "i m lost",
         "where to start"
       ],
-      "answer": "Breathe 😊 We start small. Starter pack $99.\nI guide you step by step. In 48h you have your bot."
+      "answer": "Breathe 😊 We start small. Starter pack 100€.\nI guide you step by step. In 48h you have your bot."
     },
     {
       "id": "conv_63",
@@ -1062,7 +1035,7 @@
         "a true story",
         "real results"
       ],
-      "answer": "You know Fatou the fabric seller?\nShe couldn't keep up with clients. Since the bot: +18 orders/week.\nShe sent me a voice note yesterday: \"Ndine, thank you\" 😂"
+      "answer": "You know Fatou the fabric seller?\nShe couldn't keep up with clients. Since the bot: +18 orders/week.\nShe sent me a voice note yesterday: \"Komara Agency 🇬🇳, thank you\" 😂"
     },
     {
       "id": "conv_73",
@@ -1209,7 +1182,7 @@
         "what s your mission",
         "your motto"
       ],
-      "answer": "I'm Ndine. I don't sell hot air.\nI just want your business running even while you sleep.\n\nNdine — KOMARA AGENCY\n\"I turn your WhatsApp into a 24/7 employee\""
+      "answer": "I'm Komara Agency 🇬🇳. I don't sell hot air.\nI just want your business running even while you sleep.\n\nKomara Agency 🇬🇳 — KOMARA AGENCY\n\"I turn your WhatsApp into a 24/7 employee\""
     },
     {
       "id": "conv_88",
@@ -1258,7 +1231,7 @@
         "small budget",
         "starting small"
       ],
-      "answer": "Perfect. Starter pack $99.\n1 product, 5 questions. When it works, we upgrade."
+      "answer": "Perfect. Starter pack 100€.\n1 product, 5 questions. When it works, we upgrade."
     },
     {
       "id": "conv_93",
@@ -1286,7 +1259,7 @@
         "is that your last word",
         "can you lower the price"
       ],
-      "answer": "$99 is already this month's discounted price 😅\nBut I can throw in 2 extra weeks of support. Deal?"
+      "answer": "100€ is already this month's discounted price 😅\nBut I can throw in 2 extra weeks of support. Deal?"
     },
     {
       "id": "conv_96",
@@ -1306,7 +1279,7 @@
         "are you komara",
         "are you the boss"
       ],
-      "answer": "Yes, it's me, Ndine 😊\nBoss and technician at the same time, lol\nHow can I help you?"
+      "answer": "Yes, it's me, Komara Agency 🇬🇳 😊\nBoss and technician at the same time, lol\nHow can I help you?"
     },
     {
       "id": "conv_98",
@@ -1395,7 +1368,7 @@
         "where are you from",
         "where do you come from"
       ],
-      "answer": "I'm Ndine, based between Conakry and Casablanca 🌍\nBut I work 100% online — wherever you are, we can work together."
+      "answer": "I'm Komara Agency 🇬🇳, based between Conakry and Casablanca 🌍\nBut I work 100% online — wherever you are, we can work together."
     },
     {
       "id": "conv_107",
@@ -1526,7 +1499,7 @@
         "information about your services",
         "i want some information"
       ],
-      "answer": "Hello and thank you for your message 👋\nI'm Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. What exactly do you want to automate?\nClient replies, orders, or appointments?"
+      "answer": "Hello and thank you for your message 👋\nI'm Komara Agency 🇬🇳\nWith pleasure. What exactly do you want to automate?\nClient replies, orders, or appointments?"
     },
     {
       "id": "pro_02",
@@ -1600,7 +1573,7 @@
         "is it trustworthy",
         "what s the price and is it reliable"
       ],
-      "answer": "Very good questions.\nOn price: Starter Pack at $99 one-time. No subscription.\nOn reliability: official Meta WhatsApp API, 0 ban risk. + 7-day satisfaction guarantee.\nI can send you 2 client testimonials if you want.\nDo you prefer the technical PDF or a demo video?"
+      "answer": "Very good questions.\nOn price: Starter Pack at 100€ one-time. No subscription.\nOn reliability: official Meta WhatsApp API, 0 ban risk. + 7-day satisfaction guarantee.\nI can send you 2 client testimonials if you want.\nDo you prefer the technical PDF or a demo video?"
     },
     {
       "id": "pro_09",
@@ -1611,7 +1584,7 @@
         "your bot offers",
         "starter pack and pro pack"
       ],
-      "answer": "We have 2 offers:\n*Starter Pack - $99*\nFull custom bot with your brand, 10 products/services configured, auto-replies + integrated payment, video training + 1 month support\n*Pro Pack - $250*\nEverything in Starter + full shop + statistics + auto follow-ups\nStarter is at $99 until Sunday.\nWhich offer suits you best?"
+      "answer": "We have 2 offers:\n*Starter Pack - 100€*\nFull custom bot with your brand, 10 products/services configured, auto-replies + integrated payment, video training + 1 month support\n*Pro Pack - 150€*\nEverything in Starter + full shop + statistics + auto follow-ups\nStarter is at 100€ until Sunday.\nWhich offer suits you best?"
     },
     {
       "id": "pro_10",
@@ -1624,7 +1597,7 @@
         "i want visuals",
         "pro photos to sell"
       ],
-      "answer": "Hello and thank you for reaching out 👋\nThis is Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. What type of business do you need visuals for? Shop, restaurant, product, event?"
+      "answer": "Hello and thank you for reaching out 👋\nThis is Komara Agency 🇬🇳\nWith pleasure. What type of business do you need visuals for? Shop, restaurant, product, event?"
     },
     {
       "id": "pro_11",
@@ -1632,8 +1605,7 @@
       "questions": [
         "for my clothing shop",
         "visuals for shop",
-        "photos for my shop",
-        "i sell clothes"
+        "photos for my shop"
       ],
       "answer": "Great. In textiles a beautiful photo = +50% sales.\nCurrently do you take photos yourself with a phone, or do you have a graphic designer?"
     },
@@ -1667,7 +1639,7 @@
         "how much for visuals",
         "photo packs"
       ],
-      "answer": "We have 3 packs:\n*Starter Pack - 5€*\n5 pro visuals + catchy text + status + feed formats\n*Business Pack - 12€*\n15 visuals + 3 short videos + 1-month posting calendar\n*Premium Pack - 25€*\n30 visuals + full branding + 1-month status management\n48h delivery anywhere in Guinea. Revisions included.\nWhich pack interests you most?"
+      "answer": "Our visual packs 🎨\n• Single visual: 15€ — 1 pro visual + catchy text\n• Pack of 5: 40€ — 5 pro visuals + texts + status + feed formats\n• Business pack: on quote — 15 visuals + 3 short videos + 1-month follow-up\nWhich one fits you? 👇"
     },
     {
       "id": "pro_15",
@@ -1678,7 +1650,7 @@
         "5€ is expensive",
         "visuals too expensive"
       ],
-      "answer": "I understand. 5€ is a budget.\nBut think of it: 1 single 20€ sale thanks to a good visual and it pays for itself.\nWe can start with the Starter Pack to test.\nDo you have photos of your products to send?"
+      "answer": "I understand. 15€.\nBut think of it: 1 single 20€ sale thanks to a good visual and it pays for itself.\nWe can start with the Starter Pack to test.\nDo you have photos of your products to send?"
     },
     {
       "id": "pro_16",
@@ -1700,7 +1672,7 @@
         "i want to create a showcase site",
         "make a website for my business"
       ],
-      "answer": "Hello and thank you for your message 👋\nThis is Ndine from KOMARA AGENCY 🇬🇳\nWith pleasure. To guide you better — what type of site is it for?\nShowcase, online store, portfolio, or blog?"
+      "answer": "Hello and thank you for your message 👋\nThis is Komara Agency 🇬🇳\nWith pleasure. To guide you better — what type of site is it for?\nShowcase, online store, portfolio, or blog?"
     },
     {
       "id": "pro_18",
@@ -1734,7 +1706,7 @@
         "how much does a showcase site cost",
         "website packs guinea"
       ],
-      "answer": "We have 3 offers for the Guinean market:\n*ESSENTIAL Pack - 150€*\n5 pages (Home, About, Services, Gallery, Contact), pro mobile-friendly design, WhatsApp form + Google Maps, domain + 1 year hosting included. Delivery: 7 days\n*BUSINESS Pack - 300€*\nEverything in Essential + 10 pages + blog + basic SEO + Facebook/Instagram. Delivery: 10 days\n*E-COMMERCE Pack - 550€*\nFull online store + Mobile Money payment + 20 products + order management. Delivery: 14 days\nWhich pack suits you best?"
+      "answer": "We have 3 offers for the Guinean market:\n*ESSENTIAL Pack*\n5 pages (Home, About, Services, Gallery, Contact), pro mobile-friendly design, WhatsApp form + Google Maps, domain + 1 year hosting included. Delivery: 7 days\n*BUSINESS Pack*\nEverything in Essential + 10 pages + blog + basic SEO + Facebook/Instagram. Delivery: 10 days\n*E-COMMERCE Pack*\nFull online store + Mobile Money payment + 20 products + order management. Delivery: 14 days\nWhich pack suits you best?\nPricing: on quote, depending on your project."
     },
     {
       "id": "pro_21",
@@ -1824,7 +1796,7 @@
         "working with you",
         "collaboration"
       ],
-      "answer": "Hello and thank you for your interest 🙏\nThis is Ndine, Founder of KOMARA AGENCY 🇬🇳\nWhat type of project do you want to collaborate on?\nWebsites, visuals, bots, or partnership?"
+      "answer": "Hello and thank you for your interest 🙏\nThis is Komara Agency 🇬🇳\nWhat type of project do you want to collaborate on?\nWebsites, visuals, bots, or partnership?"
     },
     {
       "id": "pro_30",
@@ -1846,7 +1818,7 @@
         "partner rates",
         "white label rates"
       ],
-      "answer": "For partner agencies, preferential rates:\nShowcase site: 90€ instead of 150€\nE-commerce site: 350€ instead of 550€\nVisuals: -30% on all packs\nIn exchange: minimum 2 projects/month.\nShall I send the partner PDF + 3 example sites?"
+      "answer": "For partner agencies, preferential rates 🤝\n• Showcase site: 40€ instead of 50€\n• E-commerce site: 120€ instead of 150€\n• Visuals: -30% on all packs\nIn exchange: exclusivity on your market + white-label rights (on quote). Shall we partner?"
     },
     {
       "id": "pro_32",
@@ -1943,1326 +1915,6 @@
       "answer": "Great, we can do both 👍\nWhat do you sell exactly? And how many messages per day roughly?"
     },
     {
-      "id": "en_science_astro_01",
-      "category": "science",
-      "questions": [
-        "what is a shooting star",
-        "why do we see shooting stars"
-      ],
-      "keywords": [
-        "star",
-        "space",
-        "sky"
-      ],
-      "answer": "It's a tiny grain of space dust burning up in our atmosphere 😊\nThe result: a beautiful streak of light across the sky.\nEver made a wish on one?"
-    },
-    {
-      "id": "en_science_astro_02",
-      "category": "science",
-      "questions": [
-        "why is the sky blue"
-      ],
-      "keywords": [
-        "sky",
-        "blue",
-        "light"
-      ],
-      "answer": "The air scatters sunlight.\nBlue is the color that disperses the most, so the whole sky looks blue.\nAt sunset red takes over 🌅 Beautiful, right?"
-    },
-    {
-      "id": "en_science_astro_03",
-      "category": "science",
-      "questions": [
-        "what is a black hole"
-      ],
-      "keywords": [
-        "black hole",
-        "space",
-        "gravity"
-      ],
-      "answer": "A zone where gravity is so strong even light can't escape 🕳️\nImagine a giant cosmic vacuum cleaner.\nWant to know how we detect them, since they're invisible?"
-    },
-    {
-      "id": "en_science_astro_04",
-      "category": "science",
-      "questions": [
-        "how many stars in the universe"
-      ],
-      "keywords": [
-        "stars",
-        "universe",
-        "count"
-      ],
-      "answer": "Impossible to count exactly 😅\nScientists estimate around 200 billion billion stars.\nMore than grains of sand on Earth. Puts things in perspective, right?"
-    },
-    {
-      "id": "en_science_astro_05",
-      "category": "science",
-      "questions": [
-        "can we live on mars",
-        "life on mars"
-      ],
-      "keywords": [
-        "mars",
-        "live",
-        "planet"
-      ],
-      "answer": "Not yet. No oxygen, very cold, no liquid water on the surface 🟥\nBut projects exist, like SpaceX missions.\nWould you go to Mars if you could?"
-    },
-    {
-      "id": "en_science_astro_06",
-      "category": "science",
-      "questions": [
-        "what is a galaxy"
-      ],
-      "keywords": [
-        "galaxy",
-        "space",
-        "stars"
-      ],
-      "answer": "A huge grouping of stars, gas and dust spinning together 🌌\nOur galaxy is the Milky Way with ~200 billion stars.\nAnd the universe holds billions of galaxies. Mind-blowing, right?"
-    },
-    {
-      "id": "en_science_astro_07",
-      "category": "science",
-      "questions": [
-        "how many planets in the solar system"
-      ],
-      "keywords": [
-        "planets",
-        "solar system"
-      ],
-      "answer": "8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune 🪐\nWhich one is your favorite?"
-    },
-    {
-      "id": "en_science_astro_08",
-      "category": "science",
-      "questions": [
-        "what is the international space station",
-        "the iss"
-      ],
-      "keywords": [
-        "space station",
-        "astronauts",
-        "iss"
-      ],
-      "answer": "A giant laboratory orbiting Earth at 28,000 km/h 🛰️\nAstronauts live there 6 months doing experiments.\nIt circles Earth in 90 minutes — 16 sunsets a day!"
-    },
-    {
-      "id": "en_science_astro_09",
-      "category": "science",
-      "questions": [
-        "will the sun explode one day",
-        "will the sun die"
-      ],
-      "keywords": [
-        "sun",
-        "explode",
-        "die"
-      ],
-      "answer": "Yes, but no panic 😄\nThe Sun has ~5 billion years left.\nPlenty of time, trust me."
-    },
-    {
-      "id": "en_science_astro_10",
-      "category": "science",
-      "questions": [
-        "what is an eclipse"
-      ],
-      "keywords": [
-        "eclipse",
-        "sun",
-        "moon"
-      ],
-      "answer": "When one space body hides another 🌑\nSolar eclipse: the Moon covers the Sun. Lunar: Earth's shadow covers the Moon.\nWant me to find when the next one is visible where you are?"
-    },
-    {
-      "id": "en_science_phys_01",
-      "category": "science",
-      "questions": [
-        "what is gravity",
-        "why do objects fall"
-      ],
-      "keywords": [
-        "gravity",
-        "fall",
-        "earth"
-      ],
-      "answer": "The force that pulls everything toward the ground 🌍\nIt makes apples fall and keeps the Moon in orbit.\nWithout it we'd all float away. Fun for 2 minutes 😄"
-    },
-    {
-      "id": "en_science_phys_02",
-      "category": "science",
-      "questions": [
-        "what is the speed of light"
-      ],
-      "keywords": [
-        "light",
-        "speed",
-        "physics"
-      ],
-      "answer": "300,000 km per second ⚡\nIn one second, light circles Earth 7 times.\nNothing in the universe goes faster. Physics' golden rule."
-    },
-    {
-      "id": "en_science_phys_03",
-      "category": "science",
-      "questions": [
-        "why does thunder come after lightning"
-      ],
-      "keywords": [
-        "thunder",
-        "lightning",
-        "storm"
-      ],
-      "answer": "Because light travels much faster than sound ⚡\nThe flash shows the strike, thunder is the sound arriving late.\nTip: count seconds between them, divide by 3 = distance in km!"
-    },
-    {
-      "id": "en_science_phys_04",
-      "category": "science",
-      "questions": [
-        "what is an atom"
-      ],
-      "keywords": [
-        "atom",
-        "matter",
-        "science"
-      ],
-      "answer": "The basic building block of all matter 🔬\nEverything you see — you, your phone, the air — is made of atoms.\nAnd an atom is 99.99% empty space. Mind-bending 😅"
-    },
-    {
-      "id": "en_science_phys_05",
-      "category": "science",
-      "questions": [
-        "why does water boil at 100 degrees"
-      ],
-      "keywords": [
-        "water",
-        "boil",
-        "temperature"
-      ],
-      "answer": "At 100°C at sea level 💧\nThat's when water turns to vapor.\nIn the mountains it boils earlier — at 3000m around 90°C. Pasta cooks slower there!"
-    },
-    {
-      "id": "en_science_phys_06",
-      "category": "science",
-      "questions": [
-        "what is energy"
-      ],
-      "keywords": [
-        "energy",
-        "physics",
-        "power"
-      ],
-      "answer": "What makes things move or heat up ⚡\nIt transforms but never disappears — the famous conservation law.\nSun, wind, your food: all energy in motion."
-    },
-    {
-      "id": "en_science_phys_07",
-      "category": "science",
-      "questions": [
-        "the three states of water"
-      ],
-      "keywords": [
-        "water",
-        "ice",
-        "steam"
-      ],
-      "answer": "Ice (solid), water (liquid), vapor (gas) 💧\nSame molecule, three costumes depending on temperature.\nThe only substance we easily see in all 3 states in nature."
-    },
-    {
-      "id": "en_science_chim_01",
-      "category": "science",
-      "questions": [
-        "why does iron rust"
-      ],
-      "keywords": [
-        "iron",
-        "rust",
-        "metal"
-      ],
-      "answer": "A reaction between iron, oxygen and water 🔩\nThe iron oxidizes, forming that orange layer called rust.\nFix: paint or oil the metal to protect it from humidity."
-    },
-    {
-      "id": "en_science_chim_02",
-      "category": "science",
-      "questions": [
-        "why do onions make you cry"
-      ],
-      "keywords": [
-        "onion",
-        "cry",
-        "tears"
-      ],
-      "answer": "Cutting releases an irritating gas 🧅\nYour eyes produce tears to defend themselves.\nGrandma's tip: chill the onion 15 min first, or cut under water."
-    },
-    {
-      "id": "en_science_chim_03",
-      "category": "science",
-      "questions": [
-        "what is a chemical reaction"
-      ],
-      "keywords": [
-        "chemistry",
-        "reaction",
-        "transform"
-      ],
-      "answer": "When substances transform into other substances 🧪\nExample: vinegar + baking soda = foam (gas!)\nOnce transformed, no going back. Cooking is full of them!"
-    },
-    {
-      "id": "en_science_chim_04",
-      "category": "science",
-      "questions": [
-        "what is oxygen"
-      ],
-      "keywords": [
-        "oxygen",
-        "air",
-        "breathing"
-      ],
-      "answer": "The gas we breathe to live 🌬️\nOur cells burn their fuel thanks to it.\nAnd who makes the most of it? The oceans with phytoplankton — not just trees!"
-    },
-    {
-      "id": "en_science_bio_01",
-      "category": "science",
-      "questions": [
-        "what is dna"
-      ],
-      "keywords": [
-        "dna",
-        "genetics",
-        "biology"
-      ],
-      "answer": "The instruction manual of every living being 🧬\nIt holds the instructions that make you you — eye color, height, everything.\nUnravel one cell's DNA: 2 meters long. Crazy, right?"
-    },
-    {
-      "id": "en_science_bio_02",
-      "category": "science",
-      "questions": [
-        "how do plants make oxygen",
-        "what is photosynthesis"
-      ],
-      "keywords": [
-        "photosynthesis",
-        "plants",
-        "oxygen"
-      ],
-      "answer": "Through photosynthesis 🌱\nPlants capture sunlight, drink CO2 and release oxygen.\nThey literally keep us alive. Good reason to water them 😄"
-    },
-    {
-      "id": "en_science_bio_03",
-      "category": "science",
-      "questions": [
-        "why are leaves green",
-        "what is chlorophyll"
-      ],
-      "keywords": [
-        "leaves",
-        "green",
-        "chlorophyll"
-      ],
-      "answer": "Because of chlorophyll 🍃\nIt's the molecule that captures sunlight to feed the plant.\nIn autumn it hides, revealing yellows and oranges. Nature's show."
-    },
-    {
-      "id": "en_science_bio_04",
-      "category": "science",
-      "questions": [
-        "why do we yawn",
-        "is yawning contagious"
-      ],
-      "keywords": [
-        "yawn",
-        "sleep",
-        "contagious"
-      ],
-      "answer": "To oxygenate the brain when it's idling 😴\nAnd yes, yawning is contagious — even reading the word triggers one ;)\nDid you just yawn reading this? Be honest 😄"
-    },
-    {
-      "id": "en_science_bio_05",
-      "category": "science",
-      "questions": [
-        "why do cats purr"
-      ],
-      "keywords": [
-        "cats",
-        "purr",
-        "animals"
-      ],
-      "answer": "To communicate well-being, and sometimes to soothe themselves 🐈\nPurring vibrates at 25-150 Hz, a frequency that promotes bone healing.\nA cat is almost a pocket doctor with whiskers."
-    },
-    {
-      "id": "en_science_bio_06",
-      "category": "science",
-      "questions": [
-        "what is evolution",
-        "the theory of evolution"
-      ],
-      "keywords": [
-        "evolution",
-        "darwin",
-        "species"
-      ],
-      "answer": "The idea that species slowly change over generations 🐒\nThose who adapt best survive and pass on their traits.\nDarwin explained it with Galápagos finch beaks. Simple and brilliant."
-    },
-    {
-      "id": "en_science_bio_07",
-      "category": "science",
-      "questions": [
-        "how many species on earth"
-      ],
-      "keywords": [
-        "species",
-        "animals",
-        "biodiversity"
-      ],
-      "answer": "~8.7 million estimated, and we've only discovered a quarter 🌍\nThousands of new ones are found every year.\nWe know Mars' surface better than the ocean floor!"
-    },
-    {
-      "id": "en_science_sante_01",
-      "category": "science",
-      "questions": [
-        "why does the heart beat"
-      ],
-      "keywords": [
-        "heart",
-        "blood",
-        "beat"
-      ],
-      "answer": "It's your engine pumping blood around the body ❤️\n~100,000 beats a day without you thinking about it.\nTake care of it: move, sleep, eat well. It works for you."
-    },
-    {
-      "id": "en_science_sante_02",
-      "category": "science",
-      "questions": [
-        "what is the immune system"
-      ],
-      "keywords": [
-        "immune system",
-        "defenses",
-        "health"
-      ],
-      "answer": "Your inner army against germs 🛡️\nSkin, white blood cells, antibodies: several lines of defense.\nTrain it with sleep, fruits, veggies and good mood. Really."
-    },
-    {
-      "id": "en_science_sante_03",
-      "category": "science",
-      "questions": [
-        "why do we sneeze"
-      ],
-      "keywords": [
-        "sneeze",
-        "nose",
-        "reflex"
-      ],
-      "answer": "A defense mechanism: the body expels an intruder at 160 km/h 💨\nYou can't sneeze with your eyes open — the reflex closes them.\nBless you! 😄"
-    },
-    {
-      "id": "en_science_sante_04",
-      "category": "science",
-      "questions": [
-        "how many bones in the human body"
-      ],
-      "keywords": [
-        "bones",
-        "skeleton",
-        "body"
-      ],
-      "answer": "206 in an adult 🦴\nBut a baby has ~300! Some fuse as we grow.\nSmallest: the stirrup bone in your ear, 3mm. Largest: the femur."
-    },
-    {
-      "id": "en_science_sante_05",
-      "category": "science",
-      "questions": [
-        "why is blood red"
-      ],
-      "keywords": [
-        "blood",
-        "red",
-        "hemoglobin"
-      ],
-      "answer": "Because of the iron in hemoglobin 🩸\nOxygen-poor blood is darker, oxygen-rich blood bright red.\nThe famous 'blue blood' in veins? Myth — it's just less lit 😄"
-    },
-    {
-      "id": "en_science_sante_06",
-      "category": "science",
-      "questions": [
-        "why do we need sleep",
-        "is sleep important"
-      ],
-      "keywords": [
-        "sleep",
-        "rest",
-        "night"
-      ],
-      "answer": "Sleep is your brain's maintenance 😴\nIt consolidates memory, repairs the body, clears brain waste.\n7-9 hours is ideal. A good night beats 3 coffees."
-    },
-    {
-      "id": "en_science_sante_07",
-      "category": "science",
-      "questions": [
-        "what is a vaccine",
-        "how do vaccines work"
-      ],
-      "keywords": [
-        "vaccine",
-        "immunity",
-        "medicine"
-      ],
-      "answer": "A training session for your immune system 💉\nWe show it a harmless piece of the germ so it learns to fight.\nLike a sparring partner before the real fight."
-    },
-    {
-      "id": "en_science_sante_08",
-      "category": "science",
-      "questions": [
-        "how much water should i drink daily"
-      ],
-      "keywords": [
-        "water",
-        "drink",
-        "hydration"
-      ],
-      "answer": "About 1.5 to 2 liters a day 💧\nYour body is 60% water — the brain 75%.\nNo need to count glasses: thirst is a good guide."
-    },
-    {
-      "id": "en_science_psy_01",
-      "category": "science",
-      "questions": [
-        "why do we procrastinate",
-        "what is procrastination"
-      ],
-      "keywords": [
-        "procrastination",
-        "delay",
-        "habits"
-      ],
-      "answer": "Our brain prefers immediate reward 😅\nScrolling TikTok = pleasure now, the task = pleasure later.\nAnti-procrastination tip: the 2-minute rule. Just start 2 minutes. The rest usually follows."
-    },
-    {
-      "id": "en_science_psy_02",
-      "category": "science",
-      "questions": [
-        "what is stress",
-        "how to manage stress"
-      ],
-      "keywords": [
-        "stress",
-        "anxiety",
-        "calm"
-      ],
-      "answer": "The body's natural alarm 🚨\nUseful in small doses, exhausting in large ones.\nSimplest fix: breathe in 4 seconds, hold 4, out 6. Repeat 5 times. It really works."
-    },
-    {
-      "id": "en_science_psy_03",
-      "category": "science",
-      "questions": [
-        "why does music make us happy"
-      ],
-      "keywords": [
-        "music",
-        "happiness",
-        "dopamine"
-      ],
-      "answer": "Music releases dopamine, the pleasure hormone 🎵\nIt touches memory and emotions at the same time.\nThat's why a song can send you 10 years back in 3 seconds."
-    },
-    {
-      "id": "en_science_psy_04",
-      "category": "science",
-      "questions": [
-        "how to learn better and remember",
-        "memorization techniques"
-      ],
-      "keywords": [
-        "learning",
-        "memory",
-        "study"
-      ],
-      "answer": "Spaced repetition: review at D+1, D+3, D+7, D+21 📚\nThe brain keeps what comes back, not what you cram for 4 hours.\nAnd explain out loud what you learn — instant teacher effect 😄"
-    },
-    {
-      "id": "en_science_psy_05",
-      "category": "science",
-      "questions": [
-        "what is emotional intelligence"
-      ],
-      "keywords": [
-        "emotional intelligence",
-        "eq",
-        "emotions"
-      ],
-      "answer": "The ability to understand and manage your emotions — and others' 🧠\nOften matters more than IQ at work.\nConcretely: recognize your anger before hitting send."
-    },
-    {
-      "id": "en_science_math_01",
-      "category": "science",
-      "questions": [
-        "what is pi",
-        "the number pi"
-      ],
-      "keywords": [
-        "pi",
-        "circle",
-        "math"
-      ],
-      "answer": "The circle's secret number: π ≈ 3.14159 🔵\nCircumference ÷ diameter = always π, any circle.\nBillions of digits known. The first 10 handle almost everything 😄"
-    },
-    {
-      "id": "en_science_math_02",
-      "category": "science",
-      "questions": [
-        "why is zero important",
-        "who invented zero"
-      ],
-      "keywords": [
-        "zero",
-        "math",
-        "india"
-      ],
-      "answer": "Zero was invented in India, then traveled through the Arab world 🔄\nWithout it: no modern math, no computing, nothing.\nA 'nothing' that changed the world. Nice lesson, right?"
-    },
-    {
-      "id": "en_science_math_03",
-      "category": "science",
-      "questions": [
-        "what is a prime number"
-      ],
-      "keywords": [
-        "prime numbers",
-        "math",
-        "divisors"
-      ],
-      "answer": "A number divisible only by 1 and itself 🔢\n2, 3, 5, 7, 11, 13...\nThey're the atoms of math — your banking encryption relies on them!"
-    },
-    {
-      "id": "en_science_math_04",
-      "category": "science",
-      "questions": [
-        "what are math useful for in daily life"
-      ],
-      "keywords": [
-        "math",
-        "daily life",
-        "logic"
-      ],
-      "answer": "Everywhere: pricing a job, cooking a recipe, managing a budget 🧮\nEven music and video games are full of it.\nMath is just the language of logic. And logic serves you daily."
-    },
-    {
-      "id": "en_science_ia_01",
-      "category": "science",
-      "questions": [
-        "what is artificial intelligence in general",
-        "how does ai work"
-      ],
-      "keywords": [
-        "ai",
-        "artificial intelligence",
-        "learning"
-      ],
-      "answer": "Programs that learn from examples 🤖\nInstead of coding every rule, we show thousands of examples and the machine spots patterns.\nBy the way, we build AI for businesses at KOMARA — but here I'm telling you the science 😄"
-    },
-    {
-      "id": "en_science_ia_02",
-      "category": "science",
-      "questions": [
-        "what is machine learning"
-      ],
-      "keywords": [
-        "machine learning",
-        "data",
-        "training"
-      ],
-      "answer": "The branch of AI where machines learn from data 📊\nShow it 1000 cats, it eventually recognizes cats on its own.\nExactly what we do with our bots: they learn your replies to sound like you 😊"
-    },
-    {
-      "id": "en_science_ia_03",
-      "category": "science",
-      "questions": [
-        "how does the internet work"
-      ],
-      "keywords": [
-        "internet",
-        "network",
-        "cables"
-      ],
-      "answer": "A network of cables, servers and protocols 🌐\nYour request sometimes travels thousands of km in milliseconds.\nThe cable linking Europe to West Africa? It runs under the ocean. Really."
-    },
-    {
-      "id": "en_science_ia_04",
-      "category": "science",
-      "questions": [
-        "what is an algorithm"
-      ],
-      "keywords": [
-        "algorithm",
-        "instructions",
-        "steps"
-      ],
-      "answer": "A sequence of instructions to solve a problem ⚙️\nA cooking recipe is an algorithm: steps in order, guaranteed result.\nThey're everywhere: GPS, YouTube recommendations, email filters."
-    },
-    {
-      "id": "en_science_ia_05",
-      "category": "science",
-      "questions": [
-        "what is the cloud"
-      ],
-      "keywords": [
-        "cloud",
-        "storage",
-        "servers"
-      ],
-      "answer": "Storing and processing data on remote servers ☁️\nYour WhatsApp photos live in datacenters.\nAdvantage: access anywhere. It's also what keeps our bots running 24/7 😊"
-    },
-    {
-      "id": "en_science_ia_06",
-      "category": "science",
-      "questions": [
-        "what is cybersecurity",
-        "how to protect from hackers"
-      ],
-      "keywords": [
-        "cybersecurity",
-        "password",
-        "hackers"
-      ],
-      "answer": "The art of protecting your data and systems 🔐\nRule 1: different, long passwords everywhere.\nRule 2: beware of links that look too good. Hackers use curiosity, not technique."
-    },
-    {
-      "id": "en_science_ia_07",
-      "category": "science",
-      "questions": [
-        "will ai replace humans",
-        "is ai a danger for jobs"
-      ],
-      "keywords": [
-        "ai",
-        "jobs",
-        "future"
-      ],
-      "answer": "It replaces tasks, not people 🤝\nThose who use it replace those who ignore it.\nOur approach at KOMARA: AI does the repetitive, humans keep the relationship. Best of both worlds."
-    },
-    {
-      "id": "en_science_ia_08",
-      "category": "science",
-      "questions": [
-        "what is 5g"
-      ],
-      "keywords": [
-        "5g",
-        "network",
-        "mobile"
-      ],
-      "answer": "The 5th generation of mobile networks: faster and smoother 📶\nNear-zero latency: perfect for video calls, games, connected objects.\nAn HD movie downloaded in seconds. The future moves fast!"
-    },
-    {
-      "id": "en_science_hist_01",
-      "category": "science",
-      "questions": [
-        "who built the pyramids of egypt"
-      ],
-      "keywords": [
-        "pyramids",
-        "egypt",
-        "pharaohs"
-      ],
-      "answer": "Ancient Egyptians, over 4,500 years ago 🔺\nThe Great Pyramid of Giza: 2.3 million blocks, 20 years of work.\nAnd no, not slaves — paid, housed workers, archaeologists confirmed it."
-    },
-    {
-      "id": "en_science_hist_02",
-      "category": "science",
-      "questions": [
-        "what was the mali empire",
-        "soundiata keita"
-      ],
-      "keywords": [
-        "mali empire",
-        "soundiata",
-        "west africa"
-      ],
-      "answer": "One of West Africa's greatest empires (13th-16th century) 🏛️\nFounded by Soundiata Keïta, hero of the Kirina battle.\nIt also gave us the Manden Charter, one of the earliest human rights texts. Proud heritage."
-    },
-    {
-      "id": "en_science_hist_03",
-      "category": "science",
-      "questions": [
-        "who was mansa musa",
-        "the richest man in history"
-      ],
-      "keywords": [
-        "mansa musa",
-        "mali",
-        "gold"
-      ],
-      "answer": "Emperor of Mali in the 14th century, often called the richest man in history 👑\nHis pilgrimage to Mecca was so lavish it crashed Egypt's gold price for years.\nMali's gold lit up the world — literally."
-    },
-    {
-      "id": "en_science_hist_04",
-      "category": "science",
-      "questions": [
-        "who was samory toure"
-      ],
-      "keywords": [
-        "samory toure",
-        "guinea",
-        "resistance"
-      ],
-      "answer": "The great Guinean resistance hero against colonization (1830-1900) 🛡️\nHe built an empire and a modern army, holding off the French for 16 years.\nA symbol of dignity for all of Guinea."
-    },
-    {
-      "id": "en_science_hist_05",
-      "category": "science",
-      "questions": [
-        "what was the ghana empire",
-        "the wagadu empire"
-      ],
-      "keywords": [
-        "ghana empire",
-        "wagadu",
-        "soninke"
-      ],
-      "answer": "The first great West African empire (8th-11th century), the Wagadu 🏜️\nIts wealth: gold and salt, controlled by the Soninke.\nToday's Ghana took the name in tribute — but it was located in modern Mali/Mauritania."
-    },
-    {
-      "id": "en_science_hist_06",
-      "category": "science",
-      "questions": [
-        "when did man walk on the moon",
-        "apollo 11"
-      ],
-      "keywords": [
-        "moon",
-        "apollo",
-        "armstrong"
-      ],
-      "answer": "July 20, 1969 🌕\nNeil Armstrong and Buzz Aldrin, Apollo 11.\n'One small step for man, one giant leap for mankind.' The studio theory? 400,000 engineers would laugh 😄"
-    },
-    {
-      "id": "en_science_hist_07",
-      "category": "science",
-      "questions": [
-        "who invented writing",
-        "the first writing"
-      ],
-      "keywords": [
-        "writing",
-        "mesopotamia",
-        "cuneiform"
-      ],
-      "answer": "In Mesopotamia ~5,400 years ago — cuneiform script ✍️\nIt started as crop and cattle counting. Accounting before poetry 😄\nEgyptian hieroglyphs came almost at the same time."
-    },
-    {
-      "id": "en_science_hist_08",
-      "category": "science",
-      "questions": [
-        "who was nelson mandela",
-        "mandela 27 years in prison"
-      ],
-      "keywords": [
-        "mandela",
-        "south africa",
-        "apartheid"
-      ],
-      "answer": "The South African leader who fought apartheid 🕊️\n27 years in prison, then president and symbol of reconciliation.\nHis strongest weapon: forgiveness without weakness. 'No one is born hating.'"
-    },
-    {
-      "id": "en_science_hist_09",
-      "category": "science",
-      "questions": [
-        "what was the gold road",
-        "trans-saharan trade routes"
-      ],
-      "keywords": [
-        "gold road",
-        "caravans",
-        "timbuktu"
-      ],
-      "answer": "The caravan routes linking West Africa to the Maghreb 🐪\nNiger gold traded for salt, books and fabrics.\nTimbuktu, Gao, Oualata: capitals of knowledge and commerce. Africa traded with the world before everyone."
-    },
-    {
-      "id": "en_science_geo_01",
-      "category": "science",
-      "questions": [
-        "what is the largest ocean in the world",
-        "the pacific ocean"
-      ],
-      "keywords": [
-        "pacific",
-        "ocean",
-        "largest"
-      ],
-      "answer": "The Pacific 🌊\nIt alone covers ~30% of Earth's surface.\nBigger than all land combined. An ocean true to its name."
-    },
-    {
-      "id": "en_science_geo_02",
-      "category": "science",
-      "questions": [
-        "what is the largest desert in the world",
-        "the sahara desert"
-      ],
-      "keywords": [
-        "desert",
-        "sahara",
-        "antarctica"
-      ],
-      "answer": "Antarctica, technically — a polar desert ❄️\nThe largest hot desert: the Sahara, 9 million km².\n10,000 years ago the Sahara was green with lakes. Climate dances with time."
-    },
-    {
-      "id": "en_science_geo_03",
-      "category": "science",
-      "questions": [
-        "how many countries in africa"
-      ],
-      "keywords": [
-        "africa",
-        "countries",
-        "54"
-      ],
-      "answer": "54 recognized countries 🌍\nOver 2,000 languages and thousands of cultures.\nAfrica isn't a country, it's a world. The youngest too: median age ~19!"
-    },
-    {
-      "id": "en_science_geo_04",
-      "category": "science",
-      "questions": [
-        "what is the longest river in the world",
-        "the nile or the amazon"
-      ],
-      "keywords": [
-        "nile",
-        "amazon",
-        "river"
-      ],
-      "answer": "A classic debate 😄\nThe Amazon wins on volume (undisputed king) and by some length measures.\nThe Nile keeps ~6,650 km in the books. Both are majestic, that's certain."
-    },
-    {
-      "id": "en_science_geo_05",
-      "category": "science",
-      "questions": [
-        "what is a volcano",
-        "how does a volcano work"
-      ],
-      "keywords": [
-        "volcano",
-        "magma",
-        "eruption"
-      ],
-      "answer": "A chimney to Earth's magma 🌋\nWhen pressure builds, the eruption flows.\nSurprising: volcanic ash enriches soil. Etna's vineyards wouldn't exist without it."
-    },
-    {
-      "id": "en_science_geo_06",
-      "category": "science",
-      "questions": [
-        "why are there seasons",
-        "the seasons of the earth"
-      ],
-      "keywords": [
-        "seasons",
-        "earth",
-        "tilt"
-      ],
-      "answer": "Because of Earth's tilt (23.5°) 🌞\nWhen your hemisphere leans toward the Sun: summer. Away: winter.\nNot the distance to the Sun — the lean. Surprising, right?"
-    },
-    {
-      "id": "en_science_ecolo_01",
-      "category": "science",
-      "questions": [
-        "what is global warming",
-        "climate change explained"
-      ],
-      "keywords": [
-        "climate",
-        "warming",
-        "co2"
-      ],
-      "answer": "Earth is heating up because of our greenhouse gases 🌡️\n+1.2°C since the industrial era — enough to disrupt seasons.\nEvery degree counts: small gestures × 8 billion people make real waves."
-    },
-    {
-      "id": "en_science_ecolo_02",
-      "category": "science",
-      "questions": [
-        "what is the greenhouse effect",
-        "greenhouse effect explained"
-      ],
-      "keywords": [
-        "greenhouse",
-        "effect",
-        "atmosphere"
-      ],
-      "answer": "A natural phenomenon: the atmosphere keeps some of the heat ☀️\nWithout it: -18°C average on Earth, ice everywhere.\nThe problem is excess — too much CO2 = blanket too thick. We want a blanket, not a sauna."
-    },
-    {
-      "id": "en_science_ecolo_03",
-      "category": "science",
-      "questions": [
-        "why are bees important",
-        "bees and pollination"
-      ],
-      "keywords": [
-        "bees",
-        "pollination",
-        "honey"
-      ],
-      "answer": "They pollinate a third of what we eat 🐝\nApples, mangoes, coffee — behind each one, a bee at work.\nEinstein allegedly said: without them, humanity lasts 4 years. One more reason to protect them."
-    },
-    {
-      "id": "en_science_ecolo_04",
-      "category": "science",
-      "questions": [
-        "what is biodiversity",
-        "why protect biodiversity"
-      ],
-      "keywords": [
-        "biodiversity",
-        "species",
-        "ecosystem"
-      ],
-      "answer": "The whole variety of life: animals, plants, insects, microbes 🌿\nA diverse ecosystem resists shocks better — like a team with varied talents.\nEvery extinct species is a thread unraveling from the fabric."
-    },
-    {
-      "id": "en_science_ecolo_05",
-      "category": "science",
-      "questions": [
-        "how to save water daily",
-        "saving water"
-      ],
-      "keywords": [
-        "water",
-        "saving",
-        "habits"
-      ],
-      "answer": "Short showers (1 min less = 12L), tap off while brushing 💧\nFix leaks: a dripping tap = 4L/day gone.\nFreshwater is 3% of Earth's water. Every drop has value."
-    },
-    {
-      "id": "en_science_culture_01",
-      "category": "science",
-      "questions": [
-        "what is a griot",
-        "the west african griot"
-      ],
-      "keywords": [
-        "griot",
-        "memory",
-        "tradition"
-      ],
-      "answer": "The memory keeper of West African societies 🎶\nGenealogist, musician, spokesperson: he preserves the history of families and kingdoms.\nIn Guinea, the griot is the voice of the past speaking to the present."
-    },
-    {
-      "id": "en_science_culture_02",
-      "category": "science",
-      "questions": [
-        "what is ubuntu",
-        "the ubuntu philosophy"
-      ],
-      "keywords": [
-        "ubuntu",
-        "philosophy",
-        "humanity"
-      ],
-      "answer": "'I am because we are' 🤝\nA philosophy from southern Africa: the individual exists through others.\nDesmond Tutu and Mandela shared it with the world. Simple and powerful."
-    },
-    {
-      "id": "en_science_culture_03",
-      "category": "science",
-      "questions": [
-        "how many languages in africa",
-        "african languages"
-      ],
-      "keywords": [
-        "languages",
-        "africa",
-        "swahili"
-      ],
-      "answer": "Over 2,000 languages 🗣️\nSusu, Malinké, Fulani, Yoruba, Swahili, Hausa... each with its worldview.\nSwahili alone is spoken by 150+ million people. The future is multilingual!"
-    },
-    {
-      "id": "en_science_culture_04",
-      "category": "science",
-      "questions": [
-        "why are african proverbs powerful",
-        "an african proverb"
-      ],
-      "keywords": [
-        "proverbs",
-        "wisdom",
-        "africa"
-      ],
-      "answer": "They pack wisdom into a single image 🌍\n'If you want to go fast, go alone. If you want to go far, go together.'\nEvery proverb is a life lesson in one sentence."
-    },
-    {
-      "id": "en_science_culture_05",
-      "category": "science",
-      "questions": [
-        "why are traditional festivals important",
-        "festivals in west africa"
-      ],
-      "keywords": [
-        "festival",
-        "tradition",
-        "community"
-      ],
-      "answer": "They connect generations 🥁\nWeddings, naming ceremonies, harvests: every festival passes on history and values.\nThe more a community celebrates together, the more it holds together."
-    },
-    {
-      "id": "en_science_eco_01",
-      "category": "science",
-      "questions": [
-        "what is inflation",
-        "inflation explained simply"
-      ],
-      "keywords": [
-        "inflation",
-        "prices",
-        "economy"
-      ],
-      "answer": "When prices rise and purchasing power falls 📈\nA little is healthy, too much breaks the economy.\nWarning sign: your market basket costs more for the same list."
-    },
-    {
-      "id": "en_science_eco_02",
-      "category": "science",
-      "questions": [
-        "why save money",
-        "the importance of saving"
-      ],
-      "keywords": [
-        "saving",
-        "money",
-        "security"
-      ],
-      "answer": "Savings are your peace of mind tomorrow 💰\nEven small: 10% of every income, automatically.\nThe 3-month rule: aim for a cushion covering 3 months of expenses. Then invest."
-    },
-    {
-      "id": "en_science_eco_03",
-      "category": "science",
-      "questions": [
-        "what is gdp",
-        "gdp explained"
-      ],
-      "keywords": [
-        "gdp",
-        "economy",
-        "indicator"
-      ],
-      "answer": "Gross Domestic Product: the wealth a country produces in a year 📊\nIt's the economy's thermometer, not people's happiness.\nGDP doesn't count your mother's cooking or laughter — other indicators do 😄"
-    },
-    {
-      "id": "en_science_eco_04",
-      "category": "science",
-      "questions": [
-        "what is an entrepreneur",
-        "the entrepreneurial spirit"
-      ],
-      "keywords": [
-        "entrepreneur",
-        "business",
-        "mindset"
-      ],
-      "answer": "Someone who turns an idea into value for others 💡\nNo need to be Bill Gates: the market vendor innovating in her neighborhood is an entrepreneur.\nThe courage to start + the discipline to continue. That's all."
-    },
-    {
-      "id": "en_science_philo_01",
-      "category": "science",
-      "questions": [
-        "what is philosophy",
-        "what does it mean to philosophize"
-      ],
-      "keywords": [
-        "philosophy",
-        "wisdom",
-        "questions"
-      ],
-      "answer": "'The love of wisdom' — the Greek meaning 🤔\nAsking simple questions about deep things: who am I, what matters?\nNo diploma needed: thinking twice before acting is already philosophy."
-    },
-    {
-      "id": "en_science_philo_02",
-      "category": "science",
-      "questions": [
-        "who was socrates",
-        "socratic doubt"
-      ],
-      "keywords": [
-        "socrates",
-        "greek",
-        "questions"
-      ],
-      "answer": "The Greek philosopher who questioned everyone in the agora 🏛️\n'I know that I know nothing' — doubt as a starting point.\nHis method: keep asking until the real answer appears. The ancient Socrates, today's coach 😄"
-    },
-    {
-      "id": "en_science_philo_03",
-      "category": "science",
-      "questions": [
-        "what is happiness",
-        "how to be happy"
-      ],
-      "keywords": [
-        "happiness",
-        "joy",
-        "life"
-      ],
-      "answer": "The million-dollar question 😊\nResearch says: solid human relationships first, then purpose in what you do.\nMoney helps up to comfort — beyond, it's the quality of your bonds that counts."
-    },
-    {
-      "id": "en_science_nutri_01",
-      "category": "science",
-      "questions": [
-        "why is breakfast important",
-        "healthy breakfast"
-      ],
-      "keywords": [
-        "breakfast",
-        "morning",
-        "energy"
-      ],
-      "answer": "It restarts the body after 8 hours of fasting 🌅\nThe brain needs fuel to work in the morning.\nIdeal: a starch + a fruit + a protein. Quick to make, long-lasting."
-    },
-    {
-      "id": "en_science_nutri_02",
-      "category": "science",
-      "questions": [
-        "what are proteins",
-        "why eat protein"
-      ],
-      "keywords": [
-        "protein",
-        "muscles",
-        "food"
-      ],
-      "answer": "The body's building blocks: muscles, hair, immune defenses 🍗\nFish, eggs, lentils, meat, peanuts — West Africa knows all about it.\nSpread across the day beats one big dinner."
-    },
-    {
-      "id": "en_science_nutri_03",
-      "category": "science",
-      "questions": [
-        "why eat vegetables",
-        "benefits of vegetables"
-      ],
-      "keywords": [
-        "vegetables",
-        "fiber",
-        "vitamins"
-      ],
-      "answer": "Fiber, vitamins, water — the body's complete kit 🥬\nThey also feed your gut's good bacteria (yes, we have useful tenants!).\nSimple goal: color on your plate at every meal."
-    },
-    {
-      "id": "en_science_ocean_01",
-      "category": "science",
-      "questions": [
-        "why is the sea salty",
-        "the salt of the sea"
-      ],
-      "keywords": [
-        "sea",
-        "salt",
-        "ocean"
-      ],
-      "answer": "Rivers have dissolved minerals from rocks for millions of years 🧂\nIt all ends in the ocean, which keeps the salt and evaporates the water.\nSpread that salt over all land: a 150-meter layer. Enough for everyone 😄"
-    },
-    {
-      "id": "en_science_ocean_02",
-      "category": "science",
-      "questions": [
-        "what are tides",
-        "why does the sea rise and fall"
-      ],
-      "keywords": [
-        "tides",
-        "moon",
-        "sea"
-      ],
-      "answer": "The Moon pulls on the ocean 🌙\nTwo tides a day: the water follows lunar attraction.\nFishermen know it best — the sea keeps its schedule."
-    },
-    {
-      "id": "en_science_ocean_03",
-      "category": "science",
-      "questions": [
-        "why are trees important",
-        "the benefits of trees"
-      ],
-      "keywords": [
-        "trees",
-        "oxygen",
-        "shade"
-      ],
-      "answer": "Shade, oxygen, fruit, held soil, cooler air 🌳\nA mature tree absorbs ~20kg of CO2 per year.\nAnd under every tree, a micro-world of life. Planting is sowing freshness."
-    },
-    {
-      "id": "en_science_tech_01",
-      "category": "science",
-      "questions": [
-        "why do planes fly",
-        "how does a plane stay in the air"
-      ],
-      "keywords": [
-        "plane",
-        "flight",
-        "wings"
-      ],
-      "answer": "The wings push air down, the air pushes the plane up ✈️\nIt's lift — Newton's 3rd law in action.\nA 400-ton aircraft at 900 km/h and 10,000m. Physics is explained magic."
-    },
-    {
-      "id": "en_science_tech_02",
-      "category": "science",
-      "questions": [
-        "what is gps",
-        "how does gps work"
-      ],
-      "keywords": [
-        "gps",
-        "satellite",
-        "position"
-      ],
-      "answer": "Your phone listens to satellites that give it time and position 🛰️\nWith 4 satellites it triangulates your position to the meter.\nEinstein's relativity is corrected inside — without it, GPS would drift 10km a day!"
-    },
-    {
-      "id": "en_science_tech_03",
-      "category": "science",
-      "questions": [
-        "how does a battery work",
-        "lithium-ion"
-      ],
-      "keywords": [
-        "battery",
-        "lithium",
-        "energy"
-      ],
-      "answer": "Ions traveling from one electrode to another 🔋\nCharging = sending them home. Discharging = letting them out to work.\nYour phone runs on the energy of... a few grams of lithium."
-    },
-    {
-      "id": "en_science_lang_01",
-      "category": "science",
-      "questions": [
-        "where does the word robot come from",
-        "the origin of the word robot"
-      ],
-      "keywords": [
-        "robot",
-        "czech",
-        "origin"
-      ],
-      "answer": "From the Czech 'robota' = forced labor 🤖\nIt appeared in a 1920 play — sci-fi before its time.\nIrony: the word was born from a story where robots revolt. Hoping ours stay nice 😄"
-    },
-    {
-      "id": "en_science_lang_02",
-      "category": "science",
-      "questions": [
-        "how many languages in the world",
-        "the 7000 languages"
-      ],
-      "keywords": [
-        "languages",
-        "world",
-        "multilingual"
-      ],
-      "answer": "~7,000 living languages 🗣️\nOne dies every 2 weeks — and with it, a way of seeing the world.\nMultilingualism is wealth: you think differently in each language."
-    },
-    {
-      "id": "en_science_ecolo_06",
-      "category": "science",
-      "questions": [
-        "what is solar energy",
-        "solar panels"
-      ],
-      "keywords": [
-        "solar",
-        "panels",
-        "energy"
-      ],
-      "answer": "Turning sunlight into electricity ☀️\nAfrica has the planet's best sunshine — a huge opportunity.\nThe sun gives freely; the panel transforms. The future is bright 😄"
-    },
-    {
       "id": "en_tech_04",
       "category": "technology",
       "questions": [
@@ -3277,356 +1929,6 @@
       "answer": "A 2D barcode you scan with your phone camera 📱\nRestaurant menus, payments, website links — anything hides inside.\nBusiness tip: put one on your flyers leading to your WhatsApp. One scan beats 10 taps."
     },
     {
-      "id": "en_tech_05",
-      "category": "technology",
-      "questions": [
-        "what is bluetooth"
-      ],
-      "keywords": [
-        "bluetooth",
-        "wireless"
-      ],
-      "answer": "A short-range wireless connection 📡\nEarbuds, speakers, watches — they all talk bluetooth.\nRange: ~10 meters. Perfect for the office, not the neighborhood 😄"
-    },
-    {
-      "id": "en_tech_06",
-      "category": "technology",
-      "questions": [
-        "what is wifi"
-      ],
-      "keywords": [
-        "wifi",
-        "wireless",
-        "internet"
-      ],
-      "answer": "Your home's wireless network 📶\nYour box turns Internet into radio waves your phone catches.\nHence the classic advice: restart the box. Fixes 90% of problems, promise 😄"
-    },
-    {
-      "id": "en_tech_07",
-      "category": "technology",
-      "questions": [
-        "what is fiber optic"
-      ],
-      "keywords": [
-        "fiber",
-        "optical",
-        "internet"
-      ],
-      "answer": "Glass threads that transport light... and Internet inside ⚡\nThat's what gives super fast connections.\nIf copper cable is a road, fiber is a 10-lane highway."
-    },
-    {
-      "id": "en_tech_08",
-      "category": "technology",
-      "questions": [
-        "what is bitcoin",
-        "what is cryptocurrency"
-      ],
-      "keywords": [
-        "bitcoin",
-        "crypto",
-        "digital money"
-      ],
-      "answer": "100% digital money, no central bank 🪙\nTransactions are verified by thousands of computers worldwide.\nVolatile: it can rise a lot, and fall a lot. Never put in what you can't afford to lose."
-    },
-    {
-      "id": "en_tech_09",
-      "category": "technology",
-      "questions": [
-        "what is an nft"
-      ],
-      "keywords": [
-        "nft",
-        "digital art",
-        "token"
-      ],
-      "answer": "A unique digital ownership certificate 🖼️\nLike an artist's signature on a work... but on the blockchain.\nIt made huge noise, and a huge bubble too. The tech is interesting, the hype less 😄"
-    },
-    {
-      "id": "en_tech_10",
-      "category": "technology",
-      "questions": [
-        "what is the metaverse"
-      ],
-      "keywords": [
-        "metaverse",
-        "virtual world"
-      ],
-      "answer": "Virtual worlds where you meet as an avatar 🥽\nWork, play, shop — all possible inside.\nStill under construction — somewhere between a giant video game and 3D Internet. Time will tell."
-    },
-    {
-      "id": "en_tech_11",
-      "category": "technology",
-      "questions": [
-        "virtual reality vs augmented reality",
-        "what is vr and ar"
-      ],
-      "keywords": [
-        "vr",
-        "ar",
-        "headset"
-      ],
-      "answer": "VR = you enter a virtual world (closed headset) 🥽\nAR = the virtual layers onto the real (Snapchat filters).\nAlready used in training, medicine, gaming, real estate."
-    },
-    {
-      "id": "en_tech_12",
-      "category": "technology",
-      "questions": [
-        "what is the internet of things",
-        "connected devices"
-      ],
-      "keywords": [
-        "iot",
-        "connected",
-        "smart home"
-      ],
-      "answer": "Everyday objects connected to the Internet 💡\nFridge, lock, bulb, watch: they communicate and automate.\nYour lamp switching on by itself at 7pm — that's IoT. The home gets smart piece by piece."
-    },
-    {
-      "id": "en_tech_13",
-      "category": "technology",
-      "questions": [
-        "what is big data"
-      ],
-      "keywords": [
-        "big data",
-        "analytics",
-        "data"
-      ],
-      "answer": "Massive amounts of data analyzed for trends 📊\nNetflix knows what you watch, Amazon knows what you browse.\nData is the 21st century's oil — you still need a good refinery to use it."
-    },
-    {
-      "id": "en_tech_14",
-      "category": "technology",
-      "questions": [
-        "what is a quantum computer",
-        "quantum computing"
-      ],
-      "keywords": [
-        "quantum",
-        "computing",
-        "physics"
-      ],
-      "answer": "A computer using the laws of quantum physics ⚛️\nInstead of 0 or 1, it explores both at once (simply put).\nResult: calculations in minutes that would take today's computers 10,000 years. We're just at the start."
-    },
-    {
-      "id": "en_tech_15",
-      "category": "technology",
-      "questions": [
-        "front-end vs back-end difference",
-        "what is a front-end developer"
-      ],
-      "keywords": [
-        "frontend",
-        "backend",
-        "developer"
-      ],
-      "answer": "Front-end = what you see (buttons, colors, animations) 🎨\nBack-end = what works in the shadows (logic, database) ⚙️\nLike a restaurant: dining room and kitchen. Both are essential."
-    },
-    {
-      "id": "en_tech_16",
-      "category": "technology",
-      "questions": [
-        "what is an api"
-      ],
-      "keywords": [
-        "api",
-        "interface",
-        "services"
-      ],
-      "answer": "A services menu between two programs 🤝\nWhen an app shows weather, it doesn't compute it — it orders via an API.\nLike ordering at the counter: you ask, the kitchen answers, you never enter the back."
-    },
-    {
-      "id": "en_tech_17",
-      "category": "technology",
-      "questions": [
-        "what is a database"
-      ],
-      "keywords": [
-        "database",
-        "data",
-        "storage"
-      ],
-      "answer": "An application's organized attic 🗄️\nAll customers, orders, messages: stored and findable in a blink.\nThe difference between a paper pile and a folder with colorful tabs 😄"
-    },
-    {
-      "id": "en_tech_18",
-      "category": "technology",
-      "questions": [
-        "what is a software bug",
-        "why do apps glitch"
-      ],
-      "keywords": [
-        "bug",
-        "error",
-        "code"
-      ],
-      "answer": "An error in the code 🐛\nThe program does something the developer didn't plan.\nEven giants (Google, Meta) ship some every week. A software's life — hence constant updates."
-    },
-    {
-      "id": "en_tech_19",
-      "category": "technology",
-      "questions": [
-        "what is open source",
-        "free software"
-      ],
-      "keywords": [
-        "open source",
-        "linux",
-        "community"
-      ],
-      "answer": "Code everyone can see, use and improve 🌍\nFirefox, Linux, Signal: free tools built by communities.\nThe spirit: share like a recipe — everyone improves the dish."
-    },
-    {
-      "id": "en_tech_20",
-      "category": "technology",
-      "questions": [
-        "why is my phone slow",
-        "slow laggy phone"
-      ],
-      "keywords": [
-        "phone",
-        "slow",
-        "memory"
-      ],
-      "answer": "Too many open apps, full memory, clogged cache 🐌\nFirst moves: close background apps, delete unused ones.\nStill sluggish? Restart it. The ancestral medicine of IT 😄"
-    },
-    {
-      "id": "en_tech_21",
-      "category": "technology",
-      "questions": [
-        "how to free up phone storage",
-        "storage full phone"
-      ],
-      "keywords": [
-        "storage",
-        "space",
-        "cleanup"
-      ],
-      "answer": "Delete WhatsApp videos and screenshots first 📸\nThey eat 80% of your space, promise.\nTip: back them up to a drive, then clean. Your phone breathes again."
-    },
-    {
-      "id": "en_tech_22",
-      "category": "technology",
-      "questions": [
-        "what is phishing",
-        "fraudulent bank message"
-      ],
-      "keywords": [
-        "phishing",
-        "scam",
-        "fraud"
-      ],
-      "answer": "The fake message pretending to be your bank 🎣\n\"Your account will be blocked, click here\" = 99% trap.\nGolden rule: a real bank NEVER asks for your code by message. Never."
-    },
-    {
-      "id": "en_tech_23",
-      "category": "technology",
-      "questions": [
-        "what is a vpn"
-      ],
-      "keywords": [
-        "vpn",
-        "privacy",
-        "tunnel"
-      ],
-      "answer": "A private tunnel for your connection 🕵️\nIt hides your IP and encrypts your traffic: more privacy online.\nUseful on public wifi — airports and cafés."
-    },
-    {
-      "id": "en_tech_24",
-      "category": "technology",
-      "questions": [
-        "what is two-factor authentication",
-        "what is 2fa"
-      ],
-      "keywords": [
-        "2fa",
-        "security",
-        "code"
-      ],
-      "answer": "A second lock beyond the password 🔐\nA code by SMS or app: even with a stolen password, no code = no entry.\nTurn it on everywhere: email, bank, socials. 2 minutes protecting years."
-    },
-    {
-      "id": "en_tech_25",
-      "category": "technology",
-      "questions": [
-        "what is streaming"
-      ],
-      "keywords": [
-        "streaming",
-        "netflix",
-        "video"
-      ],
-      "answer": "Watching or listening live, without downloading 🎬\nYouTube, Netflix, Spotify: the file arrives in pieces as you go.\nThat's why quality drops on weak connections — it adapts live."
-    },
-    {
-      "id": "en_tech_26",
-      "category": "technology",
-      "questions": [
-        "what is remote work",
-        "working from home"
-      ],
-      "keywords": [
-        "remote",
-        "telework",
-        "home"
-      ],
-      "answer": "Working without going to the office 🏠\nZoom, Slack, WhatsApp Business: teams coordinate online.\nDone well, it saves 1-2h of commute daily. Your 9am meeting from your bed 😄"
-    },
-    {
-      "id": "en_tech_27",
-      "category": "technology",
-      "questions": [
-        "what is 3d printing"
-      ],
-      "keywords": [
-        "3d printing",
-        "printer",
-        "prototype"
-      ],
-      "answer": "Building an object layer by layer with a machine 🖨️\nSpare part, prototype, toy: printed in plastic (or metal).\nA craftsman can model in the morning and hold the object in the afternoon. Revolutionary."
-    },
-    {
-      "id": "en_tech_28",
-      "category": "technology",
-      "questions": [
-        "what is a drone"
-      ],
-      "keywords": [
-        "drone",
-        "flying",
-        "camera"
-      ],
-      "answer": "A flying device piloted remotely 🛸\nDelivery, aerial photos, farming: uses are exploding.\nA flying camera for 100€: yesterday's videographer dream is today's toy aisle 😄"
-    },
-    {
-      "id": "en_tech_29",
-      "category": "technology",
-      "questions": [
-        "what is an electric car",
-        "are electric cars worth it"
-      ],
-      "keywords": [
-        "electric",
-        "car",
-        "battery"
-      ],
-      "answer": "A battery car instead of petrol 🔌\nFewer breakdowns (fewer moving parts), very low cost per km.\nThe challenge: charging where there are no stations yet. But it's moving fast, even in Africa."
-    },
-    {
-      "id": "en_tech_30",
-      "category": "technology",
-      "questions": [
-        "what is home automation",
-        "the smart home"
-      ],
-      "keywords": [
-        "domotics",
-        "smart home",
-        "automation"
-      ],
-      "answer": "A home that runs itself 🏡\nLights, AC, cameras, doors: all controlled from your phone.\nTurning on the AC before arriving home on a 40°C day: true luxury 😄"
-    },
-    {
       "id": "en_tech_31",
       "category": "technology",
       "questions": [
@@ -3639,34 +1941,6 @@
         "website"
       ],
       "answer": "App = installed on the phone, faster, push notifications 📱\nWebsite = accessible everywhere, nothing to install 🌐\nFor business: start where your customers already are. In West Africa: a light site + WhatsApp."
-    },
-    {
-      "id": "en_tech_32",
-      "category": "technology",
-      "questions": [
-        "what are megapixels",
-        "camera pixels"
-      ],
-      "keywords": [
-        "megapixels",
-        "camera",
-        "photo"
-      ],
-      "answer": "The tiny dots composing a photo 📸\nMore of them = bigger enlargements without blur.\nBut careful: 12 Mpx with a good lens beats 50 Mpx with a bad one. The sensor matters more than marketing numbers."
-    },
-    {
-      "id": "en_tech_33",
-      "category": "technology",
-      "questions": [
-        "what is file compression",
-        "zip and rar files"
-      ],
-      "keywords": [
-        "compression",
-        "zip",
-        "files"
-      ],
-      "answer": "Packing the same content into a smaller box 🗜️\nZip, MP3, JPEG: your files are compressed without you noticing.\nText: ~80% saved. Photos and videos: less, they're already optimized."
     },
     {
       "id": "en_tech_34",
@@ -3694,34 +1968,6 @@
         "domain"
       ],
       "answer": "Simple format: name@yourcompany.com 👔\nGmail and Outlook allow it with your own domain.\nA pro address changes perception: the client feels a company, not a hobby."
-    },
-    {
-      "id": "en_tech_36",
-      "category": "technology",
-      "questions": [
-        "how to launch an online store",
-        "create an online shop"
-      ],
-      "keywords": [
-        "ecommerce",
-        "store",
-        "online"
-      ],
-      "answer": "3 steps: clean product photos + platform + payment 🛍️\nStart simple: WhatsApp Business catalogue or a Jumia/Shopify page.\nTest first: if it sells on WhatsApp, a site accelerates. If nothing sells, the site won't save it 😄"
-    },
-    {
-      "id": "en_tech_37",
-      "category": "technology",
-      "questions": [
-        "how to protect my instagram account",
-        "secure my facebook"
-      ],
-      "keywords": [
-        "instagram",
-        "facebook",
-        "security"
-      ],
-      "answer": "Unique password + two-factor, no exceptions 🔐\nThen: recovery email up to date, and beware of \"you won an iPhone\" links.\nA hacked account = 3 years of community gone in 1 click. Protect it."
     },
     {
       "id": "en_biz_01",
@@ -4198,162 +2444,6 @@
       "answer": "Gentle follow-up: \"Hi, hope you're well, the invoice from [date] is now due\" 📨\nSteps: 1st friendly reminder, 2nd firm, 3rd with agreed penalty.\nGetting paid is customer service too — firm, but always respectful."
     },
     {
-      "id": "en_guinee_07",
-      "category": "guinea",
-      "questions": [
-        "where is guinea located",
-        "where is guinea conakry",
-        "guinea's location"
-      ],
-      "keywords": [
-        "guinea",
-        "location",
-        "africa"
-      ],
-      "answer": "In West Africa, facing the Atlantic Ocean 🇬🇳\nNeighbors: Mali, Senegal, Guinea-Bissau, Sierra Leone, Côte d'Ivoire, Liberia.\nNicknamed \"West Africa's water tower\" — you'll see why 😊"
-    },
-    {
-      "id": "en_guinee_08",
-      "category": "guinea",
-      "questions": [
-        "the 4 natural regions of guinea",
-        "lower middle upper guinea"
-      ],
-      "keywords": [
-        "regions",
-        "guinea",
-        "forest"
-      ],
-      "answer": "4 regions, 4 characters:\n🌊 Lower Guinea (coast, Conakry) — ⛰️ Middle Guinea (Fouta Djallon) — 🌾 Upper Guinea (savanna, Kankan) — 🌳 Forest Guinea (N'Zérékoré).\nOne country, four worlds. That's Guinea's wealth."
-    },
-    {
-      "id": "en_guinee_09",
-      "category": "guinea",
-      "questions": [
-        "what is the fouta djallon",
-        "the fouta massif"
-      ],
-      "keywords": [
-        "fouta",
-        "djallon",
-        "highlands"
-      ],
-      "answer": "Guinea's roof, in Middle Guinea ⛰️\nA green plateau where the Niger, Senegal and Gambia rivers are born — hence \"water tower\".\nCool climate, breathtaking landscapes, towns like Labé, Mamou, Pita. A treasure to visit."
-    },
-    {
-      "id": "en_guinee_10",
-      "category": "guinea",
-      "questions": [
-        "where does the niger river start",
-        "where is the niger born"
-      ],
-      "keywords": [
-        "niger",
-        "river",
-        "source"
-      ],
-      "answer": "In Guinea! It's born in the Fouta Djallon, under the name Bafing 💧\nThen it flows through Mali, Niger, Nigeria to the ocean.\nOne of Africa's great rivers is Guinean at its source. Proud 🇬🇳"
-    },
-    {
-      "id": "en_guinee_11",
-      "category": "guinea",
-      "questions": [
-        "what is mount nimba",
-        "guinea's highest point"
-      ],
-      "keywords": [
-        "nimba",
-        "mountain",
-        "unesco"
-      ],
-      "answer": "Guinea's roof: ~1,752 meters, UNESCO heritage 🏔️\nAt the border with Côte d'Ivoire and Liberia, a unique nature reserve.\nIts zone holds species found nowhere else. A jewel to protect."
-    },
-    {
-      "id": "en_guinee_12",
-      "category": "guinea",
-      "questions": [
-        "the los islands",
-        "beaches near conakry"
-      ],
-      "keywords": [
-        "islands",
-        "beach",
-        "los"
-      ],
-      "answer": "A little paradise archipelago, 30 minutes by boat from Conakry 🏝️\nKassa, Roume, Tamara, Fotoba: sandy beaches, palm trees, turquoise water.\nConakrykas' weekend escape. A piece of paradise, truly."
-    },
-    {
-      "id": "en_guinee_13",
-      "category": "guinea",
-      "questions": [
-        "what to visit in conakry",
-        "places to see in conakry"
-      ],
-      "keywords": [
-        "conakry",
-        "visit",
-        "places"
-      ],
-      "answer": "Conakry is buzzing! 🌆\nThe Grand Mosque Fayçal, Madina Market, Niger Market, the corniche at sunset, the National Museum.\nAnd at night, the maquis vibe with music and grilled food. Conakry never sleeps 😄"
-    },
-    {
-      "id": "en_guinee_14",
-      "category": "guinea",
-      "questions": [
-        "the grand mosque of conakry",
-        "the faycal mosque"
-      ],
-      "keywords": [
-        "mosque",
-        "faycal",
-        "conakry"
-      ],
-      "answer": "The Grand Mosque Fayçal of Conakry, one of West Africa's largest 🕌\nCapacity ~25,000 worshippers, sumptuous Moroccan style.\nA source of national pride and a landmark of the city."
-    },
-    {
-      "id": "en_guinee_15",
-      "category": "guinea",
-      "questions": [
-        "major cities of guinea",
-        "kankan kindia labe nzerekore"
-      ],
-      "keywords": [
-        "cities",
-        "kankan",
-        "labe"
-      ],
-      "answer": "Conakry the capital, of course 🇬🇳\nThen: Kankan (Upper Guinea's capital), Labé and Mamou (Fouta), Kindia (Guinea's garden), N'Zérékoré (forest region), Boké and Kamsar (mining).\nEach city has its character — that's what makes inland travel fascinating."
-    },
-    {
-      "id": "en_guinee_16",
-      "category": "guinea",
-      "questions": [
-        "guinea's climate",
-        "when to visit guinea",
-        "dry and rainy season in guinea"
-      ],
-      "keywords": [
-        "climate",
-        "season",
-        "weather"
-      ],
-      "answer": "Two main seasons:\n☀️ Dry season: November to May, blue skies, cool harmattan.\n🌧️ Rainy season: June to October, generous rains especially on the coast and Fouta.\nTo visit: December-February, perfect weather. To see green Guinea: right after the rains, everything explodes 🌿"
-    },
-    {
-      "id": "en_guinee_17",
-      "category": "guinea",
-      "questions": [
-        "guinea's national languages",
-        "susu malinke fula kissi"
-      ],
-      "keywords": [
-        "languages",
-        "susu",
-        "malinke"
-      ],
-      "answer": "French is official, but the real wealth is the national languages 🗣️\nSusu (coast), Malinké (Upper Guinea), Pular/Fula (Fouta), Kissi, Toma, Kpèlè (forest region).\nMost Guineans speak 2-3 of them. Guinea is naturally multilingual!"
-    },
-    {
       "id": "en_guinee_18",
       "category": "guinea",
       "questions": [
@@ -4366,147 +2456,6 @@
         "franc"
       ],
       "answer": "The Guinean franc (GNF) 💵\n1€ ≈ 11,000 GNF — prices in Guinea are often counted in thousands.\nAnd everywhere: Orange Money and MTN MoMo now settle almost everything, even at the market."
-    },
-    {
-      "id": "en_guinee_19",
-      "category": "guinea",
-      "questions": [
-        "guinea's independence 1958",
-        "sekou toure the no"
-      ],
-      "keywords": [
-        "independence",
-        "1958",
-        "history"
-      ],
-      "answer": "On October 2, 1958, Guinea said \"NO\" to General De Gaulle 🇬🇳\nThe first French colony in Africa to choose immediate independence, led by Sékou Touré.\n\"We prefer poverty in freedom to wealth in servitude.\" A sentence that traveled the world."
-    },
-    {
-      "id": "en_guinee_20",
-      "category": "guinea",
-      "questions": [
-        "guinea's economy",
-        "guinea's bauxite"
-      ],
-      "keywords": [
-        "economy",
-        "bauxite",
-        "mining"
-      ],
-      "answer": "Guinea sits on a treasure: bauxite 🪙\nThe world's #1 reserve! The world's aluminum often starts its journey in Guinea.\nAdd the iron of Simandou, the gold of Siguiri, Fouta agriculture — immense potential."
-    },
-    {
-      "id": "en_guinee_21",
-      "category": "guinea",
-      "questions": [
-        "what is simandou",
-        "the simandou iron deposit"
-      ],
-      "keywords": [
-        "simandou",
-        "iron",
-        "mine"
-      ],
-      "answer": "The world's largest untapped iron deposit 🏗️\nIn Guinea's southeast, with a 600+ km railway project to the coast.\nAt full capacity, it could transform the Guinean economy. The whole world is watching Guinea."
-    },
-    {
-      "id": "en_guinee_22",
-      "category": "guinea",
-      "questions": [
-        "what to eat in guinea",
-        "fouté and riz gras",
-        "guinean dishes"
-      ],
-      "keywords": [
-        "food",
-        "cuisine",
-        "guinean"
-      ],
-      "answer": "Get hungry 😋\nSunday's riz gras, sauce graine, plantain fouté, chicken bicyclette grilled over wood.\nAnd Conakry's maquis at night: grilled fish, attiéké, live music. Guinea is tasted as much as visited."
-    },
-    {
-      "id": "en_guinee_23",
-      "category": "guinea",
-      "questions": [
-        "guinean music",
-        "bembeya jazz mory kante"
-      ],
-      "keywords": [
-        "music",
-        "bembeya",
-        "griot"
-      ],
-      "answer": "Guinea is a musical powerhouse 🎶\nBembeya Jazz National, Mory Kanté (the famous \"Yé ké yé ké\"!), Sekouba Bambino, Sory Kandia — the Guinean griot school is legendary.\nKora, balafon, djembe: all of Africa recognizes the Guinean touch."
-    },
-    {
-      "id": "en_guinee_24",
-      "category": "guinea",
-      "questions": [
-        "the madina market",
-        "conakry's markets"
-      ],
-      "keywords": [
-        "madina",
-        "market",
-        "shopping"
-      ],
-      "answer": "Madina is Conakry's beating heart 🛍️\nA giant labyrinth where you find EVERYTHING: fabrics, loincloths, spices, phones, even spare parts.\nNiger Market for upscale, Madina for authentic. Bargaining required, smiling recommended 😄"
-    },
-    {
-      "id": "en_guinee_25",
-      "category": "guinea",
-      "questions": [
-        "guinea's waterfalls",
-        "kambadaga kinkon saala"
-      ],
-      "keywords": [
-        "waterfalls",
-        "cascades",
-        "fouta"
-      ],
-      "answer": "Guinea is full of waterfalls 💦\nKambadaga, Kinkon, Saala... the Fouta Djallon is sprinkled with them.\nNatural pools at the foot of falls, amid green mountains. Still barely touristic = preserved paradise."
-    },
-    {
-      "id": "en_guinee_26",
-      "category": "guinea",
-      "questions": [
-        "guinea's flag",
-        "red yellow green meaning"
-      ],
-      "keywords": [
-        "flag",
-        "colors",
-        "guinea"
-      ],
-      "answer": "Red, Yellow, Green 🇬🇳\nRed: the blood of independence martyrs. Yellow: gold and the sun. Green: vegetation and prosperity.\nAnd the motto: \"Work, Justice, Solidarity.\" National pride in three colors."
-    },
-    {
-      "id": "en_guinee_27",
-      "category": "guinea",
-      "questions": [
-        "how many people live in guinea",
-        "guinea's population"
-      ],
-      "keywords": [
-        "population",
-        "inhabitants",
-        "demographics"
-      ],
-      "answer": "~14 million inhabitants, over 1.7 million in Conakry 🌍\nA very young population: the majority is under 25.\nA connected, entrepreneurial, multilingual youth — the future growing strong in Guinea."
-    },
-    {
-      "id": "en_guinee_28",
-      "category": "guinea",
-      "questions": [
-        "religion in guinea",
-        "islam in guinea"
-      ],
-      "keywords": [
-        "religion",
-        "islam",
-        "muslim"
-      ],
-      "answer": "Guinea is a majority Muslim country (~85%) 🕌\nWith Christian and animist communities living together in peace.\nRamadan, Tabaski, Christmas: the holidays punctuate the year and bring everyone together. Guinean tolerance is a real lesson."
     },
     {
       "id": "en_digital_01",
@@ -4809,61 +2758,6 @@
       "answer": "Making people feel before they read 📖\nA sequence: problem → emotion → solution → proof. Your images guide the client like a film.\nWhen the client sees themselves in the visual, they buy the story — the product comes along 😊"
     },
     {
-      "id": "en_info_01",
-      "category": "it",
-      "questions": [
-        "what is an operating system",
-        "what are windows android ios"
-      ],
-      "keywords": [
-        "os",
-        "windows",
-        "android"
-      ],
-      "answer": "The conductor of your device 🎼\nWindows, Android, iOS: they make hardware and apps speak together.\nWithout an OS, your phone is a fancy paperweight 😄"
-    },
-    {
-      "id": "en_info_02",
-      "category": "it",
-      "questions": [
-        "what is ram",
-        "what is ram memory for"
-      ],
-      "keywords": [
-        "ram",
-        "memory"
-      ],
-      "answer": "Your device's workbench 🛠️\nMore RAM = more things open at once without lagging.\n8GB = comfort, 4GB = count your browser tabs 😄"
-    },
-    {
-      "id": "en_info_03",
-      "category": "it",
-      "questions": [
-        "what is a processor",
-        "what is a cpu"
-      ],
-      "keywords": [
-        "cpu",
-        "processor",
-        "chip"
-      ],
-      "answer": "The brain that computes everything 🧠\nEvery tap, photo, video: it does the work.\nThe faster it is, the faster everything responds. The machine's muscle."
-    },
-    {
-      "id": "en_info_04",
-      "category": "it",
-      "questions": [
-        "ssd vs hdd difference",
-        "what is an ssd drive"
-      ],
-      "keywords": [
-        "ssd",
-        "hdd",
-        "storage"
-      ],
-      "answer": "SSD = chips, no moving parts, ultra fast ⚡\nHDD = spinning platters, cheaper, slower.\nPutting an SSD in an old PC = giving it 5 years of youth. The best upgrade there is."
-    },
-    {
       "id": "en_info_05",
       "category": "it",
       "questions": [
@@ -4876,34 +2770,6 @@
         "javascript"
       ],
       "answer": "HTML = structure (walls), CSS = style (paint), JavaScript = life (lights) 🏠\nEvery website is made of these three.\nThree languages, one goal: your beautiful interactive page."
-    },
-    {
-      "id": "en_info_06",
-      "category": "it",
-      "questions": [
-        "what is python",
-        "why is python popular"
-      ],
-      "keywords": [
-        "python",
-        "programming",
-        "language"
-      ],
-      "answer": "The world's most loved programming language 🐍\nEasy to read, powerful, used everywhere: AI, sites, automation.\nFirst language to learn? Python, no hesitation 😄"
-    },
-    {
-      "id": "en_info_07",
-      "category": "it",
-      "questions": [
-        "what are git and github",
-        "versioning your code"
-      ],
-      "keywords": [
-        "git",
-        "github",
-        "version"
-      ],
-      "answer": "Git = time machine for code ⏪\nGitHub = the developers' social network, where code lives in public.\nEvery version saved: goodbye \"file_final_v2_OK.py\" 😄"
     },
     {
       "id": "en_info_08",
@@ -4934,20 +2800,6 @@
       "answer": "The land where your site is built 🏗️\nWithout hosting, your site only exists on your computer.\nA few euros a month to be visible 24/7 worldwide. Business's most profitable rent."
     },
     {
-      "id": "en_info_10",
-      "category": "it",
-      "questions": [
-        "what is https and ssl",
-        "the little padlock on sites"
-      ],
-      "keywords": [
-        "https",
-        "ssl",
-        "padlock"
-      ],
-      "answer": "The padlock 🔒 = encrypted connection between you and the site.\nNobody can spy on what passes: passwords, payments.\nA site without https in 2026 = a shop without a door. Run."
-    },
-    {
       "id": "en_info_11",
       "category": "it",
       "questions": [
@@ -4962,412 +2814,6 @@
       "answer": "A site that adapts to every screen 📱💻\nPhone, tablet, computer: same site, smart layout.\n70% of your visitors come from phones — a non-responsive site scares them off in 3 seconds."
     },
     {
-      "id": "en_info_12",
-      "category": "it",
-      "questions": [
-        "what is a computer cookie",
-        "browser cookies"
-      ],
-      "keywords": [
-        "cookies",
-        "browser",
-        "web"
-      ],
-      "answer": "A little souvenir the site keeps about you 🍪\nCart, session, preferences: what makes browsing smooth.\nHence the \"accept cookies\" banner — the law just asks your permission 😄"
-    },
-    {
-      "id": "en_info_13",
-      "category": "it",
-      "questions": [
-        "what is cache",
-        "clearing browser cache"
-      ],
-      "keywords": [
-        "cache",
-        "browser",
-        "memory"
-      ],
-      "answer": "The browser's shortcut memory 💾\nIt keeps copies of images to reload faster.\nSite displaying weirdly? Clear the cache. Tech support's magic fix #1 😄"
-    },
-    {
-      "id": "en_info_14",
-      "category": "it",
-      "questions": [
-        "why backup your data",
-        "backup and cloud storage"
-      ],
-      "keywords": [
-        "backup",
-        "data",
-        "cloud"
-      ],
-      "answer": "A crash always comes the day you didn't back up 😅\nRule of 3-2-1: 3 copies, 2 mediums, 1 off-site (cloud).\nYour business lives in your files. 10 minutes of backup beats 10 days of rebuilding."
-    },
-    {
-      "id": "en_info_15",
-      "category": "it",
-      "questions": [
-        "what is a computer virus",
-        "how do you catch a virus"
-      ],
-      "keywords": [
-        "virus",
-        "malware",
-        "infection"
-      ],
-      "answer": "A malicious program that installs itself and misbehaves 🦠\nShady attachments, pirate sites, infected USB keys.\nVaccine = updated antivirus + updates + common sense: don't click \"you won\" 😄"
-    },
-    {
-      "id": "en_info_16",
-      "category": "it",
-      "questions": [
-        "what is a web browser",
-        "chrome firefox safari"
-      ],
-      "keywords": [
-        "browser",
-        "chrome",
-        "firefox"
-      ],
-      "answer": "The vehicle that takes you on the Internet 🚗\nChrome, Firefox, Safari, Edge: they display the sites.\nAll free, all fast — pick the one that respects your privacy best 😉"
-    },
-    {
-      "id": "en_info_17",
-      "category": "it",
-      "questions": [
-        "what is binary code",
-        "the 0s and 1s of computers"
-      ],
-      "keywords": [
-        "binary",
-        "bits",
-        "code"
-      ],
-      "answer": "The machine's mother tongue: 0s and 1s 🔢\nEvery photo, song, video = millions of neatly arranged 0s and 1s.\nSurprising, right? The most advanced tech rests on the simplest logic."
-    },
-    {
-      "id": "en_info_18",
-      "category": "it",
-      "questions": [
-        "why update your apps",
-        "what are updates for"
-      ],
-      "keywords": [
-        "update",
-        "apps",
-        "upgrade"
-      ],
-      "answer": "3 reasons: security, new features, fixes 🔧\nHackers exploit old versions — every update closes a hole.\nThat \"remind me later\" button? It's the hole problems crawl through 😄"
-    },
-    {
-      "id": "en_info_19",
-      "category": "it",
-      "questions": [
-        "what is a developer's job",
-        "what does working in IT mean"
-      ],
-      "keywords": [
-        "developer",
-        "career",
-        "code"
-      ],
-      "answer": "Translating human needs into machine language 💻\nA developer = a translator + a problem solver.\nAnd no, you don't need to be a genius: logic, patience, and lots of coffee 😄"
-    },
-    {
-      "id": "en_info_20",
-      "category": "it",
-      "questions": [
-        "what is a data analyst",
-        "a career in data"
-      ],
-      "keywords": [
-        "data",
-        "analyst",
-        "career"
-      ],
-      "answer": "The detective of numbers 🕵️\nHe turns raw data into business decisions.\n\"Clients buy Tuesdays at 7pm\" — he finds that, and it's gold bars for the company."
-    },
-    {
-      "id": "en_cult_01",
-      "category": "culture",
-      "questions": [
-        "nollywood the nigerian film industry",
-        "african cinema"
-      ],
-      "keywords": [
-        "nollywood",
-        "cinema",
-        "nigeria"
-      ],
-      "answer": "Nollywood produces 2,000+ films a year — more than Hollywood 🎬\nNigerian cinema speaks to Africans with African stories.\nProof: our stories fascinate the whole world. Africa no longer waits for permission."
-    },
-    {
-      "id": "en_cult_02",
-      "category": "culture",
-      "questions": [
-        "african literature",
-        "achebe kourouma african books"
-      ],
-      "keywords": [
-        "literature",
-        "books",
-        "african"
-      ],
-      "answer": "Treasures you must absolutely read 📚\nChinua Achebe (\"Things Fall Apart\"), Ahmadou Kourouma, Mariama Bâ.\nThese books tell Africa from the inside — pride, pain, humor, wisdom. Start with one, you'll love it."
-    },
-    {
-      "id": "en_cult_03",
-      "category": "culture",
-      "questions": [
-        "greek mythology",
-        "zeus and the greek gods"
-      ],
-      "keywords": [
-        "mythology",
-        "zeus",
-        "gods"
-      ],
-      "answer": "Gods with everything human: jealousy, love, anger ⚡\nZeus, Aphrodite, Poseidon — their stories still inspire films and books.\nGreek mythology = humanity's first blockbuster 😄"
-    },
-    {
-      "id": "en_cult_04",
-      "category": "culture",
-      "questions": [
-        "ancient egypt the pharaohs",
-        "pharaohs and pyramids"
-      ],
-      "keywords": [
-        "egypt",
-        "pharaohs",
-        "pyramids"
-      ],
-      "answer": "3,000 years of civilization on the Nile's banks 🏺\nPharaohs, hieroglyphs, mummies: a fascinating world still not fully explained.\nCheops, Nefertiti, Tutankhamun: their names cross millennia. Respect."
-    },
-    {
-      "id": "en_cult_05",
-      "category": "culture",
-      "questions": [
-        "the louvre museum",
-        "the biggest museums in the world"
-      ],
-      "keywords": [
-        "louvre",
-        "museum",
-        "paris"
-      ],
-      "answer": "The Louvre in Paris: the world's most visited museum 🖼️\nThe Mona Lisa attracts millions of visitors — many from Africa.\nA museum is the world's memory open to everyone. Go once in your life — it changes a person."
-    },
-    {
-      "id": "en_cult_06",
-      "category": "culture",
-      "questions": [
-        "the wonders of the world",
-        "the 7 ancient and modern wonders"
-      ],
-      "keywords": [
-        "wonders",
-        "world",
-        "monuments"
-      ],
-      "answer": "The ancient ones: pyramids, hanging gardens... almost all gone 🏛️\nThe new ones (2007): Great Wall, Taj Mahal, Machu Picchu, Christ the Redeemer...\nTravel goal: one per year. Life's too short to wait 😄"
-    },
-    {
-      "id": "en_cult_07",
-      "category": "culture",
-      "questions": [
-        "how is christmas celebrated around the world",
-        "christmas traditions"
-      ],
-      "keywords": [
-        "christmas",
-        "traditions",
-        "world"
-      ],
-      "answer": "Up North: tree, snow and gifts 🎄\nIn Guinea: midnight mass, family meal, kids in new clothes.\nSame heart everywhere: giving, gathering, celebrating. Christmas changes scenery, never spirit."
-    },
-    {
-      "id": "en_cult_08",
-      "category": "culture",
-      "questions": [
-        "what is ramadan like",
-        "fasting during ramadan"
-      ],
-      "keywords": [
-        "ramadan",
-        "fasting",
-        "month"
-      ],
-      "answer": "A month of fasting from dawn to sunset 🌙\nBut it's much more: sharing, prayer, family — and evening meals that bring everyone together.\nAt the end: Eid, the celebration, kids, brand-new boubous. The warmest month of the year for many."
-    },
-    {
-      "id": "en_cult_09",
-      "category": "culture",
-      "questions": [
-        "what is tabaski",
-        "eid al adha"
-      ],
-      "keywords": [
-        "tabaski",
-        "eid",
-        "sheep"
-      ],
-      "answer": "The sheep festival 🐑 — the biggest Muslim celebration.\nEach family sacrifices a sheep, shares in three: family, relatives, the poor.\nIn West Africa, Tabaski means boubous, dressed-up kids, and total generosity."
-    },
-    {
-      "id": "en_cult_10",
-      "category": "culture",
-      "questions": [
-        "chinese new year",
-        "the spring festival in china"
-      ],
-      "keywords": [
-        "chinese",
-        "new year",
-        "china"
-      ],
-      "answer": "The biggest annual human migration: billions of trips 🐉\nRed everywhere (lucky), lion dances, red envelopes with money.\nEach year has a zodiac animal. Did you know the festival lasts 15 days?"
-    },
-    {
-      "id": "en_cult_11",
-      "category": "culture",
-      "questions": [
-        "the moroccan tea ceremony",
-        "mint tea tradition"
-      ],
-      "keywords": [
-        "tea",
-        "morocco",
-        "hospitality"
-      ],
-      "answer": "Much more than a drink: a ritual of hospitality 🫖\nGreen tea, fresh mint, sugar — poured from high for the foam, an art.\nRefusing tea in Morocco is refusing friendship. Wait for the 3rd glass: it's tradition 😄"
-    },
-    {
-      "id": "en_cult_12",
-      "category": "culture",
-      "questions": [
-        "the major world religions",
-        "christianity islam hinduism buddhism"
-      ],
-      "keywords": [
-        "religions",
-        "world",
-        "faith"
-      ],
-      "answer": "Four great spiritual families 🌍\nChristianity (~2.4B), Islam (~2B), Hinduism (~1.2B), Buddhism (~500M).\nAll teach the same lesson deep down: love, share, respect. Cultures change, the heart stays."
-    },
-    {
-      "id": "en_cult_13",
-      "category": "culture",
-      "questions": [
-        "african loincloth fabric",
-        "kente and african textiles"
-      ],
-      "keywords": [
-        "pagne",
-        "wax",
-        "kente"
-      ],
-      "answer": "The fabric that speaks 🧵\nWax, bogolan, Ghanaian kente: every pattern and color tells status, proverb, joy.\nWearing the pagne is wearing history. And Saturday at weddings — Africa's red carpet 😄"
-    },
-    {
-      "id": "en_cult_14",
-      "category": "culture",
-      "questions": [
-        "traditional african dance",
-        "the dances of africa"
-      ],
-      "keywords": [
-        "dance",
-        "africa",
-        "tradition"
-      ],
-      "answer": "The body that tells stories 💃\nSowing dances, masks, ceremonies: every gesture has meaning.\nFrom Senegalese sabar to Guinean ballets — Africa dances its life. And the world copies us, frankly 😄"
-    },
-    {
-      "id": "en_cult_15",
-      "category": "culture",
-      "questions": [
-        "traditional weddings in west africa",
-        "dowry in africa"
-      ],
-      "keywords": [
-        "wedding",
-        "dowry",
-        "family"
-      ],
-      "answer": "A family affair, not just two people's 💍\nThe dowry seals the alliance between two families: ceremony, kola nuts, family heads, witnesses.\nIt can last days — and ends in an unforgettable party. An African wedding is an experience."
-    },
-    {
-      "id": "en_cult_16",
-      "category": "culture",
-      "questions": [
-        "the extended african family",
-        "uncle aunt and cousins in africa"
-      ],
-      "keywords": [
-        "family",
-        "africa",
-        "village"
-      ],
-      "answer": "In Africa, family doesn't stop at your parents 🌳\nUncles, aunts, cousins: all \"dad\" and \"mom\", all responsible for the child.\nYour neighbor can scold you like your father. It takes a village — the formula existed long before the saying 😄"
-    },
-    {
-      "id": "en_cult_17",
-      "category": "culture",
-      "questions": [
-        "unesco world heritage",
-        "unesco listed sites"
-      ],
-      "keywords": [
-        "unesco",
-        "heritage",
-        "sites"
-      ],
-      "answer": "The label protecting humanity's treasures 🏛️\n1,200+ sites: from Mount Nimba 🇬🇳 to the Great Wall.\nListed = protected forever. Guinea is on it — our wonders rival the world's."
-    },
-    {
-      "id": "en_cult_18",
-      "category": "culture",
-      "questions": [
-        "how people greet around the world",
-        "greetings across the world"
-      ],
-      "keywords": [
-        "greeting",
-        "world",
-        "hello"
-      ],
-      "answer": "Firm handshake in the West, \"Salam alaykum\" back home 🤝\nNamaste in India, a bow in Japan, nose-to-nose for Maoris.\nBut same everywhere: smile + respect = open door. The universal greeting is welcome."
-    },
-    {
-      "id": "en_cult_19",
-      "category": "culture",
-      "questions": [
-        "african fashion",
-        "african designers"
-      ],
-      "keywords": [
-        "fashion",
-        "africa",
-        "designers"
-      ],
-      "answer": "Africa is fashion's new capital ✨\nRevisited wax, tailored suits, designers from Lagos to Dakar flooding world runways.\nAfrican fashion no longer imitates — it inspires. Our stylists carry centuries of textile in their blood."
-    },
-    {
-      "id": "en_cult_20",
-      "category": "culture",
-      "questions": [
-        "senegalese wrestling and african sports",
-        "traditional sports in africa"
-      ],
-      "keywords": [
-        "wrestling",
-        "sport",
-        "senegal"
-      ],
-      "answer": "Wrestling in Senegal fills entire stadiums 🤼\nMore than a sport: rites, songs, griots and bets — football is jealous.\nAnd Ethiopian marathon, Nigerian Dambe boxing: Africa has always grown champions."
-    },
-    {
       "id": "en_tarifs_01",
       "category": "pricing",
       "questions": [
@@ -5380,31 +2826,22 @@
         "cost",
         "budget"
       ],
-      "answer": "Depends on what you want the bot to do 😊\nOur packs start at 99€. Best seller: Order-taking bot + FAQ at 150€.\nWant the details of the 3 packs?"
+      "answer": "Depends on what you want the bot to do 😊\nOur packs start at 100€. Best seller: Order-taking bot + FAQ at 150€.\nWant the details of the 3 packs?"
     },
     {
       "id": "en_tarifs_02",
       "category": "pricing",
       "questions": [
-        "rates",
-        "pricing"
+        "rates"
       ],
       "keywords": [
         "rates",
         "pricing"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
-    },
-    {
-      "id": "en_tarifs_03",
-      "category": "pricing",
-      "questions": [
-        "cost"
-      ],
-      "keywords": [
-        "cost"
-      ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_04",
@@ -5418,7 +2855,10 @@
         "how much",
         "cost"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_05",
@@ -5429,7 +2869,10 @@
       "keywords": [
         "budget"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_06",
@@ -5443,7 +2886,10 @@
         "bot",
         "price"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_07",
@@ -5458,7 +2904,7 @@
         "price",
         "website"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answer": "Depends on your project 😊\nEvery project is different: the price is given on quote (free, within 24h).\nWant a precise quote for your project?"
     },
     {
       "id": "en_tarifs_08",
@@ -5471,7 +2917,7 @@
         "logo",
         "price"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answer": "Depends on your project 😊\nA logo depends on your business and your style: price on quote (free, within 24h).\nWant a precise quote for your project?"
     },
     {
       "id": "en_tarifs_09",
@@ -5485,7 +2931,10 @@
         "app",
         "price"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_10",
@@ -5498,7 +2947,10 @@
         "quote",
         "estimate"
       ],
-      "answer": "Depends on your project 😊\nTo give you an idea: packs from 120€, Business Pack at 350€, custom on quote.\nWant a precise quote for your project?"
+      "answers": [
+        "Good question 😊 It depends if you want it simple (just answers) or complete (with voice, bookings like here). Tell me what you sell and I'll prepare your quote in 30 seconds — type 'quote' 👇",
+        "For a complete bot like this one, everything goes through a quote: one single payment, no subscription. And the team trains you to modify it yourself afterwards. Shall we do it for your business?"
+      ]
     },
     {
       "id": "en_tarifs_82",
@@ -5511,7 +2963,7 @@
         "ai",
         "price"
       ],
-      "answer": "From 300€ installation + 90€/month maintenance. Average ROI in 45 days."
+      "answer": "From 100€ installation + 50€/month maintenance. Average ROI in 45 days."
     },
     {
       "id": "en_tarifs_83",
@@ -5577,21 +3029,25 @@
         "included",
         "pack"
       ],
-      "answer": "In the Sales Machine Pack yes. Otherwise it's 500€ for a showcase site that converts."
+      "answer": "In the Sales Machine Pack yes 😊\nOtherwise, adding a showcase site that converts is on quote."
     },
     {
       "id": "en_tarifs_88",
       "category": "pricing",
       "questions": [
         "do you do promos",
-        "any discounts"
+        "any discounts",
+        "promo code",
+        "discount code",
+        "how to use a promo code",
+        "any promo codes"
       ],
       "keywords": [
         "promo",
         "discount",
         "deal"
       ],
-      "answer": "Yes. -20% for the first 10 companies each month."
+      "answer": "Yes 🎟️\n-20% for the first 10 companies each month.\nPromo codes apply automatically at quote time: type 'quote', then enter your code when asked."
     },
     {
       "id": "en_tarifs_89",
@@ -5698,7 +3154,6 @@
       "category": "objection",
       "questions": [
         "i don't have time",
-        "no time",
         "i'm swamped",
         "too busy"
       ],
@@ -5713,8 +3168,6 @@
       "id": "en_obj_conv_57",
       "category": "objection",
       "questions": [
-        "my nephew can do it cheaper",
-        "my cousin can code it",
         "my brother knows coding"
       ],
       "keywords": [
@@ -5729,7 +3182,6 @@
       "category": "objection",
       "questions": [
         "i saw it on fiverr at 30€",
-        "cheaper on fiverr",
         "cheaper on the internet"
       ],
       "keywords": [
@@ -5758,8 +3210,6 @@
       "id": "en_obj_conv_61",
       "category": "objection",
       "questions": [
-        "i already have a community manager",
-        "i have a cm",
         "i already have someone"
       ],
       "keywords": [
@@ -5774,15 +3224,14 @@
       "category": "objection",
       "questions": [
         "i'm lost i don't know where to start",
-        "i'm lost",
-        "where to start"
+        "i'm lost"
       ],
       "keywords": [
         "lost",
         "start",
         "guide"
       ],
-      "answer": "Breathe 😊 We start small. Starter Pack 99€.\nI guide you step by step. In 48h you have your bot and you relax."
+      "answer": "Breathe 😊 We start small. Starter Pack 100€.\nI guide you step by step. In 48h you have your bot and you relax."
     },
     {
       "id": "en_obj_conv_63",
@@ -5803,9 +3252,7 @@
       "id": "en_obj_conv_64",
       "category": "objection",
       "questions": [
-        "i don't trust ai",
-        "no trust",
-        "ai is dangerous"
+        "i don't trust ai"
       ],
       "keywords": [
         "trust",
@@ -5833,9 +3280,6 @@
       "id": "en_obj_conv_85",
       "category": "objection",
       "questions": [
-        "credit",
-        "i want credit",
-        "can i pay later",
         "no money right now"
       ],
       "keywords": [
@@ -5849,10 +3293,8 @@
       "id": "en_obj_conv_88",
       "category": "objection",
       "questions": [
-        "instagram",
         "do you do instagram too",
-        "instagram bot",
-        "for ig"
+        "instagram bot"
       ],
       "keywords": [
         "instagram",
@@ -5865,8 +3307,6 @@
       "id": "en_obj_conv_89",
       "category": "objection",
       "questions": [
-        "i need to ask my partner",
-        "my associate",
         "i'll talk to my partner"
       ],
       "keywords": [
@@ -5882,8 +3322,7 @@
       "questions": [
         "i'll check with others",
         "i'll compare",
-        "look elsewhere",
-        "the competition"
+        "look elsewhere"
       ],
       "keywords": [
         "compare",
@@ -5896,38 +3335,19 @@
       "id": "en_obj_conv_92",
       "category": "objection",
       "questions": [
-        "i'll start small",
-        "small budget",
-        "starting small"
+        "i'll start small"
       ],
       "keywords": [
         "small",
         "budget",
         "start"
       ],
-      "answer": "Perfect. We start with the Starter Pack 99€.\n1 product, 5 questions. When it works we upgrade."
-    },
-    {
-      "id": "en_obj_conv_93",
-      "category": "objection",
-      "questions": [
-        "are you sure it works for me",
-        "does it work for my case"
-      ],
-      "keywords": [
-        "works",
-        "case",
-        "sure"
-      ],
-      "answer": "Tell me your business and I'll tell you yes or no straight.\nI don't sell if it's useless. Honesty first."
+      "answer": "Perfect. We start with the Starter Pack 100€.\n1 product, 5 questions. When it works we upgrade."
     },
     {
       "id": "en_obj_conv_95",
       "category": "objection",
       "questions": [
-        "final price",
-        "is that your last word",
-        "can you lower the price",
         "give me a discount"
       ],
       "keywords": [
@@ -5935,15 +3355,14 @@
         "price",
         "lower"
       ],
-      "answer": "99€ is already this month's slashed price 😅\nBut I can offer you 2 extra weeks of support. Works?"
+      "answer": "100€ is already this month's slashed price 😅\nBut I can offer you 2 extra weeks of support. Works?"
     },
     {
       "id": "en_obj_conv_99",
       "category": "objection",
       "questions": [
         "i'm afraid",
-        "fear of starting",
-        "i have doubts"
+        "fear of starting"
       ],
       "keywords": [
         "afraid",
@@ -5957,7 +3376,6 @@
       "category": "objection",
       "questions": [
         "i'll ask my wife",
-        "my husband decides",
         "i'll talk to my wife"
       ],
       "keywords": [
@@ -5971,9 +3389,7 @@
       "id": "en_obj_conv_102",
       "category": "objection",
       "questions": [
-        "youtube",
-        "i'll check youtube",
-        "youtube tutorial"
+        "i'll check youtube"
       ],
       "keywords": [
         "youtube",
@@ -5987,7 +3403,6 @@
       "category": "objection",
       "questions": [
         "i don't believe you",
-        "prove it",
         "are you credible"
       ],
       "keywords": [
@@ -6001,7 +3416,6 @@
       "id": "en_obj_conv_109",
       "category": "objection",
       "questions": [
-        "not interested",
         "i don't want this"
       ],
       "keywords": [
@@ -6009,21 +3423,6 @@
         "refuse"
       ],
       "answer": "No worries 👍 If one day you have too many messages to handle, come back.\nGood luck!"
-    },
-    {
-      "id": "en_obj_conv_110",
-      "category": "objection",
-      "questions": [
-        "refund",
-        "i want a refund",
-        "refund policy"
-      ],
-      "keywords": [
-        "refund",
-        "policy",
-        "money"
-      ],
-      "answer": "Simple: if within 7 days the bot is useless to you, I modify it for free or refund you.\nYou risk nothing."
     },
     {
       "id": "en_obj_conv_113",
@@ -6043,9 +3442,7 @@
       "id": "en_obj_conv_116",
       "category": "objection",
       "questions": [
-        "does this really exist",
         "is it real",
-        "are you real",
         "does your agency exist"
       ],
       "keywords": [
@@ -6059,8 +3456,6 @@
       "id": "en_obj_pro_08",
       "category": "objection",
       "questions": [
-        "the price and is it reliable",
-        "is it reliable",
         "what's the price and is it trustworthy"
       ],
       "keywords": [
@@ -6068,7 +3463,7 @@
         "reliable",
         "trust"
       ],
-      "answer": "Very good questions.\nOn price: Starter Pack at 99€ one-time. No subscription.\nOn reliability: official Meta WhatsApp API, 0 ban risk + 7-day satisfaction guarantee.\nI can send you 2 client testimonials.\nDo you prefer the technical PDF or a demo video?"
+      "answer": "Very good questions.\nOn price: Starter Pack starting at 100€ (+ 50€/month maintenance) one-time. No subscription.\nOn reliability: official Meta WhatsApp API, 0 ban risk + 7-day satisfaction guarantee.\nI can send you 2 client testimonials.\nDo you prefer the technical PDF or a demo video?"
     },
     {
       "id": "en_obj_pro_15",
@@ -6116,24 +3511,9 @@
       "answer": "No disappearing 😊 1-year support included.\nWe're in Conakry, you can come see us.\nWe sign a small agreement so everything is clear."
     },
     {
-      "id": "en_obj_pro_27",
-      "category": "objection",
-      "questions": [
-        "the site is expensive",
-        "too expensive for a website"
-      ],
-      "keywords": [
-        "site",
-        "expensive",
-        "price"
-      ],
-      "answer": "One contract won through the site pays for the site.\nIt's an investment, not an expense.\nYour company deserves to be visible on Google."
-    },
-    {
       "id": "en_obj_pro_28",
       "category": "objection",
       "questions": [
-        "i can build the site myself",
         "i'll do my own site"
       ],
       "keywords": [
@@ -6183,7 +3563,7 @@
         "what if the bot breaks",
         "is maintenance required?"
       ],
-      "answer": "Good question 😊\nThe 90€/month maintenance covers fixes, updates and small improvements: your bot never stays down for long.\nShall I add it for launch?",
+      "answer": "Good question 😊\nThe 50€/month maintenance covers fixes, updates and small improvements: your bot never stays down for long.\nShall I add it for launch?",
       "tags": [
         "scenarios",
         "translation"
@@ -6526,7 +3906,6 @@
       "questions": [
         "i don't have time to deal with that",
         "no time for digital",
-        "i'm swamped",
         "too much work to think about a website"
       ],
       "answer": "That's exactly why we exist 😊\nWe set everything up, you touch nothing.\n15 minutes on video to show you how to catch those clients effortlessly?",
@@ -6544,7 +3923,7 @@
         "it's out of budget",
         "too expensive for now"
       ],
-      "answer": "No need to redo everything 😊\nWe start with a targeted optimization from 150€ and grow step by step.\nWant me to show you what pays off first?",
+      "answer": "No need to redo everything 😊\nWe start with a targeted optimization on quote and grow step by step.\nWant me to show you what pays off first?",
       "tags": [
         "scenarios",
         "translation"
@@ -6664,7 +4043,7 @@
         "zero bugs at launch is important",
         "we can't afford a breakdown"
       ],
-      "answer": "Then you're in the right place 😊\nOur price includes that peace of mind: testing, monitoring and 90€/month maintenance to keep it up.\nShall we go through the details together?",
+      "answer": "Then you're in the right place 😊\nOur price includes that peace of mind: testing, monitoring and 50€/month maintenance to keep it up.\nShall we go through the details together?",
       "tags": [
         "scenarios",
         "translation"
@@ -7046,18 +4425,6 @@
         "human"
       ],
       "answer": "Not better, different. I'm 10x faster, I don't sleep, but Komara's humans have field experience. Together we're unbeatable."
-    },
-    {
-      "id": "en_persona_30",
-      "category": "persona",
-      "questions": [
-        "how old are you"
-      ],
-      "keywords": [
-        "how",
-        "old"
-      ],
-      "answer": "I was born with Komara Agency, so I'm young but I already have all of Komara's expertise in my head 😊"
     },
     {
       "id": "en_persona_31",
@@ -8512,7 +5879,7 @@
         "for",
         "shop"
       ],
-      "answer": "What does your shop sell? With 1000 € Komara builds you an assistant that answers price, size, delivery and closes sales. Shall we launch?"
+      "answer": "What does your shop sell? starting at 100€ (+ 50€/month maintenance) Komara builds you an assistant that answers price, size, delivery and closes sales. Shall we launch?"
     },
     {
       "id": "en_terrain_03",
@@ -8526,7 +5893,7 @@
         "that",
         "sells"
       ],
-      "answer": "What exactly are you selling? For 1000 € Komara creates an automated salesperson that only passes you clients ready to pay. Shall I connect you?"
+      "answer": "What exactly are you selling? starting at 100€ (+ 50€/month maintenance) Komara creates an automated salesperson that only passes you clients ready to pay. Shall I connect you?"
     },
     {
       "id": "en_terrain_04",
@@ -8539,7 +5906,7 @@
         "messenger",
         "bot"
       ],
-      "answer": "Facebook Messenger? With 1000 € Komara hooks up an assistant to your page 24/7. Shall we confirm?"
+      "answer": "Facebook Messenger? starting at 100€ (+ 50€/month maintenance) Komara hooks up an assistant to your page 24/7. Shall we confirm?"
     },
     {
       "id": "en_terrain_05",
@@ -8553,7 +5920,7 @@
         "for",
         "restaurant"
       ],
-      "answer": "Perfect for a restaurant. With 1000 € Komara builds you an assistant that takes WhatsApp orders automatically. Shall we go?"
+      "answer": "Perfect for a restaurant. starting at 100€ (+ 50€/month maintenance) Komara builds you an assistant that takes WhatsApp orders automatically. Shall we go?"
     },
     {
       "id": "en_terrain_06",
@@ -8567,7 +5934,7 @@
         "for",
         "business"
       ],
-      "answer": "Perfect. What's your business? With 1000 € Komara launches your assistant. Shall I connect you to the team?"
+      "answer": "Perfect. What's your business? starting at 100€ (+ 50€/month maintenance) Komara launches your assistant. Shall I connect you to the team?"
     },
     {
       "id": "en_terrain_07",
@@ -8581,7 +5948,7 @@
         "insta",
         "and"
       ],
-      "answer": "Both, very professional. With 1000 € Komara gives you the 2-channel pack: same assistant everywhere. Ready to go?"
+      "answer": "Both, very professional. on quote (type 'quote') Komara gives you the 2-channel pack: same assistant everywhere. Ready to go?"
     },
     {
       "id": "en_terrain_08",
@@ -8595,7 +5962,7 @@
         "that",
         "answers"
       ],
-      "answer": "That's our specialty, we never sleep. With 1000 € Komara sets up a night assistant that keeps your leads warm. Shall I set you up?"
+      "answer": "That's our specialty, we never sleep. starting at 100€ (+ 50€/month maintenance) Komara sets up a night assistant that keeps your leads warm. Shall I set you up?"
     },
     {
       "id": "en_terrain_09",
@@ -8609,7 +5976,7 @@
         "for",
         "travel"
       ],
-      "answer": "Perfect. Do you handle tickets, visas? For 1000 € Komara automates all of that and leaves you only real buyers. Ready to dive in?"
+      "answer": "Perfect. Do you handle tickets, visas? starting at 100€ (+ 50€/month maintenance) Komara automates all of that and leaves you only real buyers. Ready to dive in?"
     },
     {
       "id": "en_terrain_10",
@@ -8623,7 +5990,7 @@
         "see",
         "demo"
       ],
-      "answer": "Understood. Komara shows you a demo on your business before you pay. With 1000 € you're well set. Sounds good to you?"
+      "answer": "Understood. Komara shows you a demo on your business before you pay. starting at 100€ (+ 50€/month maintenance) you're well set. Sounds good to you?"
     },
     {
       "id": "en_terrain_11",
@@ -8637,7 +6004,7 @@
         "support",
         "bot"
       ],
-      "answer": "Support, great choice. With 1000 € Komara builds you a support assistant that answers \"where is my order?\" all by itself. Shall we launch?"
+      "answer": "Support, great choice. starting at 100€ (+ 50€/month maintenance) Komara builds you a support assistant that answers \"where is my order?\" all by itself. Shall we launch?"
     },
     {
       "id": "en_terrain_12",
@@ -8665,7 +6032,7 @@
         "in",
         "french"
       ],
-      "answer": "Yes we do multilingual. With 1000 € Komara builds you a bilingual FR/EN assistant. Shall we validate?"
+      "answer": "Yes we do multilingual. starting at 100€ (+ 50€/month maintenance) Komara builds you a bilingual FR/EN assistant. Shall we validate?"
     },
     {
       "id": "en_terrain_14",
@@ -8679,7 +6046,7 @@
         "for",
         "call"
       ],
-      "answer": "How many agents do you have? With 1000 € Komara launches a test agent replacing 2-3 people. We scale afterward. How's that sound?"
+      "answer": "How many agents do you have? starting at 100€ (+ 50€/month maintenance) Komara launches a test agent replacing 2-3 people. We scale afterward. How's that sound?"
     },
     {
       "id": "en_terrain_15",
@@ -8707,7 +6074,7 @@
         "that",
         "closes"
       ],
-      "answer": "An automated closer, our specialty. With 1000 € Komara builds you a closer that takes clients all the way to payment. Shall we go?"
+      "answer": "An automated closer, our specialty. starting at 100€ (+ 50€/month maintenance) Komara builds you a closer that takes clients all the way to payment. Shall we go?"
     },
     {
       "id": "en_terrain_17",
@@ -8720,7 +6087,7 @@
         "cosmetics",
         "bot"
       ],
-      "answer": "Cosmetics, perfect. With 1000 € Komara creates an automated beauty advisor selling 24/7. Shall we start?"
+      "answer": "Cosmetics, perfect. starting at 100€ (+ 50€/month maintenance) Komara creates an automated beauty advisor selling 24/7. Shall we start?"
     },
     {
       "id": "en_terrain_18",
@@ -8733,7 +6100,7 @@
         "fast",
         "bot"
       ],
-      "answer": "Straight to the point, I like it. With 1000 € Komara launches your bot in 48h. Ready to start?"
+      "answer": "Straight to the point, I like it. starting at 100€ (+ 50€/month maintenance) Komara launches your bot in 48h. Ready to start?"
     },
     {
       "id": "en_terrain_19",
@@ -8747,7 +6114,7 @@
         "for",
         "page"
       ],
-      "answer": "50k, you need solid power. With 1000 € Komara sets up an assistant handling comments and DMs. Shall we launch?"
+      "answer": "50k, you need solid power. starting at 100€ (+ 50€/month maintenance) Komara sets up an assistant handling comments and DMs. Shall we launch?"
     },
     {
       "id": "en_terrain_20",
@@ -8761,7 +6128,7 @@
         "messages",
         "want"
       ],
-      "answer": "That's why we exist my friend. With 1000 € Komara removes this problem permanently. Shall we sign?"
+      "answer": "That's why we exist my friend. starting at 100€ (+ 50€/month maintenance) Komara removes this problem permanently. Shall we sign?"
     },
     {
       "id": "en_terrain_21",
@@ -8774,7 +6141,7 @@
         "too",
         "expensive"
       ],
-      "answer": "I understand my friend. How much is too expensive for you? Tell me your budget and Komara adapts. 1000 € is our starter pack, we launch everything for you with that. Shall we go?"
+      "answer": "I understand my friend. How much is too expensive for you? Tell me your budget and Komara adapts. 100€ is our starter pack, we launch everything for you with that. Shall we go?"
     },
     {
       "id": "en_terrain_22",
@@ -8788,7 +6155,7 @@
         "time",
         "to"
       ],
-      "answer": "Exactly my friend, Komara does everything for you. You just tell us your business, we take care of the rest. With 900 € you won't touch messages anymore. Shall we launch?"
+      "answer": "Exactly my friend, Komara does everything for you. You just tell us your business, we take care of the rest. starting at 100€ (+ 50€/month maintenance) you won't touch messages anymore. Shall we launch?"
     },
     {
       "id": "en_terrain_23",
@@ -8802,21 +6169,7 @@
         "not",
         "someone"
       ],
-      "answer": "Great question. At Komara we have a real human team behind the bot, not just software that leaves you stranded afterward. With 900 € you get the bot + Komara support. Others just sell a tool."
-    },
-    {
-      "id": "en_terrain_24",
-      "category": "terrain",
-      "questions": [
-        "I've been scammed before"
-      ],
-      "keywords": [
-        "i've",
-        "been",
-        "scammed",
-        "before"
-      ],
-      "answer": "I understand my friend. At Komara we show you a demo on YOUR business before you pay. You see it first. With 1000 € we do the demo, if you love it we launch. How's that sound?"
+      "answer": "Great question. At Komara we have a real human team behind the bot, not just software that leaves you stranded afterward. starting at 100€ (+ 50€/month maintenance) you get the bot + Komara support. Others just sell a tool."
     },
     {
       "id": "en_terrain_25",
@@ -8830,7 +6183,7 @@
         "in",
         "multiple"
       ],
-      "answer": "Yes my friend, French, English, Arabic, Spanish. Komara does it natively. With 1000 $ we build you a multilingual bot answering all your clients. Shall we start?"
+      "answer": "Yes my friend, French, English, Arabic, Spanish. Komara does it natively. starting at 100€ (+ 50€/month maintenance) we build you a multilingual bot answering all your clients. Shall we start?"
     },
     {
       "id": "en_terrain_26",
@@ -8844,7 +6197,7 @@
         "to",
         "whatsapp"
       ],
-      "answer": "Yes, that's our specialty at Komara. WhatsApp Business, Facebook page, Insta, everything. With 1000 € Komara plugs in everything in 48h. Shall we start?"
+      "answer": "Yes, that's our specialty at Komara. WhatsApp Business, Facebook page, Insta, everything. on quote (type 'quote') Komara plugs in everything in 48h. Shall we start?"
     },
     {
       "id": "en_terrain_27",
@@ -8858,7 +6211,7 @@
         "sell",
         "for"
       ],
-      "answer": "Yes my friend. It's a closer. It answers, reassures, and pushes all the way to payment. With 1500 € Komara sets up a real automated seller. Shall we launch?"
+      "answer": "Yes my friend. It's a closer. It answers, reassures, and pushes all the way to payment. starting at 100€ (+ 50€/month maintenance) Komara sets up a real automated seller. Shall we launch?"
     },
     {
       "id": "en_terrain_28",
@@ -8872,7 +6225,7 @@
         "messages",
         "day"
       ],
-      "answer": "That's what wears you out. Komara automates 100% of that. With 750 € you don't have to reply to that anymore, Komara handles it."
+      "answer": "That's what wears you out. Komara automates 100% of that. starting at 100€ (+ 50€/month maintenance) you don't have to reply to that anymore, Komara handles it."
     },
     {
       "id": "en_terrain_29",
@@ -8886,7 +6239,7 @@
         "at",
         "night"
       ],
-      "answer": "Komara never sleeps my friend. Your bot answers at 2 AM and keeps the client warm. With 800 € you have your Komara night agent. Shall we confirm?"
+      "answer": "Komara never sleeps my friend. Your bot answers at 2 AM and keeps the client warm. starting at 100€ (+ 50€/month maintenance) you have your Komara night agent. Shall we confirm?"
     },
     {
       "id": "en_terrain_30",
@@ -8899,7 +6252,7 @@
         "complete",
         "system"
       ],
-      "answer": "The complete system at Komara is WhatsApp + Messenger + Insta + CRM. With 5000 € we build you the high-end Komara setup. Shall we sign?"
+      "answer": "The complete system at Komara is WhatsApp + Messenger + Insta + CRM. on quote (type 'quote') we build you the high-end Komara setup. Shall we sign?"
     },
     {
       "id": "en_terrain_31",
@@ -8912,7 +6265,7 @@
         "small",
         "budget"
       ],
-      "answer": "No worries my friend, Komara has a test pack to start small and grow later. With 300 $ we launch the Komara test version for you. Does that work for you?"
+      "answer": "No worries my friend, Komara has a test pack to start small and grow later. starting at 100€ (+ 50€/month maintenance) we launch the Komara test version for you. Does that work for you?"
     },
     {
       "id": "en_terrain_32",
@@ -8926,7 +6279,7 @@
         "50k",
         "followers"
       ],
-      "answer": "Completely normal my friend. Komara is built for this, it handles comments and automated DMs. With 1000 € Komara takes back control of your page. Shall we launch?"
+      "answer": "Completely normal my friend. Komara is built for this, it handles comments and automated DMs. starting at 100€ (+ 50€/month maintenance) Komara takes back control of your page. Shall we launch?"
     },
     {
       "id": "en_terrain_33",
@@ -8940,7 +6293,7 @@
         "agency",
         "want"
       ],
-      "answer": "Great business model. Komara builds it white-label for you, you resell under your name. With 1200 $ Komara launches your white-label offer. Ready to roll?"
+      "answer": "Great business model. Komara builds it white-label for you, you resell under your name. on quote (type 'quote') Komara launches your white-label offer. Ready to roll?"
     },
     {
       "id": "en_terrain_34",
@@ -8954,7 +6307,7 @@
         "to",
         "take"
       ],
-      "answer": "It takes the order, gives the total bill, sends it to the delivery guy. Komara does everything. With 900 € Komara automates your restaurant. Ready to start?"
+      "answer": "It takes the order, gives the total bill, sends it to the delivery guy. Komara does everything. starting at 100€ (+ 50€/month maintenance) Komara automates your restaurant. Ready to start?"
     },
     {
       "id": "en_terrain_35",
@@ -8968,7 +6321,7 @@
         "their",
         "carts"
       ],
-      "answer": "Komara follows up automatically until they pay. That's our specialty. With 1000 € Komara recovers your lost sales. Shall we launch?"
+      "answer": "Komara follows up automatically until they pay. That's our specialty. starting at 100€ (+ 50€/month maintenance) Komara recovers your lost sales. Shall we launch?"
     },
     {
       "id": "en_terrain_36",
@@ -8982,7 +6335,7 @@
         "tire",
         "kickers"
       ],
-      "answer": "Komara filters them my friend. She only passes you people who want to visit and pay. With 1000 € Komara builds your real estate filter. Shall we validate?"
+      "answer": "Komara filters them my friend. She only passes you people who want to visit and pay. starting at 100€ (+ 50€/month maintenance) Komara builds your real estate filter. Shall we validate?"
     },
     {
       "id": "en_terrain_37",
@@ -8995,7 +6348,7 @@
         "training",
         "course"
       ],
-      "answer": "Perfect. Komara qualifies and only keeps people ready to buy your course. With 900 € Komara builds your course closer. Ready to go?"
+      "answer": "Perfect. Komara qualifies and only keeps people ready to buy your course. starting at 100€ (+ 50€/month maintenance) Komara builds your course closer. Ready to go?"
     },
     {
       "id": "en_terrain_38",
@@ -9008,7 +6361,7 @@
         "in",
         "installments"
       ],
-      "answer": "Yes my friend, Komara adapts. You pay in 2 or 3 installments if you like. With 1000 € split in 2 payments Komara launches you. Shall we begin?"
+      "answer": "Yes my friend, Komara adapts. You pay in 2 or 3 installments if you like. starting at 100€ (+ 50€/month maintenance) split in 2 payments Komara launches you. Shall we begin?"
     },
     {
       "id": "en_terrain_39",
@@ -9022,7 +6375,7 @@
         "see",
         "demo"
       ],
-      "answer": "Totally normal my friend. Give me your business and Komara gives you a live demo on your case. For e-commerce with 1000 $ we do the Komara demo right now. Shall we go?"
+      "answer": "Totally normal my friend. Give me your business and Komara gives you a live demo on your case. For e-commerce starting at 100€ (+ 50€/month maintenance) we do the Komara demo right now. Shall we go?"
     },
     {
       "id": "en_terrain_40",
@@ -9050,7 +6403,7 @@
         "receive",
         "too"
       ],
-      "answer": "I get you my friend. You wake up in the morning to 87 WhatsApp messages, in the evening another 50. You got no life left. That's why Komara exists: we take over all of that for you. With 1000 € we remove that exhaustion permanently, Komara answers 24/7. Shall we launch so you can sleep peacefully?"
+      "answer": "I get you my friend. You wake up in the morning to 87 WhatsApp messages, in the evening another 50. You got no life left. That's why Komara exists: we take over all of that for you. starting at 100€ (+ 50€/month maintenance) we remove that exhaustion permanently, Komara answers 24/7. Shall we launch so you can sleep peacefully?"
     },
     {
       "id": "en_terrain_42",
@@ -9064,7 +6417,7 @@
         "of",
         "not"
       ],
-      "answer": "Normal my friend, everyone starts out like that. But you know what looks pro? A fast, sharp response. Even if you're just starting, your clients will think you have a big team behind you. With 750 € Komara makes you look pro from day one. Shall we launch you like a pro?"
+      "answer": "Normal my friend, everyone starts out like that. But you know what looks pro? A fast, sharp response. Even if you're just starting, your clients will think you have a big team behind you. starting at 100€ (+ 50€/month maintenance) Komara makes you look pro from day one. Shall we launch you like a pro?"
     },
     {
       "id": "en_terrain_43",
@@ -9078,7 +6431,7 @@
         "because",
         "replied"
       ],
-      "answer": "That hurts my friend. 3 clients, how much loss is that? You see: in just one day you lost your Komara investment. With us you never lose a sale to delays again. With 900 € Komara secures all your next sales. Shall we stop missing out on sales?"
+      "answer": "That hurts my friend. 3 clients, how much loss is that? You see: in just one day you lost your Komara investment. With us you never lose a sale to delays again. starting at 100€ (+ 50€/month maintenance) Komara secures all your next sales. Shall we stop missing out on sales?"
     },
     {
       "id": "en_terrain_44",
@@ -9092,7 +6445,7 @@
         "double",
         "turnover"
       ],
-      "answer": "That's the real growth barrier my friend. You want to scale but your WhatsApp is holding you back. Komara breaks through that ceiling: whether you get 10, 100, or 1000 messages, we handle it. With 1500 € Komara builds your scaling system. Are you ready to double up?"
+      "answer": "That's the real growth barrier my friend. You want to scale but your WhatsApp is holding you back. Komara breaks through that ceiling: whether you get 10, 100, or 1000 messages, we handle it. on quote (type 'quote') Komara builds your scaling system. Are you ready to double up?"
     },
     {
       "id": "en_terrain_45",
@@ -9106,7 +6459,7 @@
         "hell",
         "too"
       ],
-      "answer": "I can see the scene my friend. 8 PM, your phone explodes, clients get angry, you lose orders. Komara takes everything at once, zero stress, zero errors, and sends it straight to the kitchen. With 900 € Komara saves your evenings. Shall we set this up for you?"
+      "answer": "I can see the scene my friend. 8 PM, your phone explodes, clients get angry, you lose orders. Komara takes everything at once, zero stress, zero errors, and sends it straight to the kitchen. starting at 100€ (+ 50€/month maintenance) Komara saves your evenings. Shall we set this up for you?"
     },
     {
       "id": "en_terrain_46",
@@ -9120,7 +6473,7 @@
         "money",
         "into"
       ],
-      "answer": "Respect my friend. That's your baby. That's why I'm talking straight to you. We won't sell you a dream, we'll install a system that protects your investment. With 1000 € we make your project profitable, Komara won't let you down. Shall we go together?"
+      "answer": "Respect my friend. That's your baby. That's why I'm talking straight to you. We won't sell you a dream, we'll install a system that protects your investment. starting at 100€ (+ 50€/month maintenance) we make your project profitable, Komara won't let you down. Shall we go together?"
     },
     {
       "id": "en_terrain_47",
@@ -9134,7 +6487,7 @@
         "with",
         "free"
       ],
-      "answer": "Great question my friend. Free bots say hello. Komara answers, understands, reassures, and sells. It's a salesperson, not an automated responder. Do you want an auto-responder that says hello or a seller that collects money for you? With 1000 $ Komara sets up your seller. Shall we launch?"
+      "answer": "Great question my friend. Free bots say hello. Komara answers, understands, reassures, and sells. It's a salesperson, not an automated responder. Do you want an auto-responder that says hello or a seller that collects money for you? starting at 100€ (+ 50€/month maintenance) Komara sets up your seller. Shall we launch?"
     },
     {
       "id": "en_terrain_48",
@@ -9148,7 +6501,7 @@
         "launch",
         "fast"
       ],
-      "answer": "We're the same my friend, we love fast action. At Komara it's 48h max. You share your business today, in 48h your bot is talking to your clients. With 1200 € we launch you in 48h flat. Shall we start today?"
+      "answer": "We're the same my friend, we love fast action. At Komara it's 48h max. You share your business today, in 48h your bot is talking to your clients. starting at 100€ (+ 50€/month maintenance) we launch you in 48h flat. Shall we start today?"
     },
     {
       "id": "en_terrain_49",
@@ -9162,20 +6515,7 @@
         "resell",
         "this"
       ],
-      "answer": "Very profitable my friend. You get it from Komara and resell 3 times higher. A lot of people do that. With 1200 $ Komara launches your white-label offer. You become an AI agency. Ready to go?"
-    },
-    {
-      "id": "en_terrain_50",
-      "category": "terrain",
-      "questions": [
-        "why should I trust you"
-      ],
-      "keywords": [
-        "why",
-        "should",
-        "trust"
-      ],
-      "answer": "Because my friend, I'm not asking for blind trust. I'm asking you to test Komara on your business. If it doesn't save you time or money, we don't continue. Simple, Komara runs on performance. With 1000 € we test together, zero risk. Shall we jump in?"
+      "answer": "Very profitable my friend. You get it from Komara and resell 3 times higher. A lot of people do that. on quote (type 'quote') Komara launches your white-label offer. You become an AI agency. Ready to go?"
     },
     {
       "id": "en_terrain_51",
@@ -9189,7 +6529,7 @@
         "make",
         "living"
       ],
-      "answer": "That's why Komara is here. We turn your small business into a real business running without you. You no longer sell your time. With 1000 € Komara gives you the system of the big players. Yes you can my brother. Shall we go?"
+      "answer": "That's why Komara is here. We turn your small business into a real business running without you. You no longer sell your time. starting at 100€ (+ 50€/month maintenance) Komara gives you the system of the big players. Yes you can my brother. Shall we go?"
     },
     {
       "id": "en_terrain_52",
@@ -9203,7 +6543,7 @@
         "of",
         "failing"
       ],
-      "answer": "I understand my friend. You've failed before and it hurts. But staying stuck replying to messages is failing even bigger. Komara is your safety net: we automate so you never miss another single sale. With 900 € Komara secures your business. Shall we stop missing out together?"
+      "answer": "I understand my friend. You've failed before and it hurts. But staying stuck replying to messages is failing even bigger. Komara is your safety net: we automate so you never miss another single sale. starting at 100€ (+ 50€/month maintenance) Komara secures your business. Shall we stop missing out together?"
     },
     {
       "id": "en_terrain_53",
@@ -9217,7 +6557,7 @@
         "this",
         "for"
       ],
-      "answer": "Mad respect for that my friend, deep respect. That's who you work so hard for. So stop wasting your time answering \"price?\". Let Komara handle that and spend quality time with your family while your business runs. With 900 € Komara gives you back time for your family and money. Shall we launch?"
+      "answer": "Mad respect for that my friend, deep respect. That's who you work so hard for. So stop wasting your time answering \"price?\". Let Komara handle that and spend quality time with your family while your business runs. starting at 100€ (+ 50€/month maintenance) Komara gives you back time for your family and money. Shall we launch?"
     },
     {
       "id": "en_terrain_54",
@@ -9231,7 +6571,7 @@
         "everything",
         "alone"
       ],
-      "answer": "It's tough doing everything alone my friend. You handle everything, you're everywhere, you're exhausted. Now you're no longer alone. Komara is your team that never sleeps, we're with you. With 1000 € you get a full Komara team behind you. You're not alone anymore, shall we go?"
+      "answer": "It's tough doing everything alone my friend. You handle everything, you're everywhere, you're exhausted. Now you're no longer alone. Komara is your team that never sleeps, we're with you. starting at 100€ (+ 50€/month maintenance) you get a full Komara team behind you. You're not alone anymore, shall we go?"
     },
     {
       "id": "en_terrain_55",
@@ -9245,7 +6585,7 @@
         "be",
         "best"
       ],
-      "answer": "Love that energy my friend. The best all have a team, a system. Nobody becomes the best alone. Komara is the system of the top players: your competitor answers in 3 hours, you answer in 3 seconds, you win. With 1500 € Komara pushes you to number 1. Shall we crush the competition?"
+      "answer": "Love that energy my friend. The best all have a team, a system. Nobody becomes the best alone. Komara is the system of the top players: your competitor answers in 3 hours, you answer in 3 seconds, you win. starting at 100€ (+ 50€/month maintenance) Komara pushes you to number 1. Shall we crush the competition?"
     },
     {
       "id": "en_terrain_56",
@@ -9259,7 +6599,7 @@
         "to",
         "reply"
       ],
-      "answer": "Don't worry my friend, it happens to everyone, we're human. But your client leaves for someone else. Komara never forgets: it replies directly, professionally, with a smile. Never feel ashamed again. With 1000 € your clients will say \"wow fast service\". Shall we launch?"
+      "answer": "Don't worry my friend, it happens to everyone, we're human. But your client leaves for someone else. Komara never forgets: it replies directly, professionally, with a smile. Never feel ashamed again. starting at 100€ (+ 50€/month maintenance) your clients will say \"wow fast service\". Shall we launch?"
     },
     {
       "id": "en_terrain_57",
@@ -9273,7 +6613,7 @@
         "money",
         "every"
       ],
-      "answer": "That's the click right there my friend. Every day without Komara is money going straight to your competitor. So we stop losing money today, not tomorrow. With 1000 $ we stop the bleeding today, Komara runs tonight. Shall we validate?"
+      "answer": "That's the click right there my friend. Every day without Komara is money going straight to your competitor. So we stop losing money today, not tomorrow. starting at 100€ (+ 50€/month maintenance) we stop the bleeding today, Komara runs tonight. Shall we validate?"
     },
     {
       "id": "en_terrain_58",
@@ -9287,7 +6627,7 @@
         "to",
         "respect"
       ],
-      "answer": "And they will respect you my friend. When they see an instant, pro response guiding them all the way to payment, they say \"this person is serious\". Komara gives you that image: you're no longer the small seller, you're a brand. With 1200 € Komara turns you into a brand. Shall we become a brand?"
+      "answer": "And they will respect you my friend. When they see an instant, pro response guiding them all the way to payment, they say \"this person is serious\". Komara gives you that image: you're no longer the small seller, you're a brand. starting at 100€ (+ 50€/month maintenance) Komara turns you into a brand. Shall we become a brand?"
     },
     {
       "id": "en_terrain_59",
@@ -9301,21 +6641,7 @@
         "be",
         "able"
       ],
-      "answer": "That's true freedom my friend. Your business running while you're in Dakar, Paris, or at the beach. Komara is your ticket for that: your bot sells while you live your life. With 1200 $ Komara gives you your freedom. Shall we buy your freedom?"
-    },
-    {
-      "id": "en_terrain_60",
-      "category": "terrain",
-      "questions": [
-        "I'm going to think about it"
-      ],
-      "keywords": [
-        "i'm",
-        "going",
-        "to",
-        "think"
-      ],
-      "answer": "I understand my friend. You know what? Successful people think fast and act fast. Others think for a long time and watch everyone else succeed. With 1000 € Komara puts you on the side of action takers. Do we act now or do we keep watching?"
+      "answer": "That's true freedom my friend. Your business running while you're in Dakar, Paris, or at the beach. Komara is your ticket for that: your bot sells while you live your life. starting at 100€ (+ 50€/month maintenance) Komara gives you your freedom. Shall we buy your freedom?"
     },
     {
       "id": "en_terrain_61",
@@ -9329,7 +6655,7 @@
         "i'm",
         "not"
       ],
-      "answer": "Normal my friend, you reached your human capacity ceiling. You can't answer more than 50 messages by yourself. Komara smashes that ceiling: tomorrow you can handle 200 messages without working more. With 1000 € Komara unblocks you. Shall we shatter this ceiling together?"
+      "answer": "Normal my friend, you reached your human capacity ceiling. You can't answer more than 50 messages by yourself. Komara smashes that ceiling: tomorrow you can handle 200 messages without working more. starting at 100€ (+ 50€/month maintenance) Komara unblocks you. Shall we shatter this ceiling together?"
     },
     {
       "id": "en_terrain_62",
@@ -9343,7 +6669,7 @@
         "reply",
         "fast"
       ],
-      "answer": "Because they have a team like us my friend. Now you too will reply just like a big brand. With 900 € Komara makes you talk like a major brand, your clients won't tell the difference."
+      "answer": "Because they have a team like us my friend. Now you too will reply just like a big brand. starting at 100€ (+ 50€/month maintenance) Komara makes you talk like a major brand, your clients won't tell the difference."
     },
     {
       "id": "en_terrain_63",
@@ -9357,7 +6683,7 @@
         "20",
         "questions"
       ],
-      "answer": "The worst my friend, stealing 30 mins of your time for nothing. Komara filters them out: she answers all 20 questions for you and only passes you those who want to pay. You gain 30 min every time. With 900 € Komara gets rid of the window shoppers. Shall we keep only real buyers?"
+      "answer": "The worst my friend, stealing 30 mins of your time for nothing. Komara filters them out: she answers all 20 questions for you and only passes you those who want to pay. You gain 30 min every time. starting at 100€ (+ 50€/month maintenance) Komara gets rid of the window shoppers. Shall we keep only real buyers?"
     },
     {
       "id": "en_terrain_64",
@@ -9371,7 +6697,7 @@
         "this",
         "week"
       ],
-      "answer": "We're here for that my friend. At Komara we don't make you wait 1 month: even this week is too long, we launch you in 48h. With 1000 $ Komara is live in 48h. Shall we start today?"
+      "answer": "We're here for that my friend. At Komara we don't make you wait 1 month: even this week is too long, we launch you in 48h. starting at 100€ (+ 50€/month maintenance) Komara is live in 48h. Shall we start today?"
     },
     {
       "id": "en_terrain_65",
@@ -9385,7 +6711,7 @@
         "hard",
         "to"
       ],
-      "answer": "I understand my friend, you've been let down before. Me, I'm not asking for blind trust: we do a live demo on your real messages, you see it with your own eyes. With 1000 € Komara proves it first, you pay after. Shall we show you?"
+      "answer": "I understand my friend, you've been let down before. Me, I'm not asking for blind trust: we do a live demo on your real messages, you see it with your own eyes. starting at 100€ (+ 50€/month maintenance) Komara proves it first, you pay after. Shall we show you?"
     },
     {
       "id": "en_terrain_66",
@@ -9398,7 +6724,7 @@
         "called",
         "komara"
       ],
-      "answer": "Komara is our home soil my friend, Guinea, but our vision is global. We help businesses in Africa and worldwide get the same firepower as huge corporations. With 1500 € you enter the Komara family and grow with us. Ready to go?"
+      "answer": "Komara is our home soil my friend, Guinea, but our vision is global. We help businesses in Africa and worldwide get the same firepower as huge corporations. starting at 100€ (+ 50€/month maintenance) you enter the Komara family and grow with us. Ready to go?"
     },
     {
       "id": "en_terrain_67",
@@ -9412,7 +6738,7 @@
         "don't",
         "get"
       ],
-      "answer": "If you don't take it right now my friend, tomorrow you'll still have 100 messages, more lost sales, more exhaustion. Nothing changes. With Komara tomorrow everything changes, the choice is yours. With 1000 € let's go: tomorrow you wake up relieved."
+      "answer": "If you don't take it right now my friend, tomorrow you'll still have 100 messages, more lost sales, more exhaustion. Nothing changes. With Komara tomorrow everything changes, the choice is yours. starting at 100€ (+ 50€/month maintenance) let's go: tomorrow you wake up relieved."
     },
     {
       "id": "en_terrain_68",
@@ -9426,7 +6752,7 @@
         "partner",
         "not"
       ],
-      "answer": "That's exactly what Komara is my friend. We aren't software sold to you that disappears after. We are your partner: we stay with you, improving your bot every single week. With 1000 € Komara becomes your long-term partner. Shall we grow together?"
+      "answer": "That's exactly what Komara is my friend. We aren't software sold to you that disappears after. We are your partner: we stay with you, improving your bot every single week. starting at 100€ (+ 50€/month maintenance) Komara becomes your long-term partner. Shall we grow together?"
     },
     {
       "id": "en_terrain_69",
@@ -9440,7 +6766,7 @@
         "say",
         "i've"
       ],
-      "answer": "No my friend, they'll say you've become smart. The lazy works hard without leverage. The smart one gets Komara working for them. Do you want to work hard or smart? With 1000 $ Komara makes you work smart. Shall we launch?"
+      "answer": "No my friend, they'll say you've become smart. The lazy works hard without leverage. The smart one gets Komara working for them. Do you want to work hard or smart? starting at 100€ (+ 50€/month maintenance) Komara makes you work smart. Shall we launch?"
     },
     {
       "id": "en_terrain_70",
@@ -9454,7 +6780,195 @@
         "see",
         "and"
       ],
-      "answer": "My friend I'm going to be frank with you. \"I'll get back to you\" is 90% of people who never come back and stay stuck. You're not like that, you're an action taker. Hesitating is normal, but with 1000 € Komara removes all risks for you: we launch you, we support you, you're not alone. Shall we go?"
+      "answer": "My friend I'm going to be frank with you. \"I'll get back to you\" is 90% of people who never come back and stay stuck. You're not like that, you're an action taker. Hesitating is normal, but starting at 100€ (+ 50€/month maintenance) Komara removes all risks for you: we launch you, we support you, you're not alone. Shall we go?"
+    },
+    {
+      "id": "intent_logo_en",
+      "questions": [
+        "i want a logo",
+        "i need a logo",
+        "logo for my business",
+        "logo for my shop",
+        "logo for my brand",
+        "i want a new logo",
+        "i need a logo for my business"
+      ],
+      "answer": "Logos that sell 🎨\nDelivered in 48h with 3 variations, Luxury African style.\nPrice on quote (free, within 24h).\nWhat's your business about?",
+      "tags": [
+        "logo",
+        "closing"
+      ]
+    },
+    {
+      "id": "intent_website_en",
+      "questions": [
+        "i want a website",
+        "i need a website",
+        "website for my business",
+        "build me a website",
+        "i want a site",
+        "website for my shop"
+      ],
+      "answer": "Sites that sell, not that sleep 🚀\n3 packs: Essential, Business, E-commerce.\nPrice on quote (free, within 24h).\nTell me about your project 👇",
+      "tags": [
+        "website",
+        "closing"
+      ]
+    },
+    {
+      "id": "portfolio_en_01",
+      "category": "portfolio",
+      "questions": [
+        "portfolio",
+        "your portfolio",
+        "can i see your portfolio",
+        "what have you done before",
+        "your past projects",
+        "show me examples",
+        "show me your work",
+        "your achievements",
+        "what are your achievements",
+        "do you have examples"
+      ],
+      "answer": "We've already delivered bots, websites, apps, logos and more 🔥\nI can show you examples in YOUR field.\nWhat's your business?",
+      "tags": [
+        "portfolio",
+        "local"
+      ]
+    },
+    {
+      "id": "lot21_quote_seen",
+      "category": "sales",
+      "answer": "Perfect 🙌 The 3-day turnaround starts upon validation. If you need a change on the quote, just tell me. Shall we launch the creation?",
+      "keywords": [
+        "quote",
+        "seen",
+        "received",
+        "logo",
+        "validation"
+      ],
+      "questions": [
+        "I've seen the quote",
+        "I received the quote",
+        "I got the quote for the logo",
+        "yes I saw the quote",
+        "the quote is well received"
+      ]
+    },
+    {
+      "id": "lot21_urgent_express",
+      "category": "sales",
+      "answer": "Yes, rush jobs are possible at Komara Agency 🇬🇳 🔥 Express fee: +30%. Send me the text + the idea + the photos now, and you get it before 8am tomorrow. What do you send?",
+      "keywords": [
+        "urgent",
+        "rush",
+        "express",
+        "tomorrow",
+        "visual"
+      ],
+      "questions": [
+        "I need a visual for tomorrow morning",
+        "I need an urgent visual",
+        "it's urgent I need a visual",
+        "need a poster for tomorrow",
+        "urgent poster tomorrow",
+        "express visual delivery"
+      ]
+    },
+    {
+      "id": "lot21_revisions",
+      "category": "service",
+      "answer": "No problem 😊 You get 3 rounds of revisions included at Komara Agency 🇬🇳. I'll send you the adjusted version within 1 hour. Anything else to change?",
+      "keywords": [
+        "revision",
+        "change",
+        "text",
+        "bigger",
+        "logo"
+      ],
+      "questions": [
+        "the logo is good but I want the text bigger",
+        "I want the text bigger",
+        "can you make the text bigger",
+        "change the logo text",
+        "the text is too small",
+        "I want changes on the logo"
+      ]
+    },
+    {
+      "id": "lot21_design_coaching",
+      "category": "training",
+      "answer": "No official training program yet at Komara Agency 🇬🇳, but I share plenty of tips on the page 😊 If you want 1-on-1 coaching on Canva, Photoshop or your visual identity, we can arrange that. Do you want to learn for yourself or for your business?",
+      "keywords": [
+        "training",
+        "design",
+        "canva",
+        "photoshop",
+        "coaching",
+        "learn"
+      ],
+      "questions": [
+        "do you give training",
+        "do you teach design",
+        "canva training",
+        "photoshop training",
+        "learn design",
+        "design coaching",
+        "1-on-1 coaching"
+      ]
+    },
+    {
+      "id": "lot21_coaching_business",
+      "category": "training",
+      "answer": "Perfect 👌 We do a 2-hour session where I rebuild your visuals with you live. You leave with the method AND your visuals ready. When do we schedule it?",
+      "keywords": [
+        "business",
+        "learn",
+        "session",
+        "coaching"
+      ],
+      "questions": [
+        "for my business",
+        "to learn for my business",
+        "it's for my business",
+        "it's for my company"
+      ]
+    },
+    {
+      "id": "lot21_resto_poster",
+      "category": "sales",
+      "answer": "Great, Komara Agency 🇬🇳 handles that 🔥 Do you want an appetizing, modern or traditional style? Send me: the restaurant name, the menu to highlight, your colors, and a photo of your dishes if you have any.",
+      "keywords": [
+        "restaurant",
+        "poster",
+        "facebook",
+        "visual"
+      ],
+      "questions": [
+        "I'm opening a restaurant I need a facebook poster",
+        "restaurant facebook poster",
+        "restaurant social media visual",
+        "facebook ad restaurant",
+        "poster for my restaurant"
+      ]
+    },
+    {
+      "id": "lot21_logo_budget",
+      "category": "negotiation",
+      "answer": "Ok, we can make a great simple logo within that budget 😊 What idea should we start from?",
+      "keywords": [
+        "budget",
+        "logo",
+        "less",
+        "lower"
+      ],
+      "questions": [
+        "I can pay less than the logo price",
+        "my budget is lower than the logo price",
+        "the logo price is above my budget",
+        "I don't have that budget for the logo",
+        "I have a small budget for the logo"
+      ]
     },
     {
       "id": "en_fidele_01",

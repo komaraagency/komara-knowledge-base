@@ -1,3 +1,4 @@
+import logging
 """Moteur de recherche locale avec compréhension sémantique (100% local, zéro API externe).
 
 Améliorations:
@@ -13,6 +14,9 @@ Améliorations:
 """
 
 from typing import Any, List, Tuple, Set
+import random
+import hashlib
+import json
 import re
 import math
 from collections import Counter
@@ -229,6 +233,7 @@ def _score_bidirectional(
     idf: dict[str, float],
     msg_intent: str | None,
     kw_intent: str | None,
+    kw_tokens: set[str] | None = None,
 ) -> float:
     """Score sémantique bidirectionnel avec IDF + boost d'intention + fuzzy matching.
 
@@ -239,7 +244,8 @@ def _score_bidirectional(
     - FUZZY MATCHING: tolérance aux fautes d'orthographe
       → "bonjor" matche "bonjour", "whatsap" matche "whatsapp"
     """
-    kw_tokens = _tokenize(keyword)
+    if kw_tokens is None:
+        kw_tokens = _tokenize(keyword)
     if not kw_tokens or not msg_tokens:
         return 0.0
 
@@ -266,6 +272,11 @@ def _score_bidirectional(
     if not msg_meaningful:
         # Message 100% stop-words ("je", "un", "c est") : aucun signal
         # sémantique, on ne peut pas deviner l'intention -> aucun match.
+        # EXCEPTION identité : si le message couvre quasi entièrement une
+        # question connue (ex: « qui es tu » ↔ « qui es tu »), c'est une
+        # vraie question identité, pas du bruit -> on autorise le match.
+        if keyword_coverage >= 0.8:
+            return keyword_coverage * 0.85
         return 0.0
 
     msg_total = sum(idf.get(t, 1.0) for t in msg_meaningful)
@@ -297,6 +308,67 @@ def _score_bidirectional(
     return base_score
 
 
+_RESOURCE_CACHE: dict[bytes, tuple[dict[str, float], list, list, list]] = {}
+_LAST_ANSWER: str = ""
+
+
+def _prepare_resources(knowledge_base, local_faq, local_dialogues):
+    """Cache prepared questions by actual content, not just corpus lengths.
+
+    Different languages and equal-sized bases cannot share unrelated answers.
+    Edits to questions, answers or variants invalidate their previous cache key.
+    """
+    payload = json.dumps([knowledge_base, local_faq, local_dialogues],
+                         ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    fp = hashlib.blake2b(payload.encode("utf-8"), digest_size=20).digest()
+    cached = _RESOURCE_CACHE.get(fp)
+    if cached is not None:
+        return cached
+
+    # Build from the exact serialized snapshot used as cache key.
+    # Concurrent learning cannot associate new data with an old fingerprint.
+    knowledge_base, local_faq, local_dialogues = json.loads(payload)
+
+    all_questions: list[list[str]] = []
+    kb_entries: list[tuple[list[tuple[str, set[str]]], Any, str | None]] = []
+    for item in knowledge_base:
+        questions = _get_questions(item)
+        all_questions.append(questions)
+        combined = ' '.join(questions)
+        kw_intent = _detect_intent(_tokenize(combined))
+        qtok = [(q, _tokenize(q)) for q in questions]
+        # réponse brute : str, ou liste de variantes (« answers ») →
+        # le tirage au sort se fait AU moment de répondre.
+        raw = item.get("answers")
+        if not isinstance(raw, list) or not raw:
+            raw = item.get("answer", "")
+        kb_entries.append((qtok, raw, kw_intent))
+
+    faq_entries: list[tuple[str, set[str], str, str | None]] = []
+    for item in local_faq:
+        q = item.get("question", "")
+        all_questions.append([q])
+        kw_intent = _detect_intent(_tokenize(q))
+        faq_entries.append((q, _tokenize(q), item.get("answer", ""), kw_intent))
+
+    dialogue_entries: list[tuple[str, set[str], Any, str | None]] = []
+    for item in local_dialogues:
+        q = item.get("question", "")
+        all_questions.append([q])
+        kw_intent = _detect_intent(_tokenize(q))
+        raw = item.get("answers")
+        if not isinstance(raw, list) or not raw:
+            raw = item.get("answer", "")
+        dialogue_entries.append((q, _tokenize(q), raw, kw_intent))
+
+    idf = _compute_idf(all_questions)
+    prepared = (idf, kb_entries, faq_entries, dialogue_entries)
+    if len(_RESOURCE_CACHE) >= 12:
+        _RESOURCE_CACHE.clear()
+    _RESOURCE_CACHE[fp] = prepared
+    return prepared
+
+
 def trouver_meilleure_reponse(
     message: str,
     knowledge_base: List[dict[str, Any]],
@@ -320,36 +392,12 @@ def trouver_meilleure_reponse(
 
     msg_intent = _detect_intent(msg_tokens)
 
-    # Collecter toutes les questions pour calculer l'IDF
-    all_questions: list[list[str]] = []
-
-    # Préparer les entrées KB avec leurs intentions
-    kb_entries: list[tuple[list[str], str, str | None]] = []
-    for item in knowledge_base:
-        questions = _get_questions(item)
-        all_questions.append(questions)
-        combined = ' '.join(questions)
-        kw_intent = _detect_intent(_tokenize(combined))
-        kb_entries.append((questions, item.get("answer", ""), kw_intent))
-
-    # FAQ
-    faq_entries: list[tuple[str, str, str | None]] = []
-    for item in local_faq:
-        q = item.get("question", "")
-        all_questions.append([q])
-        kw_intent = _detect_intent(_tokenize(q))
-        faq_entries.append((q, item.get("answer", ""), kw_intent))
-
-    # Dialogues
-    dialogue_entries: list[tuple[str, str, str | None]] = []
-    for item in local_dialogues:
-        q = item.get("question", "")
-        all_questions.append([q])
-        kw_intent = _detect_intent(_tokenize(q))
-        dialogue_entries.append((q, item.get("answer", ""), kw_intent))
-
-    # Calculer IDF global
-    idf = _compute_idf(all_questions)
+    # Ressources préparées en cache (IDF + questions pré-tokenisées) :
+    # réponse en quelques dizaines de millisecondes même en balayant les
+    # 4 langues — largement sous la barre des 3 secondes.
+    idf, kb_entries, faq_entries, dialogue_entries = _prepare_resources(
+        knowledge_base, local_faq, local_dialogues
+    )
 
     # Scoring de tous les candidats
     candidates: List[Tuple[float, str]] = []
@@ -361,26 +409,63 @@ def trouver_meilleure_reponse(
         # une intention mixte qui ne correspond a aucune question prise seule.
         best_score = max(
             (_score_bidirectional(msg_tokens, q, idf, msg_intent,
-                                   _detect_intent(_tokenize(q))) for q in questions),
+                                   _detect_intent(qtok), kw_tokens=qtok)
+             for q, qtok in questions),
             default=0.0
         )
         if best_score >= 0.22:
-            candidates.append((best_score, answer))
+            candidates.append((best_score, answer, questions[0][0] if questions else ""))
 
-    for q, answer, kw_intent in faq_entries:
-        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent)
+    for q, qtok, answer, kw_intent in faq_entries:
+        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
-            candidates.append((score, answer))
+            candidates.append((score, answer, q))
 
-    for q, answer, kw_intent in dialogue_entries:
-        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent)
+    for q, qtok, answer, kw_intent in dialogue_entries:
+        score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
         if score >= 0.22:
-            candidates.append((score, answer))
+            candidates.append((score, answer, q))
 
-    if candidates:
-        return max(candidates, key=lambda x: x[0])[1]
+    if not candidates:
+        return None
 
-    return None
+    # ── Sélection aléatoire anti-répétition ──
+    # 1. toutes les entrées ex æquo (ex : familles de salutations à 1.0)
+    #    participent au tirage, pas seulement la première arrivée ;
+    # 2. chaque entrée apporte TOUTES ses variantes au pool ;
+    # 3. random.choice dans le pool, et on ne retombe jamais sur la
+    #    phrase exacte renvoyée au tirage précédent.
+    global _LAST_ANSWER
+    best_score = max(candidates, key=lambda x: x[0])[0]
+    try:
+        logging.getLogger("komara.rag").info(
+            "[RAG-GEN] Query=%s | Retrieved=%s",
+            message[:80],
+            max(candidates, key=lambda x: x[0])[2][:60],
+        )
+    except Exception:
+        pass
+    tied = [c for c in candidates if c[0] >= best_score - 1e-9]
+    pool: list[str] = []
+    for _s, raw, _q in tied:
+        if isinstance(raw, list):
+            pool.extend(a for a in raw if a)
+        elif raw:
+            pool.append(raw)
+    if not pool:
+        return None
+    if len(pool) == 1:
+        pick = pool[0]
+    else:
+        pick = random.choice(pool)
+        if pick == _LAST_ANSWER:
+            # on évite de répéter la phrase d'avant, SAUF si le pool
+            # ne contient qu'elle (entrées en double au texte identique)
+            others = [a for a in pool if a != _LAST_ANSWER]
+            if others:
+                pick = random.choice(others)
+    _LAST_ANSWER = pick
+    return pick
 
 
 # Compatibilité: garder score_match pour les imports existants (ancien format)

@@ -50,7 +50,7 @@ Shall we test on your next hiring round?
 ### We can't publish content regularly
 We create a "Content" agent.
 It looks at your sales, creates 30 posts/month, schedules, replies to comments.
-Cost: 1200€/month. Vs 1 community manager at 3000€.
+Cost: from 50€/month. Vs 1 community manager at 3000€.
 Demo?
 
 ### Invoicing takes us 2 days

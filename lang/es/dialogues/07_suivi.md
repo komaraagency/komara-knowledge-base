@@ -1,2 +1,2 @@
 ### seguimiento proyecto estado avance donde entrega
-Gracias por tu confianza 🙏 Tu proyecto está en curso. Te envío los primeros visuales en 24h aquí. ¿Necesitas algún cambio?
+Gracias por su confianza 🙏 Su proyecto está en curso. Le envío los primeros visuales en 24h aquí. ¿Necesita algún cambio?

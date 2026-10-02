@@ -1,2 +1,2 @@
 ### cher trop pas sûr hésite pas convaincu budget
-Je comprends 👑 Beaucoup de clients pensaient comme toi au début. Mais avec nos visuels IA tu rentabilises dès la 1ère semaine. On commence petit avec le pack à 30€ pour tester ?
+La qualité premium de KOMARA AGENCY garantit un résultat 8K et une image de marque qui convertit 👑 L'investissement dans l'excellence est le seul chemin vers le succès. On peut commencer petit avec le visuel à 15€ pour tester ?

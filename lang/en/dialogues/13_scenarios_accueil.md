@@ -4,7 +4,7 @@ Goal: save you time and never lose a sale again.
 What sector are you in?
 
 ### Salut price bot?
-Hey! It ranges from 490€ to 2500€/month depending on what we automate.
+Hey! It starts from 100€ setup + 50€/month depending on what we automate.
 Simplest option: I'll build you a free 5-min demo with your own business.
 When works for you?
 
@@ -23,15 +23,15 @@ Hey! Yes absolutely 😄
 It answers DMs, books appointments and sends your catalogue automatically.
 Want me to show you on a demo account?
 
-### 1200€ is expensive isn't it?
+### Is it expensive?
 I understand.
 An employee costs 2500€/month and takes breaks.
 The bot works 24/7. Most of our clients break even in 21 days.
-We can start small at 490€ if you want to test.
+We can start small at 100€ if you want to test.
 
 ### Can I pay in 2 installments?
 Yes no problem.
-2 x 650€ instead of 1200€ upfront.
+in 2 payments: half then the rest at delivery upfront.
 Want me to send you the link for the first payment?
 
 ### Is it better than ManyChat?
@@ -42,14 +42,14 @@ Demo?
 
 ### I only have a 500€ budget
 We can work with that 👌
-We start with the Discovery Plan at 490€.
+We start with the Discovery Plan at 100€.
 Just FAQ + appointment booking to start.
 We upgrade once you see ROI. Deal?
 
 ### How will I break even?
 Example: if 1 client brings you 300€.
 And the bot brings you 10 extra clients/month = 3000€.
-The bot costs 1200€. Profit = 1800€.
+The bot costs 100€ + 50€/month. Net profit from month 1.
 Want me to run the exact math with your numbers?
 
 ### I'm not tech-savvy
@@ -100,4 +100,4 @@ We start Monday. Shall I send you the contract?
 ### The demo was great
 Thanks! Glad you liked it 😊
 Shall we launch version 1 next week?
-I'll send you the recap + 490€ proforma invoice deposit.
+I'll send you the recap + proforma invoice based on your quote.
