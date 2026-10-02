@@ -782,7 +782,17 @@ BUTTON_LABELS: set[str] = {
     for label in row
 }
 
-START_COMMANDS: set[str] = {"/start", "/star", "/menu", "/help", "/ayuda", "/inicio"}
+# BUG CLIENT (02/10, screenshot) : « Menu » tapé SANS slash (capitale ou
+# minuscule) n'était PAS reconnu comme commande (seul « /menu » l'était).
+# Le mot tombait alors jusqu'à la recherche floue KB/dialogues, qui
+# matchait un vieux dialogue hors-sujet (« menu de restaurant tu peux
+# designer » → réponse resto totalement incohérente). FIX : les mots nus
+# équivalents (menu/aide/help...) sont ajoutés, dans les 4 langues, pour
+# ne JAMAIS atteindre la recherche floue.
+START_COMMANDS: set[str] = {
+    "/start", "/star", "/menu", "/help", "/ayuda", "/inicio",
+    "menu", "aide", "help", "ayuda", "menú", "القائمة", "قائمة",
+}
 
 RESET_COMMANDS: dict[str, set[str]] = {
     "fr": {"/reset", "/forget", "oublie", "oublie-moi"},
