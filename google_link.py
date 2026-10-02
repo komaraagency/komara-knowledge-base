@@ -8,6 +8,9 @@
 #   GOOGLE_CLIENT_SECRET  — Secret client de l'app
 #   GOOGLE_SHEET_ID        — ID du tableur (dans l'URL du Google Sheet)
 #   OAUTH_REDIRECT_URI    — (optionnel) si autre URL que le domaine Railway
+#   GOOGLE_REFRESH_TOKEN  — OBLIGATOIRE pour survivre aux redéploiements :
+#                           affiché UNE FOIS sur la page de succès après
+#                           /google → à copier-coller dans Railway.
 #   PORT                  — fourni par Railway (serveur de callback OAuth)
 # ---------------------------------------------------------------------------
 
@@ -33,7 +36,8 @@ REDIRECT_URI = os.getenv(
 SCOPES = (
     "https://www.googleapis.com/auth/spreadsheets "
     "https://www.googleapis.com/auth/contacts "
-    "https://www.googleapis.com/auth/drive.file"
+    "https://www.googleapis.com/auth/drive.file "
+    "https://www.googleapis.com/auth/calendar.events"
 )
 
 API_TOKEN_URL = "https://oauth2.googleapis.com/token"
@@ -74,6 +78,9 @@ def is_configured() -> bool:
 
 
 def is_linked() -> bool:
+    # Fallback env (survit aux redéploiements) : voir get_access_token.
+    if os.getenv("GOOGLE_REFRESH_TOKEN", "").strip():
+        return True
     if DB_CONN is None:
         return False
     with DB_LOCK:
@@ -143,16 +150,17 @@ def cmd_google(bot, chat_id: int, lang: str = "fr") -> None:
 # OAuth : échange code → refresh token
 # ---------------------------------------------------------------------------
 
-def exchange_code(code: str, state: str) -> bool:
-    """Callback OAuth : vérifie le state, échange le code, stocke le token."""
+def exchange_code(code: str, state: str) -> str:
+    """Callback OAuth : vérifie le state, échange le code, stocke le token.
+    Renvoie le refresh_token (str) pour l'afficher à l'admin, ou '' si échec."""
     if DB_CONN is None:
-        return False
+        return ""
     with DB_LOCK:
         row = DB_CONN.execute(
             "SELECT state FROM google_state ORDER BY created_at DESC LIMIT 1"
         ).fetchone()
     if not row or row[0] != state:
-        return False
+        return ""
     resp = requests.post(API_TOKEN_URL, data={
         "code": code,
         "client_id": GOOGLE_CLIENT_ID,
@@ -161,10 +169,10 @@ def exchange_code(code: str, state: str) -> bool:
         "grant_type": "authorization_code",
     }, timeout=30)
     if resp.status_code != 200:
-        return False
+        return ""
     refresh = resp.json().get("refresh_token", "")
     if not refresh:
-        return False
+        return ""
     with DB_LOCK:
         DB_CONN.execute(
             "INSERT INTO google_token (id, refresh_token, updated_at) VALUES (1,?,?)"
@@ -173,23 +181,65 @@ def exchange_code(code: str, state: str) -> bool:
             (refresh, _now()),
         )
         DB_CONN.commit()
-    return True
+    return refresh
+
+
+CALENDAR_EVENTS_URL = "https://www.googleapis.com/calendar/v3/calendars/primary/events"
+
+
+def create_calendar_event(summary: str, start_dt, minutes: int = 30,
+                           description: str = "",
+                           tz_offset_hours: int = 1) -> str:
+    """Crée un événement dans le calendrier Google principal de l'admin.
+    start_dt : datetime naïf (heure agence). tz_offset_hours : décalage
+    (défaut Maroc UTC+1). Renvoie l'id de l'événement, ou '' si échec."""
+    from datetime import timedelta, timezone
+    token = get_access_token()
+    if not token:
+        return ""
+    tz = timezone(timedelta(hours=tz_offset_hours))
+    start = start_dt.replace(tzinfo=tz).isoformat()
+    end = (start_dt + timedelta(minutes=minutes)).replace(tzinfo=tz).isoformat()
+    body = {"summary": summary[:200], "description": description[:500],
+            "start": {"dateTime": start, "timeZone": "Africa/Casablanca"},
+            "end": {"dateTime": end, "timeZone": "Africa/Casablanca"}}
+    try:
+        resp = requests.post(CALENDAR_EVENTS_URL,
+                             headers={"Authorization": f"Bearer {token}"},
+                             json=body, timeout=30)
+        if resp.status_code in (200, 201):
+            return resp.json().get("id", "")
+        logger.error("Création événement Calendar refusée : %s", resp.text[:200])
+    except requests.RequestException:
+        logger.warning("Création événement Calendar impossible", exc_info=True)
+    return ""
 
 
 def get_access_token() -> str:
-    """Access token (rafraîchi automatiquement depuis le refresh token)."""
+    """Access token (rafraîchi automatiquement depuis le refresh token).
+
+    RÈGLE BOSS (02/10) : le disque Railway est éphémère, le refresh token
+    stocké en SQLite disparaît à chaque redéploiement. Fallback sur la
+    variable d'env GOOGLE_REFRESH_TOKEN (renseignée une fois par l'admin
+    après /google) pour garantir la survie du lien entre redémarrages."""
     global _access_token, _token_expiry
     import time
     if _access_token and time.time() < _token_expiry:
         return _access_token
-    if DB_CONN is None:
-        return ""
-    with DB_LOCK:
-        row = DB_CONN.execute("SELECT refresh_token FROM google_token WHERE id = 1").fetchone()
-    if not row:
+    refresh = ""
+    if DB_CONN is not None:
+        with DB_LOCK:
+            row = DB_CONN.execute(
+                "SELECT refresh_token FROM google_token WHERE id = 1"
+            ).fetchone()
+        if row:
+            refresh = row[0]
+    if not refresh:
+        refresh = os.getenv("GOOGLE_REFRESH_TOKEN", "").strip()
+    if not refresh:
         return ""
     resp = requests.post(API_TOKEN_URL, data={
-        "refresh_token": row[0],
+        "refresh_token": refresh,
         "client_id": GOOGLE_CLIENT_ID,
         "client_secret": GOOGLE_CLIENT_SECRET,
         "grant_type": "refresh_token",
@@ -277,10 +327,17 @@ def hook(table: str, fields: dict) -> None:
 _PAGE_OK = (
     "<!DOCTYPE html><html><head><meta charset='utf-8'>"
     "<title>Google lié</title></head>"
-    "<body style='font-family:sans-serif;text-align:center;padding-top:60px'>"
+    "<body style='font-family:sans-serif;text-align:center;padding-top:40px'>"
     "<h2>✅ Ton compte Google est lié au bot !</h2>"
-    "<p>Sheets et Contacts sont maintenant actifs.<br>"
-    "Tu peux fermer cette page et revenir sur Telegram.</p></body></html>"
+    "<p>Sheets, Contacts, Drive et Calendar sont actifs.</p>"
+    "<p style='margin-top:20px'><b>🔑 ÉTAPE OBLIGATOIRE (une seule fois) :</b><br>"
+    "Copie ce refresh token et colle-le dans Railway →<br>"
+    "<b>Variables → GOOGLE_REFRESH_TOKEN</b><br>"
+    "(il survivra aux redéploiements, contrairement à la mémoire locale)</p>"
+    "<textarea readonly rows='3' cols='60' "
+    "style='font-family:monospace;font-size:12px;margin-top:10px'>{refresh}</textarea>"
+    "<p style='margin-top:20px'>Tu peux fermer cette page et revenir sur Telegram.</p>"
+    "</body></html>"
 )
 _PAGE_KO = (
     "<!DOCTYPE html><html><head><meta charset='utf-8'>"
@@ -303,8 +360,11 @@ class _OAuthHandler(BaseHTTPRequestHandler):
         state = (qs.get("state") or [""])[0]
         error = (qs.get("error") or [""])[0]
         page = _PAGE_KO
-        if code and state and not error and exchange_code(code, state):
-            page = _PAGE_OK
+        refresh = ""
+        if code and state and not error:
+            refresh = exchange_code(code, state)
+            if refresh:
+                page = _PAGE_OK.format(refresh=refresh)
         body = page.encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")

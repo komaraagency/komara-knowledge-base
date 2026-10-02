@@ -66,7 +66,9 @@ print("── BASE VIDE AU DÉMARRAGE ──")
 with patch.object(memory_sheets, "load_learned", sheet.load_learned):
     rag_bot.init_memory_db()
 fr = rag_bot.LANG_RESOURCES["fr"]
-check("kb vide (corpus retiré du repo)", fr["kb"] == [], len(fr["kb"]))
+check("corpus retiré (kb.json absent), seed Aya chargée",
+      not (rag_bot.BASE_DIR / "kb.json").exists() and len(fr["kb"]) >= 20,
+      len(fr["kb"]))
 check("faq vide", fr["faq"] == [], len(fr["faq"]))
 check("dialogues vides", fr["dialogues"] == [], len(fr["dialogues"]))
 check("kb.json absent du repo", not (rag_bot.BASE_DIR / "kb.json").exists())
@@ -106,8 +108,10 @@ check("réponse apprise servie au client",
 with patch.object(memory_sheets, "save_learned", sheet.save_learned):
     actions._admin_apprends(FakeBot(), 99999,
                             "vous livrez a kindia || Non, seulement Conakry.", "fr")
-check("réapprendre = remplace (1 dialogue actif)",
-      len(knowledge_store._CUSTOM_ROWS) == 1, knowledge_store._CUSTOM_ROWS)
+# la question enseignée est SIMILAIRE au seed 'livrez vous à kindia'
+# → elle le REMPLACE (runtime) : on garde 20 dialogues actifs, pas 21.
+check("réapprendre similaire remplace le seed (20 actifs)",
+      len(knowledge_store._CUSTOM_ROWS) == 20, len(knowledge_store._CUSTOM_ROWS))
 r2 = rag_bot.trouver_meilleure_reponse_multilingue("vous livrez a kindia ?", "fr")
 check("la NOUVELLE réponse est servie", r2 is not None and "Conakry" in r2, str(r2)[:80])
 

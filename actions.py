@@ -160,7 +160,7 @@ TRIGGERS: dict[str, set[str]] = {
     },
 }
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -1030,6 +1030,17 @@ def _step_rdv(bot, chat_id: int, step: str, data: dict, text: str, lang: str) ->
             "topic": data.get("topic", ""), "slot": label, "slot_iso": slot_iso,
             "created_at": _now(),
         })
+        # Événement Google Calendar (silencieux si non lié)
+        try:
+            from google_link import create_calendar_event
+            create_calendar_event(
+                f"RDV Komara 🇬🇳 — {data.get('name', '')} : {data.get('topic', '')}",
+                datetime.fromisoformat(slot_iso), 30,
+                description=f"Client Telegram chat_id {chat_id}",
+                tz_offset_hours=TIMEZONE_OFFSET,
+            )
+        except Exception:
+            logger.debug("Création événement Calendar ignorée", exc_info=True)
         # Mémoire longue : fiche client + historique
         upsert_client(
             chat_id, name=data.get("name", ""),
@@ -1723,6 +1734,43 @@ def _admin_msg(bot, chat_id: int, args: str, lang: str) -> bool:
     return True
 
 
+def _send_kb_templates(bot, chat_id: int) -> None:
+    """Admin : envoie 3 modèles prêts à remplir (FAQ, CSV, JSON) pour
+    /kb_import. L'admin les remplit et les renvoie en pièce jointe."""
+    import io
+    faq = (
+        "# Modèle FAQ — une question par bloc\n\n"
+        "Q: vous livrez à Kindia ?\n"
+        "A: Oui, partout en Guinée 🇬🇳 livraison offerte !\n\n"
+        "Q: combien coûte un logo ?\n"
+        "A: 300 000 à 500 000 GNF selon la complexité.\n\n"
+        "Q: quel est le délai ?\n"
+        "A: Logo 2-3 jours, affiche 24-48h, site 7 jours.\n"
+    )
+    csv = (
+        "question;rponse\n"
+        "vous livrez a kindia;Oui, partout en Guinée 🇬🇳\n"
+        "combien coute un logo;300 000 à 500 000 GNF\n"
+        "quel delai;Logo 2-3 jours, affiche 24-48h\n"
+    )
+    js = (
+        '[\n'
+        '  {"q": "vous livrez a kindia", "a": "Oui, partout en Guinée 🇬🇳"},\n'
+        '  {"q": "combien coute un logo", "a": "300 000 a 500 000 GNF"}\n'
+        ']\n'
+    )
+    for name, body, ext in (("modele_FAQ", faq, ".txt"),
+                            ("modele_QR", csv, ".csv"),
+                            ("modele", js, ".json")):
+        try:
+            bot.send_document(chat_id,
+                              io.BytesIO(body.encode("utf-8")),
+                              visible_file_name=name + ext,
+                              caption=f"Modèle {ext.upper()} — remplis-le et renvoie-le 📥")
+        except Exception:
+            logger.warning("Envoi modèle %s échoué", ext, exc_info=True)
+
+
 def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = "fr") -> bool:
     # Fail-closed : sans ADMIN_CHAT_ID configuré, personne n'a accès
     # (même le propriétaire) — jamais l'inverse.
@@ -1756,6 +1804,10 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
     if command == "/kb_import":
         import kb_import
         bot.send_message(chat_id, kb_import.USAGE)
+        return True
+
+    if command in ("/kb_modele", "/modeles"):
+        _send_kb_templates(bot, chat_id)
         return True
 
     if command in {"/produit", "/produits"}:

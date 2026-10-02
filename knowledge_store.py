@@ -53,6 +53,9 @@ def initialize_resources(resources: dict, loader: Callable) -> dict:
             _CUSTOM_ROWS = []
         for lang, target in LANG_RESOURCES.items():
             _apply_purge(target, lang)
+        # La dernière version enseignée d'une question similaire gagne
+        # (append-only côté Sheet = audit ; runtime = version active).
+        _CUSTOM_ROWS = _dedupe_similar_rows(_CUSTOM_ROWS)
         for row in _CUSTOM_ROWS:
             target = LANG_RESOURCES.get(row.get("lang", "fr")) or LANG_RESOURCES.get("fr")
             if target and isinstance(target.get("kb"), list):
@@ -139,6 +142,42 @@ def _similar_question_exists_unlocked(question: str, lang: str = "fr") -> tuple[
     return None
 
 
+def _questions_similar(q1: str, q2: str) -> bool:
+    """Deux questions sont-elles 'similaires' (même réponse attendue) ?
+    Critère identique à _similar_question_exists_unlocked : égalité
+    normalisée OU recouvrement >= 80% des mots porteurs de la nouvelle."""
+    from normalize_text import normalize_text as _norm
+    a, b = _norm(q1 or "").strip(), _norm(q2 or "").strip()
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    ta, tb = _content_tokens(a), _content_tokens(b)
+    if not ta or not tb:
+        return False
+    inter = len(ta & tb)
+    # couverture bidirectionnelle (la + courte couvre la + longue à 80%)
+    return inter and inter / min(len(ta), len(tb)) >= 0.8
+
+
+def _dedupe_similar_rows(rows: list) -> list:
+    """Garde la DERNIÈRE version de chaque question similaire (la plus
+    récente enseignée gagne). Append-only côté Sheet = piste d'audit ;
+    en runtime on ne garde que la version active."""
+    result: list = []
+    for row in rows:
+        replaced = False
+        for i, kept in enumerate(result):
+            if _questions_similar(str(kept.get("question", "")),
+                                  str(row.get("question", ""))):
+                result[i] = row
+                replaced = True
+                break
+        if not replaced:
+            result.append(row)
+    return result
+
+
 def similar_question_exists(question: str, lang: str = "fr") -> str | None:
     with _LOCK:
         found = _similar_question_exists_unlocked(question, lang)
@@ -192,17 +231,13 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
         from memory_sheets import save_learned
         save_learned(question, answer, lang)
 
-        # Publication runtime : remplace la version précédente de la question.
-        replaced = False
-        rows = []
-        for row in _CUSTOM_ROWS:
-            if row.get("question", "").strip().casefold() == question.strip().casefold():
-                rows.append({**row, "question": question, "answer": answer, "lang": lang})
-                replaced = True
-            else:
-                rows.append(row)
-        if not replaced:
-            rows = _CUSTOM_ROWS + [{"question": question, "answer": answer, "lang": lang}]
+        # Publication runtime : retire TOUTE question similaire (pas juste
+        # l'exacte) puis ajoute la nouvelle — la réponse la plus récente
+        # enseignée par le boss gagne toujours.
+        rows = [r for r in _CUSTOM_ROWS
+                if not _questions_similar(str(r.get("question", "")), question)]
+        replaced = len(rows) < len(_CUSTOM_ROWS)  # une question similaire a été retirée
+        rows.append({"question": question, "answer": answer, "lang": lang})
         _CUSTOM_ROWS = rows
 
         for lg in {lang, matched_lang}:
@@ -246,10 +281,14 @@ def learn_entries_batch(entries, lang: str = "fr") -> dict:
         rows = [[_now(), lang, q[:200], a[:1500]] for q, a in cleaned]
         if not append_rows("Dialogues", rows):
             raise RuntimeError("Écriture des dialogues dans Google Sheets impossible")
-        # publication runtime (remplace les versions précédentes)
-        existing = {r.get("question", "").strip().casefold(): r for r in _CUSTOM_ROWS}
+        # publication runtime : retire les questions similaires aux nouvelles
+        # (réponse la plus récente gagne), puis ajoute les nouvelles.
+        new_qs = {q.casefold() for q, _ in cleaned}
+        rows = [r for r in _CUSTOM_ROWS
+                if not any(_questions_similar(str(r.get("question", "")), q)
+                           for q, _ in cleaned)]
         for q, a in cleaned:
-            existing[q.casefold()] = {"question": q, "answer": a, "lang": lang}
-        _CUSTOM_ROWS = list(existing.values())
+            rows.append({"question": q, "answer": a, "lang": lang})
+        _CUSTOM_ROWS = rows
         refresh_resources(lang)
         return {"added": len(cleaned), "lang": lang}

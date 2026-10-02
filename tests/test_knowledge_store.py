@@ -162,11 +162,12 @@ class EmptyBaseStartupTests(unittest.TestCase):
         code = ("import sys, json; sys.path.insert(0, '');\n"
                 "import rag_bot\n"
                 "fr = rag_bot.LANG_RESOURCES['fr']\n"
-                "assert fr['kb'] == [], fr['kb'][:2]\n"
+                # corpus retiré du repo (zéro donnée) ; le seed Aya charge 20 Q/R
                 "assert fr['faq'] == [], fr['faq'][:2]\n"
                 "assert fr['dialogues'] == [], fr['dialogues'][:2]\n"
                 "assert not (rag_bot.BASE_DIR / 'kb.json').exists()\n"
                 "assert not (rag_bot.BASE_DIR / 'dialogues').exists()\n"
+                "assert len(fr['kb']) >= 20 and all(f.get('category')=='custom' for f in fr['kb']), fr['kb'][:2]\n"
                 "print('EMPTY_BASE_OK')")
         result = subprocess.run([sys.executable, '-c', code], env=env,
                                 cwd=str(ROOT), capture_output=True, text=True, timeout=120)

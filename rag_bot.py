@@ -33,6 +33,8 @@ import commercial_cron
 import catalogue
 import kb_import
 import google_link
+import portfolio_drive
+import aya_seed
 import osm_maps
 import backup_drive
 import weekly_report
@@ -494,6 +496,12 @@ def _load_merged_resources(lang_code: str) -> dict[str, Any]:
 
 
 LANG_RESOURCES = knowledge_store.initialize_resources(LANG_RESOURCES, _load_merged_resources)
+try:
+    _seed = aya_seed.ensure_seed("fr")
+    logger.info("Seed Aya : %s Q/R chargées (%s persistées)",
+                _seed["loaded"], _seed["persisted"])
+except Exception:
+    logger.warning("Seed Aya non chargée", exc_info=True)
 
 
 def refresh_resources(lang_code: str) -> None:
@@ -1361,17 +1369,27 @@ add_custom_kb_entry = knowledge_store.add_custom_kb_entry
 
 PORTFOLIO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-def portfolio_images() -> list[tuple[str, Path]]:
-    images: list[tuple[str, Path]] = []
-    if not PORTFOLIO_DIR.is_dir():
-        return images
-    for entry in sorted(PORTFOLIO_DIR.iterdir()):
-        if entry.is_file() and entry.suffix.lower() in PORTFOLIO_EXTENSIONS:
-            # Le préfixe numérique ("01_", "02_"...) sert seulement à fixer
-            # l'ordre alphabétique de tri ; on le masque à l'affichage.
-            stem = re.sub(r"^\d+[_\-]", "", entry.stem)
-            display_name = stem.replace("_", " ").replace("-", " ").strip()
-            images.append((display_name, entry))
+def portfolio_images() -> list[tuple[str, object]]:
+    """Liste le portfolio : Drive d'abord (source durable), dossier local
+    en fallback (dev). Chaque entrée = (nom_affiché, source) où source est
+    ("drive", file_id) ou ("local", Path)."""
+    images: list[tuple[str, object]] = []
+    # 1. Google Drive (source principale, persistante)
+    try:
+        for f in portfolio_drive.list_images():
+            name = f.get("name", "image")
+            stem = re.sub(r"^\d+[_\-]", "", name.rsplit(".", 1)[0])
+            display = stem.replace("_", " ").replace("-", " ").strip() or name
+            images.append((display, ("drive", f.get("id", ""))))
+    except Exception:
+        logger.debug("Portfolio Drive indisponible", exc_info=True)
+    # 2. Dossier local (fallback dev / hors-ligne)
+    if PORTFOLIO_DIR.is_dir():
+        for entry in sorted(PORTFOLIO_DIR.iterdir()):
+            if entry.is_file() and entry.suffix.lower() in PORTFOLIO_EXTENSIONS:
+                stem = re.sub(r"^\d+[_\-]", "", entry.stem)
+                display_name = stem.replace("_", " ").replace("-", " ").strip()
+                images.append((display_name, ("local", entry)))
     return images
 
 def portfolio_keyboard() -> ReplyKeyboardMarkup:
@@ -1401,14 +1419,24 @@ def send_portfolio(chat_id: int, lang: str) -> None:
     bot.send_message(chat_id, "\n".join(lines), reply_markup=portfolio_keyboard())
 
 def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
-    """Envoie l'image du portfolio à la position `index` (1-based)."""
+    """Envoie l'image du portfolio à la position `index` (1-based).
+    Gère les sources Drive (téléchargement) et locale (fichier)."""
     images = portfolio_images()
     if not (1 <= index <= len(images)):
         return False
-    name, path = images[index - 1]
+    name, source = images[index - 1]
     try:
-        with path.open("rb") as image_file:
-            bot.send_photo(chat_id, image_file, caption=f"📷 {name}")
+        import io
+        if isinstance(source, tuple) and source[0] == "drive":
+            data = portfolio_drive.download_image(source[1])
+            if not data:
+                bot.send_message(chat_id, "⚠️ Image indisponible sur Drive.")
+                return False
+            bot.send_photo(chat_id, io.BytesIO(data), caption=f"📷 {name}")
+        else:  # local
+            path = source
+            with path.open("rb") as image_file:
+                bot.send_photo(chat_id, image_file, caption=f"📷 {name}")
         bot.send_message(
             chat_id,
             "Une autre réalisation t'intéresse ? Numéro ou titre 👇",
@@ -1416,11 +1444,11 @@ def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
         )
         return True
     except Exception:
-        logger.exception("Échec d'envoi de l'image portfolio %s", path.name)
+        logger.exception("Échec d'envoi de l'image portfolio %s", name)
         return False
 
 def send_portfolio_image(chat_id: int, display_name: str, lang: str) -> bool:
-    for i, (name, _path) in enumerate(portfolio_images(), start=1):
+    for i, (name, _src) in enumerate(portfolio_images(), start=1):
         if name.lower() == display_name.lower():
             return send_portfolio_image_by_index(chat_id, i, lang)
     return False
@@ -1471,6 +1499,29 @@ def _handle_message(message: telebot.types.Message) -> None:
     # génère JAMAIS un QR, elle est TOUJOURS scannée (et inversement
     # pour 'payer' en texte). Les 2 ne tournent jamais ensemble.
     if getattr(message, "photo", None):
+        # ADMIN : la photo est une réalisation → portfolio Drive.
+        if actions.ADMIN_CHAT_ID and chat_id == actions.ADMIN_CHAT_ID:
+            safe_typing(chat_id)
+            try:
+                _f = bot.get_file(message.photo[-1].file_id)
+                _data = bot.download_file(_f.file_path)
+                from datetime import datetime
+                _name = f"portfolio_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.jpg"
+                _id = portfolio_drive.upload_image(_name, _data)
+                if _id:
+                    bot.send_message(chat_id,
+                        f"📸 Enregistrée dans le portfolio Drive ✅\n"
+                        f"Fichier : {_name}\n"
+                        f"Elle apparaîtra dans le bouton 📂 Portfolio.")
+                else:
+                    bot.send_message(chat_id,
+                        "⚠️ Google non lié — lance /google pour activer le "
+                        "portfolio Drive. Photo non sauvegardée.")
+            except Exception as e:
+                logger.error("Upload portfolio admin impossible : %s", e)
+                bot.send_message(chat_id, msg("fr", "crash_fallback"))
+            return
+        # CLIENT : scan du QR de paiement.
         safe_typing(chat_id)
         try:
             _f = bot.get_file(message.photo[-1].file_id)
