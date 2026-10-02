@@ -1,27 +1,49 @@
-"""Durable learning and the actual script startup, without Telegram network calls."""
+"""Durable learning via Google Sheets (memory_sheets) — RÈGLE BOSS 02/10 :
+zéro fichier local, zéro GitHub, zéro disque Railway. Un faux backend
+memory_sheets simule le tableur dédié « Komara Bot - Mémoire »."""
 import copy
-from concurrent.futures import ThreadPoolExecutor
-import json
-import os
-from pathlib import Path
-import subprocess
 import sys
-import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 import knowledge_store as store
+import memory_sheets
 
 
-class KnowledgeStoreTests(unittest.TestCase):
+class FakeSheets:
+    """Backend en RAM : simule le tableur Google (append-only)."""
+    def __init__(self):
+        self.dialogues = []
+        self.failing = False
+        self.calls = 0
+
+    # patch points : save_learned / load_learned appelés par le store
+    def save_learned(self, question, answer, lang):
+        self.calls += 1
+        if self.failing:
+            raise RuntimeError("Google non lié (test)")
+        self.dialogues.append({"question": question, "answer": answer,
+                               "lang": lang, "date": f"t{self.calls}"})
+
+    def load_learned(self):
+        # dédoublonne comme le vrai module : la version la plus récente gagne
+        learned = {}
+        for row in self.dialogues:
+            learned[row["question"].strip().casefold()] = row
+        return list(learned.values())
+
+
+class SheetsStoreTests(unittest.TestCase):
     def setUp(self):
-        self.directory = tempfile.TemporaryDirectory(prefix='komara-store-test-')
-        self.addCleanup(self.directory.cleanup)
-        self.env = patch.dict(os.environ, {'ACTIONS_DIR': self.directory.name})
-        self.env.start()
-        self.addCleanup(self.env.stop)
+        self.fake = FakeSheets()
+        self._save = patch.object(memory_sheets, 'save_learned', self.fake.save_learned)
+        self._load = patch.object(memory_sheets, 'load_learned', self.fake.load_learned)
+        self._save.start(); self._load.start()
+        self.addCleanup(self._save.stop); self.addCleanup(self._load.stop)
         self.reset_store()
         self.resources = {'fr': {'kb': [], 'faq': [], 'dialogues': []},
                           'en': {'kb': [], 'faq': [], 'dialogues': []}}
@@ -29,7 +51,6 @@ class KnowledgeStoreTests(unittest.TestCase):
                                    lambda lang: copy.deepcopy(self.resources[lang]))
         self.question = 'livraison zephyrville mardi'
         self.answer = 'UNIQUE_LEARNED_4829'
-        self.path = Path(self.directory.name) / 'kb_custom.json'
 
     def reset_store(self):
         store.LANG_RESOURCES.clear()
@@ -37,77 +58,43 @@ class KnowledgeStoreTests(unittest.TestCase):
         store._INITIALIZED = False
         store._REFRESH_LOADER = None
 
-    def test_learning_is_persisted_and_immediately_visible(self):
+    def test_learning_goes_to_sheets_and_runtime(self):
         result = store.learn_entry(self.question, self.answer)
         self.assertTrue(result['added'])
+        self.assertEqual(len(self.fake.dialogues), 1)
+        self.assertEqual(self.fake.dialogues[0]['answer'], self.answer)
         self.assertEqual(store.LANG_RESOURCES['fr']['kb'][0]['answer'], self.answer)
-        self.assertEqual(json.loads(self.path.read_text())[0]['answer'], self.answer)
 
-    def test_restart_reloads_durable_learning(self):
+    def test_restart_reloads_from_sheets(self):
         store.learn_entry(self.question, self.answer)
         self.reset_store()
         store.initialize_resources(copy.deepcopy(self.resources),
                                    lambda lang: copy.deepcopy(self.resources[lang]))
         self.assertEqual(store.LANG_RESOURCES['fr']['kb'][0]['answer'], self.answer)
 
-    def test_write_failure_does_not_publish_runtime_entry(self):
-        with patch.object(store, '_atomic_write', side_effect=PermissionError('test')):
-            with self.assertRaises(PermissionError):
-                store.learn_entry(self.question, self.answer)
-        self.assertEqual(store.LANG_RESOURCES['fr']['kb'], [])
-        self.assertFalse(self.path.exists())
-
-    def test_corrupt_file_is_never_overwritten(self):
-        self.path.write_text('{broken JSON')
-        with self.assertRaises(json.JSONDecodeError):
+    def test_sheets_failure_publishes_nothing(self):
+        self.fake.failing = True
+        with self.assertRaises(RuntimeError):
             store.learn_entry(self.question, self.answer)
-        self.assertEqual(self.path.read_text(), '{broken JSON')
         self.assertEqual(store.LANG_RESOURCES['fr']['kb'], [])
+        self.assertEqual(store._CUSTOM_ROWS, [])
 
-    def test_invalid_file_schema_is_preserved(self):
-        self.path.write_text('{"keep": "original"}')
-        with self.assertRaises(ValueError):
-            store.learn_entry(self.question, self.answer)
-        self.assertEqual(self.path.read_text(), '{"keep": "original"}')
-
-    def test_atomic_replace_failure_preserves_existing_file(self):
-        store.learn_entry(self.question, self.answer)
-        before = self.path.read_bytes()
-        with patch.object(store.os, 'replace', side_effect=PermissionError('test')):
-            with self.assertRaises(PermissionError):
-                store.learn_entry('astronomie quasar nebuleuse', 'OTHER')
-        self.assertEqual(self.path.read_bytes(), before)
-        self.assertEqual(len(store.LANG_RESOURCES['fr']['kb']), 1)
-        self.assertEqual(list(self.path.parent.glob('.kb_custom_*.tmp')), [])
-
-    def test_invalid_language_metadata_does_not_crash_startup(self):
-        self.path.write_text('[{"question":"hello","answer":"world","lang":[]}]')
-        self.reset_store()
-        with self.assertLogs('komara.knowledge', level='ERROR'):
-            store.initialize_resources(copy.deepcopy(self.resources), lambda _: {})
-        self.assertEqual(store.LANG_RESOURCES['fr']['kb'], [])
-        self.assertTrue(self.path.exists())
-
-    def test_duplicate_updates_answer_in_place(self):
-        # RÈGLE BOSS (02/10) : réapprendre une question déjà connue ne
-        # bloque plus — ça REMPLACE la réponse, sans créer de doublon.
+    def test_duplicate_updates_answer_no_dupe_rows(self):
         store.learn_entry(self.question, self.answer)
         result = store.learn_entry(self.question, 'OTHER')
-        self.assertTrue(result['added'])
         self.assertTrue(result['updated'])
-        rows = json.loads(self.path.read_text())
-        self.assertEqual(len(rows), 1)
-        self.assertEqual(rows[0]['answer'], 'OTHER')
+        self.assertEqual(len(store._CUSTOM_ROWS), 1)
+        self.assertEqual(store._CUSTOM_ROWS[0]['answer'], 'OTHER')
         self.assertEqual(len(store.LANG_RESOURCES['fr']['kb']), 1)
         self.assertEqual(store.LANG_RESOURCES['fr']['kb'][0]['answer'], 'OTHER')
 
-    def test_parallel_duplicate_requests_add_only_once(self):
+    def test_parallel_duplicates_one_row(self):
         with ThreadPoolExecutor(max_workers=5) as pool:
-            results = list(pool.map(lambda _: store.learn_entry(self.question, self.answer), range(10)))
-        self.assertEqual(sum(result['added'] for result in results), 10)
-        # Invariant qui compte sous concurrence : jamais de doublon créé,
-        # même quand 10 écritures identiques se chevauchent.
-        self.assertEqual(len(json.loads(self.path.read_text())), 1)
+            results = list(pool.map(
+                lambda _: store.learn_entry(self.question, self.answer), range(10)))
+        # jamais de doublon en RAM, quel que soit l'entrelacement des append
+        self.assertEqual(len(store._CUSTOM_ROWS), 1)
+        self.assertTrue(all(r['added'] for r in results))
 
     def test_refresh_preserves_durable_entries(self):
         store.learn_entry(self.question, self.answer)
@@ -122,48 +109,72 @@ class KnowledgeStoreTests(unittest.TestCase):
         self.assertIs(returned, shared)
         self.assertEqual(returned['fr']['kb'][0]['answer'], self.answer)
 
-    def test_actual_script_globals_and_admin_share_learning(self):
-        harness = r'''
-import ast, json, os, sys
-from pathlib import Path
-root=Path(sys.argv[1]);sys.path.insert(0,str(root))
-source=ast.parse((root/'rag_bot.py').read_text())
-source.body=[node for node in source.body if not (isinstance(node,ast.If) and ast.unparse(node.test)=="__name__ == '__main__'")]
-active={'__name__':'__main__','__file__':str(root/'rag_bot.py')}
-exec(compile(source,str(root/'rag_bot.py'),'exec'),active)
-import actions
-sent=[]
-class FakeBot:
-    def send_message(self,chat,text,**kwargs):sent.append(text)
-q='livraison zephyrville mardi';a='UNIQUE_LEARNED_4829'
-actions._admin_apprends(FakeBot(),99999,q+' || '+a,'fr')
-assert any('✅ Connaissance ajoutée' in text for text in sent),sent
-assert 'rag_bot' not in sys.modules,'Admin must not reimport the Telegram entrypoint'
-assert active['trouver_meilleure_reponse_multilingue'](q,'fr')==a
-import rag_bot
-assert active['LANG_RESOURCES'] is rag_bot.LANG_RESOURCES
-assert active['trouver_meilleure_reponse_multilingue'](q,'fr')==a
-assert json.loads((Path(os.environ['ACTIONS_DIR'])/'kb_custom.json').read_text())[0]['answer']==a
-# A second independent question fails to save: no false success and no runtime publication.
-import knowledge_store
-from unittest.mock import patch
-sent.clear()
-with patch.object(knowledge_store,'_atomic_write',side_effect=PermissionError('test')):
-    actions._admin_apprends(FakeBot(),99999,'astronomie quasar nebuleuse || NOT_SAVED','fr')
-assert sent and not any('✅' in text for text in sent),sent
-assert active['trouver_meilleure_reponse_multilingue']('astronomie quasar nebuleuse','fr') is None
-print('SCRIPT_STARTUP_AND_SAVE_FAILURE_OK')
-'''
-        env = {key: value for key, value in os.environ.items()
-               if key in ('PATH', 'HOME', 'LANG', 'LC_ALL')}
-        with tempfile.TemporaryDirectory(prefix='komara-startup-test-') as directory:
-            env.update(TELEGRAM_TOKEN='123:TEST', ADMIN_CHAT_ID='99999',
-                       ACTIONS_DIR=directory, MEMORY_DIR=directory, LOG_LEVEL='CRITICAL')
-            result = subprocess.run([sys.executable, '-c', harness, str(ROOT)],
-                                    env=env, cwd=ROOT, capture_output=True, text=True, timeout=60)
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn('SCRIPT_STARTUP_AND_SAVE_FAILURE_OK', result.stdout)
+    def test_batch_import_single_append(self):
+        entries = [(f'question {i}', f'reponse {i}') for i in range(5)]
+        with patch.object(memory_sheets, 'get_memory_sheet_id', return_value='SID'), \
+             patch.object(memory_sheets, 'append_rows',
+                          side_effect=lambda tab, rows: self.fake.dialogues.extend(
+                              {'question': r[2], 'answer': r[3], 'lang': r[1], 'date': r[0]}
+                              for r in rows) or True), \
+             patch.object(memory_sheets, '_now', return_value='t0'):
+            report = store.learn_entries_batch(entries, 'fr')
+        self.assertEqual(report['added'], 5)
+        self.assertEqual(len(store._CUSTOM_ROWS), 5)
+        self.assertEqual(len(store.LANG_RESOURCES['fr']['kb']), 5)
 
+    def test_batch_without_google_raises(self):
+        with patch.object(memory_sheets, 'get_memory_sheet_id', return_value=''):
+            with self.assertRaises(RuntimeError):
+                store.learn_entries_batch([('q', 'a')], 'fr')
+        self.assertEqual(store._CUSTOM_ROWS, [])
+
+    def test_no_local_files_created(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            store.learn_entry(self.question, self.answer, directory=d)
+            self.assertEqual(list(Path(d).iterdir()), [])  # AUCUN kb_custom.json
+
+
+class MemorySheetsOfflineTests(unittest.TestCase):
+    """Sans compte Google lié : rien n'est écrit, tout échoue proprement."""
+    def test_append_rows_false_without_link(self):
+        self.assertFalse(memory_sheets.append_rows("Dialogues", [["a", "b"]]))
+
+    def test_read_rows_empty_without_link(self):
+        self.assertEqual(memory_sheets.read_rows("Dialogues"), [])
+
+    def test_save_learned_raises_without_link(self):
+        with self.assertRaises(RuntimeError):
+            memory_sheets.save_learned('q', 'a', 'fr')
+
+    def test_load_learned_empty_without_link(self):
+        self.assertEqual(memory_sheets.load_learned(), [])
+
+
+class EmptyBaseStartupTests(unittest.TestCase):
+    """RÈGLE BOSS (02/10) : le corpus a été retiré du repo. Le bot démarre
+    avec une base VIDE sans crasher (kb.json, dialogues, faq absents)."""
+    def test_rag_bot_boots_with_empty_base(self):
+        import subprocess, os
+        env = {k: v for k, v in os.environ.items() if k in ('PATH', 'HOME', 'LANG')}
+        env.update(TELEGRAM_TOKEN='123:TEST', ADMIN_CHAT_ID='99999',
+                   MEMORY_DIR=str(Path(tempfile.mkdtemp())))
+        code = ("import sys, json; sys.path.insert(0, '');\n"
+                "import rag_bot\n"
+                "fr = rag_bot.LANG_RESOURCES['fr']\n"
+                "assert fr['kb'] == [], fr['kb'][:2]\n"
+                "assert fr['faq'] == [], fr['faq'][:2]\n"
+                "assert fr['dialogues'] == [], fr['dialogues'][:2]\n"
+                "assert not (rag_bot.BASE_DIR / 'kb.json').exists()\n"
+                "assert not (rag_bot.BASE_DIR / 'dialogues').exists()\n"
+                "print('EMPTY_BASE_OK')")
+        result = subprocess.run([sys.executable, '-c', code], env=env,
+                                cwd=str(ROOT), capture_output=True, text=True, timeout=120)
+        self.assertIn('EMPTY_BASE_OK', result.stdout,
+                      f"stdout={result.stdout[-500:]} stderr={result.stderr[-500:]}")
+
+
+import tempfile  # noqa: E402  (utilisé par EmptyBaseStartupTests)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)

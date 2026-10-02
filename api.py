@@ -29,8 +29,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger("komara.api")
 
-with KB_PATH.open("r", encoding="utf-8") as kb_file:
-    KB: dict[str, Any] = json.load(kb_file)
+# RÈGLE BOSS (02/10) : le corpus a été retiré du repo (zéro donnée sur
+# GitHub). kb.json peut être absent — la recherche passe alors sur les
+# dialogues appris (knowledge_store / Google Sheets) au runtime.
+if KB_PATH.is_file():
+    with KB_PATH.open("r", encoding="utf-8") as kb_file:
+        KB: dict[str, Any] = json.load(kb_file)
+else:
+    logger.warning("kb.json absent — recherche sur les dialogues appris (runtime)")
+    KB: dict[str, Any] = {}
 
 BRAND = KB.get("brand", "Komara Agency")
 KNOWLEDGE = KB.get("knowledge", [])
@@ -39,9 +46,6 @@ CONVERSATIONS = KB.get("conversations", [])
 API_KEY = os.getenv("KOMARA_API_KEY", "").strip()
 HEARTBEAT_TIMEOUT = max(30, int(os.getenv("WORKER_HEARTBEAT_TIMEOUT", "180")))
 WORKER_LAST_HEARTBEAT: dict[str, Any] = {}
-
-if not KNOWLEDGE:
-    raise RuntimeError(f"La base de connaissances {KB_PATH} ne contient aucun élément.")
 
 
 def load_local_faq() -> list[dict[str, str]]:

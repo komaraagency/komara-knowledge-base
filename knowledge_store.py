@@ -1,14 +1,15 @@
-"""Shared knowledge state and durable learning, independent of Telegram startup."""
+"""Shared knowledge state and durable learning, independent of Telegram startup.
+
+RÈGLE BOSS (02/10) : AUCUNE donnée ne persiste sur le disque (ni GitHub, ni
+Railway). Les dialogues appris via /apprends vivent dans le Google Sheet
+dédié « Komara Bot - Mémoire » (module memory_sheets) ; la RAM ne sert que
+de cache de publication."""
 from __future__ import annotations
-import json
 import logging
-import os
-from pathlib import Path
 import re
-import tempfile
 import threading
 import uuid
-from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Callable
 
 logger = logging.getLogger("komara.knowledge")
@@ -18,46 +19,6 @@ _LOCK = threading.RLock()
 _INITIALIZED = False
 _REFRESH_LOADER: Callable | None = None
 _CUSTOM_ROWS: list[dict[str, Any]] = []
-# Questions officielles (kb.json/faq/dialogues) neutralisées parce que le
-# boss a réappris une réponse différente pour ce libellé EXACT via
-# /apprends. Clé = langue, valeur = set de questions normalisées.
-_PURGED: dict[str, set[str]] = {}
-
-
-def _custom_path(directory=None) -> Path:
-    return Path(directory if directory is not None else os.getenv("ACTIONS_DIR", str(BASE_DIR / "data"))) / "kb_custom.json"
-
-
-def _purged_path(directory=None) -> Path:
-    return Path(directory if directory is not None else os.getenv("ACTIONS_DIR", str(BASE_DIR / "data"))) / "kb_purged.json"
-
-
-def _read_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        return []
-    rows = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(rows, list):
-        raise ValueError("The learned knowledge file must contain a list")
-    for row in rows:
-        if (not isinstance(row, dict) or not isinstance(row.get("question"), str)
-                or not isinstance(row.get("answer"), str)
-                or not row["question"].strip() or not row["answer"].strip()
-                or ("lang" in row and not isinstance(row["lang"], str))):
-            raise ValueError("Invalid learned knowledge entry; original file preserved")
-    return rows
-
-
-def _read_purged(path: Path) -> dict[str, set[str]]:
-    if not path.exists():
-        return {}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(data, dict):
-            raise ValueError("The purged questions file must contain an object")
-        return {str(lang): set(str(q) for q in qs) for lang, qs in data.items()}
-    except Exception:
-        logger.exception("Purged questions file unreadable; treated as empty")
-        return {}
 
 
 def _make_entry(question: str, answer: str) -> dict[str, Any]:
@@ -66,46 +27,32 @@ def _make_entry(question: str, answer: str) -> dict[str, Any]:
 
 
 def _apply_purge(resources: dict, lang: str) -> None:
-    """Retire des ressources natives (kb/faq/dialogues) toute question que
-    le boss a explicitement remplacée via /apprends (voir learn_entry).
-    Ne touche jamais les fichiers sur disque : agit uniquement sur la
-    publication en mémoire, rejouée à chaque (re)chargement."""
-    purged = _PURGED.get(lang)
-    if not purged:
-        return
-    from normalize_text import normalize_text as _norm
-    for item in resources.get("kb") or []:
-        qs = item.get("questions")
-        if isinstance(qs, list):
-            item["questions"] = [q for q in qs if _norm(str(q)).strip() not in purged]
-        q = item.get("question")
-        if isinstance(q, str) and _norm(q).strip() in purged:
-            item["question"] = ""
-    for src in ("faq", "dialogues"):
-        resources[src] = [item for item in (resources.get(src) or [])
-                          if _norm(str(item.get("question", ""))).strip() not in purged]
+    """Obsolète (02/10) : la base officielle est vide — le boss enseigne TOUT
+    via /apprends. No-op conservé pour compatibilité des appels existants."""
+    return
 
 
 def initialize_resources(resources: dict, loader: Callable) -> dict:
-    """Publish the initial state once, even if the entrypoint is imported twice."""
-    global _INITIALIZED, _REFRESH_LOADER, _CUSTOM_ROWS, _PURGED
+    """Publish the initial state once, even if the entrypoint is imported twice.
+
+    RÈGLE BOSS (02/10) : les dialogues appris sont relus depuis le Google
+    Sheet dédié (memory_sheets.load_learned). Google non lié → base vide,
+    l'admin enseigne tout via /apprends. Aucun fichier local lu ni écrit."""
+    global _INITIALIZED, _REFRESH_LOADER, _CUSTOM_ROWS
     with _LOCK:
         if _INITIALIZED:
             return LANG_RESOURCES
         LANG_RESOURCES.update(resources)
         _REFRESH_LOADER = loader
         try:
-            _PURGED = _read_purged(_purged_path())
+            from memory_sheets import load_learned
+            _CUSTOM_ROWS = load_learned()
+            logger.info("Dialogues appris relus depuis Google Sheets : %s", len(_CUSTOM_ROWS))
         except Exception:
-            logger.exception("Purged questions could not be loaded; treated as empty")
-            _PURGED = {}
+            logger.exception("Dialogues appris illisibles ; base vide (Google non lié ?)")
+            _CUSTOM_ROWS = []
         for lang, target in LANG_RESOURCES.items():
             _apply_purge(target, lang)
-        try:
-            _CUSTOM_ROWS = _read_rows(_custom_path())
-        except Exception:
-            logger.exception("Learned knowledge could not be loaded; original file preserved")
-            _CUSTOM_ROWS = []
         for row in _CUSTOM_ROWS:
             target = LANG_RESOURCES.get(row.get("lang", "fr")) or LANG_RESOURCES.get("fr")
             if target and isinstance(target.get("kb"), list):
@@ -114,13 +61,13 @@ def initialize_resources(resources: dict, loader: Callable) -> dict:
         return LANG_RESOURCES
 
 
+
 def refresh_resources(lang_code: str) -> bool:
     """Reload a language without losing durable learned entries or purges."""
     with _LOCK:
         if not _INITIALIZED or _REFRESH_LOADER is None:
             return False  # import_file can run before the Telegram worker starts
         resources = _REFRESH_LOADER(lang_code)
-        _apply_purge(resources, lang_code)
         for row in _CUSTOM_ROWS:
             if row.get("lang", "fr") == lang_code:
                 resources["kb"].append(_make_entry(row["question"][:200], row["answer"][:1500]))
@@ -214,39 +161,20 @@ def add_custom_kb_entry(question: str, answer: str, lang: str = "fr") -> bool:
         return False
 
 
-def _atomic_write(path: Path, data) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = None
-    try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
-                                         prefix=".kb_write_", suffix=".tmp", delete=False) as handle:
-            temporary = Path(handle.name)
-            json.dump(data, handle, ensure_ascii=False, indent=1)
-            handle.write("\n")
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, path)
-    finally:
-        if temporary is not None:
-            temporary.unlink(missing_ok=True)
-
-
 def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) -> dict:
-    """Serialize duplicate check, durable atomic write and runtime publication.
+    """Serialize duplicate check, durable write and runtime publication.
 
-    RÈGLE BOSS (02/10 — fini le blocage) : si une question similaire existe
-    déjà (apprise par le boss OU dans la base officielle kb.json/faq/
-    dialogues), /apprends REMPLACE sa réponse au lieu de refuser :
-    - similaire apprise par le boss -> sa réponse est mise à jour en place ;
-    - similaire officielle (kb.json/faq/dialogues, jamais modifiée sur
-      disque) -> cette question précise est neutralisée en mémoire
-      (kb_purged.json) et la nouvelle réponse du boss devient la seule
-      servie pour ce libellé exact.
+    RÈGLE BOSS (02/10) : la base de dialogues est ENTIÈREMENT enseignée par
+    l'admin (/apprends). La persistance durable est APPEND-ONLY dans le
+    Google Sheet dédié « Komara Bot - Mémoire » (memory_sheets.save_learned)
+    — jamais de fichier local, jamais sur le dépôt GitHub ni le disque
+    Railway. Au rechargement, la version la plus récente d'une question
+    gagne (l'historique complet sert de piste d'audit à l'admin).
 
-    Failed or corrupt storage raises an error and leaves runtime knowledge
-    unchanged. Callers must never announce success when this method raises.
-    """
-    global _CUSTOM_ROWS, _PURGED
+    Si une question SIMILAIRE existe déjà (apprise par le boss), sa réponse
+    est REMPLACÉE (nouvelle version appendée). Échec de sauvegarde Google →
+    exception, la publication runtime n'a PAS lieu et l'admin est prévenu."""
+    global _CUSTOM_ROWS
     question = str(question or "").strip()[:200]
     answer = str(answer or "").strip()[:1500]
     if not question or not answer:
@@ -256,45 +184,27 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
         if not target or not isinstance(target.get("kb"), list):
             raise RuntimeError("Knowledge base is not loaded")
         found = _similar_question_exists_unlocked(question, lang)
-        path = _custom_path(directory)
-        rows = _read_rows(path)  # Never silently overwrite corrupt/unreadable data.
+        matched_text = found[0] if found else None
+        matched_lang = found[1] if found else lang
 
-        from normalize_text import normalize_text as _norm
-        updated = False
-        matched_text = None
-        matched_lang = lang
-        if found:
-            matched_text, matched_lang = found
-            matched_norm = _norm(matched_text).strip()
-            new_rows = []
-            for row in rows:
-                if _norm(row.get("question", "")).strip() == matched_norm:
-                    new_rows.append({**row, "question": question, "answer": answer,
-                                     "date": datetime.now(timezone.utc).isoformat()})
-                    updated = True
-                else:
-                    new_rows.append(row)
-            if not updated:
-                # La question matchée vient de la base officielle (jamais
-                # modifiée sur disque) : on la neutralise en mémoire et on
-                # ajoute la version du boss comme nouvelle entrée custom.
-                purged_path = _purged_path(directory)
-                purged_data = _read_purged(purged_path)
-                purged_data.setdefault(matched_lang, set()).add(matched_norm)
-                _atomic_write(purged_path, {lg: sorted(qs) for lg, qs in purged_data.items()})
-                _PURGED = purged_data
-                new_rows = rows + [{"question": question, "answer": answer, "lang": lang,
-                                    "date": datetime.now(timezone.utc).isoformat()}]
-        else:
-            new_rows = rows + [{"question": question, "answer": answer, "lang": lang,
-                               "date": datetime.now(timezone.utc).isoformat()}]
+        # Sauvegarde durable EXTERNE (Google Sheets). Lève en cas d'échec →
+        # l'appelant ne doit JAMAIS annoncer un succès non garanti.
+        from memory_sheets import save_learned
+        save_learned(question, answer, lang)
 
-        _atomic_write(path, new_rows)
-        _CUSTOM_ROWS = new_rows
-        # Republie entièrement les langues concernées : relecture des
-        # fichiers natifs + purge + réapplication de TOUT le store custom
-        # (garantit qu'il n'existe jamais deux réponses pour la même
-        # question, ni un doublon en mémoire après une mise à jour).
+        # Publication runtime : remplace la version précédente de la question.
+        replaced = False
+        rows = []
+        for row in _CUSTOM_ROWS:
+            if row.get("question", "").strip().casefold() == question.strip().casefold():
+                rows.append({**row, "question": question, "answer": answer, "lang": lang})
+                replaced = True
+            else:
+                rows.append(row)
+        if not replaced:
+            rows = _CUSTOM_ROWS + [{"question": question, "answer": answer, "lang": lang}]
+        _CUSTOM_ROWS = rows
+
         for lg in {lang, matched_lang}:
             if not refresh_resources(lg):
                 # Pas encore de loader (tests unitaires isolés) : on publie
@@ -302,5 +212,44 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
                 tgt = LANG_RESOURCES.get(lg) or LANG_RESOURCES.get("fr")
                 if tgt and isinstance(tgt.get("kb"), list):
                     tgt["kb"].append(_make_entry(question, answer))
-        return {"added": True, "updated": updated, "question": question,
-                "answer": answer, "replaced": matched_text if found else None}
+        return {"added": True, "updated": bool(replaced or found), "question": question,
+                "answer": answer, "replaced": matched_text}
+
+
+def learn_entries_batch(entries, lang: str = "fr") -> dict:
+    """Version LOT de learn_entry : un seul append Sheets pour N fiches
+    (utilisé par /kb_import). Mêmes garanties : échec Google → exception,
+    aucune publication runtime d'un ajout non persisté."""
+    global _CUSTOM_ROWS
+    cleaned = []
+    seen = set()
+    for q, a in entries:
+        q = str(q or "").strip()[:200]
+        a = str(a or "").strip()[:1500]
+        if not q or not a:
+            continue
+        key = q.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        cleaned.append((q, a))
+    if not cleaned:
+        raise ValueError("No valid entries to learn")
+    with _LOCK:
+        target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
+        if not target or not isinstance(target.get("kb"), list):
+            raise RuntimeError("Knowledge base is not loaded")
+        from memory_sheets import get_memory_sheet_id, append_rows, _now
+        sheet_id = get_memory_sheet_id()
+        if not sheet_id:
+            raise RuntimeError("Google non lié : lance /google avant d'importer")
+        rows = [[_now(), lang, q[:200], a[:1500]] for q, a in cleaned]
+        if not append_rows("Dialogues", rows):
+            raise RuntimeError("Écriture des dialogues dans Google Sheets impossible")
+        # publication runtime (remplace les versions précédentes)
+        existing = {r.get("question", "").strip().casefold(): r for r in _CUSTOM_ROWS}
+        for q, a in cleaned:
+            existing[q.casefold()] = {"question": q, "answer": a, "lang": lang}
+        _CUSTOM_ROWS = list(existing.values())
+        refresh_resources(lang)
+        return {"added": len(cleaned), "lang": lang}

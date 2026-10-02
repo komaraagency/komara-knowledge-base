@@ -279,9 +279,12 @@ AYA2_DIALOGUES_PATH = BASE_DIR / "docs" / "aya2" / "dialogues.json"
 LANG_DIR = BASE_DIR / "lang"
 
 def load_knowledge_base() -> dict[str, Any]:
+    """RÈGLE BOSS (02/10) : le corpus de dialogues a été ENTIÈREMENT retiré
+    du repo (aucune donnée sur GitHub). kb.json peut être absent : la base
+    est alors vide, le boss enseigne tout via /apprends (Google Sheets)."""
     if not KB_PATH.is_file():
-        logger.error("Le fichier kb.json est absent : %s", KB_PATH)
-        raise RuntimeError(f"Le fichier de base de connaissances {KB_PATH} est absent.")
+        logger.warning("kb.json absent — base vide : le bot s'apprend via /apprends")
+        return {"knowledge": []}
     with KB_PATH.open("r", encoding="utf-8") as kb_file:
         data = json.load(kb_file)
         logger.info("Base de connaissances (kb.json) chargé avec succès.")
@@ -500,22 +503,17 @@ def refresh_resources(lang_code: str) -> None:
 # Mémoire conversationnelle locale (SQLite avec connexion persistante)
 # ---------------------------------------------------------------------------
 
-# 💾 Persistance : sur Railway, si un volume est monté sur /data, la mémoire
-# SURVIT aux redéploiements (sinon le conteneur reconstruit l'efface →
-# « le bot ne se souvient de rien »). Migration auto de l'ancienne base.
-_PERSIST_ROOT = Path("/data")
-_DEFAULT_MEM_DIR = _PERSIST_ROOT if _PERSIST_ROOT.is_dir() else BASE_DIR / "data"
-MEMORY_DIR = Path(os.getenv("MEMORY_DIR", _DEFAULT_MEM_DIR))
+# 💾 RÈGLE BOSS (02/10) : PLUS AUCUNE donnée client sur le disque Railway
+# (adieu le volume /data). La mémoire SQLite n'est qu'un CACHE ÉPHÉMÈRE du
+# conteneur — la vérité durable vit dans le Google Sheet « Komara Bot -
+# Mémoire » (memory_sheets), hydratée au démarrage puis miroitée tour par
+# tour. Un redéploiement Railway ne perd RIEN et ne stocke RIEN.
+_MEMORY_ENV = os.getenv("MEMORY_DIR", "")
+if _MEMORY_ENV:
+    MEMORY_DIR = Path(_MEMORY_ENV)   # override explicite (tests, local)
+else:
+    MEMORY_DIR = Path(tempfile.gettempdir()) / "komara_memory"  # éphémère
 MEMORY_FILE = MEMORY_DIR / "memory.db"
-if MEMORY_DIR != BASE_DIR / "data":
-    try:
-        import shutil as _shutil
-        MEMORY_DIR.mkdir(parents=True, exist_ok=True)
-        if not MEMORY_FILE.exists() and (BASE_DIR / "data" / "memory.db").exists():
-            _shutil.copy2(BASE_DIR / "data" / "memory.db", MEMORY_FILE)
-            logger.info("Mémoire migrée vers le volume persistant : %s", MEMORY_FILE)
-    except Exception:
-        logger.warning("Migration mémoire impossible", exc_info=True)
 MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
 
 # ---------------------------------------------------------------------------
@@ -625,7 +623,41 @@ def init_memory_db() -> None:
             )
         """)
         DB_CONN.commit()
-    logger.info("Base de mémoire SQLite initialisée : %s", MEMORY_FILE)
+    logger.info("Cache mémoire éphémère initialisé : %s", MEMORY_FILE)
+    threading.Thread(target=_hydrate_memory_from_sheets,
+                     name="hydrate-memory", daemon=True).start()
+
+
+def _hydrate_memory_from_sheets() -> None:
+    """RÈGLE BOSS (02/10) : la mémoire durable vit dans le Google Sheet
+    « Conversations ». Au démarrage on réhydrate le cache éphémère depuis
+    les derniers échanges (bornés). Aucune donnée n'est perdue quand
+    Railway reconstruit le conteneur, et rien ne dort sur le disque."""
+    global DB_CONN
+    try:
+        from memory_sheets import read_rows
+        rows = read_rows("Conversations", limit=2000)
+        if not rows:
+            return
+        by_chat: dict[str, list[dict[str, str]]] = {}
+        for row in rows:
+            if len(row) < 5:
+                continue
+            _, chat, _name, role, content = row[0], row[1], row[2], row[3], row[4]
+            if not str(chat).lstrip("-").isdigit() or not role or not content:
+                continue
+            by_chat.setdefault(str(chat), []).append(
+                {"role": "client" if role != "bot" else "bot", "content": content[:4000]})
+        with DB_LOCK:
+            for chat, history in by_chat.items():
+                history = history[-MEMORY_LIMIT:]
+                DB_CONN.execute(
+                    "INSERT OR REPLACE INTO memory (chat_id, history) VALUES (?,?)",
+                    (chat, json.dumps(history, ensure_ascii=False)))
+            DB_CONN.commit()
+        logger.info("Mémoire réhydratée depuis Google Sheets : %s chats", len(by_chat))
+    except Exception:
+        logger.exception("Hydratation mémoire depuis Sheets impossible")
 
 
 def _mark_processed_or_duplicate(event_key: str) -> bool:
@@ -1504,6 +1536,15 @@ def _handle_message(message: telebot.types.Message) -> None:
     # moteur (darija salam/khoya → ar, hola/quiero → es) décide.
     _LAST_LANG[chat_id] = detect_language_session(
         user_text, _LAST_LANG.get(chat_id, DEFAULT_LANGUAGE))
+    # 💾 RÈGLE BOSS (02/10) : miroir de TOUT ce que le bot collecte vers le
+    # Google Sheet dédié (jamais de fichier local, jamais GitHub/Railway).
+    try:
+        from memory_sheets import log_conversation
+        log_conversation(chat_id,
+                         (getattr(_fu, "first_name", "") or "")[:100],
+                         "client", user_text, _LAST_LANG[chat_id])
+    except Exception:
+        logger.debug("Miroir conversation entrante impossible", exc_info=True)
     _process_text(chat_id, user_text, _LAST_LANG[chat_id])
 
 
@@ -1809,8 +1850,8 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     local_response = local_contextual_response(chat_id, user_text, detected_lang)
     if local_response is None:
         record_unrecognized(user_text, source="telegram")
-        # Lot 20 : chaque question sans réponse est stockée dans le
-        # fichier unanswered_questions.json ET notifiée à l'admin.
+        # Lot 20 : chaque question sans réponse part dans le Google Sheet
+        # dédié (memory_sheets) ET est notifiée à l'admin.
         try:
             actions.notify_unanswered(bot, chat_id, user_text, detected_lang)
         except Exception:
@@ -1986,10 +2027,33 @@ def is_conflict(error: ApiTelegramException) -> bool:
 CONFLICT_BASE_DELAY = 15
 CONFLICT_MAX_RETRIES = 8
 
+def _install_reply_mirroring() -> None:
+    """Wrap bot.send_message : chaque réponse envoyée est miroitée vers
+    l'onglet « Conversations » du Google Sheet dédié. Jamais bloquant."""
+    global bot
+    _orig = bot.send_message
+    if getattr(_orig, "_komara_mirror", False):
+        return  # déjà wrappé (run() rappelé après crash)
+
+    def _send_and_mirror(chat_id, text=None, *args, **kwargs):
+        result = _orig(chat_id, text, *args, **kwargs)
+        try:
+            from memory_sheets import log_conversation
+            log_conversation(chat_id, "", "bot", str(text), _LAST_LANG.get(chat_id, ""))
+        except Exception:
+            pass
+        return result
+
+    _send_and_mirror._komara_mirror = True
+    bot.send_message = _send_and_mirror
+    logger.info("Miroir des réponses vers Google Sheets activé")
+
+
 def run() -> None:
     global _shutdown_requested
 
     init_memory_db()
+    _install_reply_mirroring()
     actions.start_background(bot)
 
     retry_count = 0

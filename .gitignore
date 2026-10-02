@@ -253,3 +253,24 @@ data*/
 /qr_cache/
 /temp/
 /tmp/
+
+# ===========================================================================
+# RÈGLE BOSS (02/10) — ZÉRO DONNÉE SUR GITHUB
+# Le bot ne porte PLUS aucun corpus de dialogues : tout est enseigné par
+# l'admin (/apprends, /kb_import) et vit dans le Google Sheet dédié
+# « Komara Bot - Mémoire ». Ces règles empêchent toute réintroduction.
+kb.json
+dialogues/
+docs/aya2/
+docs/faq.md
+lang/*/kb.json
+lang/*/faq.md
+lang/*/dialogues/
+docs/dialogues-*.md
+docs/reference_*.md
+docs/connaissances-*.md
+memory.db
+actions.db
+kb_custom.json
+kb_purged.json
+unanswered_questions.json

@@ -1,11 +1,11 @@
 # ---------------------------------------------------------------------------
 # /kb_import — Import de fichiers dans la base de connaissances
-# 100% local : parseurs JSON/CSV/TXT/MD, dédoublonnage, fusion, rechargement
-# à chaud. Téléchargement via l'API Bot native (aucune clé IA).
-# Persistance GitHub optionnelle : GITHUB_TOKEN + GITHUB_REPO (variables Railway).
+# Parseurs JSON/CSV/TXT/MD, dédoublonnage, rechargement à chaud.
+# RÈGLE BOSS (02/10) : AUCUNE écriture de kb.json ni de fichier local, AUCUN
+# push GitHub. Tout est enseigné via knowledge_store (Google Sheets dédié
+# « Komara Bot - Mémoire »), comme /apprends.
 # ---------------------------------------------------------------------------
 
-import base64
 import csv
 import io
 import json
@@ -18,9 +18,6 @@ from normalize_text import normalize_text
 
 BASE_DIR = Path(__file__).resolve().parent
 LANG_DIR = BASE_DIR / "lang"
-
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
-GITHUB_REPO = os.getenv("GITHUB_REPO", "komaraagency/komara-knowledge-base")
 
 SUPPORTED_EXT = {".json", ".csv", ".txt", ".md", ".tsv"}
 
@@ -41,32 +38,32 @@ TEXTS = {
         "bad_file": "❌ Je ne peux lire que .json, .csv, .txt ou .md (et < 5 Mo).",
         "parse_error": "❌ Fichier illisible : {err}\n\nRelis le format attendu :\n\n{usage}",
         "admin_only": "👑 Import réservé à l'admin.",
-        "pushed": "✅ Synchronisé avec GitHub — l'import survit aux redéploiements.",
-        "not_pushed": "⚠️ Sans GITHUB_TOKEN sur Railway, l'import est temporaire (effacé au prochain déploiement).",
+        "pushed": "✅ Sauvegardé dans Google Sheets « Komara Bot - Mémoire » — visible par toi seul.",
+        "not_pushed": "⚠️ Google non lié — lance /google pour que les dialogues soient sauvegardés durablement.",
     },
     "en": {
         "imported": "📥 Import successful!\n\n📄 File: {filename}\n✔️ New entries: {added}\n♻️ Duplicates skipped: {dupes}\n📚 {lang_up} total: {total} entries\n\n{persistence}",
         "bad_file": "❌ I can only read .json, .csv, .txt or .md (and < 5 MB).",
         "parse_error": "❌ Unreadable file: {err}\n\nExpected format:\n\n{usage}",
         "admin_only": "👑 Import reserved for the admin.",
-        "pushed": "✅ Synced with GitHub — the import survives redeploys.",
-        "not_pushed": "⚠️ Without GITHUB_TOKEN on Railway, the import is temporary (wiped on next deploy).",
+        "pushed": "✅ Sauvegardé dans Google Sheets « Komara Bot - Mémoire » — visible par toi seul.",
+        "not_pushed": "⚠️ Google non lié — lance /google pour que les dialogues soient sauvegardés durablement.",
     },
     "es": {
         "imported": "📥 ¡Importación hecha!\n\n📄 Archivo: {filename}\n✔️ Nuevas fichas: {added}\n♻️ Duplicados ignorados: {dupes}\n📚 Total {lang_up}: {total} fichas\n\n{persistence}",
         "bad_file": "❌ Solo puedo leer .json, .csv, .txt o .md (y < 5 MB).",
         "parse_error": "❌ Archivo ilegible: {err}\n\nFormato esperado:\n\n{usage}",
         "admin_only": "👑 Importación reservada al admin.",
-        "pushed": "✅ Sincronizado con GitHub — la importación sobrevive a los despliegues.",
-        "not_pushed": "⚠️ Sin GITHUB_TOKEN en Railway, la importación es temporal (se borra al desplegar).",
+        "pushed": "✅ Sauvegardé dans Google Sheets « Komara Bot - Mémoire » — visible par toi seul.",
+        "not_pushed": "⚠️ Google non lié — lance /google pour que les dialogues soient sauvegardés durablement.",
     },
     "ar": {
         "imported": "📥 تم الاستيراد!\n\n📄 الملف: {filename}\n✔️ بطاقات جديدة: {added}\n♻️ مكررات متجاهلة: {dupes}\n📚 المجموع {lang_up}: {total} بطاقة\n\n{persistence}",
         "bad_file": "❌ أقرأ فقط .json أو .csv أو .txt أو .md (وأقل من 5 ميغا).",
         "parse_error": "❌ ملف غير مقروء: {err}\n\nالصيغة المطلوبة:\n\n{usage}",
         "admin_only": "👑 الاستيراد للأدمن فقط.",
-        "pushed": "✅ تمت المزامنة مع GitHub — الاستيراد يبقى بعد إعادة النشر.",
-        "not_pushed": "⚠️ بدون GITHUB_TOKEN على Railway الاستيراد مؤقت (يُمسح عند النشر القادم).",
+        "pushed": "✅ Sauvegardé dans Google Sheets « Komara Bot - Mémoire » — visible par toi seul.",
+        "not_pushed": "⚠️ Google non lié — lance /google pour que les dialogues soient sauvegardés durablement.",
     },
 }
 
@@ -170,99 +167,16 @@ def parse_file(filename: str, data: bytes) -> list:
 # Fusion + dédoublonnage + rechargement à chaud
 # ---------------------------------------------------------------------------
 
-def kb_path_for(lang: str) -> Path:
-    return (LANG_DIR / lang / "kb.json") if lang != "fr" else BASE_DIR / "kb.json"
-
-
-def _existing_questions(lang: str) -> set:
-    """Toutes les questions connues (normalisées) pour cette langue.
-    FR = racine kb.json + lang/fr/kb.json (fusion du loader)."""
-    paths = [kb_path_for(lang)]
-    if lang == "fr":
-        extra = LANG_DIR / "fr" / "kb.json"
-        if extra not in paths:
-            paths.append(extra)
-    known = set()
-    for path in paths:
-        if path.is_file():
-            data = json.loads(path.read_text(encoding="utf-8"))
-            for item in data.get("knowledge", []):
-                for q in item.get("questions", []):
-                    known.add(normalize_text(q))
-    return known
-
-
 def import_file(filename: str, data: bytes, lang: str = "fr") -> dict:
-    """Fusionne le fichier dans la KB de la langue. Retourne le rapport."""
+    """Enseigne les fiches du fichier au bot via knowledge_store (Google
+    Sheets). Aucun fichier écrit, aucun push GitHub — RÈGLE BOSS 02/10."""
     parsed = parse_file(filename, data)
-    path = kb_path_for(lang)
-    kb = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {"knowledge": []}
-    knowledge = kb.setdefault("knowledge", [])
-    known = _existing_questions(lang)
-
-    added = dupes = 0
-    for q, a in parsed:
-        nq = normalize_text(q)
-        if not nq or nq in known:
-            dupes += 1
-            continue
-        known.add(nq)
-        seq = len(knowledge) + 1
-        item_id = f"import_{lang}_{seq}"
-        while any(k.get("id") == item_id for k in knowledge):
-            seq += 1
-            item_id = f"import_{lang}_{seq}"
-        knowledge.append({
-            "id": item_id,
-            "category": "import",
-            "questions": [q.strip()[:300]],
-            "answer": a.strip()[:4000],
-            "tags": ["import", "local"],
-        })
-        added += 1
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(kb, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    # Rechargement à chaud (fusion fr réappliquée)
     import knowledge_store
-    knowledge_store.refresh_resources(lang)
-
-    # Persistance GitHub (optionnelle)
-    pushed = False
-    if GITHUB_TOKEN and added:
-        try:
-            pushed = _push_github(path, lang, added)
-        except Exception:
-            pushed = False
-
+    report = knowledge_store.learn_entries_batch(parsed, lang)
     return {
-        "filename": filename, "added": added, "dupes": dupes,
-        "total": len(knowledge), "pushed": pushed, "lang": lang,
+        "filename": filename, "added": report["added"], "dupes": len(parsed) - report["added"],
+        "total": len(knowledge_store._CUSTOM_ROWS), "pushed": True, "lang": lang,
     }
-
-
-def _push_github(path: Path, lang: str, added: int) -> bool:
-    """Pousse le kb.json mis à jour via l'API GitHub Contents (zéro dépendance git)."""
-    api = "https://api.github.com"
-    rel = path.relative_to(BASE_DIR).as_posix()
-    headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
-    r = requests.get(f"{api}/repos/{GITHUB_REPO}/contents/{rel}",
-                     headers=headers, timeout=30)
-    sha = r.json().get("sha") if r.status_code == 200 else None
-    payload = {
-        "message": f"📥 /kb_import Telegram : {added} nouvelles fiches [{lang}]",
-        "content": base64.b64encode(path.read_bytes()).decode("ascii"),
-        "branch": "main",
-    }
-    if sha:
-        payload["sha"] = sha
-    r = requests.put(f"{api}/repos/{GITHUB_REPO}/contents/{rel}",
-                    headers=headers, json=payload, timeout=30)
-    return r.status_code in (200, 201)
 
 
 # ---------------------------------------------------------------------------
@@ -275,7 +189,7 @@ def is_admin(chat_id: int) -> bool:
 
 
 def handle_document(bot, message, detected_lang: str = "fr") -> None:
-    """Document reçu (admin) → import dans la KB."""
+    """Document reçu (admin) → enseigné au bot (Google Sheets)."""
     chat_id = message.chat.id
     if not is_admin(chat_id):
         bot.send_message(chat_id, t(detected_lang, "admin_only"))
@@ -296,13 +210,15 @@ def handle_document(bot, message, detected_lang: str = "fr") -> None:
         file_info = bot.get_file(doc.file_id)
         data = bot.download_file(file_info.file_path)
         report = import_file(filename, data, lang)
+        persistence = t(lang, "pushed")
     except ValueError as e:
         bot.send_message(chat_id, t(lang, "parse_error", err=str(e)[:150], usage=USAGE))
         return
     except Exception as e:
-        bot.send_message(chat_id, t(lang, "parse_error", err=str(e)[:150], usage=USAGE))
+        bot.send_message(chat_id, t(lang, "parse_error",
+                                    err=("Google non lié — lance /google d'abord" if "Google non lié" in str(e) else str(e)[:150]),
+                                    usage=USAGE))
         return
-    persistence = t(lang, "pushed") if report["pushed"] else t(lang, "not_pushed")
     bot.send_message(
         chat_id,
         t(lang, "imported", filename=filename, added=report["added"],

@@ -491,45 +491,31 @@ def clear_global_promo(bot) -> bool:
 # Questions non répondues : fichier persistant + notification admin — lot 20
 # ---------------------------------------------------------------------------
 
-UNANSWERED_FILE = ACTIONS_DIR / "unanswered_questions.json"
+# RÈGLE BOSS (02/10) : plus de fichier local — compteur éphémère en RAM,
+# les questions non répondues vivent dans le Google Sheet dédié.
 _notified_unanswered: set[str] = set()
+_UNANSWERED_COUNTS: dict[str, int] = {}
 
 def notify_unanswered(bot, chat_id: int, text: str, lang: str) -> None:
-    """Stocke la question non répondue dans le fichier du repo/volume et
-    prévient l'admin par Telegram (une seule notif par question)."""
+    """Question non répondue → onglet « Questions sans réponse » du Google
+    Sheet dédié + notification admin (une seule notif par question).
+    RÈGLE BOSS (02/10) : AUCUN fichier local — plus d'unanswered_questions.json
+    sur le disque Railway ou dans le repo."""
     q = (text or "").strip()
     if not q or q.startswith("/"):
         return
     import unicodedata as _ud
     _fold = _ud.normalize("NFKD", q.lower().replace("'", " ").replace("’", " "))
     key = " ".join("".join(ch for ch in _fold if not _ud.combining(ch)).split())
-    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    # 1. fichier persistant (volume /data sur Railway)
+    # compteur en RAM (éphémère, juste pour la colonne Occurrences)
+    count = _UNANSWERED_COUNTS.get(key, 0) + 1
+    _UNANSWERED_COUNTS[key] = count
     try:
-        ACTIONS_DIR.mkdir(parents=True, exist_ok=True)
-        data = {"items": []}
-        if UNANSWERED_FILE.exists():
-            try:
-                data = json.loads(UNANSWERED_FILE.read_text(encoding="utf-8"))
-            except (json.JSONDecodeError, OSError):
-                data = {"items": []}
-        items = data.setdefault("items", [])
-        entry = next((e for e in items if e.get("question", "").lower() == key), None)
-        if entry:
-            entry["count"] = int(entry.get("count", 0)) + 1
-            entry["last_seen"] = now
-            entry["last_chat"] = chat_id
-        else:
-            items.append({"question": q, "count": 1, "lang": lang,
-                          "chat": chat_id, "first_seen": now, "last_seen": now})
-        if len(items) > 2000:  # cap : les plus anciennes sortent
-            items.sort(key=lambda e: e.get("last_seen", ""))
-            del items[: len(items) - 2000]
-        data["updated_at"] = now
-        UNANSWERED_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        from memory_sheets import log_unanswered
+        log_unanswered(q, lang, chat_id, count)
     except Exception:
-        logger.exception("écriture unanswered_questions.json impossible")
-    # 2. notification admin — une seule fois par question
+        logger.debug("Miroir question sans réponse impossible", exc_info=True)
+    # notification admin — une seule fois par question (par process)
     if key not in _notified_unanswered:
         _notified_unanswered.add(key)
         notify_admin(
@@ -537,7 +523,7 @@ def notify_unanswered(bot, chat_id: int, text: str, lang: str) -> None:
             f"❓ QUESTION NON RÉPONDUE\n"
             f"« {q[:300]} »\n"
             f"🗣 langue : {lang} • 👤 chat : {chat_id}\n"
-            f"→ enrichis la base : /apprends {q[:80]} || ta réponse")
+            f"→ enseigne-le : /apprends {q[:80]} || ta réponse")
 
 
 # ---------------------------------------------------------------------------
@@ -1476,11 +1462,11 @@ def _admin_apprends(bot, chat_id: int, args: str, lang: str) -> bool:
     bot en écrivant directement).
 
     /apprends <question> || <réponse>
-    → enrichit la base (runtime + kb_custom.json persistant).
+    → enseigne le bot : réponse publiée en runtime + persistée dans le
+    Google Sheet dédié « Komara Bot - Mémoire » (memory_sheets).
 
     STABILITÉ (règle boss) : aucune erreur ne doit faire planter le bot.
-    DOUBLON : si une réponse similaire existe déjà → « désolé j'ai déjà
-    une réponse similaire !! » et RIEN n'est ajouté."""
+    DOUBLON : réapprendre une question la REMPLACE (nouvelle version)."""
     try:
         return _apprends_core(bot, chat_id, args, lang)
     except Exception:
