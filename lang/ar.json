@@ -67,5 +67,6 @@
  "tracking_head": "📦 تتبع طلبك:",
  "tracking_none": "📦 لا يوجد طلب لدينا بعد.\nاكتب «commander» لإطلاق مشروعك 🚀",
  "tracking_order": "طلب",
- "tracking_since": "منذ"
+ "tracking_since": "منذ",
+ "unknown_command": "🤷 أمر غير معروف. اكتب /menu لرؤية الخيارات 👇"
 }

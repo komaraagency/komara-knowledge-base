@@ -67,5 +67,6 @@
  "tracking_head": "📦 Suivi de ta commande :",
  "tracking_none": "📦 Pas encore de commande chez nous.\nTape 'commander' pour lancer ton projet 🚀",
  "tracking_order": "Commande",
- "tracking_since": "depuis le"
+ "tracking_since": "depuis le",
+ "unknown_command": "🤷 Commande inconnue. Tape /menu pour voir les options 👇"
 }

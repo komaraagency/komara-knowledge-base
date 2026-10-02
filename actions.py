@@ -706,7 +706,11 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     # « boutique » à l'étape activité du devis ne doit pas déclencher le
     # catalogue : sa réponse alimente le flux en cours (le hijack du
     # catalogue cassait l'étape 4/5 du devis).
-    if not _fetch_flow(chat_id) and catalogue.handle_client(bot, chat_id, text_clean, lang):
+    # RÈGLE D'OR (02/10) : une COMMANDE slash (/catalogue, /panier...)
+    # est toujours exécutée, même pendant un flux actif — c'est un geste
+    # explicite du client, pas une réponse à une question du flux. Seuls
+    # les déclencheurs mots (« boutique ») respectent l'exclusion du flux.
+    if ((not _fetch_flow(chat_id)) or text_clean.startswith("/")) and catalogue.handle_client(bot, chat_id, text_clean, lang):
         return True
 
     # 0bis. Message hors horaires (1x/jour, n'interrompt rien)
@@ -746,14 +750,31 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     if low in NEW_RDV_WORDS:
         return start_flow(bot, chat_id, "rdv", lang, force=True)
 
-    # 3. Étape d'un flux actif
+    # 3. Étape d'un flux actif — RÈGLE D'OR (02/10) : une COMMANDE ("/...")
+    # n'est JAMAIS avalée comme réponse à un flux en cours. Bug corrigé :
+    # /catalogue, /stats... pendant un devis/lead actif répondaient
+    # hors-sujet (la question suivante du flux) au lieu d'exécuter la
+    # commande — le flux continue d'exister, prêt à reprendre la main dès
+    # que le client répond normalement.
     active = _fetch_flow(chat_id)
-    if active:
+    if active and not text_clean.startswith("/"):
         flow, step, data = active
         return _advance_flow(bot, chat_id, flow, step, data, text_clean, lang)
 
     # 4. Client connu : salutation personnalisée (mémoire longue)
     if low in GREETING_WORDS and client_greeting(bot, chat_id, lang):
+        return True
+
+    # 5. Commande non reconnue : on le dit clairement plutôt que de la
+    # laisser tomber dans le flux (ci-dessus) ou dans la recherche KB
+    # floue (coq-à-l'âne — règle d'or : jamais de réponse devinée pour
+    # une commande). Les commandes reconnues ont déjà "return True" plus
+    # haut (admin, catalogue, panier, code promo, suivi...).
+    if text_clean.startswith("/"):
+        bot.send_message(
+            chat_id,
+            t(lang, "unknown_command") if T["fr"].get("unknown_command")
+            else "🤷 Commande inconnue. Tape /menu pour voir les options 👇")
         return True
 
     return False
@@ -1465,12 +1486,13 @@ def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
             "Exemple : /apprends vous livrez à Kindia || Oui, partout en Guinée 🇬🇳 livraison offerte !")
         return True
     result = knowledge_store.learn_entry(parts[0], parts[1], directory=ACTIONS_DIR)
-    if not result["added"]:
+    # RÈGLE BOSS (02/10) : réapprendre une question déjà connue ne bloque
+    # plus — ça REMPLACE la réponse (base perso ou officielle neutralisée).
+    if result.get("updated") or result.get("replaced"):
         bot.send_message(
             chat_id,
-            "🙏 Désolé, j'ai déjà une réponse similaire !!\n"
-            f"❓ Déjà connu : {result['existing'][:120]}\n"
-            "👉 Cette question est déjà couverte par la base.")
+            f"✅ Connaissance mise à jour (remplace « {result['replaced'][:100]} ») :\n"
+            f"❓ {result['question'][:120]}\n💬 {result['answer'][:120]}")
         return True
     bot.send_message(
         chat_id,

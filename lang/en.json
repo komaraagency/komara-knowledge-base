@@ -67,5 +67,6 @@
  "tracking_head": "📦 Your order tracking:",
  "tracking_none": "📦 No order with us yet.\nType 'order' to start your project 🚀",
  "tracking_order": "Order",
- "tracking_since": "since"
+ "tracking_since": "since",
+ "unknown_command": "🤷 Unknown command. Type /menu to see the options 👇"
 }

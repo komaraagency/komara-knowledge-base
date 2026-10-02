@@ -88,18 +88,25 @@ class KnowledgeStoreTests(unittest.TestCase):
         self.assertEqual(store.LANG_RESOURCES['fr']['kb'], [])
         self.assertTrue(self.path.exists())
 
-    def test_duplicate_does_not_change_file_or_runtime(self):
+    def test_duplicate_updates_answer_in_place(self):
+        # RÈGLE BOSS (02/10) : réapprendre une question déjà connue ne
+        # bloque plus — ça REMPLACE la réponse, sans créer de doublon.
         store.learn_entry(self.question, self.answer)
-        before = self.path.read_bytes()
         result = store.learn_entry(self.question, 'OTHER')
-        self.assertFalse(result['added'])
-        self.assertEqual(self.path.read_bytes(), before)
+        self.assertTrue(result['added'])
+        self.assertTrue(result['updated'])
+        rows = json.loads(self.path.read_text())
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['answer'], 'OTHER')
         self.assertEqual(len(store.LANG_RESOURCES['fr']['kb']), 1)
+        self.assertEqual(store.LANG_RESOURCES['fr']['kb'][0]['answer'], 'OTHER')
 
     def test_parallel_duplicate_requests_add_only_once(self):
         with ThreadPoolExecutor(max_workers=5) as pool:
             results = list(pool.map(lambda _: store.learn_entry(self.question, self.answer), range(10)))
-        self.assertEqual(sum(result['added'] for result in results), 1)
+        self.assertEqual(sum(result['added'] for result in results), 10)
+        # Invariant qui compte sous concurrence : jamais de doublon créé,
+        # même quand 10 écritures identiques se chevauchent.
         self.assertEqual(len(json.loads(self.path.read_text())), 1)
 
     def test_refresh_preserves_durable_entries(self):

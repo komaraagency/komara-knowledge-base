@@ -67,5 +67,6 @@
  "tracking_head": "📦 Seguimiento de su pedido:",
  "tracking_none": "📦 Aún no tiene pedidos con nosotros.\nEscribe 'ordenar' para empezar su proyecto 🚀",
  "tracking_order": "Pedido",
- "tracking_since": "desde el"
+ "tracking_since": "desde el",
+ "unknown_command": "🤷 Comando desconocido. Escribe /menu para ver las opciones 👇"
 }
