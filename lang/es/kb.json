@@ -9188,6 +9188,279 @@
         "ver"
       ],
       "answer": "Mi amigo, voy a ser franco contigo. El te aviso es lo que dice el 90% de la gente que nunca vuelve y se queda estancada. Tú no eres así, tú eres de los que toman acción. Dudar es normal, pero con 1000 € Komara te quita todos los riesgos: te lanzamos, te acompañamos, no estás solo. ¿Vamos adelante?"
+    },
+    {
+      "id": "es_fidele_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "ya trabajo con ustedes desde hace 3 meses"
+      ],
+      "keywords": [
+        "ya",
+        "trabajo",
+        "ustedes",
+        "desde"
+      ],
+      "answer": "Qué alegría escucharte, mi hermano 🙏 ¿Cómo va tu bot desde el lanzamiento? ¿Quieres que le agreguemos alguna nueva función?"
+    },
+    {
+      "id": "es_fidele_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "el bot funciona superbién gracias"
+      ],
+      "keywords": [
+        "bot",
+        "funciona",
+        "superbién",
+        "gracias"
+      ],
+      "answer": "¡Me alegra muchísimo, mi amigo! 😊 Es el trabajo del equipo Komara que está dando frutos. ¿Quieres que vayamos más lejos, como con un seguimiento automático para clientes inactivos?"
+    },
+    {
+      "id": "es_fidele_03",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "quiero agregar una funcionalidad a mi bot"
+      ],
+      "keywords": [
+        "quiero",
+        "agregar",
+        "funcionalidad",
+        "bot"
+      ],
+      "answer": "¡Excelente, mi hermano! Seguimos creciendo juntos. Cuéntame qué quieres agregar, tomo nota y el equipo Komara te hace un balance rapidísimo."
+    },
+    {
+      "id": "es_fidele_04",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "quiero un segundo bot para otro negocio"
+      ],
+      "keywords": [
+        "quiero",
+        "segundo",
+        "bot",
+        "para"
+      ],
+      "answer": "¡Excelente, mi amigo! Te armamos eso en paralelo, sin tocar el primero. ¿De qué se trata el nuevo negocio?"
+    },
+    {
+      "id": "es_fidele_05",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "hacen descuentos para clientes fieles"
+      ],
+      "keywords": [
+        "hacen",
+        "descuentos",
+        "para",
+        "clientes"
+      ],
+      "answer": "¡Claro que sí, mi hermano! Los antiguos clientes Komara tienen -10% en cada nueva automatización. ¿Revisamos qué le agregamos?"
+    },
+    {
+      "id": "es_objection_delai_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "48h es mucho tiempo lo necesito ya mismo"
+      ],
+      "keywords": [
+        "48h",
+        "mucho",
+        "tiempo",
+        "lo"
+      ],
+      "answer": "Entiendo la urgencia, mi amigo. 48h ya es nuestro récord para un bot completo y bien probado. Podemos darle prioridad a tu caso si de verdad es superurgente hoy."
+    },
+    {
+      "id": "es_objection_delai_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "por qué no instantáneo"
+      ],
+      "keywords": [
+        "no",
+        "instantáneo"
+      ],
+      "answer": "Porque un bot hecho a las carreras en 5 min te hace perder clientes en vez de ganarlos. Nos tomamos 48h para hacerlo bien, probado en tu negocio real, mi hermano."
+    },
+    {
+      "id": "es_objection_qualite_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "cómo sé que la calidad será buena"
+      ],
+      "keywords": [
+        "cómo",
+        "sé",
+        "calidad",
+        "será"
+      ],
+      "answer": "Buena pregunta, mi amigo. Te mostramos una demo antes del pago final, y 2 revisiones gratuitas están incluidas si algún detalle no te convence."
+    },
+    {
+      "id": "es_objection_qualite_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "y si no me gusta el resultado"
+      ],
+      "keywords": [
+        "si",
+        "no",
+        "gusta",
+        "resultado"
+      ],
+      "answer": "Ajustamos todo hasta que quede a tu gusto, dentro de lo razonable. Komara no entrega algo que al cliente no le encante, mi hermano."
+    },
+    {
+      "id": "es_suivi_client_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "cómo funciona el soporte después de la entrega"
+      ],
+      "keywords": [
+        "cómo",
+        "funciona",
+        "soporte",
+        "después"
+      ],
+      "answer": "Tienes un mes de soporte incluido tras la puesta en marcha, mi amigo. Después de eso, el equipo sigue disponible para cualquier ajuste que necesites a pedido."
+    },
+    {
+      "id": "es_suivi_client_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "siguen disponibles después del pago"
+      ],
+      "keywords": [
+        "siguen",
+        "disponibles",
+        "después",
+        "del"
+      ],
+      "answer": "¡Siempre, mi amigo! Komara no desaparece después de la venta, esa es nuestra gran diferencia. Te acompañamos a largo plazo."
+    },
+    {
+      "id": "es_parrainage_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "puedo recomendar komara a un amigo"
+      ],
+      "keywords": [
+        "puedo",
+        "recomendar",
+        "komara",
+        "amigo"
+      ],
+      "answer": "¡Con muchísimo gusto, mi hermano! 🙏 Si tu amigo firma gracias a ti, tienes un descuento en tu próxima automatización. ¿Te envío los detalles?"
+    },
+    {
+      "id": "es_parrainage_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "qué es el programa de referidos"
+      ],
+      "keywords": [
+        "programa",
+        "referidos"
+      ],
+      "answer": "Sencillo, mi amigo: nos traes un cliente y Komara te recompensa con un descuento o una comisión, según lo que prefieras. ¿Te interesa?"
+    },
+    {
+      "id": "es_secteur_sante_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "administro una clínica privada"
+      ],
+      "keywords": [
+        "administro",
+        "clínica",
+        "privada"
+      ],
+      "answer": "Perfecto, mi amigo. Puedo gestionar las citas, recordar a los pacientes y responder preguntas frecuentes sobre horarios y tarifas. ¿Lo revisamos?"
+    },
+    {
+      "id": "es_secteur_education_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "dirijo un centro de formación"
+      ],
+      "keywords": [
+        "dirijo",
+        "centro",
+        "formación"
+      ],
+      "answer": "¡Excelente sector, mi hermano! Komara puede calificar a tus clientes potenciales, enviar el programa automáticamente y hacer seguimiento a quienes no terminaron su inscripción."
+    },
+    {
+      "id": "es_secteur_transport_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "tengo una agencia de transporte de pasajeros"
+      ],
+      "keywords": [
+        "tengo",
+        "agencia",
+        "transporte",
+        "pasajeros"
+      ],
+      "answer": "Anotado, mi amigo. Puedo gestionar las reservas, dar los horarios de salida y confirmar los asientos disponibles automáticamente."
+    },
+    {
+      "id": "es_secteur_artisanat_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "vendo artesanía local"
+      ],
+      "keywords": [
+        "vendo",
+        "artesanía",
+        "local"
+      ],
+      "answer": "¡Me encanta ese sector, mi amigo! Komara puede destacar cada pieza, responder sobre precios y tiempos de entrega, y darle un empujón a los curiosos que no han comprado."
+    },
+    {
+      "id": "es_urgence_technique_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "mi bot no responde desde esta mañana"
+      ],
+      "keywords": [
+        "bot",
+        "no",
+        "responde",
+        "desde"
+      ],
+      "answer": "Tomo nota de la urgencia, mi amigo. Paso esto directo al equipo técnico Komara para revisarlo ya mismo. ¿Me puedes decir desde qué hora exactamente?"
+    },
+    {
+      "id": "es_urgence_technique_02",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "los clientes se quejan de que el bot responde raro"
+      ],
+      "keywords": [
+        "los",
+        "clientes",
+        "quejan",
+        "bot"
+      ],
+      "answer": "Gracias por avisarme rápido, mi hermano. Se lo paso al equipo para corregirlo con prioridad. ¿Tienes un ejemplo de mensaje raro para mostrarme?"
+    },
+    {
+      "id": "es_cloture_soft_01",
+      "category": "lot3_fidelisation",
+      "questions": [
+        "tomo nota de todo y te aviso en la semana"
+      ],
+      "keywords": [
+        "tomo",
+        "nota",
+        "todo",
+        "aviso"
+      ],
+      "answer": "Sin problema, mi amigo, tómate tu tiempo. Guardo tu carpeta por aquí. ¿Te parece bien un recordatorio en unos días?"
     }
   ],
   "packs": [
