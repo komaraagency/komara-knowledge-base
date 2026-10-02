@@ -902,6 +902,65 @@ def menu_for_lang(lang: str) -> ReplyKeyboardMarkup:
 def msg(lang: str, key: str) -> str:
     return MESSAGES.get(lang, MESSAGES["fr"]).get(key, MESSAGES["fr"].get(key, ""))
 
+def _handle_menu_button(chat_id: int, label: str, lang: str) -> bool:
+    """RÈGLE D'OR (02/10) : un BOUTON du menu n'est JAMAIS avalé comme
+    réponse à une question d'un flux actif (devis, rdv, commande...).
+    Un bouton est un geste EXPLICITE : il exécute toujours sa propre
+    action, même pendant un flux. Bug corrigé : pendant un devis, taper
+    « 🛍️ Catalogue » ou « 💎 Voir les Tarifs » répondait « Tape le
+    numéro du service ».
+    Seul « 👑 Parler à un humain » n'est PAS routé ici : il doit rester
+    intercepté par actions.handle (_wants_human, priorité absolue) pour
+    interrompre TOUT flux et demander le numéro WhatsApp.
+    """
+    # 1. Suivi commande (avant les autres : « تتبع الطلب » contient « طلب »)
+    if any(k in label for k in ("Suivi", "Tracking", "Seguimiento", "تتبع")):
+        actions.order_tracking(bot, chat_id, lang)
+        return True
+    # 2. Code promo
+    if "promo" in label.lower() or "خصم" in label:
+        bot.send_message(chat_id, msg(lang, "promo"), reply_markup=menu_for_lang(lang))
+        return True
+    # 3. Commander / Order / Ordenar / طلب — panier non vide → tunnel
+    if any(k in label for k in ("Commander", "Order", "Ordenar", "طلب")):
+        if not catalogue.start_checkout(bot, chat_id, lang):
+            actions.start_flow(bot, chat_id, "order", lang, trigger_text=label)
+        return True
+    # 4. Devis / Quote / Presupuesto / تسعيرة — priorité panier (lettre)
+    if any(k in label for k in ("Devis", "Quote", "Presupuesto", "تسعيرة")):
+        if not catalogue.start_checkout(bot, chat_id, lang):
+            actions.start_flow(bot, chat_id, "devis", lang, trigger_text=label)
+        return True
+    # 5. Avis / Feedback / Opinión / تقييم
+    if any(k in label for k in ("Avis", "Feedback", "Opinión", "تقييم")):
+        actions.start_flow(bot, chat_id, "survey", lang)
+        return True
+    # 6. Rendez-vous / Book a call / Reservar / حجز موعد
+    if any(k in label for k in ("Rendez-vous", "Book a call", "Reservar", "حجز")):
+        actions.start_flow(bot, chat_id, "rdv", lang, trigger_text=label)
+        return True
+    # 7. Catalogue
+    if any(k in label for k in ("Catalogue", "Catálogo", "كتالوج")):
+        catalogue.show_catalogue(bot, chat_id, lang)
+        return True
+    # 8. Panier / Cart / Carrito / سلة
+    if any(k in label for k in ("Panier", "Cart", "Carrito", "سلة")):
+        catalogue.show_cart(bot, chat_id, lang)
+        return True
+    # 9. Chatbot IA / AI Chatbot / مساعد ذكي
+    if any(k in label for k in ("Chatbot", "ذكي")):
+        bot.send_message(chat_id, msg(lang, "chatbot"), reply_markup=menu_for_lang(lang))
+        return True
+    # 10. Portfolio / المعرض / Portafolio
+    if any(k in label for k in ("Portfolio", "Portafolio", "المعرض")):
+        send_portfolio(chat_id, lang)
+        return True
+    # 11. Tarifs / Pricing / Precios / الأسعار
+    if any(k in label for k in ("Tarif", "Pricing", "Precio", "الأسعار")):
+        bot.send_message(chat_id, msg(lang, "pricing_intro"), reply_markup=menu_for_lang(lang))
+        return True
+    return False
+
 # ---------------------------------------------------------------------------
 # Recherche contextuelle sécurisée
 # ---------------------------------------------------------------------------
@@ -1637,6 +1696,13 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             logger.error("Carte paiement multi-mode : %s", e)
         if qr_module.handle_pay_request(bot, chat_id, detected_lang):
             return
+
+    # 1aaa. RÈGLE D'OR (02/10) : les BOUTONS du menu ne sont JAMAIS avalés
+    # par un flux actif. Le routeur _handle_menu_button est appelé AVANT
+    # actions.handle : sans lui, un bouton d'info (Catalogue, Tarifs,
+    # Portfolio...) était mangé comme « réponse » à l'étape du devis/rdv.
+    if user_text in BUTTON_LABELS and _handle_menu_button(chat_id, user_text, detected_lang):
+        return
 
     # 1abb. « devis » / « je commence » avec un PANIER NON VIDE → tunnel
     # panier prioritaire (lettre : Priorité panier). Sans panier, le flux

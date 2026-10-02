@@ -99,11 +99,30 @@ def _catalogue_grid() -> list[tuple[str, str, str, str]]:
 # Remplie dans init_db() une fois la base prête (jamais à l'import)
 PRICE_GRID: list[tuple[str, str, str, str]] = []
 
+# RÈGLE D'OR (02/10) : chaque question est traduite — un client EN/ES/AR
+# ne doit PLUS recevoir la question du sondage en français.
 SURVEY_QUESTIONS = [
-    {"id": "satisfaction", "kind": "rate", "fr": "Sur 1 à 5, comment notes-tu ton expérience avec Komara Agency 🇬🇳 ?"},
-    {"id": "reco", "kind": "bool", "fr": "Recommanderais-tu Komara Agency à un proche ? (oui/non)"},
-    {"id": "comment", "kind": "text", "fr": "Un commentaire pour l'équipe ? (ou tape 'passer')"},
+    {"id": "satisfaction", "kind": "rate",
+     "fr": "Sur 1 à 5, comment notes-tu ton expérience avec Komara Agency 🇬🇳 ?",
+     "en": "From 1 to 5, how do you rate your experience with Komara Agency 🇬🇳 ?",
+     "es": "Del 1 al 5, ¿cómo valoraría su experiencia con Komara Agency 🇬🇳 ?",
+     "ar": "من 1 إلى 5، كيف تقيّم تجربتك مع Komara Agency 🇬🇳 ؟"},
+    {"id": "reco", "kind": "bool",
+     "fr": "Recommanderais-tu Komara Agency à un proche ? (oui/non)",
+     "en": "Would you recommend Komara Agency to a friend? (yes/no)",
+     "es": "¿Recomendaría Komara Agency a un allegado? (sí/no)",
+     "ar": "هل تنصح بـ Komara Agency لشخص قريب منك؟ (نعم/لا)"},
+    {"id": "comment", "kind": "text",
+     "fr": "Un commentaire pour l'équipe ? (ou tape 'passer')",
+     "en": "Any comment for the team? (or type 'skip')",
+     "es": "¿Algún comentario para el equipo? (o escriba 'pasar')",
+     "ar": "أي تعليق للفريق؟ (أو اكتب 'نم')"},
 ]
+
+def _survey_q(idx: int, lang: str) -> str:
+    """Texte de la question du sondage dans la langue du client (repli FR)."""
+    q = SURVEY_QUESTIONS[idx]
+    return q.get(lang) or q["fr"]
 
 CANCEL_WORDS = {"annuler", "cancel", "stop", "quitter", "إلغاء", "Cancelar"}
 
@@ -824,7 +843,7 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
             # random.choice : jamais 2 fois la même demande d'avis
             bot.send_message(chat_id, random.choice(SURVEY_ASK_VARIANTS_FR))
         else:
-            bot.send_message(chat_id, t(lang, "survey_start", question=SURVEY_QUESTIONS[0]["fr"]))
+            bot.send_message(chat_id, t(lang, "survey_start", question=_survey_q(0, lang)))
     else:
         return False
     return True
@@ -1369,7 +1388,7 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
         else:
             bot.send_message(chat_id, t(lang, "invalid_bool"))
             return True
-    elif kind == "text" and low in {"passer", "skip", "نم"}:
+    elif kind == "text" and low in {"passer", "skip", "نم", "pasar", "omitir"}:
         answer = ""
 
     _insert("survey_answers", {
@@ -1380,7 +1399,7 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
     nxt = idx + 1
     if nxt < len(SURVEY_QUESTIONS):
         _save_flow(chat_id, "survey", str(nxt), data)
-        bot.send_message(chat_id, t(lang, "survey_next", question=SURVEY_QUESTIONS[nxt]["fr"]))
+        bot.send_message(chat_id, t(lang, "survey_next", question=_survey_q(nxt, lang)))
     else:
         _clear_flow(chat_id)
         bot.send_message(chat_id, t(lang, "survey_done"))
