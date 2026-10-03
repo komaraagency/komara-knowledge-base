@@ -3,6 +3,7 @@
 # Tables : products, cart. Zéro IA externe, zéro dépendance réseau.
 # ---------------------------------------------------------------------------
 
+import os
 import re
 import sqlite3
 import threading
@@ -10,11 +11,16 @@ from datetime import datetime, timezone
 
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+import list_context
+
 DB_CONN = None
 DB_LOCK = threading.Lock()
 
-CATALOGUE_BANNER_URL = (
-    "https://media.base44.com/images/public/6a46fe47a5c0862cd5d4cba9/1b47143d3_generated_image.png"
+# Bannière officielle fournie par le boss (03/10) ; env var prioritaire
+CATALOGUE_BANNER_URL = os.getenv(
+    "CATALOGUE_BANNER_URL",
+    "https://media.base44.com/images/public/6a31d619b3d6cf2fb849e011/"
+    "2c244070d_3d9356ff4_IMG-20261003-WA5641.jpg",
 )
 
 
@@ -153,6 +159,8 @@ TT: dict[str, dict[str, str]] = {
         "btn_order": '🚀 Commander',
         "btn_quote": '📄 Devis gratuit',
         "btn_finalize": '✅ Finaliser ma commande',
+        "btn_cart": '🛍️ Voir Panier',
+        "btn_support": '💬 Parler à un humain',
         "chosen": '✅ Tu as choisi : {name}\n💰 {price:g}€\n🛒 Ajouté au panier ({count} article(s) — {total:g}€)\n\nContinue de choisir, ou finalise ta commande 👇',
         "cta_after_choice": "Envie d'un autre service, ou on finalise ?",
         "order_from_empty": "🛒 Ton panier est vide pour l'instant.\nChoisis un service dans le catalogue ci-dessus 👆",
@@ -182,6 +190,8 @@ TT: dict[str, dict[str, str]] = {
         "btn_order": '🚀 Order now',
         "btn_quote": '📄 Free quote',
         "btn_finalize": '✅ Finalize my order',
+        "btn_cart": '🛍️ View Cart',
+        "btn_support": '💬 Talk to a human',
         "chosen": '✅ You picked: {name}\n💰 {price:g}€\n🛒 Added to cart ({count} item(s) — {total:g}€)\n\nKeep choosing, or finalize your order 👇',
         "cta_after_choice": 'Want another service, or shall we finalize?',
         "order_from_empty": '🛒 Your cart is empty for now.\nPick a service from the catalogue above 👆',
@@ -211,6 +221,8 @@ TT: dict[str, dict[str, str]] = {
         "btn_order": '🚀 Pedir ahora',
         "btn_quote": '📄 Presupuesto gratis',
         "btn_finalize": '✅ Finalizar mi pedido',
+        "btn_cart": '🛍️ Ver Carrito',
+        "btn_support": '💬 Hablar con un humano',
         "chosen": '✅ Elegiste: {name}\n💰 {price:g}€\n🛒 Añadido al carrito ({count} artículo(s) — {total:g}€)\n\nSigue eligiendo o finaliza su pedido 👇',
         "cta_after_choice": '¿Otro servicio, o finalizamos?',
         "order_from_empty": '🛒 Su carrito está vacío por ahora.\nElige un servicio del catálogo arriba 👆',
@@ -240,6 +252,8 @@ TT: dict[str, dict[str, str]] = {
         "btn_order": '🚀 اطلب الآن',
         "btn_quote": '📄 عرض سعر مجاني',
         "btn_finalize": '✅ إنهاء طلبي',
+        "btn_cart": '🛍️ عرض السلة',
+        "btn_support": '💬 التحدث مع إنسان',
         "chosen": '✅ اخترت: {name}\n💰 {price:g}€\n🛒 أضيف إلى السلة ({count} عنصر — {total:g}€)\n\nتابع الاختيار أو أنهِ طلبك 👇',
         "cta_after_choice": 'خدمة أخرى، أم ننهي؟',
         "order_from_empty": '🛒 سلتك فارغة الآن.\nاختر خدمة من الكتالوج أعلاه 👆',
@@ -366,6 +380,7 @@ def show_catalogue(bot, chat_id: int, lang: str) -> None:
         tt(lang, "catalogue_item", n=i, name=name, price=price, desc=desc[:60])
         for i, (_pid, name, desc, price) in enumerate(products, start=1)
     )
+    list_context.set_context(chat_id, "catalogue")
     bot.send_message(chat_id, tt(lang, "catalogue_head", items=items))
 
 
@@ -421,9 +436,16 @@ def show_catalogue_inline(bot, chat_id: int, lang: str) -> None:
         InlineKeyboardButton(tt(lang, "btn_order"), callback_data="kmr_order"),
         InlineKeyboardButton(tt(lang, "btn_quote"), callback_data="kmr_quote"),
     ])
+    # Reprise du visuel aiogram validé par le boss (03/10) : accès direct
+    # au panier et au support depuis le catalogue lui-même.
+    rows.append([
+        InlineKeyboardButton(tt(lang, "btn_cart"), callback_data="kmr_cart"),
+        InlineKeyboardButton(tt(lang, "btn_support"), callback_data="kmr_human"),
+    ])
     keyboard = InlineKeyboardMarkup(rows)
 
     caption = tt(lang, "catalogue_caption")
+    list_context.set_context(chat_id, "catalogue")
     try:
         bot.send_photo(chat_id, CATALOGUE_BANNER_URL, caption=caption, reply_markup=keyboard)
     except Exception:
@@ -478,6 +500,16 @@ def handle_callback(bot, call, lang: str) -> None:
     if data == "kmr_quote":
         bot.answer_callback_query(call.id)
         actions.start_flow(bot, chat_id, "devis", lang)
+        return
+
+    if data == "kmr_cart":
+        bot.answer_callback_query(call.id)
+        show_cart(bot, chat_id, lang)
+        return
+
+    if data == "kmr_human":
+        bot.answer_callback_query(call.id)
+        actions.start_flow(bot, chat_id, "human", lang)
         return
 
     bot.answer_callback_query(call.id)

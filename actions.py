@@ -581,6 +581,29 @@ def formation_capture(bot, chat_id: int, text: str, lang: str) -> bool:
     bot.send_message(chat_id, FORMATION_OK.get(lang, FORMATION_OK["fr"]))
     return True
 
+# ---------------------------------------------------------------------------
+# Document envoyé par un CLIENT (pas l'admin) — FIX BOSS (03/10, screenshot
+# "PDF analyse ne répond pas") : le bot bloquait tout document client avec
+# un froid "réservé à l'admin" et la conversation mourait là. Il transmet
+# maintenant le fichier à l'équipe ET relance tout de suite vers le devis
+# — zéro extraction de contenu PDF (pas de lib installée, on ne promet pas
+# ce qu'on ne fait pas), mais le client n'est plus jamais ignoré.
+# ---------------------------------------------------------------------------
+
+def handle_client_document(bot, chat_id: int, message, lang: str) -> None:
+    doc = getattr(message, "document", None)
+    filename = (doc.file_name if doc else None) or "fichier"
+    client = get_client(chat_id)
+    name = (client or {}).get("name") or f"chat_id {chat_id}"
+    try:
+        bot.forward_message(ADMIN_CHAT_ID, chat_id, message.message_id)
+    except Exception as exc:
+        logger.warning("Transfert document client à l'admin échoué : %s", exc)
+    notify_admin(bot, f"📎 DOCUMENT CLIENT ({name}) — {filename} — ⬆️ transféré ci-dessus")
+    grid = " / ".join(f"{name}" for _n, name, _p, _d in PRICE_GRID)
+    bot.send_message(chat_id, t(lang, "client_doc_received", grid=grid))
+
+
 def notify_admin(bot, text: str) -> None:
     """Prévient le propriétaire (ADMIN_CHAT_ID) d'un lead/commande/RDV."""
     if not ADMIN_CHAT_ID:
@@ -827,6 +850,11 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
     elif flow == "lead":
         _save_flow(chat_id, "lead", "name", {})
         bot.send_message(chat_id, t(lang, "lead_start"))
+    elif flow == "human":
+        # Tunnel « parler à un humain » (bouton 💬 du catalogue, ou
+        # demande texte « je veux parler à un vrai humain »).
+        _save_flow(chat_id, "human", "whatsapp", {})
+        bot.send_message(chat_id, t(lang, "human_ask"))
     elif flow == "survey":
         _save_flow(chat_id, "survey", "0", {})
         if lang == "fr":
@@ -858,7 +886,50 @@ def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str
         return _step_human(bot, chat_id, step, data, text, lang)
     if flow == "checkout":
         return catalogue.step_checkout(bot, chat_id, step, data, text, lang)
+    if flow == "post_cta":
+        return _step_post_cta(bot, chat_id, step, data, text, lang)
     _clear_flow(chat_id)
+    return False
+
+
+# ---------------------------------------------------------------------------
+# CTA de clôture "oui/non" (fin de sondage, secret_reply, etc.) — FIX
+# BOSS (03/10, screenshot) : un "Oui" tapé juste après un message du bot
+# qui invite ("Tu veux lancer un projet ? Tape 'commander'") ne
+# correspondait à AUCUN flux actif (le flux précédent était déjà clos) :
+# le mot tombait jusqu'à la base de connaissances, où un "oui" appris
+# pour un AUTRE contexte (ex: réponse à "votre business c'est pour
+# WhatsApp ?") répondait n'importe quoi. offer_order_cta() ouvre une
+# micro-fenêtre d'1 message qui intercepte oui/non EN PRIORITÉ, pour que
+# les deux "oui" ne matchent plus jamais la même chose.
+# ---------------------------------------------------------------------------
+
+_POST_CTA_OUI = {"oui", "yes", "sí", "si", "نعم"}
+_POST_CTA_NON = {"non", "no", "لا"}
+
+
+def offer_order_cta(bot, chat_id: int, lang: str, message: str, reply_markup=None) -> None:
+    """Envoie un message de clôture qui invite à démarrer une commande,
+    et ouvre une micro-fenêtre où oui/non sont interprétés sans ambiguïté."""
+    _save_flow(chat_id, "post_cta", "order", {})
+    if reply_markup is not None:
+        bot.send_message(chat_id, message, reply_markup=reply_markup)
+    else:
+        bot.send_message(chat_id, message)
+
+
+def _step_post_cta(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
+    low = text.strip().lower()
+    _clear_flow(chat_id)
+    if low in _POST_CTA_OUI:
+        if catalogue.start_checkout(bot, chat_id, lang):
+            return True
+        return start_flow(bot, chat_id, "order", lang, trigger_text=text)
+    if low in _POST_CTA_NON:
+        bot.send_message(chat_id, t(lang, "post_cta_declined"))
+        return True
+    # Autre réponse : on relâche la main, le message suit son chemin normal
+    # (KB, autre déclencheur...) au lieu d'être avalé à tort.
     return False
 
 
@@ -1403,7 +1474,7 @@ def _step_survey(bot, chat_id: int, step: str, data: dict, text: str, lang: str)
         bot.send_message(chat_id, t(lang, "survey_next", question=_survey_q(nxt, lang)))
     else:
         _clear_flow(chat_id)
-        bot.send_message(chat_id, t(lang, "survey_done"))
+        offer_order_cta(bot, chat_id, lang, t(lang, "survey_done"))
         notify_admin(bot, f"⭐ NOUVEAU SONDAGE (chat_id {chat_id}) — dernière réponse : {answer[:60]}")
     return True
 

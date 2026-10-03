@@ -26,6 +26,7 @@ from telebot.types import ReplyKeyboardMarkup
 from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
+import list_context
 import knowledge_store
 import qr_module
 import relances
@@ -1005,9 +1006,13 @@ def _handle_menu_button(chat_id: int, label: str, lang: str) -> bool:
     if any(k in label for k in ("Portfolio", "Portafolio", "المعرض")):
         send_portfolio(chat_id, lang)
         return True
-    # 11. Tarifs / Pricing / Precios / الأسعار
+    # 11. Tarifs / Pricing / Precios / الأسعار — FIX BOSS (03/10, screenshot) :
+    # le bouton envoyait juste "Voici nos offres :" SANS les offres (stub
+    # jamais terminé) — mort direct de la conversation, zéro chemin vers
+    # le closing. Il affiche maintenant le vrai catalogue (prix + CTA
+    # "ajouter <numéro>"), qui alimente ensuite le panier → la commande.
     if any(k in label for k in ("Tarif", "Pricing", "Precio", "الأسعار")):
-        bot.send_message(chat_id, msg(lang, "pricing_intro"), reply_markup=menu_for_lang(lang))
+        catalogue.show_catalogue(bot, chat_id, lang)
         return True
     return False
 
@@ -1416,6 +1421,7 @@ def send_portfolio(chat_id: int, lang: str) -> None:
         lines.append(f"{i}️⃣ {name}" if i <= 9 else f"{i}. {name}")
     lines.append("")
     lines.append("👉 Réponds avec le numéro ou le titre pour voir la réalisation.")
+    list_context.set_context(chat_id, "portfolio")
     bot.send_message(chat_id, "\n".join(lines), reply_markup=portfolio_keyboard())
 
 def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
@@ -1536,12 +1542,18 @@ def _handle_message(message: telebot.types.Message) -> None:
             bot.send_message(chat_id, msg("fr", "crash_fallback"))
         return
 
-    # Document (admin) → /kb_import : enrichissement de la base de connaissances
+    # Document : admin → /kb_import (enrichit la base de connaissances)
+    # Document : client → transféré à l'équipe + relance vers le devis
+    # (FIX BOSS 03/10 : avant, un client qui envoyait un PDF/brief se
+    # heurtait à un "réservé à l'admin" sec et la conversation s'arrêtait).
     if message.document:
         _caption = strip_invisible_chars(message.caption or "") if message.caption else ""
         detected_lang = detect_language(_caption) if _caption else "fr"
         safe_typing(chat_id)
-        kb_import.handle_document(bot, message, detected_lang)
+        if kb_import.is_admin(chat_id):
+            kb_import.handle_document(bot, message, detected_lang)
+        else:
+            actions.handle_client_document(bot, chat_id, message, detected_lang)
         return
 
     # Vocal/audio → transcription 100% locale (Whisper embarqué)
@@ -1859,7 +1871,7 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             send_portfolio(chat_id, detected_lang)
             return
         if "Tarif" in user_text or "Pricing" in user_text or "السعر" in user_text or "Precio" in user_text:
-            bot.send_message(chat_id, msg(detected_lang, "pricing_intro"), reply_markup=menu_for_lang(detected_lang))
+            catalogue.show_catalogue(bot, chat_id, detected_lang)
             return
 
     # 3. Gestion du Portfolio image — par titre (bouton 📷 nom)
@@ -1869,19 +1881,28 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             send_portfolio(chat_id, detected_lang)
         return
 
-    # 3bis. Gestion du Portfolio image — par numéro simple ("1", "2️⃣ 2"...)
-    # Permet au client de valider son choix en tapant juste le chiffre
-    # affiché dans la liste envoyée par send_portfolio().
+    # 3bis. Chiffre nu après une LISTE NUMÉROTÉE (catalogue OU portfolio).
+    # FIX BOSS (03/10, screenshot) : "3" tapé juste après le catalogue
+    # ("3. Agent IA Premium — 150€ ... tape 'ajouter <numéro>'") partait
+    # systématiquement sur le portfolio (règle aveugle), le client ne
+    # pouvait jamais ajouter un produit au panier juste avec le chiffre.
+    # list_context retient QUELLE liste a été envoyée en dernier à CE
+    # client et route le chiffre vers la bonne action.
     numero_match = re.fullmatch(r"[1-9]️?⃣?\.?\s*", user_text)
-    if numero_match and portfolio_images():
+    if numero_match:
         digits = re.sub(r"[^\d]", "", user_text)
         if digits:
             index = int(digits)
-            if send_portfolio_image_by_index(chat_id, index, detected_lang):
+            ctx = list_context.get_context(chat_id)
+            if ctx == "catalogue":
+                if catalogue.handle_client(bot, chat_id, f"ajouter {index}", detected_lang):
+                    return
+            elif portfolio_images():
+                if send_portfolio_image_by_index(chat_id, index, detected_lang):
+                    return
+                # numéro hors plage -> on réaffiche la liste plutôt que de deviner
+                send_portfolio(chat_id, detected_lang)
                 return
-            # numéro hors plage -> on réaffiche la liste plutôt que de deviner
-            send_portfolio(chat_id, detected_lang)
-            return
 
     # 4. Traitement normal
     safe_typing(chat_id)
@@ -2029,12 +2050,12 @@ def is_secret_probe(text: str, lang: str) -> bool:
 
 def secret_reply(bot_, chat_id: int, lang: str) -> None:
     """Réponse de marque, chaleureuse, sans rien divulguer."""
-    remember(chat_id, "assistant", SECRET_REPLIES.get(lang, SECRET_REPLIES["fr"]))
-    bot_.send_message(
-        chat_id,
-        SECRET_REPLIES.get(lang, SECRET_REPLIES["fr"]),
-        reply_markup=menu_for_lang(lang),
-    )
+    text = SECRET_REPLIES.get(lang, SECRET_REPLIES["fr"])
+    remember(chat_id, "assistant", text)
+    # FIX (03/10) : la phrase finit sur "Tu as un projet en tête ?" — un
+    # "oui" qui suit doit démarrer la commande, pas retomber sur un vieux
+    # "oui" appris pour un tout autre contexte (voir post_cta).
+    actions.offer_order_cta(bot_, chat_id, lang, text, reply_markup=menu_for_lang(lang))
 
 
 # ---------------------------------------------------------------------------
