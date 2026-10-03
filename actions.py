@@ -802,6 +802,14 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     # floue (coq-à-l'âne — règle d'or : jamais de réponse devinée pour
     # une commande). Les commandes reconnues ont déjà "return True" plus
     # haut (admin, catalogue, panier, code promo, suivi...).
+    # FIX BOSS (03/10) : les commandes de génération d'images Pollinations
+    # (/image, /imagine, /photo, /dessin + prompt) ne sont PAS des
+    # commandes inconnues — elles doivent atteindre img_gen qui suit dans
+    # le pipeline. Avant : « /image un logo doré » répondait « Commande
+    # inconnue » et le générateur n'était JAMAIS atteint.
+    _IMG_CMDS = {"/image", "/imagine", "/photo", "/dessin"}
+    if text_clean.startswith("/") and first_word in _IMG_CMDS:
+        return False  # laisse passer vers img_gen (prompt du client)
     if text_clean.startswith("/"):
         bot.send_message(
             chat_id,

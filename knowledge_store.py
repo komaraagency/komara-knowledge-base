@@ -129,23 +129,35 @@ def _similar_question_exists_unlocked(question: str, lang: str = "fr") -> tuple[
                         continue
                     if c_norm == q_norm:
                         return (str(cand), _lang)
-                    c_content = _content_tokens(c_norm)
-                    if not q_content or not c_content:
-                        continue
-                    inter = len(q_content & c_content)
-                    # la NOUVELLE question doit être couverte à >= 80% par
-                    # les mots porteurs de l'existante : une fiche courte
-                    # (« logo ») ne doit pas absorber une question plus
-                    # riche (« vous faites des logos pro »).
-                    if inter and inter / len(q_content) >= 0.8:
+                    # FIX BOSS (03/10) : même critère STRICT que
+                    # _questions_similar — sinon /apprends annonce un
+                    # remplacement que la purge runtime n'effectue pas.
+                    if _questions_similar(q_norm, c_norm):
                         return (str(cand), _lang)
     return None
 
 
 def _questions_similar(q1: str, q2: str) -> bool:
     """Deux questions sont-elles 'similaires' (même réponse attendue) ?
-    Critère identique à _similar_question_exists_unlocked : égalité
-    normalisée OU recouvrement >= 80% des mots porteurs de la nouvelle."""
+
+    FIX BOSS (03/10, « le bot remplace une question par une autre alors
+    que les mots sont très différents ») : l'ancien critère (couverture de
+    la PLUS COURTE >= 80%) faisait absorber n'importe quelle question
+    longue par une question courte qui partage UN mot :
+      « catalogue »  ABSORBAIT  « je souhaite voir le catalogue »
+      « prix »       ABSORBAIT  « je souhaite connaître le prix d'un logo »
+    → à l'enseignement d'une question riche, la fiche courte disparaissait
+    (message « remplace ») et à l'inverse la nouvelle question perdait sa
+    propre réponse.
+
+    NOUVEAU critère, strictement bidirectionnel — les deux questions
+    doivent dire LA MÊME CHOSE :
+      • égalité exacte après normalisation, OU
+      • mots porteurs partagés >= 80% de la plus courte ET >= 60% de la
+        plus longue (« livrez vous à Kindia » ≈ « vous livrez à Kindia »
+        reste reconnu ; « catalogue » ≠ « je souhaite voir le catalogue »).
+    Tolérance fautes conservée via la normalisation (accents, verbes
+    conjugués, SMS : « coûte »≈« coute »)."""
     from normalize_text import normalize_text as _norm
     a, b = _norm(q1 or "").strip(), _norm(q2 or "").strip()
     if not a or not b:
@@ -156,8 +168,8 @@ def _questions_similar(q1: str, q2: str) -> bool:
     if not ta or not tb:
         return False
     inter = len(ta & tb)
-    # couverture bidirectionnelle (la + courte couvre la + longue à 80%)
-    return inter and inter / min(len(ta), len(tb)) >= 0.8
+    short, long_ = min(len(ta), len(tb)), max(len(ta), len(tb))
+    return bool(inter) and inter / short >= 0.8 and inter / long_ >= 0.6
 
 
 def _dedupe_similar_rows(rows: list) -> list:

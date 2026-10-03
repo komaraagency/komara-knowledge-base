@@ -990,9 +990,10 @@ def _handle_menu_button(chat_id: int, label: str, lang: str) -> bool:
     if any(k in label for k in ("Rendez-vous", "Book a call", "Reservar", "حجز")):
         actions.start_flow(bot, chat_id, "rdv", lang, trigger_text=label)
         return True
-    # 7. Catalogue
+    # 7. Catalogue — VISUEL (photo bannière + boutons cliquables) depuis
+    # le 03/10 : le boss exige le catalogue avec l'image, pas la liste texte.
     if any(k in label for k in ("Catalogue", "Catálogo", "كتالوج")):
-        catalogue.show_catalogue(bot, chat_id, lang)
+        catalogue.show_catalogue_inline(bot, chat_id, lang)
         return True
     # 8. Panier / Cart / Carrito / سلة
     if any(k in label for k in ("Panier", "Cart", "Carrito", "سلة")):
@@ -1006,13 +1007,13 @@ def _handle_menu_button(chat_id: int, label: str, lang: str) -> bool:
     if any(k in label for k in ("Portfolio", "Portafolio", "المعرض")):
         send_portfolio(chat_id, lang)
         return True
-    # 11. Tarifs / Pricing / Precios / الأسعار — FIX BOSS (03/10, screenshot) :
-    # le bouton envoyait juste "Voici nos offres :" SANS les offres (stub
-    # jamais terminé) — mort direct de la conversation, zéro chemin vers
-    # le closing. Il affiche maintenant le vrai catalogue (prix + CTA
-    # "ajouter <numéro>"), qui alimente ensuite le panier → la commande.
+    # 11. Tarifs / Pricing / Precios / الأسعار — FIX BOSS (03/10) :
+    # d'abord le stub vide « Voici nos offres : », puis la liste texte.
+    # Maintenant : le catalogue VISUEL complet (photo bannière + un bouton
+    # « Commander <service> — <prix> » par offre + Voir Panier + Support),
+    # identique au bouton Catalogue — même tunnel vers la commande.
     if any(k in label for k in ("Tarif", "Pricing", "Precio", "الأسعار")):
-        catalogue.show_catalogue(bot, chat_id, lang)
+        catalogue.show_catalogue_inline(bot, chat_id, lang)
         return True
     return False
 
@@ -1856,7 +1857,7 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             bot.send_message(chat_id, msg(detected_lang, "commander"), reply_markup=menu_for_lang(detected_lang))
             return
         if "Catalogue" in user_text or "Catálogo" in user_text or "كتالوج" in user_text:
-            catalogue.show_catalogue(bot, chat_id, detected_lang)
+            catalogue.show_catalogue_inline(bot, chat_id, detected_lang)
             return
         if "Panier" in user_text or "Cart" in user_text or "Carrito" in user_text or "سلة" in user_text:
             catalogue.show_cart(bot, chat_id, detected_lang)
@@ -1871,7 +1872,7 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             send_portfolio(chat_id, detected_lang)
             return
         if "Tarif" in user_text or "Pricing" in user_text or "السعر" in user_text or "Precio" in user_text:
-            catalogue.show_catalogue(bot, chat_id, detected_lang)
+            catalogue.show_catalogue_inline(bot, chat_id, detected_lang)
             return
 
     # 3. Gestion du Portfolio image — par titre (bouton 📷 nom)

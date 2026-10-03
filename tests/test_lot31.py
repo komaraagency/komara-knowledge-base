@@ -111,13 +111,20 @@ actions._clear_flow(2002)
 
 # ── 3. "Voir les Tarifs" affiche le vrai catalogue ────────────────────────
 print("── BOUTON TARIFS ──")
-fb.sent.clear()
+fb.sent.clear(); fb.photos.clear()
 ok_btn = rag_bot._handle_menu_button(2001, "💎 Voir les Tarifs", "fr")
 check("bouton Tarifs consommé", ok_btn is True)
-check("le vrai catalogue est envoyé (plus le stub vide)",
-      any("Agent IA" in (t or "") or "€" in (t or "") for _, t in fb.sent), fb.sent)
+check("Tarifs → catalogue VISUEL (photo bannière envoyée)",
+      len(fb.photos) >= 1, fb.photos)
 check("le stub 'Voici nos offres :' seul n'est plus envoyé",
       not any((t or "").strip() == "Voici nos offres :" for _, t in fb.sent), fb.sent)
+check("chiffre nu après Tarifs (catalogue visuel) → toujours au panier",
+      list_context.get_context(2001) == "catalogue", list_context.get_context(2001))
+# Bouton 🛍️ Catalogue : aussi le catalogue visuel
+fb.photos.clear()
+ok_btn2 = rag_bot._handle_menu_button(2002, "🛍️ Catalogue", "fr")
+check("bouton Catalogue → catalogue visuel aussi",
+      ok_btn2 is True and len(fb.photos) >= 1, fb.photos)
 
 # ── 4. survey_done "oui" → commande, pas le KB ────────────────────────────
 print("── POST_CTA : survey → oui ──")
@@ -193,6 +200,64 @@ check("/image reconnu par le routeur img_gen",
 check("trigger paiement présent (ex: 'payer')",
       "payer" in qr_module.PAY_TRIGGERS or any("pay" in w for w in qr_module.PAY_TRIGGERS),
       qr_module.PAY_TRIGGERS)
+
+# ── 8. KB : plus de faux remplacements + tolérance fautes ───────────────
+print("── KB SIMILARITÉ + FAUTES ──")
+from knowledge_store import _questions_similar as _qs
+check("'catalogue' n'absorbe PLUS 'je souhaite voir le catalogue'",
+      not _qs("catalogue", "je souhaite voir le catalogue"), "")
+check("'prix' n'absorbe PLUS 'je souhaite connaître le prix d'un logo'",
+      not _qs("prix", "je souhaite connaître le prix d'un logo"), "")
+check("vrai remplacement conservé : 'livrez vous à Kindia' ≈ 'vous livrez à Kindia'",
+      _qs("livrez vous à Kindia", "vous livrez à Kindia"), "")
+check("vrai remplacement conservé : fautes d'orthographe 'combien coûte' ≈ 'combien coute'",
+      _qs("combien coûte un logo", "combien coute un logo"), "")
+check("questions très différentes JAMAIS confondues",
+      not _qs("je souhaite créer un bot", "je souhaite voir le catalogue"), "")
+
+# Apprentissage bout-en-bout : les 2 questions coexistent + bonnes réponses
+import memory_sheets, knowledge_store
+with patch.object(memory_sheets, "save_learned", lambda q, a, l: True), \
+     patch.object(memory_sheets, "get_memory_sheet_id", lambda: "FAKE"), \
+     patch.object(memory_sheets, "append_rows", lambda t, r: True):
+    r1 = knowledge_store.learn_entry("je souhaite créer un bot", "REPONSE_BOT", "fr", directory=str(TD))
+    r2 = knowledge_store.learn_entry("je souhaite voir le catalogue", "REPONSE_CATALOGUE", "fr", directory=str(TD))
+check("2e apprentissage NE remplace PAS le 1er", not r2["replaced"], r2)
+rep_a = rag_bot.trouver_meilleure_reponse_multilingue("je souhaite créer un bot", "fr")
+rep_b = rag_bot.trouver_meilleure_reponse_multilingue("je souhaite voir le catalogue", "fr")
+check("bonne réponse pour 'je souhaite créer un bot'", rep_a == "REPONSE_BOT", rep_a)
+check("bonne réponse pour 'je souhaite voir le catalogue'", rep_b == "REPONSE_CATALOGUE", rep_b)
+# Tolérance fautes : orthographe/grammaire approximatives
+rep_c = rag_bot.trouver_meilleure_reponse_multilingue("je souhate creer un bot", "fr")
+check("fautes d'orthographe tolérées (bot trouvé)", rep_c == "REPONSE_BOT", rep_c)
+rep_d = rag_bot.trouver_meilleure_reponse_multilingue("je veut créé un bot", "fr")
+check("grammaire approximative tolérée", rep_d == "REPONSE_BOT", rep_d)
+
+# ── 9. ADMIN : toutes les commandes exécutables depuis ADMIN_CHAT_ID ──────
+print("── ADMIN ID ──")
+fb.sent.clear()
+rag_bot._process_text(int(os.environ["ADMIN_CHAT_ID"]), "/menu", "fr")
+check("/menu fonctionne depuis l'admin", len(fb.sent) >= 1, fb.sent[-1:])
+import actions as _act
+fb.sent.clear()
+rag_bot._process_text(int(os.environ["ADMIN_CHAT_ID"]), "/stats", "fr")
+check("/stats fonctionne depuis l'admin", len(fb.sent) >= 1, fb.sent[-1:])
+with patch.object(rag_bot.img_gen, "handle_image_request",
+                  lambda b, c, t, l: b.send_message(c, "IMAGE_OK") or True):
+    # aussi en tant que CLIENT : /image doit passer le garde « commande
+    # inconnue » pour atteindre le générateur Pollinations
+    fb.sent.clear()
+    rag_bot._process_text(2001, "/image un logo doré", "fr")
+    check("/image exécutable depuis un CLIENT aussi",
+          any(t == "IMAGE_OK" for _, t in fb.sent), fb.sent)
+    fb.sent.clear()
+    rag_bot._process_text(int(os.environ["ADMIN_CHAT_ID"]), "/image un logo doré", "fr")
+check("/image exécutable depuis l'admin", any(t == "IMAGE_OK" for _, t in fb.sent), fb.sent)
+# Le catalogue client est aussi testable depuis l'admin (pas de gate)
+fb.sent.clear(); fb.photos.clear()
+rag_bot._process_text(int(os.environ["ADMIN_CHAT_ID"]), "catalogue", "fr")
+check("'catalogue' en texte → catalogue visuel (admin inclus)",
+      len(fb.photos) >= 1, fb.photos)
 
 print(f"\nTOTAL: {OK} OK / {KO} KO")
 sys.exit(1 if KO else 0)
