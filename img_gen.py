@@ -18,7 +18,32 @@ IMG_ENABLED = os.getenv("IMG_ENABLED", "true").lower() in {"1", "true", "yes", "
 IMAGES_DIR = Path(os.getenv("IMAGES_DIR", BASE_DIR / "data" / "images"))
 KEEP_IMAGES = 30          # derniers fichiers conservés
 TIMEOUT = 60              # génération + téléchargement
-POLLINATIONS = "https://image.pollinations.ai/prompt/{p}?width=1024&height=1024&nologo=true&seed={s}"
+# URL HD PRO (Boss 03/10) : model=flux (meilleure cohérence), enhance=true
+# (rendu plus pro), nologo=true (sans watermark), 1280x1280.
+POLLINATIONS = ("https://image.pollinations.ai/prompt/{p}"
+                "?width=1280&height=1280&model=flux&enhance=true"
+                "&nologo=true&seed={s}")
+
+# LOGO RULE (Boss 03/10) : pour un logo, JAMAIS de personne — un logo
+# minimaliste luxe, fond noir + or premium. La variante KOMARA (K doré)
+# s'applique aux demandes génériques/KOMARA ; un client qui nomme SON
+# activité (« logo pour mon resto ») garde SA marque, sans le K de Komara.
+LOGO_TRIGGER = ("logo", "logos", "logotype", "emblème", "embleme", "sigle")
+LOGO_PROTOCOL_KOMARA = (
+    ", minimalist luxury logo for KOMARA AGENCY, elegant golden letter "
+    "K emblem, deep black background, prestige gold #D4AF37 accents, "
+    "premium branding style, clean vector emblem, no person, no faces, "
+    "no characters, high contrast, ultra detailed"
+)
+LOGO_PROTOCOL_CLIENT = (
+    ", minimalist luxury logo emblem, deep black background, prestige "
+    "gold #D4AF37 accents, premium branding style, clean vector emblem, "
+    "no person, no faces, no characters, high contrast, ultra detailed"
+)
+# Pitch Pack Premium quand le visuel généré est un logo.
+LOGO_DONE_FR = ("✨ Je peux te générer une base, mais pour un logo pro sans "
+                "watermark retouché par notre équipe, c'est dans le Pack "
+                "Premium 150€. Tu veux que je lance la version pro ?")
 
 # Déclencheurs (FR/EN/ES/AR) — routing simple et déterministe
 _TRIGGERS = [
@@ -106,16 +131,39 @@ PROTOCOL_8K = (
 )
 
 
+def _is_logo_prompt(prompt: str) -> bool:
+    """Le client demande-t-il un LOGO (et non un visuel photo) ?"""
+    low = (prompt or "").lower()
+    return any(t in low for t in LOGO_TRIGGER)
+
+
 def _with_8k_protocol(prompt: str) -> str:
-    """Colle le protocole 8K de knowledge.txt au prompt client.
-    Le 9:16 vertical s'applique aux visuels réseaux (pas aux logos)."""
+    """Colle le bon protocole au prompt client, sans changer son sens.
+    LOGO (Boss 03/10) : logo minimaliste luxe KOMARA (K doré, fond noir,
+    premium, AUCUNE personne) — jamais le protocole photo peau/9:16.
+    Sinon : protocole photo 8K + 9:16 vertical (sauf bannières)."""
     if not prompt:
         return prompt
+    if _is_logo_prompt(prompt):
+        low = prompt.lower()
+        # Le client nomme SA marque/activité → SA version (pas le K Komara)
+        has_own_brand = any(w in low for w in (
+            "mon resto", "ma boutique", "mon business", "mon entreprise",
+            "ma marque", "mon shop", "mon salon", "mon hôtel", "mon hotel",
+            "ma société", "for my", "pour mon", "pour ma"))
+        protocol = LOGO_PROTOCOL_CLIENT if has_own_brand else LOGO_PROTOCOL_KOMARA
+        return prompt + protocol
     out = prompt + PROTOCOL_8K
     low = prompt.lower()
     if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
         out += ", vertical 9:16 format"
     return out
+
+def _done_caption(prompt: str, lang: str) -> str:
+    """Caption finale : pitch Pack Premium 150€ pour un logo."""
+    if _is_logo_prompt(prompt):
+        return LOGO_DONE_FR
+    return _m(lang, "done")
 
 
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
@@ -131,7 +179,7 @@ def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
             path = IMAGES_DIR / name
             path.write_bytes(resp.content)
             with open(path, "rb") as f:
-                bot.send_photo(chat_id, f, caption=_m(lang, "done"))
+                bot.send_photo(chat_id, f, caption=_done_caption(prompt, lang))
             _prune_images()
             return
         bot.send_message(chat_id, _m(lang, "error"))

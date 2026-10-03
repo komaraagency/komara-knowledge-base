@@ -259,5 +259,44 @@ rag_bot._process_text(int(os.environ["ADMIN_CHAT_ID"]), "catalogue", "fr")
 check("'catalogue' en texte → catalogue visuel (admin inclus)",
       len(fb.photos) >= 1, fb.photos)
 
+# ── 10. POLLINATIONS PRO : flux + 1280 + règle logo ─────────────────────
+print("── POLLINATIONS PRO / RÈGLE LOGO ──")
+import img_gen as _ig
+_url = _ig.POLLINATIONS.format(p="x", s=1)
+check("URL Pollinations : model=flux", "model=flux" in _url, _url)
+check("URL Pollinations : enhance=true", "enhance=true" in _url, _url)
+check("URL Pollinations : 1280x1280 HD", "width=1280" in _url and "height=1280" in _url, _url)
+check("URL Pollinations : nologo=true (sans watermark)", "nologo=true" in _url, _url)
+_lk = _ig._with_8k_protocol("un logo doré")
+check("prompt logo → protocole KOMARA (K doré, fond noir)",
+      "KOMARA" in _lk and "no person" in _lk, _lk[-80:])
+check("prompt logo → PAS de 9:16 ni peau (protocole photo)", "9:16" not in _lk and "skin" not in _lk, "")
+_lc = _ig._with_8k_protocol("un logo pour mon resto")
+check("logo de SA marque → PAS le K de KOMARA (sa marque à lui)",
+      "KOMARA" not in _lc and "no person" in _lc, _lc[-80:])
+_lp = _ig._with_8k_protocol("un lion en costume")
+check("prompt photo → protocole 8K photo conservé",
+      "8K quality" in _lp and "vertical 9:16" in _lp, "")
+_cap = _ig._done_caption("un logo doré", "fr")
+check("caption logo → pitch Pack Premium 150€",
+      "Pack Premium 150€" in _cap, _cap)
+_cap2 = _ig._done_caption("un lion en costume", "fr")
+check("caption photo → done normal (pas le pitch)", "Pack Premium" not in _cap2, _cap2)
+
+# KB : fiche « image logo » enseignée au démarrage (aya_seed)
+import aya_seed as _seed
+_qr = dict(_seed.SEED_QR)
+check("fiche 'image logo' présente dans aya_seed",
+      "image logo" in _qr, list(_qr)[:5])
+check("fiche logo : pas de personne + Pack Premium 150€",
+      "ne génère pas une personne" in _qr.get("image logo", "")
+      and "Pack Premium 150€" in _qr.get("image logo", ""), "")
+with patch.object(memory_sheets, "get_memory_sheet_id", lambda: "FAKE"), \
+     patch.object(memory_sheets, "append_rows", lambda t, r: True), \
+     patch.object(memory_sheets, "save_learned", lambda q, a, l: True):
+    rep_logo = rag_bot.trouver_meilleure_reponse_multilingue("image logo", "fr")
+    check("question 'image logo' → réponse logo premium",
+          rep_logo is not None and "Pack Premium 150€" in rep_logo, rep_logo)
+
 print(f"\nTOTAL: {OK} OK / {KO} KO")
 sys.exit(1 if KO else 0)

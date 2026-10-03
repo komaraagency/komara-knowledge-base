@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Lot 30 — Nouveautés du 02/10 (soir) :
-  • Seed Aya (20 Q/R ton africain) — chargée au démarrage, idempotente.
+  • Seed Aya (21 Q/R ton africain) — chargée au démarrage, idempotente.
   • Portfolio sur Google Drive (upload admin + listing + download).
   • Lien Google robuste : fallback env GOOGLE_REFRESH_TOKEN.
   • Événement Google Calendar créé à chaque RDV.
@@ -30,11 +30,11 @@ import rag_bot
 import aya_seed, knowledge_store
 
 print("── SEED AYA ──")
-check("20 Q/R définies", len(aya_seed.SEED_QR) == 20, len(aya_seed.SEED_QR))
+check("21 Q/R définies (20 + règle logo Boss 03/10)", len(aya_seed.SEED_QR) == 21, len(aya_seed.SEED_QR))
 # Vider puisSeeder
 knowledge_store._CUSTOM_ROWS = []
 r1 = aya_seed.ensure_seed("fr")
-check("seed charge 20 en runtime", len(knowledge_store._CUSTOM_ROWS) == 20,
+check("seed charge 21 en runtime", len(knowledge_store._CUSTOM_ROWS) == 21,
       len(knowledge_store._CUSTOM_ROWS))
 check("seed persistée = 0 (Google non lié en test)", r1["persisted"] == 0, r1)
 # Idempotent : re-seed n'ajoute rien
