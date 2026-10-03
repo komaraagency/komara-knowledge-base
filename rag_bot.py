@@ -505,6 +505,7 @@ except Exception:
     logger.warning("Seed Aya non chargée", exc_info=True)
 
 
+
 def refresh_resources(lang_code: str) -> None:
     knowledge_store.refresh_resources(lang_code)
 
@@ -735,6 +736,12 @@ def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
         )
         DB_CONN.commit()
     return history
+
+
+# Fix routage (Boss 03/10) : les captions des images générées (pitch
+# « Tu veux que je lance la version pro ? ») entrent dans la MÉMOIRE du
+# bot — sinon le « Oui » du client tombe sur une fiche KB sans rapport.
+img_gen.set_history_recorder(remember)
 
 def forget(chat_id: int) -> None:
     global DB_CONN
@@ -1658,6 +1665,8 @@ def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
         return
     lang = _LAST_LANG.get(chat_id, "fr") if chat_id else "fr"
     try:
+        if img_gen.handle_callback(bot, call, lang):
+            return
         catalogue.handle_callback(bot, call, lang)
     except Exception as e:
         logger.error("CRASH géré dans handle_callback_query : %s", e, exc_info=True)
@@ -1913,6 +1922,12 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # kb.json + FAQ + dialogues multilingues, mémoire SQLite pour le contexte.
     # Génération d'images simple (/image ou « génère une image de … »)
     if img_gen.handle_image_request(bot, chat_id, user_text, detected_lang):
+        return
+
+    # Fix routage (Boss 03/10) : les RÉPONSES au pitch image (« Oui »,
+    # « lance la version pro », « variante », « non ») sont consommées ICI,
+    # dans leur contexte — jamais de fiche KB au hasard après une image.
+    if img_gen.handle_pro_followup(bot, chat_id, user_text, detected_lang):
         return
 
     # Garde anti-divulgation : jamais de clés, IDs, algorithme ou conception

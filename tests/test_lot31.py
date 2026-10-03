@@ -264,7 +264,8 @@ print("── POLLINATIONS PRO / RÈGLE LOGO ──")
 import img_gen as _ig
 _url = _ig.POLLINATIONS.format(p="x", s=1)
 check("URL Pollinations : model=flux", "model=flux" in _url, _url)
-check("URL Pollinations : enhance=true", "enhance=true" in _url, _url)
+check("URL Pollinations : enhance RETIRÉ (fix fidélité prompt, lot33)",
+      "enhance=true" not in _url, _url)
 check("URL Pollinations : 1280x1280 HD", "width=1280" in _url and "height=1280" in _url, _url)
 check("URL Pollinations : nologo=true (sans watermark)", "nologo=true" in _url, _url)
 _lk = _ig._with_8k_protocol("un logo doré")
@@ -276,7 +277,7 @@ check("logo de SA marque → PAS le K de KOMARA (sa marque à lui)",
       "KOMARA" not in _lc and "no person" in _lc, _lc[-80:])
 _lp = _ig._with_8k_protocol("un lion en costume")
 check("prompt photo → protocole 8K photo conservé",
-      "8K quality" in _lp and "vertical 9:16" in _lp, "")
+      "8K" in _lp and "vertical 9:16" in _lp, "")
 _cap = _ig._done_caption("un logo doré", "fr")
 check("caption logo → pitch Pack Premium 150€",
       "Pack Premium 150€" in _cap, _cap)

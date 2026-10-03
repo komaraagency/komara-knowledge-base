@@ -9,6 +9,7 @@ import os
 import random
 import re
 import threading
+import time
 from pathlib import Path
 from urllib.parse import quote
 
@@ -24,9 +25,18 @@ KEEP_IMAGES = 30          # derniers fichiers conservés
 TIMEOUT = 60              # génération + téléchargement
 # URL HD PRO (Boss 03/10) : model=flux (meilleure cohérence), enhance=true
 # (rendu plus pro), nologo=true (sans watermark Pollinations), 1280x1280.
+# Boss 03/10 (fix fidélité prompt) : enhance=true RETIRÉ — ce paramètre
+# fait réécrire le prompt du client par une IA tierce de Pollinations
+# avant génération, ce qui diluait/ignorait les instructions explicites
+# (« NO plastic », ethnicité précisée...). On envoie désormais le prompt
+# du client QUASI TEL QUEL (juste notre protocole collé, voir plus bas),
+# sans réécriture externe.
 POLLINATIONS = ("https://image.pollinations.ai/prompt/{p}"
-                "?width=1280&height=1280&model=flux&enhance=true"
+                "?width=1280&height=1280&model=flux"
                 "&nologo=true&seed={s}")
+# Pollinations gate désormais ~50% des requêtes anonymes (402 Payment
+# Required, constaté 03/10) — on retente avant d'abandonner.
+MAX_GEN_RETRIES = 3
 
 # ---------------------------------------------------------------------------
 # RÈGLE 100% KOMARA (Boss 03/10, suite au clip-art « @pollinations.ai »
@@ -50,13 +60,56 @@ CARTOON_KEYWORDS = (
 
 # Verrou photoréaliste par défaut (gen_komara_100, Boss 03/10) : aucune
 # photo « plastique »/IA factice ne doit sortir sans que le client l'ait
-# demandé.
+# demandé. RACCOURCI (fix fidélité 03/10) et placé juste APRÈS le prompt
+# client (position de poids fort) plutôt qu'en toute fin — un prompt trop
+# long dilue/tronque les dernières instructions chez beaucoup de modèles.
 REALISM_LOCK = (
-    ", photorealistic, ultra realistic, premium luxury photo, 8k, sharp "
-    "focus, real texture, professional photography, "
-    "NO cartoon, NO drawing, NO anime, NO plastic, NO fake AI look, "
-    "no other brand logo, no third-party watermark"
+    ", photorealistic, real skin texture, visible pores, NO cartoon, "
+    "NO drawing, NO anime, NO plastic, NO smooth skin, NO fake AI look"
 )
+# Détails de style secondaires (poids plus faible, OK si tronqués en cas
+# de prompt déjà long) : marque + palette + protocole technique.
+STYLE_TAIL = (
+    ", no other brand logo, no third-party watermark, shot on Sony A7R V, "
+    "85mm f/1.8, deep black and prestige gold #D4AF37 palette, luxury "
+    "aesthetic, ultra detailed, 8K"
+)
+
+# ---------------------------------------------------------------------------
+# ETHNICITÉ (fix 03/10, Boss) : si le CLIENT précise une ethnicité
+# (africain, européen, asiatique...), on la respecte strictement — jamais
+# écrasée par le protocole. Si le prompt décrit une PERSONNE sans aucune
+# ethnicité précisée, on applique le défaut de marque KOMARA (persona
+# africaine) ; un prompt qui ne parle pas de personne (objet, logo,
+# paysage...) ne reçoit AUCUN ajout d'ethnicité.
+# ---------------------------------------------------------------------------
+ETHNICITY_KEYWORDS = {
+    "africain": ("africain", "africaine", "african", "noir", "noire",
+                 "black", "guinéen", "guineen", "guinéenne", "ouest-africain",
+                 "west african", "subsaharien"),
+    "européen": ("européen", "européenne", "european", "caucasian",
+                 "caucasien", "caucasienne", "blanche", "blanc ", "white "),
+    "asiatique": ("asiatique", "asian", "chinoise", "chinois", "coréen",
+                  "coreen", "coréenne", "japonaise", "japonais", "asia "),
+}
+PERSON_KEYWORDS = (
+    "femme", "homme", "woman", "man", "personne", "person", "portrait",
+    "visage", "face", "fille", "girl", "garçon", "boy", "modèle", "model",
+    "client", "entrepreneur", "entrepreneure", "développeur", "developpeur",
+)
+
+
+def _detect_ethnicity(prompt_low: str) -> str | None:
+    """Ethnicité explicitement nommée par le client dans son prompt, ou
+    None si aucune (le défaut de marque s'applique alors, si personne)."""
+    for name, words in ETHNICITY_KEYWORDS.items():
+        if any(w in prompt_low for w in words):
+            return name
+    return None
+
+
+def _mentions_person(prompt_low: str) -> bool:
+    return any(w in prompt_low for w in PERSON_KEYWORDS)
 
 # LOGO RULE (Boss 03/10) : pour un logo, JAMAIS de personne — un logo
 # minimaliste luxe, fond noir + or premium. La variante KOMARA (K doré)
@@ -115,6 +168,35 @@ MESSAGES = {
 
 def _m(lang: str, key: str) -> str:
     return MESSAGES.get(lang, MESSAGES["fr"])[key]
+
+
+# ---------------------------------------------------------------------------
+# SUIIVI DE CONVERSATION IMAGE (Boss 03/10 — fix routage) :
+# les captions (pitch « Tu veux que je lance la version pro ? », done
+# « Tu veux une variante ou une version pro… ? ») doivent entrer dans la
+# MÉMOIRE du bot, sinon le « Oui » du client tombe sur une fiche KB sans
+# rapport (ex: démo multi-canaux — screenshot Boss). rag_bot enregistre
+# ici son propre writer d'historique (remember), img_gen reste découplé.
+# ---------------------------------------------------------------------------
+HISTORY_RECORDER = None   # set_history_recorder(remember) par rag_bot
+LAST_PROMPT: dict = {}    # chat_id → dernier prompt généré (pour variante)
+LAST_CAPTION: dict = {}    # chat_id → dernière caption envoyée (contexte)
+
+
+def set_history_recorder(fn) -> None:
+    """rag_bot injecte remember() ici (découplage, pas d'import circulaire)."""
+    global HISTORY_RECORDER
+    HISTORY_RECORDER = fn
+
+
+def _remember_caption(chat_id: int, caption: str) -> None:
+    """Mémorise la caption côté historique conversationnel (best-effort)."""
+    LAST_CAPTION[chat_id] = caption
+    try:
+        if HISTORY_RECORDER:
+            HISTORY_RECORDER(chat_id, "assistant", caption)
+    except Exception:
+        logger.exception("Caption non mémorisée (envoi continue)")
 
 
 def extract_prompt(text: str):
@@ -206,9 +288,16 @@ def _with_8k_protocol(prompt: str) -> str:
     if _is_cartoon_allowed(prompt):
         # Le client a demandé cartoon → on respecte, sous la marque Komara
         return f"{prompt}, {BRAND_TAG} style"
-    # PAR DÉFAUT : marque KOMARA + interdiction cartoon/plastique/IA factice
-    out = f"{prompt}, {BRAND_TAG}" + PROTOCOL_8K + REALISM_LOCK
+    # PAR DÉFAUT : négatifs/réalisme COLLÉS juste après le prompt client
+    # (poids fort, fix fidélité 03/10), ethnicité respectée si précisée
+    # par le client, défaut marque (africain) UNIQUEMENT si portrait sans
+    # ethnicité précisée, puis détails de style secondaires en fin.
     low = prompt.lower()
+    # Pas de devinette de genre : le nom (femme/homme...) est déjà dans
+    # le prompt client, on ajoute juste le descripteur ethnique manquant.
+    ethnicity_tag = ", West African" if (
+        _detect_ethnicity(low) is None and _mentions_person(low)) else ""
+    out = f"{prompt}{ethnicity_tag}{REALISM_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
     if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
         out += ", vertical 9:16 format"
     return out
@@ -259,21 +348,41 @@ def _stamp_brand(path: Path) -> None:
         logger.exception("Tampon KOMARA AGENCY impossible (image envoyée sans tampon)")
 
 
+def _fetch_image(prompt: str) -> bytes | None:
+    """Télécharge l'image chez Pollinations, avec retry (Boss 03/10 :
+    le endpoint anonyme gate désormais ~50% des requêtes en 402 Payment
+    Required — un simple retry suffit presque toujours)."""
+    full_prompt = _with_8k_protocol(prompt)
+    for attempt in range(MAX_GEN_RETRIES):
+        try:
+            url = POLLINATIONS.format(p=quote(full_prompt), s=random.randint(1, 10**6))
+            resp = requests.get(url, timeout=TIMEOUT)
+            if resp.status_code == 200 and resp.content[:2] == b"\xff\xd8":
+                return resp.content
+        except Exception:
+            logger.exception("Échec génération image (tentative %s/%s)", attempt + 1, MAX_GEN_RETRIES)
+        if attempt < MAX_GEN_RETRIES - 1:
+            time.sleep(1.5)
+    return None
+
+
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
     """Thread worker : télécharge l'image, tamponne la marque, puis l'envoie."""
     stop = threading.Event()
     threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
     try:
-        url = POLLINATIONS.format(p=quote(_with_8k_protocol(prompt)), s=random.randint(1, 10**6))
-        resp = requests.get(url, timeout=TIMEOUT)
-        if resp.status_code == 200 and resp.content[:2] == b"\xff\xd8":
+        content = _fetch_image(prompt)
+        if content:
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             name = f"img_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
             path = IMAGES_DIR / name
-            path.write_bytes(resp.content)
+            path.write_bytes(content)
             _stamp_brand(path)
+            caption = _done_caption(prompt, lang)
+            LAST_PROMPT[chat_id] = prompt   # « variante » → regénère ce prompt
             with open(path, "rb") as f:
-                bot.send_photo(chat_id, f, caption=_done_caption(prompt, lang))
+                bot.send_photo(chat_id, f, caption=caption)
+            _remember_caption(chat_id, caption)
             _prune_images()
             return
         bot.send_message(chat_id, _m(lang, "error"))
@@ -298,4 +407,133 @@ def handle_image_request(bot, chat_id: int, text: str, lang: str) -> bool:
     threading.Thread(
         target=_generate_and_send, args=(bot, chat_id, prompt, lang), daemon=True,
     ).start()
+    return True
+
+
+# ---------------------------------------------------------------------------
+# ROUTAGE DES SUIVIS IMAGE (Boss 03/10 — fix « Oui » → démo sans rapport
+# et « lance la version pro » → question sans réponse) :
+#   • « Oui » après le pitch logo  → lance le devis Pack Premium 150€
+#   • « lance la version pro »     → idem (n'importe quand après une image)
+#   • « variante » / « autre »     → regénère le même prompt (nouveau seed)
+#   • « Oui » après le done        → boutons Variante / Version pro
+#   • « non »                      → clôture polie, le rendu reste gratuit
+# ---------------------------------------------------------------------------
+_PRO_TRIGGERS = (
+    "version pro", "lance le pro", "lance la pro", "pack premium",
+    "va pour le pack", "va pour la version", "je veux le pack",
+    "je veux la version", "lance le premium", "upgrade", "lance-le",
+    "lance la", "envoie la version", "fais la version",
+)
+_VARIANTE_TRIGGERS = (
+    "variante", "une variante", "autre version", "une autre version",
+    "une autre", "regenere", "regénère", "régénère", "refais-la",
+    "refais la", "refais une", "encore une",
+)
+_NEG_WORDS = ("non", "no", "nope", "لا", "nan", "non merci")
+
+def _start_premium_devis(bot, chat_id: int, lang: str, prompt: str) -> None:
+    """« Oui » / « version pro » → tunnel devis avec la demande d'origine
+    (Pack Premium 150€) — jamais de fiche au hasard, jamais de démo."""
+    import actions
+    details = f"Version pro Pack Premium 150€ (logo/visuel retouché équipe) — demande d'origine : « {prompt[:200]} »"
+    bot.send_message(
+        chat_id,
+        "🔥 Parfait, on lance ta version pro ! 💎\n"
+        "Pack Premium — 150€ (logo/visuel pro retouché par l'équipe, sans "
+        "watermark, fichiers HD + sources).\n\n"
+        "Quelques infos pour ton devis 👇")
+    actions.start_flow(bot, chat_id, "devis", lang, trigger_text=details)
+    # NOTE : le contexte image n'est PAS vidé ici — un client qui relance
+    # « version pro » ou « variante » après le devis reste bien routé.
+    # Il est vidé par « non » ou remplacé par la prochaine image.
+
+
+def _ask_variant_or_pro(bot, chat_id: int, lang: str) -> None:
+    """« Oui » après le done : le client veut quoi exactement ? On DEMANDE
+    (routage par boutons, zéro devinette)."""
+    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+    kb = InlineKeyboardMarkup()
+    kb.row(InlineKeyboardButton("🔄 Une variante (gratuite)", callback_data="kmr_img_variante"),
+           InlineKeyboardButton("💎 Version pro 150€", callback_data="kmr_img_pro"))
+    bot.send_message(chat_id, "Avec plaisir 😊 Tu veux plutôt :", reply_markup=kb)
+
+
+def _regenerate_variant(bot, chat_id: int, lang: str) -> None:
+    """« variante » → regénère le DERNIER prompt (nouveau seed aléatoire)."""
+    prompt = LAST_PROMPT.get(chat_id)
+    if not prompt:
+        bot.send_message(chat_id, _m(lang, "ask"))
+        return
+    bot.send_message(chat_id, _m(lang, "working"))
+    threading.Thread(
+        target=_generate_and_send, args=(bot, chat_id, prompt, lang), daemon=True,
+    ).start()
+
+
+def handle_pro_followup(bot, chat_id: int, text: str, lang: str) -> bool:
+    """Routing des réponses au pitch/done d'une image générée.
+    True = message consommé. Ne s'active QUE dans un contexte image
+    (une caption a été envoyée récemment à CE client)."""
+    if chat_id not in LAST_CAPTION:
+        return False
+    low = (text or "").strip().lower().strip(" .?!…'’")
+    if not low:
+        return False
+    caption = LAST_CAPTION.get(chat_id, "")
+    is_logo_pitch = "Pack Premium" in caption          # pitch logo → devis direct
+    is_done = "version pro" in caption                 # done → choix variante/pro
+    tokens = low.split()
+    is_confirm = low in ("oui", "ouais", "yes", "yeah", "si", "sí", "نعم", "أكيد", "تمام", "ok", "okay", "d'accord", "daccord", "vas-y", "vasy", "go")
+    is_short_confirm = (len(tokens) <= 3 and tokens and tokens[0] in (
+        "oui", "ouais", "yes", "yeah", "si", "sí", "نعم", "va", "vas-y", "vasy", "ok", "go"))
+    is_neg = low in _NEG_WORDS or (tokens and tokens[0] in ("non", "no", "nan") and len(tokens) <= 3)
+
+    last_prompt = LAST_PROMPT.get(chat_id, "")
+
+    # « lance la version pro » / « version pro » → devis Premium, direct
+    if any(t in low for t in _PRO_TRIGGERS):
+        _start_premium_devis(bot, chat_id, lang, last_prompt)
+        return True
+
+    # « variante » / « une autre » → regénération gratuite du même prompt
+    if any(t in low for t in _VARIANTE_TRIGGERS):
+        _regenerate_variant(bot, chat_id, lang)
+        return True
+
+    # « Oui » après le PITCH LOGO (« Tu veux que je lance la version pro ? »)
+    if (is_confirm or is_short_confirm) and is_logo_pitch:
+        _start_premium_devis(bot, chat_id, lang, last_prompt)
+        return True
+
+    # « Oui » après le DONE (« variante ou version pro ? ») → on demande lequel
+    if (is_confirm or is_short_confirm) and is_done:
+        _ask_variant_or_pro(bot, chat_id, lang)
+        return True
+
+    # « non » → clôture polie, le rendu de base reste gratuit
+    if is_neg:
+        bot.send_message(chat_id, (
+            "Pas de souci 😊 Le rendu de base reste gratuit — tape /image "
+            "quand tu veux une autre idée, ou « catalogue » pour nos offres 🇬🇳"))
+        LAST_CAPTION.pop(chat_id, None)
+        return True
+
+    return False
+
+
+def handle_callback(bot, call, lang: str) -> bool:
+    """Boutons du choix variante/pro. True = clic consommé."""
+    data = getattr(call, "data", "") or ""
+    chat_id = call.message.chat.id if call.message else None
+    if chat_id is None or data not in ("kmr_img_variante", "kmr_img_pro"):
+        return False
+    try:
+        bot.answer_callback_query(call.id)
+    except Exception:
+        pass
+    if data == "kmr_img_variante":
+        _regenerate_variant(bot, chat_id, lang)
+    else:
+        _start_premium_devis(bot, chat_id, lang, LAST_PROMPT.get(chat_id, ""))
     return True
