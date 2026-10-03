@@ -4,6 +4,7 @@
 # Tourne dans un thread séparé pour ne jamais bloquer le bot.
 # ---------------------------------------------------------------------------
 
+import logging
 import os
 import random
 import re
@@ -13,16 +14,49 @@ from urllib.parse import quote
 
 import requests
 
+logger = logging.getLogger("komara.img_gen")
+
 BASE_DIR = Path(__file__).resolve().parent
 IMG_ENABLED = os.getenv("IMG_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
 IMAGES_DIR = Path(os.getenv("IMAGES_DIR", BASE_DIR / "data" / "images"))
+STAMP_FONT_PATH = BASE_DIR / "assets" / "fonts" / "KomaraStamp-Bold.ttf"
 KEEP_IMAGES = 30          # derniers fichiers conservés
 TIMEOUT = 60              # génération + téléchargement
 # URL HD PRO (Boss 03/10) : model=flux (meilleure cohérence), enhance=true
-# (rendu plus pro), nologo=true (sans watermark), 1280x1280.
+# (rendu plus pro), nologo=true (sans watermark Pollinations), 1280x1280.
 POLLINATIONS = ("https://image.pollinations.ai/prompt/{p}"
                 "?width=1280&height=1280&model=flux&enhance=true"
                 "&nologo=true&seed={s}")
+
+# ---------------------------------------------------------------------------
+# RÈGLE 100% KOMARA (Boss 03/10, suite au clip-art « @pollinations.ai »
+# visible dans le coin d'une photo générée) : ICI ON PRODUIT 100% KOMARA
+# AGENCY 🇬🇳, JAMAIS une autre marque. Deux verrous complémentaires :
+#   1. PROMPT : marque KOMARA AGENCY injectée + verrou photoréaliste par
+#      défaut (interdit cartoon/dessin/plastique/rendu IA factice), sauf
+#      si le CLIENT demande explicitement un style cartoon.
+#   2. POST-TRAITEMENT (fiable, indépendant du modèle) : tout clip-art/
+#      watermark qu'un modèle externe pourrait coller dans le coin est
+#      recouvert par notre propre tampon « KOMARA AGENCY 🇬🇳 » doré —
+#      aucune marque tierce ne doit jamais être visible sur un visuel livré.
+# ---------------------------------------------------------------------------
+BRAND_TAG = "KOMARA AGENCY 🇬🇳"
+
+# Mots qui autorisent le cartoon — UNIQUEMENT si le client le demande
+CARTOON_KEYWORDS = (
+    "cartoon", "dessin", "anime", "animé", "animée", "manga", "pixar",
+    "3d cartoon", "disney", "chibi", "comics", "bd ", "bande dessinée",
+)
+
+# Verrou photoréaliste par défaut (gen_komara_100, Boss 03/10) : aucune
+# photo « plastique »/IA factice ne doit sortir sans que le client l'ait
+# demandé.
+REALISM_LOCK = (
+    ", photorealistic, ultra realistic, premium luxury photo, 8k, sharp "
+    "focus, real texture, professional photography, "
+    "NO cartoon, NO drawing, NO anime, NO plastic, NO fake AI look, "
+    "no other brand logo, no third-party watermark"
+)
 
 # LOGO RULE (Boss 03/10) : pour un logo, JAMAIS de personne — un logo
 # minimaliste luxe, fond noir + or premium. La variante KOMARA (K doré)
@@ -33,12 +67,13 @@ LOGO_PROTOCOL_KOMARA = (
     ", minimalist luxury logo for KOMARA AGENCY, elegant golden letter "
     "K emblem, deep black background, prestige gold #D4AF37 accents, "
     "premium branding style, clean vector emblem, no person, no faces, "
-    "no characters, high contrast, ultra detailed"
+    "no characters, high contrast, ultra detailed, no other brand logo"
 )
 LOGO_PROTOCOL_CLIENT = (
     ", minimalist luxury logo emblem, deep black background, prestige "
     "gold #D4AF37 accents, premium branding style, clean vector emblem, "
-    "no person, no faces, no characters, high contrast, ultra detailed"
+    "no person, no faces, no characters, high contrast, ultra detailed, "
+    "no other brand logo"
 )
 # Pitch Pack Premium quand le visuel généré est un logo.
 LOGO_DONE_FR = ("✨ Je peux te générer une base, mais pour un logo pro sans "
@@ -137,11 +172,26 @@ def _is_logo_prompt(prompt: str) -> bool:
     return any(t in low for t in LOGO_TRIGGER)
 
 
+def _is_cartoon_allowed(prompt: str) -> bool:
+    """Le CLIENT a-t-il explicitement demandé un style cartoon/dessin ?
+    Par défaut (gen_komara_100, Boss 03/10) le cartoon/plastique est
+    INTERDIT — seule une demande explicite du client l'autorise."""
+    low = (prompt or "").lower()
+    return any(w in low for w in CARTOON_KEYWORDS)
+
+
 def _with_8k_protocol(prompt: str) -> str:
     """Colle le bon protocole au prompt client, sans changer son sens.
-    LOGO (Boss 03/10) : logo minimaliste luxe KOMARA (K doré, fond noir,
-    premium, AUCUNE personne) — jamais le protocole photo peau/9:16.
-    Sinon : protocole photo 8K + 9:16 vertical (sauf bannières)."""
+
+    RÈGLE 100% KOMARA (Boss 03/10) : ici on produit 100% KOMARA AGENCY,
+    jamais une autre marque — la marque est injectée dans le prompt, et
+    le rendu plastique/cartoon/IA factice est verrouillé par défaut.
+    LOGO : logo minimaliste luxe KOMARA (K doré, fond noir, premium,
+    AUCUNE personne) — jamais le protocole photo peau/9:16.
+    CARTOON explicitement demandé par le client : on respecte, mais
+    toujours sous la marque KOMARA AGENCY.
+    Sinon (défaut) : marque + verrou photoréaliste + protocole 8K + 9:16
+    vertical (sauf bannières)."""
     if not prompt:
         return prompt
     if _is_logo_prompt(prompt):
@@ -153,11 +203,16 @@ def _with_8k_protocol(prompt: str) -> str:
             "ma société", "for my", "pour mon", "pour ma"))
         protocol = LOGO_PROTOCOL_CLIENT if has_own_brand else LOGO_PROTOCOL_KOMARA
         return prompt + protocol
-    out = prompt + PROTOCOL_8K
+    if _is_cartoon_allowed(prompt):
+        # Le client a demandé cartoon → on respecte, sous la marque Komara
+        return f"{prompt}, {BRAND_TAG} style"
+    # PAR DÉFAUT : marque KOMARA + interdiction cartoon/plastique/IA factice
+    out = f"{prompt}, {BRAND_TAG}" + PROTOCOL_8K + REALISM_LOCK
     low = prompt.lower()
     if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
         out += ", vertical 9:16 format"
     return out
+
 
 def _done_caption(prompt: str, lang: str) -> str:
     """Caption finale : pitch Pack Premium 150€ pour un logo."""
@@ -166,8 +221,46 @@ def _done_caption(prompt: str, lang: str) -> str:
     return _m(lang, "done")
 
 
+def _stamp_brand(path: Path) -> None:
+    """Recouvre tout clip-art/watermark tiers (ex: « @pollinations.ai »
+    collé par le modèle dans un coin) par notre propre tampon doré
+    « KOMARA AGENCY 🇬🇳 » — fiable car indépendant du prompt/modèle.
+    Règle d'or (Boss 03/10) : ici on produit 100% Komara Agency,
+    jamais une autre marque visible sur un visuel livré.
+    Best-effort : si Pillow/la police manquent, l'image part sans tampon
+    plutôt que de bloquer l'envoi."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+
+        img = Image.open(path).convert("RGB")
+        w, h = img.size
+        draw = ImageDraw.Draw(img, "RGBA")
+
+        text = "KOMARA AGENCY"
+        font_size = max(18, w // 28)
+        try:
+            font = ImageFont.truetype(str(STAMP_FONT_PATH), font_size)
+        except Exception:
+            font = ImageFont.load_default()
+
+        bbox = draw.textbbox((0, 0), text, font=font)
+        text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        pad_x, pad_y = int(font_size * 0.6), int(font_size * 0.4)
+        band_h = text_h + pad_y * 2
+        # Bandeau noir semi-opaque PLEINE LARGEUR en bas de l'image : masque
+        # fiablement n'importe quel clip-art tiers déjà présent dans ce coin.
+        draw.rectangle([0, h - band_h, w, h], fill=(10, 10, 10, 215))
+        tx = w - text_w - pad_x - bbox[0]
+        ty = h - band_h + pad_y - bbox[1]
+        draw.text((tx, ty), text, font=font, fill=(212, 175, 55, 255))  # #D4AF37
+
+        img.save(path, "JPEG", quality=92)
+    except Exception:
+        logger.exception("Tampon KOMARA AGENCY impossible (image envoyée sans tampon)")
+
+
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
-    """Thread worker : télécharge l'image puis l'envoie."""
+    """Thread worker : télécharge l'image, tamponne la marque, puis l'envoie."""
     stop = threading.Event()
     threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
     try:
@@ -178,6 +271,7 @@ def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
             name = f"img_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
             path = IMAGES_DIR / name
             path.write_bytes(resp.content)
+            _stamp_brand(path)
             with open(path, "rb") as f:
                 bot.send_photo(chat_id, f, caption=_done_caption(prompt, lang))
             _prune_images()
