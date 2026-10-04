@@ -110,8 +110,8 @@ with patch.object(memory_sheets, "save_learned", sheet.save_learned):
                             "vous livrez a kindia || Non, seulement Conakry.", "fr")
 # la question enseignée est SIMILAIRE au seed 'livrez vous à kindia'
 # → elle le REMPLACE (runtime) : on garde 20 dialogues actifs, pas 21.
-check("réapprendre similaire remplace le seed (25 actifs, 21 + 4 déf. Boss 04/10)",
-      len(knowledge_store._CUSTOM_ROWS) == 25, len(knowledge_store._CUSTOM_ROWS))
+check("réapprendre similaire remplace le seed (36 actifs, 25 + 11 conv. Boss 04/10)",
+      len(knowledge_store._CUSTOM_ROWS) == 36, len(knowledge_store._CUSTOM_ROWS))
 r2 = rag_bot.trouver_meilleure_reponse_multilingue("vous livrez a kindia ?", "fr")
 check("la NOUVELLE réponse est servie", r2 is not None and "Conakry" in r2, str(r2)[:80])
 
@@ -120,11 +120,11 @@ print("── ÉCHEC GOOGLE : AUCUN FAUX SUCCÈS ──")
 sent.clear()
 sheet.linked = False
 with patch.object(memory_sheets, "save_learned", sheet.save_learned):
-    actions._admin_apprends(FakeBot(), 99999, "autre question || autre réponse", "fr")
+    actions._admin_apprends(FakeBot(), 99999, "zzz wxyz inconnu || autre réponse", "fr")
 check("pas de ✅ annoncé quand Google est HS",
       not any("✅" in t for c, t in sent), sent)
 check("rien publié en runtime",
-      rag_bot.trouver_meilleure_reponse_multilingue("autre question", "fr") is None)
+      rag_bot.trouver_meilleure_reponse_multilingue("zzz wxyz inconnu", "fr") is None)
 sheet.linked = True
 
 # ── 5. Miroir des réponses (wrap send_message installé par run()) ───────

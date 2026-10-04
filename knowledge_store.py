@@ -22,8 +22,15 @@ _CUSTOM_ROWS: list[dict[str, Any]] = []
 
 
 def _make_entry(question: str, answer: str) -> dict[str, Any]:
+    # Variantes « q1 | q2 | q3 » : une seule entrée, plusieurs formulations
+    # clientes (le moteur score chaque question et prend la meilleure —
+    # voir local_search.trouver_meilleure_reponse). Boss 04/10 : les
+    # conversations commerciales arrivent en variantes naturelles.
+    variants = [v.strip() for v in (question or "").split("|") if v.strip()]
+    if not variants:
+        variants = [question or ""]
     return {"id": "custom_" + uuid.uuid4().hex, "category": "custom",
-            "questions": [question], "answer": answer, "tags": ["custom", "admin"]}
+            "questions": variants, "answer": answer, "tags": ["custom", "admin"]}
 
 
 def _apply_purge(resources: dict, lang: str) -> None:

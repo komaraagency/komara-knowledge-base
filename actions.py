@@ -26,6 +26,8 @@ from pathlib import Path
 
 import catalogue
 import devis_engine
+from telebot.types import ReplyKeyboardMarkup
+from normalize_text import normalize
 import google_link
 import invoices
 import osm_maps
@@ -159,6 +161,171 @@ TRIGGERS: dict[str, set[str]] = {
         "/sondage", "sondage", "donner mon avis", "laisser un avis", "mon avis",
     },
 }
+
+# ---------------------------------------------------------------------------
+# FLOW « PITCH AYA » (Boss 04/10) : script commercial scénarisé en 4
+# branches, livré clé en main par le Boss. Déclenché quand le client
+# demande explicitement les services (« votre service », « que
+# proposez-vous »...). Boutons cliquables ET écrivables (reply keyboard
+# Telegram) ; les réponses "1/2/3/4" ne sont interprétées QUE pendant ce
+# flux actif (règle d'or Boss : jamais de réponse à un chiffre nu hors
+# contexte — l'architecture _fetch_flow/_advance_flow garantit déjà ça,
+# pas de risque de collision avec le catalogue/portfolio/devis).
+# ---------------------------------------------------------------------------
+
+PITCH_INTRO = (
+    "Boss ! 👋\n"
+    "Ici Aya de *KOMARA AGENCY* 👩🏾‍💻\n\n"
+    "Voici ce que je propose pour booster ton business :\n\n"
+    "1️⃣ Création d'Agents IA — Assistant qui répond, vend et qualifie 24h/24\n"
+    "2️⃣ Bots Telegram / WhatsApp — Automatisation complète de tes DM et commandes\n"
+    "3️⃣ Automatisation Facebook / Instagram / TikTok — Posts, messages, commentaires auto\n"
+    "4️⃣ Administration & Modération — On gère tes pages comme une vraie équipe pro\n\n"
+    "Dis-moi, tu es intéressé par quel numéro ? 👇"
+)
+
+PITCH_BRANCHES = {
+    "1": {
+        "tag": "lead_agent_ia",
+        "message": (
+            "Parfait ! 🤖 L'Agent IA peut remplacer 3 employés. Tu veux qu'il "
+            "fasse quoi exactement : Vente ? Support ? Prise de RDV ?"
+        ),
+    },
+    "2": {
+        "tag": "lead_bot",
+        "message": (
+            "Le Bot WhatsApp/Telegram capte 100% de tes clients même quand "
+            "tu dors 💤 Tu es sur WhatsApp ou Telegram ?"
+        ),
+    },
+    "3": {
+        "tag": "lead_auto",
+        "message": (
+            "On connecte FB, IG, TikTok pour publier et répondre auto 📲 Tu "
+            "as combien de pages à gérer ?"
+        ),
+    },
+    "4": {
+        "tag": "lead_modo",
+        "message": (
+            "On devient ton Community Manager IA + humain 🧑🏾‍💼 Tu veux un "
+            "pack mensuel ou une gestion à l'heure ?"
+        ),
+    },
+}
+
+PITCH_FINALE = (
+    "Top ! Envoie-moi le nom de ton entreprise et ton objectif ce mois-ci, "
+    "je te fais un plan d'action en 2 min. 🚀"
+)
+
+PITCH_CLOSING = (
+    "Reçu, merci ! ✅ Je transmets ça à l'équipe Komara — ton plan d'action "
+    "arrive très vite 🚀"
+)
+
+PITCH_RETRY = (
+    "Tape juste 1, 2, 3 ou 4 👆 (ou touche un bouton ci-dessous) pour que je "
+    "te guide vers ce qui t'intéresse."
+)
+
+# Déclencheurs (phrases libres, pas une égalité exacte comme TRIGGERS) :
+# matching normalisé (sans accents, tolérant) sur des morceaux-clés.
+_PITCH_PATTERNS = (
+    re.compile(r"\bvotre?\s+service"),
+    re.compile(r"\bvos\s+services?"),
+    re.compile(r"\bproposez[\s-]?vous\b"),
+    re.compile(r"\bque[\s'`]?(?:ce|est)[\s-]?ce\s+(?:que\s+)?(?:vous|tu)\s+propos"),
+    re.compile(r"\bquel(?:le)?\s+est\s+vo[tr]+e\s+activit"),
+    re.compile(r"\bquelles?\s+sont\s+vos\s+activit"),
+    re.compile(r"propos.*(?:pour|a)\s+mon\s+business"),
+    re.compile(r"\btu\s+me\s+propose.*business"),
+)
+
+
+def _is_pitch_intent(text: str) -> bool:
+    """True si le client demande explicitement « vos services / que
+    proposez-vous / quelle est votre activité / tu me proposes quoi pour
+    mon business » (variantes tolérées, accents/fautes neutralisés)."""
+    norm = normalize(text or "")
+    if not norm:
+        return False
+    return any(p.search(norm) for p in _PITCH_PATTERNS)
+
+
+def _pitch_keyboard() -> ReplyKeyboardMarkup:
+    kb = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    kb.add("1 - Agents IA", "2 - Bots")
+    kb.add("3 - Automatisation", "4 - Modération")
+    return kb
+
+
+def _pitch_choice_digit(text: str) -> str | None:
+    """Extrait 1/2/3/4 depuis un bouton ("2 - Bots") ou un chiffre nu.
+    None si rien de valide — on ne devine JAMAIS une branche (règle d'or
+    Boss : pas de réponse à un chiffre hors logique de la conversation)."""
+    t = (text or "").strip()
+    m = re.match(r"^([1-4])\b", t)
+    return m.group(1) if m else None
+
+
+def _step_pitch(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
+    if step == "choice":
+        digit = _pitch_choice_digit(text)
+        if digit is None:
+            retries = int(data.get("_pitch_retries", 0)) + 1
+            if retries > 2:
+                # Jamais de boucle infinie ni de réponse devinée : on
+                # libère le flux, le message retombe dans le routage
+                # normal (KB, autre flux...).
+                _clear_flow(chat_id)
+                return False
+            data["_pitch_retries"] = retries
+            _save_flow(chat_id, "pitch", "choice", data)
+            bot.send_message(chat_id, PITCH_RETRY, reply_markup=_pitch_keyboard())
+            return True
+        branch = PITCH_BRANCHES[digit]
+        data["branch"] = digit
+        data["tag"] = branch["tag"]
+        _save_flow(chat_id, "pitch", "qualify", data)
+        bot.send_message(chat_id, branch["message"])
+        return True
+
+    if step == "qualify":
+        data["qualify_answer"] = text[:200]
+        _save_flow(chat_id, "pitch", "closing", data)
+        bot.send_message(chat_id, PITCH_FINALE)
+        return True
+
+    if step == "closing":
+        data["company_objective"] = text[:300]
+        _clear_flow(chat_id)
+        client = get_client(chat_id) or {}
+        _insert("leads", {
+            "chat_id": str(chat_id), "name": client.get("name", ""),
+            "phone": client.get("phone", ""),
+            "sector": PITCH_BRANCHES.get(data.get("branch", ""), {}).get("tag", ""),
+            "need": f"{data.get('qualify_answer','')} | {data.get('company_objective','')}",
+            "budget": "", "created_at": _now(),
+        })
+        try:
+            notify_admin(
+                bot,
+                "🎯 NOUVEAU LEAD — Pitch Aya\n"
+                f"🏷️ Tag : {data.get('tag','')}\n"
+                f"👤 chat_id {chat_id} — {client.get('name') or '(inconnu)'}\n"
+                f"💬 Qualif : {data.get('qualify_answer','')}\n"
+                f"🏢 Entreprise/objectif : {data.get('company_objective','')}",
+            )
+        except Exception:
+            logger.exception("notify_admin pitch Aya a échoué")
+        bot.send_message(chat_id, PITCH_CLOSING)
+        return True
+
+    _clear_flow(chat_id)
+    return False
+
 
 ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres"}
 
@@ -765,6 +932,12 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
                 return True
             return start_flow(bot, chat_id, flow, lang, trigger_text=text_clean)
 
+    # 2bis-pitch. FLOW « PITCH AYA » (Boss 04/10) : le client demande
+    # explicitement les services → script scénarisé en 4 branches.
+    # Jamais si un flux est déjà actif (on ne l'interrompt pas).
+    if not _fetch_flow(chat_id) and _is_pitch_intent(text_clean):
+        return start_flow(bot, chat_id, "pitch", lang)
+
     # 2ter. LETTRE MASTER — le client parle en PHRASE : « je souhaite un
     # devis », « je veux commander un chatbot ». Les déclencheurs devis/order
     # sont recherchés par frontière de mot dans la phrase (pas seulement
@@ -858,6 +1031,10 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
     elif flow == "lead":
         _save_flow(chat_id, "lead", "name", {})
         bot.send_message(chat_id, t(lang, "lead_start"))
+    elif flow == "pitch":
+        _save_flow(chat_id, "pitch", "choice", {})
+        bot.send_message(chat_id, PITCH_INTRO, reply_markup=_pitch_keyboard(),
+                         parse_mode="Markdown")
     elif flow == "human":
         # Tunnel « parler à un humain » (bouton 💬 du catalogue, ou
         # demande texte « je veux parler à un vrai humain »).
@@ -888,6 +1065,8 @@ def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str
         return _step_devis(bot, chat_id, step, data, text, lang)
     if flow == "lead":
         return _step_lead(bot, chat_id, step, data, text, lang)
+    if flow == "pitch":
+        return _step_pitch(bot, chat_id, step, data, text, lang)
     if flow == "survey":
         return _step_survey(bot, chat_id, step, data, text, lang)
     if flow == "human":

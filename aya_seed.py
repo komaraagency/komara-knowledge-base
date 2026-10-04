@@ -70,6 +70,31 @@ SEED_QR: list[tuple[str, str]] = [
     # fond noir, style premium + pitch Pack Premium 150€.
     ("image logo",
      "Pour un logo, ne génère pas une personne. Génère un logo minimaliste luxe pour KOMARA AGENCY avec un K doré, fond noir, style premium. ✨ Je peux te générer une base, mais pour un logo pro sans watermark retouché par notre équipe, c'est dans le Pack Premium 150€. Tu veux que je lance la version pro ?"),
+    # CONVERSATIONS COMMERCIALES AYA (Boss 04/10 20h36) : 4 scripts
+    # livrés par le Boss (agents IA, modération, retour devis, suivi
+    # post-devis) convertis en Q/R prêtes à répondre.
+    ("je veux en savoir plus sur vos agents ia",
+     "Avec plaisir 🤖 On crée des agents IA personnalisés qui répondent aux questions de tes clients, automatisent des tâches et améliorent l'interaction. Chaque agent est conçu selon tes specs, intégré à ton site ou ta page, suivi pour optimiser ses performances. Tu as un projet spécifique en tête ? Je peux te faire une démo 👇"),
+    ("comment fonctionne le chatbot pour mon site",
+     "C'est simple 👇 1. On comprend tes besoins et objectifs 2. On conçoit le chatbot selon tes spécifications 3. On l'intègre sur ton site 4. On assure le suivi pour optimiser ses performances 📈 Résultat : il répond et vend 24h/24 tout seul. Tu veux une démonstration ?"),
+    ("quels sont vos tarifs pour un chatbot",
+     "Nos tarifs varient selon la complexité du projet et les fonctionnalités souhaitées 💡 Je peux t'envoyer un devis personnalisé si tu me donnes quelques détails sur ce que tu cherches : chatbot simple au départ, vente, prise de RDV... ? Ça te convient ?"),
+    ("je veux en savoir plus sur vos services de modération | parlez-moi de la modération des réseaux sociaux | vous faites la modération des pages | service de modération facebook instagram",
+     "Avec plaisir 🛡️ On modère tes pages Facebook et Instagram pour garantir un environnement sûr et engageant pour ta communauté : gestion des commentaires, réponse aux messages, surveillance des interactions. Tu as déjà une communauté en place ?"),
+    ("j'ai trop de messages et de commentaires à gérer",
+     "C'est tout à fait normal 😅 La modération prend beaucoup de temps ! On peut gérer ces tâches pour toi : analyse de ta page, lignes directrices, filtre IA des contenus inappropriés, et réponse rapide et pro aux messages et commentaires. Comme ça tu te concentres sur le développement de ton business 🚀 Je t'explique comment on procède ?"),
+    ("comment fonctionne la modération des pages",
+     "Voilà comment on procède 👇 1. On analyse ta page pour comprendre tes besoins 2. On établit les lignes directrices de modération 3. Nos outils d'IA filtrent les contenus inappropriés 4. Notre équipe répond vite et pro aux messages et commentaires ✨ Les tarifs dépendent de la taille de ta communauté et du volume. Envoie-moi le lien de ta page et ton volume moyen de messages, je te prépare un devis détaillé."),
+    ("j'ai des questions sur le devis du chatbot",
+     "Oui, bien sûr 👍 Le devis inclut : réponses automatiques aux questions fréquentes, intégration avec tes systèmes existants, et personnalisation du langage du chatbot pour qu'il corresponde à ta marque ✨ Tu aimerais ajouter une fonctionnalité en particulier ? Par exemple la collecte d'e-mails pour une newsletter ?"),
+    ("je veux ajouter une fonctionnalité au chatbot | ajouter une collecte d'emails au bot | ajouter une option au chatbot | personnaliser le chatbot avec une nouvelle fonctionnalité",
+     "Excellente idée 💡 On peut intégrer ça au chatbot : collecte d'e-mails pour une newsletter, prise de RDV, catalogue produits... Je mets à jour le devis pour inclure cette fonctionnalité. Je te rappelle les étapes suivantes dès que le devis modifié est prêt 👇 Tu veux autre chose en plus ?"),
+    ("combien de temps pour mettre en place le chatbot",
+     "Une fois que tu valides le devis, la mise en place prend généralement entre 2 à 4 semaines selon les fonctionnalités souhaitées ⏱️ On te garde informé à chaque étape du processus. Cela te semble raisonnable ?"),
+    ("vous offrez un support après la mise en place",
+     "Absolument 💪 On propose un support continu après la mise en place : mises à jour et ajustements selon tes besoins, accès à notre équipe pour toute question ou modification. Tu n'es jamais seul après le lancement 🤝 Tu veux avancer avec le devis ?"),
+    ("je suis prêt à donner mon accord | je valide le devis | je suis d'accord pour le devis | comment finaliser l'accord pour le projet",
+     "Parfait 🎉 Je t'envoie un lien pour finaliser l'accord. Une fois que tu confirmes, on commence immédiatement à travailler sur ton projet 🚀 N'hésite pas à me recontacter si tu as d'autres questions en attendant le lien !"),
 ]
 
 
