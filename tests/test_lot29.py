@@ -110,8 +110,8 @@ with patch.object(memory_sheets, "save_learned", sheet.save_learned):
                             "vous livrez a kindia || Non, seulement Conakry.", "fr")
 # la question enseignée est SIMILAIRE au seed 'livrez vous à kindia'
 # → elle le REMPLACE (runtime) : on garde 20 dialogues actifs, pas 21.
-check("réapprendre similaire remplace le seed (21 actifs)",
-      len(knowledge_store._CUSTOM_ROWS) == 21, len(knowledge_store._CUSTOM_ROWS))
+check("réapprendre similaire remplace le seed (25 actifs, 21 + 4 déf. Boss 04/10)",
+      len(knowledge_store._CUSTOM_ROWS) == 25, len(knowledge_store._CUSTOM_ROWS))
 r2 = rag_bot.trouver_meilleure_reponse_multilingue("vous livrez a kindia ?", "fr")
 check("la NOUVELLE réponse est servie", r2 is not None and "Conakry" in r2, str(r2)[:80])
 

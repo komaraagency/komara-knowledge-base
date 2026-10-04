@@ -1513,6 +1513,17 @@ def _handle_message(message: telebot.types.Message) -> None:
     # génère JAMAIS un QR, elle est TOUJOURS scannée (et inversement
     # pour 'payer' en texte). Les 2 ne tournent jamais ensemble.
     if getattr(message, "photo", None):
+        # ── IMG2IMG (Boss 04/10) : photo + texte → retouche IA. Une photo
+        # AVEC caption est TOUJOURS une demande de retouche (client ou
+        # boss) — le prompt client est respecté, visage préservé, rendu
+        # réaliste sauf demande cartoon explicite. Sans caption, la photo
+        # suit son chemin habituel (portfolio admin / scan reçu client).
+        _img_caption = strip_invisible_chars(message.caption or "") if message.caption else ""
+        if _img_caption:
+            detected_lang = detect_language(_img_caption) or "fr"
+            safe_typing(chat_id)
+            if img_gen.handle_photo_request(bot, chat_id, _img_caption, message, detected_lang):
+                return
         # ADMIN : la photo est une réalisation → portfolio Drive.
         if actions.ADMIN_CHAT_ID and chat_id == actions.ADMIN_CHAT_ID:
             safe_typing(chat_id)

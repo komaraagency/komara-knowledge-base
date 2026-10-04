@@ -65,7 +65,8 @@ CARTOON_KEYWORDS = (
 # long dilue/tronque les dernières instructions chez beaucoup de modèles.
 REALISM_LOCK = (
     ", photorealistic, real skin texture, visible pores, NO cartoon, "
-    "NO drawing, NO anime, NO plastic, NO smooth skin, NO fake AI look"
+    "NO drawing, NO anime, NO plastic, NO smooth skin, NO fake AI look, "
+    "NO blurry, NO deformed, NO distorted face, NO extra fingers"
 )
 # Détails de style secondaires (poids plus faible, OK si tronqués en cas
 # de prompt déjà long) : marque + palette + protocole technique.
@@ -536,4 +537,135 @@ def handle_callback(bot, call, lang: str) -> bool:
         _regenerate_variant(bot, chat_id, lang)
     else:
         _start_premium_devis(bot, chat_id, lang, LAST_PROMPT.get(chat_id, ""))
+    return True
+
+
+# ---------------------------------------------------------------------------
+# IMG2IMG (Boss 04/10) : photo du client + texte → image générée.
+# La photo de référence est hébergée publiquement (uguu.se, ~3h de
+# rétention — largement le temps de générer) car Pollinations ne peut
+# lire qu'une URL publique, jamais le fichier local.
+# VERROUS : visage/identité préservés, réalisme strict (pas de plastique,
+# flou, déformation ni cartoon sauf demande explicite), prompt du client
+# respecté (pas de réécriture externe, enhance retiré — même fix que le
+# texte→image 03/10).
+# ---------------------------------------------------------------------------
+POLLINATIONS_I2I = ("https://image.pollinations.ai/prompt/{p}"
+                    "?width=1024&height=1024&model=flux"
+                    "&nologo=true&seed={s}&image={img}")
+# Le gating 402 est plus lourd sur l'img2img (modèle d'édition partagé) :
+# plus de tentatives que le texte→image.
+MAX_I2I_RETRIES = 5
+REF_HOST_UPLOAD = "https://uguu.se/upload"
+
+# Préserve le visage/identité de la photo de référence (règle Boss :
+# jamais de visage modifié lors d'une retouche).
+IDENTITY_LOCK = (
+    ", keep the exact same face as the reference photo, preserve facial "
+    "features, same skin tone, same identity, do not alter the face"
+)
+
+
+def _upload_reference(data: bytes) -> str | None:
+    """Héberge la photo de référence et renvoie son URL publique directe."""
+    try:
+        resp = requests.post(
+            REF_HOST_UPLOAD,
+            files={"files[]": ("ref.jpg", data, "image/jpeg")},
+            timeout=30,
+        )
+        payload = resp.json()
+        files = payload.get("files") or []
+        if payload.get("success") and files:
+            url = str(files[0].get("url", "")).replace("\\", "")
+            if url.startswith("http"):
+                return url
+        logger.error("Hébergement ref refusé : %s", str(payload)[:200])
+    except Exception:
+        logger.exception("Hébergement photo de référence impossible")
+    return None
+
+
+def _i2i_prompt(caption: str) -> str:
+    """Prompt img2img : caption client respectée + verrous identité/rendu.
+    Cartoon autorisé UNIQUEMENT si demandé explicitement (même règle que
+    le texte→image)."""
+    cap = (caption or "").strip()
+    lowered = cap.lower()
+    if any(k in lowered for k in CARTOON_KEYWORDS):
+        return f"{cap}{IDENTITY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+    return f"{cap}{IDENTITY_LOCK}{REALISM_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+
+
+def _fetch_image_i2i(caption: str, ref_url: str) -> bytes | None:
+    """Génère depuis la photo de référence + caption (retry sur 402)."""
+    full_prompt = _i2i_prompt(caption)
+    for attempt in range(MAX_I2I_RETRIES):
+        try:
+            url = POLLINATIONS_I2I.format(
+                p=quote(full_prompt), s=random.randint(1, 10**6), img=ref_url)
+            resp = requests.get(url, timeout=TIMEOUT + 30)
+            if resp.status_code == 200 and resp.content[:2] == b"\xff\xd8":
+                return resp.content
+        except Exception:
+            logger.exception("Échec img2img (tentative %s/%s)", attempt + 1, MAX_I2I_RETRIES)
+        if attempt < MAX_I2I_RETRIES - 1:
+            time.sleep(2.5)
+    return None
+
+
+def _edit_and_send(bot, chat_id: int, caption: str, photo_bytes: bytes, lang: str) -> None:
+    """Thread worker img2img : héberge la photo, génère, tamponne, envoie."""
+    stop = threading.Event()
+    threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
+    try:
+        ref_url = _upload_reference(photo_bytes)
+        if not ref_url:
+            bot.send_message(chat_id, _m(lang, "error"))
+            return
+        content = _fetch_image_i2i(caption, ref_url)
+        if content:
+            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+            name = f"edit_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
+            path = IMAGES_DIR / name
+            path.write_bytes(content)
+            _stamp_brand(path)
+            cap = _done_caption(caption, lang)
+            LAST_PROMPT[chat_id] = caption   # « variante » → regénère
+            with open(path, "rb") as f:
+                bot.send_photo(chat_id, f, caption=cap)
+            _remember_caption(chat_id, cap)
+            _prune_images()
+            return
+        bot.send_message(chat_id, _m(lang, "error"))
+    except Exception:
+        try:
+            bot.send_message(chat_id, _m(lang, "error"))
+        except Exception:
+            pass
+    finally:
+        stop.set()
+
+
+def handle_photo_request(bot, chat_id: int, caption: str, message, lang: str) -> bool:
+    """Photo + texte → retouche IA (img2img). True = message consommé.
+    Sans caption → False (la photo suit son chemin habituel : portfolio
+    admin ou scan de reçu client)."""
+    cap = (caption or "").strip()
+    if not cap:
+        return False
+    if not IMG_ENABLED:
+        return False
+    try:
+        _f = bot.get_file(message.photo[-1].file_id)
+        photo_bytes = bot.download_file(_f.file_path)
+    except Exception:
+        logger.exception("Téléchargement photo client impossible")
+        bot.send_message(chat_id, _m(lang, "error"))
+        return True
+    bot.send_message(chat_id, _m(lang, "working"))
+    threading.Thread(
+        target=_edit_and_send, args=(bot, chat_id, cap, photo_bytes, lang),
+        daemon=True,
+    ).start()
     return True

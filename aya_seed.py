@@ -57,6 +57,15 @@ SEED_QR: list[tuple[str, str]] = [
      "Pas de souci 🙋 Tape 'humain' et je passe le relais à l'équipe. Tu seras recontacté rapidement."),
     ("au revoir",
      "À bientôt 👋 Reviens quand tu veux, je suis dispo 24h/24 🇬🇳 Que Dieu bénisse ton business ✨"),
+    # DÉFINITIONS MÉTIER (Boss 04/10) : concepts clés de l'agence.
+    ("c'est quoi un chatbot",
+     "Un chatbot 🤖 c'est un logiciel qui discute avec tes clients comme un humain, 24h/24, sur WhatsApp, Telegram, Messenger ou ton site. Il répond aux questions fréquentes, prend les commandes et envoie les infos tout seul. Exemple : un client écrit « c'est combien le logo ? » à 2h du matin, le bot répond et vend pendant tu dors 😴 Tu veux voir un exemple en vrai ?"),
+    ("c'est quoi un agent ia générative",
+     "Un agent IA générative ✨ c'est un chatbot boosté : il ne répond pas seulement, il AGIT et il CRÉE. Il peut générer des images, écrire des textes, produire des devis, apprendre tes produits et mener des actions de A à Z. C'est un employé digital polyvalent qui connait ton business par cœur 💪 Tu veux le voir à l'œuvre sur ton activité ?"),
+    ("c'est quoi un agent ia commercial",
+     "Un agent IA commercial 💼 c'est un vendeur digital : il qualifie les prospects, présente tes produits avec des visuels, répond aux objections, envoie les tarifs, relance les hésitants et clos la vente. Il connait tout ton catalogue et ne prend jamais de pause 📈 Ton business vend 24h/24, de Kindia à Dubaï 🌍 Tu veux un devis pour le tien ?"),
+    ("c'est quoi une automatisation",
+     "Une automatisation ⚙️ c'est une tâche répétitive que la machine fait à ta place : envoyer les factures, rappeler les RDV, publier sur Instagram, transférer les commandes, relancer les paniers abandonnés. Toi tu bosses sur l'essentiel, le robot s'occupe du reste 🔁 Résultat : du temps gagné, zéro oubli, plus de ventes 📈 Tu veux automatiser quoi en premier ?"),
     # RÈGLE LOGO (Boss 03/10) : jamais de personne dans un logo — K doré,
     # fond noir, style premium + pitch Pack Premium 150€.
     ("image logo",
