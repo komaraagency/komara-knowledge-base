@@ -322,12 +322,49 @@ def _done_caption(prompt: str, lang: str) -> str:
     return _m(lang, "done")
 
 
+# LOGO OFFICIEL KOMARA AGENCY (Boss 04/10) : le K doré/vert sur fond noir,
+# fichier assets/komara_logo_official.jpg. Détouré en RGBA au premier
+# appel (fond quasi-noir → transparent), puis cache.
+_LOGO_PATH = Path(__file__).resolve().parent / "assets" / "komara_logo_official.jpg"
+_LOGO_RGBA = None
+
+
+def _load_official_logo():
+    """Charge le logo officiel, détouré (fond noir → transparence) et
+    recadré sur le K. Cache en RAM. None si absent/corrompu."""
+    global _LOGO_RGBA
+    if _LOGO_RGBA is not None:
+        return _LOGO_RGBA
+    try:
+        from PIL import Image
+
+        src = Image.open(_LOGO_PATH).convert("RGB")
+        src = src.resize((256, int(256 * src.height / src.width)))
+        rgba = src.convert("RGBA")
+        px = rgba.load()
+        for y in range(rgba.height):
+            for x in range(rgba.width):
+                r, g, b, _ = px[x, y]
+                # fond quasi-noir (max des canaux < 30) → transparent
+                if max(r, g, b) < 30:
+                    px[x, y] = (r, g, b, 0)
+        bbox = rgba.getbbox()  # recadre sur le K seul
+        _LOGO_RGBA = rgba.crop(bbox) if bbox else rgba
+        return _LOGO_RGBA
+    except Exception:
+        logger.exception("Logo officiel K illisible — fallback tampon texte")
+        _LOGO_RGBA = False  # sentinelle : ne pas re-essayer à chaque image
+        return None
+
+
 def _stamp_brand(path: Path) -> None:
-    """Recouvre tout clip-art/watermark tiers (ex: « @pollinations.ai »
-    collé par le modèle dans un coin) par notre propre tampon doré
-    « KOMARA AGENCY 🇬🇳 » — fiable car indépendant du prompt/modèle.
-    Règle d'or (Boss 03/10) : ici on produit 100% Komara Agency,
-    jamais une autre marque visible sur un visuel livré.
+    """Marque chaque image générée du LOGO OFFICIEL KOMARA AGENCY (K
+    doré/vert, fichier fourni par le Boss le 04/10) collé en bas à
+    droite sur bandeau noir — recouvre au passage tout clip-art/watermark
+    tiers (ex: « @pollinations.ai » collé par le modèle dans un coin).
+    Règle d'or (Boss 03/10) : ici on produit 100% Komara Agency, jamais
+    une autre marque visible sur un visuel livré.
+    Fallback si le logo est illisible : tampon texte doré.
     Best-effort : si Pillow/la police manquent, l'image part sans tampon
     plutôt que de bloquer l'envoi."""
     try:
@@ -336,6 +373,24 @@ def _stamp_brand(path: Path) -> None:
         img = Image.open(path).convert("RGB")
         w, h = img.size
         draw = ImageDraw.Draw(img, "RGBA")
+
+        logo = _load_official_logo()
+        if logo:
+            # Taille : ~17% de la largeur, marge 2.5% ; bandeau noir discret
+            # en bas PLEINE LARGEUR pour la lisibilité + anti clip-art tiers.
+            lw = max(90, int(w * 0.17))
+            lh = int(lw * logo.height / logo.width)
+            if lh > h // 3:          # jamais un logo gigantesque
+                lh = h // 3
+                lw = int(lh * logo.width / logo.height)
+            band_h = lh + int(h * 0.028)
+            draw.rectangle([0, h - band_h, w, h], fill=(10, 10, 10, 200))
+            resized = logo.resize((lw, lh), Image.LANCZOS)
+            img.paste(resized, (w - lw - int(w * 0.025),
+                                h - band_h + (band_h - lh) // 2), resized)
+            img.save(path, "JPEG", quality=92)
+            return
+
 
         text = "KOMARA AGENCY"
         font_size = max(18, w // 28)

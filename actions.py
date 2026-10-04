@@ -1006,6 +1006,69 @@ _ACTIVITY_REASK_FR = (
     "transport, coiffure, agence…")
 
 
+# FIX SCREENS BOSS 04/10 : « hhh » accepté comme délai et numéro poubelle
+# accepté comme téléphone → commande confirmée avec des données fausses.
+# Même logique que l'activité : re-demande polie avec exemples (max 2).
+import re as _re_dl
+
+DEADLINE_HINTS = (
+    "jour", "jours", "heure", "heures", "semaine", "semaines", "mois",
+    "demain", "aujourd", "urgent", "asap", "vite", "rapidement",
+    "peu importe", "peuimporte", "quand tu veux", "quand vous voulez",
+    "n'importe", "nimporte", "importe", "anytime", "whenever", "no rush",
+    "flexible", "express", "week", "days", "hours", "tomorrow", "today",
+    "minutes", "matin", "soir", "lundi", "mardi", "mercredi",
+    "jeudi", "vendredi", "samedi", "dimanche", "janvier", "février",
+    "fevrier", "mars", "avril", "mai", "juin", "juillet", "août", "aout",
+    "septembre", "octobre", "novembre", "décembre", "decembre",
+)
+
+
+def _looks_like_deadline(text: str) -> bool:
+    """True si ça ressemble à un délai : chiffre, durée ou urgence."""
+    t = (text or "").strip()
+    if not (2 <= len(t) <= 60):
+        return False
+    if any(ch.isdigit() for ch in t):
+        return True
+    low = t.lower()
+    return any(k in low for k in DEADLINE_HINTS)
+
+
+_DEADLINE_REASK_FR = (
+    "Hmm, « {raw} » n'est pas un délai 😅 C'est pour quand ? — exemples : "
+    "« 3 jours », « demain », « 1 semaine », « urgent », ou « peu importe ».")
+_DEADLINE_REASK_EN = (
+    "Hmm, « {raw} » isn't a deadline 😅 When do you need it? — e.g. "
+    "« 3 days », « tomorrow », « 1 week », « ASAP », or « no rush ».")
+
+
+def _deadline_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
+    data["_deadline_retries"] = int(data.get("_deadline_retries", 0)) + 1
+    txt = _DEADLINE_REASK_EN if lang == "en" else _DEADLINE_REASK_FR
+    bot.send_message(chat_id, txt.replace("{raw}", (raw or "")[:60]))
+
+
+def _looks_like_phone(text: str) -> bool:
+    """True si ça ressemble à un numéro : >= 7 chiffres (espaces/+/ tirets OK)."""
+    digits = "".join(ch for ch in (text or "") if ch.isdigit())
+    return len(digits) >= 7 and len((text or "").strip()) <= 25
+
+
+_PHONE_REASK_FR = (
+    "Hmm, je ne lis pas bien ce numéro 😅 Envoie-le en chiffres, par "
+    "exemple : 622 00 00 00 ou +224 622 00 00 00 📞")
+_PHONE_REASK_EN = (
+    "Hmm, I can't read that number 😅 Send it in digits, e.g. "
+    "622 00 00 00 or +224 622 00 00 00 📞")
+
+
+def _phone_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
+    data["_phone_retries"] = int(data.get("_phone_retries", 0)) + 1
+    txt = _PHONE_REASK_EN if lang == "en" else _PHONE_REASK_FR
+    bot.send_message(chat_id, txt)
+
+
 def _activity_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
     """Re-demande l'activité avec des exemples (max 2 fois, puis on passe)."""
     n = int(data.get("_activity_retries", 0)) + 1
@@ -1048,6 +1111,11 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         return True
 
     if step == "deadline":
+        # FIX BOSS 04/10 : « hhh » n'est pas un délai — re-demande (max 2).
+        if not _looks_like_deadline(text) and int(data.get("_deadline_retries", 0)) < 2:
+            _deadline_reask(bot, chat_id, lang, text, data)
+            _save_flow(chat_id, "order", "deadline", data)
+            return True
         data["deadline"] = text[:100]
         _save_flow(chat_id, "order", "name", data)
         # Mémoire : client connu → on propose son nom enregistré
@@ -1086,6 +1154,12 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
                 bot.send_message(chat_id, t(lang, "order_phone"))
                 return True
         else:
+            # FIX BOSS 04/10 : un numéro doit contenir des chiffres —
+            # re-demande (max 2) au lieu d'enregistrer n'importe quoi.
+            if not _looks_like_phone(text) and int(data.get("_phone_retries", 0)) < 2:
+                _phone_reask(bot, chat_id, lang, text, data)
+                _save_flow(chat_id, "order", "phone", data)
+                return True
             data["phone"] = text[:50]
         _clear_flow(chat_id)
 
@@ -1463,6 +1537,11 @@ def _step_lead(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -
         return True
 
     if step == "phone":
+        # FIX BOSS 04/10 : numéro invalide → re-demande (max 2).
+        if not _looks_like_phone(text) and int(data.get("_phone_retries", 0)) < 2:
+            _phone_reask(bot, chat_id, lang, text, data)
+            _save_flow(chat_id, "lead", "phone", data)
+            return True
         data["phone"] = text[:50]
         _save_flow(chat_id, "lead", "sector", data)
         bot.send_message(chat_id, t(lang, "lead_sector"))
