@@ -743,6 +743,23 @@ def remember(chat_id: int, role: str, content: str) -> list[dict[str, str]]:
 # bot — sinon le « Oui » du client tombe sur une fiche KB sans rapport.
 img_gen.set_history_recorder(remember)
 
+
+def _last_assistant_msg(chat_id: int) -> str:
+    """Dernière réponse ENVOYÉE par le bot à ce client (mémoire SQLite).
+    Sert à img_gen pour détecter un contexte image périmé (fix Boss 04/10 :
+    un « Oui » ne doit plus relancer une vieille image après une fiche
+    KB ou une démo sans rapport)."""
+    try:
+        for m in reversed(context_for(chat_id)):
+            if m.get("role") == "assistant":
+                return str(m.get("content", ""))
+    except Exception:
+        pass
+    return ""
+
+
+img_gen.set_history_reader(_last_assistant_msg)
+
 def forget(chat_id: int) -> None:
     global DB_CONN
     with DB_LOCK:

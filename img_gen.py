@@ -180,6 +180,8 @@ def _m(lang: str, key: str) -> str:
 # ici son propre writer d'historique (remember), img_gen reste découplé.
 # ---------------------------------------------------------------------------
 HISTORY_RECORDER = None   # set_history_recorder(remember) par rag_bot
+HISTORY_READER = None     # set_history_reader() par rag_bot : dernière
+                          # réponse du bot pour CE chat (fraîcheur contexte)
 LAST_PROMPT: dict = {}    # chat_id → dernier prompt généré (pour variante)
 LAST_CAPTION: dict = {}    # chat_id → dernière caption envoyée (contexte)
 
@@ -188,6 +190,15 @@ def set_history_recorder(fn) -> None:
     """rag_bot injecte remember() ici (découplage, pas d'import circulaire)."""
     global HISTORY_RECORDER
     HISTORY_RECORDER = fn
+
+
+def set_history_reader(fn) -> None:
+    """rag_bot injecte un lecteur (dernier msg assistant du chat) — sert à
+    détecter un contexte image PÉRIMÉ (fix incohérences Boss 04/10 : le
+    « Oui » du client répondait à une vieille image alors que le bot
+    venait de servir une fiche KB / une démo sans rapport)."""
+    global HISTORY_READER
+    HISTORY_READER = fn
 
 
 def _remember_caption(chat_id: int, caption: str) -> None:
@@ -482,6 +493,22 @@ def handle_pro_followup(bot, chat_id: int, text: str, lang: str) -> bool:
     if not low:
         return False
     caption = LAST_CAPTION.get(chat_id, "")
+    # FIX INCOHÉRENCES (Boss 04/10, screenshot) : le contexte image n'est
+    # ACTIF que si la dernière réponse du bot à CE client était bien la
+    # caption de l'image. Si le bot a servi autre chose entre-temps
+    # (fiche KB, démo texte, portfolio...), le « Oui » du client répond
+    # à CETTE dernière réponse — on purge le contexte périmé et on laisse
+    # le message suivre son chemin normal. Terminé les relances d'une
+    # vieille image jusqu'au devis Premium sans rapport.
+    if HISTORY_READER is not None:
+        try:
+            last_assistant = (HISTORY_READER(chat_id) or "").strip()
+            cap_ref = caption.strip()
+            if last_assistant and cap_ref and last_assistant != cap_ref:
+                LAST_CAPTION.pop(chat_id, None)
+                return False
+        except Exception:
+            logger.exception("Vérification fraîcheur contexte image impossible")
     is_logo_pitch = "Pack Premium" in caption          # pitch logo → devis direct
     is_done = "version pro" in caption                 # done → choix variante/pro
     tokens = low.split()
@@ -518,6 +545,7 @@ def handle_pro_followup(bot, chat_id: int, text: str, lang: str) -> bool:
             "Pas de souci 😊 Le rendu de base reste gratuit — tape /image "
             "quand tu veux une autre idée, ou « catalogue » pour nos offres 🇬🇳"))
         LAST_CAPTION.pop(chat_id, None)
+        LAST_PROMPT.pop(chat_id, None)
         return True
 
     return False
@@ -647,6 +675,23 @@ def _edit_and_send(bot, chat_id: int, caption: str, photo_bytes: bytes, lang: st
         stop.set()
 
 
+# Intentions « copie exacte du visage » (fix Boss 04/10, screenshot) : le
+# moteur gratuit fait au mieux mais ne garantit PAS un visage 100%
+# identique — on le dit AVANT de générer, jamais après coup.
+COPY_INTENT = (
+    "copie exacte", "copie cette", "copie ce ", "copie la photo",
+    "copie moi", "copie-moi", "copie l'image", "exactement la même",
+    "exactement la meme", "la même photo", "la meme photo", "same exact",
+    "exactly the same", "identique", "same face",
+)
+
+COPY_HONESTY_NOTE = (
+    "⚠️ Petite précision honnête : le rendu gratuit garde la scène et le "
+    "style de ta photo, mais ne garantit pas un visage 100% identique. "
+    "Pour une fidélité parfaite du visage, la Version Pro est là 💎\n\n"
+)
+
+
 def handle_photo_request(bot, chat_id: int, caption: str, message, lang: str) -> bool:
     """Photo + texte → retouche IA (img2img). True = message consommé.
     Sans caption → False (la photo suit son chemin habituel : portfolio
@@ -663,7 +708,9 @@ def handle_photo_request(bot, chat_id: int, caption: str, message, lang: str) ->
         logger.exception("Téléchargement photo client impossible")
         bot.send_message(chat_id, _m(lang, "error"))
         return True
-    bot.send_message(chat_id, _m(lang, "working"))
+    low_cap = cap.lower()
+    prefix = COPY_HONESTY_NOTE if any(k in low_cap for k in COPY_INTENT) else ""
+    bot.send_message(chat_id, prefix + _m(lang, "working"))
     threading.Thread(
         target=_edit_and_send, args=(bot, chat_id, cap, photo_bytes, lang),
         daemon=True,

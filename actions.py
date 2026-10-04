@@ -964,6 +964,60 @@ def _step_human(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     return True
 
 
+# FIX INCOHÉRENCES (Boss 04/10, screenshot) : le client tapait « Tty »
+# comme activité et le bot sortait quand même un devis ferme à 100€.
+# Une activité doit ressembler à une activité : assez long, alphabétique,
+# ou un secteur connu. Après 2 refus on accepte quand même (on ne bloque
+# jamais un client motivé, on évite juste le poubelle évident).
+KNOWN_SECTORS = (
+    "restaurant", "boutique", "immobilier", "transport", "btp", "agriculture",
+    "coiffure", "tailleur", "couture", "boulangerie", "pâtisserie", "patisserie",
+    "hôtel", "hotel", "salle de sport", "école", "ecole", "clinique",
+    "pharmacie", "électronique", "electronique", "téléphone", "telephone",
+    "informatique", "textile", "pêche", "peche", "marché", "marche", "taxi",
+    "import", "vente", "commerce", "food", "café", "cafe", "bar", "salon",
+    "garage", "meuble", "mode", "bijou", "savon", "cosmétique", "cosmetique",
+    "avocat", "comptable", "agence", "printing", "presse", "media", "radio",
+    "événementiel", "evenementiel", "traiteur", "boucherie", "supermarché",
+    "supermarche", "freelance", "designer", "photographe", "e-commerce",
+)
+_SECTOR_WORDS = ("and", "pour", "avec", "dans", "c'est", "cest", "the", "for", "mes", "mon")
+
+
+def _looks_like_activity(text: str) -> bool:
+    """True si ça ressemble à une vraie activité (pas « Tty », « 123 »...)."""
+    t = (text or "").strip()
+    if not (3 <= len(t) <= 80):
+        return False
+    low = t.lower()
+    # secteur connu (même incomplet : « restauro » contient « resta »...)
+    if any(s.strip() in low for s in KNOWN_SECTORS):
+        return True
+    # au moins un mot alphabétique de 4+ lettres qui n'est pas un mot vide
+    import re as _re
+    words = [w for w in _re.findall(r"[a-zàâäéèêëîïôöùûüçñ]{4,}", low)
+             if w not in _SECTOR_WORDS]
+    return bool(words)
+
+
+_ACTIVITY_REASK_FR = (
+    "Hmm, « {raw} » ne me dit pas ton activité 😅 Donne-moi juste ce que tu "
+    "vends ou ton secteur — exemples : restaurant, boutique, immobilier, "
+    "transport, coiffure, agence…")
+
+
+def _activity_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
+    """Re-demande l'activité avec des exemples (max 2 fois, puis on passe)."""
+    n = int(data.get("_activity_retries", 0)) + 1
+    data["_activity_retries"] = n
+    txt = _ACTIVITY_REASK_FR
+    if lang == "en":
+        txt = ("Hmm, « {raw} » doesn't tell me your business 😅 Just tell me "
+               "what you sell or your sector — e.g. restaurant, shop, "
+               "real estate, transport, hair salon, agency…")
+    bot.send_message(chat_id, txt.replace("{raw}", (raw or "")[:60]))
+
+
 def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
     low = text.strip().lower()
     if step == "service":
@@ -982,6 +1036,12 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         return True
 
     if step == "activity":
+        # FIX BOSS 04/10 : « Tty » ou « 123 » n'est pas une activité —
+        # on re-demande (max 2 fois) au lieu d'encaisser n'importe quoi.
+        if not _looks_like_activity(text) and int(data.get("_activity_retries", 0)) < 2:
+            _activity_reask(bot, chat_id, lang, text, data)
+            _save_flow(chat_id, "order", "activity", data)
+            return True
         data["activity"] = text[:200]
         _save_flow(chat_id, "order", "deadline", data)
         bot.send_message(chat_id, t(lang, "order_deadline"))
@@ -1276,6 +1336,12 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         return True
 
     if step == "activity":
+        # FIX BOSS 04/10 : pas de devis ferme sur « Tty » — on re-demande
+        # (max 2 fois) AVANT de sortir le prix.
+        if not _looks_like_activity(text) and int(data.get("_activity_retries", 0)) < 2:
+            _activity_reask(bot, chat_id, lang, text, data)
+            _save_flow(chat_id, "devis", "activity", data)
+            return True
         data["activity"] = text[:200]
         # Délai = celui du service catalogue (affiché dans le devis)
         data["deadline"] = data.get("delay", "") or "selon projet"
