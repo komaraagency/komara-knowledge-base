@@ -327,7 +327,7 @@ def _step_pitch(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     return False
 
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/evaluation"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -1923,6 +1923,51 @@ def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
     return True
 
 
+def _admin_evaluation(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /evaluation — pipeline mémoire Aya en 7 étapes (Boss
+    05/10, adapté du schéma ML du Boss) : collecte → prétraitement →
+    conversion numérique (IDF) → modèle → entraînement → évaluation
+    sur formulations clients réelles → ajustement. Chaque échec
+    devient une suggestion « /apprends ... » — l'ajustement, version
+    Boss-dans-la-boucle."""
+    try:
+        import aya_pipeline
+        report = aya_pipeline.run_evaluation(lang=lang)
+        ev, tr = report["eval"], report["train"]
+        lines = [
+            "📊 ÉVALUATION MÉMOIRE AYA",
+            f"🧠 Base : {tr['docs']} entrées, {tr['vocab_size']} tokens indexés",
+            f"🎯 Précision : {ev['accuracy']:.0%} ({ev['hits']}/{ev['total']})",
+        ]
+        if ev["below_threshold"]:
+            lines.append(f"⚠️ Sous le seuil ({ev['threshold']:.0%}) — à enseigner :")
+        elif ev["misses"]:
+            lines.append(f"⚠️ {len(ev['misses'])} formulation(s) à améliorer :")
+        else:
+            lines.append("✅ RAS — toutes les formulations clients sont servies.")
+        for m in ev["misses"][:5]:
+            lines.append(f"• « {m['question'][:70]} »")
+        if ev["misses"]:
+            lines.append("→ Corrige avec : /apprends <question> || <réponse>")
+            # Miroir best-effort vers le Sheet (onglet Questions sans
+            # réponse) : l'échec d'évaluation est une question à couvrir.
+            try:
+                from memory_sheets import log_unanswered
+                for m in ev["misses"]:
+                    log_unanswered(m["question"], "fr", "evaluation", 1)
+            except Exception:
+                pass
+        bot.send_message(chat_id, "\n".join(lines))
+        return True
+    except Exception:
+        logger.exception("/evaluation a échoué (anti-crash)")
+        try:
+            bot.send_message(chat_id, "⚠️ L'évaluation a échoué. Réessaie.")
+        except Exception:
+            pass
+        return True
+
+
 def _admin_broadcast(bot, chat_id: int, args: str, lang: str) -> bool:
     text = args.strip()
     if not text:
@@ -2262,6 +2307,8 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         return set_global_promo(bot, 35.0, "BONNUS")
     if command in ("/apprends", "/apprendre", "/apprendres"):
         return _admin_apprends(bot, chat_id, args, lang)
+    if command == "/evaluation":
+        return _admin_evaluation(bot, chat_id, args, lang)
 
     if command == "/stats":
         with DB_LOCK:

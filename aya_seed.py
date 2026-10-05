@@ -33,7 +33,7 @@ SEED_QR: list[tuple[str, str]] = [
      "Je vends pour toi même quand tu dors 😴 Bots WhatsApp/Telegram, sites web, logos, affiches, prises de RDV automatiques. Tape 'services' pour tout voir 👇"),
     ("services",
      "Nos services 🚀\n• Bots WhatsApp & Telegram\n• Sites web vitrine & e-commerce\n• Logos & identité visuelle\n• Affiches & visuels pub\n• Gestion de RDV automatique\nTape 'prix' pour les tarifs 👇"),
-    ("prix",
+    ("prix | c'est combien le logo | c'est combien l'affiche | c'est combien un site",
      "Tarifs 🇬🇳\n• Logo : 300 000 à 500 000 GNF\n• Affiche/visuel : 300 000 GNF\n• Site vitrine : 500 000 GNF (7 jours)\n• Retouche photo : 100 000 GNF\nExpress 24h : +30%\nTape 'menu' pour commander 👇"),
     ("combien ça coûte",
      "Ça dépend du projet 😊 Logo 300k-500k GNF, affiche 300k, site 500k. Dis-moi ce que tu veux exactement et je te donne le prix précis."),
