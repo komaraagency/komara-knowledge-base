@@ -1,40 +1,51 @@
 # -*- coding: utf-8 -*-
-"""aya_pipeline — Pipeline mémoire Aya en 7 étapes (Boss 05/10).
+"""aya_pipeline — Pipeline mémoire Aya en 6 étapes (Boss 05/10, v2).
 
-ADAPTATION DU SCHÉMA ML DU BOSS :
-    collect_data → preprocess_data → convert_to_numerical → build_model
-    → train_model → evaluate_and_adjust → deploy_model
+Restructuré sur le schéma « Le trajet complet » (L'information IA,
+schéma ChatGPT) : DONNÉES → TOKENS → NOMBRES → TRANSFORMEUR →
+PRÉ-ENTRAÎNEMENT → POST-ENTRAÎNEMENT.
 
-...à l'architecture RÉELLE du bot (pivot zéro-donnée 02/10) :
+ADAPTATION À L'ARCHITECTURE RÉELLE du bot (pivot zéro-donnée 02/10) :
 
-    1. COLLECTE      : les Q/R vivent dans aya_seed (la marque du bot)
-                      + knowledge_store (RAM apprise via /apprends) ;
-                      la persistance est le Sheet « Komara Bot - Mémoire ».
-    2. PRÉTRAITEMENT : normalize_text + tokenisation + stemming léger
-                      (local_search._tokenize) — équivalent du
-                      clean()/tokenize() du schéma Boss.
-    3. CONVERSION    : vocabulaire token → index + pondération IDF
-       NUMÉRIQUE      (les mots rares portent plus de sens que « bot »).
-                      C'est notre « map_token_to_number ».
-    4. MODÈLE        : le moteur de scoring bidirectionnel IDF + fuzzy
-                      (local_search). Pas de TensorFlow : Railway tourne
-                      sur CPU, le pivot zéro-donnée interdit un corpus
-                      d'entraînement sur disque, et un modèle appris
-                      casserait les 17 suites de régression.
-    5. ENTRAÎNEMENT  : construction de l'index IDF — déterministe,
-                      instantané, reconstruit à froid à chaque
-                      redémarrage (aucune époque à sauvegarder).
-    6. ÉVALUATION    : jeu de validation de formulations CLIENTES
-       + AJUSTEMENT    réelles (fautes, français approximatif). Sous le
-                      seuil → chaque échec devient une suggestion
-                      concrète « /apprends ... » pour le Boss (c'est
-                      l'ajustement de paramètres, version humain-dans-
-                      la-boucle).
-    7. DÉPLOIEMENT   : refresh des ressources + rapport. L'intégration
-                      applicative existe déjà (handle() sert le moteur).
+    01 DONNÉES          : les Q/R vivent dans aya_seed (la marque du
+                          bot) + knowledge_store (RAM apprise via
+                          /apprends). Le Sheet « Komara Bot - Mémoire »
+                          est la persistance, réhydratée au démarrage.
+    02 TOKENS           : normalize_text + tokenisation + stemming
+                          léger (local_search._tokenize) + variantes
+                          « q1 | q2 | q3 » découpées séparément.
+    03 NOMBRES          : vocabulaire token → index + pondération IDF
+                          (un mot rare comme « modération » porte plus
+                          de sens qu'un mot générique comme « bot »).
+    04 TRANSFORMEUR     : chez ChatGPT, un réseau de neurones profond
+                          qui apprend des représentations par attention.
+                          Chez Aya : le moteur de scoring bidirectionnel
+                          IDF + fuzzy matching (local_search), servi par
+                          rag_bot. Pas de réseau de neurones : Railway
+                          tourne sur CPU, le pivot zéro-donnée interdit
+                          un corpus d'entraînement sur disque, et un
+                          modèle appris casserait les 18 suites de
+                          régression. C'est notre « transformeur
+                          maison » — déterministe, explicable, instantané.
+    05 PRÉ-ENTRAÎNEMENT : chez ChatGPT, apprentissage général à partir
+                          d'un immense corpus. Chez Aya : construction
+                          de l'index IDF sur TOUTE la base (seed + RAM
+                          apprise) — la connaissance générale de la
+                          marque, reconstruite à froid à chaque
+                          redémarrage (zéro époque, zéro perte à
+                          minimiser : c'est déterministe).
+    06 POST-ENTRAÎNEMENT : chez ChatGPT, l'alignement fin sur feedback
+                          humain (RLHF) après le pré-entraînement
+                          général. Chez Aya : exactement ce rôle est
+                          joué par l'évaluation sur des formulations
+                          CLIENTES réelles + la correction humaine du
+                          Boss via /apprends quand un écart est détecté
+                          — puis le déploiement (le moteur est déjà
+                          intégré dans handle(), Railway redéploie le
+                          code).
 
-Usage admin : /evaluation → exécute tout le pipeline et rapporte la
-précision + les échecs à enseigner.
+Usage admin : /evaluation → exécute le pipeline complet et rapporte la
+précision + les écarts à corriger.
 """
 from __future__ import annotations
 
@@ -45,15 +56,15 @@ from typing import Any
 
 logger = logging.getLogger("komara.aya_pipeline")
 
-# Seuil de compréhension attendu sur le jeu de validation (Boss 05/10).
-# 85% : assez haut pour garantir la qualité, assez bas pour tolérer les
-# formulations exotiques d'un vrai client.
+# Seuil de compréhension attendu sur le jeu de validation (post-
+# entraînement). 85% : assez haut pour la qualité, assez bas pour
+# tolérer les formulations exotiques d'un vrai client.
 DEFAULT_THRESHOLD = 0.85
 
 
-# ── Étape 1 : Collecte de données ─────────────────────────────────────────
+# ── 01 DONNÉES ─────────────────────────────────────────────────────────
 
-def collect_data(source: str = "seed+ram") -> list[tuple[str, str]]:
+def step1_donnees(source: str = "seed+ram") -> list[tuple[str, str]]:
     """Collecte les Q/R : seed Aya (la marque) + entrées apprises en RAM
     (/apprends). Le Google Sheet reste la persistance, pas la source du
     jour : au démarrage, ensure_seed() réhydrate déjà la RAM depuis
@@ -73,11 +84,11 @@ def collect_data(source: str = "seed+ram") -> list[tuple[str, str]]:
     return [(q, a) for q, a in rows.items() if a]
 
 
-# ── Étape 2 : Prétraitement des données ───────────────────────────────────
+# ── 02 TOKENS ──────────────────────────────────────────────────────────
 
-def preprocess_data(raw_data: list[tuple[str, str]]) -> list[dict[str, Any]]:
+def step2_tokens(raw_data: list[tuple[str, str]]) -> list[dict[str, Any]]:
     """Nettoyage + normalisation + tokenisation (variantes « | » incluses :
-    chaque variante est prétraitée séparément — le moteur score chacune
+    chaque variante est tokenisée séparément — le moteur score chacune
     et prend la meilleure)."""
     from local_search import _tokenize
 
@@ -92,33 +103,32 @@ def preprocess_data(raw_data: list[tuple[str, str]]) -> list[dict[str, Any]]:
     return processed
 
 
-# ── Étape 3 : Conversion en nombres ───────────────────────────────────────
+# ── 03 NOMBRES ─────────────────────────────────────────────────────────
 
-def convert_to_numerical(preprocessed: list[dict[str, Any]]) -> dict[str, Any]:
-    """Vocabulaire token → index + pondération IDF. Équivalent local du
-    « map_token_to_number » : chaque question devient un vecteur de
-    tokens pondérés (un mot rare comme « modération » pèse plus qu'un
-    mot générique comme « bot »)."""
+def step3_nombres(tokenized: list[dict[str, Any]]) -> dict[str, Any]:
+    """Vocabulaire token → index + pondération IDF. Chaque question
+    devient un vecteur de tokens pondérés (un mot rare comme
+    « modération » pèse plus qu'un mot générique comme « bot »)."""
     df: Counter = Counter()
-    for entry in preprocessed:
+    for entry in tokenized:
         seen: set[str] = set()
         for toks in entry["tokens_per_variant"]:
             seen.update(toks)
         df.update(seen)
 
     vocab = {tok: idx for idx, tok in enumerate(sorted(df))}
-    n_docs = max(len(preprocessed), 1)
+    n_docs = max(len(tokenized), 1)
     idf = {tok: math.log((n_docs + 1) / (count + 1)) + 1.0
            for tok, count in df.items()}
     return {"vocab": vocab, "idf": idf, "doc_count": n_docs}
 
 
-# ── Étape 4 : Construction du modèle ──────────────────────────────────────
+# ── 04 TRANSFORMEUR ────────────────────────────────────────────────────
 
-def build_model() -> dict[str, Any]:
-    """Le « modèle » d'Aya : le moteur de scoring bidirectionnel IDF +
-    fuzzy matching (local_search), servi par rag_bot. Pas de
-    TensorFlow (voir docstring du module)."""
+def step4_transformeur() -> dict[str, Any]:
+    """Le « transformeur » d'Aya : pas de réseau de neurones (voir
+    docstring du module) mais le moteur de scoring bidirectionnel
+    IDF + fuzzy matching (local_search), servi par rag_bot."""
     import rag_bot
 
     return {"engine": "local_search:bidirectional+idf+fuzzy",
@@ -126,15 +136,14 @@ def build_model() -> dict[str, Any]:
             "trained": False}
 
 
-# ── Étape 5 : Entraînement du modèle ──────────────────────────────────────
+# ── 05 PRÉ-ENTRAÎNEMENT ────────────────────────────────────────────────
 
-def train_model(model: dict[str, Any],
-                numerical: dict[str, Any]) -> dict[str, Any]:
-    """« Entraînement » : l'index IDF est construit (étape 3) et le moteur
-    est armé sur les ressources fraîches. Déterministe : zéro époque, la
-    base est reconstruite à froid à chaque démarrage — c'est ça, notre
-    entraînement continu : /apprends ajoute une ligne, l'index se
-    reconstruit, la compréhension s'améliore immédiatement."""
+def step5_pre_entrainement(model: dict[str, Any],
+                           numerical: dict[str, Any]) -> dict[str, Any]:
+    """Apprentissage général : l'index IDF est construit sur TOUTE la
+    base (étape 3) et le moteur est armé sur les ressources fraîches.
+    Déterministe : zéro époque, zéro perte à minimiser — reconstruit à
+    froid à chaque démarrage."""
     import aya_seed
     import knowledge_store
 
@@ -149,12 +158,13 @@ def train_model(model: dict[str, Any],
     }
 
 
-# ── Étape 6 : Évaluation et ajustement ────────────────────────────────────
+# ── 06 POST-ENTRAÎNEMENT ───────────────────────────────────────────────
 
 # Jeu de validation : formulations CLIENTES réelles (avec fautes et
 # français approximatif) → mot-clé OBLIGATOIRE dans la réponse servie.
-# Chacune vérifie une entrée de la connaissance (seed + conversations
-# commerciales Boss 04/10).
+# C'est l'équivalent du feedback humain (RLHF) : chaque entrée vérifie
+# un point précis de la connaissance (seed + conversations commerciales
+# Boss 04/10).
 VALIDATION_SET: list[tuple[str, str]] = [
     ("salut", "Aya"),
     ("qui es-tu ?", "Aya"),
@@ -179,12 +189,14 @@ VALIDATION_SET: list[tuple[str, str]] = [
 ]
 
 
-def evaluate_and_adjust(model: dict[str, Any],
-                        validation_data: list[tuple[str, str]] | None = None,
-                        threshold: float = DEFAULT_THRESHOLD) -> dict[str, Any]:
-    """Évalue la compréhension sur les formulations réelles ; sous le
-    seuil → AJUSTEMENT version Boss-dans-la-boucle : chaque échec
-    devient une suggestion « /apprends <question> || <réponse> »."""
+def step6_post_entrainement(model: dict[str, Any],
+                            validation_data: list[tuple[str, str]] | None = None,
+                            threshold: float = DEFAULT_THRESHOLD) -> dict[str, Any]:
+    """Alignement fin sur feedback humain (notre RLHF) : évalue la
+    compréhension sur les formulations réelles ; sous le seuil → chaque
+    écart devient une suggestion « /apprends <question> || <réponse> »
+    pour le Boss. Puis déploiement : le moteur est déjà intégré dans
+    handle(), on rapporte juste l'état."""
     validation = validation_data if validation_data is not None else VALIDATION_SET
     scorer = model["scorer"]
 
@@ -202,10 +214,7 @@ def evaluate_and_adjust(model: dict[str, Any],
     total = max(len(validation), 1)
     accuracy = hits / total
     below = accuracy < threshold
-
-    # Ajustement : suggestions concrètes pour l'admin.
-    suggestions = [f"/apprends {m['question']} || ta réponse"
-                   for m in misses]
+    suggestions = [f"/apprends {m['question']} || ta réponse" for m in misses]
 
     return {
         "accuracy": accuracy,
@@ -215,44 +224,52 @@ def evaluate_and_adjust(model: dict[str, Any],
         "below_threshold": below,
         "misses": misses,
         "suggestions": suggestions,
-    }
-
-
-# ── Étape 7 : Intégration et déploiement ───────────────────────────────────
-
-def deploy_model(model: dict[str, Any], eval_report: dict[str, Any]) -> dict[str, Any]:
-    """Le moteur est déjà intégré dans handle() — le « déploiement »
-    consiste à garantir que les ressources sont fraîches et à rendre
-    compte. Pas de rechargement à chaud : Railway redéploie le code,
-    le Sheet réhydrate la mémoire."""
-    return {
         "integrated": True,
         "engine": model["engine"],
-        "accuracy": eval_report["accuracy"],
         "deploy_note": "moteur servi par handle() — ressources rafraîchies",
     }
 
 
-# ── Pipeline complet (appelé par /evaluation) ─────────────────────────────
+# ── Pipeline complet (appelé par /evaluation) ──────────────────────────
 
 def run_evaluation(lang: str = "fr",
                    threshold: float = DEFAULT_THRESHOLD) -> dict[str, Any]:
-    """Exécute les 7 étapes bout en bout. Idempotent : le seed est
+    """Exécute les 6 étapes bout en bout. Idempotent : le seed est
     assuré (RAM + Sheet si lié) avant l'évaluation."""
     import aya_seed
-    import knowledge_store
 
-    aya_seed.ensure_seed(lang)          # 1. collecte (assure le seed)
-    raw = collect_data()                # 1. collecte
-    pre = preprocess_data(raw)          # 2. prétraitement
-    numerical = convert_to_numerical(pre)  # 3. conversion numérique
-    model = build_model()               # 4. modèle
-    train_report = train_model(model, numerical)  # 5. entraînement
-    eval_report = evaluate_and_adjust(model, threshold=threshold)  # 6.
-    deploy_report = deploy_model(model, eval_report)  # 7.
+    aya_seed.ensure_seed(lang)                       # 01 (assure le seed)
+    raw = step1_donnees()                            # 01 DONNÉES
+    tokenized = step2_tokens(raw)                     # 02 TOKENS
+    numerical = step3_nombres(tokenized)              # 03 NOMBRES
+    model = step4_transformeur()                      # 04 TRANSFORMEUR
+    pretrain_report = step5_pre_entrainement(model, numerical)  # 05
+    post_report = step6_post_entrainement(model, threshold=threshold)  # 06
 
     logger.info("Pipeline Aya : précision %.0f%% (%d/%d) — vocab %d",
-                eval_report["accuracy"] * 100, eval_report["hits"],
-                eval_report["total"], train_report["vocab_size"])
-    return {"train": train_report, "eval": eval_report,
-            "deploy": deploy_report}
+                post_report["accuracy"] * 100, post_report["hits"],
+                post_report["total"], pretrain_report["vocab_size"])
+    return {"pretrain": pretrain_report, "posttrain": post_report}
+
+
+# ── Compatibilité : anciens noms (v1, Boss 05/10 matin) ────────────────
+# Conservés pour ne pas casser du code externe qui les appellerait
+# encore ; les tests/commandes actuels utilisent les noms step*.
+collect_data = step1_donnees
+preprocess_data = step2_tokens
+convert_to_numerical = step3_nombres
+build_model = step4_transformeur
+
+
+def train_model(model, numerical):
+    return step5_pre_entrainement(model, numerical)
+
+
+def evaluate_and_adjust(model, validation_data=None, threshold=DEFAULT_THRESHOLD):
+    return step6_post_entrainement(model, validation_data, threshold)
+
+
+def deploy_model(model, eval_report):
+    return {"integrated": True, "engine": model["engine"],
+            "accuracy": eval_report["accuracy"],
+            "deploy_note": "moteur servi par handle() — ressources rafraîchies"}

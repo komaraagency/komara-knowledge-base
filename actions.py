@@ -1933,7 +1933,7 @@ def _admin_evaluation(bot, chat_id: int, args: str, lang: str) -> bool:
     try:
         import aya_pipeline
         report = aya_pipeline.run_evaluation(lang=lang)
-        ev, tr = report["eval"], report["train"]
+        ev, tr = report["posttrain"], report["pretrain"]
         lines = [
             "📊 ÉVALUATION MÉMOIRE AYA",
             f"🧠 Base : {tr['docs']} entrées, {tr['vocab_size']} tokens indexés",

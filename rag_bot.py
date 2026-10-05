@@ -39,6 +39,7 @@ import aya_seed
 import osm_maps
 import backup_drive
 import weekly_report
+import aya_eval_cron
 import tts
 import img_gen
 import skills
@@ -2259,6 +2260,9 @@ if __name__ == "__main__":
     # Rapport hebdo chaque lundi 09h00 (heure Guinée) → admin
     threading.Thread(target=weekly_report.scheduler_loop, args=(bot,),
                      name="weekly-report", daemon=True).start()
+    # Évaluation hebdo mémoire Aya chaque lundi 08h00 UTC (Boss 05/10)
+    threading.Thread(target=aya_eval_cron.scheduler_loop, args=(bot,),
+                     name="aya-eval", daemon=True).start()
     # Sauvegarde automatique de la base → Google Drive chaque nuit 03h00
     threading.Thread(target=backup_drive.scheduler_loop,
                      name="drive-backup", daemon=True).start()
