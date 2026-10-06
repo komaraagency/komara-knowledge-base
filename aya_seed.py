@@ -29,7 +29,11 @@ SEED_QR: list[tuple[str, str]] = [
      "Ça roule 😎 Merci de demander ! On est là pour booster ton business. Tu veux commencer par quoi ?"),
     ("qui es tu",
      "Je suis Aya 🤖 l'IA de Komara Agency 🇬🇳 Je parle aux clients à ta place, 24h/24, en français, arabe, anglais et espagnol. Tu veux me tester ?"),
-    ("tu fais quoi",
+    # VARIANTES IDENTITÉ (Boss 06/10, screenshot) : « tu fais quoi »,
+    # « que fait Aya », « que fait Komara Agency », « que faites-vous »
+    # sont la MÊME question posée à la 2e ou 3e personne — Aya doit
+    # répondre pareil peu importe la conjugaison du client.
+    ("tu fais quoi | que fais tu | que faites vous | qu'est ce que vous faites | que fait aya | qui est aya | c'est quoi aya | que fait komara agency | c'est quoi komara agency | que propose komara agency | vous faites quoi | vos services c'est quoi",
      "Je vends pour toi même quand tu dors 😴 Bots WhatsApp/Telegram, sites web, logos, affiches, prises de RDV automatiques. Tape 'services' pour tout voir 👇"),
     ("services",
      "Nos services 🚀\n• Bots WhatsApp & Telegram\n• Sites web vitrine & e-commerce\n• Logos & identité visuelle\n• Affiches & visuels pub\n• Gestion de RDV automatique\nTape 'prix' pour les tarifs 👇"),
@@ -39,7 +43,16 @@ SEED_QR: list[tuple[str, str]] = [
      "Ça dépend du projet 😊 Logo 300k-500k GNF, affiche 300k, site 500k. Dis-moi ce que tu veux exactement et je te donne le prix précis."),
     ("délai",
      "Délais ⏱️ Logo : 2-3 jours. Affiche : 24-48h. Site : 7 jours. Express 24h possible (+30%). Tu veux qu'on commence ?"),
-    ("comment commander",
+    # VARIANTES ENVIE DE CRÉER (Boss 06/10, screenshot : « je souhaite
+    # créer un site web » / « je souhaite créer des bot » tombaient
+    # dans le fallback générique malgré l'intention d'achat claire).
+    # Volontairement RESTREINT aux 2 phrases exactes du screenshot (06/10) :
+    # pas de « je veux/souhaite créer UN bot » générique — ces formulations
+    # restent libres pour que /apprends (le boss) les enseigne lui-même
+    # sans jamais entrer en collision avec une fiche seed (règle Boss :
+    # une question enseignée par /apprends doit toujours être un AJOUT,
+    # jamais confondue avec une fiche déjà connue).
+    ("comment commander | je veux créer un site web | je souhaite créer un site web | comment créer un site",
      "Simple 👇\n1. Dis-moi ton projet\n2. Je te fais un devis\n3. 50% pour démarrer, 50% à la livraison\n4. Tu reçois tes fichiers HD + sources\nOn y va ?"),
     ("paiement",
      "On prend 50% au démarrage et 50% à la livraison 💳 Orange Money, MTN, paiement mobile, virement. Tu es en Guinée ou ailleurs ?"),

@@ -23,8 +23,30 @@ from collections import Counter
 from normalize_text import normalize_text, fuzzy_match
 
 
+# BUG BOSS 06/10 (screenshot : « que fait Aya » / « que faites-vous »
+# jamais trouvés alors que « tu fais quoi » existe dans la base) :
+# le stemming par suffixe seul traite CHAQUE conjugaison du verbe
+# « faire » comme un mot différent — fais→fai, fait→fait, faites→faite,
+# faisons→faison, font→font — zéro overlap entre « tu fais quoi » et
+# « que fait Komara Agency ». Normalisation EXPLICITE des conjugaisons
+# les plus fréquentes du verbe « faire » (identité/services : la
+# question la plus posée) vers un stem commun, AVANT le suffixe
+# générique — pour que toute formulation (tu/vous/il/elle/nous/ils)
+# retombe sur la même fiche.
+_IRREGULAR_VERB_STEMS: dict[str, str] = {
+    "fais": "fai", "fait": "fai", "faite": "fai", "faites": "fai",
+    "faisons": "fai", "faisez": "fai", "font": "fai", "faisait": "fai",
+    "faisaient": "fai", "ferai": "fai", "feras": "fai", "fera": "fai",
+    "ferons": "fai", "ferez": "fai", "feront": "fai", "ferait": "fai",
+    "feraient": "fai",
+}
+
+
 def _stem(word: str) -> str:
-    """Stemming léger pour le français : retire les pluriels courants."""
+    """Stemming léger pour le français : conjugaisons irrégulières
+    connues (verbe « faire »), puis pluriels courants."""
+    if word in _IRREGULAR_VERB_STEMS:
+        return _IRREGULAR_VERB_STEMS[word]
     if len(word) <= 3:
         return word
     for suffix in ('aux', 'eaux'):
