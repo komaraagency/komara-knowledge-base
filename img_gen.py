@@ -76,6 +76,34 @@ STYLE_TAIL = (
     "aesthetic, ultra detailed, 8K"
 )
 
+# VERROU SÉCURITÉ (Boss 06/10, bug critique screenshots) : collé à TOUTE
+# génération, personne ou pas — défense en profondeur contre le NSFW
+# (contrainte « Pas de NSFW » de la marque). Avant ce fix, rien
+# n'empêchait explicitement la nudité dans le prompt envoyé à Pollinations.
+SAFETY_LOCK = (
+    ", fully clothed, modest attire, safe-for-work, no nudity, "
+    "no explicit or sexual content, family-friendly"
+)
+
+# BUG CRITIQUE (Boss 06/10, screenshots) : « /image un poisson » et
+# « /image un lion en costume » renvoyaient tous les deux... un portrait
+# de jeune femme (une fois NSFW). Cause : REALISM_LOCK + STYLE_TAIL sont
+# du vocabulaire 100% VISAGE HUMAIN (« real skin texture, visible pores,
+# distorted face, extra fingers », objectif portrait « 85mm f/1.8 »)
+# collé à TOUT prompt, même un animal/objet — ça biaisait Flux vers un
+# portrait de femme générique au lieu du sujet demandé. Un sujet SANS
+# personne (détecté via _mentions_person) reçoit désormais un verrou
+# qualité neutre, sans aucun vocabulaire visage/peau/portrait.
+SUBJECT_LOCK_GENERIC = (
+    ", photorealistic, ultra detailed, natural cinematic lighting, sharp "
+    "focus, NO cartoon, NO drawing, NO anime, NO plastic look, NO fake AI "
+    "look, NO blurry, NO deformed"
+)
+STYLE_TAIL_GENERIC = (
+    ", no other brand logo, no third-party watermark, deep black and "
+    "prestige gold #D4AF37 palette, luxury aesthetic, ultra detailed, 8K"
+)
+
 # ---------------------------------------------------------------------------
 # ETHNICITÉ (fix 03/10, Boss) : si le CLIENT précise une ethnicité
 # (africain, européen, asiatique...), on la respecte strictement — jamais
@@ -296,20 +324,27 @@ def _with_8k_protocol(prompt: str) -> str:
             "ma marque", "mon shop", "mon salon", "mon hôtel", "mon hotel",
             "ma société", "for my", "pour mon", "pour ma"))
         protocol = LOGO_PROTOCOL_CLIENT if has_own_brand else LOGO_PROTOCOL_KOMARA
-        return prompt + protocol
+        return prompt + protocol + SAFETY_LOCK
     if _is_cartoon_allowed(prompt):
         # Le client a demandé cartoon → on respecte, sous la marque Komara
-        return f"{prompt}, {BRAND_TAG} style"
+        return f"{prompt}{SAFETY_LOCK}, {BRAND_TAG} style"
     # PAR DÉFAUT : négatifs/réalisme COLLÉS juste après le prompt client
     # (poids fort, fix fidélité 03/10), ethnicité respectée si précisée
     # par le client, défaut marque (africain) UNIQUEMENT si portrait sans
     # ethnicité précisée, puis détails de style secondaires en fin.
     low = prompt.lower()
-    # Pas de devinette de genre : le nom (femme/homme...) est déjà dans
-    # le prompt client, on ajoute juste le descripteur ethnique manquant.
-    ethnicity_tag = ", West African" if (
-        _detect_ethnicity(low) is None and _mentions_person(low)) else ""
-    out = f"{prompt}{ethnicity_tag}{REALISM_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+    has_person = _mentions_person(low)
+    if has_person:
+        # Pas de devinette de genre : le nom (femme/homme...) est déjà
+        # dans le prompt client, on ajoute juste le descripteur ethnique
+        # manquant.
+        ethnicity_tag = ", West African" if _detect_ethnicity(low) is None else ""
+        out = f"{prompt}{ethnicity_tag}{REALISM_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+    else:
+        # Sujet SANS personne (animal, objet, plat, paysage, produit) :
+        # verrou neutre, zéro vocabulaire visage/peau — voir bug critique
+        # ci-dessus.
+        out = f"{prompt}{SUBJECT_LOCK_GENERIC}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL_GENERIC}"
     if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
         out += ", vertical 9:16 format"
     return out
@@ -676,8 +711,8 @@ def _i2i_prompt(caption: str) -> str:
     cap = (caption or "").strip()
     lowered = cap.lower()
     if any(k in lowered for k in CARTOON_KEYWORDS):
-        return f"{cap}{IDENTITY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
-    return f"{cap}{IDENTITY_LOCK}{REALISM_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+        return f"{cap}{IDENTITY_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+    return f"{cap}{IDENTITY_LOCK}{REALISM_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
 
 
 def _fetch_image_i2i(caption: str, ref_url: str) -> bytes | None:

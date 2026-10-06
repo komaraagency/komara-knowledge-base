@@ -233,8 +233,9 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
     est REMPLACÉE (nouvelle version appendée). Échec de sauvegarde Google →
     exception, la publication runtime n'a PAS lieu et l'admin est prévenu."""
     global _CUSTOM_ROWS
-    question = str(question or "").strip()[:200]
-    answer = str(answer or "").strip()[:1500]
+    from memory_sheets import fix_sheet_typos
+    question = fix_sheet_typos(str(question or "").strip()[:200])
+    answer = fix_sheet_typos(str(answer or "").strip()[:1500])
     if not question or not answer:
         raise ValueError("Question and answer are required")
     with _LOCK:

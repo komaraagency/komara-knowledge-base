@@ -327,6 +327,63 @@ def _step_pitch(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     return False
 
 
+# ---------------------------------------------------------------------------
+# FLOW « CHATBOT QUALIFY » (Boss 06/10, fix incohérence screenshots) :
+# avant, le clic sur 🤖 Chatbot IA envoyait un message KB fixe, puis les
+# réponses libres du client ("Pour mon WhatsApp", "Je crée des digitaux")
+# retombaient dans la recherche KB générale au lieu d'un vrai flux — un
+# message sans rapport ("Oui, je crée des chatbots intelligents...")
+# pouvait matcher par coïncidence de mots-clés. Désormais : un VRAI flux
+# à états capture canal puis activité, comme Pitch Aya.
+# ---------------------------------------------------------------------------
+
+def start_chatbot_qualify_flow(chat_id: int) -> None:
+    """Démarre le flux SANS envoyer de message (le message d'accroche
+    MESSAGES["chatbot"] est déjà envoyé par rag_bot au clic du bouton)."""
+    _save_flow(chat_id, "chatbot_qualify", "channel", {})
+
+
+def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
+    if step == "channel":
+        data["channel"] = text[:60]
+        _save_flow(chat_id, "chatbot_qualify", "business", data)
+        bot.send_message(
+            chat_id,
+            f"Parfait {data['channel']} 👌 C'est le plus rentable. "
+            "Tu vends quoi exactement ? Boutique, resto ou service ?")
+        return True
+
+    if step == "business":
+        data["business"] = text[:200]
+        _clear_flow(chat_id)
+        client = get_client(chat_id) or {}
+        _insert("leads", {
+            "chat_id": str(chat_id), "name": client.get("name", ""),
+            "phone": client.get("phone", ""), "sector": "chatbot",
+            "need": f"Canal : {data.get('channel','')} | Activité : {data.get('business','')}",
+            "budget": "", "created_at": _now(),
+        })
+        try:
+            notify_admin(
+                bot,
+                "🎯 NOUVEAU LEAD — Chatbot IA\n"
+                f"👤 chat_id {chat_id} — {client.get('name') or '(inconnu)'}\n"
+                f"📱 Canal : {data.get('channel','')}\n"
+                f"🏢 Activité : {data.get('business','')}",
+            )
+        except Exception:
+            logger.exception("notify_admin chatbot_qualify a échoué")
+        bot.send_message(
+            chat_id,
+            "Top ! 🚀 Je transmets ça à l'équipe Komara — on te propose un "
+            "chatbot sur mesure très vite. Tu veux voir nos tarifs en "
+            "attendant ?")
+        return True
+
+    _clear_flow(chat_id)
+    return False
+
+
 ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/evaluation"}
 
 GREETING_WORDS: set[str] = {
@@ -1067,6 +1124,8 @@ def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str
         return _step_lead(bot, chat_id, step, data, text, lang)
     if flow == "pitch":
         return _step_pitch(bot, chat_id, step, data, text, lang)
+    if flow == "chatbot_qualify":
+        return _step_chatbot_qualify(bot, chat_id, step, data, text, lang)
     if flow == "survey":
         return _step_survey(bot, chat_id, step, data, text, lang)
     if flow == "human":

@@ -1025,8 +1025,11 @@ def _handle_menu_button(chat_id: int, label: str, lang: str) -> bool:
         catalogue.show_cart(bot, chat_id, lang)
         return True
     # 9. Chatbot IA / AI Chatbot / مساعد ذكي
+    # FIX BOSS (06/10, screenshot) : vrai flux de qualification, pas juste
+    # un message KB — les réponses du client sont capturées par étapes.
     if any(k in label for k in ("Chatbot", "ذكي")):
         bot.send_message(chat_id, msg(lang, "chatbot"), reply_markup=menu_for_lang(lang))
+        actions.start_chatbot_qualify_flow(chat_id)
         return True
     # 10. Portfolio / المعرض / Portafolio
     if any(k in label for k in ("Portfolio", "Portafolio", "المعرض")):
@@ -1063,6 +1066,8 @@ AMBIGUOUS_WORDS: dict[str, str] = {
     "design": "visuel", "graphique": "visuel",
     "marketing": "marketing", "pub": "marketing", "publicite": "marketing",
     "formation": "formation", "formations": "formation",
+    "faire": "faire", "créer": "faire", "creer": "faire", "veux": "faire",
+    "cree": "faire", "fait": "faire",
     # en
     "automatic": "auto", "automation": "auto", "ai": "ia",
     "website": "site", "visual": "visuel", "visuals": "visuel",
@@ -1086,6 +1091,16 @@ _AMBIGUOUS_CLARIFY: dict[str, dict[str, list[str]]] = {
                "¿Un bot? Un poco más de detalle 😄 ¿Quiere pedir un bot, ver una demo o preguntar cómo funciona?"],
         "ar": ["بوت؟ أخبرني أكثر 😊 هل تقصد بوت واتساب، بوت تيليغرام، أم تريد أن نخلق بوتاً لعملك؟",
                "بوت؟ مزيداً من التفصيل 😄 أتريد طلب بوت، رؤية عرض، أم تسأل كيف يعمل؟"],
+    },
+    "faire": {
+        "fr": ["Faire quoi ? 😊 Précise ton idée : un logo, un site, un bot, un visuel ?",
+               "Dis-moi ce que tu veux créer 😄 Un bot, un site, un logo, une affiche ?"],
+        "en": ["Do what? 😊 Tell me your idea: a logo, a website, a bot, a visual?",
+               "What would you like to create 😄 A bot, a website, a logo, a poster?"],
+        "es": ["¿Hacer qué? 😊 Dígame su idea: ¿un logo, una web, un bot, un visual?",
+               "¿Qué quieres crear 😄 ¿Un bot, una web, un logo, un afiche?"],
+        "ar": ["أن تفعل ماذا؟ 😊 حدد فكرتك: شعار، موقع، بوت، تصميم؟",
+               "ماذا تريد أن تنشئ 😄 بوت، موقع، شعار، ملصق؟"],
     },
     "site": {
         "fr": ["Un site ? Précise-moi 😊 Tu veux un site vitrine pour te présenter, ou une boutique en ligne pour vendre ?",
@@ -1902,6 +1917,7 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             return
         if "Chatbot" in user_text or "IA" in user_text or "ذكي" in user_text:
             bot.send_message(chat_id, msg(detected_lang, "chatbot"), reply_markup=menu_for_lang(detected_lang))
+            actions.start_chatbot_qualify_flow(chat_id)
             return
         if "humain" in user_text.lower() or "human" in user_text.lower() or "مستشار" in user_text:
             bot.send_message(chat_id, msg(detected_lang, "human"), reply_markup=menu_for_lang(detected_lang), parse_mode="Markdown")

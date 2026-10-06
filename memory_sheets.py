@@ -243,15 +243,45 @@ def save_learned(question: str, answer: str, lang: str) -> bool:
     return True
 
 
+# HYGIÈNE DE LECTURE (Boss 06/10, screenshot « ci_dessous ») : le boss
+# stocke TOUTE la mémoire dans ce Google Sheet — le bot doit donc
+# appliquer la même méthode de compréhension sur les tokens LUS qu'à
+# l'écriture. Certains /apprends arrivent avec des underscores de
+# copier-coller à la place des apostrophes/liions (« l_équipe »,
+# « ci_dessous »). On répare au CHARGEMENT (lecture) et à l'ÉCRITURE
+# (save_learned) — la fiche dans le Sheet garde sa trace d'audit, mais
+# ce que le bot lit/affiche est toujours propre.
+import re as _re
+_TYPO_APOSTROPHE = _re.compile(r"(\b[ldjncsmqt])_(?=[a-zA-Zàâäéèêëîïôöùûüç])")
+_TYPO_CI = _re.compile(r"\bci_(dessous|dessus)\b", _re.IGNORECASE)
+
+
+def fix_sheet_typos(text: str) -> str:
+    """Répare les underscores parasites d'un texte lu depuis le Sheet :
+    « l_équipe » → « l'équipe », « ci_dessous » → « ci-dessous ».
+    Ne touche à RIEN d'autre (les mots composés légitimes avec
+    tiret bas, style « mon_site », restent inchangés si la 1re partie
+    fait plus d'une lettre)."""
+    t = str(text or "")
+    t = _TYPO_APOSTROPHE.sub(r"\1'", t)
+    t = _TYPO_CI.sub(r"ci-\1", t)
+    return t
+
+
 def load_learned() -> list[dict]:
     """Relit les dialogues appris. Dédoublonne : la version la plus
-    récente d'une question gagne. [] si Google non lié (base vide)."""
+    récente d'une question gagne. [] si Google non lié (base vide).
+    RÈGLE BOSS (06/10) : les tokens lus du Sheet passent par la MÊME
+    méthode de compréhension que le seed — y compris l'hygiène des
+    typos (fix_sheet_typos) et les variantes « | » (knowledge_store)."""
     rows = read_rows("Dialogues")
     learned: dict[str, dict] = {}
     for row in rows:
         if len(row) < 4:
             continue
         _date, lang, question, answer = row[0], row[1], row[2], row[3]
+        question = fix_sheet_typos(question)
+        answer = fix_sheet_typos(answer)
         if not question.strip() or not answer.strip():
             continue
         key = question.strip().casefold()
