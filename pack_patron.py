@@ -196,8 +196,17 @@ def maybe_offer_assurance(bot, chat_id: int, lang: str = "fr") -> bool:
     produits : rien. Déjà refusée : jamais re-demandée."""
     import actions
     conn = actions.DB_CONN
-    row = conn.execute("SELECT assurance_refusee FROM clients WHERE chat_id=?",
-                       (str(chat_id),)).fetchone()
+    # Boss 06/10 : lecture blindée — sur un déploiement frais (Railway),
+    # la colonne assurance_refusee n'existe qu'APRÈS la migration
+    # commercial_db ; une panne ici ne doit jamais couper l'offre
+    # Maintenance ni faire crasher le paiement. Absence de donnée =
+    # jamais refusée → l'offre peut partir.
+    try:
+        row = conn.execute("SELECT assurance_refusee FROM clients WHERE chat_id=?",
+                           (str(chat_id),)).fetchone()
+    except Exception:
+        logger.exception("maybe_offer_assurance : lecture clients impossible")
+        row = None
     if row and row[0]:
         return False
     pid = _produit_id_of(chat_id)

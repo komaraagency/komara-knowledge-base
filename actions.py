@@ -302,7 +302,7 @@ def _step_pitch(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
         data["company_objective"] = text[:300]
         _clear_flow(chat_id)
         client = get_client(chat_id) or {}
-        _insert("leads", {
+        _insert_lead({
             "chat_id": str(chat_id), "name": client.get("name", ""),
             "phone": client.get("phone", ""),
             "sector": PITCH_BRANCHES.get(data.get("branch", ""), {}).get("tag", ""),
@@ -357,7 +357,7 @@ def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, l
         data["business"] = text[:200]
         _clear_flow(chat_id)
         client = get_client(chat_id) or {}
-        _insert("leads", {
+        _insert_lead({
             "chat_id": str(chat_id), "name": client.get("name", ""),
             "phone": client.get("phone", ""), "sector": "chatbot",
             "need": f"Canal : {data.get('channel','')} | Activité : {data.get('business','')}",
@@ -626,6 +626,27 @@ def _insert(table: str, fields: dict) -> int:
             google_link.hook(table, fields)
         except Exception:
             pass
+    return row_id
+
+
+def _insert_lead(lead: dict) -> int:
+    """Boss 06/10 — un lead a DEUX vies :
+    1. INSERT INTO leads (SQLite local, rapide, sert les stats et le
+       suivi de flux) ;
+    2. + append dans le Google Sheet « Leads » (définitif — le Sheet est
+       la persistance de référence du boss).
+    Le miroir Sheet est ASYNCHRONE et tolérant : un Google non lié ou
+    une panne n'empêche JAMAIS le lead local d'être enregistré."""
+    row_id = _insert("leads", lead)
+    try:
+        from memory_sheets import log_lead
+        log_lead(when=lead.get("created_at", _now()),
+                 chat_id=lead.get("chat_id", ""),
+                 name=lead.get("name", ""), phone=lead.get("phone", ""),
+                 sector=lead.get("sector", ""), need=lead.get("need", ""),
+                 budget=lead.get("budget", ""))
+    except Exception:
+        logger.exception("Miroir lead vers Google Sheets impossible (lead local OK)")
     return row_id
 
 
@@ -1407,7 +1428,7 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             "name": data.get("name", ""), "phone": data.get("phone", ""),
             "status": "en attente", "created_at": _now(),
         })
-        _insert("leads", {
+        _insert_lead({
             "chat_id": str(chat_id), "name": data.get("name", ""),
             "phone": data.get("phone", ""), "sector": data.get("activity", ""),
             "need": data.get("service", ""), "budget": data.get("deadline", ""),
@@ -1794,7 +1815,7 @@ def _step_lead(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -
     if step == "need":
         data["need"] = text[:300]
         _clear_flow(chat_id)
-        _insert("leads", {
+        _insert_lead({
             "chat_id": str(chat_id), "name": data.get("name", ""),
             "phone": data.get("phone", ""), "sector": data.get("sector", ""),
             "need": data.get("need", ""), "budget": "", "created_at": _now(),

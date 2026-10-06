@@ -72,16 +72,23 @@ def step1_donnees(source: str = "seed+ram") -> list[tuple[str, str]]:
     import aya_seed
     import knowledge_store
 
-    rows: dict[str, str] = {}
+    # Boss 06/10 : on garde la VRAIE question (pas la clé casefoldée)
+    # dans la valeur — le pipeline reçoit le texte réel enseigné, avec ses
+    # variantes. Et tout « || » parasite (import mal formé) redevient un
+    # simple séparateur de variantes « | ». La DERNIÈRE version d'une
+    # question gagne (même règle que le Sheet : /apprends remplace).
+    rows: dict[str, tuple[str, str]] = {}
     if "seed" in source or "ram" in source:
         for q, a in aya_seed.SEED_QR:
-            rows.setdefault(q.strip().casefold(), a)
+            q_clean = q.replace("||", "|")
+            rows[q_clean.strip().casefold()] = (q_clean.strip(), a)
     if "ram" in source:
         for r in knowledge_store._CUSTOM_ROWS:
             q = str(r.get("question", "")).strip()
             if q:
-                rows.setdefault(q.casefold(), str(r.get("answer", "")))
-    return [(q, a) for q, a in rows.items() if a]
+                q_clean = q.replace("||", "|")
+                rows[q_clean.casefold()] = (q_clean, str(r.get("answer", "")))
+    return [(q, a) for q, a in rows.values() if a]
 
 
 # ── 02 TOKENS ──────────────────────────────────────────────────────────

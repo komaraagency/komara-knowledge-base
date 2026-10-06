@@ -234,8 +234,8 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
     exception, la publication runtime n'a PAS lieu et l'admin est prévenu."""
     global _CUSTOM_ROWS
     from memory_sheets import fix_sheet_typos
-    question = fix_sheet_typos(str(question or "").strip()[:200])
-    answer = fix_sheet_typos(str(answer or "").strip()[:1500])
+    question = fix_sheet_typos(str(question or "").strip()[:500])
+    answer = fix_sheet_typos(str(answer or "").strip()[:5000])
     if not question or not answer:
         raise ValueError("Question and answer are required")
     with _LOCK:
@@ -276,11 +276,12 @@ def learn_entries_batch(entries, lang: str = "fr") -> dict:
     (utilisé par /kb_import). Mêmes garanties : échec Google → exception,
     aucune publication runtime d'un ajout non persisté."""
     global _CUSTOM_ROWS
+    from memory_sheets import fix_sheet_typos
     cleaned = []
     seen = set()
     for q, a in entries:
-        q = str(q or "").strip()[:200]
-        a = str(a or "").strip()[:1500]
+        q = fix_sheet_typos(str(q or "").strip()[:500])
+        a = fix_sheet_typos(str(a or "").strip()[:5000])
         if not q or not a:
             continue
         key = q.casefold()
@@ -298,7 +299,7 @@ def learn_entries_batch(entries, lang: str = "fr") -> dict:
         sheet_id = get_memory_sheet_id()
         if not sheet_id:
             raise RuntimeError("Google non lié : lance /google avant d'importer")
-        rows = [[_now(), lang, q[:200], a[:1500]] for q, a in cleaned]
+        rows = [[_now(), lang, q[:500], a[:5000]] for q, a in cleaned]
         if not append_rows("Dialogues", rows):
             raise RuntimeError("Écriture des dialogues dans Google Sheets impossible")
         # publication runtime : retire les questions similaires aux nouvelles

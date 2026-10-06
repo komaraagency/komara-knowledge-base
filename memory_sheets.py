@@ -215,9 +215,23 @@ def log_conversation(chat_id, name: str, role: str, content: str, lang: str = ""
             return
         _append_async("Conversations",
                       [_now(), str(chat_id), (name or "")[:100], role,
-                       content[:1000], lang])
+                       content[:2000], lang])
     except Exception:
         logger.exception("log_conversation impossible")
+
+
+def log_lead(when: str, chat_id, name: str, phone: str,
+             sector: str, need: str, budget: str) -> None:
+    """Miroir d'un lead vers l'onglet « Leads » du Sheet mémoire (Boss
+    06/10) : le lead est DÉFINITIF — il survit aux redéploiements Railway
+    et au cache SQLite éphémère. Append async, ne bloque jamais le bot."""
+    try:
+        _append_async("Leads", [[when or _now(), str(chat_id)[:20],
+                                 (name or "")[:100], (phone or "")[:50],
+                                 (sector or "")[:100], (need or "")[:500],
+                                 (budget or "")[:100]]])
+    except Exception:
+        logger.exception("log_lead impossible")
 
 
 def log_unanswered(question: str, lang: str, chat_id, count: int) -> None:
@@ -238,7 +252,12 @@ def save_learned(question: str, answer: str, lang: str) -> bool:
     if not sheet_id or not token:
         raise RuntimeError(
             "Google non lié : lance /google pour autoriser la sauvegarde des dialogues")
-    if not append_rows("Dialogues", [[_now(), lang, question[:200], answer[:1500]]]):
+    # PATCH BOSS 06/10 : réponses longues coupées à 1500 caractères →
+    # 5000 (question 500). + hygiène AVANT écriture : ce qui est stocké
+    # dans le Sheet est déjà propre (ci_dessous → ci-dessous).
+    question = fix_sheet_typos(question)[:500]
+    answer = fix_sheet_typos(answer)[:5000]
+    if not append_rows("Dialogues", [[_now(), lang, question, answer]]):
         raise RuntimeError("Écriture du dialogue dans Google Sheets impossible")
     return True
 

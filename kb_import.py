@@ -138,7 +138,14 @@ def parse_txt(text: str) -> list:
     # 3. Lignes "question | réponse"
     for line in text.splitlines():
         if "|" in line:
-            parts = [p.strip() for p in line.split("|", 1)]
+            # Boss 06/10 : les QUESTIONS peuvent porter des variantes
+            # « Q1 | Q2 | Q3 » — le séparateur question/réponse est donc
+            # « || ». On coupe sur « || » en priorité ; « | » seul reste
+            # accepté (fiches legacy sans variantes).
+            if "||" in line:
+                parts = [p.strip() for p in line.split("||", 1)]
+            else:
+                parts = [p.strip() for p in line.split("|", 1)]
             if len(parts) == 2 and parts[0] and parts[1]:
                 entries.append(tuple(parts))
     return entries
