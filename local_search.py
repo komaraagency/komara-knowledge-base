@@ -444,7 +444,16 @@ def trouver_meilleure_reponse(
             default=0.0
         )
         if best_score >= 0.22:
-            candidates.append((best_score, answer, questions[0][0] if questions else ""))
+            # on garde la question qui a RÉELLEMENT gagné (pas questions[0])
+            # pour pouvoir départager les ex æquo sur sa proximité de longueur.
+            best_q = max(
+                questions,
+                key=lambda qt: _score_bidirectional(
+                    msg_tokens, qt[0], idf, msg_intent,
+                    _detect_intent(qt[1]), kw_tokens=qt[1]),
+                default=("", set()),
+            )[0] if questions else ""
+            candidates.append((best_score, answer, best_q))
 
     for q, qtok, answer, kw_intent in faq_entries:
         score = _score_bidirectional(msg_tokens, q, idf, msg_intent, kw_intent, kw_tokens=qtok)
@@ -476,6 +485,18 @@ def trouver_meilleure_reponse(
     except Exception:
         pass
     tied = [c for c in candidates if c[0] >= best_score - 1e-9]
+    # BUG BOSS 07/10 (screenshot « c'est quoi un chatbot ») : la fiche dont
+    # une variante est le mot seul « chatbot » fait ÉGALITÉ à 1.0 avec la
+    # vraie définition, et random.choice tirait entre deux SUJETS différents
+    # (réponses « mélangées »). On départage d'abord par proximité de
+    # longueur : la question qui a autant de mots que le message gagne ;
+    # le tirage anti-répétition ne joue qu'entre vraies paraphrases.
+    if len(tied) > 1:
+        n_msg = len(msg_tokens)
+        def _gap(c):
+            return abs(len(_tokenize(c[2])) - n_msg) if c[2] else 99
+        best_gap = min(_gap(c) for c in tied)
+        tied = [c for c in tied if _gap(c) == best_gap]
     pool: list[str] = []
     for _s, raw, _q in tied:
         if isinstance(raw, list):

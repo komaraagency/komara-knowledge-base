@@ -1042,6 +1042,14 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     active = _fetch_flow(chat_id)
     if active and not text_clean.startswith("/"):
         flow, step, data = active
+        # BUG BOSS 07/10 (screenshot « c'est quoi un chatbot » → « Tape le
+        # numéro du service (1 à 5) ») : à une étape de CHOIX NUMÉRIQUE, une
+        # vraie question libre était avalée et le bot bouclait sur
+        # « Tape le numéro ». On abandonne alors le flux (le client reprend
+        # avec « devis »/« commander ») et la question part vers la base.
+        if _is_free_question_in_numeric_step(flow, step, text_clean):
+            _clear_flow(chat_id)
+            return False
         return _advance_flow(bot, chat_id, flow, step, data, text_clean, lang)
 
     # 4. Client connu : salutation personnalisée (mémoire longue)
@@ -1133,6 +1141,25 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
 # ---------------------------------------------------------------------------
 # Moteur d'étapes des flux
 # ---------------------------------------------------------------------------
+
+_NUMERIC_STEPS = {("order", "service"), ("devis", "service"), ("rdv", "slot")}
+_FREE_QUESTION_RE = re.compile(
+    r"^\s*(c['’ ]?est quoi|qu['’ ]?est[- ]ce|qu['’ ]?est ce|quoi|qui|"
+    r"comment|pourquoi|combien|quand|o[uù]|quel(?:le)?s?|"
+    r"what|how|why|who|where|when|which)\b|\?\s*$",
+    re.IGNORECASE)
+
+
+def _is_free_question_in_numeric_step(flow: str, step: str, text: str) -> bool:
+    """True si on attend un NUMÉRO (service/créneau) et que le client pose
+    une vraie question libre (mot interrogatif ou « ? ») au lieu d'un chiffre."""
+    if (flow, step) not in _NUMERIC_STEPS:
+        return False
+    t_ = (text or "").strip()
+    if not t_ or re.fullmatch(r"[0-9️⃣\s.,)]+", t_):
+        return False
+    return bool(_FREE_QUESTION_RE.search(t_)) and len(t_.split()) >= 2
+
 
 def _advance_flow(bot, chat_id: int, flow: str, step: str, data: dict, text: str, lang: str) -> bool:
     if flow == "order":
