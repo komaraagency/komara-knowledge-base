@@ -16,7 +16,7 @@ from typing import Any
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
 
-from local_search import score_match
+from local_search import trouver_meilleure_reponse
 from local_stats import get_unrecognized_stats, record_unrecognized
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -78,35 +78,49 @@ def _tokens(value: str) -> set[str]:
     return set(re.findall(r"[a-zàâçéèêëîïôùûüÿœ0-9]+", value.casefold()))
 
 
+_LEARNED_CACHE: tuple[float, list[dict[str, Any]]] = (0.0, [])
+_LEARNED_TTL = 300.0  # relecture des dialogues appris toutes les 5 min
+
+
+def _learned_kb() -> list[dict[str, Any]]:
+    """Dialogues appris (Google Sheets) convertis en entrées KB — le même
+    corpus que le bot Telegram. Relecture périodique, jamais bloquante."""
+    global _LEARNED_CACHE
+    now = time.time()
+    cached_at, rows = _LEARNED_CACHE
+    if now - cached_at < _LEARNED_TTL:
+        return rows
+    try:
+        from memory_sheets import load_learned
+        fresh: list[dict[str, Any]] = []
+        for row in load_learned():
+            q = str(row.get("question", ""))[:500].strip()
+            a = str(row.get("answer", ""))[:5000].strip()
+            if q and a:
+                fresh.append({"questions": [q], "answer": a})
+        _LEARNED_CACHE = (now, fresh)
+        return fresh
+    except Exception:
+        logger.exception("Lecture des dialogues appris impossible (API continue)")
+        _LEARNED_CACHE = (now, rows)
+        return rows
+
+
 def chercher(message: str | None) -> str | None:
-    """Retourne la réponse locale la plus spécifique, avec tolérance linguistique."""
-    candidates: list[tuple[int, str]] = []
-    for item in KNOWLEDGE:
-        best = max(
-            (score_match(message, str(question)) for question in item.get("questions", [])),
-            default=0,
-        )
-        if best:
-            candidates.append((best, str(item.get("answer", ""))))
-    if candidates:
-        return max(candidates, key=lambda result: result[0])[1]
-
-    faq_candidates = [
-        (score_match(message, item["question"]), item["answer"])
-        for item in LOCAL_FAQ
-    ]
-    faq_candidates = [candidate for candidate in faq_candidates if candidate[0]]
-    if faq_candidates:
-        return max(faq_candidates, key=lambda result: result[0])[1]
-
-    conversation_candidates = [
-        (score_match(message, str(example.get("user", ""))), str(example.get("assistant", "")))
+    """Recherche sur le MÊME moteur sémantique que le bot Telegram
+    (correctif n°1) : IDF bidirectionnel + fuzzy + intentions + garde-fou
+    phrase — plus l'ancien matching unidirectionnel qui répondait à côté
+    sur les phrases longues. Corpus : kb.json + FAQ + conversations +
+    dialogues appris (Sheets)."""
+    if not message or not message.strip():
+        return None
+    kb = list(KNOWLEDGE) + _learned_kb()
+    dialogues = [
+        {"question": str(example.get("user", "")), "answer": str(example.get("assistant", ""))}
         for example in CONVERSATIONS
+        if example.get("user") and example.get("assistant")
     ]
-    conversation_candidates = [candidate for candidate in conversation_candidates if candidate[0]]
-    if conversation_candidates:
-        return max(conversation_candidates, key=lambda result: result[0])[1]
-    return None
+    return trouver_meilleure_reponse(message, kb, LOCAL_FAQ, dialogues)
 
 
 def repondre(message: str) -> str:

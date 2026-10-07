@@ -165,7 +165,9 @@ LOGO_DONE_FR = ("✨ Je peux te générer une base, mais pour un logo pro sans "
 # Déclencheurs (FR/EN/ES/AR) — routing simple et déterministe
 _TRIGGERS = [
     r"^/imagine?\b", r"^/image\b", r"^/photo\b", r"^/dessin\b",
-    r"\bgen[ée]re (?:moi )?une image\b", r"\bgen[ée]re (?:moi )?un logo\b",
+    r"\bg[eéè]n[eéè]r[eéè] (?:moi )?une image\b", r"\bg[eéè]n[eéè]r[eéè] (?:moi )?un logo\b",
+    r"\bg[eéè]n[eéè]r[eéè] (?:moi )?une photo\b", r"\bcr[ée][ée] (?:moi )?une photo\b",
+    r"\bfais (?:moi )?une photo\b",
     r"\bcr[ée][ée] (?:moi )?une image\b", r"\bcr[ée][ée]r (?:moi )?une image\b",
     r"\bfais (?:moi )?une image\b", r"\bdessine\b", r"\bfais (?:moi )?un dessin\b",
     r"\bimage de\b",
