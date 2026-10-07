@@ -39,6 +39,14 @@ _IRREGULAR_VERB_STEMS: dict[str, str] = {
     "faisaient": "fai", "ferai": "fai", "feras": "fai", "fera": "fai",
     "ferons": "fai", "ferez": "fai", "feront": "fai", "ferait": "fai",
     "feraient": "fai",
+    # BUG BOSS 07/10 (screenshot : « Qui est tu » jamais trouvé alors que
+    # « qui es tu » existe) : même défaut que « faire » mais sur ÊTRE —
+    # « es »/« est »/« êtes »/« suis »/« sommes »/« sont » sont des mots
+    # de 2-4 lettres, trop courts pour le suffixe générique, donc jamais
+    # convergés. « est » pour « es » est une faute très fréquente chez
+    # les clients (clavier téléphone, dialecte local).
+    "es": "etr", "est": "etr", "etes": "etr", "suis": "etr",
+    "sommes": "etr", "sont": "etr",
 }
 
 

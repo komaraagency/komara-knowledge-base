@@ -66,7 +66,12 @@ def initialize_resources(resources: dict, loader: Callable) -> dict:
         for row in _CUSTOM_ROWS:
             target = LANG_RESOURCES.get(row.get("lang", "fr")) or LANG_RESOURCES.get("fr")
             if target and isinstance(target.get("kb"), list):
-                target["kb"].append(_make_entry(row["question"][:200], row["answer"][:1500]))
+                # BUG BOSS 07/10 : lot42 avait élargi les limites d'ÉCRITURE
+                # (500/5000) mais pas celles de RELECTURE — une réponse
+                # enseignée en entier dans le Sheet revenait COUPÉE en
+                # plein milieu de phrase à chaque redémarrage (texte
+                # incohérent, « coq à l'âne »). Mêmes limites partout.
+                target["kb"].append(_make_entry(row["question"][:500], row["answer"][:5000]))
         _INITIALIZED = True
         return LANG_RESOURCES
 
@@ -80,7 +85,7 @@ def refresh_resources(lang_code: str) -> bool:
         resources = _REFRESH_LOADER(lang_code)
         for row in _CUSTOM_ROWS:
             if row.get("lang", "fr") == lang_code:
-                resources["kb"].append(_make_entry(row["question"][:200], row["answer"][:1500]))
+                resources["kb"].append(_make_entry(row["question"][:500], row["answer"][:5000]))
         LANG_RESOURCES[lang_code] = resources
         return True
 
@@ -206,8 +211,8 @@ def similar_question_exists(question: str, lang: str = "fr") -> str | None:
 def add_custom_kb_entry(question: str, answer: str, lang: str = "fr") -> bool:
     """Compatibility helper for runtime-only additions; durable learning uses learn_entry."""
     try:
-        question = str(question or "").strip()[:200]
-        answer = str(answer or "").strip()[:1500]
+        question = str(question or "").strip()[:500]
+        answer = str(answer or "").strip()[:5000]
         with _LOCK:
             target = LANG_RESOURCES.get(lang) or LANG_RESOURCES.get("fr")
             if not question or not answer or not target or not isinstance(target.get("kb"), list):
