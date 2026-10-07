@@ -17,7 +17,7 @@ _LAST_LIST: dict[int, str] = {}
 
 
 def set_context(chat_id: int, kind: str) -> None:
-    """kind : 'catalogue' ou 'portfolio'."""
+    """kind : 'catalogue', 'portfolio' ou 'services' (menu 1-4 du pitch)."""
     _LAST_LIST[chat_id] = kind
 
 

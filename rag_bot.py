@@ -1465,6 +1465,38 @@ def send_portfolio(chat_id: int, lang: str) -> None:
     list_context.set_context(chat_id, "portfolio")
     bot.send_message(chat_id, "\n".join(lines), reply_markup=portfolio_keyboard())
 
+_PORTFOLIO_WORDS = {"portfolio", "portefolio", "porte folio", "portfolios", "portfolio komara",
+                    "le portfolio", "ton portfolio", "votre portfolio", "mon portfolio",
+                    "voir le portfolio", "voir portfolio", "montre le portfolio",
+                    "realisations", "réalisations", "vos realisations", "vos réalisations"}
+
+_SERVICES_MENU_RE = re.compile(
+    r"1\ufe0f?\u20e3[^\n]*\n\s*2\ufe0f?\u20e3[^\n]*\n\s*3\ufe0f?\u20e3[^\n]*\n\s*4\ufe0f?\u20e3[^\n]*\s*$")
+
+_SERVICES_REPLIES = {
+    2: ("Site web 🌐 Vitrine ou boutique en ligne ? Dis-moi ton activité et je te "
+        "prépare une proposition. Tarif de départ : 500 000 GNF (7 jours)."),
+    3: ("Logo / visuel 🎨 Logo : 300 000 à 500 000 GNF, livré en 24h pour la V1. "
+        "Dis-moi ton activité et le style que tu aimes 👇"),
+}
+
+
+def _route_services_choice(chat_id: int, index: int, lang: str) -> bool:
+    """Chiffre 1-4 tapé après le menu des services (pitch KB)."""
+    if index == 1:
+        bot.send_message(chat_id, msg(lang, "chatbot"), reply_markup=menu_for_lang(lang))
+        actions.start_chatbot_qualify_flow(chat_id)
+        return True
+    if index == 4:
+        return bool(actions.start_flow(bot, chat_id, "devis", lang))
+    reply = _SERVICES_REPLIES.get(index)
+    if not reply:
+        return False
+    remember(chat_id, "assistant", reply)
+    bot.send_message(chat_id, reply, reply_markup=menu_for_lang(lang))
+    return True
+
+
 def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
     """Envoie l'image du portfolio à la position `index` (1-based).
     Gère les sources Drive (téléchargement) et locale (fichier)."""
@@ -1480,8 +1512,11 @@ def send_portfolio_image_by_index(chat_id: int, index: int, lang: str) -> bool:
                 bot.send_message(chat_id, "⚠️ Image indisponible sur Drive.")
                 return False
             bot.send_photo(chat_id, io.BytesIO(data), caption=f"📷 {name}")
-        else:  # local
-            path = source
+        else:  # local : source = ("local", Path)
+            # BUG BOSS 07/10 (screenshot « 📷 founder cafe laptop » → la liste
+            # revenait au lieu de l'image) : on appelait .open() sur le TUPLE
+            # ("local", Path) entier -> AttributeError à chaque envoi.
+            path = source[1] if isinstance(source, tuple) else source
             with path.open("rb") as image_file:
                 bot.send_photo(chat_id, image_file, caption=f"📷 {name}")
         bot.send_message(
@@ -1936,6 +1971,23 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             send_portfolio(chat_id, detected_lang)
         return
 
+    # 3ter. BUG BOSS 07/10 (screenshot) : le mot « Portfolio » tapé au clavier
+    # recevait une réponse texte générique du Sheet au lieu de la liste
+    # numérotée ; et le TITRE seul (« owner portrait office ») n'était pas
+    # reconnu alors que la règle est « numéro OU titre ». Ces deux cas sont
+    # désormais déterministes, sans dépendre d'une fiche du Sheet.
+    _norm_in = re.sub(r"[^\w\s]", " ", user_text.casefold()).strip()
+    _norm_in = re.sub(r"\s+", " ", _norm_in)
+    if _norm_in in _PORTFOLIO_WORDS:
+        send_portfolio(chat_id, detected_lang)
+        return
+    if portfolio_images() and len(_norm_in) >= 4:
+        for _i, (_name, _src) in enumerate(portfolio_images(), start=1):
+            if re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", _name.casefold())).strip() == _norm_in:
+                if send_portfolio_image_by_index(chat_id, _i, detected_lang):
+                    return
+                break
+
     # 3bis. Chiffre nu après une LISTE NUMÉROTÉE (catalogue OU portfolio).
     # FIX BOSS (03/10, screenshot) : "3" tapé juste après le catalogue
     # ("3. Agent IA Premium — 150€ ... tape 'ajouter <numéro>'") partait
@@ -1951,6 +2003,15 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             ctx = list_context.get_context(chat_id)
             if ctx == "catalogue":
                 if catalogue.handle_client(bot, chat_id, f"ajouter {index}", detected_lang):
+                    return
+            elif ctx == "services" and index in (1, 2, 3, 4):
+                # BUG BOSS 07/10 (screenshot) : le pitch KB promet « Tape 1️⃣
+                # pour BOT / 2️⃣ SITE / 3️⃣ LOGO / 4️⃣ DEVIS » mais le « 1 »
+                # tombait sur la liste Portfolio. Le chiffre suit le menu
+                # qui vient d'être envoyé.
+                list_context.clear_context(chat_id)
+                remember(chat_id, "user", user_text)
+                if _route_services_choice(chat_id, index, detected_lang):
                     return
             elif portfolio_images():
                 if send_portfolio_image_by_index(chat_id, index, detected_lang):
@@ -2019,6 +2080,8 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
 
     # 6. Sauvegarde et envoi
     remember(chat_id, "assistant", response)
+    if local_response and _SERVICES_MENU_RE.search(response.rstrip()):
+        list_context.set_context(chat_id, "services")
 
     if len(response) > 4096:
         for i in range(0, len(response), 4096):

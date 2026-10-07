@@ -582,12 +582,32 @@ def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
+FLOW_TTL_SECONDS = 30 * 60  # un flux oublié ne doit pas avaler la conversation
+
+
+def _flow_is_stale(updated_at: str) -> bool:
+    """True si le flux n'a pas bougé depuis FLOW_TTL_SECONDS (format ISO)."""
+    try:
+        # _now() écrit l'heure LOCALE sans fuseau : on compare au même repère.
+        dt = datetime.fromisoformat(str(updated_at))
+        if dt.tzinfo is not None:
+            return (datetime.now(dt.tzinfo) - dt).total_seconds() > FLOW_TTL_SECONDS
+        return (datetime.now() - dt).total_seconds() > FLOW_TTL_SECONDS
+    except Exception:
+        return False  # format inconnu : on ne casse jamais un flux valide
+
+
 def _fetch_flow(chat_id: int) -> tuple[str, str, dict] | None:
     with DB_LOCK:
         row = DB_CONN.execute(
-            "SELECT flow, step, data FROM flows WHERE chat_id =?", (str(chat_id),)
+            "SELECT flow, step, data, updated_at FROM flows WHERE chat_id =?", (str(chat_id),)
         ).fetchone()
     if not row:
+        return None
+    # BUG BOSS 07/10 (screenshot) : un flux ouvert la veille avalait « Comment
+    # tu vas », « Portfolio »... comme réponses de qualification. Expiré -> libéré.
+    if _flow_is_stale(row[3]):
+        _clear_flow(chat_id)
         return None
     try:
         data = json.loads(row[2])
@@ -1143,6 +1163,15 @@ def start_flow(bot, chat_id: int, flow: str, lang: str, force: bool = False,
 # ---------------------------------------------------------------------------
 
 _NUMERIC_STEPS = {("order", "service"), ("devis", "service"), ("rdv", "slot")}
+# Flux à réponse LIBRE de pure qualification : une vraie question, un salut
+# ou un mot-clé du portfolio n'est pas une réponse -> on libère le flux.
+_FREE_TEXT_QUALIFY = {("chatbot_qualify", "channel"), ("chatbot_qualify", "business"),
+                      ("pitch", "qualify"), ("pitch", "closing")}
+_ESCAPE_WORDS_RE = re.compile(
+    r"^\s*(portfolio|portefolio|menu|accueil|start|aide|help|tarifs?|prix|catalogue|"
+    r"salut|bonjour|bonsoir|coucou|hello|hi|comment (tu|vous|ca|ça) (vas|va|allez)|"
+    r"ça va|ca va|c['’ ]?est quoi|qui es[- ]tu|tu fais|vous faites|tu es qui)\b",
+    re.IGNORECASE)
 _FREE_QUESTION_RE = re.compile(
     r"^\s*(c['’ ]?est quoi|qu['’ ]?est[- ]ce|qu['’ ]?est ce|quoi|qui|"
     r"comment|pourquoi|combien|quand|o[uù]|quel(?:le)?s?|"
@@ -1153,9 +1182,12 @@ _FREE_QUESTION_RE = re.compile(
 def _is_free_question_in_numeric_step(flow: str, step: str, text: str) -> bool:
     """True si on attend un NUMÉRO (service/créneau) et que le client pose
     une vraie question libre (mot interrogatif ou « ? ») au lieu d'un chiffre."""
+    t_ = (text or "").strip()
+    if (flow, step) in _FREE_TEXT_QUALIFY:
+        return bool(_ESCAPE_WORDS_RE.search(t_) or
+                    (_FREE_QUESTION_RE.search(t_) and len(t_.split()) >= 2))
     if (flow, step) not in _NUMERIC_STEPS:
         return False
-    t_ = (text or "").strip()
     if not t_ or re.fullmatch(r"[0-9️⃣\s.,)]+", t_):
         return False
     return bool(_FREE_QUESTION_RE.search(t_)) and len(t_.split()) >= 2
