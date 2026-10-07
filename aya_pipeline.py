@@ -177,7 +177,7 @@ VALIDATION_SET: list[tuple[str, str]] = [
     ("qui es-tu ?", "Aya"),
     ("c'est combien le logo", "300"),
     ("quel est le prix d'une affiche", "300"),
-    ("c'est quoi un chatbot", "logiciel"),
+    ("c'est quoi un chatbot", "vendeur"),
     ("c'est quoi une automatisation", "machine"),
     ("je veux en savoir plus sur vos agents IA", "agents IA personnalisés"),
     ("comment ça marche un chatbot pour mon site web ?", "spécifications"),
@@ -191,7 +191,7 @@ VALIDATION_SET: list[tuple[str, str]] = [
     ("est-ce que vous offrez un support après la mise en place ?", "support continu"),
     ("je valide le devis !", "finaliser"),
     ("vous livrez à Kindia ?", "Guinée"),
-    ("c'est quoi le délai pour un logo", "2-3 jours"),
+    ("c'est quoi le délai pour un logo", "24h"),
     ("merci beaucoup", "plaisir"),
 ]
 
@@ -211,7 +211,12 @@ def step6_post_entrainement(model: dict[str, Any],
     misses: list[dict[str, str]] = []
     for probe, expected in validation:
         answer = scorer(probe, "fr") or ""
-        if expected.lower() in answer.lower():
+        # « mot1|mot2 » : l'un OU l'autre suffit. Évite qu'une réécriture
+        # d'une fiche par le Boss (« logiciel » -> « vendeur robot ») fasse
+        # tomber un test alors que la réponse est bonne (fausses alertes
+        # écrites dans l'onglet « Questions sans réponse »).
+        alternatives = [a.strip().lower() for a in expected.split("|") if a.strip()]
+        if any(a in answer.lower() for a in alternatives):
             hits += 1
         else:
             misses.append({"question": probe,
