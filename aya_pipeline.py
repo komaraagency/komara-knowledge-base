@@ -175,7 +175,7 @@ def step5_pre_entrainement(model: dict[str, Any],
 VALIDATION_SET: list[tuple[str, str]] = [
     ("salut", "Aya"),
     ("qui es-tu ?", "Aya"),
-    ("c'est combien le logo", "300"),
+    ("c'est combien le logo", "50 €|50€"),  # tarifs Boss 07/10 : logo 50 €, pack resto 120 €
     ("quel est le prix d'une affiche", "300"),
     ("c'est quoi un chatbot", "vendeur"),
     ("c'est quoi une automatisation", "machine"),
