@@ -38,11 +38,11 @@ SEED_QR: list[tuple[str, str]] = [
     ("services",
      "Nos services 🚀\n• Bots WhatsApp & Telegram\n• Sites web vitrine & e-commerce\n• Logos & identité visuelle\n• Affiches & visuels pub\n• Gestion de RDV automatique\nTape 'prix' pour les tarifs 👇"),
     ("prix | c'est combien le logo | c'est combien l'affiche | c'est combien un site",
-     "Tarifs 🇬🇳\n• Logo : 300 000 à 500 000 GNF\n• Affiche/visuel : 300 000 GNF\n• Site vitrine : 500 000 GNF (7 jours)\n• Retouche photo : 100 000 GNF\nExpress 24h : +30%\nTape 'menu' pour commander 👇"),
+     "Tarifs 🇬🇳\n• Logo seul : 50 € (livré en 24h)\n• Affiche/visuel : 300 000 GNF\n• Site vitrine : 500 000 GNF (7 jours)\n• Retouche photo : 100 000 GNF\nExpress 24h : +30%\nTape 'menu' pour commander 👇"),
     ("combien ça coûte",
-     "Ça dépend du projet 😊 Logo 300k-500k GNF, affiche 300k, site 500k. Dis-moi ce que tu veux exactement et je te donne le prix précis."),
+     "Ça dépend du projet 😊 Logo seul 50 €, affiche 300k GNF, site 500k. Dis-moi ce que tu veux exactement et je te donne le prix précis."),
     ("délai",
-     "Délais ⏱️ Logo : 2-3 jours. Affiche : 24-48h. Site : 7 jours. Express 24h possible (+30%). Tu veux qu'on commence ?"),
+     "Délais ⏱️ Logo : 24h (V1 demain 9h si commande ce soir). Affiche : 24-48h. Site : 7 jours. Tu veux qu'on commence ?"),
     # VARIANTES ENVIE DE CRÉER (Boss 06/10, screenshot : « je souhaite
     # créer un site web » / « je souhaite créer des bot » tombaient
     # dans le fallback générique malgré l'intention d'achat claire).
@@ -72,7 +72,7 @@ SEED_QR: list[tuple[str, str]] = [
      "À bientôt 👋 Reviens quand tu veux, je suis dispo 24h/24 🇬🇳 Que Dieu bénisse ton business ✨"),
     # DÉFINITIONS MÉTIER (Boss 04/10) : concepts clés de l'agence.
     ("c'est quoi un chatbot",
-     "Un chatbot 🤖 c'est un logiciel qui discute avec tes clients comme un humain, 24h/24, sur WhatsApp, Telegram, Messenger ou ton site. Il répond aux questions fréquentes, prend les commandes et envoie les infos tout seul. Exemple : un client écrit « c'est combien le logo ? » à 2h du matin, le bot répond et vend pendant tu dors 😴 Tu veux voir un exemple en vrai ?"),
+     "Un chatbot c'est un vendeur robot qui travaille pour toi 24/7. Il répond auto sur WhatsApp Facebook Telegram à tes clients, il qualifie et il prend la commande. Exemple client dit Prix à 2h du matin, le bot répond et close. Tu veux voir un exemple en vrai ?"),
     ("c'est quoi un agent ia générative",
      "Un agent IA générative ✨ c'est un chatbot boosté : il ne répond pas seulement, il AGIT et il CRÉE. Il peut générer des images, écrire des textes, produire des devis, apprendre tes produits et mener des actions de A à Z. C'est un employé digital polyvalent qui connait ton business par cœur 💪 Tu veux le voir à l'œuvre sur ton activité ?"),
     ("c'est quoi un agent ia commercial",
@@ -117,12 +117,27 @@ def ensure_seed(lang: str = "fr") -> dict:
     Idempotent : les questions déjà présentes sont ignorées."""
     import knowledge_store as ks
     with ks._LOCK:
-        known = {str(r.get("question", "")).strip().casefold()
-                 for r in ks._CUSTOM_ROWS}
-        missing = [(q, a) for q, a in SEED_QR
-                   if q.strip().casefold() not in known]
-        if not missing:
-            return {"loaded": len(SEED_QR), "persisted": 0, "missing": 0}
+        known_rows = list(ks._CUSTOM_ROWS)
+    # FIX 07/10 (base polluée par des re-seeds) : l'ancien contrôle ne
+    # regardait que la mémoire runtime — tout processus appelant le seed
+    # SANS avoir chargé le bot (tests, pipeline isolé) voyait une base
+    # vide et ré-appendait TOUT le seed dans le Sheet de production.
+    # Désormais : si le runtime est vide, on relit le Sheet (source de
+    # vérité, RÈGLE BOSS 02/10) ; et une question SIMILAIRE déjà
+    # présente suffit (le boss peut consolider ses fiches sans que le
+    # seed ne les ré-apparaisse en doublon).
+    if not known_rows:
+        try:
+            from memory_sheets import load_learned
+            known_rows = load_learned()
+        except Exception:
+            known_rows = []
+    known = [str(r.get("question", "")) for r in known_rows]
+    missing = [(q, a) for q, a in SEED_QR
+               if not any(ks._questions_similar(q, k) for k in known)]
+    if not missing:
+        return {"loaded": len(SEED_QR), "persisted": 0, "missing": 0}
+    with ks._LOCK:
         # Publication runtime immédiate (le bot répond tout de suite)
         rows = {r.get("question", "").strip().casefold(): r
                 for r in ks._CUSTOM_ROWS}
