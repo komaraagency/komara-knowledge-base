@@ -1264,6 +1264,19 @@ def _step_human(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     if step != "whatsapp":
         _clear_flow(chat_id)
         return False
+    # BUG BOSS 08/10 (capture : « D'accord merci » après « Laisse-moi ton
+    # numéro » était accepté comme numéro WhatsApp -> faux lead admin +
+    # « C'est noté ! » alors que RIEN n'a été fourni). On valide : au moins
+    # 8 chiffres. Sinon on redemande POLIMENT, sans confirmer ni notifier.
+    digits = re.sub(r"\D", "", text)
+    if len(digits) < 8 or text.strip().lower() in ("menu", "annuler"):
+        if text.strip().lower() in ("menu", "annuler"):
+            _clear_flow(chat_id)
+            bot.send_message(chat_id, t(lang, "human_done"))
+            return True
+        _save_flow(chat_id, "human", "whatsapp", {})
+        bot.send_message(chat_id, t(lang, "human_invalid"))
+        return True
     whatsapp = text.strip()[:100]
     client = get_client(chat_id)
     name = (client or {}).get("name") or "(inconnu)"

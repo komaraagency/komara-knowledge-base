@@ -70,5 +70,6 @@
   "tracking_since": "since",
   "unknown_command": "🤷 Unknown command. Type /menu to see the options 👇",
   "post_cta_declined": "No worries 🙏 I'm here if you change your mind. Type 'menu' anytime.",
-  "client_doc_received": "📎 Got it! I've sent your file to the Komara Agency team 🇬🇳, we'll review it and come back with a precise quote.\nMeanwhile, tell me your need to speed things up: {grid}"
+  "client_doc_received": "📎 Got it! I've sent your file to the Komara Agency team 🇬🇳, we'll review it and come back with a precise quote.\nMeanwhile, tell me your need to speed things up: {grid}",
+  "human_invalid": "I didn't get your number 🙏 Send your WhatsApp number with country code (e.g. +212 6...) and the team will contact you within 5 min ⚡\nOr type 'menu' to go back to the menu."
 }

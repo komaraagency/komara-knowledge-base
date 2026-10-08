@@ -70,5 +70,6 @@
   "tracking_since": "desde el",
   "unknown_command": "🤷 Comando desconocido. Escribe /menu para ver las opciones 👇",
   "post_cta_declined": "Sin problema 🙏 Aquí estoy si cambia de opinión. Escriba 'menu' cuando quiera.",
-  "client_doc_received": "📎 ¡Recibido! Envié tu archivo al equipo de Komara Agency 🇬🇳, lo revisamos y te damos un presupuesto preciso.\nMientras tanto, dime tu necesidad para avanzar más rápido: {grid}"
+  "client_doc_received": "📎 ¡Recibido! Envié tu archivo al equipo de Komara Agency 🇬🇳, lo revisamos y te damos un presupuesto preciso.\nMientras tanto, dime tu necesidad para avanzar más rápido: {grid}",
+  "human_invalid": "No recibí tu número 🙏 Envía tu número de WhatsApp con el prefijo (ej : +212 6...) y el equipo te contacta en 5 min ⚡\nO escribe 'menu' para volver al menú."
 }

@@ -70,5 +70,6 @@
   "tracking_since": "depuis le",
   "unknown_command": "🤷 Commande inconnue. Tape /menu pour voir les options 👇",
   "post_cta_declined": "Pas de souci 🙏 Je reste dispo si tu changes d'avis. Tape 'menu' quand tu veux.",
-  "client_doc_received": "📎 Reçu ! J'ai transmis ton fichier à l'équipe Komara Agency 🇬🇳, on l'étudie et te revient avec un devis précis.\nEn attendant, dis-moi vite ton besoin pour accélérer : {grid}"
+  "client_doc_received": "📎 Reçu ! J'ai transmis ton fichier à l'équipe Komara Agency 🇬🇳, on l'étudie et te revient avec un devis précis.\nEn attendant, dis-moi vite ton besoin pour accélérer : {grid}",
+  "human_invalid": "Je n'ai pas reçu ton numéro 🙏 Envoie ton numéro WhatsApp avec l'indicatif (ex : +212 6...) et l'équipe te contacte sous 5 min ⚡\nOu tape 'menu' pour revenir au menu."
 }
