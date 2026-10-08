@@ -505,6 +505,16 @@ try:
 except Exception:
     logger.warning("Seed Aya non chargée", exc_info=True)
 
+# Seed multilingue (Boss 08/10) : fiches EN/AR de base — runtime uniquement,
+# idempotent, jamais persistées (la vérité durable vit dans le Sheet).
+try:
+    _ml = aya_seed.ensure_seed_ml()
+    if _ml["published"]:
+        logger.info("Seed multilingue : %s fiche(s) EN/AR publiée(s)",
+                    _ml["published"])
+except Exception:
+    logger.warning("Seed multilingue non chargé", exc_info=True)
+
 
 
 def refresh_resources(lang_code: str) -> None:

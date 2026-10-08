@@ -119,6 +119,117 @@ SEED_QR: list[tuple[str, str]] = [
 ]
 
 
+
+# ── Seed MULTILINGUE (Boss 08/10) ────────────────────────────────────────
+# Baseline EN/AR : couvre « How much does a website cost? » et
+# « ما هي خدماتكم؟ » sans Google. La vérité durable vit dans le Sheet
+# (onglet Dialogues, colonne Langue = en / ar) — ici, RUNTIME SEULEMENT,
+# jamais de persistance (pas de doublon Sheet).
+SEED_QR_ML: dict[str, list[tuple[str, str]]] = {
+    "en": [
+        ("how much does a website cost | website cost | website price | how much for a website | price of a website | cost for a website | what does a website cost | how much is a website",
+         "Let me be straight with you \U0001F4B0\n\n"
+         "At KOMARA AGENCY \U0001F1EC\U0001F1F3 we don't sell fixed prices, we sell RESULTS.\n\n"
+         "\U0001F449 It depends on what you need:\n"
+         "1\U0001F3F5\uFE0F BOT / AI AGENT: from $150 - it replaces 2 employees 24/7\n"
+         "2\U0001F3F5\uFE0F WEBSITE that sells: from $200\n"
+         "3\U0001F3F5\uFE0F PREMIUM LOGO + Brand kit: from $50\n"
+         "4\U0001F3F5\uFE0F FULL PACK (Bot + Website + Logo) = DEAL \U0001F680\n\n"
+         "It's not an expense, it's a machine that pays you back. One client and it's already profitable.\n\n"
+         "Type 'DEVIS' now and get your free quote in 2 minutes with N-Dine on WhatsApp: +212 701 986 219\n"
+         "Just tell me: BOT, WEBSITE or LOGO ?"),
+        ("what services do you offer | your services | services | what do you do | what do you offer | what are your services",
+         "I'm AYA \U0001F916 the all-in-one assistant of KOMARA AGENCY \U0001F1EC\U0001F1F3 Here's what we do for you:\n\n"
+         "\U0001F680 1. AUTOMATION & AI AGENTS\n"
+         "> I build your AI employee that answers, sells and handles support on WhatsApp & Telegram 24/7. You sleep, she sells.\n\n"
+         "\U0001F4BB 2. WEB DESIGN THAT SELLS\n"
+         "> No dead websites. We build sites that turn visitors into paying clients.\n\n"
+         "\U0001F3A8 3. PREMIUM DESIGN & LOGO\n"
+         "> Logo, brand kit, visuals that make your brand stand out.\n\n"
+         "\U0001F3AC 4. AI VIDEO & CONTENT\n"
+         "> Ads, Reels, pro videos generated with AI.\n\n"
+         "In short: we turn your business into an automatic sales machine.\n\n"
+         "Type:\n"
+         "1\U0001F3F5\uFE0F for BOT / AI AGENT\n"
+         "2\U0001F3F5\uFE0F for WEBSITE\n"
+         "3\U0001F3F5\uFE0F for LOGO / VISUAL\n"
+         "4\U0001F3F5\uFE0F for a full QUOTE"),
+    ],
+    "es": [
+        ("cuanto cuesta un sitio web | precio sitio web | precio de un sitio web | cuanto cuesta una pagina web | precio pagina web",
+         "Te lo digo claro \U0001F4B0\n\n"
+         "En KOMARA AGENCY \U0001F1EC\U0001F1F3 no vendemos precios fijos, vendemos RESULTADOS.\n\n"
+         "\U0001F449 Depende de lo que necesitas:\n"
+         "1\U0001F3F5\uFE0F BOT / AGENTE IA: desde 150$ - reemplaza 2 empleados 24/7\n"
+         "2\U0001F3F5\uFE0F SITIO WEB que vende: desde 200$\n"
+         "3\U0001F3F5\uFE0F LOGO PREMIUM + identidad: desde 50$\n"
+         "4\U0001F3F5\uFE0F PACK COMPLETO (Bot + Sitio + Logo) = OFERTA \U0001F680\n\n"
+         "No es un gasto, es una máquina que te lo devuelve. Un solo cliente y ya está pagado.\n\n"
+         "Escribe 'DEVIS' ahora y recibe tu presupuesto gratis en 2 minutos con N-Dine en WhatsApp: +212 701 986 219\n"
+         "Dime solo: BOT, SITIO o LOGO ?"),
+        ("que servicios ofrecen | sus servicios | servicios | que hacen | que ofrecen | cuales son sus servicios",
+         "Soy AYA \U0001F916 la asistente todoterreno de KOMARA AGENCY \U0001F1EC\U0001F1F3 Esto es lo que hacemos por ti:\n\n"
+         "\U0001F680 1. AUTOMATIZACIÓN Y AGENTES IA\n"
+         "> Creo tu empleada IA que responde, vende y atiende en WhatsApp y Telegram 24/7. Tú duermes, ella vende.\n\n"
+         "\U0001F4BB 2. DISEÑO WEB QUE VENDE\n"
+         "> Nada de sitios muertos. Creamos sitios que convierten visitantes en clientes.\n\n"
+         "\U0001F3A8 3. DISEÑO Y LOGO PREMIUM\n"
+         "> Logo, identidad y visuales que imponen tu marca.\n\n"
+         "\U0001F3AC 4. VIDEO Y CONTENIDO CON IA\n"
+         "> Anuncios, Reels y vídeos profesionales generados con IA.\n\n"
+         "En resumen: convertimos tu negocio en una máquina de ventas automática.\n\n"
+         "Escribe:\n"
+         "1\U0001F3F5\uFE0F para BOT / AGENTE IA\n"
+         "2\U0001F3F5\uFE0F para SITIO WEB\n"
+         "3\U0001F3F5\uFE0F para LOGO / VISUAL\n"
+         "4\U0001F3F5\uFE0F para un PRESUPUESTO completo"),
+    ],
+    "ar": [
+        ("ما هي خدماتكم | خدماتكم | الخدمات | ماذا تقدمون | ماذا تفعلون",
+         "أنا AYA \U0001F916 المساعدة الذكية لـ KOMARA AGENCY \U0001F1EC\U0001F1F3 هذا ما نقدمه لك :\n\n"
+         "\U0001F680 1. الأتمتة ووكلاء الذكاء الاصطناعي\n"
+         "> أنشئ لك موظفة ذكية تردّ وتبيع وتخدم العملاء على واتساب وتيليجرام 24/7. أنت نائم، وهي تبيع.\n\n"
+         "\U0001F4BB 2. تصميم مواقع تبيع\n"
+         "> لا مواقع ميتة. نصنع مواقع تحوّل الزوار إلى عملاء يدفعون.\n\n"
+         "\U0001F3A8 3. تصميم وشعارات مميزة\n"
+         "> شعار وهوية ومرئيات تفرض علامتك التجارية.\n\n"
+         "\U0001F3AC 4. فيديو ومحتوى بالذكاء الاصطناعي\n"
+         "> إعلانات ومقاطع احترافية بالذكاء الاصطناعي.\n\n"
+         "باختصار: نحوّل مشروعك إلى آلة مبيعات أوتوماتيكية.\n\n"
+         "اكتب:\n"
+         "1\U0001F3F5\uFE0F للبوت / الوكيل الذكي\n"
+         "2\U0001F3F5\uFE0F للموقع\n"
+         "3\U0001F3F5\uFE0F للشعار / المرئيات\n"
+         "4\U0001F3F5\uFE0F لطلب عرض سعر كامل"),
+    ],
+}
+
+
+def ensure_seed_ml() -> dict:
+    """Publie les fiches EN/AR de base EN RUNTIME (idempotent, sans
+    persistance Sheet — la vérité durable vit déjà dans le Sheet avec
+    la colonne Langue). Évite le « EN question -> réponse française »
+    et couvre les tests multilingues même sans Google."""
+    import knowledge_store as ks
+    published = 0
+    with ks._LOCK:
+        known = {str(r.get("question", "")).strip().casefold()
+                 for r in ks._CUSTOM_ROWS}
+        for lang, pairs in SEED_QR_ML.items():
+            for q, a in pairs:
+                key = q.strip().casefold()
+                if key in known:
+                    continue
+                ks._CUSTOM_ROWS.append(
+                    {"question": q, "answer": a, "lang": lang, "date": ""})
+                known.add(key)
+                published += 1
+    if published:
+        for lang in SEED_QR_ML:
+            ks.refresh_resources(lang)
+    return {"published": published}
+
+
 def ensure_seed(lang: str = "fr") -> dict:
     """Publie les 20 Q/R en runtime (réponses immédiates) et tente une
     persistance unique dans Google Sheets (silencieuse si non lié).
