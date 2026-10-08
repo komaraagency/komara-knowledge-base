@@ -384,7 +384,7 @@ def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, l
     return False
 
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/evaluation"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/apprends_logique", "/logique", "/evaluation"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -2062,6 +2062,100 @@ def _apprends_core(bot, chat_id: int, args: str, lang: str) -> bool:
     return True
 
 
+
+
+def _admin_apprends_logique(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /apprends_logique — formation « question logique » (Boss
+    08/10). Enseigne un TUNNEL complet en une seule commande :
+
+        /apprends_logique <question> || <réponse qui pose une question> || <réponse si le client confirme>
+
+    1) La fiche Q -> A1 est apprise comme /apprends (base + Sheet).
+    2) La suite A1 -> A2 est enregistrée dans l'onglet Logique : dès que
+       le bot vient de dire A1 (ou une réponse qui commence pareil) et
+       que le client confirme (« oui », « ok »...), il répond A2 — pas de
+       matching au hasard. Le tunnel file jusqu'au RDV, à la vente ou au
+       contact humain.
+    """
+    try:
+        import logical_steps
+        parts = [p.strip() for p in (args or "").split("||")]
+        if len(parts) != 3 or not all(parts):
+            bot.send_message(
+                chat_id,
+                "Formation « question logique » 🎓 — enseigne un tunnel complet :\n"
+                "/apprends_logique <question> || <réponse qui pose une question> || "
+                "<réponse si le client dit oui>\n\n"
+                "Exemple :\n"
+                "/apprends_logique c'est quoi un bot || Un bot 🤖 c'est ton employé "
+                "digital... Tu veux le voir en action ? || Super 🔥 Regarde : "
+                "wa.me/212701986219 — et si tu veux un devis express, tape 'devis'")
+            return True
+        question, reponse, suite = parts
+        if "?" not in reponse:
+            bot.send_message(
+                chat_id,
+                "⚠️ La réponse doit se terminer par une QUESTION logique (avec « ? ») : "
+                "c'est elle que le client confirme avec « oui ».\n"
+                "Réessaie : /apprends_logique <question> || <réponse avec ?> || <suite>")
+            return True
+        import knowledge_store
+        result = knowledge_store.learn_entry(question, reponse, directory=ACTIONS_DIR)
+        stored = logical_steps.teach(reponse, suite, chat_id)
+        learn_txt = ("mise à jour ✅ (remplace l'ancienne réponse)"
+                     if result.get("updated") or result.get("replaced") else "ajoutée ✅")
+        if stored:
+            bot.send_message(
+                chat_id,
+                "🎓 Logique enregistrée !\n"
+                f"❓ Question : {question[:100]}\n"
+                f"💬 Réponse : {reponse[:100]}... ({learn_txt})\n"
+                f"🎯 Si le client confirme : {suite[:100]}\n\n"
+                "Le tunnel avance tout seul jusqu'au RDV / à la vente / au contact.\n"
+                "Vérifie : /logique")
+        else:
+            bot.send_message(
+                chat_id,
+                f"⚠️ Fiche {learn_txt} mais l'onglet Logique du Sheet est "
+                "injoignable — la suite n'est PAS active. Vérifie la connexion "
+                "Google (/google) puis relance la commande.")
+        return True
+    except Exception:
+        logger.exception("/apprends_logique a échoué (anti-crash)")
+        try:
+            bot.send_message(chat_id, "⚠️ La commande a échoué. Réessaie.")
+        except Exception:
+            pass
+        return True
+
+
+def _admin_logique_list(bot, chat_id: int, lang: str) -> bool:
+    """Admin : /logique — liste les chaînes logiques apprises."""
+    try:
+        import logical_steps
+        chains = logical_steps.list_chains()
+        if not chains:
+            bot.send_message(
+                chat_id,
+                "📭 Aucune logique enseignée pour l'instant.\n"
+                "Commence : /apprends_logique <question> || <réponse avec ?> || <suite>")
+            return True
+        lines = [f"🎓 Logiques actives : {len(chains)}", ""]
+        for start, suite in chains[:15]:
+            lines.append(f"• « {start[:60]}... »")
+            lines.append(f"   ↳ si oui → {suite[:70]}")
+        lines.append("")
+        lines.append("Enseigner : /apprends_logique <question> || <réponse avec ?> || <suite>")
+        bot.send_message(chat_id, "\n".join(lines))
+        return True
+    except Exception:
+        logger.exception("/logique a échoué (anti-crash)")
+        try:
+            bot.send_message(chat_id, "⚠️ La commande a échoué. Réessaie.")
+        except Exception:
+            pass
+        return True
+
 def _admin_evaluation(bot, chat_id: int, args: str, lang: str) -> bool:
     """Admin : /evaluation — pipeline mémoire Aya en 7 étapes (Boss
     05/10, adapté du schéma ML du Boss) : collecte → prétraitement →
@@ -2446,6 +2540,10 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         return set_global_promo(bot, 35.0, "BONNUS")
     if command in ("/apprends", "/apprendre", "/apprendres"):
         return _admin_apprends(bot, chat_id, args, lang)
+    if command == "/apprends_logique":
+        return _admin_apprends_logique(bot, chat_id, args, lang)
+    if command == "/logique":
+        return _admin_logique_list(bot, chat_id, lang)
     if command == "/evaluation":
         return _admin_evaluation(bot, chat_id, args, lang)
 

@@ -35,6 +35,7 @@ TAB_HEADERS: dict[str, list[str]] = {
     "Dialogues": ["Date", "Langue", "Question", "Réponse"],
     "Conversations": ["Date", "Chat ID", "Nom", "Rôle", "Contenu", "Langue"],
     "Questions sans réponse": ["Date", "Question", "Langue", "Chat", "Occurrences"],
+    "Logique": ["Départ", "Suite", "Date", "Admin"],
 }
 
 _sheet_id = ""

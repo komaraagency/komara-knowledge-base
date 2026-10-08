@@ -1288,6 +1288,52 @@ def _ghost_free_blend(last_bot_msg: str, user_text: str, detected_lang: str) -> 
     return None
 
 
+
+# ── Reformulation (Boss 08/10) ──────────────────────────────────────────
+# Le client demande « reformule », « je comprends pas » → le bot reformule
+# SA DERNIÈRE réponse en version simple. Zéro invention : uniquement des
+# phrases déjà présentes dans la réponse d'origine (1re phrase + question
+# finale). Jamais de réponse au hasard.
+_REFORM_INTENTS = {
+    "reformule", "reformule ça", "reformule stp", "reformule moi ça",
+    "tu peux reformuler", "peux tu reformuler", "plus simple",
+    "explique plus simplement", "explique autrement", "explique mieux",
+    "je comprends pas", "je ne comprends pas", "j'ai pas compris",
+    "je n'ai pas compris", "je comprends rien", "comprends rien",
+    "c'est quoi ça veut dire", "tu peux simplifier",
+    "rephrase", "simpler please", "no entiendo", "explica mejor",
+}
+_FALLBACK_LAST_MARKS = ("Je ne connais pas", "Bonne question, mais",
+                        "je l'ai noté", "dépassent mes connaissances")
+
+
+def _is_reform_request(user_text: str) -> bool:
+    """Intention de reformulation : phrase exacte courte ou « reformule... »"""
+    import unicodedata
+    t = unicodedata.normalize("NFKD", user_text or "")
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    t = re.sub(r"\s+", " ", t).strip().casefold().strip(" .?!…'")
+    return t in _REFORM_INTENTS or t.startswith("reformule")
+
+
+def _reformulate(last_bot_msg: str) -> str:
+    """Version simple de la dernière réponse : 1re phrase, les points clés
+    qui suivent (≤ 2, courts), et la phrase finale (appel à l'action ou
+    question). Déterministe : ne produit AUCUNE phrase qui n'était pas
+    déjà dite — juste une sélection plus courte."""
+    sentences = [p.strip() for p in re.split(r"(?<=[.!?])\s+|\n+", last_bot_msg) if p.strip()]
+    if not sentences:
+        return last_bot_msg
+    if len(sentences) <= 2:
+        body = last_bot_msg.strip()
+    else:
+        mids = [p for p in sentences[1:3] if len(p) <= 90]
+        body = "\n\n".join([sentences[0]] + mids + [sentences[-1]])
+    if len(body) > 320:
+        body = body[:317].rstrip() + "…"
+    return f"En plus simple 🙏\n\n{body}"
+
+
 def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) -> str | None:
     user_text = user_text[:4000].strip()
     if not user_text:
@@ -1298,6 +1344,17 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
         (h.get("content", "") for h in reversed(history)
          if h.get("role") == "assistant" and h.get("content")),
         "")
+
+    # REFORMULATION (Boss 08/10) : « reformule », « je comprends pas » →
+    # on reformule la DERNIÈRE réponse, sans inventer. Si la dernière
+    # réponse était un échec (« je ne connais pas »), inutile de la
+    # répéter plus simplement : on propose le contact direct.
+    if _is_reform_request(user_text) and last_bot_msg:
+        if any(m in last_bot_msg for m in _FALLBACK_LAST_MARKS):
+            import logical_steps
+            return logical_steps.escalation(detected_lang)
+        if len(last_bot_msg) > 60:
+            return _reformulate(last_bot_msg)
 
     # RÈGLE D'OR EN PRIORITÉ : mot de confirmation + question du
     # bot en attente → on répond DANS CE CONTEXTE avant tout autre
@@ -1319,10 +1376,27 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
         # Le filtre fantôme (conçu pour « sante »/« te ») ne doit donc
         # PAS s'appliquer ici ; la seule protection nécessaire reste
         # l'anti-écho (ne pas renvoyer mot pour mot le dernier message).
+        #
+        # FORMATION « QUESTION LOGIQUE » (Boss 08/10) : si l'admin a
+        # enseigné une suite (/apprends_logique Q || A1 || A2), elle
+        # PRIME sur le matching générique — le tunnel avance à coup sûr
+        # jusqu'au RDV, à la vente ou au contact humain.
+        _neg = _low.split(" ", 1)[0] in ("non", "no", "nope", "لا")
+        import logical_steps
+        if not _neg:
+            _taught = logical_steps.followup_for(last_bot_msg)
+            if _taught and _taught.strip() != last_bot_msg.strip():
+                return _taught
         qa_combined = f"{last_bot_msg} {user_text}"
         qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
         if qa_answer and qa_answer != last_bot_msg:
             return qa_answer
+        # LOGIQUE COMPLÉTÉE (Boss 08/10) : un client qui CONFIRME ne doit
+        # jamais tomber sur « je ne connais pas ce sujet » ni entendre deux
+        # fois la même question (écho du double « oui »). Aucune suite
+        # enseignée + aucun match → sortie par le contact direct.
+        if not _neg:
+            return logical_steps.escalation(detected_lang)
 
     # RÈGLE D'OR (message court) : un mot court (« où ? », « femme »,
     # « le prix »...) se comprend DANS LE FIL de la conversation, pas
