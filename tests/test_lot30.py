@@ -30,11 +30,11 @@ import rag_bot
 import aya_seed, knowledge_store
 
 print("── SEED AYA ──")
-check("36 Q/R définies (25 + 11 conversations commerciales Boss 04/10)", len(aya_seed.SEED_QR) == 36, len(aya_seed.SEED_QR))
+check("40 Q/R définies (25 + 11 conversations commerciales Boss 04/10 + 4 définitions Boss 08/10)", len(aya_seed.SEED_QR) == 40, len(aya_seed.SEED_QR))
 # Vider puisSeeder
 knowledge_store._CUSTOM_ROWS = []
 r1 = aya_seed.ensure_seed("fr")
-check("seed charge 36 en runtime", len(knowledge_store._CUSTOM_ROWS) == 36,
+check("seed charge 40 en runtime", len(knowledge_store._CUSTOM_ROWS) == 40,
       len(knowledge_store._CUSTOM_ROWS))
 check("seed persistée = 0 (Google non lié en test)", r1["persisted"] == 0, r1)
 # Idempotent : re-seed n'ajoute rien

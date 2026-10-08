@@ -71,6 +71,14 @@ SEED_QR: list[tuple[str, str]] = [
     ("au revoir",
      "À bientôt 👋 Reviens quand tu veux, je suis dispo 24h/24 🇬🇳 Que Dieu bénisse ton business ✨"),
     # DÉFINITIONS MÉTIER (Boss 04/10) : concepts clés de l'agence.
+    ("c'est quoi un bot",
+     "Un bot 🤖 c'est ton employé digital qui ne dort jamais. Il discute avec tes clients sur WhatsApp, Telegram ou ton site, il répond aux questions, prend les commandes et envoie les infos en automatique. Il fait le travail répétitif à ta place ⏱️ Tu veux que je t'en montre un en action ?"),
+    ("c'est quoi un robot",
+     "Un robot 🤖 c'est un logiciel ou une machine qui fait un travail à ta place. Sur internet, un robot c'est un programme qui clique, envoie, répond et organise pour toi 24h/24. Pas besoin de le payer en fin de mois, il bosse tout seul 💪 Tu veux ton premier robot ?"),
+    ("c'est quoi un robot automatisé",
+     "Un robot automatisé 🚀 c'est un robot + une automatisation. Il ne fait pas juste une tâche, il enchaîne tout un processus de A à Z. Exemple : il voit un nouveau commentaire Facebook, il y répond, il envoie un message privé au client, et il te met le RDV dans ton agenda. C'est un employé complet qui bosse pendant que tu es sur le terrain 🙏 Tu veux que je t'en crée un ?"),
+    ("c'est quoi une page automatisée",
+     "Une page automatisée 📱 c'est ta page Facebook ou Instagram qui se gère toute seule. Les commentaires sont filtrés, les messages reçoivent une réponse instantanée, les insultes sont supprimées, et les vrais clients sont envoyés direct sur ton WhatsApp. Ta communauté reste propre et tu ne perds plus aucun client 🛡️ Tu veux que je jette un œil à ta page ?"),
     ("c'est quoi un chatbot",
      "Un chatbot c'est un vendeur robot qui travaille pour toi 24/7. Il répond auto sur WhatsApp Facebook Telegram à tes clients, il qualifie et il prend la commande. Exemple client dit Prix à 2h du matin, le bot répond et close. Tu veux voir un exemple en vrai ?"),
     ("c'est quoi un agent ia générative",
@@ -78,7 +86,7 @@ SEED_QR: list[tuple[str, str]] = [
     ("c'est quoi un agent ia commercial",
      "Un agent IA commercial 💼 c'est un vendeur digital : il qualifie les prospects, présente tes produits avec des visuels, répond aux objections, envoie les tarifs, relance les hésitants et clos la vente. Il connait tout ton catalogue et ne prend jamais de pause 📈 Ton business vend 24h/24, de Kindia à Dubaï 🌍 Tu veux un devis pour le tien ?"),
     ("c'est quoi une automatisation",
-     "Une automatisation ⚙️ c'est une tâche répétitive que la machine fait à ta place : envoyer les factures, rappeler les RDV, publier sur Instagram, transférer les commandes, relancer les paniers abandonnés. Toi tu bosses sur l'essentiel, le robot s'occupe du reste 🔁 Résultat : du temps gagné, zéro oubli, plus de ventes 📈 Tu veux automatiser quoi en premier ?"),
+     "Une automatisation ⚙️ c'est quand une tâche se fait toute seule, sans que tu touches. Exemple : le client paie -> il reçoit sa facture auto -> son nom part dans ton Excel -> il reçoit un message de remerciement. Toi tu gagnes du temps, zéro oubli, plus de ventes 📈 Tu veux automatiser quoi en premier chez toi ?"),
     # RÈGLE LOGO (Boss 03/10) : jamais de personne dans un logo — K doré,
     # fond noir, style premium + pitch Pack Premium 150€.
     ("image logo",

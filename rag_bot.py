@@ -2090,10 +2090,46 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             bot.send_message(chat_id, chunk, reply_markup=menu_for_lang(detected_lang) if is_last else None)
     else:
         bot.send_message(chat_id, response, reply_markup=menu_for_lang(detected_lang))
+    if local_response:
+        _send_demo_image_for(chat_id, response)
 
     # Réponse parlée si le client a écrit en vocal (synthèse vocale locale)
     if reply_voice:
         tts.reply_with_voice(bot, chat_id, response, detected_lang)
+
+
+# ── Image de démo jointe à certaines réponses (Boss 08/10) ─────────────
+# « c'est quoi un bot » -> la fiche promet « je t'en montre un en action » :
+# on joint l'image de démo du portfolio (avant/après workflow WhatsApp).
+# Clé = début de la réponse du bot ; valeur = mot du nom de fichier du
+# portfolio. Modifiable ici sans toucher à la logique.
+DEMO_IMAGE_BY_ANSWER: dict[str, str] = {
+    "Un bot 🤖 c'est ton employé digital": "avant_apres_whatsapp",
+}
+
+
+def _send_demo_image_for(chat_id: int, response: str) -> None:
+    """Joint l'image de démo si la réponse correspond. Silencieux en cas
+    d'échec : l'image est un bonus, la réponse texte est déjà partie."""
+    try:
+        keyword = next((kw for start, kw in DEMO_IMAGE_BY_ANSWER.items()
+                        if response.startswith(start)), None)
+        if not keyword:
+            return
+        for name, source in portfolio_images():
+            if keyword in name.lower().replace(" ", "_"):
+                import io
+                if isinstance(source, tuple) and source[0] == "drive":
+                    data = portfolio_drive.download_image(source[1])
+                    if data:
+                        bot.send_photo(chat_id, io.BytesIO(data), caption="🤖 Un bot en action")
+                else:
+                    path = source[1] if isinstance(source, tuple) else source
+                    with path.open("rb") as image_file:
+                        bot.send_photo(chat_id, image_file, caption="🤖 Un bot en action")
+                return
+    except Exception:
+        logger.debug("Image de démo non envoyée", exc_info=True)
 
 # ---------------------------------------------------------------------------
 # Garde anti-divulgation : jamais de clés, IDs, algorithme ou conception
