@@ -36,7 +36,7 @@ reranker._load, reranker._load_attempted = saved_load, saved_attempted
 print("── 2. Rerank : re-classement par pertinence ──")
 class FakeCE:
     def __init__(self): self.calls = []
-    def predict(self, pairs):
+    def predict(self, pairs, **kwargs):
         self.calls.append(pairs)
         # la « bonne » QUESTION de fiche parle de bot quand le client en parle
         return [3.0 if ("bot" in q.lower()) else -3.0 for _c, q in pairs]
@@ -90,14 +90,14 @@ check("voie lexicale inchangée (réponse prix)", r0 is not None and "50€" in 
 
 # 5b. reranker qui VALIDE la fiche prix
 class ApproveCE:
-    def predict(self, pairs): return [5.0 for _ in pairs]
+    def predict(self, pairs, **kwargs): return [5.0 for _ in pairs]
 reranker._reranker = ApproveCE()
 r1 = LS.trouver_meilleure_reponse("combien coûte un bot ?", kb, faq, dial)
 check("rerank OK -> réponse prix", r1 is not None and "50€" in r1, str(r1)[:60])
 
 # 5c. reranker qui REJETTE (scores faibles) -> None, pas de réponse devinée
 class RejectCE:
-    def predict(self, pairs): return [-5.0 for _ in pairs]
+    def predict(self, pairs, **kwargs): return [-5.0 for _ in pairs]
 reranker._reranker = RejectCE()
 r2 = LS.trouver_meilleure_reponse("combien coûte un bot ?", kb, faq, dial)
 check("sous le seuil -> None (jamais deviné)", r2 is None, str(r2)[:60])
