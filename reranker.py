@@ -101,7 +101,9 @@ def rerank(question: str, candidates: list) -> list | None:
     try:
         # q_original si disponible, sinon la réponse (repli)
         pairs = [[question, (c[2] if c[2] else c[1])[:512]] for c in candidates]
-        scores = model.predict(pairs)
+        # show_progress_bar=False : les barres sentence-transformers vont
+        # sur stderr -> Railway les colore en rouge et pollue les logs
+        scores = model.predict(pairs, show_progress_bar=False)
         ranked = sorted(zip(candidates, scores, strict=False),
                         key=lambda x: x[1], reverse=True)
         return [(c[1], c[2], s) for c, s in ranked]
