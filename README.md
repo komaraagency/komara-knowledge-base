@@ -26,6 +26,26 @@ multilingue qui alimente nos assistants commerciaux IA pour l'Afrique et le mond
    même lot de travail.
 5. **Monnaie** : uniquement l'euro (€) et le dollar ($). Pas de monnaie locale.
 
+## Déploiement Railway
+
+Le bot est un **worker** Telegram (polling) : PAS de process `web`, le bot
+n'écoute aucun port. Un Procfile `web:` ferait planter le service (Railway
+exigerait un port bindé ; `app.py` n'existe pas ici).
+
+Procfile : `worker: mkdir -p /app/cache && python rag_bot.py`
+
+Variables Railway (onglet Variables, voir `.env.example`) :
+
+- `RERANK_ENABLED=1` — CrossEncoder ms-marco actif (0 = moteur lexical seul)
+- `RERANK_THRESHOLD=-3.0` — seuil logits : sous ce score, jamais de réponse devinée
+- `HF_HOME=/app/cache` et `TRANSFORMERS_CACHE=/app/cache` — cache du modèle (~90 Mo)
+
+Volume : monter un volume Railway sur `/app/cache` pour garder le cache du
+modèle entre les redémarrages (sinon re-téléchargement de 90 Mo à chaque boot,
+et `/app/cache` devient éphémère mais fonctionnel).
+
+RAM : prévoir ~300 Mo de plus pour torch ; vérifier le plan du service.
+
 ## Slogan
 
 > Votre Agent I.A. qui vend pour vous 24H/24
