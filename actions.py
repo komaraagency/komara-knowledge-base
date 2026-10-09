@@ -343,17 +343,61 @@ def start_chatbot_qualify_flow(chat_id: int) -> None:
     _save_flow(chat_id, "chatbot_qualify", "channel", {})
 
 
+# Canaux proposés au client (Boss 09/10) : le bot ne demandait pas de numéros
+# mais le client répondait « 2 » -> « Parfait 2 👌 » + faux lead « canal 2 ».
+CHATBOT_CHANNELS = {
+    "1": "WhatsApp", "2": "Telegram", "3": "TikTok", "4": "Facebook / Instagram",
+}
+_CHANNEL_ALIASES = {
+    "whatsapp": "WhatsApp", "whats app": "WhatsApp", "wa": "WhatsApp", "watsap": "WhatsApp",
+    "telegram": "Telegram", "telegramme": "Telegram", "tg": "Telegram",
+    "tiktok": "TikTok", "tik tok": "TikTok",
+    "facebook": "Facebook / Instagram", "fb": "Facebook / Instagram",
+    "messenger": "Facebook / Instagram", "instagram": "Facebook / Instagram",
+    "insta": "Facebook / Instagram",
+}
+_CHANNEL_ASK_FR = (
+    "Quel canal t'intéresse ? Réponds par le numéro ou le nom 👇\n"
+    "1️⃣ WhatsApp\n2️⃣ Telegram\n3️⃣ TikTok\n4️⃣ Facebook / Instagram")
+
+
+def resolve_channel(text: str) -> str:
+    """Canal choisi : numéro 1-4 ou nom (tolère les fautes courantes). '' si inconnu."""
+    low = (text or "").strip().lower().strip(" .!?")
+    digits = "".join(ch for ch in low if ch.isdigit())
+    if digits in CHATBOT_CHANNELS and len(low) <= 3:
+        return CHATBOT_CHANNELS[digits]
+    for alias, name in _CHANNEL_ALIASES.items():
+        if re.search(r"(?<![a-z])" + re.escape(alias) + r"(?![a-z])", low):
+            return name
+    return ""
+
+
 def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -> bool:
     if step == "channel":
-        data["channel"] = text[:60]
+        channel = resolve_channel(text)
+        if not channel:
+            # Boss 09/10 : « 5 » ou « blabla » n'est pas un canal -> on
+            # redemande avec les options numérotées (jamais « Parfait 5 »).
+            _save_flow(chat_id, "chatbot_qualify", "channel", data)
+            bot.send_message(chat_id, _CHANNEL_ASK_FR)
+            return True
+        data["channel"] = channel
         _save_flow(chat_id, "chatbot_qualify", "business", data)
         bot.send_message(
             chat_id,
-            f"Parfait {data['channel']} 👌 C'est le plus rentable. "
-            "Tu vends quoi exactement ? Boutique, resto ou service ?")
+            f"Parfait, {channel} 👌 C'est un très bon choix. "
+            "Tu vends quoi exactement ? (boutique, restaurant, salon, "
+            "immobilier, formation...)")
         return True
 
     if step == "business":
+        # Boss 09/10 : « 3 » ou « Tty » n'est pas une activité -> on redemande
+        # (max 2) AVANT d'envoyer un faux lead à l'équipe.
+        if not _looks_like_activity(text) and int(data.get("_activity_retries", 0)) < 2:
+            _activity_reask(bot, chat_id, lang, text, data)
+            _save_flow(chat_id, "chatbot_qualify", "business", data)
+            return True
         data["business"] = text[:200]
         _clear_flow(chat_id)
         client = get_client(chat_id) or {}
@@ -376,8 +420,9 @@ def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, l
         bot.send_message(
             chat_id,
             "Top ! 🚀 Je transmets ça à l'équipe Komara — on te propose un "
-            "chatbot sur mesure très vite. Tu veux voir nos tarifs en "
-            "attendant ?")
+            "chatbot sur mesure très vite.\n\n"
+            "👉 Tape DEVIS pour ton prix fixe tout de suite, ou RDV pour en "
+            "parler avec Ndine.")
         return True
 
     _clear_flow(chat_id)
@@ -1714,7 +1759,12 @@ def calc_devis(data: dict) -> tuple[list[str], float]:
             lines.append(f"{label} : +{pct}% (+{add:g}€)")
             total += add
 
-    deadline = _norm(data.get("deadline", ""))
+    # BOSS 09/10 : le supplément express ne se déclenche QUE si le CLIENT
+    # demande l'urgence (data["asked_deadline"]). Avant, le délai du
+    # catalogue (« 48h » du Bot Scripté) était lu comme une demande
+    # d'urgence -> +25 % facturé à chaque devis Bot Scripté sans que le
+    # client ait rien demandé (50 € devenait 62,5 €).
+    deadline = _norm(data.get("asked_deadline", ""))
     if any(w in deadline for w in DEVIS_URGENT_WORDS):
         add = base * 25 / 100
         lines.append(f"Délai express : +25% (+{add:g}€)")
@@ -1785,8 +1835,13 @@ def _step_devis(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
             _save_flow(chat_id, "devis", "activity", data)
             return True
         data["activity"] = text[:200]
-        # Délai = celui du service catalogue (affiché dans le devis)
+        # Délai = celui du service catalogue (affiché dans le devis).
+        # asked_deadline reste VIDE : le client n'a rien demandé -> pas
+        # de supplément express (voir calc_devis).
         data["deadline"] = data.get("delay", "") or "selon projet"
+        # Urgence = SEULEMENT ce que le client a écrit (sa demande d'origine
+        # « devis urgent » ou sa réponse d'activité), jamais le catalogue.
+        data["asked_deadline"] = (data.get("details", "") + " " + text)[:300]
         # Nom : mémoire client (capturé automatiquement dès le 1er message)
         client = get_client(chat_id) or {}
         data["name"] = data.get("name") or client.get("name") or "cher client"

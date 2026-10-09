@@ -885,7 +885,7 @@ MESSAGES: dict[str, dict[str, str]] = {
         "portfolio": "Tu veux des exemples pour quel domaine?",
         "pricing_intro": "Voici nos offres :",
         "commander": "Super! 🛒 Pour préparer votre devis, dites-moi :\n\n1️⃣ Quel service? (bot, site, logo, app...)\n2️⃣ Votre activité\n3️⃣ Votre délai souhaité\n\nJe vous écoute 👇",
-        "chatbot": "🤖 Vous voulez un bot intelligent pour votre business?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse?",
+        "chatbot": "🤖 Vous voulez un bot intelligent pour votre business?\n\nOn crée des bots WhatsApp, Telegram et TikTok sur mesure.\n\nQuel canal vous intéresse ? Réponds par le numéro 👇\n1️⃣ WhatsApp\n2️⃣ Telegram\n3️⃣ TikTok\n4️⃣ Facebook / Instagram",
         "start": "Salut 👋 Bienvenue chez Komara Agency 🇬🇳 !\n\nJe crée des solutions digitales : chatbots, sites web, logos, visuels IA.\n\nChoisis une option 👇 ou décris ton besoin.",
         "welcome_back": "Re-bonjour {name} 👋 Content de te revoir chez Komara Agency 🇬🇳 !\n\nChoisis une option 👇 ou décris ton besoin.",
         "promo": "🎟️ Nos codes promo s'appliquent automatiquement au moment du devis.\n\n1. Tape 'devis'\n2. Décris ton besoin\n3. Entre ton code à l'étape demandée\n\nLes codes actifs sont annoncés ici par l'équipe 🇬🇳",
@@ -1354,6 +1354,18 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
         if not _neg:
             return logical_steps.escalation(detected_lang)
 
+    # SECTEUR DÉCLARÉ (Boss 09/10, capture : « J'ai une boutique » ->
+    # « Tu vends quoi exactement ? » alors qu'il vient de le dire). Si le
+    # client déclare son activité, on NOMME le secteur et on pousse UNE
+    # action (devis / RDV) au lieu de redemander. Local, aucune invention.
+    import sector_reply
+    _sector_ans = sector_reply.reply_for(user_text, last_bot_msg)
+    if _sector_ans:
+        return _sector_ans
+    _sector_ask = sector_reply.clarify_for(user_text)
+    if _sector_ask:
+        return _sector_ask
+
     # RÈGLE D'OR (message court) : un mot court (« où ? », « femme »,
     # « le prix »...) se comprend DANS LE FIL de la conversation, pas
     # seul. Le client dit « quel délai ? » puis « où ? » : le bot se
@@ -1531,6 +1543,24 @@ def _route_services_choice(chat_id: int, index: int, lang: str) -> bool:
     reply = _SERVICES_REPLIES.get(index)
     if not reply:
         return False
+    # BOSS 09/10 : si le client a DÉJÀ dit son activité dans la conversation
+    # (« j'ai une boutique »), on ne la redemande pas : on l'utilise.
+    try:
+        import sector_reply
+        _hist = [h.get("content", "") for h in context_for(chat_id)
+                 if h.get("role") == "user" and h.get("content")]
+        _sector = next((sector_reply.detect_sector(m) for m in reversed(_hist)
+                        if sector_reply.detect_sector(m)), "")
+    except Exception:
+        _sector = ""
+    if _sector and index == 2:
+        reply = (f"Site web 🌐 Pour {sector_reply.with_possessive(_sector)}, je te propose une vitrine claire "
+                 "avec tes produits/services, tes contacts et un bouton WhatsApp. "
+                 "Tarif de départ : 500 000 GNF (7 jours).\n\n"
+                 "👉 Tape DEVIS pour ton prix fixe, ou RDV pour en parler avec Ndine.")
+    elif _sector and index == 3:
+        reply = (f"Logo / visuel 🎨 Pour {sector_reply.with_possessive(_sector)} : logo 300 000 à 500 000 GNF, "
+                 "livré en 24h pour la V1. Dis-moi le style que tu aimes 👇")
     remember(chat_id, "assistant", reply)
     bot.send_message(chat_id, reply, reply_markup=menu_for_lang(lang))
     return True
@@ -2066,7 +2096,11 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
                 # pour BOT / 2️⃣ SITE / 3️⃣ LOGO / 4️⃣ DEVIS » mais le « 1 »
                 # tombait sur la liste Portfolio. Le chiffre suit le menu
                 # qui vient d'être envoyé.
-                list_context.clear_context(chat_id)
+                # 1 et 4 lancent un tunnel (on sort du menu) ; 2 et 3 sont de
+                # simples réponses : le menu RESTE actif pour que le client
+                # puisse enchaîner « 2 » puis « 3 » (Boss 09/10).
+                if index in (1, 4):
+                    list_context.clear_context(chat_id)
                 remember(chat_id, "user", user_text)
                 if _route_services_choice(chat_id, index, detected_lang):
                     return
@@ -2138,6 +2172,9 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # 6. Sauvegarde et envoi
     remember(chat_id, "assistant", response)
     if local_response and _SERVICES_MENU_RE.search(response.rstrip()):
+        list_context.set_context(chat_id, "services")
+    elif local_response and "Tu veux quoi pour " in response and "4️⃣" in response:
+        # menu 1-4 de sector_reply.clarify_for : le chiffre suivant suit CE menu
         list_context.set_context(chat_id, "services")
 
     if len(response) > 4096:
