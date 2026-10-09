@@ -468,13 +468,63 @@ def trouver_meilleure_reponse(
     if not candidates:
         return None
 
+    # ── RERANKER + SEUIL (Boss 09/10) ──────────────────────────────────────
+    # Le moteur lexical peut classer une fiche hors-sujet devant la bonne
+    # (égalité de mots-clés). Le CrossEncoder RELIT chaque paire
+    # (message / QUESTION de la fiche — Boss 09/10) et le SEUIL rejette
+    # les candidats trop faibles :
+    # JAMAIS de réponse devinée. Si le reranker n'est pas installé, on
+    # retombe EXACTEMENT sur le comportement lexical d'avant.
+    global _LAST_ANSWER
+    import reranker
+    if reranker._load() is not None:
+        _top = sorted(candidates, key=lambda x: x[0], reverse=True)[:reranker.top_k()]
+        _rr = reranker.rerank(message, _top)
+        if _rr is not None:
+            try:
+                logging.getLogger("komara.rag").info(
+                    "[RERANK] Query=%s | Best=%s | %d/%d candidats >= seuil %.2f",
+                    message[:60], round(_rr[0][2], 3),
+                    sum(1 for _a, _q, _s in _rr if reranker.is_relevant(_s)),
+                    len(_rr), reranker.threshold(),
+                )
+            except Exception:
+                pass
+            if not reranker.is_relevant(_rr[0][2]):
+                # Trop faible : on NE répond PAS à côté. Le pipeline amont
+                # (question en attente, message générique) prend le relais.
+                logging.getLogger("komara.rag").info(
+                    "[RERANK-REJET] Query=%s | score %.3f < seuil %.2f -> pas de fiche",
+                    message[:60], _rr[0][2], reranker.threshold(),
+                )
+                return None
+            # Parmi les candidats au-dessus du seuil, ne tire que les
+            # PARAPHrases (score rerank quasi identique au meilleur).
+            _best_s = _rr[0][2]
+            _pool: list[str] = []
+            for _ans, _q, _s in _rr:
+                if _s < _best_s - 0.02:
+                    continue
+                if isinstance(_ans, list):
+                    _pool.extend(a for a in _ans if a)
+                elif _ans:
+                    _pool.append(_ans)
+            if _pool:
+                _pick = random.choice(_pool)
+                if len(_pool) > 1 and _pick == _LAST_ANSWER:
+                    _others = [a for a in _pool if a != _LAST_ANSWER]
+                    if _others:
+                        _pick = random.choice(_others)
+                _LAST_ANSWER = _pick
+                return _pick
+            # pool vide (réponse vide) -> on continue sur la voie lexicale
+
     # ── Sélection aléatoire anti-répétition ──
     # 1. toutes les entrées ex æquo (ex : familles de salutations à 1.0)
     #    participent au tirage, pas seulement la première arrivée ;
     # 2. chaque entrée apporte TOUTES ses variantes au pool ;
     # 3. random.choice dans le pool, et on ne retombe jamais sur la
     #    phrase exacte renvoyée au tirage précédent.
-    global _LAST_ANSWER
     best_score = max(candidates, key=lambda x: x[0])[0]
     try:
         logging.getLogger("komara.rag").info(

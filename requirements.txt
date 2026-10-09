@@ -10,3 +10,8 @@ qrcode==8.0
 pillow==10.4.0
 opencv-python-headless==4.10.0.84
 fpdf2==2.8.1
+
+# Reranker CrossEncoder (Boss 09/10) — torch CPU uniquement
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+sentence-transformers
