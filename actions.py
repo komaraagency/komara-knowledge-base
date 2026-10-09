@@ -1264,20 +1264,28 @@ def _step_human(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
     if step != "whatsapp":
         _clear_flow(chat_id)
         return False
-    # BUG BOSS 08/10 (capture : « D'accord merci » après « Laisse-moi ton
-    # numéro » était accepté comme numéro WhatsApp -> faux lead admin +
-    # « C'est noté ! » alors que RIEN n'a été fourni). On valide : au moins
-    # 8 chiffres. Sinon on redemande POLIMENT, sans confirmer ni notifier.
-    digits = re.sub(r"\D", "", text)
-    if len(digits) < 8 or text.strip().lower() in ("menu", "annuler"):
-        if text.strip().lower() in ("menu", "annuler"):
-            _clear_flow(chat_id)
-            bot.send_message(chat_id, t(lang, "human_done"))
-            return True
-        _save_flow(chat_id, "human", "whatsapp", {})
-        bot.send_message(chat_id, t(lang, "human_invalid"))
+    # BOSS 09/10 : validation stricte commune (phone_validation) — un
+    # vrai numéro cohérent avec son indicatif pays, jamais « n'importe
+    # quoi ». Re-demande adaptée à l'erreur (max 3), puis WhatsApp direct
+    # sans faux lead. « menu »/« annuler » sort proprement du tunnel.
+    _low = text.strip().lower()
+    if _low in ("menu", "annuler", "ok menu", "stop", "abandonne",
+                "laisse tomber", "non merci", "no merci"):
+        _clear_flow(chat_id)
+        bot.send_message(chat_id, t(lang, "human_done"))
         return True
-    whatsapp = text.strip()[:100]
+    import phone_validation
+    _ok, _reason = phone_validation.check(text)
+    if not _ok:
+        if int(data.get("_phone_retries", 0)) + 1 < _PHONE_MAX_TRIES:
+            data["_phone_retries"] = int(data.get("_phone_retries", 0)) + 1
+            _save_flow(chat_id, "human", "whatsapp", data)
+            bot.send_message(chat_id, phone_validation.reject_msg(text, lang))
+        else:
+            _clear_flow(chat_id)
+            bot.send_message(chat_id, _PHONE_GIVEUP_FR)
+        return True
+    whatsapp = phone_validation.normalize(text)
     client = get_client(chat_id)
     name = (client or {}).get("name") or "(inconnu)"
     activity = (client or {}).get("activity") or "?"
@@ -1381,9 +1389,12 @@ def _deadline_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
 
 
 def _looks_like_phone(text: str) -> bool:
-    """True si ça ressemble à un numéro : >= 7 chiffres (espaces/+/ tirets OK)."""
-    digits = "".join(ch for ch in (text or "") if ch.isdigit())
-    return len(digits) >= 7 and len((text or "").strip()) <= 25
+    """True si le numéro est VRAIMENT valide (Boss 09/10) : longueur E.164,
+    indicatif pays cohérent (+212 -> 9 chiffres locaux commençant par
+    5/6/7/8...), faux évidents rejetés (123456789, 000000000...).
+    Délègue à phone_validation — plus jamais « >= 7 chiffres et on y va »."""
+    import phone_validation
+    return phone_validation.check(text)[0]
 
 
 _PHONE_REASK_FR = (
@@ -1394,10 +1405,29 @@ _PHONE_REASK_EN = (
     "622 00 00 00 or +224 622 00 00 00 📞")
 
 
+_PHONE_MAX_TRIES = 3
+_PHONE_GIVEUP_FR = ("Pas grave 🙏 Écris-nous DIRECTEMENT sur WhatsApp, l'équipe "
+                    "te répond en 5 min : wa.me/212701986219" + chr(10) +
+                    "Ta demande est déjà enregistrée, on te recontacte aussi ici même "
+                    "sans numéro 📞")
+
+
 def _phone_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
+    """Re-demande le numéro avec un message adapté à la raison d'invalidité
+    (Boss 09/10). Max 3 essais : au-delà on NE JAMAIS enregistre un faux
+    numéro — on garde le contact enregistré SANS téléphone et on donne le
+    WhatsApp direct. Jamais de blocage."""
+    import phone_validation
+    txt = phone_validation.reject_msg(raw, lang)
     data["_phone_retries"] = int(data.get("_phone_retries", 0)) + 1
-    txt = _PHONE_REASK_EN if lang == "en" else _PHONE_REASK_FR
     bot.send_message(chat_id, txt)
+
+
+def _phone_give_up(bot, chat_id: int, lang: str) -> None:
+    """Après 3 numéros invalides : on ne force plus. Le lead/commande est
+    enregistré SANS téléphone (jamais un faux numéro), et on donne le
+    WhatsApp direct pour continuer sans friction."""
+    bot.send_message(chat_id, _PHONE_GIVEUP_FR)
 
 
 def _activity_reask(bot, chat_id: int, lang: str, raw: str, data: dict) -> None:
@@ -1485,13 +1515,20 @@ def _step_order(bot, chat_id: int, step: str, data: dict, text: str, lang: str) 
                 bot.send_message(chat_id, t(lang, "order_phone"))
                 return True
         else:
-            # FIX BOSS 04/10 : un numéro doit contenir des chiffres —
-            # re-demande (max 2) au lieu d'enregistrer n'importe quoi.
-            if not _looks_like_phone(text) and int(data.get("_phone_retries", 0)) < 2:
-                _phone_reask(bot, chat_id, lang, text, data)
-                _save_flow(chat_id, "order", "phone", data)
-                return True
-            data["phone"] = text[:50]
+            # BOSS 09/10 : un numéro VRAIMENT valide ou rien. Re-demande
+            # adaptée à l'erreur (max 3), puis on enregistre la commande
+            # SANS téléphone (jamais un faux numéro) + WhatsApp direct.
+            import phone_validation
+            _ok, _reason = phone_validation.check(text)
+            if not _ok:
+                if int(data.get("_phone_retries", 0)) + 1 < _PHONE_MAX_TRIES:
+                    _phone_reask(bot, chat_id, lang, text, data)
+                    _save_flow(chat_id, "order", "phone", data)
+                    return True
+                data["phone"] = ""
+                bot.send_message(chat_id, _PHONE_GIVEUP_FR)
+            else:
+                data["phone"] = phone_validation.normalize(text)
         _clear_flow(chat_id)
 
         order_id = _insert("orders", {
@@ -1868,12 +1905,20 @@ def _step_lead(bot, chat_id: int, step: str, data: dict, text: str, lang: str) -
         return True
 
     if step == "phone":
-        # FIX BOSS 04/10 : numéro invalide → re-demande (max 2).
-        if not _looks_like_phone(text) and int(data.get("_phone_retries", 0)) < 2:
-            _phone_reask(bot, chat_id, lang, text, data)
-            _save_flow(chat_id, "lead", "phone", data)
-            return True
-        data["phone"] = text[:50]
+        # BOSS 09/10 : numéro VRAIMENT valide ou rien (même règle que la
+        # commande) : re-demande adaptée (max 3), puis lead SANS téléphone
+        # plutôt qu'un faux numéro enregistré.
+        import phone_validation
+        _ok, _reason = phone_validation.check(text)
+        if not _ok:
+            if int(data.get("_phone_retries", 0)) + 1 < _PHONE_MAX_TRIES:
+                _phone_reask(bot, chat_id, lang, text, data)
+                _save_flow(chat_id, "lead", "phone", data)
+                return True
+            data["phone"] = ""
+            bot.send_message(chat_id, _PHONE_GIVEUP_FR)
+        else:
+            data["phone"] = phone_validation.normalize(text)
         _save_flow(chat_id, "lead", "sector", data)
         bot.send_message(chat_id, t(lang, "lead_sector"))
         return True

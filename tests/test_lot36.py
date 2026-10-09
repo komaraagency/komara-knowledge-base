@@ -139,9 +139,10 @@ with patch.object(actions, "_save_flow", lambda cid, f, s, d=None: flows.update(
                             "622 00 00 00", "fr")
     check("tunnel lead : vrai numéro → avance", "sector" in flows, list(flows))
 
-print("── 4. anti-blocage : après 2 re-demandes on accepte ──")
+print("── 4. anti-blocage Boss 09/10 : jamais de faux numéro ──")
 with patch.object(actions, "_save_flow", lambda cid, f, s, d=None: flows.update({s: d})):
     flows.clear()
+    sent.clear()
     data = {"service": "Logo", "activity": "resto", "_phone_retries": 2}
     with patch.object(actions, "_insert", lambda *a, **k: 1), \
          patch.object(actions, "_clear_flow", lambda cid: None), \
@@ -150,6 +151,13 @@ with patch.object(actions, "_save_flow", lambda cid, f, s, d=None: flows.update(
          patch.object(actions, "schedule_followup", lambda *a, **k: None), \
          patch.object(actions, "order_tracking", lambda *a, **k: None):
         r = actions._step_order(FakeBot(), 1, "phone", dict(data), "hhh", "fr")
-        check("3e tentative poubelle → acceptée (jamais de blocage)", r is not None, r)
+        check("3e tentative poubelle → tunnel terminé (jamais de blocage)", r is not None, r)
+        check("...et lien WhatsApp direct proposé (pas de faux numéro)",
+              any("wa.me/212701986219" in str(t) for c, t in sent),
+              [str(t)[:60] for c, t in sent])
+    check("faux numéro réel de prod (+21287654213) → refusé",
+          actions._looks_like_phone("+21287654213") is False, "")
+    check("vrai numéro (+212669416020) → accepté",
+          actions._looks_like_phone("+212669416020") is True, "")
 
 print(f"\nTOTAL: {OK} OK / {KO} KO")
