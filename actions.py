@@ -1106,6 +1106,19 @@ def handle(bot, chat_id: int, text: str, lang: str) -> bool:
     # que le client répond normalement.
     active = _fetch_flow(chat_id)
     if active and not text_clean.startswith("/"):
+        # BOSS 09/10 : « Merci » pendant un flux n'est PAS une réponse à
+        # l'étape en cours (capture : devis avec l'activité « Merci »).
+        # On remercie et le flux ATTEND toujours sa vraie réponse.
+        import farewell_guard
+        if farewell_guard.is_thanks_only(text_clean):
+            _reply = farewell_guard.mid_thanks_reply(lang)
+            try:  # historique mémoire (si rag_bot est chargé)
+                from rag_bot import remember
+                remember(chat_id, "assistant", _reply)
+            except Exception:
+                pass
+            bot.send_message(chat_id, _reply)
+            return True
         flow, step, data = active
         # BUG BOSS 07/10 (screenshot « c'est quoi un chatbot » → « Tape le
         # numéro du service (1 à 5) ») : à une étape de CHOIX NUMÉRIQUE, une

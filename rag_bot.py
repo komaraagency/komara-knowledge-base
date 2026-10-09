@@ -1354,6 +1354,16 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
         if not _neg:
             return logical_steps.escalation(detected_lang)
 
+    # CLÔTURE SEULEMENT AUX VRAIES FINS (Boss 09/10, capture : le client
+    # dit « Merci » en pleine visite du portfolio et le bot sort « Avant
+    # de partir... À tout de suite ! »). Remerciement seul pendant une
+    # conversation active -> petit ack, JAMAIS la fiche « Avant de partir ».
+    # Les vrais départs (« au revoir », « bye »...) gardent la clôture.
+    import farewell_guard
+    if (farewell_guard.is_thanks_only(user_text)
+            and farewell_guard.conversation_active(chat_id, last_bot_msg)):
+        return farewell_guard.mid_thanks_reply(detected_lang)
+
     # SECTEUR DÉCLARÉ (Boss 09/10, capture : « J'ai une boutique » ->
     # « Tu vends quoi exactement ? » alors qu'il vient de le dire). Si le
     # client déclare son activité, on NOMME le secteur et on pousse UNE
