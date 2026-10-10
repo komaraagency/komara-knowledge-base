@@ -33,8 +33,9 @@ print("── SEED AYA ──")
 check("40 Q/R définies (25 + 11 conversations commerciales Boss 04/10 + 4 définitions Boss 08/10)", len(aya_seed.SEED_QR) == 40, len(aya_seed.SEED_QR))
 # Vider puisSeeder
 knowledge_store._CUSTOM_ROWS = []
+knowledge_store.rebuild_known_questions()
 r1 = aya_seed.ensure_seed("fr")
-check("seed charge 40 en runtime", len(knowledge_store._CUSTOM_ROWS) == 40,
+check("seed charge 40 en runtime", len(knowledge_store.custom_rows_snapshot()) == 40,
       len(knowledge_store._CUSTOM_ROWS))
 check("seed persistée = 0 (Google non lié en test)", r1["persisted"] == 0, r1)
 # Idempotent : re-seed n'ajoute rien
@@ -55,12 +56,18 @@ class FakeResp:
     def __init__(self, status=200, data=None, content=b""):
         self.status_code = status; self._d = data or {}; self.content = content
         self.text = json.dumps(data or {})
+
+    def iter_content(self, chunk_size=65536):
+        # streaming (Boss 10/10) : yield par chunks comme un vrai Drive
+        for i in range(0, len(self.content), chunk_size):
+            yield self.content[i:i + chunk_size]
+
     def json(self): return self._d
 
 class FakeReq:
     def __init__(self):
         self.posts = []; self.gets = []; self.created = []
-    def get(self, url, headers=None, params=None, timeout=30):
+    def get(self, url, headers=None, params=None, timeout=30, stream=False):
         self.gets.append(url)
         q = (params or {}).get("q", "")
         if "files" in url and "'FOLDER1' in parents" in q:

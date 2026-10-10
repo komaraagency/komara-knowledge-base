@@ -27,6 +27,11 @@ from local_search import significant_token_count, trouver_meilleure_reponse
 from local_stats import record_unrecognized
 import actions
 import list_context
+import pending_question
+import logical_steps
+import farewell_guard
+import sector_reply
+import service_followup
 import knowledge_store
 import qr_module
 import relances
@@ -533,6 +538,13 @@ _MEMORY_ENV = os.getenv("MEMORY_DIR", "")
 if _MEMORY_ENV:
     MEMORY_DIR = Path(_MEMORY_ENV)   # override explicite (tests, local)
 else:
+    # RÉALITÉ RAILWAY (Boss 10/10) : /tmp est RASÉ à chaque redéploiement.
+    # La table processed_events (anti-doublon) et la mémoire longue y
+    # vivent -> un message livré PENDANT le redémarrage peut être traité
+    # 2 fois. Pour le rendre durable : monter un VOLUME Railway (ex.
+    # /data) et définir MEMORY_DIR=/data/komara_memory dans les variables
+    # du service. Sans volume, l'anti-doublon reste valable seulement
+    # pour les redémarrages à chaud (sans perte de disque).
     MEMORY_DIR = Path(tempfile.gettempdir()) / "komara_memory"  # éphémère
 MEMORY_FILE = MEMORY_DIR / "memory.db"
 MEMORY_LIMIT = 100  # longue mémoire : 100 derniers échanges par client
@@ -797,17 +809,11 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    # ANTI-MÉLANGE : on ne balaie JAMAIS les autres langues. Avant, un
-    # client EN sans fiche EN pouvait recevoir une réponse ES ou AR —
-    # « le bot mélange les réponses ». Désormais : langue détectée →
-    # repli FR (langue de la marque) → message générique DANS LA LANGUE
-    # du client. Une absence de fiche vaut mieux qu'une réponse à côté.
-    fallback = LANG_RESOURCES.get(DEFAULT_LANGUAGE, {"kb": [], "faq": [], "dialogues": []})
-    result = trouver_meilleure_reponse(
-        message, fallback["kb"], fallback["faq"], fallback["dialogues"]
-    )
-    if result:
-        return result
+    # ANTI-MÉLANGE (Boss 10/10) : on ne balaie JAMAIS les autres langues,
+    # PAS MÊME EN REPLI. Avant, un client AR sans fiche AR recevait une
+    # réponse FR — le mélange ultime. Désormais : langue détectée →
+    # message générique DANS LA LANGUE du client. « Une absence de fiche
+    # vaut mieux qu'une réponse à côté » s'applique aussi au repli.
     return None
 
 # ---------------------------------------------------------------------------
@@ -1070,7 +1076,7 @@ AMBIGUOUS_WORDS: dict[str, str] = {
     "ia": "ia", "intelligence": "ia",
     "site": "site", "web": "site", "site web": "site",
     "app": "app", "application": "app", "appli": "app",
-    "logo": "logo", "logos": "logo",
+    "logo": "logo", "logos": "logo", "boutique": "site",
     "video": "video", "vidéo": "video", "videos": "video",
     "visuel": "visuel", "visuels": "visuel", "affiche": "visuel",
     "design": "visuel", "graphique": "visuel",
@@ -1090,6 +1096,23 @@ AMBIGUOUS_WORDS: dict[str, str] = {
     "شعار": "logo", "فيديو": "video", "تصميم": "visuel", "تسويق": "marketing",
     "تكوين": "formation", "تطبيق": "app", "أتمتة": "auto", "تطبيقات": "app",
 }
+
+# Groupes de SERVICES : mots qui déclenchent une demande de précision.
+# (« faire » n'est pas un service : jamais de clarif pour « je veux... »)
+_SERVICE_GROUPS = {"logo", "site", "bot", "ia", "video",
+                   "visuel", "app", "auto", "formation"}
+
+# Verbes d'intention : « je veux/crée/fais... un logo ». Présents ->
+# le RAG direct a sa chance d'abord (il existe une vraie fiche
+# « je veux créer un site web »). Absents sur un message court ->
+# la clarification par token est légitime (« boutique en ligne »).
+_INTENT_VERBS = ("veux", "veut", "crée", "créer", "creer", "cree",
+                 "fais", "fait", "faire", "besoin", "peux", "peut",
+                 "pourrais", "prépare", "prepare", "commande",
+                 "commander", "conçois", "concois", "réalise",
+                 "realise", "passe", "fabrique", "veux-tu",
+                 "want", "need", "make", "create", "build",
+                 "quiero", "haz", "hago", "necesito", "puedes", "تريد")
 
 _AMBIGUOUS_CLARIFY: dict[str, dict[str, list[str]]] = {
     "bot": {
@@ -1268,6 +1291,9 @@ def _user_word_in_fiche(qa_answer: str, user_text: str, lang: str) -> bool:
     return False
 
 
+_GHOST_MEMO: dict[tuple, str | None] = {}
+
+
 def _ghost_free_blend(last_bot_msg: str, user_text: str, detected_lang: str) -> str | None:
     """Combine le dernier message du bot + le texte du client, MAIS avec
     un filtre anti-fantôme (lot 21) : si le message du bot SEUL produit
@@ -1287,7 +1313,19 @@ def _ghost_free_blend(last_bot_msg: str, user_text: str, detected_lang: str) -> 
     qa_answer = trouver_meilleure_reponse_multilingue(qa_combined, detected_lang)
     if not qa_answer or qa_answer == last_bot_msg:
         return None
-    ghost_answer = trouver_meilleure_reponse_multilingue(last_bot_msg, detected_lang)
+    # PERF (Boss 10/10) : la recherche inverse (bot seul) est la PARTIE
+    # COÛTEUSE — elle est identique pour tous les messages d'une même
+    # réponse bot. Mémoïsation bornée (clé = message bot + langue +
+    # version de la base) : 1 seule recherche inverse par message du bot,
+    # plus 2-3 par message client.
+    _gkey = (last_bot_msg, detected_lang, len(knowledge_store.known_questions()))
+    if _gkey in _GHOST_MEMO:
+        ghost_answer = _GHOST_MEMO[_gkey]
+    else:
+        ghost_answer = trouver_meilleure_reponse_multilingue(last_bot_msg, detected_lang)
+        if len(_GHOST_MEMO) > 128:
+            _GHOST_MEMO.clear()
+        _GHOST_MEMO[_gkey] = ghost_answer
     if qa_answer != ghost_answer:
         return qa_answer
     low = user_text.strip().lower()
@@ -1328,8 +1366,6 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     # quoi ? 1-4 », « Laisse ton numéro »), la réponse du client est une
     # réponse À CETTE QUESTION — jamais un nouveau sujet à mélanger avec
     # une fiche au hasard. On répond donc dans le sujet demandé.
-    import pending_question
-    import logical_steps
     _topic = pending_question.detect(last_bot_msg)
     _neg = _low.split(" ", 1)[0] in ("non", "no", "nope", "لا")
 
@@ -1359,7 +1395,6 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     # de partir... À tout de suite ! »). Remerciement seul pendant une
     # conversation active -> petit ack, JAMAIS la fiche « Avant de partir ».
     # Les vrais départs (« au revoir », « bye »...) gardent la clôture.
-    import farewell_guard
     if (farewell_guard.is_thanks_only(user_text)
             and farewell_guard.conversation_active(chat_id, last_bot_msg)):
         return farewell_guard.mid_thanks_reply(detected_lang)
@@ -1368,7 +1403,13 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     # « Tu vends quoi exactement ? » alors qu'il vient de le dire). Si le
     # client déclare son activité, on NOMME le secteur et on pousse UNE
     # action (devis / RDV) au lieu de redemander. Local, aucune invention.
-    import sector_reply
+    # RÉPONSE À LA QUESTION DE PRÉCISION (Boss 09/10, capture 23h49 :
+    # « de zéro ou tu modernises un logo ? » -> « Modernise un logo
+    # existent » -> « dépasse mes connaissances »). Le bot comprend la
+    # réponse à SA PROPRE question de précision de service.
+    _svc_ans = service_followup.reply_for(user_text, last_bot_msg)
+    if _svc_ans:
+        return _svc_ans
     _sector_ans = sector_reply.reply_for(user_text, last_bot_msg)
     if _sector_ans:
         return _sector_ans
@@ -1406,6 +1447,16 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
         _grp = AMBIGUOUS_WORDS.get(_norm)
         if _grp:
             return clarif(_grp, detected_lang)
+        # (Boss 10/10) message court MULTI-mots sans VERBE d'intention
+        # (« boutique en ligne », « un logo svp », « des bots ») : un
+        # token nomme un service -> on fait préciser. Si un verbe
+        # d'intention est présent (« je veux un site »), le RAG direct
+        # garde la priorité : la vraie fiche de commande existe.
+        if not any(v in _norm for v in _INTENT_VERBS):
+            for tok in _norm.replace("'", " ").split():
+                _tg = AMBIGUOUS_WORDS.get(tok)
+                if _tg in _SERVICE_GROUPS:
+                    return clarif(_tg, detected_lang)
 
     # 1. Recherche sémantique directe (l'intention de la PHRASE ENTIÈRE,
     # pas un mot isolé — le scoring bidirectionnel lit toute la question).
@@ -1415,6 +1466,29 @@ def local_contextual_response(chat_id: int, user_text: str, detected_lang: str) 
     direct_answer = trouver_meilleure_reponse_multilingue(user_text, detected_lang)
     if direct_answer:
         return direct_answer
+
+    # 1bis. INTENTION DE SERVICE SANS FICHE (Boss 10/10, capture « Est-ce
+    # que tu peux me créer un logo » -> non-réponse après le garde-fou
+    # service). La fiche « logo resto » du Sheet est écartée à juste
+    # titre, mais le client reste sur sa faim. Si la PHRASE exprime une
+    # intention de créer/avoir un service (veux/crée/fais/peux... +
+    # logo/site/bot/vidéo/visuel/app), on pose LA question de précision
+    # du groupe — exactement comme pour le mot court ambigu. Jamais de
+    # réponse devinée : on fait préciser.
+    if len(user_text.split()) <= 10:
+        _low_int = user_text.lower()
+        if any(v in _low_int for v in _INTENT_VERBS if v):
+            for w, grp in AMBIGUOUS_WORDS.items():
+                if grp in _SERVICE_GROUPS and re.search(
+                        rf"\b{re.escape(w)}\b", _low_int):
+                    return clarif(grp, detected_lang)
+        elif len(user_text.split()) <= 4:
+            # Sans verbe mais ultra-court (« un logo svp », « boutique
+            # en ligne ») : on fait préciser plutôt que non-réponse sèche.
+            for tok in _low_int.replace("'", " ").split():
+                _tg = AMBIGUOUS_WORDS.get(tok)
+                if _tg in _SERVICE_GROUPS:
+                    return clarif(_tg, detected_lang)
 
     # 2. Message court sans contexte exploitable : aucun re-match
     # hasardeux (bug boucle accueil corrigé précédemment)
@@ -1763,21 +1837,67 @@ def _handle_message(message: telebot.types.Message) -> None:
     # LETTRE MASTER — la langue PERSISTE : un message sans signal clair
     # (émoji, « ok »...) garde la langue de la conversation ; sinon le
     # moteur (darija salam/khoya → ar, hola/quiero → es) décide.
-    _LAST_LANG[chat_id] = detect_language_session(
-        user_text, _LAST_LANG.get(chat_id, DEFAULT_LANGUAGE))
+    _last_lang_set(chat_id, detect_language_session(
+        user_text, _LAST_LANG.get(chat_id, DEFAULT_LANGUAGE)))
     # 💾 RÈGLE BOSS (02/10) : miroir de TOUT ce que le bot collecte vers le
     # Google Sheet dédié (jamais de fichier local, jamais GitHub/Railway).
     try:
         from memory_sheets import log_conversation
         log_conversation(chat_id,
                          (getattr(_fu, "first_name", "") or "")[:100],
-                         "client", user_text, _LAST_LANG[chat_id])
+                         "client", user_text, _last_lang_get(chat_id))
     except Exception:
         logger.debug("Miroir conversation entrante impossible", exc_info=True)
-    _process_text(chat_id, user_text, _LAST_LANG[chat_id])
+    _process_text(chat_id, user_text, _last_lang_get(chat_id))
 
 
-_LAST_LANG: dict[int, str] = {}
+class _BoundedCache:
+    """Mini cache borné (Boss 10/10) : maxsize entrées, expulsion du plus
+    ancien (FIFO), TTL par entrée. Remplace les dict/set globaux qui
+    grandissaient à l'infini (100 000 clients = fuite mémoire Railway)."""
+
+    def __init__(self, maxsize: int = 10_000, ttl: float = 86400.0):
+        self._data: dict[Any, tuple[float, Any]] = {}
+        self._order: list[Any] = []
+        self._maxsize = maxsize
+        self._ttl = ttl
+        self._lock = threading.Lock()
+
+    def get(self, key: Any, default: Any = None) -> Any:
+        with self._lock:
+            hit = self._data.get(key)
+            if not hit:
+                return default
+            ts, value = hit
+            if time.time() - ts > self._ttl:
+                return default
+            return value
+
+    def put(self, key: Any, value: Any) -> None:
+        with self._lock:
+            if key not in self._data:
+                self._order.append(key)
+                if len(self._order) > self._maxsize:
+                    self._data.pop(self._order.pop(0), None)
+            self._data[key] = (time.time(), value)
+
+    def __contains__(self, key: Any) -> bool:
+        return self.get(key, "__missing__") != "__missing__"
+
+    def add(self, key: Any) -> None:
+        self.put(key, True)
+
+
+_LAST_LANG = _BoundedCache(maxsize=10_000, ttl=86400)   # 24h, 10k clients
+_GREETED_SESSION = _BoundedCache(maxsize=10_000, ttl=86400)
+
+
+def _last_lang_get(chat_id: int, default: str = "fr") -> str:
+    return _LAST_LANG.get(chat_id, default)
+
+
+def _last_lang_set(chat_id: int, lang: str) -> None:
+    _LAST_LANG.put(chat_id, lang)
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text', 'voice', 'audio', 'document', 'location', 'photo'])
@@ -1880,7 +2000,7 @@ _PUNCT_ONLY_REPLY = {
 
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
-    _LAST_LANG[chat_id] = detected_lang
+    _last_lang_set(chat_id, detected_lang)
 
     # 0. RÈGLE D'OR : message composé UNIQUEMENT de ponctuation (pas un mot,
     # pas une phrase) → une seule réponse fixe + boutons. Priorité absolue,
@@ -1917,7 +2037,7 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # courts sans signal clair ne repartent plus en FR par défaut).
     lang_switch = LANG_SWITCH_WORDS.get(low_txt)
     if lang_switch:
-        _LAST_LANG[chat_id] = lang_switch
+        _last_lang_set(chat_id, lang_switch)
         remember(chat_id, "user", user_text)
         confirm = msg(lang_switch, "lang_switched")
         remember(chat_id, "assistant", confirm)
@@ -2074,9 +2194,15 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # pouvait jamais ajouter un produit au panier juste avec le chiffre.
     # list_context retient QUELLE liste a été envoyée en dernier à CE
     # client et route le chiffre vers la bonne action.
-    numero_match = re.fullmatch(r"[1-9]️?⃣?\.?\s*", user_text)
+    # Chiffre robuste (Boss 10/10) : les keycaps mobiles sont des
+    # séquences Unicode multiples (chiffre + VS16 + U+20E3) et l'ancienne
+    # regex fullmatch les ratait sur de vrais claviers. On garde un
+    # message court SANS lettres contenant exactement UN chiffre.
+    _stripped_nb = user_text.strip()
+    digits = re.sub(r"[^\d]", "", _stripped_nb)
+    numero_match = (len(digits) == 1 and len(_stripped_nb) <= 4
+                    and not re.search(r"[a-zA-Z]", _stripped_nb))
     if numero_match:
-        digits = re.sub(r"[^\d]", "", user_text)
         if digits:
             index = int(digits)
             ctx = list_context.get_context(chat_id)
@@ -2084,7 +2210,6 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             # le pitch bot demande « c'est pour quoi ? 1-4 » ; le chiffre
             # répond à CETTE question, pas au portfolio.
             try:
-                import pending_question
                 _last_bot = next(
                     (h.get("content", "") for h in reversed(context_for(chat_id))
                      if h.get("role") == "assistant" and h.get("content")), "")
@@ -2242,7 +2367,7 @@ SECRET_TRIGGERS: dict[str, set[str]] = {
     "fr": {
         "code source", "ton code source", "montre ton code", "montre moi ton code",
         "le code du bot", "code du bot", "ton algorithme", "ton prompt",
-        "prompt système", "system prompt", "clé api", "api key", "ta clé api",
+        "prompt système", "system prompt", "prompt system", "clé api", "api key", "ta clé api",
         "tes instructions", "tes instructions internes", "qui t'a programmé",
         "qui t'a créé", "qui t'a developpé", "t es programmé", "tu es programmé",
         "comment tu es programmé", "comment tu fonctionnes", "comment tu marches",
@@ -2309,6 +2434,21 @@ def is_secret_probe(text: str, lang: str) -> bool:
     for trigs in SECRET_TRIGGERS.values():
         if any(t in low for t in trigs):
             return True
+    # Anti-contournement (Boss 10/10) : « c o d e s o u r c e » ou
+    # « c.o.d.e source » doivent être attrapés aussi — on compare la
+    # forme COMPACTE (sans espaces ni ponctuation) du message et des
+    # déclencheurs.
+    # NB : un déclencheur qui se compacte en vide (ex. mots arabes, que
+    # [^a-z0-9à-ÿ] retire intégralement) donnerait « "" in compact » =
+    # TOUJOURS VRAI et bloquerait chaque message. On n'accepte que les
+    # formes compactes SIGNIFICATIVES (>= 4 caractères).
+    compact = re.sub(r"[^a-z0-9à-ÿ]", "", low)
+    if len(compact) >= 4:
+        for trigs in SECRET_TRIGGERS.values():
+            for t in trigs:
+                tc = re.sub(r"[^a-z0-9à-ÿ]", "", t)
+                if len(tc) >= 4 and tc in compact:
+                    return True
     return False
 
 

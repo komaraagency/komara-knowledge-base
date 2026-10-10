@@ -15,3 +15,6 @@ fpdf2==2.8.1
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
 sentence-transformers
+
+# Sécurité image (Boss 09/10) : détecteur local de nudité
+nudenet

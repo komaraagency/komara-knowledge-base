@@ -79,11 +79,13 @@ def step1_donnees(source: str = "seed+ram") -> list[tuple[str, str]]:
     # question gagne (même règle que le Sheet : /apprends remplace).
     rows: dict[str, tuple[str, str]] = {}
     if "seed" in source or "ram" in source:
-        for q, a in aya_seed.SEED_QR:
-            q_clean = q.replace("||", "|")
-            rows[q_clean.strip().casefold()] = (q_clean.strip(), a)
+        # Structure LISTE (Boss 10/10) : chaque variante est sa propre
+        # question d'entraînement — plus de pipe-string indivisible.
+        for questions, a in aya_seed.SEED_QR:
+            for q in questions:
+                rows[q.strip().casefold()] = (q.strip(), a)
     if "ram" in source:
-        for r in knowledge_store._CUSTOM_ROWS:
+        for r in knowledge_store.custom_rows_snapshot():
             q = str(r.get("question", "")).strip()
             if q:
                 q_clean = q.replace("||", "|")

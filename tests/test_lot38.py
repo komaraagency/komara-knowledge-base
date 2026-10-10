@@ -36,11 +36,11 @@ CONV_QR = [
     "vous offrez un support après la mise en place",
     "je suis prêt à donner mon accord",
 ]
-seed_qs = {q.strip().casefold() for q, a in aya_seed.SEED_QR}
+seed_qs = {q.strip().casefold() for qs, a in aya_seed.SEED_QR for q in qs}
 for q in CONV_QR:
     in_seed = any(q in sq for sq in seed_qs)  # variantes « | » incluses
     check(f"seed contient « {q[:45]} »", in_seed, "")
-check("36 Q/R au total (25 + 11 conversations)", len(aya_seed.SEED_QR) == 36,
+check("40 Q/R au total (base complète)", len(aya_seed.SEED_QR) == 40,
       len(aya_seed.SEED_QR))
 
 print("── 2. Variantes « | » : une entrée, plusieurs questions ──")
@@ -56,8 +56,8 @@ check("variantes vides ignorées", entry3["questions"] == ["a", "b"], entry3["qu
 print("── 3. Les messages clients réels trouvent la bonne réponse ──")
 knowledge_store._CUSTOM_ROWS = []
 aya_seed.ensure_seed("fr")
-check("36 entrées servies en runtime", len(knowledge_store._CUSTOM_ROWS) == 36,
-      len(knowledge_store._CUSTOM_ROWS))
+check("40 entrées servies en runtime", len(knowledge_store.custom_rows_snapshot()) == 40,
+      len(knowledge_store.custom_rows_snapshot()))
 
 CASES = [
     # (message client, mot-clé attendu dans la réponse)
@@ -85,3 +85,4 @@ check("re-seed n'ajoute rien", len(knowledge_store._CUSTOM_ROWS) == n,
       len(knowledge_store._CUSTOM_ROWS))
 
 print(f"\nTOTAL: {OK} OK / {KO} KO")
+sys.exit(1 if KO else 0)

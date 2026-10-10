@@ -48,7 +48,7 @@ print("── 2. aya_pipeline : vraie question + q_clean + dernière version ─
 import aya_seed
 raw = aya_pipeline.step1_donnees()
 check("step1 renvoie des (question, réponse)", all(len(x) == 2 for x in raw), raw[:2])
-seed_q = aya_seed.SEED_QR[0][0]
+seed_q = aya_seed.SEED_QR[0][0][0]   # structure liste : 1re variante
 found = [q for q, a in raw if q.casefold() == seed_q.strip().casefold()]
 check("la VRAIE question (casse/accents d'origine) est conservée",
       found and found[0] == seed_q.strip(), (seed_q, found[:1]))
@@ -147,3 +147,4 @@ check("blindé : l'offre Maintenance part quand même (jamais refusée = offrabl
       offered is True and fb.sent, (offered, fb.sent[:1]))
 
 print(f"\nTOTAL: {OK} OK / {KO} KO")
+sys.exit(1 if KO else 0)

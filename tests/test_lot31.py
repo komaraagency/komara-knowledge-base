@@ -286,7 +286,7 @@ check("caption photo → done normal (pas le pitch)", "Pack Premium" not in _cap
 
 # KB : fiche « image logo » enseignée au démarrage (aya_seed)
 import aya_seed as _seed
-_qr = dict(_seed.SEED_QR)
+_qr = {q: a for qs, a in _seed.SEED_QR for q in qs}
 check("fiche 'image logo' présente dans aya_seed",
       "image logo" in _qr, list(_qr)[:5])
 check("fiche logo : pas de personne + Pack Premium 150€",

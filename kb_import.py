@@ -182,7 +182,7 @@ def import_file(filename: str, data: bytes, lang: str = "fr") -> dict:
     report = knowledge_store.learn_entries_batch(parsed, lang)
     return {
         "filename": filename, "added": report["added"], "dupes": len(parsed) - report["added"],
-        "total": len(knowledge_store._CUSTOM_ROWS), "pushed": True, "lang": lang,
+        "total": len(knowledge_store.custom_rows_snapshot()), "pushed": True, "lang": lang,
     }
 
 

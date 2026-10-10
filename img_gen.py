@@ -15,6 +15,8 @@ from urllib.parse import quote
 
 import requests
 
+import image_safety
+
 logger = logging.getLogger("komara.img_gen")
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -178,19 +180,27 @@ _TRIGGERS = [
 _TRIGGERS_RE = [re.compile(p, re.IGNORECASE) for p in _TRIGGERS]
 
 MESSAGES = {
-    "fr": {"working": "🎨 Je crée ton image, quelques secondes…",
+    "fr": {"unsafe": "🚫 Je ne génère pas ce type d'image. Komara Agency crée des visuels pro : logos, affiches, produits, portraits habillés. Décris-moi autre chose 😊",
+           "retry_fail": "😕 Je n'ai pas réussi à produire un visuel propre pour cette demande. Reformule avec plus de détails (sujet, décor, style), ou écris « catalogue » pour voir ce que fait l'équipe.",
+           "working": "🎨 Je crée ton image, quelques secondes…",
            "ask": "🎨 Décris-moi l'image que tu veux : sujet, style, couleurs. Exemple : « image de un lion en costume, style affiche pro »",
            "error": "😕 La génération a échoué cette fois. Renvoie ta demande, ou écris « catalogue » : l'équipe Komara te construit un agent IA sur devis.",
            "done": "✨ Ton image est prête ! Tu veux une variante ou une version pro retouchée par l'équipe Komara ?"},
-    "en": {"working": "🎨 Creating your image, a few seconds…",
+    "en": {"unsafe": "🚫 I don't generate that kind of image. Komara Agency makes pro visuals: logos, posters, products, fully-dressed portraits. Describe something else 😊",
+           "retry_fail": "😕 I couldn't produce a clean visual for this request. Rephrase with more detail (subject, setting, style), or type « visuals ».",
+           "working": "🎨 Creating your image, a few seconds…",
            "ask": "🎨 Describe the image you want: subject, style, colors. Example: « image of a lion in a suit, pro poster style »",
            "error": "😕 Generation failed this time. Try again, or type « visuals »: the Komara team makes pro custom visuals on quote.",
            "done": "✨ Your image is ready! Want a variant or a pro version polished by the Komara team?"},
-    "es": {"working": "🎨 Creando tu imagen, unos segundos…",
+    "es": {"unsafe": "🚫 No genero ese tipo de imagen. Komara Agency crea visuales pro: logos, pósters, productos, retratos vestidos. Describe otra cosa 😊",
+           "retry_fail": "😕 No pude producir un visual limpio para esta petición. Reformula con más detalle (tema, escenario, estilo).",
+           "working": "🎨 Creando tu imagen, unos segundos…",
            "ask": "🎨 Describe la imagen que quieres: tema, estilo, colores. Ejemplo: « imagen de un león con traje, estilo póster pro »",
            "error": "😕 La generación falló esta vez. Inténtalo de nuevo o escribe « visuales »: el equipo Komara hace visuales pro a presupuesto.",
            "done": "✨ ¡Tu imagen está lista! ¿Quieres una variante o una versión pro retocada por el equipo Komara?"},
-    "ar": {"working": "🎨 أنشئ صورتك، بضع ثوان…",
+    "ar": {"unsafe": "🚫 لا أنشئ هذا النوع من الصور. كومارا تصنع تصاميم احترافية: شعارات، ملصقات، منتجات، بورتريهات محتشمة. صف لي شيئاً آخر 😊",
+           "retry_fail": "😕 لم أنجح في إنتاج صورة مناسبة لهذا الطلب. أعد الصياغة بتفاصيل أكثر (الموضوع، المكان، الأسلوب).",
+           "working": "🎨 أنشئ صورتك، بضع ثوان…",
            "ask": "🎨 صف لي الصورة التي تريدها: الموضوع، الأسلوب، الألوان. مثال: « صورة أسد ببدلة، أسلوب ملصق احترافي »",
            "error": "😕 فشل الإنشاء هذه المرة. أعد المحاولة أو اكتب « تصاميم »: فريق كومارا يصنع تصاميم احترافية بسعر على الطلب.",
            "done": "✨ صورتك جاهزة! تريد نسخة أخرى أو نسخة احترافية بلمسة فريق كومارا؟"},
@@ -326,10 +336,10 @@ def _with_8k_protocol(prompt: str) -> str:
             "ma marque", "mon shop", "mon salon", "mon hôtel", "mon hotel",
             "ma société", "for my", "pour mon", "pour ma"))
         protocol = LOGO_PROTOCOL_CLIENT if has_own_brand else LOGO_PROTOCOL_KOMARA
-        return prompt + protocol + SAFETY_LOCK
+        return image_safety.sanitize_final_prompt(prompt + protocol)
     if _is_cartoon_allowed(prompt):
         # Le client a demandé cartoon → on respecte, sous la marque Komara
-        return f"{prompt}{SAFETY_LOCK}, {BRAND_TAG} style"
+        return image_safety.sanitize_final_prompt(f"{prompt}{image_safety.POSITIVE_SAFE_GENERIC}, {BRAND_TAG} style")
     # PAR DÉFAUT : négatifs/réalisme COLLÉS juste après le prompt client
     # (poids fort, fix fidélité 03/10), ethnicité respectée si précisée
     # par le client, défaut marque (africain) UNIQUEMENT si portrait sans
@@ -341,15 +351,15 @@ def _with_8k_protocol(prompt: str) -> str:
         # dans le prompt client, on ajoute juste le descripteur ethnique
         # manquant.
         ethnicity_tag = ", West African" if _detect_ethnicity(low) is None else ""
-        out = f"{prompt}{ethnicity_tag}{REALISM_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+        out = f"{prompt}{ethnicity_tag}{image_safety.POSITIVE_SAFE_PERSON}{REALISM_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
     else:
         # Sujet SANS personne (animal, objet, plat, paysage, produit) :
         # verrou neutre, zéro vocabulaire visage/peau — voir bug critique
         # ci-dessus.
-        out = f"{prompt}{SUBJECT_LOCK_GENERIC}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL_GENERIC}"
+        out = f"{prompt}{SUBJECT_LOCK_GENERIC}{image_safety.POSITIVE_SAFE_GENERIC}, {BRAND_TAG}{STYLE_TAIL_GENERIC}"
     if "logo" not in low and "banniere" not in low and "bannière" not in low and "banner" not in low:
         out += ", vertical 9:16 format"
-    return out
+    return image_safety.sanitize_final_prompt(out)
 
 
 def _done_caption(prompt: str, lang: str) -> str:
@@ -470,17 +480,43 @@ def _fetch_image(prompt: str) -> bytes | None:
     return None
 
 
+SAFE_ATTEMPTS = 3   # tentatives de génération propre avant abandon
+
+
+def _safe_image_path(chat_id: int, prefix: str, fetch) -> "Path | None":
+    """Boss 09/10 : appelle fetch() jusqu'à SAFE_ATTEMPTS fois et ne
+    retourne QUE le chemin d'une image validée par le détecteur local.
+    Une image douteuse est SUPPRIMÉE du disque, jamais envoyée.
+    Échoue fermé : si le détecteur est indisponible (STRICT), rien n'est
+    livré plutôt qu'un risque."""
+    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    for attempt in range(SAFE_ATTEMPTS):
+        content = fetch()
+        if not content:
+            return None            # panne réseau/402 : message d'erreur classique
+        path = IMAGES_DIR / f"{prefix}_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
+        path.write_bytes(content)
+        if not image_safety.image_is_unsafe(path):
+            return path
+        logger.warning("[IMG-SAFETY] chat=%s tentative %s/%s rejetée", chat_id,
+                       attempt + 1, SAFE_ATTEMPTS)
+        try:
+            path.unlink()
+        except Exception:
+            pass
+    return False                   # 3 images douteuses d'affilée
+
+
 def _generate_and_send(bot, chat_id: int, prompt: str, lang: str) -> None:
     """Thread worker : télécharge l'image, tamponne la marque, puis l'envoie."""
     stop = threading.Event()
     threading.Thread(target=_typing_keeper, args=(bot, chat_id, stop), daemon=True).start()
     try:
-        content = _fetch_image(prompt)
-        if content:
-            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
-            name = f"img_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
-            path = IMAGES_DIR / name
-            path.write_bytes(content)
+        path = _safe_image_path(chat_id, "img", lambda: _fetch_image(prompt))
+        if path is False:
+            bot.send_message(chat_id, _m(lang, "retry_fail"))
+            return
+        if path:
             _stamp_brand(path)
             caption = _done_caption(prompt, lang)
             LAST_PROMPT[chat_id] = prompt   # « variante » → regénère ce prompt
@@ -506,6 +542,10 @@ def handle_image_request(bot, chat_id: int, text: str, lang: str) -> bool:
         return False
     if not prompt:
         bot.send_message(chat_id, _m(lang, "ask"))
+        return True
+    if image_safety.is_prompt_unsafe(prompt):
+        logger.warning("[IMG-SAFETY] demande refusée (chat=%s) : %r", chat_id, prompt[:80])
+        bot.send_message(chat_id, _m(lang, "unsafe"))
         return True
     bot.send_message(chat_id, _m(lang, "working"))
     threading.Thread(
@@ -568,6 +608,9 @@ def _regenerate_variant(bot, chat_id: int, lang: str) -> None:
     prompt = LAST_PROMPT.get(chat_id)
     if not prompt:
         bot.send_message(chat_id, _m(lang, "ask"))
+        return
+    if image_safety.is_prompt_unsafe(prompt):
+        bot.send_message(chat_id, _m(lang, "unsafe"))
         return
     bot.send_message(chat_id, _m(lang, "working"))
     threading.Thread(
@@ -713,8 +756,8 @@ def _i2i_prompt(caption: str) -> str:
     cap = (caption or "").strip()
     lowered = cap.lower()
     if any(k in lowered for k in CARTOON_KEYWORDS):
-        return f"{cap}{IDENTITY_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
-    return f"{cap}{IDENTITY_LOCK}{REALISM_LOCK}{SAFETY_LOCK}, {BRAND_TAG}{STYLE_TAIL}"
+        return image_safety.sanitize_final_prompt(f"{cap}{IDENTITY_LOCK}{image_safety.POSITIVE_SAFE_PERSON}, {BRAND_TAG}{STYLE_TAIL}")
+    return image_safety.sanitize_final_prompt(f"{cap}{IDENTITY_LOCK}{REALISM_LOCK}{image_safety.POSITIVE_SAFE_PERSON}, {BRAND_TAG}{STYLE_TAIL}")
 
 
 def _fetch_image_i2i(caption: str, ref_url: str) -> bytes | None:
@@ -743,12 +786,11 @@ def _edit_and_send(bot, chat_id: int, caption: str, photo_bytes: bytes, lang: st
         if not ref_url:
             bot.send_message(chat_id, _m(lang, "error"))
             return
-        content = _fetch_image_i2i(caption, ref_url)
-        if content:
-            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
-            name = f"edit_{chat_id}_{random.randint(10**9, 10**10)}.jpg"
-            path = IMAGES_DIR / name
-            path.write_bytes(content)
+        path = _safe_image_path(chat_id, "edit", lambda: _fetch_image_i2i(caption, ref_url))
+        if path is False:
+            bot.send_message(chat_id, _m(lang, "retry_fail"))
+            return
+        if path:
             _stamp_brand(path)
             cap = _done_caption(caption, lang)
             LAST_PROMPT[chat_id] = caption   # « variante » → regénère
@@ -793,6 +835,10 @@ def handle_photo_request(bot, chat_id: int, caption: str, message, lang: str) ->
         return False
     if not IMG_ENABLED:
         return False
+    if image_safety.is_prompt_unsafe(cap):
+        logger.warning("[IMG-SAFETY] retouche refusée (chat=%s) : %r", chat_id, cap[:80])
+        bot.send_message(chat_id, _m(lang, "unsafe"))
+        return True
     try:
         _f = bot.get_file(message.photo[-1].file_id)
         photo_bytes = bot.download_file(_f.file_path)

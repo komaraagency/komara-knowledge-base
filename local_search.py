@@ -476,6 +476,21 @@ def trouver_meilleure_reponse(
     # JAMAIS de réponse devinée. Si le reranker n'est pas installé, on
     # retombe EXACTEMENT sur le comportement lexical d'avant.
     global _LAST_ANSWER
+    # ── GARDE-FOU SERVICE (Boss 09/10, capture 23h48) : « tu peux me créer
+    # un logo » ne doit JAMAIS recevoir la fiche « tu crées des chatbots ».
+    # Si le client nomme un service, on écarte les fiches d'un AUTRE service.
+    # Appliqué avant le reranker ET avant la voie lexicale.
+    import service_guard
+    _kept = [c for c in candidates
+             if service_guard.is_compatible(message, c[2] if len(c) > 2 and c[2] else "",
+                                            c[1] if isinstance(c[1], str) else "")]
+    if len(_kept) != len(candidates):
+        logging.getLogger("komara.rag").info(
+            "[SERVICE-GUARD] Query=%s | %d fiche(s) d'un autre service écartée(s)",
+            message[:60], len(candidates) - len(_kept))
+    if not _kept:
+        return None          # aucune fiche du bon service -> pas de réponse devinée
+    candidates = _kept
     import reranker
     if reranker._load() is not None:
         _top = sorted(candidates, key=lambda x: x[0], reverse=True)[:reranker.top_k()]

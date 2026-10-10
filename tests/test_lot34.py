@@ -50,7 +50,7 @@ class FakeSheet:
 
 sheet = FakeSheet()
 with patch.object(memory_sheets, "load_learned", sheet.load_learned):
-    import rag_bot, actions, img_gen, aya_seed, knowledge_store
+    import rag_bot, actions, img_gen, image_safety, aya_seed, knowledge_store
 
 sent = []
 class FakeBot:
@@ -64,23 +64,25 @@ rag_bot.bot = FakeBot()
 actions.ADMIN_CHAT_ID = 99999
 
 print("── 1. DÉFINITIONS MÉTIER dans le seed ──")
+_flat = {q: a for qs, a in aya_seed.SEED_QR for q in qs}
 check("seed contient les 4 définitions", 
-      all(any(q == d for q, a in aya_seed.SEED_QR) for d in (
+      all(d in _flat for d in (
           "c'est quoi un chatbot", "c'est quoi un agent ia générative",
           "c'est quoi un agent ia commercial", "c'est quoi une automatisation")),
-      [q for q, a in aya_seed.SEED_QR])
-ans_chatbot = [a for q, a in aya_seed.SEED_QR if q == "c'est quoi un chatbot"][0]
-ans_gen = [a for q, a in aya_seed.SEED_QR if q == "c'est quoi un agent ia générative"][0]
-ans_com = [a for q, a in aya_seed.SEED_QR if q == "c'est quoi un agent ia commercial"][0]
-ans_auto = [a for q, a in aya_seed.SEED_QR if q == "c'est quoi une automatisation"][0]
-check("chatbot : parle de logiciel qui discute 24h/24", 
-      "24h/24" in ans_chatbot and "logiciel" in ans_chatbot, ans_chatbot[:80])
+      list(_flat)[:10])
+ans_chatbot = _flat["c'est quoi un chatbot"]
+ans_gen = _flat["c'est quoi un agent ia générative"]
+ans_com = _flat["c'est quoi un agent ia commercial"]
+ans_auto = _flat["c'est quoi une automatisation"]
+check("chatbot : un vendeur robot dispo 24/7", 
+      "24/7" in ans_chatbot and ("robot" in ans_chatbot or "vendeur" in ans_chatbot),
+      ans_chatbot[:80])
 check("agent génératif : il CRÉE (images, devis)", 
       "CRÉE" in ans_gen and "images" in ans_gen, ans_gen[:80])
 check("agent commercial : il QUALIFIE et CLOS la vente", 
       ("qualifie" in ans_com or "vendeur" in ans_com) and "vente" in ans_com, ans_com[:80])
-check("automatisation : tâche répétitive à ta place", 
-      "répétitive" in ans_auto, ans_auto[:80])
+check("automatisation : tâche qui se fait toute seule", 
+      "toute seule" in ans_auto and "sans que tu touches" in ans_auto, ans_auto[:80])
 
 # Chaque question client reçoit SA définition, pas celle d'un autre
 kb_fr = rag_bot.LANG_RESOURCES["fr"]["kb"]
@@ -89,7 +91,8 @@ def find_ans(q):
     r = rag_bot.trouver_meilleure_reponse_multilingue(q, "fr")
     return r or ""
 r1 = find_ans("c'est quoi un chatbot")
-check("« c'est quoi un chatbot » → réponse chatbot", "logiciel" in r1, r1[:80])
+check("« c'est quoi un chatbot » → réponse chatbot",
+      "vendeur robot" in r1 or "24/7" in r1, r1[:80])
 r2 = find_ans("c'est quoi un agent IA générative ?")
 check("« agent ia générative » → réponse générative (pas chatbot)", 
       "CRÉE" in r2, r2[:80])
@@ -98,10 +101,11 @@ check("« agent ia commercial » → réponse commerciale",
       "vendeur" in r3 or "vente" in r3, r3[:80])
 r4 = find_ans("c'est quoi une automatisation")
 check("« automatisation » → réponse automatisation", 
-      "répétitive" in r4 or "machine" in r4, r4[:80])
+      "toute seule" in r4 or "automatisation" in r4, r4[:80])
 # variantes avec fautes/SMS
 r5 = find_ans("c koi un chatbot")
-check("fautes/SMS tolérées (c koi un chatbot)", "logiciel" in r5, r5[:80])
+check("fautes/SMS tolérées (c koi un chatbot)",
+      "vendeur robot" in r5 or "24/7" in r5, r5[:80])
 
 print("── 2. FIX REMPLACEMENTS INCOHÉRENTS (scénario exact du Boss) ──")
 with patch.object(memory_sheets, "save_learned", sheet.save_learned):
@@ -207,6 +211,7 @@ print("── 6. IMG2IMG : worker _edit_and_send (mock réseau) ──")
 sent.clear()
 with patch.object(img_gen, "_upload_reference", return_value="https://h.uguu.se/REF.jpg"), \
      patch.object(img_gen, "_fetch_image_i2i", return_value=b"\xff\xd8FAKEEDIT"), \
+     patch.object(image_safety, "image_is_unsafe", return_value=False), \
      patch.object(img_gen, "_stamp_brand", lambda path: None), \
      patch.object(img_gen, "_remember_caption", lambda *a: None), \
      patch.object(img_gen, "_prune_images", lambda: None):
@@ -264,3 +269,4 @@ with patch.object(img_gen, "_edit_and_send", lambda *a: sent.append(("EDIT", a[2
           any(t[0] == "EDIT" and t[1] == "retouche ma photo" for t in sent), sent[-2:])
 
 print(f"\\nTOTAL: {OK} OK / {KO} KO")
+sys.exit(1 if KO else 0)

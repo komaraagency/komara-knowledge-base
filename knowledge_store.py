@@ -10,7 +10,8 @@ import re
 import threading
 import uuid
 from pathlib import Path
-from typing import Any, Callable
+from contextlib import contextmanager
+from typing import Any, Callable, Iterator
 
 logger = logging.getLogger("komara.knowledge")
 BASE_DIR = Path(__file__).resolve().parent
@@ -19,6 +20,86 @@ _LOCK = threading.RLock()
 _INITIALIZED = False
 _REFRESH_LOADER: Callable | None = None
 _CUSTOM_ROWS: list[dict[str, Any]] = []
+# Cache des questions connues (variantes splitées « | », casefold) — Boss
+# 10/10 : filtre exact O(1) pour le seed au lieu de recalculer un set sur
+# toute la base à chaque appel. Maintenu sous lock par _rebuild_known_unlocked.
+# PAR LANGUE (Boss 10/10) : une question FR (« services ») ne doit pas
+# bloquer une fiche EN qui a la même variante — sinon le seed multilingue
+# saute des fiches et le compte final est faux. Union maintenue en
+# parallèle pour les recherches toutes-langues.
+_KNOWN_QUESTIONS: dict[str, set[str]] = {}
+_KNOWN_ALL: set[str] = set()
+
+
+def _rebuild_known_unlocked() -> None:
+    """Reconstruit le cache des questions connues (à appeler sous lock,
+    après TOUTE mutation de _CUSTOM_ROWS)."""
+    per_lang: dict[str, set[str]] = {}
+    for r in _CUSTOM_ROWS:
+        lang = str(r.get("lang", "fr") or "fr").strip() or "fr"
+        bucket = per_lang.setdefault(lang, set())
+        for v in str(r.get("question", "")).split("|"):
+            v = v.strip()
+            if v:
+                bucket.add(v.casefold())
+    _KNOWN_QUESTIONS.clear()
+    _KNOWN_QUESTIONS.update(per_lang)
+    _KNOWN_ALL.clear()
+    _KNOWN_ALL.update(set().union(*per_lang.values()) if per_lang else set())
+
+
+# ── API PUBLIQUE (Boss 10/10) : les autres modules n'accèdent plus aux
+# attributs privés (_LOCK, _CUSTOM_ROWS, _questions_similar) — tout passe
+# par ces fonctions thread-safe.
+@contextmanager
+def store_lock() -> Iterator[None]:
+    """Le lock du store, pour les séquences lire->calculer->écrire
+    atomiques (anti race condition TOCTOU)."""
+    with _LOCK:
+        yield
+
+
+def custom_rows_snapshot() -> list[dict[str, Any]]:
+    """Copie défensive des lignes apprises (runtime + Sheet réhydraté)."""
+    with _LOCK:
+        return list(_CUSTOM_ROWS)
+
+
+def publish_rows(rows: list[dict[str, Any]]) -> None:
+    """Ajoute des lignes au runtime et met à jour le cache des questions
+    connues. L'appelant doit avoir vérifié l'absence de doublon."""
+    with _LOCK:
+        _CUSTOM_ROWS.extend(rows)
+        _rebuild_known_unlocked()
+
+
+def known_questions(lang: str | None = None) -> frozenset[str]:
+    """Ensemble (casefold) des questions connues, variantes comprises.
+    lang=None -> toutes langues confondues ; sinon la langue demandée."""
+    with _LOCK:
+        if lang is None:
+            return frozenset(_KNOWN_ALL)
+        return frozenset(_KNOWN_QUESTIONS.get(lang, ()))
+
+
+def is_question_known(question: str, lang: str | None = None) -> bool:
+    """Filtre exact O(1) : la question (casefold) est-elle déjà connue ?
+    lang=None -> toutes langues ; sinon UNIQUEMENT la langue donnée."""
+    with _LOCK:
+        key = str(question or "").strip().casefold()
+        if lang is None:
+            return key in _KNOWN_ALL
+        return key in _KNOWN_QUESTIONS.get(lang, ())
+
+
+def questions_similar(q1: str, q2: str) -> bool:
+    """Wrapper public de _questions_similar (mêmes règles strictes)."""
+    return _questions_similar(q1, q2)
+
+
+def rebuild_known_questions() -> None:
+    with _LOCK:
+        _rebuild_known_unlocked()
 
 
 def _make_entry(question: str, answer: str) -> dict[str, Any]:
@@ -63,6 +144,7 @@ def initialize_resources(resources: dict, loader: Callable) -> dict:
         # La dernière version enseignée d'une question similaire gagne
         # (append-only côté Sheet = audit ; runtime = version active).
         _CUSTOM_ROWS = _dedupe_similar_rows(_CUSTOM_ROWS)
+        _rebuild_known_unlocked()
         for row in _CUSTOM_ROWS:
             target = LANG_RESOURCES.get(row.get("lang", "fr")) or LANG_RESOURCES.get("fr")
             if target and isinstance(target.get("kb"), list):
@@ -264,6 +346,7 @@ def learn_entry(question: str, answer: str, lang: str = "fr", directory=None) ->
         replaced = len(rows) < len(_CUSTOM_ROWS)  # une question similaire a été retirée
         rows.append({"question": question, "answer": answer, "lang": lang})
         _CUSTOM_ROWS = rows
+        _rebuild_known_unlocked()
 
         for lg in {lang, matched_lang}:
             if not refresh_resources(lg):
@@ -316,5 +399,6 @@ def learn_entries_batch(entries, lang: str = "fr") -> dict:
         for q, a in cleaned:
             rows.append({"question": q, "answer": a, "lang": lang})
         _CUSTOM_ROWS = rows
+        _rebuild_known_unlocked()
         refresh_resources(lang)
         return {"added": len(cleaned), "lang": lang}

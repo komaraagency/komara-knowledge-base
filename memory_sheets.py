@@ -175,18 +175,34 @@ def append_rows(tab: str, rows: list[list]) -> bool:
         return False
 
 
-def read_rows(tab: str, limit: int = 0) -> list[list[str]]:
+class SheetUnavailableError(RuntimeError):
+    """Google lié mais lecture impossible (réseau, quota, HTTP != 200).
+    Distinction cruciale (Boss 10/10) : « échec de lecture » ≠ « base
+    vide » — confondre les deux faisait réinsérer tout le seed en
+    doublon dans le Sheet de production."""
+
+
+def is_configured() -> bool:
+    """Google lié ? (Sheet mémoire + token présents)"""
+    return bool(get_memory_sheet_id() and _token())
+
+
+def read_rows(tab: str, limit: int = 0, strict: bool = False) -> list[list[str]]:
     """Lit tout l'onglet (limit > 0 : derniers N lignes utiles). '' si indispo."""
     sheet_id = get_memory_sheet_id()
     token = _token()
     if not sheet_id or not token:
         return []
+    strict = strict and True  # lisibilité : mode « échec = exception »
     rng = urllib.parse.quote(f"{tab}!A:Z")
     try:
         resp = requests.get(f"{SHEETS_BASE_URL}/{sheet_id}/values/{rng}",
                             headers={"Authorization": f"Bearer {token}"},
                             timeout=60)
         if resp.status_code != 200:
+            if strict:
+                raise SheetUnavailableError(
+                    f"HTTP {resp.status_code} sur l'onglet {tab}")
             return []
         rows = resp.json().get("values", [])
         # saute l'en-tête
@@ -195,6 +211,8 @@ def read_rows(tab: str, limit: int = 0) -> list[list[str]]:
             rows = rows[-limit:]
         return rows
     except requests.RequestException:
+        if strict:
+            raise
         logger.exception("read_rows(%s) impossible", tab)
         return []
 
@@ -288,13 +306,13 @@ def fix_sheet_typos(text: str) -> str:
     return t
 
 
-def load_learned() -> list[dict]:
+def load_learned(strict: bool = False) -> list[dict]:
     """Relit les dialogues appris. Dédoublonne : la version la plus
     récente d'une question gagne. [] si Google non lié (base vide).
     RÈGLE BOSS (06/10) : les tokens lus du Sheet passent par la MÊME
     méthode de compréhension que le seed — y compris l'hygiène des
     typos (fix_sheet_typos) et les variantes « | » (knowledge_store)."""
-    rows = read_rows("Dialogues")
+    rows = read_rows("Dialogues", strict=strict)
     learned: dict[str, dict] = {}
     for row in rows:
         if len(row) < 4:

@@ -9,6 +9,7 @@
 # ---------------------------------------------------------------------------
 from __future__ import annotations
 
+import io
 import logging
 
 import requests
@@ -119,17 +120,34 @@ def list_images() -> list[dict]:
     return []
 
 
-def download_image(file_id: str) -> bytes:
-    """Contenu binaire d'une image du portfolio (pour envoi Telegram)."""
+def download_image(file_id: str, max_bytes: int = 8 * 1024 * 1024) -> bytes:
+    """Contenu binaire d'une image du portfolio (pour envoi Telegram).
+
+    PERF (Boss 10/10) : streaming par chunks + PLAFOND mémoire. Avant,
+    resp.content chargeait l'image entière d'un coup — 10 clients
+    simultanés sur une grosse image = OOM sur Railway (512 Mo). Ici on
+    télécharge par morceaux de 64 Ko et on ABANDONNE au-delà du plafond
+    (les visuels portfolio sont des images légères ; un fichier plus
+    gros est une anomalie, pas un cas normal)."""
     token = get_access_token()
     if not token or not file_id:
         return b""
     try:
         resp = requests.get(f"{FILES_URL}/{file_id}",
                             headers=_headers(token),
-                            params={"alt": "media"}, timeout=60)
+                            params={"alt": "media"}, timeout=60,
+                            stream=True)
         if resp.status_code == 200:
-            return resp.content
+            buf = io.BytesIO()
+            for chunk in resp.iter_content(65536):
+                if not chunk:
+                    continue
+                buf.write(chunk)
+                if buf.tell() > max_bytes:
+                    logger.warning("Image portfolio %s > %d Ko : abandon",
+                                   file_id, max_bytes // 1024)
+                    return b""
+            return buf.getvalue()
     except requests.RequestException:
         logger.warning("Téléchargement portfolio Drive impossible", exc_info=True)
     return b""
