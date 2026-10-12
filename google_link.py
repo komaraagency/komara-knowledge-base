@@ -22,7 +22,11 @@ import urllib.parse
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
+import logging
 import requests
+
+logger = logging.getLogger("komara.google_link")
+LAST_AUTH_ERROR = ""   # dernière raison d'échec (diagnostic /google, logs)
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
@@ -215,6 +219,14 @@ def create_calendar_event(summary: str, start_dt, minutes: int = 30,
     return ""
 
 
+def _set_auth_error(msg: str) -> None:
+    """Mémorise + LOGUE la raison (une fois par changement) : Railway la montre."""
+    global LAST_AUTH_ERROR
+    if msg != LAST_AUTH_ERROR:
+        logger.error("[GOOGLE] %s", msg)
+    LAST_AUTH_ERROR = msg
+
+
 def get_access_token() -> str:
     """Access token (rafraîchi automatiquement depuis le refresh token).
 
@@ -222,7 +234,7 @@ def get_access_token() -> str:
     stocké en SQLite disparaît à chaque redéploiement. Fallback sur la
     variable d'env GOOGLE_REFRESH_TOKEN (renseignée une fois par l'admin
     après /google) pour garantir la survie du lien entre redémarrages."""
-    global _access_token, _token_expiry
+    global _access_token, _token_expiry, LAST_AUTH_ERROR
     import time
     if _access_token and time.time() < _token_expiry:
         return _access_token
@@ -237,15 +249,40 @@ def get_access_token() -> str:
     if not refresh:
         refresh = os.getenv("GOOGLE_REFRESH_TOKEN", "").strip()
     if not refresh:
+        _set_auth_error("GOOGLE_REFRESH_TOKEN absent : retape /google puis copie "
+                        "le token affiché dans Railway")
         return ""
-    resp = requests.post(API_TOKEN_URL, data={
-        "refresh_token": refresh,
-        "client_id": GOOGLE_CLIENT_ID,
-        "client_secret": GOOGLE_CLIENT_SECRET,
-        "grant_type": "refresh_token",
-    }, timeout=30)
+    if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+        _set_auth_error("GOOGLE_CLIENT_ID ou GOOGLE_CLIENT_SECRET manquant dans Railway")
+        return ""
+    try:
+        resp = requests.post(API_TOKEN_URL, data={
+            "refresh_token": refresh,
+            "client_id": GOOGLE_CLIENT_ID,
+            "client_secret": GOOGLE_CLIENT_SECRET,
+            "grant_type": "refresh_token",
+        }, timeout=30)
+    except requests.RequestException as exc:
+        _set_auth_error(f"réseau : {exc}")
+        return ""
     if resp.status_code != 200:
+        try:
+            err = resp.json()
+            code = err.get("error", "?")
+            desc = err.get("error_description", "")
+        except ValueError:
+            code, desc = "?", resp.text[:120]
+        hints = {
+            "invalid_grant": "refresh token EXPIRÉ ou RÉVOQUÉ -> refais /google "
+                             "(si l'app OAuth est en mode Test, il expire tous les 7 jours : "
+                             "passe-la en Production)",
+            "invalid_client": "GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET incorrects",
+            "unauthorized_client": "client non autorisé pour ces scopes",
+        }
+        _set_auth_error(f"Google refuse ({resp.status_code} {code}) : "
+                        f"{hints.get(code, desc)}")
         return ""
+    LAST_AUTH_ERROR = ""
     data = resp.json()
     _access_token = data.get("access_token", "")
     _token_expiry = time.time() + int(data.get("expires_in", 3600)) - 60

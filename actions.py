@@ -2152,13 +2152,22 @@ def _admin_apprends(bot, chat_id: int, args: str, lang: str) -> bool:
     DOUBLON : réapprendre une question la REMPLACE (nouvelle version)."""
     try:
         return _apprends_core(bot, chat_id, args, lang)
-    except Exception:
+    except Exception as exc:
         logger.exception("/apprends a échoué (anti-crash)")
+        # Boss 12/10 : l'admin voit la VRAIE raison (Google refuse, Sheet
+        # introuvable...) au lieu d'un « Oups » générique qui cache tout.
+        try:
+            import google_link
+            raison = (getattr(google_link, "LAST_AUTH_ERROR", "")
+                      or f"{type(exc).__name__}: {str(exc)[:160]}")
+        except Exception:
+            raison = f"{type(exc).__name__}: {str(exc)[:160]}"
         try:
             bot.send_message(
                 chat_id,
-                "⚠️ Oups, je n'ai pas pu enregistrer cette connaissance. "
-                "Réessaie avec : /apprends <question> || <réponse>")
+                "⚠️ Je n'ai pas pu enregistrer cette connaissance.\n"
+                f"🔎 Raison : {raison}\n\n"
+                "Format : /apprends <question> || <réponse>")
         except Exception:
             pass
         return True

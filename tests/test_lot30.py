@@ -106,9 +106,11 @@ import google_link
 google_link.DB_CONN = None  # simule disque éphémère vide
 google_link._access_token = ""; google_link._token_expiry = 0
 os.environ["GOOGLE_REFRESH_TOKEN"] = "ENV_REFRESH_123"
+google_link.GOOGLE_CLIENT_ID = "CID"; google_link.GOOGLE_CLIENT_SECRET = "CSEC"
 class TokResp(FakeResp):
     def __init__(self): super().__init__(200, {"access_token": "ATOK", "expires_in": 3600})
 with patch.object(google_link, "requests") as mk:
+    mk.RequestException = Exception
     mk.post.return_value = TokResp()
     tok = google_link.get_access_token()
 check("token obtenu depuis env (DB vide)", tok == "ATOK", tok)
