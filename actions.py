@@ -429,7 +429,7 @@ def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, l
     return False
 
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/apprends_logique", "/logique", "/evaluation", "/prixaudit"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/apprends_logique", "/logique", "/evaluation", "/prixaudit", "/bot_pilote"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -2665,6 +2665,47 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
     if command == "/paiement":
         import payment_links
         payment_links.cmd_paiement(bot, chat_id, args, lang)
+        return True
+
+    if command == "/bot_pilote":
+        # Boss 14/10 : référence COMPLÈTE des commandes du pilote, groupées
+        # par thème. Un seul endroit à maintenir : ce texte.
+        bot.send_message(chat_id,
+            "🛫 BOT PILOTE — Komara Agency 🇬🇳\n\n"
+            "📊 PILOTAGE\n"
+            "• /admin — dashboard € + panneau\n"
+            "• /stats — statistiques du bot\n"
+            "• /rapport — rapport d'activité\n"
+            "• /hebdo — rapport hebdomadaire\n"
+            "• /pause · /reprend — couper / rallumer le bot\n\n"
+            "🧠 MÉMOIRE & CONNAISSANCES\n"
+            "• /apprends <question> || <réponse> — enseigner une fiche\n"
+            "• /apprends_logique <départ> || <suite> — enchaînement\n"
+            "• /logique — liste des suites logiques\n"
+            "• /evaluation 📊 — audit mémoire + précision\n"
+            "• /prixaudit — fiches encore en monnaie locale\n"
+            "• /kb_import — importer des fiches\n"
+            "• /kb_modele · /modeles — modèles de fiches\n\n"
+            "💰 VENTES & PROMOS\n"
+            "• /solde — -20% global · /bonnus — -35% · /ka — -40%\n"
+            "• /promo <texte> — publier une promo\n"
+            "• /produit — gérer le catalogue\n"
+            "• /paiement — lien de paiement\n"
+            "• /facture — générer une facture\n"
+            "• /solde — solde promo actif\n\n"
+            "👥 CLIENTS & MESSAGES\n"
+            "• /clients — fiches clients\n"
+            "• /prend <id> — fiche client + prise de main\n"
+            "• /msg <id> <texte> — écrire à un client\n"
+            "• /broadcast — message à tous\n"
+            "• /rdvs — rendez-vous\n"
+            "• /commandes · /orders — commandes\n\n"
+            "🔧 SYSTÈME\n"
+            "• /google — liaison Google (Sheet mémoire)\n"
+            "• /backup — sauvegarde\n"
+            "• /export — export données\n"
+            "• /maj · /update — màj catalogue\n\n"
+            "💡 Exemple : /apprends quel est le prix d'une affiche || 30 €… (Oui / Non)")
         return True
 
     if command == "/admin":
