@@ -88,6 +88,29 @@ bot = telebot.TeleBot(TOKEN)
 # un seul point de passage, donc une seule protection suffit pour tous.
 _ORIGINAL_SEND_MESSAGE = bot.send_message
 
+# BOSS 14/10 (screens 21:51-21:56) : le bot renvoyait PARFOIS le même
+# long message en boucle (menu boutique, pitch secteur, résumé arabe)
+# quand le client répétait / ne choisissait pas. Si le texte est IDENTIQUE
+# au précédent ET contient une invite de choix, on envoie un rappel court
+# au lieu de re-coller le même bloc.
+_LAST_SENT: dict[str, str] = {}
+
+def _has_choice_invite(text: str) -> bool:
+    low = text.lower()
+    return ("1\ufe0f" in text or "تأكيد" in text or "tape" in low
+            or "choisis" in low or "(oui / non)" in low)
+
+_NUDGE = {
+    "fr": "On reste sur le même choix 👆 Tape ton numéro ou le mot-clé "
+          "(ex : 'devis', 'site', 'logo'), ou 'menu' pour changer de sujet.",
+    "ar": "ما زلنا عند نفس الخيار 👆 اكتب الرقم أو الكلمة (مثلاً "
+          "'تأكيد')، أو 'menu' لتغيير الموضوع.",
+    "en": "Still the same choice 👆 Reply with the number or keyword "
+          "(e.g. 'quote', 'site'), or 'menu' to switch topics.",
+    "es": "Seguimos con la misma elección 👆 Escribe el número o la "
+          "palabra (ej: 'presupuesto'), o 'menu' para cambiar de tema.",
+}
+
 def _send_message_merge_offhours(chat_id, text=None, *args, **kwargs):
     try:
         notice = actions._PENDING_OFFHOURS.pop(str(chat_id), None)
@@ -95,6 +118,14 @@ def _send_message_merge_offhours(chat_id, text=None, *args, **kwargs):
         notice = None
     if notice and isinstance(text, str) and text:
         text = f"{notice}\n\n{text}"
+    # Anti-répétition : identique + invite de choix -> rappel court
+    key = str(chat_id)
+    if (isinstance(text, str) and len(text) >= 60
+            and _LAST_SENT.get(key) == text and _has_choice_invite(text)):
+        lang = "ar" if any("\u0600" <= c <= "\u06ff" for c in text) else "fr"
+        text = _NUDGE.get(lang, _NUDGE["fr"])
+    if isinstance(text, str):
+        _LAST_SENT[key] = text
     return _ORIGINAL_SEND_MESSAGE(chat_id, text, *args, **kwargs)
 
 bot.send_message = _send_message_merge_offhours
@@ -1998,6 +2029,62 @@ _PUNCT_ONLY_REPLY = {
     "ar": "لم أفهم طلبك يا رئيس!! أو اضغط على زر أدناه 👇🏾👇🏾",
 }
 
+# BOSS 14/10 : alias du menu services (1=bot, 2=site, 3=logo, 4=devis)
+_SERVICES_ALIASES = {
+    1: {"bot", "robot", "chatbot", "automatisation"},
+    2: {"e commerce", "ecommerce", "boutique en ligne", "vendre en ligne",
+        "site", "site web", "vitrine", "boutique", "en ligne"},
+    3: {"logo", "visuel", "affiche", "flyer", "image"},
+    4: {"devis", "prix", "tarif", "combien"},
+}
+
+def _services_alias_index(user_text: str) -> int | None:
+    """Menu services actif : « e-commerce » -> 2, « logo » -> 3...
+    Uniquement messages courts (<= 4 mots), sinon c'est une vraie phrase."""
+    words = re.sub(r"[^\w\s]", " ", user_text.lower()).split()
+    if not words or len(words) > 4:
+        return None
+    norm = " ".join(words)
+    for idx, aliases in _SERVICES_ALIASES.items():
+        if norm in aliases:
+            return idx
+    return None
+
+
+# BOSS 14/10 (screen 22:35) : « vous fermez à quelle heure » tombait dans
+# « dépasse mes connaissances ». Compétence locale horaires, AVANT la KB.
+_HOURS_RE = re.compile(
+    r"(quel(?:le)? heure|vous ferm|vous etes ouvert|êtes ouvert|horaire"
+    r"|heures d.ouverture|opening hours|close.*time|open.*when"
+    r"|ساعات العمل|متى تفتح|متى تغلق)", re.IGNORECASE)
+
+def _handle_hours(bot, chat_id: int, lang: str) -> bool:
+    if not _HOURS_RE.search(user_text_for_hours[chat_id]):
+        return False
+    try:
+        import actions as _a
+        hs = _a._fmt_hour(_a.WORK_START)
+        he = _a._fmt_hour(_a.WORK_END)
+    except Exception:
+        hs, he = "9:30", "21:00"
+    txt = {
+        "fr": f"🕐 Komara Agency 🇬🇳 : {hs} à {he}, du lundi au vendredi. "
+              "En dehors de ces heures, laisse ton message, un humain te "
+              "répond à l'ouverture 👍",
+        "ar": f"🕐 كومارا أجينسي 🇬🇳 : من {hs} إلى {he}، الاثنين إلى الجمعة. "
+              "خارج هذه الساعات، اترك رسالتك ويجيبك شخص حقيقي عند الفتح 👍",
+        "en": f"🕐 Komara Agency 🇬🇳 : {hs} to {he}, Monday to Friday. "
+              "Outside these hours, leave your message and a human replies "
+              "at opening 👍",
+        "es": f"🕐 Komara Agency 🇬🇳 : de {hs} a {he}, lunes a viernes. "
+              "Fuera de este horario, deja tu mensaje y un humano responde "
+              "a la apertura 👍",
+    }.get(lang, "fr")
+    bot.send_message(chat_id, txt, reply_markup=menu_for_lang(lang))
+    return True
+
+user_text_for_hours: dict[int, str] = {}
+
 def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     reply_voice: bool = False) -> None:
     _last_lang_set(chat_id, detected_lang)
@@ -2129,6 +2216,12 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     if skills.handle(bot, chat_id, user_text, detected_lang):
         return
 
+    # BOSS 14/10 : questions d'horaires -> réponse locale, jamais le
+    # fallback « dépasse mes connaissances »
+    user_text_for_hours[chat_id] = user_text
+    if _handle_hours(bot, chat_id, detected_lang):
+        return
+
     # 2. Gestion des boutons rapides (FIX : test sur le set aplati BUTTON_LABELS)
     if user_text in BUTTON_LABELS:
         if "Suivi" in user_text or "Tracking" in user_text or "Seguimiento" in user_text or "تتبع" in user_text:
@@ -2244,6 +2337,18 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
                     return
                 # numéro hors plage -> on réaffiche la liste plutôt que de deviner
                 send_portfolio(chat_id, detected_lang)
+                return
+
+    # BOSS 14/10 (screen 21:52) : « e-commerce » répété après le menu
+    # « 1️⃣ bot 2️⃣ site 3️⃣ logo 4️⃣ devis » doit CHOISIR, pas re-afficher
+    # le menu. Alias courts uniquement, et seulement si le menu services
+    # vient d'être envoyé (contexte actif).
+    if list_context.get_context(chat_id) == "services":
+        _alias_idx = _services_alias_index(user_text)
+        if _alias_idx:
+            if _alias_idx in (1, 4):
+                list_context.clear_context(chat_id)
+            if _route_services_choice(chat_id, _alias_idx, detected_lang):
                 return
 
     # 4. Traitement normal
