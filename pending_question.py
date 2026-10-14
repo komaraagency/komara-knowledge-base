@@ -78,9 +78,9 @@ def detect(last_bot_msg: str) -> str:
 _RE_TARIFS = (
     "Voilà nos tarifs 💰\n\n"
     "• Logo seul : 50 € (livré en 24h)\n"
-    "• Pack Resto Complet (Logo + Affiche FB + Carte visite) : 120 €\n"
-    "• Site vitrine : à partir de 200 $\n"
-    "• Bot / Agent IA : à partir de 150 $\n\n"
+    "• Pack Business Complet (Logo + Affiche + Carte de visite) : 120 €\n"
+    "• Site vitrine : à partir de 50 €\n"
+    "• Bot / Agent IA : à partir de 50 €\n\n"
     "Tape 'devis' et je te fais ton estimation gratuite en 2 minutes 🚀"
 )
 _RE_EXEMPLES = (
