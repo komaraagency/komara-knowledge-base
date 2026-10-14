@@ -429,7 +429,7 @@ def _step_chatbot_qualify(bot, chat_id: int, step: str, data: dict, text: str, l
     return False
 
 
-ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/apprends_logique", "/logique", "/evaluation"}
+ADMIN_COMMANDS = {"/paiement", "/admin", "/msg", "/broadcast", "/pause", "/reprend", "/prend", "/stats", "/rapport", "/export", "/maj", "/update", "/commandes", "/orders", "/promo", "/promos", "/rdvs", "/clients", "/produit", "/produits", "/kb_import", "/kb_modele", "/modeles", "/google", "/facture", "/backup", "/hebdo", "/solde", "/ka", "/bonnus", "/apprends", "/apprendre", "/apprendres", "/apprends_logique", "/logique", "/evaluation", "/prixaudit"}
 
 GREETING_WORDS: set[str] = {
     "bonjour", "salut", "bonsoir", "coucou", "hello", "hi", "hola",
@@ -2291,6 +2291,38 @@ def _admin_logique_list(bot, chat_id: int, lang: str) -> bool:
             pass
         return True
 
+def _admin_prixaudit(bot, chat_id: int, args: str, lang: str) -> bool:
+    """Admin : /prixaudit — liste les fiches dont la réponse affiche encore
+    une monnaie locale (GNF, FG, XOF...) au lieu d'euros (règle boss 14/10 :
+    JAMAIS la monnaie locale). Chaque fiche est livrée avec le /apprends
+    prêt à corriger (réapprendre une question la REMPLACE)."""
+    import re as _re
+    try:
+        import rag_bot
+        bad = _re.compile(r"\bGNF\b|\bFG\b|\bXOF\b|\bFCFA\b|\b\d{1,3}(?:[ .]\d{3})+\b|\b\d+\s?k\b",
+                          _re.IGNORECASE)
+        found = []
+        for lg, res in rag_bot.LANG_RESOURCES.items():
+            for e in res.get("kb", []):
+                ans = str(e.get("answer") or e.get("reponse") or e.get("a") or "")
+                q = str((e.get("questions") or [e.get("question") or ""])[0]) if isinstance(
+                    e.get("questions"), list) else str(e.get("question") or "")
+                if ans and bad.search(ans):
+                    found.append((lg, q[:60], ans[:90]))
+        if not found:
+            bot.send_message(chat_id, "✅ Audit prix : aucune fiche en monnaie locale. Tout est en euros.")
+            return True
+        lines = [f"⚠️ {len(found)} fiche(s) avec monnaie locale :", ""]
+        for lg, q, a in found[:15]:
+            lines.append(f"• [{lg}] « {q} »\n   ↳ {a}…")
+        lines.append("\nCorrige chacune avec : /apprends <question> || <réponse en €>")
+        bot.send_message(chat_id, "\n".join(lines)[:3900])
+    except Exception:
+        logger.exception("/prixaudit a échoué")
+        bot.send_message(chat_id, "⚠️ Audit prix impossible pour le moment.")
+    return True
+
+
 def _admin_evaluation(bot, chat_id: int, args: str, lang: str) -> bool:
     """Admin : /evaluation — pipeline mémoire Aya en 7 étapes (Boss
     05/10, adapté du schéma ML du Boss) : collecte → prétraitement →
@@ -2559,20 +2591,20 @@ def _send_kb_templates(bot, chat_id: int) -> None:
         "Q: vous livrez à Kindia ?\n"
         "A: Oui, partout en Guinée 🇬🇳 livraison offerte !\n\n"
         "Q: combien coûte un logo ?\n"
-        "A: 300 000 à 500 000 GNF selon la complexité.\n\n"
+        "A: 50 € selon la complexité.\n\n"
         "Q: quel est le délai ?\n"
         "A: Logo 2-3 jours, affiche 24-48h, site 7 jours.\n"
     )
     csv = (
         "question;rponse\n"
         "vous livrez a kindia;Oui, partout en Guinée 🇬🇳\n"
-        "combien coute un logo;300 000 à 500 000 GNF\n"
+        "combien coute un logo;50 €\n"
         "quel delai;Logo 2-3 jours, affiche 24-48h\n"
     )
     js = (
         '[\n'
         '  {"q": "vous livrez a kindia", "a": "Oui, partout en Guinée 🇬🇳"},\n'
-        '  {"q": "combien coute un logo", "a": "300 000 a 500 000 GNF"}\n'
+        '  {"q": "combien coute un logo", "a": "50 €"}\n'
         ']\n'
     )
     for name, body, ext in (("modele_FAQ", faq, ".txt"),
@@ -2681,6 +2713,9 @@ def _admin_command(bot, chat_id: int, command: str, args: str = "", lang: str = 
         return _admin_logique_list(bot, chat_id, lang)
     if command == "/evaluation":
         return _admin_evaluation(bot, chat_id, args, lang)
+
+    if command == "/prixaudit":
+        return _admin_prixaudit(bot, chat_id, args, lang)
 
     if command == "/stats":
         with DB_LOCK:

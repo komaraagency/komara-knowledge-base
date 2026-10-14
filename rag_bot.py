@@ -1610,8 +1610,8 @@ _SERVICES_MENU_RE = re.compile(
 
 _SERVICES_REPLIES = {
     2: ("Site web 🌐 Vitrine ou boutique en ligne ? Dis-moi ton activité et je te "
-        "prépare une proposition. Tarif de départ : 500 000 GNF (7 jours)."),
-    3: ("Logo / visuel 🎨 Logo : 300 000 à 500 000 GNF, livré en 24h pour la V1. "
+        "prépare une proposition. Tarif de départ : 50 € (7 jours)."),
+    3: ("Logo / visuel 🎨 Logo : 50 €, livré en 24h pour la V1. "
         "Dis-moi ton activité et le style que tu aimes 👇"),
 }
 
@@ -1640,10 +1640,10 @@ def _route_services_choice(chat_id: int, index: int, lang: str) -> bool:
     if _sector and index == 2:
         reply = (f"Site web 🌐 Pour {sector_reply.with_possessive(_sector)}, je te propose une vitrine claire "
                  "avec tes produits/services, tes contacts et un bouton WhatsApp. "
-                 "Tarif de départ : 500 000 GNF (7 jours).\n\n"
+                 "Tarif de départ : 50 € (7 jours).\n\n"
                  "👉 Tape DEVIS pour ton prix fixe, ou RDV pour en parler avec Ndine.")
     elif _sector and index == 3:
-        reply = (f"Logo / visuel 🎨 Pour {sector_reply.with_possessive(_sector)} : logo 300 000 à 500 000 GNF, "
+        reply = (f"Logo / visuel 🎨 Pour {sector_reply.with_possessive(_sector)} : logo 50 €, "
                  "livré en 24h pour la V1. Dis-moi le style que tu aimes 👇")
     remember(chat_id, "assistant", reply)
     bot.send_message(chat_id, reply, reply_markup=menu_for_lang(lang))

@@ -147,17 +147,26 @@ def _mentions_person(prompt_low: str) -> bool:
 # s'applique aux demandes génériques/KOMARA ; un client qui nomme SON
 # activité (« logo pour mon resto ») garde SA marque, sans le K de Komara.
 LOGO_TRIGGER = ("logo", "logos", "logotype", "emblème", "embleme", "sigle")
+# Boss 14/10 (capture « ΡΟΠΙΗΙΡΣ ») : Flux INVENTE des lettres illisibles dès
+# qu'on lui parle d'un nom dans un logo. On n'envoie donc JAMAIS le nom en
+# toutes lettres : symbole seul, texte explicitement interdit. Le nom est
+# ajouté proprement par l'équipe dans la version Pack Premium.
+_NO_TEXT = (
+    ", symbol only, absolutely no text, no letters other than the single "
+    "emblem letter, no words, no typography, no captions, no watermark text"
+)
 LOGO_PROTOCOL_KOMARA = (
-    ", minimalist luxury logo for KOMARA AGENCY, elegant golden letter "
-    "K emblem, deep black background, prestige gold #D4AF37 accents, "
-    "premium branding style, clean vector emblem, no person, no faces, "
-    "no characters, high contrast, ultra detailed, no other brand logo"
+    ", minimalist luxury logo emblem, single elegant golden letter "
+    "K monogram inside a circle, deep black background, prestige gold "
+    "#D4AF37 accents, premium branding style, clean vector emblem, "
+    "no person, no faces, no characters, high contrast, ultra detailed, "
+    "no other brand logo" + _NO_TEXT
 )
 LOGO_PROTOCOL_CLIENT = (
     ", minimalist luxury logo emblem, deep black background, prestige "
     "gold #D4AF37 accents, premium branding style, clean vector emblem, "
     "no person, no faces, no characters, high contrast, ultra detailed, "
-    "no other brand logo"
+    "no other brand logo" + _NO_TEXT
 )
 # Pitch Pack Premium quand le visuel généré est un logo.
 LOGO_DONE_FR = ("✨ Je peux te générer une base, mais pour un logo pro sans "
@@ -336,7 +345,11 @@ def _with_8k_protocol(prompt: str) -> str:
             "ma marque", "mon shop", "mon salon", "mon hôtel", "mon hotel",
             "ma société", "for my", "pour mon", "pour ma"))
         protocol = LOGO_PROTOCOL_CLIENT if has_own_brand else LOGO_PROTOCOL_KOMARA
-        return image_safety.sanitize_final_prompt(prompt + protocol)
+        # Retirer les noms de marque / mots de texte du prompt envoyé au modèle
+        import re as _re
+        clean = _re.sub(r"(?i)\b(komara\s*agency|komara)\b", "", prompt)
+        clean = _re.sub(r"\s{2,}", " ", clean).strip(" ,.-")
+        return image_safety.sanitize_final_prompt((clean or "logo") + protocol)
     if _is_cartoon_allowed(prompt):
         # Le client a demandé cartoon → on respecte, sous la marque Komara
         return image_safety.sanitize_final_prompt(f"{prompt}{image_safety.POSITIVE_SAFE_GENERIC}, {BRAND_TAG} style")

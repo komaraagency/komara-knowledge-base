@@ -269,8 +269,9 @@ check("URL Pollinations : enhance RETIRÉ (fix fidélité prompt, lot33)",
 check("URL Pollinations : 1280x1280 HD", "width=1280" in _url and "height=1280" in _url, _url)
 check("URL Pollinations : nologo=true (sans watermark)", "nologo=true" in _url, _url)
 _lk = _ig._with_8k_protocol("un logo doré")
-check("prompt logo → protocole KOMARA (K doré, fond noir)",
-      "KOMARA" in _lk and "no person" in _lk, _lk[-80:])
+check("prompt logo → protocole KOMARA (K doré, fond noir, SANS texte inventé)",
+      "letter K" in _lk and "no person" in _lk and "absolutely no text" in _lk
+      and "KOMARA" not in _lk, _lk[-80:])
 check("prompt logo → PAS de 9:16 ni peau (protocole photo)", "9:16" not in _lk and "skin" not in _lk, "")
 _lc = _ig._with_8k_protocol("un logo pour mon resto")
 check("logo de SA marque → PAS le K de KOMARA (sa marque à lui)",

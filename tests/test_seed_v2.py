@@ -58,7 +58,7 @@ ar_flat = {q: a for qs, a in aya_seed.SEED_QR_ML["ar"] for q in qs}
 check("contact WhatsApp harmonisé (AR)",
       any("+212 701 986 219" in a for a in ar_flat.values()))
 check("prix injectés depuis PRICES (défaut 50 €)",
-      "50 €" in _flat["prix"] and "300 000 GNF" in _flat["prix"])
+      "50 €" in _flat["prix"] and "30 €" in _flat["prix"] and "GNF" not in _flat["prix"])
 check("PRICES pilotable par variable d'env",
       aya_seed.PRICES["LOGO"] == os.environ.get("PRICE_LOGO", "50 €"))
 
@@ -72,9 +72,9 @@ r = aya_seed.ensure_seed("fr")
 all_qs = [str(row.get("question", "")) for row in ks.custom_rows_snapshot()]
 check("l'entrée identité est IGNORÉE (déjà connue par variante)",
       not any("tu es qui" in q for q in all_qs), all_qs[:5])
-check("les 39 autres fiches sont publiées",
-      len(all_qs) == 1 + 39, len(all_qs))
-check("loaded = 40 (base complète)", r["loaded"] == 40, r)
+check("toutes les autres fiches sont publiées",
+      len(all_qs) == 1 + (len(aya_seed.SEED_QR) - 1), len(all_qs))
+check("loaded = base complète", r["loaded"] == len(aya_seed.SEED_QR), r)
 check("persisted = 0 (Google non lié en test)", r.get("persisted", 0) == 0, r)
 
 _reset_store()
@@ -114,8 +114,8 @@ _reset_store()
 r1 = aya_seed.ensure_seed("fr")
 n1 = len(ks.custom_rows_snapshot())
 r2 = aya_seed.ensure_seed("fr")
-check("1er appel : 40 fiches runtime_only",
-      n1 == 40 and r1.get("runtime_only") is True, (n1, r1.get("runtime_only")))
+check("1er appel : toutes les fiches runtime_only",
+      n1 == len(aya_seed.SEED_QR) and r1.get("runtime_only") is True, (n1, r1.get("runtime_only")))
 check("2e appel : rien ajouté (idempotent)",
       len(ks.custom_rows_snapshot()) == n1, len(ks.custom_rows_snapshot()))
 check("is_question_known : exact O(1)",
@@ -134,8 +134,8 @@ threads = [threading.Thread(target=_worker) for _ in range(3)]
 for t in threads: t.start()
 for t in threads: t.join()
 total = len(ks.custom_rows_snapshot())
-check("3 threads en parallèle -> exactement 40 fiches (pas 120)",
-      total == 40, total)
+check("3 threads en parallèle -> exactement la base (pas x3)",
+      total == len(aya_seed.SEED_QR), total)
 
 print("── 6. SEED ML : refresh UNIQUEMENT des langues modifiées ──")
 _reset_store()

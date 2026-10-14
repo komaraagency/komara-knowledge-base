@@ -30,11 +30,11 @@ logger = logging.getLogger("komara.aya_seed")
 CONTACT_WA_PHONE = os.getenv("KOMARA_WHATSAPP", "+212 701 986 219")
 PRICES: dict[str, str] = {
     "LOGO": os.getenv("PRICE_LOGO", "50 €"),
-    "AFFICHE": os.getenv("PRICE_AFFICHE", "300 000 GNF"),
-    "AFFICHE_COURT": os.getenv("PRICE_AFFICHE_COURT", "300k GNF"),
-    "SITE": os.getenv("PRICE_SITE", "500 000 GNF"),
-    "SITE_COURT": os.getenv("PRICE_SITE_COURT", "500k"),
-    "RETOUCHE": os.getenv("PRICE_RETOUCHE", "100 000 GNF"),
+    "AFFICHE": os.getenv("PRICE_AFFICHE", "30 €"),
+    "AFFICHE_COURT": os.getenv("PRICE_AFFICHE_COURT", "30 €"),
+    "SITE": os.getenv("PRICE_SITE", "50 €"),
+    "SITE_COURT": os.getenv("PRICE_SITE_COURT", "50 €"),
+    "RETOUCHE": os.getenv("PRICE_RETOUCHE", "10 €"),
     "PACK_PREMIUM": os.getenv("PRICE_PACK_PREMIUM", "150€"),
 }
 
@@ -63,13 +63,28 @@ SEED_QR: list[tuple[list[str], str]] = [
      "Ça roule 😎 Merci de demander ! On est là pour booster ton business. Tu veux commencer par quoi ?"),
     (["qui es-tu", "qui es tu", "qui est tu", "qui êtes vous", "tu es qui"],
      "Je suis Aya 🤖 l'IA de Komara Agency 🇬🇳 Je parle aux clients à ta place, 24h/24, en français, arabe, anglais et espagnol. Tu veux me tester ?"),
+    # IDENTITÉ AGENCE / FONDATEUR (Boss 14/10, screenshots : « Qui est
+    # Komara Agency », « C'est quoi Komara Agency », « Qui est Ndine Komara »
+    # recevaient le slogan des services au lieu d'une vraie présentation).
+    # Chaque fiche finit par une question OUI/NON : OUI -> RDV/devis,
+    # NON -> clôture douce (logique pending_question).
+    (["qui est Komara Agency", "c'est quoi Komara Agency", "Komara Agency c'est quoi", "qui est komara", "c'est quoi komara", "présente Komara Agency", "parle moi de Komara Agency", "Komara Agency c'est qui"],
+     "Komara Agency 🇬🇳 c'est une agence digitale guinéenne 🌍 On crée des bots WhatsApp et Telegram qui vendent à ta place, des sites web, des logos, des affiches et des visuels qui font pro. Basés en Guinée, on travaille avec des clients partout, en français, anglais, arabe et espagnol. Tu as un projet en tête ? (Oui / Non)"),
+    (["qui est Ndine Komara", "qui est N-Dine Komara", "c'est qui Ndine Komara", "qui est le fondateur", "qui est le patron", "qui dirige Komara Agency", "c'est qui le boss", "parle moi de Ndine"],
+     "Ndine Komara 🇬🇳 est le fondateur de Komara Agency. Photographe et créateur digital basé à Conakry, il conçoit des visuels, des sites et des bots qui aident les entrepreneurs africains à vendre plus, même quand ils dorment 😴 Tu veux lui parler directement pour ton projet ? (Oui / Non)"),
     # VARIANTES IDENTITÉ (Boss 06/10, screenshot) : « tu fais quoi »,
     # « que fait Aya », « que fait Komara Agency »... sont la MÊME question
     # posée à la 2e ou 3e personne — Aya répond pareil peu importe la
     # conjugaison du client. Structure LISTE (Boss 10/10) : une question
     # par élément, plus jamais de séparateur « | » dans les données.
-    (["tu fais quoi", "que fais tu", "que faites vous", "qu'est ce que vous faites", "que fait Aya", "qui est Aya", "c'est quoi Aya", "que fait Komara Agency", "c'est quoi Komara Agency", "que propose Komara Agency", "vous faites quoi", "vos services c'est quoi"],
+    (["tu fais quoi", "que fais tu", "que faites vous", "qu'est ce que vous faites", "que fait Aya", "que fait Komara Agency", "que propose Komara Agency", "vous faites quoi", "vos services c'est quoi"],
      "Je vends pour toi même quand tu dors 😴 Bots WhatsApp/Telegram, sites web, logos, affiches, prises de RDV automatiques. Tape 'services' pour tout voir 👇"),
+    # FICHES SIGNALÉES PAR /evaluation (Boss 14/10) : 90% -> 100%.
+    # Finissent sur OUI/NON : OUI -> on enchaîne RDV/devis, NON -> clôture douce.
+    (["quel est le prix d'une affiche", "prix d'une affiche", "c'est combien une affiche", "combien coûte une affiche", "tarif affiche"],
+     "Une affiche pro chez Komara Agency 🇬🇳 c'est {AFFICHE}, livrée en 24h en HD, prête pour Facebook, WhatsApp et l'impression 🎨 Tu me dis juste ton activité et le message à afficher, on s'occupe du reste. On prépare la tienne ? (Oui / Non)".format(**PRICES)),
+    (["c'est quoi une automatisation", "qu'est-ce qu'une automatisation", "automatisation c'est quoi", "explique automatisation"],
+     "Une automatisation ⚙️ c'est une tâche qui se fait toute seule pendant que tu dors : le client paie, il reçoit sa facture auto. Quelqu'un commente, le bot répond. Un lead arrive, il est enregistré et relancé 🤖 Toi tu gères ton business, la machine fait le reste. Je te montre un exemple concret pour ton activité ? (Oui / Non)"),
     (["services"],
      "Nos services 🚀\n• Bots WhatsApp & Telegram\n• Sites web vitrine & e-commerce\n• Logos & identité visuelle\n• Affiches & visuels pub\n• Gestion de RDV automatique\nTape 'prix' pour les tarifs 👇"),
     (["prix", "c'est combien le logo", "c'est combien l'affiche", "c'est combien un site"],
@@ -116,8 +131,6 @@ SEED_QR: list[tuple[list[str], str]] = [
      "Un agent IA génératif ✨ c'est un chatbot boosté : il ne répond pas seulement, il AGIT et il CRÉE. Il peut générer des images, écrire des textes, produire des devis, apprendre tes produits et mener des actions de A à Z. C'est un employé digital polyvalent qui connaît ton business par cœur 💪 Tu veux le voir à l'œuvre sur ton activité ?"),
     (["c'est quoi un agent IA commercial", "c'est quoi un agent ia commercial"],
      "Un agent IA commercial 💼 c'est un vendeur digital : il qualifie les prospects, présente tes produits avec des visuels, répond aux objections, envoie les tarifs, relance les hésitants et clos la vente. Il connaît tout ton catalogue et ne prend jamais de pause 📈 Ton business vend 24h/24, de Kindia à Dubaï 🌍 Tu veux un devis pour le tien ?"),
-    (["c'est quoi une automatisation"],
-     "Une automatisation ⚙️ c'est quand une tâche se fait toute seule, sans que tu touches. Exemple : le client paie -> il reçoit sa facture auto -> son nom part dans ton Excel -> il reçoit un message de remerciement. Toi tu gagnes du temps, zéro oubli, plus de ventes 📈 Tu veux automatiser quoi en premier chez toi ?"),
     # RÈGLE LOGO (Boss 03/10) : jamais de personne dans un logo — K doré,
     # fond noir, style premium + pitch Pack Premium.
 

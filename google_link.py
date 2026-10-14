@@ -118,7 +118,17 @@ def build_auth_url(chat_id: int) -> str:
     return "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode(params)
 
 
-def cmd_google(bot, chat_id: int, lang: str = "fr") -> None:
+def _forget_dead_token() -> None:
+    """Efface le refresh token en base + le cache d'accès (token mort)."""
+    global _access_token, _token_expiry
+    _access_token, _token_expiry = "", 0
+    if DB_CONN is not None:
+        with DB_LOCK:
+            DB_CONN.execute("DELETE FROM google_token WHERE id = 1")
+            DB_CONN.commit()
+
+
+def cmd_google(bot, chat_id: int, lang: str = "fr", force: bool = False) -> None:
     """/google (admin) : lance le lien ou montre l'état."""
     if not is_configured():
         bot.send_message(
@@ -132,14 +142,32 @@ def cmd_google(bot, chat_id: int, lang: str = "fr") -> None:
             "Puis redéploie et retape /google.",
         )
         return
+    # Boss 14/10 : « déjà lié » ne veut PAS dire « fonctionne ». On teste
+    # réellement le token auprès de Google ; s'il est mort (invalid_grant),
+    # on propose DIRECTEMENT la reconnexion (avant : bloqué sur « déjà lié »).
+    dead = False
     if is_linked():
-        status = "✅ Ton compte Google est déjà lié (Sheets + Contacts actifs)."
+        global _access_token, _token_expiry
+        _access_token, _token_expiry = "", 0          # force un vrai test
+        dead = force or not get_access_token()
+    if is_linked() and not dead:
+        status = "✅ Ton compte Google est lié ET fonctionnel (Sheets + Contacts actifs)."
         if GOOGLE_SHEET_ID:
             status += f"\n📊 Tableur : {GOOGLE_SHEET_ID[:12]}…"
         else:
             status += "\n⚠️ GOOGLE_SHEET_ID absent — la sync Sheets est inactive."
         bot.send_message(chat_id, status)
         return
+    if dead:
+        raison = LAST_AUTH_ERROR or "token refusé"
+        _forget_dead_token()
+        bot.send_message(
+            chat_id,
+            f"⚠️ Le lien Google était cassé ({raison}).\n"
+            "Je viens de l'effacer. Reconnecte-toi avec le lien ci-dessous 👇\n"
+            "💡 Si GOOGLE_REFRESH_TOKEN existe dans Railway, SUPPRIME-LA "
+            "(elle contient l'ancien token mort) puis remets la nouvelle "
+            "valeur affichée après validation.")
     bot.send_message(
         chat_id,
         "🔗 Liaison Google\n\n1. Ouvre ce lien et autorise l'accès :\n"

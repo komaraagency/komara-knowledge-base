@@ -30,12 +30,12 @@ import rag_bot
 import aya_seed, knowledge_store
 
 print("── SEED AYA ──")
-check("40 Q/R définies (25 + 11 conversations commerciales Boss 04/10 + 4 définitions Boss 08/10)", len(aya_seed.SEED_QR) == 40, len(aya_seed.SEED_QR))
+check("40 Q/R définies (25 + 11 conversations commerciales Boss 04/10 + 4 définitions Boss 08/10)", len(aya_seed.SEED_QR) >= 40, len(aya_seed.SEED_QR))
 # Vider puisSeeder
 knowledge_store._CUSTOM_ROWS = []
 knowledge_store.rebuild_known_questions()
 r1 = aya_seed.ensure_seed("fr")
-check("seed charge 40 en runtime", len(knowledge_store.custom_rows_snapshot()) == 40,
+check("seed charge 40 en runtime", len(knowledge_store.custom_rows_snapshot()) == len(aya_seed.SEED_QR),
       len(knowledge_store._CUSTOM_ROWS))
 check("seed persistée = 0 (Google non lié en test)", r1["persisted"] == 0, r1)
 # Idempotent : re-seed n'ajoute rien
@@ -46,7 +46,7 @@ check("re-seed idempotent", len(knowledge_store._CUSTOM_ROWS) == n_before, n_bef
 resp = rag_bot.trouver_meilleure_reponse_multilingue("qui es tu", "fr")
 check("seed 'qui es tu' répond Aya", resp and "Aya" in resp, str(resp)[:80])
 resp2 = rag_bot.trouver_meilleure_reponse_multilingue("prix", "fr")
-check("seed 'prix' répond avec GNF", resp2 and "GNF" in resp2, str(resp2)[:80])
+check("seed 'prix' répond en euros (jamais monnaie locale)", resp2 and "€" in resp2 and "GNF" not in resp2, str(resp2)[:80])
 
 # ── 2. Portfolio Drive (mocké) ────────────────────────────────────────────
 import portfolio_drive

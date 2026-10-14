@@ -105,13 +105,17 @@ r = rag_bot.trouver_meilleure_reponse_multilingue("vous livrez a kindia ?", "fr"
 check("réponse apprise servie au client",
       r is not None and "Guinée" in r, str(r)[:80])
 
+_avant_replace = len(knowledge_store._CUSTOM_ROWS)
 with patch.object(memory_sheets, "save_learned", sheet.save_learned):
     actions._admin_apprends(FakeBot(), 99999,
                             "vous livrez a kindia || Non, seulement Conakry.", "fr")
 # la question enseignée est SIMILAIRE au seed 'livrez vous à kindia'
 # → elle le REMPLACE (runtime) : on garde 20 dialogues actifs, pas 21.
-check("réapprendre similaire remplace le seed (45 actifs, 25 + 11 conv. Boss 04/10 + 4 définitions Boss 08/10 + 5 seed multilingue)",
-      len(knowledge_store._CUSTOM_ROWS) == 45, len(knowledge_store._CUSTOM_ROWS))
+# Invariant (indépendant du nombre de fiches du seed) : réapprendre une
+# question SIMILAIRE la REMPLACE -> l'effectif ne bouge pas.
+check("réapprendre similaire remplace le seed (effectif inchangé)",
+      len(knowledge_store._CUSTOM_ROWS) == _avant_replace,
+      (_avant_replace, len(knowledge_store._CUSTOM_ROWS)))
 r2 = rag_bot.trouver_meilleure_reponse_multilingue("vous livrez a kindia ?", "fr")
 check("la NOUVELLE réponse est servie", r2 is not None and "Conakry" in r2, str(r2)[:80])
 

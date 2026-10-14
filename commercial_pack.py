@@ -9,13 +9,13 @@ ORDRE D'EXÉCUTION STRICT (spec) — un if/elif sur client_step, jamais
 
 Tunnels :
   1. handle_qualification : step==new + demande devis → question budget
-     A) <100k B) 100-300k C) +300k (GNF de référence, convertis dans la
-     monnaie locale du client). Réponse A (ou montant < 50k GNF) →
+     A) <10 € B) 10-30 € C) +30 € (toujours en euros, jamais convertis dans la
+     monnaie locale du client). Réponse A (ou montant < 5 €) →
      step=low_budget : templates à 50k + STOP, pas de devis.
   2. handle_downsell : « trop cher / pas budget / c'est cher » + step
      ==quoted → Starter à 50% du prix (1 page).
   3. handle_bump : step==quoted + « oui / d'accord / on lance » → pack
-     Maintenance + Domaine (+30.000 GNF/mois, converti).
+     Maintenance + Domaine (+3 €/mois).
   4. generate_docs : step==paid → contrat_{id}.pdf + facture_{id}.pdf
      (fpdf2, 100% local) envoyés au client.
 """
@@ -33,12 +33,12 @@ logger = logging.getLogger("komara")
 DOCS_DIR = Path(__file__).resolve().parent / "docs_commerciaux"
 DOCS_DIR.mkdir(exist_ok=True)
 
-# Seuils de qualification — base GNF (lettre #4), convertis à l'affichage
-TIER_LOW_GNF = 100_000.0     # A) < 100k
-TIER_HIGH_GNF = 300_000.0    # B) 100-300k, C) > 300k
-LOW_BUDGET_LIMIT_GNF = 50_000.0   # sous 50k → templates + stop
-TEMPLATES_PRICE_GNF = 50_000.0    # offre templates
-BUMP_MONTH_GNF = 30_000.0         # Maintenance + Domaine / mois
+# Seuils de qualification — en EUROS (Boss 14/10 : jamais monnaie locale)
+TIER_LOW_EUR = 10.0         # A) < 10 €
+TIER_HIGH_EUR = 30.0        # B) 10-30 €, C) > 30 €
+LOW_BUDGET_LIMIT_EUR = 5.0   # sous 5 € → templates + stop
+TEMPLATES_PRICE_EUR = 5.0     # offre templates
+BUMP_MONTH_EUR = 3.0           # Maintenance + Domaine / mois
 WHATSAPP = "+212701986219"
 
 DOWNSELL_WORDS = {"trop cher", "pas budget", "pas de budget", "c'est cher",
@@ -109,13 +109,9 @@ def t(lang: str, key: str, **kw) -> str:
     return (M.get(lang) or M["fr"])[key].format(**kw)
 
 
-def _fmt_gnf_in(gnf: float, cc: str) -> str:
-    """Affiche un montant GNF dans la monnaie du client."""
-    conv = devis_engine.convert_devis(cc, gnf / devis_engine.usd_per_unit("GNF"),
-                                      "USD") if devis_engine.usd_per_unit("GNF") else None
-    if conv:
-        return devis_engine.format_price(conv)
-    return f"{gnf:,.0f}".replace(",", " ") + " GNF"
+def _fmt_gnf_in(eur: float, cc: str = "") -> str:
+    """Boss 14/10 : JAMAIS la monnaie locale — tout s'affiche en euros."""
+    return f"{eur:g} €"
 
 
 # ---------------------------------------------------------------------------
@@ -128,8 +124,8 @@ def start_qualification(bot, chat_id: int, lang: str, grid: str) -> bool:
     cdb.set_step(chat_id, "qualifying")
     cc = _country_of(chat_id, lang)
     bot.send_message(chat_id, t(lang, "qualify",
-                                low=_fmt_gnf_in(TIER_LOW_GNF, cc),
-                                high=_fmt_gnf_in(TIER_HIGH_GNF, cc)))
+                                low=_fmt_gnf_in(TIER_LOW_EUR, cc),
+                                high=_fmt_gnf_in(TIER_HIGH_EUR, cc)))
     _remember_grid(chat_id, grid)
     return True
 
@@ -149,21 +145,21 @@ def handle_qualification_answer(bot, chat_id: int, text: str,
     elif re.fullmatch(r"c[\).\s]*", low) or "plus" in low or "above" in low:
         tier = "C"
     elif m:
-        # montant chiffré → converti vers GNF pour comparer aux seuils
+        # montant chiffré → converti en EUROS pour comparer aux seuils
         val = float(re.sub(r"[^\d.]", "", m.group(0)) or 0)
         # le client parle dans sa monnaie locale : reconvertissons
-        gnf = _to_gnf(val, cc)
-        tier = "A" if gnf < TIER_LOW_GNF else ("B" if gnf < TIER_HIGH_GNF else "C")
+        eur = _to_eur(val, cc)
+        tier = "A" if eur < TIER_LOW_EUR else ("B" if eur < TIER_HIGH_EUR else "C")
     if tier is None:
         return False  # pas une réponse de qualification → laisse passer
 
     cdb.save_qualification(chat_id, tier, text[:100])
     if tier == "A":
         # spec : A (ou < 50k) → low_budget + STOP, pas de devis
-        if not m or _to_gnf(float(re.sub(r"[^\d.]", "", m.group(0)) or 0), cc) < LOW_BUDGET_LIMIT_GNF or not m:
+        if not m or _to_eur(float(re.sub(r"[^\d.]", "", m.group(0)) or 0), cc) < LOW_BUDGET_LIMIT_EUR or not m:
             cdb.set_step(chat_id, "low_budget")
             bot.send_message(chat_id, t(lang, "low_budget",
-                                       tpl=_fmt_gnf_in(TEMPLATES_PRICE_GNF, cc),
+                                       tpl=_fmt_gnf_in(TEMPLATES_PRICE_EUR, cc),
                                        link=TEMPLATES_LINK))
             return True
     # B / C (ou A au-dessus de 50k) → on lance le devis (la grille
@@ -173,12 +169,11 @@ def handle_qualification_answer(bot, chat_id: int, text: str,
     return True
 
 
-def _to_gnf(amount: float, cc: str) -> float:
-    """Montant en monnaie locale du client → équivalent GNF."""
-    rate = devis_engine.usd_per_unit("GNF") or 8600.0
-    cur = devis_engine._load_currencies().get(cc, {}).get("currency", "USD")
-    r2 = devis_engine.usd_per_unit(cur) or 1.0
-    return amount / r2 * rate
+def _to_eur(amount: float, cc: str) -> float:
+    """Montant dans la monnaie du client -> équivalent EUROS (base EUR)."""
+    cur = devis_engine._load_currencies().get(cc, {}).get("currency", "EUR")
+    per_eur = devis_engine.eur_per_unit(cur) or 1.0   # unités de `cur` pour 1 €
+    return amount / per_eur
 
 
 def _country_of(chat_id: int, lang: str) -> str:
@@ -256,10 +251,10 @@ def _has_col(col: str) -> bool:
 
 def handle_bump(bot, chat_id: int, lang: str) -> bool:
     """« oui / d'accord / on lance » + step==quoted → offre Maintenance
-    + Domaine (+30.000 GNF/mois). True = consommé."""
+    + Domaine (+3 €/mois). True = consommé."""
     cdb.set_step(chat_id, "bump_offered")
     cc = _country_of(chat_id, lang)
-    bump_txt = _fmt_gnf_in(BUMP_MONTH_GNF, cc)
+    bump_txt = _fmt_gnf_in(BUMP_MONTH_EUR, cc)
     msgs = {
         "fr": f"Top 🔥 La plupart ajoutent le pack Maintenance + Domaine pour "
               f"+{bump_txt}/mois pour éviter les bugs.\n"
@@ -279,17 +274,14 @@ def handle_bump(bot, chat_id: int, lang: str) -> bool:
 
 
 def accept_bump(chat_id: int, cc: str) -> float:
-    """OUI au bump → +30.000 GNF/mois converti, ajouté au devis."""
-    gnf_rate = devis_engine.usd_per_unit("GNF") or 8600.0
-    bump_usd = BUMP_MONTH_GNF / gnf_rate
-    conv = devis_engine.convert_devis(cc, bump_usd, "USD")
+    """OUI au bump -> +3 EUR/mois, ajouté au devis (toujours en euros)."""
     pending = [q for q in cdb.pending_quotes() if q["chat_id"] == str(chat_id)]
     if pending:
         q = pending[-1]
         cdb.update_quote(q["id"],
-                         price_local=round((q["price_local"] or 0) + conv["price_local"], 2),
-                         price_eur=round((q["price_eur"] or 0) + bump_usd * 0.92, 2))
-    return conv["price_local"]
+                         price_local=round((q["price_local"] or 0) + BUMP_MONTH_EUR, 2),
+                         price_eur=round((q["price_eur"] or 0) + BUMP_MONTH_EUR, 2))
+    return BUMP_MONTH_EUR
 
 
 # ---------------------------------------------------------------------------

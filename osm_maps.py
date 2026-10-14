@@ -49,11 +49,11 @@ def t(lang: str, key: str, **kw) -> str:
 
 def _zone(km: float) -> tuple:
     if km <= 10:
-        return ("Zone Conakry", "~30 000 GNF", "1 à 2 jours")
+        return ("Zone Conakry", "~3 €", "1 à 2 jours")
     if km <= 50:
-        return ("Zone périphérique (Kindia, Dubréka…)", "~60 000 GNF", "2 à 3 jours")
+        return ("Zone périphérique (Kindia, Dubréka…)", "~6 €", "2 à 3 jours")
     if km <= 300:
-        return ("Zone régionale (Fria, Boké, Mamou…)", "~120 000 GNF", "3 à 5 jours")
+        return ("Zone régionale (Fria, Boké, Mamou…)", "~12 €", "3 à 5 jours")
     return ("Hors zone", "sur devis", "à convenir")
 
 

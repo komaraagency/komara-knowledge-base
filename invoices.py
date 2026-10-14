@@ -132,7 +132,7 @@ def cmd_facture(bot, chat_id: int, args: str, lang: str = "fr") -> None:
             chat_id,
             "🧾 /facture <id_commande> [montant] [client]\n\n"
             "• id : visible via /commandes\n"
-            "• montant : libre (ex. 250 000 GNF, 300€) — sinon dernier devis du client\n"
+            "• montant : libre (ex. 30€, 50€) — sinon dernier devis du client\n"
             "• 'client' : envoie aussi la facture au client",
         )
         return

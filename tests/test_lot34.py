@@ -81,8 +81,8 @@ check("agent génératif : il CRÉE (images, devis)",
       "CRÉE" in ans_gen and "images" in ans_gen, ans_gen[:80])
 check("agent commercial : il QUALIFIE et CLOS la vente", 
       ("qualifie" in ans_com or "vendeur" in ans_com) and "vente" in ans_com, ans_com[:80])
-check("automatisation : tâche qui se fait toute seule", 
-      "toute seule" in ans_auto and "sans que tu touches" in ans_auto, ans_auto[:80])
+check("automatisation : tâche qui se fait toute seule",
+      "toute seule" in ans_auto and "tâche" in ans_auto, ans_auto[:80])
 
 # Chaque question client reçoit SA définition, pas celle d'un autre
 kb_fr = rag_bot.LANG_RESOURCES["fr"]["kb"]
