@@ -285,6 +285,58 @@ def accept_bump(chat_id: int, cc: str) -> float:
 
 
 # ---------------------------------------------------------------------------
+# 3b. CROSS-SELL (Closer 14/10) : devis logo/visuel -> carte de visite
+# assortie +20 EUR. Proposé APRÈS la réponse au bump (chaîne : devis >
+# downsell > bump > cross-sell), sans jamais casser le tunnel 2 échanges.
+# ---------------------------------------------------------------------------
+CROSS_SELL_PRICE_EUR = 20.0
+CROSS_SELL_WORDS = ("logo", "visuel", "affiche", "identité", "identite",
+                    "branding", "charte")
+
+
+def _quote_is_visual(chat_id: int) -> bool:
+    """Le devis en cours du chat concerne-t-il un service visuel ?"""
+    pending = [q for q in cdb.pending_quotes()
+               if q["chat_id"] == str(chat_id)]
+    if not pending:
+        return False
+    svc = (pending[-1].get("service") or "").lower()
+    return any(w in svc for w in CROSS_SELL_WORDS)
+
+
+def handle_cross_sell(bot, chat_id: int, lang: str) -> bool:
+    """Propose la carte de visite assortie (+20 EUR) après le bump."""
+    cdb.set_step(chat_id, "cross_sell_offered")
+    bot.send_message(chat_id, {
+        "fr": "Dernière petite chose Chef 💼 La plupart ajoutent la carte de "
+              "visite pro assortie à leur logo : mêmes couleurs, même "
+              "signature, +20 € seulement. Je te l'ajoute ? (OUI / NON)",
+        "en": "One last thing boss 💼 Most people add the matching pro "
+              "business card: same colors, same signature, only +€20. "
+              "Shall I add it? (YES / NO)",
+        "es": "Una última cosa jefe 💼 La mayoría añade la tarjeta de "
+              "visita pro a juego con su logo: mismos colores, misma firma, "
+              "solo +20 €. ¿Se la añado? (SÍ / NO)",
+        "ar": "شيء أخير يا زعيم 💼 معظم العملاء يضيفون بطاقة زيارة احترافية "
+              "تطابق شعارهم: نفس الألوان، نفس التوقيع، بـ20€ فقط. أضيفها؟ "
+              "(نعم / لا)",
+    }.get(lang, "fr"))
+    return True
+
+
+def accept_cross_sell(chat_id: int) -> float:
+    """OUI au cross-sell -> +20 EUR sur le devis (toujours en euros)."""
+    pending = [q for q in cdb.pending_quotes()
+               if q["chat_id"] == str(chat_id)]
+    if pending:
+        q = pending[-1]
+        cdb.update_quote(q["id"],
+                         price_local=round((q["price_local"] or 0) + CROSS_SELL_PRICE_EUR, 2),
+                         price_eur=round((q["price_eur"] or 0) + CROSS_SELL_PRICE_EUR, 2))
+    return CROSS_SELL_PRICE_EUR
+
+
+# ---------------------------------------------------------------------------
 # 4. DOCS (fpdf2)
 # ---------------------------------------------------------------------------
 
@@ -424,6 +476,31 @@ def handle(bot, chat_id: int, text: str, lang: str = "fr") -> bool:
                 cc = _country_of(chat_id, lang)
                 added = accept_bump(chat_id, cc)
                 bot.send_message(chat_id, _msg_bump_ok(lang, added, cc))
+                # Closer 14/10 : devis visuel -> on enchaine sur la carte
+                # de visite assortie (+20 EUR) au lieu de refermer sec.
+                if _quote_is_visual(chat_id):
+                    return handle_cross_sell(bot, chat_id, lang)
+                cdb.set_step(chat_id, "quoted")
+                return True
+            if low in BUMP_NO:
+                bot.send_message(chat_id, _msg_no_problem(lang))
+                if _quote_is_visual(chat_id):
+                    return handle_cross_sell(bot, chat_id, lang)
+                cdb.set_step(chat_id, "quoted")
+                return True
+
+        # Closer 14/10 : réponse au cross-sell carte de visite
+        if step == "cross_sell_offered":
+            if low in BUMP_YES:
+                added = accept_cross_sell(chat_id)
+                bot.send_message(chat_id, {
+                    "fr": f"Ajoutée 🔥 Carte de visite pro (+{added:g} €). "
+                          "Tape 'payer' pour le QR, Chef.",
+                    "en": f"Added 🔥 Pro business card (+{added:g} €). "
+                          "Type 'pay' for the QR, boss.",
+                    "es": f"Añadida 🔥 Tarjeta pro (+{added:g} €). "
+                          "Escribe 'pagar' para el QR, jefe.",
+                }.get(lang, "fr"))
                 cdb.set_step(chat_id, "quoted")
                 return True
             if low in BUMP_NO:

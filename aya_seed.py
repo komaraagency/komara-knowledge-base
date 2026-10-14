@@ -85,7 +85,37 @@ SEED_QR: list[tuple[list[str], str]] = [
      "Une affiche pro chez Komara Agency 🇬🇳 c'est {AFFICHE}, livrée en 24h en HD, prête pour Facebook, WhatsApp et l'impression 🎨 Tu me dis juste ton activité et le message à afficher, on s'occupe du reste. On prépare la tienne ? (Oui / Non)".format(**PRICES)),
     (["c'est quoi une automatisation", "qu'est-ce qu'une automatisation", "automatisation c'est quoi", "explique automatisation"],
      "Une automatisation ⚙️ c'est une tâche qui se fait toute seule pendant que tu dors : le client paie, il reçoit sa facture auto. Quelqu'un commente, le bot répond. Un lead arrive, il est enregistré et relancé 🤖 Toi tu gères ton business, la machine fait le reste. Je te montre un exemple concret pour ton activité ? (Oui / Non)"),
+    # OBJECTIONS CLOSER 14/10 : défendre le prix sans casser,
+    # puis ramener vers la vente (fin Oui/Non).
+    (["c'est trop cher", "trop cher", "c est trop cher", "c'est trop chère",
+      "trop chère", "why so expensive", "it's too expensive", "too expensive",
+      "es muy caro", "demasiado caro", "غالي جدا"],
+     "Je comprends, chaque euro doit rapporter 🙏 Chez Komara Agency tout est "
+     "carré dès le départ : logo 50 € livré en 24h, affiche 30 €, site 50 €. "
+     "Un seul visuel bien fait te ramène des clients des mois entiers. On peut "
+     "commencer petit et évoluer ensuite. Je te montre ce que 50 € fait pour "
+     "ton image ? (Oui / Non)"),
+    (["je vais réfléchir", "je vais y réfléchir", "laisse moi réfléchir",
+      "je vais penser", "let me think", "lo voy a pensar", "سأفكر"],
+     "Pas de souci, réfléchis tranquille 🤔 Par contre les créneaux de "
+     "livraison partent vite (24h seulement pour les logos). Si je te bloque "
+     "une place aujourd'hui, tu ne perds rien : devis gratuit, tu décides "
+     "après. Je te réserve ta place ? (Oui / Non)"),
+    (["j'ai déjà un graphiste", "j ai deja un graphiste", "j'ai déjà un prestataire",
+      "j ai un graphiste", "i already have a designer", "ya tengo un diseñador"],
+     "Super, ça veut dire que tu prends ton image au sérieux 💪 Regarde juste "
+     "ce qu'on fait différemment : livraison 24h garantie, fichiers HD + "
+     "sources inclus, et un bot qui vend pour toi en parallèle. Garde ton "
+     "graphiste pour le gros travail, teste-nous sur une affiche à 30 € et "
+     "compare. On fait le test ? (Oui / Non)"),
+    (["pas d'argent maintenant", "pas les moyens", "je n'ai pas de budget",
+      "no money now", "no budget", "sin dinero"],
+     "Je capte totalement 🙏 Dans ce cas on commence GRATUITEMENT : je te "
+     "montre en 5 minutes ce qu'un bot ou un visuel peut rapporter à ton "
+     "business, et tu décides quand tu es prêt. L'audit est offert, aucune "
+     "obligation. Je te le prépare ? (Oui / Non)"),
     (["services"],
+
      "Nos services 🚀\n• Bots WhatsApp & Telegram\n• Sites web vitrine & e-commerce\n• Logos & identité visuelle\n• Affiches & visuels pub\n• Gestion de RDV automatique\nTape 'prix' pour les tarifs 👇"),
     (["prix", "c'est combien le logo", "c'est combien l'affiche", "c'est combien un site"],
      "Tarifs 🇬🇳\n• Logo seul : {LOGO} (livré en 24h)\n• Affiche/visuel : {AFFICHE}\n• Site vitrine : {SITE} (7 jours)\n• Retouche photo : {RETOUCHE}\nExpress 24h : +30%\nTape 'menu' pour commander 👇".format(**PRICES, CONTACT_WA_PHONE=CONTACT_WA_PHONE)),

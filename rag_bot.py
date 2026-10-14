@@ -2267,6 +2267,22 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
         secret_reply(bot, chat_id, detected_lang)
         return
 
+    # Closer 14/10 : savoir dire NON (illégal/interdit) — refus poli
+    # + réorientation vers nos vrais services, AVANT tout le reste.
+    import closer_skills
+    if closer_skills.is_offlimits(user_text):
+        remember(chat_id, "assistant", "refus_offlimits")
+        bot.send_message(chat_id, closer_skills.refusal_message(detected_lang))
+        return
+
+    # Closer 14/10 : lire l'émotion — énervé/déçu → empathie + passage
+    # direct au boss (jamais une fiche commerciale sur un client frustré).
+    # NB : les réclamations avérées sont déjà gérées par actions.handle().
+    if closer_skills.is_negative_emotion(user_text):
+        remember(chat_id, "assistant", "empathie")
+        bot.send_message(chat_id, closer_skills.empathy_message(detected_lang))
+        return
+
     local_response = local_contextual_response(chat_id, user_text, detected_lang)
     if local_response is None:
         record_unrecognized(user_text, source="telegram")

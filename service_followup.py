@@ -13,7 +13,7 @@ reconnaît la réponse libre du client (variantes, fautes, accents) et on répon
 sur CE service avec UNE suite concrète : prix + devis.
 
 100% local, déterministe, aucune invention : prix repris tels quels des
-tarifs officiels (logo 50 €, site dès 200 $, bot dès 150 $). Réponse non
+tarifs officiels (logo 50 €, site dès 50 €, bot dès 50 €). Réponse non
 reconnue -> None (le moteur continue normalement).
 """
 from __future__ import annotations
@@ -86,22 +86,22 @@ _REPLIES = {
         "(24h). Tape 'devis' pour ton estimation gratuite en 2 minutes 🚀"),
     ("site", "vitrine"): (
         "Un site vitrine, noté 👌 Il présente ton business, tes services et tes "
-        "contacts. À partir de 200 $. Tape 'devis' pour ton estimation gratuite "
+        "contacts. À partir de 50 €. Tape 'devis' pour ton estimation gratuite "
         "en 2 minutes 🚀"),
     ("site", "boutique"): (
         "Une boutique en ligne, bien vu 🛒 Catalogue, panier et commandes. "
-        "À partir de 200 $. Tape 'devis' pour ton estimation gratuite en "
+        "À partir de 50 €. Tape 'devis' pour ton estimation gratuite en "
         "2 minutes 🚀"),
     ("bot", "whatsapp"): (
         "Un bot WhatsApp, excellent choix 💬 Il répond à tes clients 24/7, "
-        "prend les commandes et te passe la main au besoin. À partir de 150 $. "
+        "prend les commandes et te passe la main au besoin. À partir de 50 €. "
         "Tape 'devis' pour ton estimation gratuite 🚀"),
     ("bot", "telegram"): (
         "Un bot Telegram, parfait 🤖 Il répond, qualifie tes clients et envoie "
-        "les contacts dans ton Google Sheet. À partir de 150 $. Tape 'devis' "
+        "les contacts dans ton Google Sheet. À partir de 50 €. Tape 'devis' "
         "pour ton estimation gratuite 🚀"),
     ("bot", "commande"): (
-        "Très bien, on te crée un bot sur mesure 🤖 À partir de 150 $. Tape "
+        "Très bien, on te crée un bot sur mesure 🤖 À partir de 50 €. Tape "
         "'devis' et je te pose 3 questions rapides pour ton estimation gratuite 🚀"),
     ("bot", "demo"): (
         "Avec plaisir 👀 Tape 'portfolio' pour voir nos démos de bots, puis "
@@ -126,6 +126,17 @@ _REPLIES = {
 }
 
 
+# Attributs citables : couleurs, styles, formes (closer 14/10).
+ATTRIB_RX = __import__("re").compile(
+    r"\b(rouge|rouges|bleu|bleus|vert|verts|noir|noirs|blanc|blancs|doré|dore|or|"
+    r"jaune|violet|rose|moderne|modern|minimaliste|minimal|luxe|classique|"
+    r"3d|anime|animé|africain|africaine|traditionnel|royal|simple|"
+    r"sobre|flashy|rond|ronde|carre)\b")
+_ATTRIB_REPLY = ("C'est noté, super choix 👌 Dis-moi le nom de ta marque "
+                 "et ton activité, je te prépare la proposition. Livré en 24h, "
+                 "à partir de 50 € 🚀")
+
+
 def asked_service(last_bot_msg: str) -> str:
     """Service dont le bot vient de demander la précision, ou ''."""
     tail = _norm(last_bot_msg or "")[-260:]
@@ -148,4 +159,10 @@ def reply_for(user_text: str, last_bot_msg: str) -> str | None:
     for key, rx in _ANSWERS.get(service, []):
         if rx.search(low):
             return _REPLIES.get((service, key))
+    # Closer 14/10 — attribut court (couleur, style) après une question
+    # de précision : « rouge », « doré », « moderne »... Le client précise
+    # SON choix : on confirme et on avance vers la vente, jamais de
+    # « question non répondue » pour un simple choix de couleur.
+    if len(low.split()) <= 4 and ATTRIB_RX.search(low):
+        return _ATTRIB_REPLY
     return None

@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 import actions
 
 STEPS = ("new", "qualifying", "qualified", "quoted", "downsell_offered",
-         "bump_offered", "paid", "low_budget")
+         "bump_offered", "cross_sell_offered", "paid", "low_budget")
 
 
 def _now() -> str:
