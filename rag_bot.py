@@ -293,7 +293,10 @@ def detect_language_session(text: str, fallback: str | None = None) -> str:
     # emprunts internationaux : présents dans toutes les langues, ils ne
     # comptent ni comme signal FR ni comme signal darija
     loan_words = {"bot", "site", "app", "service", "whatsapp", "telegram",
-                  "logo", "menu", "web"}
+                  "logo", "menu", "web",
+                  # Boss 19/10 : « Salam boss » = salutation FR du client
+                  # (vocabulaire maison du bot) — pas un basculement AR
+                  "boss", "bro", "chef", "team", "welcome"}
     darija_hit = bool(low_words & _DARIJA_MARKERS)
     strong_fr = len((low_words & fr_words) - loan_words - _DARIJA_MARKERS)
     if darija_hit and strong_fr == 0:
@@ -840,11 +843,34 @@ def trouver_meilleure_reponse_multilingue(message: str, detected_lang: str) -> s
     if result:
         return result
 
-    # ANTI-MÉLANGE (Boss 10/10) : on ne balaie JAMAIS les autres langues,
-    # PAS MÊME EN REPLI. Avant, un client AR sans fiche AR recevait une
-    # réponse FR — le mélange ultime. Désormais : langue détectée →
-    # message générique DANS LA LANGUE du client. « Une absence de fiche
-    # vaut mieux qu'une réponse à côté » s'applique aussi au repli.
+    # COHÉRENCE (Boss 19/10) : le FUZZY reste strictement dans la langue
+    # détectée (règle anti-mélange 10/10 : pas de réponse APPROCHÉE dans
+    # une autre langue). MAIS un ENSEIGNEMENT EXACT ne connaît pas de
+    # frontière : si le boss a appris « salam boss » (fr), un client qui
+    # tape « salam boss » reçoit CETTE fiche — même si la détection a
+    # basculé en arabe (darija). C'est la base réelle du Sheet qui parle,
+    # pas une invention.
+    _exact = _exact_match_crosslang(message)
+    if _exact:
+        return _exact
+
+    return None
+
+
+def _exact_match_crosslang(message: str) -> str | None:
+    """Question EXACTE (normalisée) connue dans une autre langue -> la
+    fiche du boss est servie telle quelle. Aucun fuzzy ici."""
+    key = (message or "").strip().casefold()
+    if not key:
+        return None
+    for _lang, res in LANG_RESOURCES.items():
+        for e in res.get("kb", []):
+            qs = e.get("questions") or []
+            if not qs and e.get("question"):
+                qs = [e["question"]]
+            for q in qs:
+                if (q or "").strip().casefold() == key:
+                    return e.get("answer") or ""
     return None
 
 # ---------------------------------------------------------------------------
@@ -1988,6 +2014,16 @@ def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
 # 🧠 Clients déjà salués depuis ce redémarrage (une salutation perso par session)
 _GREETED_SESSION: set[int] = set()
 
+# BOSS 19/10 : ACK de re-salutation (court, anti-répétition)
+_GREET_AGAIN = {
+    "fr": "On est déjà connectés bro 😊 Dis-moi ce que tu cherches : "
+          "logo, site, bot, devis ?",
+    "ar": "أنا هنا بالفعل 😊 أخبرني ماذا تبحث عنه: شعار، موقع، بوت، عرض سعر؟",
+    "en": "Already here bro 😊 Tell me what you're looking for: "
+          "logo, site, bot, quote?",
+    "es": "Ya estoy aquí 😊 Dime qué buscas: logo, sitio, bot, presupuesto?",
+}
+
 # BOSS 19/10 : accueil nouveau client qui salue — dans SA langue
 # (le client arabisant qui dit « Salam » reçoit « وعليكم السلام », pas
 # une question non répondue).
@@ -2005,11 +2041,6 @@ _NEW_GREETING = {
           "sitios, logos, visuales — trabajo para ti 24/7 😴 Escribe "
           "'menu' para ver todo 👇",
 }
-
-def _is_pure_greeting_new(chat_id: int) -> bool:
-    """Client déjà connu ET déjà salué cette session -> le bloc
-    personnalisé ci-dessous prend le relais (prénom)."""
-    return chat_id in _GREETED_SESSION
 
 _RETURN_GREETING = {
     "fr": "Re-bonjour {name} 👋 Content de te revoir ! On parlait de quoi déjà ? Tape /menu si tu veux tout revoir.",
@@ -2136,21 +2167,27 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     _is_greeting = (_gtoks and _gtoks[0] in _gwords
                     and (len(_gtoks) == 1
                          or all(t in _gextra for t in _gtoks[1:])))
-    if _is_greeting and not _is_pure_greeting_new(chat_id):
-        _greet_new = _NEW_GREETING.get(detected_lang) or _NEW_GREETING["fr"]
+    if _is_greeting and chat_id in _GREETED_SESSION:
+        # BOSS 19/10 (screen 15:21) : re-salutation -> réponse COURTE
+        # (jamais silence, jamais re-copie du pavé d'accueil). Client
+        # REVENANT connu : le « Re-bonjour {prénom} » personnalisé
+        # (déjà court) reste la référence — sinon ACK générique.
         remember(chat_id, "user", user_text)
-        remember(chat_id, "assistant", _greet_new)
-        _GREETED_SESSION.add(chat_id)
-        bot.send_message(chat_id, _greet_new,
-                         reply_markup=menu_for_lang(detected_lang))
+        _client = actions.get_client(chat_id)
+        if _client and _client.get("name") and has_prior_history(chat_id):
+            _ack = (_RETURN_GREETING.get(detected_lang)
+                    or _RETURN_GREETING["fr"]).replace("{name}", _client["name"])
+        else:
+            _ack = _GREET_AGAIN.get(detected_lang) or _GREET_AGAIN["fr"]
+        remember(chat_id, "assistant", _ack)
+        bot.send_message(chat_id, _ack, reply_markup=menu_for_lang(detected_lang))
         return
-    if (chat_id not in _GREETED_SESSION
-            and low_txt in actions.GREETING_WORDS):
+    if _is_greeting:
         _GREETED_SESSION.add(chat_id)
         _client = actions.get_client(chat_id)
         # LETTRE MASTER : « Re-bonjour, content de te revoir » est réservé
         # aux clients REVENANTS (historique en base). Un NOUVEAU client,
-        # même avec un prénom Telegram, continue vers l'accueil normal.
+        # même avec un prénom Telegram, reçoit l'accueil générique.
         if _client and _client.get("name") and has_prior_history(chat_id):
             remember(chat_id, "user", user_text)
             _greet = (_RETURN_GREETING.get(detected_lang)
@@ -2160,6 +2197,18 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             bot.send_message(chat_id, _greet,
                              reply_markup=menu_for_lang(detected_lang))
             return
+        # COHÉRENCE (Boss 19/10) : d'abord LA FICHE ENSEIGNÉE par le boss
+        # (match exact, toutes langues) — son enseignement prime sur
+        # l'accueil codé. Sinon accueil dans la langue détectée.
+        _taught = _exact_match_crosslang(user_text)
+        _greet_new = (_taught
+                      or _NEW_GREETING.get(detected_lang)
+                      or _NEW_GREETING["fr"])
+        remember(chat_id, "user", user_text)
+        remember(chat_id, "assistant", _greet_new)
+        bot.send_message(chat_id, _greet_new,
+                         reply_markup=menu_for_lang(detected_lang))
+        return
     # 0b. LETTRE MASTER — moteur langue : le client change de langue
     # d'un mot (« english », « espanol », « العربية », « francais »...).
     # La langue persiste ensuite pour toute la conversation (les messages

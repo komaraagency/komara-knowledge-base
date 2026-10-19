@@ -322,7 +322,13 @@ def load_learned(strict: bool = False) -> list[dict]:
         answer = fix_sheet_typos(answer)
         if not question.strip() or not answer.strip():
             continue
-        key = question.strip().casefold()
-        learned[key] = {"question": question, "answer": answer,
-                        "lang": (lang or "fr").strip() or "fr", "date": _date}
+        # BOSS 19/10 : découper les variantes « | » AVANT la dédup —
+        # une vieille fiche multi-variantes (format 04/10, ex. ligne 49
+        # du Sheet) ne doit pas cohabiter avec une nouvelle fiche de
+        # même question (ex. ligne 191) : la plus RÉCENTE gagne.
+        for variant in [v.strip() for v in question.split("|") if v.strip()]:
+            key = variant.strip().casefold()
+            learned[key] = {"question": variant, "answer": answer,
+                            "lang": (lang or "fr").strip() or "fr",
+                            "date": _date}
     return list(learned.values())
