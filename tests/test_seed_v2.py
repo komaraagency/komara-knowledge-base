@@ -146,8 +146,10 @@ ks._CUSTOM_ROWS = [{"question": aya_seed.SEED_QR_ML["en"][0][0][0],
                     "answer": "already known", "lang": "en"}]
 ks.rebuild_known_questions()
 rml = aya_seed.ensure_seed_ml()
-check("fiche EN déjà connue -> non republiée", rml["published"] == 4,
-      rml)  # 5 fiches ML - 1 connue = 4 (en restant: 1, es: 2, ar: 1)
+_n_ml = sum(len(v) for v in aya_seed.SEED_QR_ML.values())
+check("fiche EN déjà connue -> non republiée",
+      rml["published"] == _n_ml - 1,
+      rml)  # toutes les fiches ML - 1 connue (invariant, pas de nombre figé)
 check("« en » rafraîchi UNE seule fois", _refreshed.count("en") == 1, _refreshed)
 check("« fr » jamais rafraîchi par le seed ML", "fr" not in _refreshed, _refreshed)
 rml2 = aya_seed.ensure_seed_ml()

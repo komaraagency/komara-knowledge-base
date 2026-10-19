@@ -2299,7 +2299,7 @@ def _admin_prixaudit(bot, chat_id: int, args: str, lang: str) -> bool:
     import re as _re
     try:
         import rag_bot
-        bad = _re.compile(r"\bGNF\b|\bFG\b|\bXOF\b|\bFCFA\b|\b\d{1,3}(?:[ .]\d{3})+\b|\b\d+\s?k\b",
+        bad = _re.compile(r"\bGNF\b|\bFG\b|\bXOF\b|\bFCFA\b|\b\d{1,3}(?:[ .]\d{3})+\b|\b\d+\s?k\b|\$|\bdollars?\b",
                           _re.IGNORECASE)
         found = []
         for lg, res in rag_bot.LANG_RESOURCES.items():

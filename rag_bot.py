@@ -1988,6 +1988,29 @@ def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
 # 🧠 Clients déjà salués depuis ce redémarrage (une salutation perso par session)
 _GREETED_SESSION: set[int] = set()
 
+# BOSS 19/10 : accueil nouveau client qui salue — dans SA langue
+# (le client arabisant qui dit « Salam » reçoit « وعليكم السلام », pas
+# une question non répondue).
+_NEW_GREETING = {
+    "fr": "Salam ! 👋 Moi c'est Aya, l'IA de Komara Agency 🇬🇳 Bots qui "
+          "vendent, sites, logos, affiches — je travaille pour toi 24/7 😴 "
+          "Tape 'menu' pour tout voir 👇",
+    "ar": "وعليكم السلام 👋 أنا آيا، الذكاء الاصطناعي لوكالة كومارا 🇬🇳 "
+          "بوتات تبيع، مواقع، شعارات ولوحات — أعمل لأجلك 24/7 حتى وأنت "
+          "نائم 😴 اكتب 'menu' لرؤية كل شيء 👇",
+    "en": "Hello! 👋 I'm Aya, the AI of Komara Agency 🇬🇳 Selling bots, "
+          "websites, logos, visuals — working for you 24/7 😴 Type 'menu' "
+          "to see everything 👇",
+    "es": "¡Hola! 👋 Soy Aya, la IA de Komara Agency 🇬🇳 Bots que venden, "
+          "sitios, logos, visuales — trabajo para ti 24/7 😴 Escribe "
+          "'menu' para ver todo 👇",
+}
+
+def _is_pure_greeting_new(chat_id: int) -> bool:
+    """Client déjà connu ET déjà salué cette session -> le bloc
+    personnalisé ci-dessous prend le relais (prénom)."""
+    return chat_id in _GREETED_SESSION
+
 _RETURN_GREETING = {
     "fr": "Re-bonjour {name} 👋 Content de te revoir ! On parlait de quoi déjà ? Tape /menu si tu veux tout revoir.",
     "en": "Hello again {name} 👋 Great to see you back! What were we working on? Type /menu to see everything.",
@@ -2102,6 +2125,25 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     # 🧠 MÉMOIRE CLIENT : un client connu qui salue reçoit une salutation
     # PERSONNALISÉE avec son prénom — le bot se souvient de lui.
     low_txt = user_text.lower().strip()
+    # BOSS 19/10 (screens 15:01) : « Salam » / « Salam boss » d'un NOUVEAU
+    # client tombait dans « QUESTION NON RÉPONDU » (darija -> AR -> aucune
+    # fiche). Un salut ne passe JAMAIS par le RAG : on accueille dans la
+    # langue détectée (AR pour salam), quel que soit le client.
+    _gwords = {w.strip() for w in actions.GREETING_WORDS if w}
+    _gextra = {"boss", "bro", "chef", "khoya", "les amis", "ami",
+               "tout le monde", "team", "friends", "everybody"}
+    _gtoks = low_txt.split()
+    _is_greeting = (_gtoks and _gtoks[0] in _gwords
+                    and (len(_gtoks) == 1
+                         or all(t in _gextra for t in _gtoks[1:])))
+    if _is_greeting and not _is_pure_greeting_new(chat_id):
+        _greet_new = _NEW_GREETING.get(detected_lang) or _NEW_GREETING["fr"]
+        remember(chat_id, "user", user_text)
+        remember(chat_id, "assistant", _greet_new)
+        _GREETED_SESSION.add(chat_id)
+        bot.send_message(chat_id, _greet_new,
+                         reply_markup=menu_for_lang(detected_lang))
+        return
     if (chat_id not in _GREETED_SESSION
             and low_txt in actions.GREETING_WORDS):
         _GREETED_SESSION.add(chat_id)
