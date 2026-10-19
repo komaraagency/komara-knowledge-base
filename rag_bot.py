@@ -289,6 +289,12 @@ def detect_language_session(text: str, fallback: str | None = None) -> str:
     les marqueurs darija et les emprunts internationaux (bot, site...).
     « Salam » seul -> ar ; « Salam, je veux un site web » -> reste fr."""
     low_words = set(re.findall(r"\b\w+\b", text.lower()))
+    # BOSS 19/10 : « Salam boss / bro / chef » = salutation FR du client
+    # (vocabulaire maison). « Salam » SEUL reste darija->ar (G1 lot27),
+    # mais salut + mot maison ne bascule JAMAIS en arabe.
+    if re.match(r"^(salam|bonjour|salut|bonsoir|hello)[\s,!.]*(boss|bro|chef|team)\b",
+                (text or "").strip(), re.IGNORECASE):
+        return "fr"
     fr_words = LANGUAGE_MARKERS["fr"].get("words", set())
     # emprunts internationaux : présents dans toutes les langues, ils ne
     # comptent ni comme signal FR ni comme signal darija
@@ -2014,6 +2020,10 @@ def handle_callback_query(call: telebot.types.CallbackQuery) -> None:
 # 🧠 Clients déjà salués depuis ce redémarrage (une salutation perso par session)
 _GREETED_SESSION: set[int] = set()
 
+# BOSS 19/10 : salutations ENSEIGNÉES déjà servies ce process
+# (par chat, par formulation) — anti re-collage.
+_GREET_TAUGHT: dict[int, set] = {}
+
 # BOSS 19/10 : ACK de re-salutation (court, anti-répétition)
 _GREET_AGAIN = {
     "fr": "On est déjà connectés bro 😊 Dis-moi ce que tu cherches : "
@@ -2167,22 +2177,38 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
     _is_greeting = (_gtoks and _gtoks[0] in _gwords
                     and (len(_gtoks) == 1
                          or all(t in _gextra for t in _gtoks[1:])))
-    if _is_greeting and chat_id in _GREETED_SESSION:
-        # BOSS 19/10 (screen 15:21) : re-salutation -> réponse COURTE
-        # (jamais silence, jamais re-copie du pavé d'accueil). Client
-        # REVENANT connu : le « Re-bonjour {prénom} » personnalisé
-        # (déjà court) reste la référence — sinon ACK générique.
-        remember(chat_id, "user", user_text)
-        _client = actions.get_client(chat_id)
-        if _client and _client.get("name") and has_prior_history(chat_id):
-            _ack = (_RETURN_GREETING.get(detected_lang)
-                    or _RETURN_GREETING["fr"]).replace("{name}", _client["name"])
-        else:
-            _ack = _GREET_AGAIN.get(detected_lang) or _GREET_AGAIN["fr"]
-        remember(chat_id, "assistant", _ack)
-        bot.send_message(chat_id, _ack, reply_markup=menu_for_lang(detected_lang))
-        return
     if _is_greeting:
+        # BOSS 19/10 (screen 19:42) : LA FICHE ENSEIGNÉE PRIME SUR TOUT.
+        # Le boss ajoute une connaissance (« salam boss »), le bot la
+        # suit — AVANT le Re-bonjour personnalisé et l'accueil codé.
+        # Une seule fois par session ; ensuite ack court.
+        _taught = _exact_match_crosslang(user_text)
+        _tkey = (user_text or "").strip().casefold()
+        if _taught and _tkey not in _GREET_TAUGHT.setdefault(chat_id, set()):
+            # BOSS 19/10 (screen 19:42) : CHAQUE salutation enseignée
+            # sert SA fiche, même après un autre salut (« Salam » puis
+            # « Salam boss »). 1 fois par formulation, puis ack court.
+            _GREET_TAUGHT[chat_id].add(_tkey)
+            _GREETED_SESSION.add(chat_id)
+            remember(chat_id, "user", user_text)
+            remember(chat_id, "assistant", _taught)
+            bot.send_message(chat_id, _taught,
+                             reply_markup=menu_for_lang(detected_lang))
+            return
+        # re-salutation -> réponse COURTE (jamais silence, jamais
+        # re-copie du pavé). Client REVENANT connu : « Re-bonjour
+        # {prénom} » ; sinon ack générique.
+        if chat_id in _GREETED_SESSION:
+            remember(chat_id, "user", user_text)
+            _client = actions.get_client(chat_id)
+            if _client and _client.get("name") and has_prior_history(chat_id):
+                _ack = (_RETURN_GREETING.get(detected_lang)
+                        or _RETURN_GREETING["fr"]).replace("{name}", _client["name"])
+            else:
+                _ack = _GREET_AGAIN.get(detected_lang) or _GREET_AGAIN["fr"]
+            remember(chat_id, "assistant", _ack)
+            bot.send_message(chat_id, _ack, reply_markup=menu_for_lang(detected_lang))
+            return
         _GREETED_SESSION.add(chat_id)
         _client = actions.get_client(chat_id)
         # LETTRE MASTER : « Re-bonjour, content de te revoir » est réservé
@@ -2197,12 +2223,8 @@ def _process_text(chat_id: int, user_text: str, detected_lang: str,
             bot.send_message(chat_id, _greet,
                              reply_markup=menu_for_lang(detected_lang))
             return
-        # COHÉRENCE (Boss 19/10) : d'abord LA FICHE ENSEIGNÉE par le boss
-        # (match exact, toutes langues) — son enseignement prime sur
-        # l'accueil codé. Sinon accueil dans la langue détectée.
-        _taught = _exact_match_crosslang(user_text)
-        _greet_new = (_taught
-                      or _NEW_GREETING.get(detected_lang)
+        # pas de fiche enseignée pour ce salut : accueil codé.
+        _greet_new = (_NEW_GREETING.get(detected_lang)
                       or _NEW_GREETING["fr"])
         remember(chat_id, "user", user_text)
         remember(chat_id, "assistant", _greet_new)
